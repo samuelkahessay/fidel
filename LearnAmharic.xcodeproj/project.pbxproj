@@ -32,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AAA00000000 /* AmharicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmharicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAA00000000 /* Fidel - Learn Amharic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidel - Learn Amharic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA00001000 /* AmharicAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmharicAppApp.swift; sourceTree = "<group>"; };
 		AAA00002000 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AAA00003000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,12 +61,12 @@
 		AAA00100000 = {
 			isa = PBXGroup;
 			children = (
-				AAA00200000 /* AmharicApp */,
+				AAA00200000 /* LearnAmharic */,
 				AAA00300000 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AAA00200000 /* AmharicApp */ = {
+		AAA00200000 /* LearnAmharic */ = {
 			isa = PBXGroup;
 			children = (
 				AAA00001000 /* AmharicAppApp.swift */,
@@ -77,13 +77,13 @@
 				AAA00700000 /* Services */,
 				AAA00003000 /* Assets.xcassets */,
 			);
-			path = AmharicApp;
+			path = LearnAmharic;
 			sourceTree = "<group>";
 		};
 		AAA00300000 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AAA00000000 /* AmharicApp.app */,
+				AAA00000000 /* Fidel - Learn Amharic.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,9 +138,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AAA00800000 /* AmharicApp */ = {
+		AAA00800000 /* LearnAmharic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AAA00900000 /* Build configuration list for PBXNativeTarget "AmharicApp" */;
+			buildConfigurationList = AAA00900000 /* Build configuration list for PBXNativeTarget "LearnAmharic" */;
 			buildPhases = (
 				AAA00800001 /* Sources */,
 				AAA00800002 /* Resources */,
@@ -149,9 +149,9 @@
 			);
 			dependencies = (
 			);
-			name = AmharicApp;
-			productName = AmharicApp;
-			productReference = AAA00000000 /* AmharicApp.app */;
+			name = LearnAmharic;
+			productName = "Fidel - Learn Amharic";
+			productReference = AAA00000000 /* Fidel - Learn Amharic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -169,7 +169,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AAA01100000 /* Build configuration list for PBXProject "AmharicApp" */;
+			buildConfigurationList = AAA01100000 /* Build configuration list for PBXProject "LearnAmharic" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -182,7 +182,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AAA00800000 /* AmharicApp */,
+				AAA00800000 /* LearnAmharic */,
 			);
 		};
 /* End PBXProject section */
@@ -363,7 +363,7 @@
 				DEVELOPMENT_TEAM = 9XWM5T8A87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Learn Amharic";
+				INFOPLIST_KEY_CFBundleDisplayName = "Fidel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -374,8 +374,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amharic.samuelkahessay;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.learnamharic;
+				PRODUCT_NAME = "Fidel - Learn Amharic";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -392,7 +392,7 @@
 				DEVELOPMENT_TEAM = 9XWM5T8A87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Learn Amharic";
+				INFOPLIST_KEY_CFBundleDisplayName = "Fidel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -403,8 +403,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amharic.samuelkahessay;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.learnamharic;
+				PRODUCT_NAME = "Fidel - Learn Amharic";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -414,7 +414,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AAA00900000 /* Build configuration list for PBXNativeTarget "AmharicApp" */ = {
+		AAA00900000 /* Build configuration list for PBXNativeTarget "LearnAmharic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAA01400000 /* Debug */,
@@ -423,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AAA01100000 /* Build configuration list for PBXProject "AmharicApp" */ = {
+		AAA01100000 /* Build configuration list for PBXProject "LearnAmharic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AAA01200000 /* Debug */,
