@@ -16,28 +16,37 @@ struct EmptyStateView: View {
     }
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: AppTheme.Spacing.md) {
             Image(systemName: icon)
-                .font(.system(size: 48))
-                .foregroundColor(.secondary)
+                .font(.system(size: 56))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [AppTheme.primaryColor.opacity(0.6), AppTheme.secondaryColor.opacity(0.6)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .padding(.bottom, AppTheme.Spacing.xs)
             
             Text(title)
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(AppTheme.Typography.title2)
+                .foregroundColor(.primary)
             
             Text(message)
-                .font(.subheadline)
+                .font(AppTheme.Typography.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal, AppTheme.Spacing.xl)
             
             if let action = action, let actionTitle = actionTitle {
                 Button(action: action) {
                     Text(actionTitle)
                 }
                 .buttonStyle(PrimaryButtonStyle())
+                .padding(.top, AppTheme.Spacing.xs)
             }
         }
-        .padding()
+        .padding(AppTheme.Spacing.xl)
     }
 }
 
@@ -45,12 +54,13 @@ struct LoadingView: View {
     let message: String
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: AppTheme.Spacing.md) {
             ProgressView()
-                .scaleEffect(1.5)
+                .scaleEffect(1.2)
+                .tint(AppTheme.primaryColor)
             
             Text(message)
-                .font(.subheadline)
+                .font(AppTheme.Typography.subheadline)
                 .foregroundColor(.secondary)
         }
     }
@@ -70,16 +80,20 @@ struct SectionHeader: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.title3)
-                .fontWeight(.bold)
+                .font(AppTheme.Typography.title3)
+                .foregroundColor(.primary)
             
             Spacer()
             
             if let action = action, let actionTitle = actionTitle {
                 Button(action: action) {
-                    Text(actionTitle)
-                        .font(.subheadline)
-                        .foregroundColor(AppTheme.primaryColor)
+                    HStack(spacing: AppTheme.Spacing.xxs) {
+                        Text(actionTitle)
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                    }
+                    .font(AppTheme.Typography.subheadline)
+                    .foregroundColor(AppTheme.primaryColor)
                 }
             }
         }
@@ -87,39 +101,40 @@ struct SectionHeader: View {
 }
 
 struct InfoCard: View {
+    @Environment(\.colorScheme) var colorScheme
     let icon: String
     let title: String
     let subtitle: String
     let color: Color
     
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: AppTheme.Spacing.md) {
             Image(systemName: icon)
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(color)
-                .frame(width: 44, height: 44)
+                .frame(width: 48, height: 48)
                 .background(
                     Circle()
-                        .fill(color.opacity(0.1))
+                        .fill(color.opacity(0.12))
                 )
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(title)
-                    .font(.headline)
+                    .font(AppTheme.Typography.headline)
+                    .foregroundColor(.primary)
                 
                 Text(subtitle)
-                    .font(.caption)
+                    .font(AppTheme.Typography.caption)
                     .foregroundColor(.secondary)
             }
             
             Spacer()
+            
+            Image(systemName: "chevron.right")
+                .font(.caption)
+                .foregroundStyle(.tertiary)
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.06), radius: 4, y: 2)
-        )
+        .glassCard()
     }
 }
 
@@ -137,25 +152,27 @@ struct AmharicTextView: View {
     }
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: AppTheme.Spacing.xs) {
             Text(amharic)
-                .font(.system(size: 28))
+                .font(AppTheme.Typography.amharic(size: 32))
                 .foregroundColor(AppTheme.primaryColor)
             
             if showAll {
                 Text(transliteration)
-                    .font(.subheadline)
+                    .font(AppTheme.Typography.subheadline)
                     .foregroundColor(.secondary)
                 
                 Text(english)
-                    .font(.body)
+                    .font(AppTheme.Typography.body)
                     .fontWeight(.medium)
+                    .foregroundColor(.primary)
             }
         }
     }
 }
 
 struct SuccessOverlay: View {
+    @Environment(\.colorScheme) var colorScheme
     @Binding var isShowing: Bool
     let message: String
     let xpEarned: Int
@@ -163,33 +180,47 @@ struct SuccessOverlay: View {
     var body: some View {
         if isShowing {
             ZStack {
-                Color.black.opacity(0.4)
+                Color.black.opacity(0.5)
                     .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(AppTheme.Animation.standard) {
+                            isShowing = false
+                        }
+                    }
                 
-                VStack(spacing: 20) {
+                VStack(spacing: AppTheme.Spacing.lg) {
                     AnimatedCheckmark()
                     
                     Text(message)
-                        .font(.title2)
-                        .fontWeight(.bold)
+                        .font(AppTheme.Typography.title2)
+                        .foregroundColor(.primary)
                     
                     XPBadge(xp: xpEarned)
                     
                     Button("Continue") {
-                        withAnimation {
+                        withAnimation(AppTheme.Animation.standard) {
                             isShowing = false
                         }
                     }
                     .buttonStyle(PrimaryButtonStyle())
                 }
-                .padding(32)
+                .padding(AppTheme.Spacing.xxl)
                 .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color(.systemBackground))
+                    RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
+                        .fill(.ultraThinMaterial)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
+                                .stroke(
+                                    colorScheme == .dark
+                                        ? Color.white.opacity(0.15)
+                                        : Color.black.opacity(0.05),
+                                    lineWidth: 0.5
+                                )
+                        )
                 )
-                .padding()
+                .padding(AppTheme.Spacing.xl)
             }
-            .transition(.opacity.combined(with: .scale))
+            .transition(.opacity.combined(with: .scale(scale: 0.9)))
         }
     }
 }
@@ -197,15 +228,23 @@ struct SuccessOverlay: View {
 struct CountdownTimer: View {
     let seconds: Int
     
+    private var progress: Double {
+        min(Double(seconds) / 60.0, 1.0)
+    }
+    
+    private var color: Color {
+        seconds < 10 ? AppTheme.accentRed : AppTheme.primaryColor
+    }
+    
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.gray.opacity(0.2), lineWidth: 4)
+                .stroke(Color.primary.opacity(0.08), lineWidth: 4)
             
             Circle()
-                .trim(from: 0, to: CGFloat(seconds) / 60.0)
+                .trim(from: 0, to: progress)
                 .stroke(
-                    seconds < 10 ? Color.red : AppTheme.primaryColor,
+                    color,
                     style: StrokeStyle(lineWidth: 4, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
@@ -213,34 +252,165 @@ struct CountdownTimer: View {
             
             Text("\(seconds)")
                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                .foregroundColor(seconds < 10 ? .red : .primary)
+                .foregroundColor(color)
         }
-        .frame(width: 60, height: 60)
+        .frame(width: 64, height: 64)
+    }
+}
+
+struct GlassChip: View {
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(AppTheme.Typography.subheadline)
+                .foregroundColor(isSelected ? .white : .primary)
+                .padding(.horizontal, AppTheme.Spacing.md)
+                .padding(.vertical, AppTheme.Spacing.xs)
+                .background {
+                    if isSelected {
+                        Capsule().fill(AppTheme.primaryColor)
+                    } else {
+                        Capsule().fill(.ultraThinMaterial)
+                    }
+                }
+                .overlay(
+                    Capsule()
+                        .stroke(
+                            isSelected ? Color.clear : Color.primary.opacity(0.1),
+                            lineWidth: 0.5
+                        )
+                )
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+struct StatPill: View {
+    let icon: String
+    let value: String
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: AppTheme.Spacing.xxs) {
+            Image(systemName: icon)
+                .font(.caption)
+            Text(value)
+                .font(AppTheme.Typography.caption)
+                .fontWeight(.medium)
+        }
+        .foregroundColor(color)
+        .padding(.horizontal, AppTheme.Spacing.xs)
+        .padding(.vertical, AppTheme.Spacing.xxs)
+        .background(
+            Capsule()
+                .fill(color.opacity(0.12))
+        )
+    }
+}
+
+struct GlassTextField: View {
+    @Environment(\.colorScheme) var colorScheme
+    let placeholder: String
+    @Binding var text: String
+    var alignment: TextAlignment = .center
+    
+    var body: some View {
+        TextField(placeholder, text: $text)
+            .font(AppTheme.Typography.title3)
+            .multilineTextAlignment(alignment)
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
+            .padding(AppTheme.Spacing.md)
+            .background(
+                RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
+                    .fill(.ultraThinMaterial)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
+                            .stroke(
+                                colorScheme == .dark
+                                    ? Color.white.opacity(0.1)
+                                    : Color.black.opacity(0.08),
+                                lineWidth: 0.5
+                            )
+                    )
+            )
+    }
+}
+
+struct GlassProgressBar: View {
+    let progress: Double
+    var height: CGFloat = 8
+    var showGradient: Bool = true
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: height / 2)
+                    .fill(Color.primary.opacity(0.08))
+                
+                RoundedRectangle(cornerRadius: height / 2)
+                    .fill(
+                        showGradient
+                            ? LinearGradient(
+                                colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                            : LinearGradient(
+                                colors: [AppTheme.primaryColor, AppTheme.primaryColor],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                    )
+                    .frame(width: max(0, geometry.size.width * min(progress, 1.0)))
+                    .animation(AppTheme.Animation.gentle, value: progress)
+            }
+        }
+        .frame(height: height)
     }
 }
 
 #Preview {
-    VStack(spacing: 20) {
-        EmptyStateView(
-            icon: "book.closed",
-            title: "No Content",
-            message: "Start learning to see content here",
-            action: {},
-            actionTitle: "Start Learning"
-        )
-        
-        InfoCard(
-            icon: "flame.fill",
-            title: "5 Day Streak",
-            subtitle: "Keep it up!",
-            color: .orange
-        )
-        
-        AmharicTextView(
-            amharic: "ጤና ይስጥልኝ",
-            transliteration: "t'ena yist'illiany",
-            english: "Hello"
-        )
+    ScrollView {
+        VStack(spacing: 24) {
+            EmptyStateView(
+                icon: "book.closed",
+                title: "No Content",
+                message: "Start learning to see content here",
+                action: {},
+                actionTitle: "Start Learning"
+            )
+            
+            InfoCard(
+                icon: "flame.fill",
+                title: "5 Day Streak",
+                subtitle: "Keep it up!",
+                color: .orange
+            )
+            .padding(.horizontal)
+            
+            AmharicTextView(
+                amharic: "ጤና ይስጥልኝ",
+                transliteration: "t'ena yist'illiany",
+                english: "Hello"
+            )
+            
+            HStack {
+                GlassChip(title: "All", isSelected: true, action: {})
+                GlassChip(title: "Greetings", isSelected: false, action: {})
+                GlassChip(title: "Numbers", isSelected: false, action: {})
+            }
+            
+            GlassProgressBar(progress: 0.65)
+                .padding(.horizontal)
+            
+            CountdownTimer(seconds: 45)
+        }
+        .padding()
     }
-    .padding()
+    .background(Color(.systemGroupedBackground))
 }

@@ -8,12 +8,12 @@ struct LearnView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: AppTheme.Spacing.xl) {
                     welcomeSection
                     fidelSection
                     lessonsSection
                 }
-                .padding()
+                .padding(AppTheme.Spacing.md)
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Learn Amharic")
@@ -27,48 +27,45 @@ struct LearnView: View {
     }
     
     private var welcomeSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
             Text("እንኳን ደህና መጣህ!")
-                .font(.system(size: 32, weight: .bold))
+                .font(.system(size: 36, weight: .bold))
                 .foregroundColor(AppTheme.primaryColor)
             
             Text("Welcome to Amharic Learning")
-                .font(.title3)
+                .font(AppTheme.Typography.title3)
                 .foregroundColor(.secondary)
             
             Text("Master the beautiful Ethiopian language through interactive lessons, conversations, and practice.")
-                .font(.subheadline)
+                .font(AppTheme.Typography.subheadline)
                 .foregroundColor(.secondary)
+                .padding(.top, AppTheme.Spacing.xxs)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color(.label).opacity(0.08), radius: 10, y: 5)
-        )
+        .tintedGlassCard(tint: AppTheme.primaryColor, tintOpacity: 0.05)
     }
     
     private var fidelSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: AppTheme.Spacing.md) {
             HStack {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text("Fidel (ፊደል)")
-                        .font(.headline)
+                        .font(AppTheme.Typography.headline)
+                        .foregroundColor(.primary)
                     Text("Learn the Ethiopic Script")
-                        .font(.caption)
+                        .font(AppTheme.Typography.caption)
                         .foregroundColor(.secondary)
                 }
                 
                 Spacer()
                 
                 Text("ሀ ለ ሐ")
-                    .font(.system(size: 28))
+                    .font(.system(size: 32, weight: .medium))
                     .foregroundColor(AppTheme.primaryColor)
             }
             
             Button(action: { showFidel = true }) {
-                HStack {
+                HStack(spacing: AppTheme.Spacing.xs) {
                     Image(systemName: "character.textbox")
                     Text("Explore the Alphabet")
                 }
@@ -76,24 +73,14 @@ struct LearnView: View {
             }
             .buttonStyle(PrimaryButtonStyle())
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(
-                    LinearGradient(
-                        colors: [AppTheme.primaryColor.opacity(0.1), AppTheme.secondaryColor.opacity(0.1)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-        )
+        .tintedGlassCard(tint: AppTheme.secondaryColor, tintOpacity: 0.06)
     }
     
     private var lessonsSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
             Text("Lessons")
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(AppTheme.Typography.title2)
+                .foregroundColor(.primary)
             
             ForEach(AmharicData.lessons) { lesson in
                 LessonCard(lesson: lesson)
@@ -106,6 +93,7 @@ struct LearnView: View {
 }
 
 struct LessonCard: View {
+    @Environment(\.colorScheme) var colorScheme
     let lesson: Lesson
     @Query private var progressItems: [UserProgress]
     
@@ -114,11 +102,11 @@ struct LessonCard: View {
     }
     
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: AppTheme.Spacing.md) {
             ZStack {
                 Circle()
-                    .fill(isCompleted ? AppTheme.primaryColor : Color.gray.opacity(0.2))
-                    .frame(width: 50, height: 50)
+                    .fill(isCompleted ? AppTheme.primaryColor : Color.primary.opacity(0.08))
+                    .frame(width: 52, height: 52)
                 
                 if isCompleted {
                     Image(systemName: "checkmark")
@@ -131,34 +119,30 @@ struct LessonCard: View {
                 }
             }
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(lesson.title)
-                    .font(.headline)
+                    .font(AppTheme.Typography.headline)
+                    .foregroundColor(.primary)
                 
                 Text(lesson.description)
-                    .font(.caption)
+                    .font(AppTheme.Typography.caption)
                     .foregroundColor(.secondary)
                     .lineLimit(2)
                 
-                HStack(spacing: 12) {
-                    Label("\(lesson.patterns.count) patterns", systemImage: "text.alignleft")
-                    Label("\(lesson.vocabulary.count) words", systemImage: "textformat.abc")
+                HStack(spacing: AppTheme.Spacing.sm) {
+                    StatPill(icon: "text.alignleft", value: "\(lesson.patterns.count)", color: .blue)
+                    StatPill(icon: "textformat.abc", value: "\(lesson.vocabulary.count)", color: .green)
                 }
-                .font(.caption2)
-                .foregroundColor(.secondary)
+                .padding(.top, AppTheme.Spacing.xxs)
             }
             
             Spacer()
             
             Image(systemName: "chevron.right")
-                .foregroundColor(.secondary)
+                .font(.caption)
+                .foregroundStyle(.tertiary)
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color(.label).opacity(0.06), radius: 8, y: 4)
-        )
+        .glassCard()
     }
 }
 
@@ -171,7 +155,7 @@ struct LessonDetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 24) {
+            VStack(spacing: AppTheme.Spacing.xl) {
                 sectionPicker
                 
                 switch currentSection {
@@ -185,8 +169,9 @@ struct LessonDetailView: View {
                     EmptyView()
                 }
             }
-            .padding()
+            .padding(AppTheme.Spacing.md)
         }
+        .background(Color(.systemGroupedBackground))
         .navigationTitle(lesson.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -214,7 +199,7 @@ struct LessonDetailView: View {
     }
     
     private var patternsSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: AppTheme.Spacing.md) {
             ForEach(lesson.patterns) { pattern in
                 PatternCard(pattern: pattern)
             }
@@ -222,7 +207,7 @@ struct LessonDetailView: View {
     }
     
     private var vocabularySection: some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppTheme.Spacing.sm) {
             ForEach(lesson.vocabulary) { word in
                 VocabularyCard(word: word)
             }
@@ -230,7 +215,7 @@ struct LessonDetailView: View {
     }
     
     private var phrasesSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: AppTheme.Spacing.sm) {
             ForEach(lesson.phrases) { phrase in
                 PhraseRow(phrase: phrase)
             }
@@ -246,76 +231,95 @@ struct LessonDetailView: View {
 }
 
 struct PatternCard: View {
+    @Environment(\.colorScheme) var colorScheme
     let pattern: Pattern
     @State private var isExpanded = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
             HStack {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text(pattern.description)
-                        .font(.headline)
+                        .font(AppTheme.Typography.headline)
+                        .foregroundColor(.primary)
                     
                     Text(pattern.category)
-                        .font(.caption)
+                        .font(AppTheme.Typography.caption)
                         .foregroundColor(.secondary)
                 }
                 
                 Spacer()
                 
-                Button(action: { withAnimation { isExpanded.toggle() } }) {
+                Button(action: {
+                    withAnimation(AppTheme.Animation.standard) {
+                        isExpanded.toggle()
+                    }
+                }) {
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                        .font(.caption)
                         .foregroundColor(.secondary)
+                        .frame(width: 32, height: 32)
+                        .background(Circle().fill(Color.primary.opacity(0.05)))
                 }
+                .buttonStyle(.plain)
             }
             
             Text(pattern.structure)
-                .font(.system(size: 22))
+                .font(.system(size: 24, weight: .medium))
                 .foregroundColor(AppTheme.primaryColor)
+                .padding(.vertical, AppTheme.Spacing.xxs)
             
             if isExpanded {
                 Divider()
+                    .padding(.vertical, AppTheme.Spacing.xs)
                 
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Examples:")
-                        .font(.subheadline.bold())
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
+                    Text("Examples")
+                        .font(AppTheme.Typography.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
                     
                     ForEach(pattern.examples, id: \.amharic) { example in
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(example.amharic)
-                                .font(.system(size: 20))
+                                .font(.system(size: 20, weight: .medium))
+                                .foregroundColor(.primary)
                             Text(example.transliteration)
-                                .font(.caption)
+                                .font(AppTheme.Typography.caption)
                                 .foregroundColor(.secondary)
                             Text(example.english)
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
+                                .font(AppTheme.Typography.subheadline)
+                                .foregroundColor(AppTheme.primaryColor)
                         }
-                        .padding(.vertical, 4)
+                        .padding(.vertical, AppTheme.Spacing.xxs)
                     }
                 }
                 
                 if !pattern.substitutions.isEmpty {
                     Divider()
+                        .padding(.vertical, AppTheme.Spacing.xs)
                     
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Substitutions:")
-                            .font(.subheadline.bold())
+                    VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
+                        Text("Substitutions")
+                            .font(AppTheme.Typography.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.secondary)
                         
-                        FlowLayout(spacing: 8) {
+                        FlowLayout(spacing: AppTheme.Spacing.xs) {
                             ForEach(pattern.substitutions, id: \.amharic) { sub in
                                 VStack(spacing: 2) {
                                     Text(sub.amharic)
-                                        .font(.system(size: 16))
+                                        .font(.system(size: 16, weight: .medium))
+                                        .foregroundColor(.primary)
                                     Text(sub.english)
-                                        .font(.caption2)
+                                        .font(AppTheme.Typography.caption2)
                                         .foregroundColor(.secondary)
                                 }
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
+                                .padding(.horizontal, AppTheme.Spacing.sm)
+                                .padding(.vertical, AppTheme.Spacing.xs)
                                 .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(AppTheme.primaryColor.opacity(0.1))
+                                    RoundedRectangle(cornerRadius: AppTheme.CornerRadius.small)
+                                        .fill(AppTheme.primaryColor.opacity(0.08))
                                 )
                             }
                         }
@@ -323,12 +327,7 @@ struct PatternCard: View {
                 }
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .glassCard()
     }
 }
 
@@ -336,26 +335,22 @@ struct VocabularyCard: View {
     let word: VocabularyWord
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: AppTheme.Spacing.xs) {
             Text(word.amharic)
-                .font(.system(size: 24))
+                .font(.system(size: 26, weight: .medium))
                 .foregroundColor(AppTheme.primaryColor)
             
             Text(word.transliteration)
-                .font(.caption)
+                .font(AppTheme.Typography.caption)
                 .foregroundColor(.secondary)
             
             Text(word.english)
-                .font(.subheadline)
+                .font(AppTheme.Typography.subheadline)
                 .fontWeight(.medium)
+                .foregroundColor(.primary)
         }
         .frame(maxWidth: .infinity)
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.06), radius: 4, y: 2)
-        )
+        .glassCard()
     }
 }
 
@@ -364,33 +359,30 @@ struct PhraseRow: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(phrase.amharic)
-                    .font(.system(size: 20))
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(.primary)
                 Text(phrase.transliteration)
-                    .font(.caption)
+                    .font(AppTheme.Typography.caption)
                     .foregroundColor(.secondary)
             }
             
             Spacer()
             
-            VStack(alignment: .trailing, spacing: 4) {
+            VStack(alignment: .trailing, spacing: AppTheme.Spacing.xxs) {
                 Text(phrase.english)
-                    .font(.subheadline)
+                    .font(AppTheme.Typography.subheadline)
                     .fontWeight(.medium)
+                    .foregroundColor(.primary)
                 if !phrase.notes.isEmpty {
                     Text(phrase.notes)
-                        .font(.caption2)
+                        .font(AppTheme.Typography.caption2)
                         .foregroundColor(.secondary)
                 }
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.04), radius: 4, y: 2)
-        )
+        .glassCard(padding: AppTheme.Spacing.sm)
     }
 }
 

@@ -37,9 +37,9 @@ struct PracticeView: View {
             switch self {
             case .flashcards: return .blue
             case .quiz: return .purple
-            case .pronunciation: return .green
+            case .pronunciation: return AppTheme.primaryColor
             case .sentenceBuilder: return .orange
-            case .speedDrill: return .red
+            case .speedDrill: return AppTheme.accentRed
             }
         }
     }
@@ -47,10 +47,10 @@ struct PracticeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: AppTheme.Spacing.lg) {
                     dailyGoalSection
                     
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppTheme.Spacing.md) {
                         ForEach(PracticeMode.allCases) { mode in
                             PracticeModeCard(mode: mode)
                                 .onTapGesture {
@@ -58,11 +58,10 @@ struct PracticeView: View {
                                 }
                         }
                     }
-                    .padding(.horizontal)
                     
                     reviewDueSection
                 }
-                .padding(.vertical)
+                .padding(AppTheme.Spacing.md)
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Practice")
@@ -84,60 +83,56 @@ struct PracticeView: View {
     }
     
     private var dailyGoalSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: AppTheme.Spacing.sm) {
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text("Daily Goal")
-                        .font(.headline)
+                        .font(AppTheme.Typography.headline)
+                        .foregroundColor(.primary)
                     Text("Practice every day to build your streak!")
-                        .font(.caption)
+                        .font(AppTheme.Typography.caption)
                         .foregroundColor(.secondary)
                 }
                 Spacer()
                 StreakBadge(streak: 5)
             }
             
-            ProgressView(value: 0.6)
-                .tint(AppTheme.primaryColor)
+            GlassProgressBar(progress: 0.6)
             
             HStack {
                 Text("30/50 XP today")
-                    .font(.caption)
+                    .font(AppTheme.Typography.caption)
                     .foregroundColor(.secondary)
                 Spacer()
                 Text("60%")
-                    .font(.caption.bold())
+                    .font(AppTheme.Typography.caption)
+                    .fontWeight(.semibold)
                     .foregroundColor(AppTheme.primaryColor)
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
-        .padding(.horizontal)
+        .glassCard()
     }
     
     private var reviewDueSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
             HStack {
                 Text("Due for Review")
-                    .font(.headline)
+                    .font(AppTheme.Typography.headline)
+                    .foregroundColor(.primary)
                 Spacer()
                 Text("15 items")
-                    .font(.subheadline)
+                    .font(AppTheme.Typography.subheadline)
                     .foregroundColor(.secondary)
             }
             
-            HStack(spacing: 16) {
+            HStack(spacing: AppTheme.Spacing.sm) {
                 ReviewCategoryBadge(category: "Vocabulary", count: 8, color: .blue)
-                ReviewCategoryBadge(category: "Phrases", count: 5, color: .green)
+                ReviewCategoryBadge(category: "Phrases", count: 5, color: AppTheme.primaryColor)
                 ReviewCategoryBadge(category: "Patterns", count: 2, color: .orange)
             }
             
             Button(action: { selectedMode = .flashcards }) {
-                HStack {
+                HStack(spacing: AppTheme.Spacing.xs) {
                     Image(systemName: "play.fill")
                     Text("Start Review Session")
                 }
@@ -145,41 +140,50 @@ struct PracticeView: View {
             }
             .buttonStyle(PrimaryButtonStyle())
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
-        .padding(.horizontal)
+        .glassCard()
     }
 }
 
 struct PracticeModeCard: View {
+    @Environment(\.colorScheme) var colorScheme
     let mode: PracticeView.PracticeMode
+    @State private var isPressed = false
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: AppTheme.Spacing.sm) {
             Image(systemName: mode.icon)
-                .font(.system(size: 32))
-                .foregroundColor(mode.color)
+                .font(.system(size: 36))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [mode.color, mode.color.opacity(0.7)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .frame(width: 56, height: 56)
+                .background(
+                    Circle()
+                        .fill(mode.color.opacity(0.12))
+                )
             
             Text(mode.rawValue)
-                .font(.headline)
+                .font(AppTheme.Typography.headline)
+                .foregroundColor(.primary)
             
             Text(mode.description)
-                .font(.caption)
+                .font(AppTheme.Typography.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity)
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .glassCard()
+        .scaleEffect(isPressed ? 0.97 : 1.0)
+        .animation(AppTheme.Animation.quick, value: isPressed)
+        .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in
+            isPressed = pressing
+        }, perform: {})
     }
 }
 
@@ -189,18 +193,19 @@ struct ReviewCategoryBadge: View {
     let color: Color
     
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: AppTheme.Spacing.xxs) {
             Text("\(count)")
-                .font(.title3.bold())
+                .font(AppTheme.Typography.title3)
+                .fontWeight(.bold)
                 .foregroundColor(color)
             Text(category)
-                .font(.caption2)
+                .font(AppTheme.Typography.caption2)
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 8)
+        .padding(.vertical, AppTheme.Spacing.sm)
         .background(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
                 .fill(color.opacity(0.1))
         )
     }
@@ -224,49 +229,52 @@ struct SpeedDrillView: View {
     }
     
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: AppTheme.Spacing.xl) {
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text("Score: \(score)")
-                        .font(.headline)
+                        .font(AppTheme.Typography.headline)
+                        .foregroundColor(.primary)
                     Text("\(currentIndex)/\(phrases.count)")
-                        .font(.caption)
+                        .font(AppTheme.Typography.caption)
                         .foregroundColor(.secondary)
                 }
                 
                 Spacer()
                 
-                Text("\(timeRemaining)s")
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundColor(timeRemaining < 10 ? .red : AppTheme.primaryColor)
+                CountdownTimer(seconds: timeRemaining)
             }
-            .padding()
+            .padding(AppTheme.Spacing.md)
             
             if let phrase = currentPhrase, !showResult {
-                VStack(spacing: 20) {
+                VStack(spacing: AppTheme.Spacing.lg) {
                     Text("Translate to Amharic:")
-                        .font(.subheadline)
+                        .font(AppTheme.Typography.subheadline)
                         .foregroundColor(.secondary)
                     
                     Text(phrase.english)
-                        .font(.title2)
-                        .fontWeight(.semibold)
+                        .font(AppTheme.Typography.title2)
                         .multilineTextAlignment(.center)
+                        .foregroundColor(.primary)
                     
                     if showAnswer {
-                        VStack(spacing: 8) {
+                        VStack(spacing: AppTheme.Spacing.xs) {
                             Text(phrase.amharic)
-                                .font(.system(size: 36))
+                                .font(.system(size: 40, weight: .medium))
                                 .foregroundColor(AppTheme.primaryColor)
                             Text(phrase.transliteration)
-                                .font(.subheadline)
+                                .font(AppTheme.Typography.subheadline)
                                 .foregroundColor(.secondary)
                         }
                         .transition(.scale.combined(with: .opacity))
                     }
                     
-                    HStack(spacing: 16) {
-                        Button(action: { showAnswer = true }) {
+                    HStack(spacing: AppTheme.Spacing.md) {
+                        Button(action: {
+                            withAnimation(AppTheme.Animation.standard) {
+                                showAnswer = true
+                            }
+                        }) {
                             Label("Show", systemImage: "eye")
                         }
                         .buttonStyle(SecondaryButtonStyle())
@@ -283,19 +291,28 @@ struct SpeedDrillView: View {
                         .buttonStyle(SecondaryButtonStyle())
                     }
                 }
-                .padding()
+                .padding(AppTheme.Spacing.md)
             } else if showResult {
-                VStack(spacing: 20) {
+                VStack(spacing: AppTheme.Spacing.lg) {
                     Image(systemName: "flag.checkered")
-                        .font(.system(size: 60))
-                        .foregroundColor(AppTheme.primaryColor)
+                        .font(.system(size: 64))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                     
                     Text("Time's Up!")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(AppTheme.Typography.title)
+                        .foregroundColor(.primary)
                     
                     Text("Final Score: \(score)/\(phrases.count)")
-                        .font(.title2)
+                        .font(AppTheme.Typography.title2)
+                        .foregroundColor(.secondary)
+                    
+                    XPBadge(xp: score * 5)
                     
                     Button("Done") {
                         dismiss()
@@ -306,6 +323,7 @@ struct SpeedDrillView: View {
             
             Spacer()
         }
+        .background(Color(.systemGroupedBackground))
         .navigationTitle("Speed Drill")
         .navigationBarTitleDisplayMode(.inline)
         .onReceive(timer) { _ in
