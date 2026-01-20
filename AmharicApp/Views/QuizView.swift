@@ -1,0 +1,515 @@
+import SwiftUI
+import SwiftData
+
+enum QuizMode: String, CaseIterable {
+    case mixed = "Mixed"
+    case multipleChoice = "Multiple Choice"
+    case typeTranslation = "Type Translation"
+    case typeTransliteration = "Type Pronunciation"
+}
+
+struct QuizView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
+    @Query private var progressItems: [UserProgress]
+    
+    @State private var quizMode: QuizMode = .mixed
+    @State private var questions: [QuizQuestion] = []
+    @State private var currentIndex = 0
+    @State private var selectedAnswer: String?
+    @State private var typedAnswer: String = ""
+    @State private var showResult = false
+    @State private var score = 0
+    @State private var showFeedback = false
+    @State private var isCorrect = false
+    @FocusState private var isTextFieldFocused: Bool
+    
+    var currentQuestion: QuizQuestion? {
+        currentIndex < questions.count ? questions[currentIndex] : nil
+    }
+    
+    var body: some View {
+        VStack(spacing: 24) {
+            if questions.isEmpty {
+                modeSelectionView
+            } else if let question = currentQuestion, !showResult {
+                quizContent(question: question)
+            } else if showResult {
+                resultsView
+            }
+        }
+        .padding()
+        .navigationTitle("Quiz")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var modeSelectionView: some View {
+        VStack(spacing: 24) {
+            Text("Choose Quiz Type")
+                .font(.title2)
+                .fontWeight(.bold)
+            
+            VStack(spacing: 12) {
+                ForEach(QuizMode.allCases, id: \.self) { mode in
+                    Button(action: {
+                        quizMode = mode
+                        generateQuestions()
+                    }) {
+                        HStack {
+                            Image(systemName: iconForMode(mode))
+                                .font(.title2)
+                                .frame(width: 40)
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(mode.rawValue)
+                                    .font(.headline)
+                                Text(descriptionForMode(mode))
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(.systemGray6))
+                        )
+                    }
+                    .foregroundColor(.primary)
+                }
+            }
+        }
+    }
+    
+    private func iconForMode(_ mode: QuizMode) -> String {
+        switch mode {
+        case .mixed: return "shuffle"
+        case .multipleChoice: return "list.bullet"
+        case .typeTranslation: return "character.cursor.ibeam"
+        case .typeTransliteration: return "textformat.abc"
+        }
+    }
+    
+    private func descriptionForMode(_ mode: QuizMode) -> String {
+        switch mode {
+        case .mixed: return "All question types combined"
+        case .multipleChoice: return "Tap the correct answer"
+        case .typeTranslation: return "Type the English meaning"
+        case .typeTransliteration: return "Type how it's pronounced"
+        }
+    }
+    
+    private func quizContent(question: QuizQuestion) -> some View {
+        VStack(spacing: 24) {
+            ProgressView(value: Double(currentIndex), total: Double(questions.count))
+                .tint(AppTheme.primaryColor)
+            
+            HStack {
+                Text("Question \(currentIndex + 1) of \(questions.count)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                Text("Score: \(score)")
+                    .font(.headline)
+                    .foregroundColor(AppTheme.primaryColor)
+            }
+            
+            questionCard(question: question)
+            
+            if question.type == .multipleChoice {
+                multipleChoiceOptions(question: question)
+            } else {
+                typingInput(question: question)
+            }
+            
+            if showFeedback {
+                feedbackView(question: question)
+            }
+            
+            Spacer()
+        }
+    }
+    
+    private func questionCard(question: QuizQuestion) -> some View {
+        VStack(spacing: 16) {
+            Text(question.question)
+                .font(.headline)
+                .multilineTextAlignment(.center)
+            
+            if let amharic = question.amharic {
+                Text(amharic)
+                    .font(.system(size: 36))
+                    .foregroundColor(AppTheme.primaryColor)
+            }
+            
+            if question.type == .listening, let hint = question.transliterationHint {
+                Text("Hint: \(hint)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(AppTheme.primaryColor.opacity(0.1))
+        )
+    }
+    
+    private func multipleChoiceOptions(question: QuizQuestion) -> some View {
+        VStack(spacing: 12) {
+            ForEach(question.options, id: \.self) { option in
+                AnswerButton(
+                    option: option,
+                    isSelected: selectedAnswer == option,
+                    isCorrect: showFeedback && option == question.correctAnswer,
+                    isWrong: showFeedback && selectedAnswer == option && option != question.correctAnswer
+                ) {
+                    selectAnswer(option, for: question)
+                }
+            }
+        }
+    }
+    
+    private func typingInput(question: QuizQuestion) -> some View {
+        VStack(spacing: 16) {
+            TextField(placeholderForQuestion(question), text: $typedAnswer)
+                .textFieldStyle(.roundedBorder)
+                .font(.title3)
+                .multilineTextAlignment(.center)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+                .focused($isTextFieldFocused)
+                .disabled(showFeedback)
+                .onSubmit {
+                    if !showFeedback {
+                        submitTypedAnswer(for: question)
+                    }
+                }
+            
+            if !showFeedback {
+                Button(action: {
+                    submitTypedAnswer(for: question)
+                }) {
+                    Text("Check Answer")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                .disabled(typedAnswer.trimmingCharacters(in: .whitespaces).isEmpty)
+            }
+        }
+    }
+    
+    private func placeholderForQuestion(_ question: QuizQuestion) -> String {
+        switch question.type {
+        case .translation: return "Type the English translation..."
+        case .listening: return "Type what you hear..."
+        default: return "Type your answer..."
+        }
+    }
+    
+    private func feedbackView(question: QuizQuestion) -> some View {
+        VStack(spacing: 12) {
+            HStack {
+                Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .font(.title2)
+                    .foregroundColor(isCorrect ? .green : .red)
+                
+                Text(isCorrect ? "Correct!" : "Not quite")
+                    .font(.headline)
+                    .foregroundColor(isCorrect ? .green : .red)
+            }
+            
+            if !isCorrect {
+                VStack(spacing: 4) {
+                    Text("Correct answer:")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Text(question.correctAnswer)
+                        .font(.headline)
+                        .foregroundColor(AppTheme.primaryColor)
+                }
+            }
+            
+            Button(action: nextQuestion) {
+                Text(currentIndex < questions.count - 1 ? "Next Question" : "See Results")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(PrimaryButtonStyle())
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(isCorrect ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
+        )
+    }
+    
+    private var resultsView: some View {
+        VStack(spacing: 24) {
+            Image(systemName: score >= questions.count / 2 ? "trophy.fill" : "arrow.counterclockwise")
+                .font(.system(size: 60))
+                .foregroundColor(score >= questions.count / 2 ? .yellow : .orange)
+            
+            Text("Quiz Complete!")
+                .font(.title)
+                .fontWeight(.bold)
+            
+            VStack(spacing: 8) {
+                Text("\(score)/\(questions.count)")
+                    .font(.system(size: 48, weight: .bold))
+                    .foregroundColor(AppTheme.primaryColor)
+                
+                let percentage = questions.count > 0 ? Int((Double(score) / Double(questions.count)) * 100) : 0
+                Text("\(percentage)% Correct")
+                    .font(.title3)
+                    .foregroundColor(.secondary)
+            }
+            
+            XPBadge(xp: score * 10)
+            
+            VStack(spacing: 12) {
+                Button(action: resetQuiz) {
+                    Label("Try Again", systemImage: "arrow.counterclockwise")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                
+                Button(action: { dismiss() }) {
+                    Text("Done")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(SecondaryButtonStyle())
+            }
+        }
+        .padding()
+    }
+    
+    private func generateQuestions() {
+        var generatedQuestions: [QuizQuestion] = []
+        let shuffledVocab = Array(AmharicData.vocabulary.shuffled().prefix(12))
+        
+        for (index, word) in shuffledVocab.enumerated() {
+            let questionType: QuizType
+            
+            switch quizMode {
+            case .multipleChoice:
+                questionType = .multipleChoice
+            case .typeTranslation:
+                questionType = .translation
+            case .typeTransliteration:
+                questionType = .listening
+            case .mixed:
+                let types: [QuizType] = [.multipleChoice, .translation, .listening]
+                questionType = types[index % types.count]
+            }
+            
+            let question: QuizQuestion
+            
+            switch questionType {
+            case .multipleChoice:
+                let wrongAnswers = AmharicData.vocabulary
+                    .filter { $0.english != word.english }
+                    .shuffled()
+                    .prefix(3)
+                    .map { $0.english }
+                let options = ([word.english] + wrongAnswers).shuffled()
+                
+                question = QuizQuestion(
+                    type: .multipleChoice,
+                    question: "What does this word mean?",
+                    amharic: word.amharic,
+                    correctAnswer: word.english,
+                    options: options,
+                    transliterationHint: nil
+                )
+                
+            case .translation:
+                question = QuizQuestion(
+                    type: .translation,
+                    question: "Type the English meaning:",
+                    amharic: word.amharic,
+                    correctAnswer: word.english,
+                    options: [],
+                    transliterationHint: nil
+                )
+                
+            case .listening:
+                let hint = String(word.transliteration.prefix(2)) + "..."
+                question = QuizQuestion(
+                    type: .listening,
+                    question: "How is this word pronounced? (Type in English letters)",
+                    amharic: word.amharic,
+                    correctAnswer: word.transliteration.lowercased(),
+                    options: [],
+                    transliterationHint: hint
+                )
+                
+            default:
+                continue
+            }
+            
+            generatedQuestions.append(question)
+        }
+        
+        questions = generatedQuestions.shuffled()
+        isTextFieldFocused = questions.first?.type != .multipleChoice
+    }
+    
+    private func selectAnswer(_ answer: String, for question: QuizQuestion) {
+        guard selectedAnswer == nil else { return }
+        
+        selectedAnswer = answer
+        isCorrect = answer.lowercased() == question.correctAnswer.lowercased()
+        
+        if isCorrect { score += 1 }
+        
+        let feedback = UIImpactFeedbackGenerator(style: isCorrect ? .medium : .heavy)
+        feedback.impactOccurred()
+        
+        withAnimation { showFeedback = true }
+    }
+    
+    private func submitTypedAnswer(for question: QuizQuestion) {
+        let trimmedAnswer = typedAnswer.trimmingCharacters(in: .whitespaces).lowercased()
+        let correctAnswer = question.correctAnswer.lowercased()
+        
+        isCorrect = trimmedAnswer == correctAnswer || isCloseEnough(trimmedAnswer, to: correctAnswer)
+        
+        if isCorrect { score += 1 }
+        
+        let feedback = UIImpactFeedbackGenerator(style: isCorrect ? .medium : .heavy)
+        feedback.impactOccurred()
+        
+        withAnimation { showFeedback = true }
+        isTextFieldFocused = false
+    }
+    
+    private func isCloseEnough(_ answer: String, to correct: String) -> Bool {
+        if answer == correct { return true }
+        
+        let distance = levenshteinDistance(answer, correct)
+        let threshold = max(1, correct.count / 4)
+        return distance <= threshold
+    }
+    
+    private func levenshteinDistance(_ s1: String, _ s2: String) -> Int {
+        let s1Array = Array(s1)
+        let s2Array = Array(s2)
+        let m = s1Array.count
+        let n = s2Array.count
+        
+        if m == 0 { return n }
+        if n == 0 { return m }
+        
+        var matrix = [[Int]](repeating: [Int](repeating: 0, count: n + 1), count: m + 1)
+        
+        for i in 0...m { matrix[i][0] = i }
+        for j in 0...n { matrix[0][j] = j }
+        
+        for i in 1...m {
+            for j in 1...n {
+                let cost = s1Array[i - 1] == s2Array[j - 1] ? 0 : 1
+                matrix[i][j] = min(
+                    matrix[i - 1][j] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j - 1] + cost
+                )
+            }
+        }
+        
+        return matrix[m][n]
+    }
+    
+    private func nextQuestion() {
+        selectedAnswer = nil
+        typedAnswer = ""
+        showFeedback = false
+        
+        if currentIndex < questions.count - 1 {
+            currentIndex += 1
+            if let question = currentQuestion {
+                isTextFieldFocused = question.type != .multipleChoice
+            }
+        } else {
+            showResult = true
+            if let progress = progressItems.first {
+                progress.addXP(score * 10)
+            }
+        }
+    }
+    
+    private func resetQuiz() {
+        currentIndex = 0
+        score = 0
+        selectedAnswer = nil
+        typedAnswer = ""
+        showFeedback = false
+        showResult = false
+        questions = []
+    }
+}
+
+struct AnswerButton: View {
+    let option: String
+    let isSelected: Bool
+    let isCorrect: Bool
+    let isWrong: Bool
+    let action: () -> Void
+    
+    var backgroundColor: Color {
+        if isCorrect { return .green.opacity(0.2) }
+        if isWrong { return .red.opacity(0.2) }
+        if isSelected { return AppTheme.primaryColor.opacity(0.2) }
+        return Color(.systemGray6)
+    }
+    
+    var borderColor: Color {
+        if isCorrect { return .green }
+        if isWrong { return .red }
+        if isSelected { return AppTheme.primaryColor }
+        return .clear
+    }
+    
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                Text(option)
+                    .font(.body)
+                    .foregroundColor(.primary)
+                
+                Spacer()
+                
+                if isCorrect {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.green)
+                } else if isWrong {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.red)
+                }
+            }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(backgroundColor)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(borderColor, lineWidth: 2)
+                    )
+            )
+        }
+        .disabled(isCorrect || isWrong)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        QuizView()
+    }
+    .modelContainer(for: [UserProgress.self], inMemory: true)
+}

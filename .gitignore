@@ -1,0 +1,22 @@
+# Xcode user data
+*.xcuserstate
+xcuserdata/
+*.xcuserdatad/
+
+# Build
+build/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods/SPM
+Pods/
+.build/
+
+# Secrets
+.env
+*.xcconfig
+
+# OS
+.DS_Store

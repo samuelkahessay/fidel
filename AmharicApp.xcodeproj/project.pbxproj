@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AAA00001001 /* AmharicAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00001000 /* AmharicAppApp.swift */; };
+		AAA00002001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00002000 /* ContentView.swift */; };
+		AAA00003001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA00003000 /* Assets.xcassets */; };
+		AAA00004001 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00004000 /* Models.swift */; };
+		AAA00005001 /* AmharicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00005000 /* AmharicData.swift */; };
+		AAA00006001 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00006000 /* LearnView.swift */; };
+		AAA00007001 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00007000 /* PracticeView.swift */; };
+		AAA00008001 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00008000 /* ConversationsView.swift */; };
+		AAA00009001 /* ReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00009000 /* ReferenceView.swift */; };
+		AAA00010001 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00010000 /* ProgressView.swift */; };
+		AAA00011001 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00011000 /* ViewModels.swift */; };
+		AAA00012001 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00012000 /* Components.swift */; };
+		AAA00013001 /* FidelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00013000 /* FidelView.swift */; };
+		AAA00014001 /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00014000 /* FlashcardView.swift */; };
+		AAA00015001 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00015000 /* QuizView.swift */; };
+		AAA00016001 /* SentenceBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00016000 /* SentenceBuilderView.swift */; };
+		AAA00017001 /* ConversationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00017000 /* ConversationDetailView.swift */; };
+		AAA00018001 /* SpacedRepetition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00018000 /* SpacedRepetition.swift */; };
+		AAA00019001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00019000 /* Theme.swift */; };
+		AAA00020001 /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00020000 /* LessonView.swift */; };
+		AAA00021001 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00021000 /* AudioService.swift */; };
+		AAA00022001 /* PronunciationPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00022000 /* PronunciationPracticeView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AAA00000000 /* AmharicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmharicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAA00001000 /* AmharicAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmharicAppApp.swift; sourceTree = "<group>"; };
+		AAA00002000 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AAA00003000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAA00004000 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		AAA00005000 /* AmharicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmharicData.swift; sourceTree = "<group>"; };
+		AAA00006000 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		AAA00007000 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		AAA00008000 /* ConversationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
+		AAA00009000 /* ReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceView.swift; sourceTree = "<group>"; };
+		AAA00010000 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		AAA00011000 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
+		AAA00012000 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		AAA00013000 /* FidelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FidelView.swift; sourceTree = "<group>"; };
+		AAA00014000 /* FlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardView.swift; sourceTree = "<group>"; };
+		AAA00015000 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		AAA00016000 /* SentenceBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceBuilderView.swift; sourceTree = "<group>"; };
+		AAA00017000 /* ConversationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailView.swift; sourceTree = "<group>"; };
+		AAA00018000 /* SpacedRepetition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacedRepetition.swift; sourceTree = "<group>"; };
+		AAA00019000 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AAA00020000 /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
+		AAA00021000 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		AAA00022000 /* PronunciationPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronunciationPracticeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		AAA00100000 = {
+			isa = PBXGroup;
+			children = (
+				AAA00200000 /* AmharicApp */,
+				AAA00300000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAA00200000 /* AmharicApp */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00001000 /* AmharicAppApp.swift */,
+				AAA00002000 /* ContentView.swift */,
+				AAA00400000 /* Models */,
+				AAA00500000 /* Views */,
+				AAA00600000 /* ViewModels */,
+				AAA00700000 /* Services */,
+				AAA00003000 /* Assets.xcassets */,
+			);
+			path = AmharicApp;
+			sourceTree = "<group>";
+		};
+		AAA00300000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00000000 /* AmharicApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAA00400000 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00004000 /* Models.swift */,
+				AAA00005000 /* AmharicData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AAA00500000 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00006000 /* LearnView.swift */,
+				AAA00007000 /* PracticeView.swift */,
+				AAA00008000 /* ConversationsView.swift */,
+				AAA00009000 /* ReferenceView.swift */,
+				AAA00010000 /* ProgressView.swift */,
+				AAA00012000 /* Components.swift */,
+				AAA00013000 /* FidelView.swift */,
+				AAA00014000 /* FlashcardView.swift */,
+				AAA00015000 /* QuizView.swift */,
+				AAA00016000 /* SentenceBuilderView.swift */,
+				AAA00017000 /* ConversationDetailView.swift */,
+				AAA00019000 /* Theme.swift */,
+				AAA00020000 /* LessonView.swift */,
+				AAA00022000 /* PronunciationPracticeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAA00600000 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00011000 /* ViewModels.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AAA00700000 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00018000 /* SpacedRepetition.swift */,
+				AAA00021000 /* AudioService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AAA00800000 /* AmharicApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAA00900000 /* Build configuration list for PBXNativeTarget "AmharicApp" */;
+			buildPhases = (
+				AAA00800001 /* Sources */,
+				AAA00800002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AmharicApp;
+			productName = AmharicApp;
+			productReference = AAA00000000 /* AmharicApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAA01000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					AAA00800000 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AAA01100000 /* Build configuration list for PBXProject "AmharicApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AAA00100000;
+			productRefGroup = AAA00300000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAA00800000 /* AmharicApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AAA00800002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA00003001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAA00800001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA00001001 /* AmharicAppApp.swift in Sources */,
+				AAA00002001 /* ContentView.swift in Sources */,
+				AAA00004001 /* Models.swift in Sources */,
+				AAA00005001 /* AmharicData.swift in Sources */,
+				AAA00006001 /* LearnView.swift in Sources */,
+				AAA00007001 /* PracticeView.swift in Sources */,
+				AAA00008001 /* ConversationsView.swift in Sources */,
+				AAA00009001 /* ReferenceView.swift in Sources */,
+				AAA00010001 /* ProgressView.swift in Sources */,
+				AAA00011001 /* ViewModels.swift in Sources */,
+				AAA00012001 /* Components.swift in Sources */,
+				AAA00013001 /* FidelView.swift in Sources */,
+				AAA00014001 /* FlashcardView.swift in Sources */,
+				AAA00015001 /* QuizView.swift in Sources */,
+				AAA00016001 /* SentenceBuilderView.swift in Sources */,
+				AAA00017001 /* ConversationDetailView.swift in Sources */,
+				AAA00018001 /* SpacedRepetition.swift in Sources */,
+				AAA00019001 /* Theme.swift in Sources */,
+				AAA00020001 /* LessonView.swift in Sources */,
+				AAA00021001 /* AudioService.swift in Sources */,
+				AAA00022001 /* PronunciationPracticeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AAA01200000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9XWM5T8A87;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AAA01300000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9XWM5T8A87;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AAA01400000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9XWM5T8A87;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amharic Learn";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amharic.samuelkahessay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AAA01500000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9XWM5T8A87;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Amharic Learn";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amharic.samuelkahessay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AAA00900000 /* Build configuration list for PBXNativeTarget "AmharicApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAA01400000 /* Debug */,
+				AAA01500000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAA01100000 /* Build configuration list for PBXProject "AmharicApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAA01200000 /* Debug */,
+				AAA01300000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AAA01000000 /* Project object */;
+}
