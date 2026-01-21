@@ -5,13 +5,15 @@ struct FidelView: View {
     @State private var selectedCharacter: FidelCharacter?
     @State private var searchText = ""
     
+    private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     let vowelHeaders = ["ä", "u", "i", "a", "e", "ə", "o"]
     
     var filteredChart: [[FidelCharacter]] {
+        let chart = lessonRepository.getFidelChart()
         if searchText.isEmpty {
-            return AmharicData.fidelChart
+            return chart
         }
-        return AmharicData.fidelChart.map { row in
+        return chart.map { row in
             row.filter { char in
                 char.character.contains(searchText) ||
                 char.romanization.lowercased().contains(searchText.lowercased())

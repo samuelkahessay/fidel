@@ -4,28 +4,17 @@ import SwiftData
 struct FlashcardView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.colorScheme) var colorScheme
-    @Query private var flashcardProgress: [FlashcardProgress]
-    @State private var currentIndex = 0
-    @State private var isFlipped = false
+    @State private var viewModel = FlashcardViewModel()
     @State private var offset: CGSize = .zero
-    @State private var showCompletion = false
-    @State private var correctCount = 0
-    @State private var incorrectCount = 0
-    
-    let vocabulary = AmharicData.vocabulary.shuffled().prefix(20)
-    
-    var currentWord: VocabularyWord? {
-        currentIndex < vocabulary.count ? Array(vocabulary)[currentIndex] : nil
-    }
     
     var body: some View {
         VStack(spacing: AppTheme.Spacing.xl) {
             progressHeader
             
-            if let word = currentWord, !showCompletion {
+            if let word = viewModel.currentWord, !viewModel.showCompletion {
                 flashcardStack(word: word)
                 swipeHints
-            } else if showCompletion {
+            } else if viewModel.showCompletion {
                 completionView
             }
         }
@@ -33,6 +22,11 @@ struct FlashcardView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Flashcards")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            let progressRepo = ProgressRepository(modelContext: modelContext)
+            viewModel.configure(progressRepository: progressRepo)
+            viewModel.startSession(cardCount: 20)
+        }
     }
     
     private var progressHeader: some View {
@@ -40,21 +34,21 @@ struct FlashcardView: View {
             HStack(spacing: AppTheme.Spacing.xxs) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundColor(.green)
-                Text("\(correctCount)")
+                Text("\(viewModel.correctCount)")
                     .font(AppTheme.Typography.headline)
                     .foregroundColor(.green)
             }
             
             Spacer()
             
-            Text("\(currentIndex + 1)/\(vocabulary.count)")
+            Text(viewModel.progress)
                 .font(AppTheme.Typography.headline)
                 .foregroundColor(.primary)
             
             Spacer()
             
             HStack(spacing: AppTheme.Spacing.xxs) {
-                Text("\(incorrectCount)")
+                Text("\(viewModel.incorrectCount)")
                     .font(AppTheme.Typography.headline)
                     .foregroundColor(AppTheme.accentRed)
                 Image(systemName: "xmark.circle.fill")
@@ -79,7 +73,7 @@ struct FlashcardView: View {
                 )
             
             VStack(spacing: AppTheme.Spacing.lg) {
-                if !isFlipped {
+                if !viewModel.isFlipped {
                     frontContent(word: word)
                 } else {
                     backContent(word: word)
@@ -88,7 +82,7 @@ struct FlashcardView: View {
             .padding(AppTheme.Spacing.xxl)
         }
         .frame(height: 380)
-        .rotation3DEffect(.degrees(isFlipped ? 180 : 0), axis: (x: 0, y: 1, z: 0))
+        .rotation3DEffect(.degrees(viewModel.isFlipped ? 180 : 0), axis: (x: 0, y: 1, z: 0))
         .offset(offset)
         .rotationEffect(.degrees(Double(offset.width / 25)))
         .gesture(
@@ -102,12 +96,10 @@ struct FlashcardView: View {
         )
         .onTapGesture {
             withAnimation(AppTheme.Animation.standard) {
-                isFlipped.toggle()
+                viewModel.flip()
             }
         }
-        .overlay(
-            swipeOverlay
-        )
+        .overlay(swipeOverlay)
     }
     
     private func frontContent(word: VocabularyWord) -> some View {
@@ -222,7 +214,7 @@ struct FlashcardView: View {
             
             HStack(spacing: AppTheme.Spacing.xxl) {
                 VStack(spacing: AppTheme.Spacing.xxs) {
-                    Text("\(correctCount)")
+                    Text("\(viewModel.correctCount)")
                         .font(.system(size: 52, weight: .bold))
                         .foregroundColor(.green)
                     Text("Correct")
@@ -231,7 +223,7 @@ struct FlashcardView: View {
                 }
                 
                 VStack(spacing: AppTheme.Spacing.xxs) {
-                    Text("\(incorrectCount)")
+                    Text("\(viewModel.incorrectCount)")
                         .font(.system(size: 52, weight: .bold))
                         .foregroundColor(AppTheme.accentRed)
                     Text("To Review")
@@ -240,16 +232,14 @@ struct FlashcardView: View {
                 }
             }
             
-            let percentage = vocabulary.count > 0 ? Int((Double(correctCount) / Double(vocabulary.count)) * 100) : 0
-            
             HStack(spacing: AppTheme.Spacing.xs) {
-                ProgressRing(progress: Double(correctCount) / Double(max(vocabulary.count, 1)), lineWidth: 6, size: 44)
-                Text("\(percentage)% Accuracy")
+                ProgressRing(progress: Double(viewModel.correctCount) / Double(max(viewModel.vocabulary.count, 1)), lineWidth: 6, size: 44)
+                Text("\(viewModel.accuracyPercentage)% Accuracy")
                     .font(AppTheme.Typography.headline)
                     .foregroundColor(AppTheme.primaryColor)
             }
             
-            XPBadge(xp: correctCount * 5)
+            XPBadge(xp: viewModel.earnedXP())
         }
         .glassCard()
     }
@@ -260,26 +250,18 @@ struct FlashcardView: View {
         withAnimation(AppTheme.Animation.standard) {
             if gesture.translation.width > threshold {
                 offset = CGSize(width: 500, height: 0)
-                correctCount += 1
-                nextCard()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    viewModel.handleSwipe(correct: true)
+                    offset = .zero
+                }
             } else if gesture.translation.width < -threshold {
                 offset = CGSize(width: -500, height: 0)
-                incorrectCount += 1
-                nextCard()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    viewModel.handleSwipe(correct: false)
+                    offset = .zero
+                }
             } else {
                 offset = .zero
-            }
-        }
-    }
-    
-    private func nextCard() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if currentIndex < vocabulary.count - 1 {
-                currentIndex += 1
-                offset = .zero
-                isFlipped = false
-            } else {
-                showCompletion = true
             }
         }
     }

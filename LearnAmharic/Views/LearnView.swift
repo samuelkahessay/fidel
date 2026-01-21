@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct LearnView: View {
-    @State private var selectedLesson: Lesson?
+    @State private var viewModel = LearnViewModel()
     @State private var showFidel = false
     
     var body: some View {
@@ -20,7 +20,7 @@ struct LearnView: View {
             .sheet(isPresented: $showFidel) {
                 FidelView()
             }
-            .navigationDestination(item: $selectedLesson) { lesson in
+            .navigationDestination(item: $viewModel.selectedLesson) { lesson in
                 LessonDetailView(lesson: lesson)
             }
         }
@@ -82,10 +82,10 @@ struct LearnView: View {
                 .font(AppTheme.Typography.title2)
                 .foregroundColor(.primary)
             
-            ForEach(AmharicData.lessons) { lesson in
+            ForEach(viewModel.lessons) { lesson in
                 LessonCard(lesson: lesson)
                     .onTapGesture {
-                        selectedLesson = lesson
+                        viewModel.selectLesson(lesson)
                     }
             }
         }

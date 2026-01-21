@@ -13,6 +13,8 @@ struct QuizView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var progressItems: [UserProgress]
     
+    private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
+    
     @State private var quizMode: QuizMode = .mixed
     @State private var questions: [QuizQuestion] = []
     @State private var currentIndex = 0
@@ -292,7 +294,8 @@ struct QuizView: View {
     
     private func generateQuestions() {
         var generatedQuestions: [QuizQuestion] = []
-        let shuffledVocab = Array(AmharicData.vocabulary.shuffled().prefix(12))
+        let allVocab = lessonRepository.getVocabulary()
+        let shuffledVocab = Array(allVocab.shuffled().prefix(12))
         
         for (index, word) in shuffledVocab.enumerated() {
             let questionType: QuizType
@@ -313,7 +316,7 @@ struct QuizView: View {
             
             switch questionType {
             case .multipleChoice:
-                let wrongAnswers = AmharicData.vocabulary
+                let wrongAnswers = allVocab
                     .filter { $0.english != word.english }
                     .shuffled()
                     .prefix(3)

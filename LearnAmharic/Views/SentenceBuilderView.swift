@@ -10,7 +10,11 @@ struct SentenceBuilderView: View {
     @State private var showSuccess = false
     @State private var score = 0
     
-    let patterns = AmharicData.patterns.filter { !$0.substitutions.isEmpty }
+    private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
+    
+    var patterns: [Pattern] {
+        lessonRepository.getPatterns().filter { !$0.substitutions.isEmpty }
+    }
     
     var body: some View {
         ScrollView {

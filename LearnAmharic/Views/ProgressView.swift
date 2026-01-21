@@ -4,6 +4,8 @@ import SwiftData
 struct ProgressDashboardView: View {
     @Query private var progressItems: [UserProgress]
     
+    private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
+    
     var progress: UserProgress? {
         progressItems.first
     }
@@ -164,21 +166,21 @@ struct ProgressDashboardView: View {
                 LearningStat(
                     title: "Patterns",
                     count: progress?.patternsLearned.count ?? 0,
-                    total: AmharicData.patterns.count,
+                    total: lessonRepository.getPatterns().count,
                     color: .blue
                 )
                 
                 LearningStat(
                     title: "Vocabulary",
                     count: progress?.vocabularyMastered.count ?? 0,
-                    total: AmharicData.vocabulary.count,
+                    total: lessonRepository.getVocabulary().count,
                     color: .green
                 )
                 
                 LearningStat(
                     title: "Conversations",
                     count: progress?.conversationsPracticed.count ?? 0,
-                    total: AmharicData.conversations.count,
+                    total: lessonRepository.getConversations().count,
                     color: .purple
                 )
             }

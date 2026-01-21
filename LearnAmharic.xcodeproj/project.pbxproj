@@ -29,6 +29,8 @@
 		AAA00020001 /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00020000 /* LessonView.swift */; };
 		AAA00021001 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00021000 /* AudioService.swift */; };
 		AAA00022001 /* PronunciationPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00022000 /* PronunciationPracticeView.swift */; };
+		AAA00023001 /* LessonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00023000 /* LessonRepository.swift */; };
+		AAA00024001 /* ProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00024000 /* ProgressRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		AAA00020000 /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
 		AAA00021000 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		AAA00022000 /* PronunciationPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronunciationPracticeView.swift; sourceTree = "<group>"; };
+		AAA00023000 /* LessonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonRepository.swift; sourceTree = "<group>"; };
+		AAA00024000 /* ProgressRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -75,6 +79,7 @@
 				AAA00500000 /* Views */,
 				AAA00600000 /* ViewModels */,
 				AAA00700000 /* Services */,
+				AAA00750000 /* Repositories */,
 				AAA00003000 /* Assets.xcassets */,
 			);
 			path = LearnAmharic;
@@ -133,6 +138,15 @@
 				AAA00021000 /* AudioService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		AAA00750000 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00023000 /* LessonRepository.swift */,
+				AAA00024000 /* ProgressRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +238,8 @@
 				AAA00020001 /* LessonView.swift in Sources */,
 				AAA00021001 /* AudioService.swift in Sources */,
 				AAA00022001 /* PronunciationPracticeView.swift in Sources */,
+				AAA00023001 /* LessonRepository.swift in Sources */,
+				AAA00024001 /* ProgressRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

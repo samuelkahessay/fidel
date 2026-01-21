@@ -220,12 +220,13 @@ struct SpeedDrillView: View {
     @State private var showResult = false
     @State private var userInput = ""
     @State private var showAnswer = false
+    @State private var phrases: [Phrase] = []
     
-    let phrases = AmharicData.phrases.shuffled().prefix(20)
+    private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var currentPhrase: Phrase? {
-        currentIndex < phrases.count ? Array(phrases)[currentIndex] : nil
+        currentIndex < phrases.count ? phrases[currentIndex] : nil
     }
     
     var body: some View {
@@ -334,6 +335,9 @@ struct SpeedDrillView: View {
                 isActive = false
                 showResult = true
             }
+        }
+        .onAppear {
+            phrases = Array(lessonRepository.getPhrases().shuffled().prefix(20))
         }
     }
     

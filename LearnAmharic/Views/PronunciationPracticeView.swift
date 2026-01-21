@@ -10,6 +10,8 @@ struct PronunciationPracticeView: View {
     @State private var showingComparison = false
     @State private var practiceMode: PracticeMode = .phrases
     
+    private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
+    
     enum PracticeMode: String, CaseIterable {
         case phrases = "Phrases"
         case vocabulary = "Vocabulary"
@@ -19,12 +21,12 @@ struct PronunciationPracticeView: View {
     var currentItems: [(amharic: String, transliteration: String, english: String)] {
         switch practiceMode {
         case .phrases:
-            return AmharicData.phrases.map { ($0.amharic, $0.transliteration, $0.english) }
+            return lessonRepository.getPhrases().map { ($0.amharic, $0.transliteration, $0.english) }
         case .vocabulary:
-            return AmharicData.vocabulary.map { ($0.amharic, $0.transliteration, $0.english) }
+            return lessonRepository.getVocabulary().map { ($0.amharic, $0.transliteration, $0.english) }
         case .fidel:
             var result: [(amharic: String, transliteration: String, english: String)] = []
-            for row in AmharicData.fidelChart {
+            for row in lessonRepository.getFidelChart() {
                 for char in row {
                     if result.count < 20 {
                         result.append((char.character, char.romanization, char.audioHint))

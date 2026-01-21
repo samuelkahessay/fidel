@@ -1,38 +1,8 @@
 import SwiftUI
 
 struct ReferenceView: View {
+    @State private var viewModel = ReferenceViewModel()
     @State private var selectedTab = 0
-    @State private var searchText = ""
-    @State private var selectedCategory: String?
-    
-    var filteredPhrases: [Phrase] {
-        if searchText.isEmpty {
-            return AmharicData.phrases
-        }
-        return AmharicData.phrases.filter { phrase in
-            phrase.amharic.contains(searchText) ||
-            phrase.transliteration.lowercased().contains(searchText.lowercased()) ||
-            phrase.english.lowercased().contains(searchText.lowercased())
-        }
-    }
-    
-    var filteredVocabulary: [VocabularyWord] {
-        var words = AmharicData.vocabulary
-        
-        if let category = selectedCategory {
-            words = words.filter { $0.category == category }
-        }
-        
-        if !searchText.isEmpty {
-            words = words.filter { word in
-                word.amharic.contains(searchText) ||
-                word.transliteration.lowercased().contains(searchText.lowercased()) ||
-                word.english.lowercased().contains(searchText.lowercased())
-            }
-        }
-        
-        return words
-    }
     
     var body: some View {
         NavigationStack {
@@ -58,7 +28,7 @@ struct ReferenceView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Reference")
-            .searchable(text: $searchText, prompt: "Search...")
+            .searchable(text: $viewModel.searchText, prompt: "Search...")
         }
     }
     
@@ -76,7 +46,7 @@ struct ReferenceView: View {
     }
     
     private var groupedPhrases: [String: [Phrase]] {
-        Dictionary(grouping: filteredPhrases) { phrase -> String in
+        Dictionary(grouping: viewModel.phrases) { phrase -> String in
             if phrase.id <= 10 { return "Greetings" }
             if phrase.id <= 15 { return "Thanks & Apologies" }
             if phrase.id <= 25 { return "Questions" }
@@ -92,7 +62,7 @@ struct ReferenceView: View {
             categoryFilter
             
             List {
-                ForEach(filteredVocabulary) { word in
+                ForEach(viewModel.vocabulary) { word in
                     VocabularyReferenceRow(word: word)
                 }
             }
@@ -103,13 +73,13 @@ struct ReferenceView: View {
     private var categoryFilter: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                CategoryChip(title: "All", isSelected: selectedCategory == nil) {
-                    selectedCategory = nil
+                CategoryChip(title: "All", isSelected: viewModel.selectedCategory == nil) {
+                    viewModel.selectCategory(nil)
                 }
                 
-                ForEach(AmharicData.vocabularyCategories, id: \.self) { category in
-                    CategoryChip(title: category, isSelected: selectedCategory == category) {
-                        selectedCategory = category
+                ForEach(viewModel.vocabularyCategories, id: \.self) { category in
+                    CategoryChip(title: category, isSelected: viewModel.selectedCategory == category) {
+                        viewModel.selectCategory(category)
                     }
                 }
             }
@@ -122,13 +92,13 @@ struct ReferenceView: View {
     private var numbersView: some View {
         List {
             Section("1-10") {
-                ForEach(AmharicData.numbers.prefix(10), id: \.value) { number in
+                ForEach(viewModel.numbers.prefix(10), id: \.value) { number in
                     NumberRow(number: number)
                 }
             }
             
             Section("Tens") {
-                ForEach(AmharicData.numbers.dropFirst(10), id: \.value) { number in
+                ForEach(viewModel.numbers.dropFirst(10), id: \.value) { number in
                     NumberRow(number: number)
                 }
             }

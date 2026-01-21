@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct ConversationsView: View {
-    @State private var selectedConversation: Conversation?
+    @State private var viewModel = ConversationViewModel()
     
     var body: some View {
         NavigationStack {
@@ -10,10 +10,10 @@ struct ConversationsView: View {
                 VStack(spacing: 16) {
                     headerSection
                     
-                    ForEach(AmharicData.conversations) { conversation in
+                    ForEach(viewModel.conversations) { conversation in
                         ConversationCard(conversation: conversation)
                             .onTapGesture {
-                                selectedConversation = conversation
+                                viewModel.selectConversation(conversation)
                             }
                     }
                 }
@@ -21,7 +21,7 @@ struct ConversationsView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Conversations")
-            .navigationDestination(item: $selectedConversation) { conversation in
+            .navigationDestination(item: $viewModel.selectedConversation) { conversation in
                 ConversationDetailView(conversation: conversation)
             }
         }

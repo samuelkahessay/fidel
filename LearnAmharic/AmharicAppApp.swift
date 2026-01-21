@@ -6,7 +6,9 @@ struct LearnAmharicApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             UserProgress.self,
-            FlashcardProgress.self
+            FlashcardProgress.self,
+            SelamConversation.self,
+            SelamMessage.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
