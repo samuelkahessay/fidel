@@ -35,17 +35,23 @@ struct ContentView: View {
                 }
                 .tag(2)
             
+            SelamView()
+                .tabItem {
+                    Label("Selam", systemImage: "sparkles")
+                }
+                .tag(3)
+            
             ReferenceView()
                 .tabItem {
                     Label("Reference", systemImage: "character.book.closed.fill")
                 }
-                .tag(3)
+                .tag(4)
             
             ProgressDashboardView()
                 .tabItem {
                     Label("Progress", systemImage: "chart.bar.fill")
                 }
-                .tag(4)
+                .tag(5)
         }
         .tint(AppTheme.primaryColor)
     }
@@ -53,5 +59,10 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: [UserProgress.self, FlashcardProgress.self], inMemory: true)
+        .modelContainer(for: [
+            UserProgress.self,
+            FlashcardProgress.self,
+            SelamConversation.self,
+            SelamMessage.self
+        ], inMemory: true)
 }

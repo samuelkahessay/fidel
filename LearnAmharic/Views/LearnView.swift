@@ -152,6 +152,7 @@ struct LessonDetailView: View {
     @Query private var progressItems: [UserProgress]
     @State private var currentSection = 0
     @State private var showCompletion = false
+    @State private var showSelam = false
     
     var body: some View {
         ScrollView {
@@ -175,12 +176,27 @@ struct LessonDetailView: View {
         .navigationTitle(lesson.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: { showSelam = true }) {
+                    Image(systemName: "sparkles")
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 Button("Complete") {
                     completeLesson()
                 }
                 .buttonStyle(SecondaryButtonStyle())
             }
+        }
+        .sheet(isPresented: $showSelam) {
+            SelamContextSheet(
+                entryContext: SelamEntryContext(
+                    type: SelamEntryContext.EntryContextType.lesson,
+                    itemId: String(lesson.id),
+                    itemTitle: lesson.title,
+                    additionalContext: nil
+                )
+            )
         }
         .alert("Lesson Complete!", isPresented: $showCompletion) {
             Button("OK") { }
