@@ -19,6 +19,12 @@ protocol ProgressRepositoryProtocol {
     func getUpcomingFlashcards(days: Int) -> [FlashcardProgress]
     func initializeFlashcards(vocabulary: [VocabularyWord], phrases: [Phrase])
     
+    // Fidel & Stages
+    func recognizeFidelCharacter(_ charId: String)
+    func getFidelCharactersRecognizedCount() -> Int
+    func getCurrentStage() -> Int
+    func setCurrentStage(_ stage: Int)
+
     // Statistics
     func getLessonsCompletedCount() -> Int
     func getVocabularyMasteredCount() -> Int
@@ -27,6 +33,7 @@ protocol ProgressRepositoryProtocol {
     func getTodayXP() -> Int
     func getDailyGoal() -> Int
     func getAchievements() -> [String]
+    func getConversationsPracticedCount() -> Int
 }
 
 // MARK: - ProgressRepository Implementation
@@ -133,8 +140,28 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
     }
     
+    // MARK: - Fidel & Stages
+
+    func recognizeFidelCharacter(_ charId: String) {
+        let progress = getOrCreateUserProgress()
+        progress.recognizeFidelCharacter(charId)
+    }
+
+    func getFidelCharactersRecognizedCount() -> Int {
+        getUserProgress()?.fidelCharactersRecognized.count ?? 0
+    }
+
+    func getCurrentStage() -> Int {
+        getUserProgress()?.currentStage ?? 0
+    }
+
+    func setCurrentStage(_ stage: Int) {
+        let progress = getOrCreateUserProgress()
+        progress.currentStage = stage
+    }
+
     // MARK: - Statistics
-    
+
     func getLessonsCompletedCount() -> Int {
         getUserProgress()?.lessonsCompleted.count ?? 0
     }
@@ -161,5 +188,9 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     
     func getAchievements() -> [String] {
         getUserProgress()?.achievements ?? []
+    }
+
+    func getConversationsPracticedCount() -> Int {
+        getUserProgress()?.conversationsPracticed.count ?? 0
     }
 }

@@ -3,33 +3,43 @@ import SwiftUI
 struct ReferenceView: View {
     @State private var viewModel = ReferenceViewModel()
     @State private var selectedTab = 0
-    
+
+    var embedded: Bool = false
+
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                Picker("Section", selection: $selectedTab) {
-                    Text("Quick Phrases").tag(0)
-                    Text("Vocabulary").tag(1)
-                    Text("Numbers").tag(2)
-                }
-                .pickerStyle(.segmented)
-                .padding()
-                
-                switch selectedTab {
-                case 0:
-                    phrasesView
-                case 1:
-                    vocabularyView
-                case 2:
-                    numbersView
-                default:
-                    EmptyView()
-                }
+        if embedded {
+            referenceContent
+        } else {
+            NavigationStack {
+                referenceContent
             }
-            .background(Color(.systemGroupedBackground))
-            .navigationTitle("Reference")
-            .searchable(text: $viewModel.searchText, prompt: "Search...")
         }
+    }
+
+    private var referenceContent: some View {
+        VStack(spacing: 0) {
+            Picker("Section", selection: $selectedTab) {
+                Text("Quick Phrases").tag(0)
+                Text("Vocabulary").tag(1)
+                Text("Numbers").tag(2)
+            }
+            .pickerStyle(.segmented)
+            .padding()
+
+            switch selectedTab {
+            case 0:
+                phrasesView
+            case 1:
+                vocabularyView
+            case 2:
+                numbersView
+            default:
+                EmptyView()
+            }
+        }
+        .background(Color(.systemGroupedBackground))
+        .navigationTitle("Reference")
+        .searchable(text: $viewModel.searchText, prompt: "Search...")
     }
     
     private var phrasesView: some View {

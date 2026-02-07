@@ -5,7 +5,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var progressItems: [UserProgress]
     @State private var selectedTab = 0
-    
+
     var userProgress: UserProgress {
         if let existing = progressItems.first {
             return existing
@@ -14,44 +14,26 @@ struct ContentView: View {
         modelContext.insert(newProgress)
         return newProgress
     }
-    
+
     var body: some View {
         TabView(selection: $selectedTab) {
-            LearnView()
+            JourneyView()
                 .tabItem {
-                    Label("Learn", systemImage: "book.fill")
+                    Label("Journey", systemImage: "map.fill")
                 }
                 .tag(0)
-            
-            PracticeView()
+
+            ToolsView()
                 .tabItem {
-                    Label("Practice", systemImage: "brain.head.profile")
+                    Label("Tools", systemImage: "wrench.and.screwdriver.fill")
                 }
                 .tag(1)
-            
-            ConversationsView()
-                .tabItem {
-                    Label("Conversations", systemImage: "bubble.left.and.bubble.right.fill")
-                }
-                .tag(2)
-            
-            SelamView()
-                .tabItem {
-                    Label("Selam", systemImage: "sparkles")
-                }
-                .tag(3)
-            
-            ReferenceView()
-                .tabItem {
-                    Label("Reference", systemImage: "character.book.closed.fill")
-                }
-                .tag(4)
-            
+
             ProgressDashboardView()
                 .tabItem {
                     Label("Progress", systemImage: "chart.bar.fill")
                 }
-                .tag(5)
+                .tag(2)
         }
         .tint(AppTheme.primaryColor)
     }

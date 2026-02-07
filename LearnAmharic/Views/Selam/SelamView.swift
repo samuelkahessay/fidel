@@ -4,77 +4,87 @@ import SwiftData
 struct SelamView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var progressItems: [UserProgress]
-    
+
     @State private var viewModel = SelamViewModel()
     @State private var scrollPosition: String?
-    
+
+    var embedded: Bool = false
+
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                messagesView
-                
-                if !viewModel.suggestedActions.isEmpty && !viewModel.isLoading {
-                    SuggestedActionsView(
-                        actions: viewModel.suggestedActions,
-                        onSelect: viewModel.sendSuggestedAction
-                    )
-                }
-                
-                ChatInputView(
-                    text: $viewModel.inputText,
-                    isLoading: viewModel.isLoading,
-                    onSend: { viewModel.sendMessage() },
-                    onCancel: { viewModel.cancelStreaming() }
+        if embedded {
+            selamContent
+        } else {
+            NavigationStack {
+                selamContent
+            }
+        }
+    }
+
+    private var selamContent: some View {
+        VStack(spacing: 0) {
+            messagesView
+
+            if !viewModel.suggestedActions.isEmpty && !viewModel.isLoading {
+                SuggestedActionsView(
+                    actions: viewModel.suggestedActions,
+                    onSelect: viewModel.sendSuggestedAction
                 )
             }
-            .background(Color(.systemGroupedBackground))
-            .navigationTitle("Selam")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack(spacing: AppTheme.Spacing.xs) {
-                        SelamAvatarView(size: 28)
-                        Text("Selam")
-                            .font(AppTheme.Typography.headline)
-                    }
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Button(action: { viewModel.startNewConversation() }) {
-                            Label("New Conversation", systemImage: "plus.bubble")
-                        }
-                        
-                        Button(action: { viewModel.showHistory = true }) {
-                            Label("Conversation History", systemImage: "clock.arrow.circlepath")
-                        }
-                        
-                        Divider()
-                        
-                        Button(action: { viewModel.showSettings = true }) {
-                            Label("Settings", systemImage: "gear")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                            .font(.title3)
-                    }
+
+            ChatInputView(
+                text: $viewModel.inputText,
+                isLoading: viewModel.isLoading,
+                onSend: { viewModel.sendMessage() },
+                onCancel: { viewModel.cancelStreaming() }
+            )
+        }
+        .background(Color(.systemGroupedBackground))
+        .navigationTitle("Selam")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack(spacing: AppTheme.Spacing.xs) {
+                    SelamAvatarView(size: 28)
+                    Text("Selam")
+                        .font(AppTheme.Typography.headline)
                 }
             }
-            .onAppear {
-                configureViewModel()
+
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button(action: { viewModel.startNewConversation() }) {
+                        Label("New Conversation", systemImage: "plus.bubble")
+                    }
+
+                    Button(action: { viewModel.showHistory = true }) {
+                        Label("Conversation History", systemImage: "clock.arrow.circlepath")
+                    }
+
+                    Divider()
+
+                    Button(action: { viewModel.showSettings = true }) {
+                        Label("Settings", systemImage: "gear")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .font(.title3)
+                }
             }
-            .sheet(isPresented: $viewModel.showSettings) {
-                SelamSettingsView(viewModel: viewModel)
-            }
-            .sheet(isPresented: $viewModel.showHistory) {
-                SelamHistoryView(viewModel: viewModel)
-            }
-            .alert("Error", isPresented: $viewModel.showError) {
-                Button("Retry") { viewModel.retryLastMessage() }
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                Text(viewModel.error?.errorDescription ?? "An error occurred")
-            }
+        }
+        .onAppear {
+            configureViewModel()
+        }
+        .sheet(isPresented: $viewModel.showSettings) {
+            SelamSettingsView(viewModel: viewModel)
+        }
+        .sheet(isPresented: $viewModel.showHistory) {
+            SelamHistoryView(viewModel: viewModel)
+        }
+        .alert("Error", isPresented: $viewModel.showError) {
+            Button("Retry") { viewModel.retryLastMessage() }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text(viewModel.error?.errorDescription ?? "An error occurred")
         }
     }
     

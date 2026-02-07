@@ -14,6 +14,7 @@ struct ProgressDashboardView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
+                    stageTimeline
                     statsOverview
                     streakSection
                     dailyGoalSection
@@ -27,6 +28,67 @@ struct ProgressDashboardView: View {
         }
     }
     
+    private var currentStage: LearningStage {
+        LearningStage(rawValue: progress?.currentStage ?? 0) ?? .scriptAndSounds
+    }
+
+    private var stageTimeline: some View {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
+            Text("Learning Journey")
+                .font(AppTheme.Typography.headline)
+
+            HStack(spacing: 0) {
+                ForEach(LearningStage.allCases) { stage in
+                    let isUnlocked = stage <= currentStage
+                    let isCurrent = stage == currentStage
+
+                    VStack(spacing: AppTheme.Spacing.xs) {
+                        ZStack {
+                            Circle()
+                                .fill(isUnlocked ? stage.color : Color.gray.opacity(0.2))
+                                .frame(width: 36, height: 36)
+
+                            if stage < currentStage {
+                                Image(systemName: "checkmark")
+                                    .font(.caption.bold())
+                                    .foregroundColor(.white)
+                            } else if isCurrent {
+                                Image(systemName: stage.icon)
+                                    .font(.caption2)
+                                    .foregroundColor(.white)
+                            } else {
+                                Image(systemName: "lock.fill")
+                                    .font(.caption2)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+
+                        Text(stage.displayName)
+                            .font(AppTheme.Typography.caption2)
+                            .foregroundColor(isCurrent ? stage.color : .secondary)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                    }
+                    .frame(maxWidth: .infinity)
+
+                    if stage != .fluency {
+                        Rectangle()
+                            .fill(stage < currentStage ? stage.color : Color.gray.opacity(0.2))
+                            .frame(height: 2)
+                            .frame(maxWidth: 20)
+                            .padding(.bottom, 24)
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
+        )
+    }
+
     private var statsOverview: some View {
         HStack(spacing: 16) {
             StatCard(

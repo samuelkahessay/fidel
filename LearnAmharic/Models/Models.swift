@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import SwiftData
 
 // MARK: - Core Data Models
@@ -104,7 +105,9 @@ final class UserProgress {
     var dailyGoal: Int
     var todayXP: Int
     var achievements: [String]
-    
+    var fidelCharactersRecognized: [String]
+    var currentStage: Int
+
     init() {
         self.id = UUID()
         self.totalXP = 0
@@ -118,6 +121,19 @@ final class UserProgress {
         self.dailyGoal = 50
         self.todayXP = 0
         self.achievements = []
+        self.fidelCharactersRecognized = []
+        self.currentStage = 0
+    }
+
+    func recognizeFidelCharacter(_ charId: String) {
+        if !fidelCharactersRecognized.contains(charId) {
+            fidelCharactersRecognized.append(charId)
+            addXP(2)
+        }
+    }
+
+    var learningStage: LearningStage {
+        LearningStage(rawValue: currentStage) ?? .scriptAndSounds
     }
     
     func addXP(_ amount: Int) {
@@ -273,3 +289,45 @@ let allAchievements: [Achievement] = [
     Achievement(id: "xp_500", title: "Shining Star", description: "Earn 500 XP", icon: "star.circle", requirement: 500, category: .xp),
     Achievement(id: "xp_1000", title: "Superstar", description: "Earn 1000 XP", icon: "star.circle.fill", requirement: 1000, category: .xp),
 ]
+
+// MARK: - Practice Mode
+
+enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
+    case flashcards = "Flashcards"
+    case quiz = "Quiz"
+    case pronunciation = "Pronunciation"
+    case sentenceBuilder = "Sentence Builder"
+    case speedDrill = "Speed Drill"
+
+    var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .flashcards: return "rectangle.stack.fill"
+        case .quiz: return "questionmark.circle.fill"
+        case .pronunciation: return "waveform.and.mic"
+        case .sentenceBuilder: return "text.word.spacing"
+        case .speedDrill: return "timer"
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .flashcards: return "Review vocabulary with spaced repetition"
+        case .quiz: return "Test your knowledge with multiple choice"
+        case .pronunciation: return "Listen and practice speaking"
+        case .sentenceBuilder: return "Build sentences using patterns"
+        case .speedDrill: return "Rapid-fire translation practice"
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .flashcards: return .blue
+        case .quiz: return .purple
+        case .pronunciation: return AppTheme.primaryColor
+        case .sentenceBuilder: return .orange
+        case .speedDrill: return AppTheme.accentRed
+        }
+    }
+}

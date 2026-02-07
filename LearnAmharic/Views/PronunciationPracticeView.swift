@@ -8,18 +8,18 @@ struct PronunciationPracticeView: View {
     @State private var isRecording = false
     @State private var hasRecorded = false
     @State private var showingComparison = false
-    @State private var practiceMode: PracticeMode = .phrases
-    
+    @State private var pronunciationMode: PronunciationMode = .phrases
+
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
-    
-    enum PracticeMode: String, CaseIterable {
+
+    enum PronunciationMode: String, CaseIterable {
         case phrases = "Phrases"
         case vocabulary = "Vocabulary"
         case fidel = "Fidel"
     }
     
     var currentItems: [(amharic: String, transliteration: String, english: String)] {
-        switch practiceMode {
+        switch pronunciationMode {
         case .phrases:
             return lessonRepository.getPhrases().map { ($0.amharic, $0.transliteration, $0.english) }
         case .vocabulary:
@@ -81,14 +81,14 @@ struct PronunciationPracticeView: View {
     }
     
     private var modePicker: some View {
-        Picker("Mode", selection: $practiceMode) {
-            ForEach(PracticeMode.allCases, id: \.self) { mode in
+        Picker("Mode", selection: $pronunciationMode) {
+            ForEach(PronunciationMode.allCases, id: \.self) { mode in
                 Text(mode.rawValue).tag(mode)
             }
         }
         .pickerStyle(.segmented)
         .padding()
-        .onChange(of: practiceMode) { _, _ in
+        .onChange(of: pronunciationMode) { _, _ in
             currentIndex = 0
             hasRecorded = false
         }
@@ -114,7 +114,7 @@ struct PronunciationPracticeView: View {
     private func mainCard(item: (amharic: String, transliteration: String, english: String)) -> some View {
         VStack(spacing: 16) {
             Text(item.amharic)
-                .font(.system(size: practiceMode == .fidel ? 72 : 36, weight: .medium))
+                .font(.system(size: pronunciationMode == .fidel ? 72 : 36, weight: .medium))
                 .foregroundColor(AppTheme.primaryColor)
                 .multilineTextAlignment(.center)
             
