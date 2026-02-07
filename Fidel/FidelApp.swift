@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct LearnAmharicApp: App {
+struct FidelApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             UserProgress.self,

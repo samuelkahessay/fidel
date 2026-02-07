@@ -1,14 +1,19 @@
 import AVFoundation
+import CryptoKit
 import SwiftUI
 
 // MARK: - ElevenLabs Configuration
 
 struct ElevenLabsConfig {
     static var apiKey: String {
-        if let key = UserDefaults.standard.string(forKey: "elevenlabs_api_key"), !key.isEmpty {
+        if let key = ProcessInfo.processInfo.environment["ELEVENLABS_API_KEY"], !key.isEmpty {
             return key
         }
-        return ProcessInfo.processInfo.environment["ELEVENLABS_API_KEY"] ?? ""
+        if let key = Bundle.main.object(forInfoDictionaryKey: "ELEVENLABS_API_KEY") as? String,
+           !key.isEmpty, key != "$(ELEVENLABS_API_KEY)" {
+            return key
+        }
+        return ""
     }
     
     static let baseURL = "https://api.elevenlabs.io/v1"
@@ -39,26 +44,32 @@ struct ElevenLabsVoicesResponse: Codable {
 actor AudioCache {
     private var cache: [String: URL] = [:]
     private let cacheDirectory: URL
-    
+
     init() {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         cacheDirectory = documentsPath.appendingPathComponent("AudioCache", isDirectory: true)
         try? FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: true)
     }
-    
+
+    private func stableHash(for text: String) -> String {
+        let data = Data(text.utf8)
+        let digest = SHA256.hash(data: data)
+        return digest.prefix(16).map { String(format: "%02x", $0) }.joined()
+    }
+
     func getCachedAudio(for text: String) -> URL? {
-        let hash = text.hashValue
+        let hash = stableHash(for: text)
         let filename = "\(hash).mp3"
         let fileURL = cacheDirectory.appendingPathComponent(filename)
-        
+
         if FileManager.default.fileExists(atPath: fileURL.path) {
             return fileURL
         }
         return nil
     }
-    
+
     func cacheAudio(_ data: Data, for text: String) -> URL? {
-        let hash = text.hashValue
+        let hash = stableHash(for: text)
         let filename = "\(hash).mp3"
         let fileURL = cacheDirectory.appendingPathComponent(filename)
         
@@ -376,8 +387,8 @@ class AudioService {
 struct SpeakButton: View {
     let text: String
     let isAmharic: Bool
-    @State private var audioService = AudioService()
-    
+    var audioService: AudioService
+
     var body: some View {
         Button(action: {
             if isAmharic {
@@ -404,8 +415,8 @@ struct SpeakButton: View {
 struct RecordButton: View {
     @Binding var isRecording: Bool
     let onRecordingComplete: (URL?) -> Void
-    @State private var audioService = AudioService()
-    
+    var audioService: AudioService
+
     var body: some View {
         Button(action: {
             if audioService.isRecording {

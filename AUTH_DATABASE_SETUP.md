@@ -1,6 +1,6 @@
-# Learn Amharic - Authentication & Database Setup Guide
+# Fidel - Authentication & Database Setup Guide
 
-This document provides step-by-step instructions for adding authentication and a database to the Learn Amharic iOS app.
+This document provides step-by-step instructions for adding authentication and a database to the Fidel iOS app.
 
 ---
 
@@ -49,7 +49,7 @@ This document provides step-by-step instructions for adding authentication and a
 2. Click **Add Native Application**
 3. Enter your iOS app details:
    - **App ID Prefix**: Found in Apple Developer Portal > Certificates, Identifiers & Profiles > App IDs
-   - **Bundle ID**: `com.yourname.LearnAmharic`
+   - **Bundle ID**: `dev.skahessay.fidel`
 
 ### Step 3: Install Clerk iOS SDK
 
@@ -75,7 +75,7 @@ dependencies: [
 
 ### Step 5: Initialize Clerk in App
 
-Update `LearnAmharicApp.swift`:
+Update `FidelApp.swift`:
 
 ```swift
 import SwiftUI
@@ -83,7 +83,7 @@ import SwiftData
 import ClerkSDK
 
 @main
-struct LearnAmharicApp: App {
+struct FidelApp: App {
     // SwiftData container
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -481,7 +481,7 @@ class SyncManager: ObservableObject {
 
 ```
 ┌─────────────────────────────────────────┐
-│           Learn Amharic iOS             │
+│              Fidel iOS                  │
 ├─────────────────────────────────────────┤
 │  SwiftUI Views                          │
 ├─────────────────────────────────────────┤
