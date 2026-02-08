@@ -5,6 +5,9 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var progressItems: [UserProgress]
     @State private var selectedTab = 0
+    #if DEBUG
+    @State private var showStrokeRecorder = false
+    #endif
 
     var userProgress: UserProgress {
         if let existing = progressItems.first {
@@ -36,6 +39,25 @@ struct ContentView: View {
                 .tag(2)
         }
         .tint(AppTheme.primaryColor)
+        #if DEBUG
+        .overlay(alignment: .topTrailing) {
+            Button {
+                showStrokeRecorder = true
+            } label: {
+                Label("Record", systemImage: "pencil.tip.crop.circle")
+                    .font(.caption.bold())
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(.indigo, in: Capsule())
+                    .foregroundColor(.white)
+            }
+            .padding(.trailing, 16)
+            .padding(.top, 4)
+        }
+        .sheet(isPresented: $showStrokeRecorder) {
+            StrokeRecorderView()
+        }
+        #endif
     }
 }
 

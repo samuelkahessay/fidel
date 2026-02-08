@@ -107,7 +107,7 @@ struct FlashcardView: View {
             Spacer()
             
             Text(word.amharic)
-                .font(.system(size: 64, weight: .medium))
+                .font(AppTheme.Typography.amharic(size: 64))
                 .foregroundColor(AppTheme.primaryColor)
             
             Text(word.transliteration)

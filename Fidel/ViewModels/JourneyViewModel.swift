@@ -104,6 +104,15 @@ final class JourneyViewModel {
                 color: .purple,
                 isCompleted: false
             ))
+            result.append(JourneyActivity(
+                id: "character_tracing",
+                type: .practiceMode(.tracing),
+                title: "Character Tracing",
+                subtitle: "Practice writing Fidel characters",
+                icon: "scribble.variable",
+                color: .indigo,
+                isCompleted: false
+            ))
 
         case .survivalPhrases:
             let lessons = stageManager.availableLessons()

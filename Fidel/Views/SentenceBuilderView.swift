@@ -89,7 +89,7 @@ struct SentenceBuilderView: View {
                     .foregroundColor(.secondary)
                 
                 Text(pattern.structure)
-                    .font(.system(size: 24))
+                    .font(AppTheme.Typography.amharic(size: 24))
                     .foregroundColor(AppTheme.primaryColor)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -150,7 +150,7 @@ struct SentenceBuilderView: View {
                     let sentence = buildSentence(for: pattern)
                     
                     Text(sentence.amharic)
-                        .font(.system(size: 28))
+                        .font(AppTheme.Typography.amharic(size: 28))
                         .foregroundColor(AppTheme.primaryColor)
                     
                     Text(sentence.transliteration)
@@ -188,7 +188,7 @@ struct SentenceBuilderView: View {
             ForEach(pattern.examples.prefix(3), id: \.amharic) { example in
                 VStack(alignment: .leading, spacing: 4) {
                     Text(example.amharic)
-                        .font(.system(size: 18))
+                        .font(AppTheme.Typography.amharic(size: 18))
                     Text(example.transliteration)
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -261,7 +261,7 @@ struct PatternSelectionCard: View {
                     .foregroundColor(.primary)
                 
                 Text(pattern.structure)
-                    .font(.system(size: 18))
+                    .font(AppTheme.Typography.amharic(size: 18))
                     .foregroundColor(AppTheme.primaryColor)
                 
                 HStack {
@@ -294,7 +294,7 @@ struct SubstitutionChip: View {
         Button(action: action) {
             VStack(spacing: 4) {
                 Text(substitution.amharic)
-                    .font(.system(size: 20))
+                    .font(AppTheme.Typography.amharic(size: 20))
                 Text(substitution.english)
                     .font(.caption)
             }

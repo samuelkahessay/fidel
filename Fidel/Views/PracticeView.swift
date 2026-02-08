@@ -51,7 +51,7 @@ struct SpeedDrillView: View {
                     if showAnswer {
                         VStack(spacing: AppTheme.Spacing.xs) {
                             Text(phrase.amharic)
-                                .font(.system(size: 40, weight: .medium))
+                                .font(AppTheme.Typography.amharic(size: 40))
                                 .foregroundColor(AppTheme.primaryColor)
                             Text(phrase.transliteration)
                                 .font(AppTheme.Typography.subheadline)

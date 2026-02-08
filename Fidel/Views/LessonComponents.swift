@@ -190,7 +190,7 @@ struct PatternCard: View {
             }
 
             Text(pattern.structure)
-                .font(.system(size: 24, weight: .medium))
+                .font(AppTheme.Typography.amharic(size: 24))
                 .foregroundColor(AppTheme.primaryColor)
                 .padding(.vertical, AppTheme.Spacing.xxs)
 
@@ -207,7 +207,7 @@ struct PatternCard: View {
                     ForEach(pattern.examples, id: \.amharic) { example in
                         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(example.amharic)
-                                .font(.system(size: 20, weight: .medium))
+                                .font(AppTheme.Typography.amharic(size: 20))
                                 .foregroundColor(.primary)
                             Text(example.transliteration)
                                 .font(AppTheme.Typography.caption)
@@ -234,7 +234,7 @@ struct PatternCard: View {
                             ForEach(pattern.substitutions, id: \.amharic) { sub in
                                 VStack(spacing: 2) {
                                     Text(sub.amharic)
-                                        .font(.system(size: 16, weight: .medium))
+                                        .font(AppTheme.Typography.amharic(size: 16))
                                         .foregroundColor(.primary)
                                     Text(sub.english)
                                         .font(AppTheme.Typography.caption2)
@@ -262,7 +262,7 @@ struct VocabularyCard: View {
     var body: some View {
         VStack(spacing: AppTheme.Spacing.xs) {
             Text(word.amharic)
-                .font(.system(size: 26, weight: .medium))
+                .font(AppTheme.Typography.amharic(size: 26))
                 .foregroundColor(AppTheme.primaryColor)
 
             Text(word.transliteration)
@@ -286,7 +286,7 @@ struct PhraseRow: View {
         HStack {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(phrase.amharic)
-                    .font(.system(size: 20, weight: .medium))
+                    .font(AppTheme.Typography.amharic(size: 20))
                     .foregroundColor(.primary)
                 Text(phrase.transliteration)
                     .font(AppTheme.Typography.caption)

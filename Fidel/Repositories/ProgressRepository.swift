@@ -21,6 +21,7 @@ protocol ProgressRepositoryProtocol {
     
     // Fidel & Stages
     func recognizeFidelCharacter(_ charId: String)
+    func traceCharacter(_ charId: String)
     func getFidelCharactersRecognizedCount() -> Int
     func getCurrentStage() -> Int
     func setCurrentStage(_ stage: Int)
@@ -145,6 +146,11 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func recognizeFidelCharacter(_ charId: String) {
         let progress = getOrCreateUserProgress()
         progress.recognizeFidelCharacter(charId)
+    }
+
+    func traceCharacter(_ charId: String) {
+        let progress = getOrCreateUserProgress()
+        progress.traceCharacter(charId)
     }
 
     func getFidelCharactersRecognizedCount() -> Int {

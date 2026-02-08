@@ -40,6 +40,8 @@ struct JourneyView: View {
                     SentenceBuilderView()
                 case .speedDrill:
                     SpeedDrillView()
+                case .tracing:
+                    TracingView()
                 }
             }
             .sheet(item: $viewModel.tappedLockedStage) { stage in
@@ -80,7 +82,7 @@ struct JourneyView: View {
                         .font(AppTheme.Typography.title3)
                         .foregroundColor(.primary)
                     Text(viewModel.currentStage.amharicTitle)
-                        .font(.system(size: 18, weight: .medium))
+                        .font(AppTheme.Typography.amharic(size: 18))
                         .foregroundColor(viewModel.currentStage.color)
                 }
 
@@ -301,7 +303,7 @@ struct LockedStageSheet: View {
                     Text(stage.displayName)
                         .font(AppTheme.Typography.title2)
                     Text(stage.amharicTitle)
-                        .font(.system(size: 20, weight: .medium))
+                        .font(AppTheme.Typography.amharic(size: 20))
                         .foregroundColor(stage.color)
                 }
 
@@ -389,13 +391,13 @@ struct StageAdvancementView: View {
                         .foregroundColor(stage.color)
 
                     Text(stage.amharicTitle)
-                        .font(.system(size: 28, weight: .medium))
+                        .font(AppTheme.Typography.amharic(size: 28))
                         .foregroundColor(AppTheme.secondaryColor)
                 }
                 .opacity(animateIn ? 1.0 : 0)
 
                 Text("እንኳን ደስ ያለህ!")
-                    .font(.system(size: 24, weight: .medium))
+                    .font(AppTheme.Typography.amharic(size: 24))
                     .foregroundColor(.white.opacity(0.8))
                     .opacity(animateIn ? 1.0 : 0)
 

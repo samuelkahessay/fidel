@@ -118,7 +118,7 @@ struct FidelCell: View {
     
     var body: some View {
         Text(character.character)
-            .font(.system(size: 28))
+            .font(AppTheme.Typography.amharic(size: 28))
             .frame(width: 60, height: 50)
             .background(
                 RoundedRectangle(cornerRadius: 8)
@@ -139,7 +139,7 @@ struct CharacterDetailView: View {
     var body: some View {
         VStack(spacing: 24) {
             Text(character.character)
-                .font(.system(size: 120))
+                .font(AppTheme.Typography.amharic(size: 120))
                 .foregroundColor(AppTheme.primaryColor)
             
             VStack(spacing: 8) {

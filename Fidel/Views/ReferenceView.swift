@@ -125,7 +125,7 @@ struct PhraseReferenceRow: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(phrase.amharic)
-                    .font(.system(size: 20))
+                    .font(AppTheme.Typography.amharic(size: 20))
                 
                 Spacer()
                 
@@ -174,7 +174,7 @@ struct VocabularyReferenceRow: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text(word.amharic)
-                    .font(.system(size: 18))
+                    .font(AppTheme.Typography.amharic(size: 18))
                 Text(word.transliteration)
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -213,7 +213,7 @@ struct NumberRow: View {
                 .frame(width: 50)
             
             Text(number.amharic)
-                .font(.system(size: 24))
+                .font(AppTheme.Typography.amharic(size: 24))
             
             Spacer()
             

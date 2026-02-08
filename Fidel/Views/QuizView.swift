@@ -146,7 +146,7 @@ struct QuizView: View {
             
             if let amharic = question.amharic {
                 Text(amharic)
-                    .font(.system(size: 36))
+                    .font(AppTheme.Typography.amharic(size: 36))
                     .foregroundColor(AppTheme.primaryColor)
             }
             

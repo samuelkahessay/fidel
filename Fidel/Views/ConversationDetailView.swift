@@ -168,7 +168,7 @@ struct ConversationDetailView: View {
                 .foregroundColor(AppTheme.primaryColor)
             
             Text(line.amharic)
-                .font(.system(size: 32))
+                .font(AppTheme.Typography.amharic(size: 32))
                 .foregroundColor(AppTheme.primaryColor)
                 .multilineTextAlignment(.center)
             
@@ -199,7 +199,7 @@ struct ConversationDetailView: View {
                 .foregroundColor(.secondary)
             
             Text(line.amharic)
-                .font(.system(size: 24))
+                .font(AppTheme.Typography.amharic(size: 24))
                 .multilineTextAlignment(.center)
             
             if showTransliteration {
@@ -336,7 +336,7 @@ struct DialogueLineView: View {
                 .foregroundColor(AppTheme.primaryColor)
             
             Text(line.amharic)
-                .font(.system(size: 22))
+                .font(AppTheme.Typography.amharic(size: 22))
             
             if showTransliteration {
                 Text(line.transliteration)

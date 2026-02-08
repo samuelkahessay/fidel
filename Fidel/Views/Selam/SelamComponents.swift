@@ -20,7 +20,7 @@ struct SelamAvatarView: View {
                 .frame(width: size, height: size)
                 .overlay(
                     Text("ሰ")
-                        .font(.system(size: size * 0.5, weight: .bold))
+                        .font(AppTheme.Typography.amharic(size: size * 0.5))
                         .foregroundColor(.white)
                 )
             

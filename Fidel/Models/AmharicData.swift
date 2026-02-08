@@ -86,6 +86,7 @@ struct AmharicData {
                     row.append(FidelCharacter(
                         character: characters[charIndex],
                         consonant: consonantInfo.0,
+                        rowIndex: index,
                         vowelOrder: vowelOrder + 1,
                         romanization: consonantInfo.2[vowelOrder],
                         audioHint: consonantInfo.2[vowelOrder]

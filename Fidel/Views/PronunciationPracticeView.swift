@@ -114,7 +114,7 @@ struct PronunciationPracticeView: View {
     private func mainCard(item: (amharic: String, transliteration: String, english: String)) -> some View {
         VStack(spacing: 16) {
             Text(item.amharic)
-                .font(.system(size: pronunciationMode == .fidel ? 72 : 36, weight: .medium))
+                .font(AppTheme.Typography.amharic(size: pronunciationMode == .fidel ? 72 : 36))
                 .foregroundColor(AppTheme.primaryColor)
                 .multilineTextAlignment(.center)
             

@@ -69,10 +69,11 @@ struct VocabularyWord: Identifiable, Codable, Hashable {
 
 /// Fidel (Ethiopic script) character
 struct FidelCharacter: Identifiable, Hashable {
-    var id: String { "\(consonant)-\(vowelOrder)" }
+    var id: String { "\(rowIndex)-\(vowelOrder)" }
     let character: String
     let consonant: String
-    let vowelOrder: Int // 1-7 for the seven vowel forms
+    let rowIndex: Int    // 0-based position in the fidelChart (unique per consonant row)
+    let vowelOrder: Int  // 1-7 for the seven vowel forms
     let romanization: String
     let audioHint: String
 }
@@ -106,6 +107,7 @@ final class UserProgress {
     var todayXP: Int
     var achievements: [String]
     var fidelCharactersRecognized: [String]
+    var charactersTraced: [String]
     var currentStage: Int
 
     init() {
@@ -122,6 +124,7 @@ final class UserProgress {
         self.todayXP = 0
         self.achievements = []
         self.fidelCharactersRecognized = []
+        self.charactersTraced = []
         self.currentStage = 0
     }
 
@@ -129,6 +132,13 @@ final class UserProgress {
         if !fidelCharactersRecognized.contains(charId) {
             fidelCharactersRecognized.append(charId)
             addXP(2)
+        }
+    }
+
+    func traceCharacter(_ charId: String) {
+        if !charactersTraced.contains(charId) {
+            charactersTraced.append(charId)
+            addXP(5)
         }
     }
 
@@ -298,6 +308,7 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
     case pronunciation = "Pronunciation"
     case sentenceBuilder = "Sentence Builder"
     case speedDrill = "Speed Drill"
+    case tracing = "Character Tracing"
 
     var id: String { rawValue }
 
@@ -308,6 +319,7 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .pronunciation: return "waveform.and.mic"
         case .sentenceBuilder: return "text.word.spacing"
         case .speedDrill: return "timer"
+        case .tracing: return "scribble.variable"
         }
     }
 
@@ -318,6 +330,7 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .pronunciation: return "Listen and practice speaking"
         case .sentenceBuilder: return "Build sentences using patterns"
         case .speedDrill: return "Rapid-fire translation practice"
+        case .tracing: return "Practice writing Fidel characters"
         }
     }
 
@@ -328,6 +341,7 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .pronunciation: return AppTheme.primaryColor
         case .sentenceBuilder: return .orange
         case .speedDrill: return AppTheme.accentRed
+        case .tracing: return .indigo
         }
     }
 }
