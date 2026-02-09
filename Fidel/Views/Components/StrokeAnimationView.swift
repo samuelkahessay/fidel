@@ -3,6 +3,8 @@ import SwiftUI
 /// Animated character demonstration that reveals a Fidel character.
 /// - **Stroke mode**: If recorded stroke data exists, replays strokes sequentially
 ///   using thick stroke paths as a mask over the filled glyph shape.
+///   Per-stroke pen width, proportional timing, Catmull-Rom smoothing, and a
+///   moving pen-tip indicator produce CJK-quality animation.
 /// - **Fallback mode**: Top-to-bottom mask wipe (original behavior).
 struct StrokeAnimationView: View {
     let character: String
@@ -15,9 +17,25 @@ struct StrokeAnimationView: View {
     private let maxLoops = 2
     private let totalDuration: CGFloat = 2.0
 
+    /// The glyph occupied 58% of the canvas (centered) during recording.
+    /// Strokes must be remapped from recording space to full-glyph space.
+    private let recordingGlyphScale: Double = 0.58
+
     private var strokeData: CharacterStrokeData? {
         guard let id = characterId else { return nil }
         return StrokeDataRepository.shared.getStrokeData(for: id)
+    }
+
+    /// Remaps a point from recording canvas coords (where glyph was 58% centered)
+    /// to playback coords (where glyph fills the full view).
+    private func remapPoints(_ points: [StrokePoint]) -> [StrokePoint] {
+        let offset = (1.0 - recordingGlyphScale) / 2.0
+        return points.map { p in
+            StrokePoint(
+                x: (p.x - offset) / recordingGlyphScale,
+                y: (p.y - offset) / recordingGlyphScale
+            )
+        }
     }
 
     var body: some View {
@@ -32,55 +50,126 @@ struct StrokeAnimationView: View {
 
     private func strokeReplayView(_ data: CharacterStrokeData) -> some View {
         let glyphPath = PathExtractor.shared.extractPath(for: character, size: size)
+        let glyphCGPath = PathExtractor.shared.extractCGPath(for: character, size: size)
+        let proportions = strokeProportions(data.strokes)
+        let glyphStrokeW = PathExtractor.shared.glyphStrokeWidth(for: character, size: size)
+        let revealResult = StrokeRegionBuilder.shared.regions(
+            characterKey: characterId ?? character,
+            glyphPath: glyphCGPath,
+            strokes: data.strokes,
+            canvasSize: size,
+            glyphStrokeWidth: glyphStrokeW,
+            recordingGlyphScale: recordingGlyphScale
+        )
+        let revealRegions = revealResult.regions
+        let debugOverlay = selectedDebugImage(
+            from: revealResult.debugArtifacts,
+            unclaimedImage: revealResult.unclaimedImage
+        )
 
         return ZStack {
             // Faint outline always visible as guide
             glyphPath.fill(Color.indigo.opacity(0.08))
 
-            // Filled glyph masked by thick animated stroke paths
+            // Filled glyph masked by per-pixel arc-length reveal.
             glyphPath.fill(Color.indigo)
                 .mask {
                     Canvas { context, canvasSize in
-                        for (index, stroke) in data.strokes.enumerated() {
-                            let strokeProgress = progressForStroke(index: index, total: data.strokes.count)
+                        for (index, region) in revealRegions.enumerated() {
+                            let strokeProgress = progressForStroke(
+                                index: index,
+                                proportions: proportions
+                            )
                             guard strokeProgress > 0 else { continue }
 
-                            var path = Path()
-                            guard let first = stroke.points.first else { continue }
-
-                            path.move(to: CGPoint(
-                                x: first.x * canvasSize.width,
-                                y: first.y * canvasSize.height
-                            ))
-
-                            for point in stroke.points.dropFirst() {
-                                path.addLine(to: CGPoint(
-                                    x: point.x * canvasSize.width,
-                                    y: point.y * canvasSize.height
-                                ))
-                            }
-
-                            let trimmed = path.trimmedPath(from: 0, to: strokeProgress)
-                            context.stroke(
-                                trimmed,
-                                with: .color(.white),
-                                style: StrokeStyle(lineWidth: 55, lineCap: .round, lineJoin: .round)
-                            )
+                            let image = debugShowInstantOwnedRegions
+                                ? region.regionImage
+                                : region.image(for: strokeProgress)
+                            let revealed = Image(decorative: image, scale: 1)
+                            context.draw(revealed, in: CGRect(origin: .zero, size: canvasSize))
                         }
                     }
                 }
+
+            if let debugOverlay {
+                Image(decorative: debugOverlay, scale: 1)
+                    .resizable()
+                    .frame(width: size.width, height: size.height)
+                    .opacity(0.62)
+                    .allowsHitTesting(false)
+            }
+
+            // Pen-tip indicator
+            penTipOverlay(data: data, proportions: proportions)
         }
         .frame(width: size.width, height: size.height)
         .onAppear { startAnimation() }
         .onDisappear { stopTimer() }
     }
 
-    /// Maps global animationProgress (0...1) to a per-stroke progress (0...1).
-    /// Each stroke gets an equal time window; they play sequentially.
-    private func progressForStroke(index: Int, total: Int) -> CGFloat {
-        guard total > 0 else { return 0 }
-        let window = 1.0 / CGFloat(total)
-        let strokeStart = CGFloat(index) * window
+    // MARK: - Pen-Tip Indicator
+
+    @ViewBuilder
+    private func penTipOverlay(data: CharacterStrokeData, proportions: [CGFloat]) -> some View {
+        if let tip = activeTipPosition(data: data, proportions: proportions) {
+            Circle()
+                .fill(Color.indigo.opacity(0.7))
+                .frame(width: 8, height: 8)
+                .scaleEffect(pulseScale)
+                .position(tip)
+                .allowsHitTesting(false)
+        }
+    }
+
+    /// Subtle scale pulse for the pen-tip dot.
+    private var pulseScale: CGFloat {
+        // Oscillate between 0.8 and 1.2 based on progress
+        let phase = animationProgress * 12  // ~6 full cycles over animation
+        return 1.0 + 0.2 * sin(phase * .pi)
+    }
+
+    /// Returns the current tip position of the actively-animating stroke, or nil if at rest.
+    private func activeTipPosition(data: CharacterStrokeData, proportions: [CGFloat]) -> CGPoint? {
+        for (index, stroke) in data.strokes.enumerated() {
+            let sp = progressForStroke(index: index, proportions: proportions)
+            // This stroke is actively animating (partially drawn, not yet complete)
+            if sp > 0 && sp < 1 {
+                return StrokeSmoother.interpolatePosition(
+                    in: remapPoints(stroke.points),
+                    at: sp,
+                    canvasSize: size
+                )
+            }
+        }
+        return nil
+    }
+
+    // MARK: - Proportional Stroke Timing
+
+    /// Computes cumulative proportion boundaries from stroke point counts.
+    /// A stroke with more points gets a proportionally larger animation window.
+    private func strokeProportions(_ strokes: [RecordedStroke]) -> [CGFloat] {
+        let counts = strokes.map { CGFloat($0.points.count) }
+        let total = counts.reduce(0, +)
+        guard total > 0 else { return Array(repeating: 0, count: strokes.count) }
+
+        var cumulative: [CGFloat] = []
+        var running: CGFloat = 0
+        for count in counts {
+            running += count / total
+            cumulative.append(running)
+        }
+        return cumulative
+    }
+
+    /// Maps global `animationProgress` (0...1) to a per-stroke progress (0...1)
+    /// using proportional timing based on point counts.
+    private func progressForStroke(index: Int, proportions: [CGFloat]) -> CGFloat {
+        guard !proportions.isEmpty else { return 0 }
+        let strokeEnd = proportions[index]
+        let strokeStart = index > 0 ? proportions[index - 1] : 0
+        let window = strokeEnd - strokeStart
+        guard window > 0 else { return 0 }
         return min(max((animationProgress - strokeStart) / window, 0), 1)
     }
 
@@ -143,32 +232,60 @@ struct StrokeAnimationView: View {
         timer?.invalidate()
         timer = nil
     }
-}
 
-// MARK: - StrokePath Shape
+    private var debugShowInstantOwnedRegions: Bool {
+        ProcessInfo.processInfo.arguments.contains("-stroke-debug-instant-owned")
+    }
 
-/// Converts a `RecordedStroke` (normalized 0...1 coordinates) into a SwiftUI `Path`
-/// scaled to the given target size.
-struct StrokePath: Shape {
-    let stroke: RecordedStroke
-    let size: CGSize
-
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        guard let first = stroke.points.first else { return path }
-
-        path.move(to: CGPoint(
-            x: first.x * Double(size.width),
-            y: first.y * Double(size.height)
-        ))
-
-        for point in stroke.points.dropFirst() {
-            path.addLine(to: CGPoint(
-                x: point.x * Double(size.width),
-                y: point.y * Double(size.height)
-            ))
+    private func selectedDebugImage(
+        from artifacts: StrokeRevealDebugArtifacts?,
+        unclaimedImage: CGImage?
+    ) -> CGImage? {
+        guard let artifacts else {
+            if ProcessInfo.processInfo.arguments.contains("-stroke-debug-show-unclaimed") {
+                return unclaimedImage
+            }
+            return nil
         }
 
-        return path
+        if ProcessInfo.processInfo.arguments.contains("-stroke-debug-show-boundary"),
+           let boundary = artifacts.ownershipBoundaryImage {
+            return boundary
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-stroke-debug-show-disputed"),
+           let disputed = artifacts.disputedPixelsImage {
+            return disputed
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-stroke-debug-show-unclaimed"),
+           let unclaimedImage {
+            return unclaimedImage
+        }
+
+        if let heatmapIndex = debugIndexArgument("-stroke-debug-heatmap-index"),
+           artifacts.progressHeatmaps.indices.contains(heatmapIndex) {
+            return artifacts.progressHeatmaps[heatmapIndex]
+        }
+
+        if let ownedIndex = debugIndexArgument("-stroke-debug-owned-index"),
+           artifacts.ownedImages.indices.contains(ownedIndex) {
+            return artifacts.ownedImages[ownedIndex]
+        }
+
+        return nil
+    }
+
+    private func debugIndexArgument(_ flag: String) -> Int? {
+        let args = ProcessInfo.processInfo.arguments
+        guard let index = args.firstIndex(of: flag), index + 1 < args.count else {
+            return nil
+        }
+
+        guard let oneBased = Int(args[index + 1]), oneBased > 0 else {
+            return nil
+        }
+
+        return oneBased - 1
     }
 }

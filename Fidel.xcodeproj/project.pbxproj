@@ -59,6 +59,8 @@
 		AAA00082001 /* StrokeRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00082000 /* StrokeRecorderViewModel.swift */; };
 		AAA00083001 /* StrokeRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00083000 /* StrokeRecorderView.swift */; };
 		AAA00084001 /* fidel_stroke_data.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00084000 /* fidel_stroke_data.json */; };
+		AAA00085001 /* StrokeSmoother.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00085000 /* StrokeSmoother.swift */; };
+		AAA00086001 /* StrokeReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00086000 /* StrokeReviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +119,8 @@
 		AAA00082000 /* StrokeRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeRecorderViewModel.swift; sourceTree = "<group>"; };
 		AAA00083000 /* StrokeRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeRecorderView.swift; sourceTree = "<group>"; };
 		AAA00084000 /* fidel_stroke_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fidel_stroke_data.json; sourceTree = "<group>"; };
+		AAA00085000 /* StrokeSmoother.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeSmoother.swift; sourceTree = "<group>"; };
+		AAA00086000 /* StrokeReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeReviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -214,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA00083000 /* StrokeRecorderView.swift */,
+				AAA00086000 /* StrokeReviewView.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				AAA00060000 /* PathExtractor.swift */,
 				AAA00061000 /* DrawingEvaluator.swift */,
 				AAA00081000 /* StrokeDataRepository.swift */,
+				AAA00085000 /* StrokeSmoother.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -381,6 +387,8 @@
 				AAA00081001 /* StrokeDataRepository.swift in Sources */,
 				AAA00082001 /* StrokeRecorderViewModel.swift in Sources */,
 				AAA00083001 /* StrokeRecorderView.swift in Sources */,
+				AAA00085001 /* StrokeSmoother.swift in Sources */,
+				AAA00086001 /* StrokeReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

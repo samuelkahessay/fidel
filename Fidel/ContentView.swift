@@ -7,6 +7,7 @@ struct ContentView: View {
     @State private var selectedTab = 0
     #if DEBUG
     @State private var showStrokeRecorder = false
+    @State private var showStrokeReview = false
     #endif
 
     var userProgress: UserProgress {
@@ -41,10 +42,19 @@ struct ContentView: View {
         .tint(AppTheme.primaryColor)
         #if DEBUG
         .overlay(alignment: .topTrailing) {
-            Button {
-                showStrokeRecorder = true
+            Menu {
+                Button {
+                    showStrokeRecorder = true
+                } label: {
+                    Label("Record Strokes", systemImage: "pencil.tip.crop.circle")
+                }
+                Button {
+                    showStrokeReview = true
+                } label: {
+                    Label("Review Strokes", systemImage: "hand.thumbsup.fill")
+                }
             } label: {
-                Label("Record", systemImage: "pencil.tip.crop.circle")
+                Label("Strokes", systemImage: "pencil.tip.crop.circle")
                     .font(.caption.bold())
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
@@ -54,8 +64,11 @@ struct ContentView: View {
             .padding(.trailing, 16)
             .padding(.top, 4)
         }
-        .sheet(isPresented: $showStrokeRecorder) {
+        .fullScreenCover(isPresented: $showStrokeRecorder) {
             StrokeRecorderView()
+        }
+        .fullScreenCover(isPresented: $showStrokeReview) {
+            StrokeReviewView()
         }
         #endif
     }

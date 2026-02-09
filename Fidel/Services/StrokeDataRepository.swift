@@ -68,15 +68,16 @@ final class StrokeDataRepository {
 
     // MARK: - Normalize PencilKit Strokes
 
-    func normalizeStrokes(from drawing: PKDrawing, canvasSize: CGSize) -> [RecordedStroke] {
-        drawing.strokes.map { stroke in
+    func normalizeStrokes(from drawing: PKDrawing, canvasSize: CGSize, penWidth: CGFloat) -> [RecordedStroke] {
+        let normalizedWidth = Double(penWidth / canvasSize.width)
+        return drawing.strokes.map { stroke in
             let points = stroke.path.interpolatedPoints(by: .distance(3)).map { point in
                 StrokePoint(
                     x: Double(point.location.x / canvasSize.width),
                     y: Double(point.location.y / canvasSize.height)
                 )
             }
-            return RecordedStroke(points: points)
+            return RecordedStroke(points: points, penWidth: normalizedWidth)
         }
     }
 
