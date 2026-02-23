@@ -3,11 +3,12 @@ import SwiftData
 
 struct LessonCard: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.modelContext) private var modelContext
     let lesson: Lesson
-    @Query private var progressItems: [UserProgress]
 
     var isCompleted: Bool {
-        progressItems.first?.lessonsCompleted.contains(lesson.id) ?? false
+        let progressRepository = ProgressRepository(modelContext: modelContext)
+        return progressRepository.getUserProgress()?.lessonsCompleted.contains(lesson.id) ?? false
     }
 
     var body: some View {
@@ -58,7 +59,6 @@ struct LessonCard: View {
 struct LessonDetailView: View {
     let lesson: Lesson
     @Environment(\.modelContext) private var modelContext
-    @Query private var progressItems: [UserProgress]
     @State private var currentSection = 0
     @State private var showCompletion = false
     @State private var showSelam = false
@@ -75,6 +75,8 @@ struct LessonDetailView: View {
                     vocabularySection
                 case 2:
                     phrasesSection
+                case 3:
+                    cultureSection
                 default:
                     EmptyView()
                 }
@@ -114,11 +116,18 @@ struct LessonDetailView: View {
         }
     }
 
+    private var culturalNotes: [CulturalNote] {
+        LessonRepository.shared.getCulturalNotes(forLesson: lesson.id)
+    }
+
     private var sectionPicker: some View {
         Picker("Section", selection: $currentSection) {
             Text("Patterns").tag(0)
             Text("Vocabulary").tag(1)
             Text("Phrases").tag(2)
+            if !culturalNotes.isEmpty {
+                Text("Culture").tag(3)
+            }
         }
         .pickerStyle(.segmented)
     }
@@ -147,11 +156,18 @@ struct LessonDetailView: View {
         }
     }
 
-    private func completeLesson() {
-        if let progress = progressItems.first {
-            progress.completeLesson(lesson.id)
-            showCompletion = true
+    private var cultureSection: some View {
+        VStack(spacing: AppTheme.Spacing.md) {
+            ForEach(culturalNotes) { note in
+                CulturalNoteCard(note: note)
+            }
         }
+    }
+
+    private func completeLesson() {
+        let progressRepository = ProgressRepository(modelContext: modelContext)
+        progressRepository.completeLesson(lesson.id)
+        showCompletion = true
     }
 }
 
@@ -308,6 +324,63 @@ struct PhraseRow: View {
             }
         }
         .glassCard(padding: AppTheme.Spacing.sm)
+    }
+}
+
+struct CulturalNoteCard: View {
+    let note: CulturalNote
+    @State private var isExpanded = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
+            Button(action: {
+                withAnimation(AppTheme.Animation.standard) {
+                    isExpanded.toggle()
+                }
+            }) {
+                HStack(spacing: AppTheme.Spacing.sm) {
+                    Image(systemName: note.icon)
+                        .font(.title2)
+                        .foregroundColor(AppTheme.secondaryColor)
+                        .frame(width: 40, height: 40)
+                        .background(
+                            Circle()
+                                .fill(AppTheme.secondaryColor.opacity(0.12))
+                        )
+
+                    VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
+                        Text(note.title)
+                            .font(AppTheme.Typography.headline)
+                            .foregroundColor(.primary)
+
+                        Text(note.amharicTitle)
+                            .font(AppTheme.Typography.amharic(size: 16))
+                            .foregroundColor(.secondary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .frame(width: 32, height: 32)
+                        .background(Circle().fill(Color.primary.opacity(0.05)))
+                }
+            }
+            .buttonStyle(.plain)
+
+            if isExpanded {
+                Divider()
+                    .padding(.vertical, AppTheme.Spacing.xxs)
+
+                Text(note.content)
+                    .font(AppTheme.Typography.body)
+                    .foregroundColor(.primary)
+                    .lineSpacing(4)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .glassCard()
     }
 }
 

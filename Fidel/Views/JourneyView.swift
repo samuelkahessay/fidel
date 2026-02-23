@@ -3,8 +3,11 @@ import SwiftData
 
 struct JourneyView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var progressItems: [UserProgress]
     @State private var viewModel = JourneyViewModel()
+
+    private var progressRepository: ProgressRepository {
+        ProgressRepository(modelContext: modelContext)
+    }
 
     var body: some View {
         NavigationStack {
@@ -45,7 +48,7 @@ struct JourneyView: View {
                 }
             }
             .sheet(item: $viewModel.tappedLockedStage) { stage in
-                LockedStageSheet(stage: stage, progressRepository: ProgressRepository(modelContext: modelContext))
+                LockedStageSheet(stage: stage, progressRepository: progressRepository)
             }
             .fullScreenCover(isPresented: $viewModel.showStageAdvancement) {
                 if let stage = viewModel.advancedToStage {
@@ -61,9 +64,8 @@ struct JourneyView: View {
     }
 
     private func configureViewModel() {
-        let progressRepo = ProgressRepository(modelContext: modelContext)
-        // Ensure UserProgress exists for fresh installs
-        progressRepo.addXP(0)
+        let progressRepo = progressRepository
+        _ = progressRepo.ensureUserProgress()
         let stageManager = StageManager(progressRepository: progressRepo)
         viewModel.configure(stageManager: stageManager, progressRepository: progressRepo)
     }
@@ -109,7 +111,7 @@ struct JourneyView: View {
     private var nextStageCriteria: some View {
         if let criteria = viewModel.stageManager?.criteriaForNextStage(),
            !criteria.isEmpty {
-            let progress = progressItems.first
+            let progress = progressRepository.getUserProgress()
             VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
                 Text("Next Stage")
                     .font(AppTheme.Typography.headline)

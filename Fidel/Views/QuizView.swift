@@ -11,7 +11,6 @@ enum QuizMode: String, CaseIterable {
 struct QuizView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @Query private var progressItems: [UserProgress]
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     
@@ -441,9 +440,8 @@ struct QuizView: View {
             }
         } else {
             showResult = true
-            if let progress = progressItems.first {
-                progress.addXP(score * 10)
-            }
+            let progressRepository = ProgressRepository(modelContext: modelContext)
+            progressRepository.addXP(score * 10)
         }
     }
     

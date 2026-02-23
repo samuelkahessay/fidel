@@ -3,21 +3,11 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var progressItems: [UserProgress]
     @State private var selectedTab = 0
     #if DEBUG
     @State private var showStrokeRecorder = false
     @State private var showStrokeReview = false
     #endif
-
-    var userProgress: UserProgress {
-        if let existing = progressItems.first {
-            return existing
-        }
-        let newProgress = UserProgress()
-        modelContext.insert(newProgress)
-        return newProgress
-    }
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -40,6 +30,10 @@ struct ContentView: View {
                 .tag(2)
         }
         .tint(AppTheme.primaryColor)
+        .onAppear {
+            let progressRepository = ProgressRepository(modelContext: modelContext)
+            _ = progressRepository.ensureUserProgress()
+        }
         #if DEBUG
         .overlay(alignment: .topTrailing) {
             Menu {

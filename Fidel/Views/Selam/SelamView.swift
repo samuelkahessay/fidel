@@ -3,7 +3,6 @@ import SwiftData
 
 struct SelamView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var progressItems: [UserProgress]
 
     @State private var viewModel = SelamViewModel()
     @State private var scrollPosition: String?

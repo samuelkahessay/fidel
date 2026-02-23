@@ -4,7 +4,6 @@ import SwiftData
 struct ConversationDetailView: View {
     let conversation: Conversation
     @Environment(\.modelContext) private var modelContext
-    @Query private var progressItems: [UserProgress]
     
     @State private var currentLineIndex = 0
     @State private var isPlaying = false
@@ -13,7 +12,12 @@ struct ConversationDetailView: View {
     @State private var practiceMode = false
     @State private var selectedRole: String?
     @State private var showCompletion = false
-    
+    @State private var showCulturalNote = false
+
+    private var culturalNotes: [CulturalNote] {
+        LessonRepository.shared.getCulturalNotes(forConversation: conversation.id)
+    }
+
     var speakers: [String] {
         Array(Set(conversation.lines.map { $0.speaker }))
     }
@@ -57,7 +61,11 @@ struct ConversationDetailView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     difficultyBadge
-                    
+
+                    if !culturalNotes.isEmpty {
+                        culturalNoteBanner
+                    }
+
                     ForEach(Array(conversation.lines.enumerated()), id: \.element.id) { index, line in
                         DialogueLineView(
                             line: line,
@@ -243,6 +251,63 @@ struct ConversationDetailView: View {
         )
     }
     
+    private var culturalNoteBanner: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Button(action: {
+                withAnimation(.spring(response: 0.3)) {
+                    showCulturalNote.toggle()
+                }
+            }) {
+                HStack(spacing: 10) {
+                    Image(systemName: culturalNotes.first?.icon ?? "globe")
+                        .font(.title3)
+                        .foregroundColor(AppTheme.secondaryColor)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Cultural Context")
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundColor(AppTheme.secondaryColor)
+
+                        Text(culturalNotes.first?.title ?? "")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(.primary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: showCulturalNote ? "chevron.up" : "chevron.down")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .buttonStyle(.plain)
+
+            if showCulturalNote {
+                ForEach(culturalNotes) { note in
+                    VStack(alignment: .leading, spacing: 6) {
+                        if culturalNotes.count > 1 {
+                            Text(note.title)
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                        }
+                        Text(note.content)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .lineSpacing(3)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(AppTheme.secondaryColor.opacity(0.08))
+        )
+    }
+
     private var difficultyText: String {
         switch conversation.difficulty {
         case 1: return "Beginner"
@@ -315,9 +380,8 @@ struct ConversationDetailView: View {
     }
     
     private func completeConversation() {
-        if let progress = progressItems.first {
-            progress.practiceConversation(conversation.id)
-        }
+        let progressRepository = ProgressRepository(modelContext: modelContext)
+        progressRepository.practiceConversation(conversation.id)
         showCompletion = true
     }
 }

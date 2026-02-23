@@ -95,6 +95,8 @@ struct Lesson: Identifiable, Hashable {
 @Model
 final class UserProgress {
     var id: UUID
+    var ownerUserId: String
+    var updatedAt: Date
     var totalXP: Int
     var currentStreak: Int
     var longestStreak: Int
@@ -110,8 +112,10 @@ final class UserProgress {
     var charactersTraced: [String]
     var currentStage: Int
 
-    init() {
+    init(ownerUserId: String = "") {
         self.id = UUID()
+        self.ownerUserId = ownerUserId
+        self.updatedAt = Date()
         self.totalXP = 0
         self.currentStreak = 0
         self.longestStreak = 0
@@ -132,6 +136,7 @@ final class UserProgress {
         if !fidelCharactersRecognized.contains(charId) {
             fidelCharactersRecognized.append(charId)
             addXP(2)
+            updatedAt = Date()
         }
     }
 
@@ -139,6 +144,7 @@ final class UserProgress {
         if !charactersTraced.contains(charId) {
             charactersTraced.append(charId)
             addXP(5)
+            updatedAt = Date()
         }
     }
 
@@ -149,6 +155,7 @@ final class UserProgress {
     func addXP(_ amount: Int) {
         totalXP += amount
         todayXP += amount
+        updatedAt = Date()
         checkStreak()
     }
     
@@ -179,6 +186,7 @@ final class UserProgress {
         if !lessonsCompleted.contains(lessonId) {
             lessonsCompleted.append(lessonId)
             addXP(25)
+            updatedAt = Date()
         }
     }
     
@@ -186,6 +194,7 @@ final class UserProgress {
         if !patternsLearned.contains(patternId) {
             patternsLearned.append(patternId)
             addXP(10)
+            updatedAt = Date()
         }
     }
     
@@ -193,6 +202,7 @@ final class UserProgress {
         if !vocabularyMastered.contains(wordId) {
             vocabularyMastered.append(wordId)
             addXP(5)
+            updatedAt = Date()
         }
     }
     
@@ -200,6 +210,7 @@ final class UserProgress {
         if !conversationsPracticed.contains(conversationId) {
             conversationsPracticed.append(conversationId)
             addXP(20)
+            updatedAt = Date()
         }
     }
 }
@@ -207,6 +218,8 @@ final class UserProgress {
 @Model
 final class FlashcardProgress {
     var id: UUID
+    var ownerUserId: String
+    var updatedAt: Date
     var itemId: String
     var itemType: String
     var easeFactor: Double
@@ -218,8 +231,10 @@ final class FlashcardProgress {
     var difficulty: Double
     var lapses: Int
     
-    init(itemId: String, itemType: String) {
+    init(itemId: String, itemType: String, ownerUserId: String = "") {
         self.id = UUID()
+        self.ownerUserId = ownerUserId
+        self.updatedAt = Date()
         self.itemId = itemId
         self.itemType = itemType
         self.easeFactor = 2.5
@@ -267,6 +282,18 @@ struct QuizQuestion: Identifiable {
     }
 }
 
+// MARK: - Cultural Notes
+
+struct CulturalNote: Identifiable, Codable, Hashable {
+    let id: String
+    let title: String
+    let amharicTitle: String
+    let content: String
+    let icon: String
+    let lessonIds: [Int]
+    let conversationIds: [Int]
+}
+
 // MARK: - Achievement System
 
 struct Achievement: Identifiable, Hashable {
@@ -294,10 +321,12 @@ let allAchievements: [Achievement] = [
     Achievement(id: "streak_7", title: "Week Warrior", description: "Maintain a 7-day streak", icon: "flame.fill", requirement: 7, category: .streak),
     Achievement(id: "streak_30", title: "Dedicated Learner", description: "Maintain a 30-day streak", icon: "star.fill", requirement: 30, category: .streak),
     Achievement(id: "conversationalist", title: "Conversationalist", description: "Practice 5 conversations", icon: "bubble.left.and.bubble.right", requirement: 5, category: .conversations),
-    Achievement(id: "social_butterfly", title: "Social Butterfly", description: "Practice all 10 conversations", icon: "person.3.fill", requirement: 10, category: .conversations),
+    Achievement(id: "social_butterfly", title: "Social Butterfly", description: "Practice all 18 conversations", icon: "person.3.fill", requirement: 18, category: .conversations),
     Achievement(id: "xp_100", title: "Rising Star", description: "Earn 100 XP", icon: "star", requirement: 100, category: .xp),
     Achievement(id: "xp_500", title: "Shining Star", description: "Earn 500 XP", icon: "star.circle", requirement: 500, category: .xp),
     Achievement(id: "xp_1000", title: "Superstar", description: "Earn 1000 XP", icon: "star.circle.fill", requirement: 1000, category: .xp),
+    Achievement(id: "culture_explorer", title: "Culture Explorer", description: "Complete Lesson 8 (Culture)", icon: "globe.americas.fill", requirement: 8, category: .lessons),
+    Achievement(id: "polyglot", title: "Polyglot", description: "Complete all 8 lessons", icon: "graduationcap.fill", requirement: 8, category: .lessons),
 ]
 
 // MARK: - Practice Mode

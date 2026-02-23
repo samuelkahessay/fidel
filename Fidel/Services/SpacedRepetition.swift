@@ -125,6 +125,7 @@ struct FSRSAlgorithm {
             to: Date()
         ) ?? Date()
         progress.repetitions += 1
+        progress.updatedAt = Date()
         
         if rating == .again {
             progress.lapses += 1
@@ -219,21 +220,29 @@ struct SpacedRepetitionAlgorithm {
 
 class FlashcardManager {
     private let modelContext: ModelContext
+    private let explicitUserId: String?
+    private var activeUserId: String {
+        explicitUserId ?? AuthManager.shared.currentUserId ?? AuthManager.previewUserId
+    }
     
-    init(modelContext: ModelContext) {
+    init(modelContext: ModelContext, userId: String? = nil) {
         self.modelContext = modelContext
+        self.explicitUserId = userId
     }
     
     func getOrCreateProgress(for itemId: String, type: String) -> FlashcardProgress {
+        let ownerId = activeUserId
         let descriptor = FetchDescriptor<FlashcardProgress>(
-            predicate: #Predicate { $0.itemId == itemId && $0.itemType == type }
+            predicate: #Predicate<FlashcardProgress> {
+                $0.ownerUserId == ownerId && $0.itemId == itemId && $0.itemType == type
+            }
         )
         
         if let existing = try? modelContext.fetch(descriptor).first {
             return existing
         }
         
-        let newProgress = FlashcardProgress(itemId: itemId, itemType: type)
+        let newProgress = FlashcardProgress(itemId: itemId, itemType: type, ownerUserId: ownerId)
         modelContext.insert(newProgress)
         return newProgress
     }
@@ -248,10 +257,19 @@ class FlashcardManager {
     }
     
     func getDueItems(type: String? = nil) -> [FlashcardProgress] {
-        var descriptor = FetchDescriptor<FlashcardProgress>()
+        let ownerId = activeUserId
+        let descriptor: FetchDescriptor<FlashcardProgress>
         
         if let type = type {
-            descriptor.predicate = #Predicate { $0.itemType == type }
+            descriptor = FetchDescriptor<FlashcardProgress>(
+                predicate: #Predicate<FlashcardProgress> {
+                    $0.ownerUserId == ownerId && $0.itemType == type
+                }
+            )
+        } else {
+            descriptor = FetchDescriptor<FlashcardProgress>(
+                predicate: #Predicate<FlashcardProgress> { $0.ownerUserId == ownerId }
+            )
         }
         
         guard let allProgress = try? modelContext.fetch(descriptor) else {
