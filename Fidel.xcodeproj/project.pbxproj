@@ -61,6 +61,14 @@
 		AAA00084001 /* fidel_stroke_data.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00084000 /* fidel_stroke_data.json */; };
 		AAA00085001 /* StrokeSmoother.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00085000 /* StrokeSmoother.swift */; };
 		AAA00086001 /* StrokeReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00086000 /* StrokeReviewView.swift */; };
+		AAA00090001 /* conversations.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00090000 /* conversations.json */; };
+		AAA00091001 /* cultural_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00091000 /* cultural_notes.json */; };
+		AAA00092001 /* fidel_chart.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00092000 /* fidel_chart.json */; };
+		AAA00093001 /* numbers.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00093000 /* numbers.json */; };
+		AAA00094001 /* patterns.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00094000 /* patterns.json */; };
+		AAA00095001 /* phrases.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00095000 /* phrases.json */; };
+		AAA00096001 /* vocabulary.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00096000 /* vocabulary.json */; };
+		AAA00097001 /* AmharicDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00097000 /* AmharicDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +129,14 @@
 		AAA00084000 /* fidel_stroke_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fidel_stroke_data.json; sourceTree = "<group>"; };
 		AAA00085000 /* StrokeSmoother.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeSmoother.swift; sourceTree = "<group>"; };
 		AAA00086000 /* StrokeReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeReviewView.swift; sourceTree = "<group>"; };
+		AAA00090000 /* conversations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = conversations.json; sourceTree = "<group>"; };
+		AAA00091000 /* cultural_notes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cultural_notes.json; sourceTree = "<group>"; };
+		AAA00092000 /* fidel_chart.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fidel_chart.json; sourceTree = "<group>"; };
+		AAA00093000 /* numbers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = numbers.json; sourceTree = "<group>"; };
+		AAA00094000 /* patterns.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = patterns.json; sourceTree = "<group>"; };
+		AAA00095000 /* phrases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phrases.json; sourceTree = "<group>"; };
+		AAA00096000 /* vocabulary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vocabulary.json; sourceTree = "<group>"; };
+		AAA00097000 /* AmharicDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmharicDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -143,6 +159,7 @@
 				AAA00600000 /* ViewModels */,
 				AAA00700000 /* Services */,
 				AAA00750000 /* Repositories */,
+				AAA00540000 /* Data */,
 				AAA00003000 /* Assets.xcassets */,
 				AAA00032000 /* Info.plist */,
 				AAA00070000 /* NotoSansEthiopic-Regular.ttf */,
@@ -253,6 +270,7 @@
 				AAA00061000 /* DrawingEvaluator.swift */,
 				AAA00081000 /* StrokeDataRepository.swift */,
 				AAA00085000 /* StrokeSmoother.swift */,
+				AAA00097000 /* AmharicDataLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -265,6 +283,20 @@
 				AAA00027000 /* SelamRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AAA00540000 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00090000 /* conversations.json */,
+				AAA00091000 /* cultural_notes.json */,
+				AAA00092000 /* fidel_chart.json */,
+				AAA00093000 /* numbers.json */,
+				AAA00094000 /* patterns.json */,
+				AAA00095000 /* phrases.json */,
+				AAA00096000 /* vocabulary.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +359,13 @@
 				AAA00003001 /* Assets.xcassets in Resources */,
 				AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */,
 				AAA00084001 /* fidel_stroke_data.json in Resources */,
+				AAA00090001 /* conversations.json in Resources */,
+				AAA00091001 /* cultural_notes.json in Resources */,
+				AAA00092001 /* fidel_chart.json in Resources */,
+				AAA00093001 /* numbers.json in Resources */,
+				AAA00094001 /* patterns.json in Resources */,
+				AAA00095001 /* phrases.json in Resources */,
+				AAA00096001 /* vocabulary.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +428,7 @@
 				AAA00083001 /* StrokeRecorderView.swift in Sources */,
 				AAA00085001 /* StrokeSmoother.swift in Sources */,
 				AAA00086001 /* StrokeReviewView.swift in Sources */,
+				AAA00097001 /* AmharicDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,7 +584,7 @@
 				ELEVENLABS_API_KEY = "$(ELEVENLABS_API_KEY)";
 				MARKETING_VERSION = 1.0;
 				OPENROUTER_API_KEY = "$(OPENROUTER_API_KEY)";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.fidel;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.learnamharic;
 				PRODUCT_NAME = "Fidel - Learn Amharic";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -578,7 +618,7 @@
 				ELEVENLABS_API_KEY = "$(ELEVENLABS_API_KEY)";
 				MARKETING_VERSION = 1.0;
 				OPENROUTER_API_KEY = "$(OPENROUTER_API_KEY)";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.fidel;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.learnamharic;
 				PRODUCT_NAME = "Fidel - Learn Amharic";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

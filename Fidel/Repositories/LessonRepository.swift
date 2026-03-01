@@ -28,9 +28,14 @@ protocol LessonRepositoryProtocol {
     
     // Fidel
     func getFidelChart() -> [[FidelCharacter]]
-    
+
     // Numbers
-    func getNumbers() -> [(amharic: String, transliteration: String, value: Int)]
+    func getNumbers() -> [AmharicNumber]
+
+    // Cultural Notes
+    func getCulturalNotes() -> [CulturalNote]
+    func getCulturalNotes(forLesson lessonId: Int) -> [CulturalNote]
+    func getCulturalNotes(forConversation conversationId: Int) -> [CulturalNote]
 }
 
 // MARK: - LessonRepository Implementation
@@ -103,8 +108,22 @@ final class LessonRepository: LessonRepositoryProtocol {
     }
     
     // MARK: - Numbers
-    
-    func getNumbers() -> [(amharic: String, transliteration: String, value: Int)] {
+
+    func getNumbers() -> [AmharicNumber] {
         AmharicData.numbers
+    }
+
+    // MARK: - Cultural Notes
+
+    func getCulturalNotes() -> [CulturalNote] {
+        AmharicData.culturalNotes
+    }
+
+    func getCulturalNotes(forLesson lessonId: Int) -> [CulturalNote] {
+        AmharicData.culturalNotes.filter { $0.lessonIds.contains(lessonId) }
+    }
+
+    func getCulturalNotes(forConversation conversationId: Int) -> [CulturalNote] {
+        AmharicData.culturalNotes.filter { $0.conversationIds.contains(conversationId) }
     }
 }

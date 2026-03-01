@@ -1,0 +1,313 @@
+{
+  "fractions" : [
+    {
+      "amharic" : "ሩብ",
+      "english" : "quarter (1\/4)",
+      "transliteration" : "rub"
+    },
+    {
+      "amharic" : "ግማሽ",
+      "english" : "half (1\/2)",
+      "transliteration" : "gimash"
+    },
+    {
+      "amharic" : "አንድ ሶስተኛ",
+      "english" : "one third (1\/3)",
+      "transliteration" : "and sostenya"
+    },
+    {
+      "amharic" : "ሶስት አራተኛ",
+      "english" : "three quarters (3\/4)",
+      "transliteration" : "sost aratenya"
+    }
+  ],
+  "months" : [
+    {
+      "amharic" : "መስከረም",
+      "gregorian" : "Sep-Oct",
+      "month" : 1,
+      "transliteration" : "maskerem"
+    },
+    {
+      "amharic" : "ጥቅምት",
+      "gregorian" : "Oct-Nov",
+      "month" : 2,
+      "transliteration" : "tikimt"
+    },
+    {
+      "amharic" : "ኅዳር",
+      "gregorian" : "Nov-Dec",
+      "month" : 3,
+      "transliteration" : "hidar"
+    },
+    {
+      "amharic" : "ታህሳስ",
+      "gregorian" : "Dec-Jan",
+      "month" : 4,
+      "transliteration" : "tahsas"
+    },
+    {
+      "amharic" : "ጥር",
+      "gregorian" : "Jan-Feb",
+      "month" : 5,
+      "transliteration" : "tir"
+    },
+    {
+      "amharic" : "የካቲት",
+      "gregorian" : "Feb-Mar",
+      "month" : 6,
+      "transliteration" : "yekatit"
+    },
+    {
+      "amharic" : "መጋቢት",
+      "gregorian" : "Mar-Apr",
+      "month" : 7,
+      "transliteration" : "magabit"
+    },
+    {
+      "amharic" : "ሚያዚያ",
+      "gregorian" : "Apr-May",
+      "month" : 8,
+      "transliteration" : "miyaziya"
+    },
+    {
+      "amharic" : "ግንቦት",
+      "gregorian" : "May-Jun",
+      "month" : 9,
+      "transliteration" : "ginbot"
+    },
+    {
+      "amharic" : "ሰኔ",
+      "gregorian" : "Jun-Jul",
+      "month" : 10,
+      "transliteration" : "sane"
+    },
+    {
+      "amharic" : "ሐምሌ",
+      "gregorian" : "Jul-Aug",
+      "month" : 11,
+      "transliteration" : "hamle"
+    },
+    {
+      "amharic" : "ነሐሴ",
+      "gregorian" : "Aug-Sep",
+      "month" : 12,
+      "transliteration" : "nahase"
+    },
+    {
+      "amharic" : "ጳጉሜ",
+      "gregorian" : "Sep (5-6 days)",
+      "month" : 13,
+      "transliteration" : "pagume"
+    }
+  ],
+  "numbers" : [
+    {
+      "amharic" : "አንድ",
+      "transliteration" : "and",
+      "value" : 1
+    },
+    {
+      "amharic" : "ሁለት",
+      "transliteration" : "hulat",
+      "value" : 2
+    },
+    {
+      "amharic" : "ሦስት",
+      "transliteration" : "sost",
+      "value" : 3
+    },
+    {
+      "amharic" : "አራት",
+      "transliteration" : "arat",
+      "value" : 4
+    },
+    {
+      "amharic" : "አምስት",
+      "transliteration" : "amist",
+      "value" : 5
+    },
+    {
+      "amharic" : "ስድስት",
+      "transliteration" : "sidist",
+      "value" : 6
+    },
+    {
+      "amharic" : "ሰባት",
+      "transliteration" : "sabat",
+      "value" : 7
+    },
+    {
+      "amharic" : "ስምንት",
+      "transliteration" : "simint",
+      "value" : 8
+    },
+    {
+      "amharic" : "ዘጠኝ",
+      "transliteration" : "zatany",
+      "value" : 9
+    },
+    {
+      "amharic" : "አስራ አንድ",
+      "transliteration" : "asra and",
+      "value" : 11
+    },
+    {
+      "amharic" : "አስራ ሁለት",
+      "transliteration" : "asra hulat",
+      "value" : 12
+    },
+    {
+      "amharic" : "አስራ ሶስት",
+      "transliteration" : "asra sost",
+      "value" : 13
+    },
+    {
+      "amharic" : "አስራ አራት",
+      "transliteration" : "asra arat",
+      "value" : 14
+    },
+    {
+      "amharic" : "አስራ አምስት",
+      "transliteration" : "asra amist",
+      "value" : 15
+    },
+    {
+      "amharic" : "አስራ ሰድስት",
+      "transliteration" : "asra sidist",
+      "value" : 16
+    },
+    {
+      "amharic" : "አስራ ሰባት",
+      "transliteration" : "asra sabat",
+      "value" : 17
+    },
+    {
+      "amharic" : "አስራ ስምንት",
+      "transliteration" : "asra simint",
+      "value" : 18
+    },
+    {
+      "amharic" : "አስራ ዘጠኝ",
+      "transliteration" : "asra zatany",
+      "value" : 19
+    },
+    {
+      "amharic" : "ሃያ",
+      "transliteration" : "haya",
+      "value" : 20
+    },
+    {
+      "amharic" : "ሰላሳ",
+      "transliteration" : "salasa",
+      "value" : 30
+    },
+    {
+      "amharic" : "አርባ",
+      "transliteration" : "arba",
+      "value" : 40
+    },
+    {
+      "amharic" : "አምሳ",
+      "transliteration" : "amsa",
+      "value" : 50
+    },
+    {
+      "amharic" : "ስልሳ",
+      "transliteration" : "silsa",
+      "value" : 60
+    },
+    {
+      "amharic" : "ሰባ",
+      "transliteration" : "saba",
+      "value" : 70
+    },
+    {
+      "amharic" : "ሰማኒያ",
+      "transliteration" : "samaniya",
+      "value" : 80
+    },
+    {
+      "amharic" : "ዘጠና",
+      "transliteration" : "zatana",
+      "value" : 90
+    },
+    {
+      "amharic" : "መቶ",
+      "transliteration" : "mato",
+      "value" : 100
+    },
+    {
+      "amharic" : "ሁለት መቶ",
+      "transliteration" : "hulat mato",
+      "value" : 200
+    },
+    {
+      "amharic" : "አምስት መቶ",
+      "transliteration" : "amist mato",
+      "value" : 500
+    },
+    {
+      "amharic" : "አንድ ሺ",
+      "transliteration" : "and shi",
+      "value" : 1000
+    },
+    {
+      "amharic" : "አንድ ሚሊዮን",
+      "transliteration" : "and miliyon",
+      "value" : 1000000
+    }
+  ],
+  "ordinals" : [
+    {
+      "amharic" : "አንደኛ",
+      "transliteration" : "andenya",
+      "value" : 1
+    },
+    {
+      "amharic" : "ሁለተኛ",
+      "transliteration" : "hulatenya",
+      "value" : 2
+    },
+    {
+      "amharic" : "ሶስተኛ",
+      "transliteration" : "sostenya",
+      "value" : 3
+    },
+    {
+      "amharic" : "አራተኛ",
+      "transliteration" : "aratenya",
+      "value" : 4
+    },
+    {
+      "amharic" : "አምስተኛ",
+      "transliteration" : "amistenya",
+      "value" : 5
+    },
+    {
+      "amharic" : "ስድስተኛ",
+      "transliteration" : "sidistenya",
+      "value" : 6
+    },
+    {
+      "amharic" : "ሰባተኛ",
+      "transliteration" : "sabatenya",
+      "value" : 7
+    },
+    {
+      "amharic" : "ስምንተኛ",
+      "transliteration" : "simintenya",
+      "value" : 8
+    },
+    {
+      "amharic" : "ዘጠነኛ",
+      "transliteration" : "zatanenya",
+      "value" : 9
+    },
+    {
+      "amharic" : "አስረኛ",
+      "transliteration" : "asirenya",
+      "value" : 10
+    }
+  ]
+}

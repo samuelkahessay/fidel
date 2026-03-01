@@ -63,7 +63,13 @@ struct ReferenceView: View {
             if phrase.id <= 30 { return "Responses" }
             if phrase.id <= 35 { return "Wants & Needs" }
             if phrase.id <= 45 { return "Useful Phrases" }
-            return "Emergency"
+            if phrase.id <= 50 { return "Emergency" }
+            if phrase.id <= 58 { return "Travel" }
+            if phrase.id <= 65 { return "Medical" }
+            if phrase.id <= 70 { return "Phone & Communication" }
+            if phrase.id <= 80 { return "Cultural & Social" }
+            if phrase.id <= 85 { return "Weather & Daily Life" }
+            return "Polite Expressions"
         }
     }
     
@@ -202,7 +208,7 @@ struct VocabularyReferenceRow: View {
 }
 
 struct NumberRow: View {
-    let number: (amharic: String, transliteration: String, value: Int)
+    let number: AmharicNumber
     
     var body: some View {
         HStack {

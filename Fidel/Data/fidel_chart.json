@@ -1,0 +1,1906 @@
+[
+  {
+    "audioHint" : "ha",
+    "character" : "ሀ",
+    "consonant" : "h",
+    "romanization" : "ha",
+    "rowIndex" : 0,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "hu",
+    "character" : "ሁ",
+    "consonant" : "h",
+    "romanization" : "hu",
+    "rowIndex" : 0,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "hi",
+    "character" : "ሂ",
+    "consonant" : "h",
+    "romanization" : "hi",
+    "rowIndex" : 0,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ha",
+    "character" : "ሃ",
+    "consonant" : "h",
+    "romanization" : "ha",
+    "rowIndex" : 0,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "he",
+    "character" : "ሄ",
+    "consonant" : "h",
+    "romanization" : "he",
+    "rowIndex" : 0,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "h",
+    "character" : "ህ",
+    "consonant" : "h",
+    "romanization" : "h",
+    "rowIndex" : 0,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ho",
+    "character" : "ሆ",
+    "consonant" : "h",
+    "romanization" : "ho",
+    "rowIndex" : 0,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "la",
+    "character" : "ለ",
+    "consonant" : "l",
+    "romanization" : "la",
+    "rowIndex" : 1,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "lu",
+    "character" : "ሉ",
+    "consonant" : "l",
+    "romanization" : "lu",
+    "rowIndex" : 1,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "li",
+    "character" : "ሊ",
+    "consonant" : "l",
+    "romanization" : "li",
+    "rowIndex" : 1,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "la",
+    "character" : "ላ",
+    "consonant" : "l",
+    "romanization" : "la",
+    "rowIndex" : 1,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "le",
+    "character" : "ሌ",
+    "consonant" : "l",
+    "romanization" : "le",
+    "rowIndex" : 1,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "l",
+    "character" : "ል",
+    "consonant" : "l",
+    "romanization" : "l",
+    "rowIndex" : 1,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "lo",
+    "character" : "ሎ",
+    "consonant" : "l",
+    "romanization" : "lo",
+    "rowIndex" : 1,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ha",
+    "character" : "ሐ",
+    "consonant" : "h",
+    "romanization" : "ha",
+    "rowIndex" : 2,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "hu",
+    "character" : "ሑ",
+    "consonant" : "h",
+    "romanization" : "hu",
+    "rowIndex" : 2,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "hi",
+    "character" : "ሒ",
+    "consonant" : "h",
+    "romanization" : "hi",
+    "rowIndex" : 2,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ha",
+    "character" : "ሓ",
+    "consonant" : "h",
+    "romanization" : "ha",
+    "rowIndex" : 2,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "he",
+    "character" : "ሔ",
+    "consonant" : "h",
+    "romanization" : "he",
+    "rowIndex" : 2,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "h",
+    "character" : "ሕ",
+    "consonant" : "h",
+    "romanization" : "h",
+    "rowIndex" : 2,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ho",
+    "character" : "ሖ",
+    "consonant" : "h",
+    "romanization" : "ho",
+    "rowIndex" : 2,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ma",
+    "character" : "መ",
+    "consonant" : "m",
+    "romanization" : "ma",
+    "rowIndex" : 3,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "mu",
+    "character" : "ሙ",
+    "consonant" : "m",
+    "romanization" : "mu",
+    "rowIndex" : 3,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "mi",
+    "character" : "ሚ",
+    "consonant" : "m",
+    "romanization" : "mi",
+    "rowIndex" : 3,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ma",
+    "character" : "ማ",
+    "consonant" : "m",
+    "romanization" : "ma",
+    "rowIndex" : 3,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "me",
+    "character" : "ሜ",
+    "consonant" : "m",
+    "romanization" : "me",
+    "rowIndex" : 3,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "m",
+    "character" : "ም",
+    "consonant" : "m",
+    "romanization" : "m",
+    "rowIndex" : 3,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "mo",
+    "character" : "ሞ",
+    "consonant" : "m",
+    "romanization" : "mo",
+    "rowIndex" : 3,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "sa",
+    "character" : "ሠ",
+    "consonant" : "s",
+    "romanization" : "sa",
+    "rowIndex" : 4,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "su",
+    "character" : "ሡ",
+    "consonant" : "s",
+    "romanization" : "su",
+    "rowIndex" : 4,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "si",
+    "character" : "ሢ",
+    "consonant" : "s",
+    "romanization" : "si",
+    "rowIndex" : 4,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "sa",
+    "character" : "ሣ",
+    "consonant" : "s",
+    "romanization" : "sa",
+    "rowIndex" : 4,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "se",
+    "character" : "ሤ",
+    "consonant" : "s",
+    "romanization" : "se",
+    "rowIndex" : 4,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "s",
+    "character" : "ሥ",
+    "consonant" : "s",
+    "romanization" : "s",
+    "rowIndex" : 4,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "so",
+    "character" : "ሦ",
+    "consonant" : "s",
+    "romanization" : "so",
+    "rowIndex" : 4,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ra",
+    "character" : "ረ",
+    "consonant" : "r",
+    "romanization" : "ra",
+    "rowIndex" : 5,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "ru",
+    "character" : "ሩ",
+    "consonant" : "r",
+    "romanization" : "ru",
+    "rowIndex" : 5,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ri",
+    "character" : "ሪ",
+    "consonant" : "r",
+    "romanization" : "ri",
+    "rowIndex" : 5,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ra",
+    "character" : "ራ",
+    "consonant" : "r",
+    "romanization" : "ra",
+    "rowIndex" : 5,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "re",
+    "character" : "ሬ",
+    "consonant" : "r",
+    "romanization" : "re",
+    "rowIndex" : 5,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "r",
+    "character" : "ር",
+    "consonant" : "r",
+    "romanization" : "r",
+    "rowIndex" : 5,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ro",
+    "character" : "ሮ",
+    "consonant" : "r",
+    "romanization" : "ro",
+    "rowIndex" : 5,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "sa",
+    "character" : "ሰ",
+    "consonant" : "s",
+    "romanization" : "sa",
+    "rowIndex" : 6,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "su",
+    "character" : "ሱ",
+    "consonant" : "s",
+    "romanization" : "su",
+    "rowIndex" : 6,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "si",
+    "character" : "ሲ",
+    "consonant" : "s",
+    "romanization" : "si",
+    "rowIndex" : 6,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "sa",
+    "character" : "ሳ",
+    "consonant" : "s",
+    "romanization" : "sa",
+    "rowIndex" : 6,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "se",
+    "character" : "ሴ",
+    "consonant" : "s",
+    "romanization" : "se",
+    "rowIndex" : 6,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "s",
+    "character" : "ስ",
+    "consonant" : "s",
+    "romanization" : "s",
+    "rowIndex" : 6,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "so",
+    "character" : "ሶ",
+    "consonant" : "s",
+    "romanization" : "so",
+    "rowIndex" : 6,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "sha",
+    "character" : "ሸ",
+    "consonant" : "sh",
+    "romanization" : "sha",
+    "rowIndex" : 7,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "shu",
+    "character" : "ሹ",
+    "consonant" : "sh",
+    "romanization" : "shu",
+    "rowIndex" : 7,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "shi",
+    "character" : "ሺ",
+    "consonant" : "sh",
+    "romanization" : "shi",
+    "rowIndex" : 7,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "sha",
+    "character" : "ሻ",
+    "consonant" : "sh",
+    "romanization" : "sha",
+    "rowIndex" : 7,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "she",
+    "character" : "ሼ",
+    "consonant" : "sh",
+    "romanization" : "she",
+    "rowIndex" : 7,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "sh",
+    "character" : "ሽ",
+    "consonant" : "sh",
+    "romanization" : "sh",
+    "rowIndex" : 7,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "sho",
+    "character" : "ሾ",
+    "consonant" : "sh",
+    "romanization" : "sho",
+    "rowIndex" : 7,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "qa",
+    "character" : "ቀ",
+    "consonant" : "q",
+    "romanization" : "qa",
+    "rowIndex" : 8,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "qu",
+    "character" : "ቁ",
+    "consonant" : "q",
+    "romanization" : "qu",
+    "rowIndex" : 8,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "qi",
+    "character" : "ቂ",
+    "consonant" : "q",
+    "romanization" : "qi",
+    "rowIndex" : 8,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "qa",
+    "character" : "ቃ",
+    "consonant" : "q",
+    "romanization" : "qa",
+    "rowIndex" : 8,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "qe",
+    "character" : "ቄ",
+    "consonant" : "q",
+    "romanization" : "qe",
+    "rowIndex" : 8,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "q",
+    "character" : "ቅ",
+    "consonant" : "q",
+    "romanization" : "q",
+    "rowIndex" : 8,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "qo",
+    "character" : "ቆ",
+    "consonant" : "q",
+    "romanization" : "qo",
+    "rowIndex" : 8,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ba",
+    "character" : "በ",
+    "consonant" : "b",
+    "romanization" : "ba",
+    "rowIndex" : 9,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "bu",
+    "character" : "ቡ",
+    "consonant" : "b",
+    "romanization" : "bu",
+    "rowIndex" : 9,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "bi",
+    "character" : "ቢ",
+    "consonant" : "b",
+    "romanization" : "bi",
+    "rowIndex" : 9,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ba",
+    "character" : "ባ",
+    "consonant" : "b",
+    "romanization" : "ba",
+    "rowIndex" : 9,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "be",
+    "character" : "ቤ",
+    "consonant" : "b",
+    "romanization" : "be",
+    "rowIndex" : 9,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "b",
+    "character" : "ብ",
+    "consonant" : "b",
+    "romanization" : "b",
+    "rowIndex" : 9,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "bo",
+    "character" : "ቦ",
+    "consonant" : "b",
+    "romanization" : "bo",
+    "rowIndex" : 9,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "va",
+    "character" : "ቨ",
+    "consonant" : "v",
+    "romanization" : "va",
+    "rowIndex" : 10,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "vu",
+    "character" : "ቩ",
+    "consonant" : "v",
+    "romanization" : "vu",
+    "rowIndex" : 10,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "vi",
+    "character" : "ቪ",
+    "consonant" : "v",
+    "romanization" : "vi",
+    "rowIndex" : 10,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "va",
+    "character" : "ቫ",
+    "consonant" : "v",
+    "romanization" : "va",
+    "rowIndex" : 10,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ve",
+    "character" : "ቬ",
+    "consonant" : "v",
+    "romanization" : "ve",
+    "rowIndex" : 10,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "v",
+    "character" : "ቭ",
+    "consonant" : "v",
+    "romanization" : "v",
+    "rowIndex" : 10,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "vo",
+    "character" : "ቮ",
+    "consonant" : "v",
+    "romanization" : "vo",
+    "rowIndex" : 10,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ta",
+    "character" : "ተ",
+    "consonant" : "t",
+    "romanization" : "ta",
+    "rowIndex" : 11,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "tu",
+    "character" : "ቱ",
+    "consonant" : "t",
+    "romanization" : "tu",
+    "rowIndex" : 11,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ti",
+    "character" : "ቲ",
+    "consonant" : "t",
+    "romanization" : "ti",
+    "rowIndex" : 11,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ta",
+    "character" : "ታ",
+    "consonant" : "t",
+    "romanization" : "ta",
+    "rowIndex" : 11,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "te",
+    "character" : "ቴ",
+    "consonant" : "t",
+    "romanization" : "te",
+    "rowIndex" : 11,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "t",
+    "character" : "ት",
+    "consonant" : "t",
+    "romanization" : "t",
+    "rowIndex" : 11,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "to",
+    "character" : "ቶ",
+    "consonant" : "t",
+    "romanization" : "to",
+    "rowIndex" : 11,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "cha",
+    "character" : "ቸ",
+    "consonant" : "ch",
+    "romanization" : "cha",
+    "rowIndex" : 12,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "chu",
+    "character" : "ቹ",
+    "consonant" : "ch",
+    "romanization" : "chu",
+    "rowIndex" : 12,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "chi",
+    "character" : "ቺ",
+    "consonant" : "ch",
+    "romanization" : "chi",
+    "rowIndex" : 12,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "cha",
+    "character" : "ቻ",
+    "consonant" : "ch",
+    "romanization" : "cha",
+    "rowIndex" : 12,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "che",
+    "character" : "ቼ",
+    "consonant" : "ch",
+    "romanization" : "che",
+    "rowIndex" : 12,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "ch",
+    "character" : "ች",
+    "consonant" : "ch",
+    "romanization" : "ch",
+    "rowIndex" : 12,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "cho",
+    "character" : "ቾ",
+    "consonant" : "ch",
+    "romanization" : "cho",
+    "rowIndex" : 12,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ha",
+    "character" : "ኀ",
+    "consonant" : "h",
+    "romanization" : "ha",
+    "rowIndex" : 13,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "hu",
+    "character" : "ኁ",
+    "consonant" : "h",
+    "romanization" : "hu",
+    "rowIndex" : 13,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "hi",
+    "character" : "ኂ",
+    "consonant" : "h",
+    "romanization" : "hi",
+    "rowIndex" : 13,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ha",
+    "character" : "ኃ",
+    "consonant" : "h",
+    "romanization" : "ha",
+    "rowIndex" : 13,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "he",
+    "character" : "ኄ",
+    "consonant" : "h",
+    "romanization" : "he",
+    "rowIndex" : 13,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "h",
+    "character" : "ኅ",
+    "consonant" : "h",
+    "romanization" : "h",
+    "rowIndex" : 13,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ho",
+    "character" : "ኆ",
+    "consonant" : "h",
+    "romanization" : "ho",
+    "rowIndex" : 13,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "na",
+    "character" : "ነ",
+    "consonant" : "n",
+    "romanization" : "na",
+    "rowIndex" : 14,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "nu",
+    "character" : "ኑ",
+    "consonant" : "n",
+    "romanization" : "nu",
+    "rowIndex" : 14,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ni",
+    "character" : "ኒ",
+    "consonant" : "n",
+    "romanization" : "ni",
+    "rowIndex" : 14,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "na",
+    "character" : "ና",
+    "consonant" : "n",
+    "romanization" : "na",
+    "rowIndex" : 14,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ne",
+    "character" : "ኔ",
+    "consonant" : "n",
+    "romanization" : "ne",
+    "rowIndex" : 14,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "n",
+    "character" : "ን",
+    "consonant" : "n",
+    "romanization" : "n",
+    "rowIndex" : 14,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "no",
+    "character" : "ኖ",
+    "consonant" : "n",
+    "romanization" : "no",
+    "rowIndex" : 14,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "nya",
+    "character" : "ኘ",
+    "consonant" : "ny",
+    "romanization" : "nya",
+    "rowIndex" : 15,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "nyu",
+    "character" : "ኙ",
+    "consonant" : "ny",
+    "romanization" : "nyu",
+    "rowIndex" : 15,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "nyi",
+    "character" : "ኚ",
+    "consonant" : "ny",
+    "romanization" : "nyi",
+    "rowIndex" : 15,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "nya",
+    "character" : "ኛ",
+    "consonant" : "ny",
+    "romanization" : "nya",
+    "rowIndex" : 15,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "nye",
+    "character" : "ኜ",
+    "consonant" : "ny",
+    "romanization" : "nye",
+    "rowIndex" : 15,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "ny",
+    "character" : "ኝ",
+    "consonant" : "ny",
+    "romanization" : "ny",
+    "rowIndex" : 15,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "nyo",
+    "character" : "ኞ",
+    "consonant" : "ny",
+    "romanization" : "nyo",
+    "rowIndex" : 15,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "a",
+    "character" : "አ",
+    "consonant" : "'",
+    "romanization" : "a",
+    "rowIndex" : 16,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "u",
+    "character" : "ኡ",
+    "consonant" : "'",
+    "romanization" : "u",
+    "rowIndex" : 16,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "i",
+    "character" : "ኢ",
+    "consonant" : "'",
+    "romanization" : "i",
+    "rowIndex" : 16,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "a",
+    "character" : "ኣ",
+    "consonant" : "'",
+    "romanization" : "a",
+    "rowIndex" : 16,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "e",
+    "character" : "ኤ",
+    "consonant" : "'",
+    "romanization" : "e",
+    "rowIndex" : 16,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "'",
+    "character" : "እ",
+    "consonant" : "'",
+    "romanization" : "'",
+    "rowIndex" : 16,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "o",
+    "character" : "ኦ",
+    "consonant" : "'",
+    "romanization" : "o",
+    "rowIndex" : 16,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ka",
+    "character" : "ከ",
+    "consonant" : "k",
+    "romanization" : "ka",
+    "rowIndex" : 17,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "ku",
+    "character" : "ኩ",
+    "consonant" : "k",
+    "romanization" : "ku",
+    "rowIndex" : 17,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ki",
+    "character" : "ኪ",
+    "consonant" : "k",
+    "romanization" : "ki",
+    "rowIndex" : 17,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ka",
+    "character" : "ካ",
+    "consonant" : "k",
+    "romanization" : "ka",
+    "rowIndex" : 17,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ke",
+    "character" : "ኬ",
+    "consonant" : "k",
+    "romanization" : "ke",
+    "rowIndex" : 17,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "k",
+    "character" : "ክ",
+    "consonant" : "k",
+    "romanization" : "k",
+    "rowIndex" : 17,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ko",
+    "character" : "ኮ",
+    "consonant" : "k",
+    "romanization" : "ko",
+    "rowIndex" : 17,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "kha",
+    "character" : "ኸ",
+    "consonant" : "kh",
+    "romanization" : "kha",
+    "rowIndex" : 18,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "khu",
+    "character" : "ኹ",
+    "consonant" : "kh",
+    "romanization" : "khu",
+    "rowIndex" : 18,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "khi",
+    "character" : "ኺ",
+    "consonant" : "kh",
+    "romanization" : "khi",
+    "rowIndex" : 18,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "kha",
+    "character" : "ኻ",
+    "consonant" : "kh",
+    "romanization" : "kha",
+    "rowIndex" : 18,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "khe",
+    "character" : "ኼ",
+    "consonant" : "kh",
+    "romanization" : "khe",
+    "rowIndex" : 18,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "kh",
+    "character" : "ኽ",
+    "consonant" : "kh",
+    "romanization" : "kh",
+    "rowIndex" : 18,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "kho",
+    "character" : "ኾ",
+    "consonant" : "kh",
+    "romanization" : "kho",
+    "rowIndex" : 18,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "wa",
+    "character" : "ወ",
+    "consonant" : "w",
+    "romanization" : "wa",
+    "rowIndex" : 19,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "wu",
+    "character" : "ዉ",
+    "consonant" : "w",
+    "romanization" : "wu",
+    "rowIndex" : 19,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "wi",
+    "character" : "ዊ",
+    "consonant" : "w",
+    "romanization" : "wi",
+    "rowIndex" : 19,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "wa",
+    "character" : "ዋ",
+    "consonant" : "w",
+    "romanization" : "wa",
+    "rowIndex" : 19,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "we",
+    "character" : "ዌ",
+    "consonant" : "w",
+    "romanization" : "we",
+    "rowIndex" : 19,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "w",
+    "character" : "ው",
+    "consonant" : "w",
+    "romanization" : "w",
+    "rowIndex" : 19,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "wo",
+    "character" : "ዎ",
+    "consonant" : "w",
+    "romanization" : "wo",
+    "rowIndex" : 19,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "a",
+    "character" : "ዐ",
+    "consonant" : "'",
+    "romanization" : "a",
+    "rowIndex" : 20,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "u",
+    "character" : "ዑ",
+    "consonant" : "'",
+    "romanization" : "u",
+    "rowIndex" : 20,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "i",
+    "character" : "ዒ",
+    "consonant" : "'",
+    "romanization" : "i",
+    "rowIndex" : 20,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "a",
+    "character" : "ዓ",
+    "consonant" : "'",
+    "romanization" : "a",
+    "rowIndex" : 20,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "e",
+    "character" : "ዔ",
+    "consonant" : "'",
+    "romanization" : "e",
+    "rowIndex" : 20,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "'",
+    "character" : "ዕ",
+    "consonant" : "'",
+    "romanization" : "'",
+    "rowIndex" : 20,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "o",
+    "character" : "ዖ",
+    "consonant" : "'",
+    "romanization" : "o",
+    "rowIndex" : 20,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "za",
+    "character" : "ዘ",
+    "consonant" : "z",
+    "romanization" : "za",
+    "rowIndex" : 21,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "zu",
+    "character" : "ዙ",
+    "consonant" : "z",
+    "romanization" : "zu",
+    "rowIndex" : 21,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "zi",
+    "character" : "ዚ",
+    "consonant" : "z",
+    "romanization" : "zi",
+    "rowIndex" : 21,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "za",
+    "character" : "ዛ",
+    "consonant" : "z",
+    "romanization" : "za",
+    "rowIndex" : 21,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ze",
+    "character" : "ዜ",
+    "consonant" : "z",
+    "romanization" : "ze",
+    "rowIndex" : 21,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "z",
+    "character" : "ዝ",
+    "consonant" : "z",
+    "romanization" : "z",
+    "rowIndex" : 21,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "zo",
+    "character" : "ዞ",
+    "consonant" : "z",
+    "romanization" : "zo",
+    "rowIndex" : 21,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "zha",
+    "character" : "ዠ",
+    "consonant" : "zh",
+    "romanization" : "zha",
+    "rowIndex" : 22,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "zhu",
+    "character" : "ዡ",
+    "consonant" : "zh",
+    "romanization" : "zhu",
+    "rowIndex" : 22,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "zhi",
+    "character" : "ዢ",
+    "consonant" : "zh",
+    "romanization" : "zhi",
+    "rowIndex" : 22,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "zha",
+    "character" : "ዣ",
+    "consonant" : "zh",
+    "romanization" : "zha",
+    "rowIndex" : 22,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "zhe",
+    "character" : "ዤ",
+    "consonant" : "zh",
+    "romanization" : "zhe",
+    "rowIndex" : 22,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "zh",
+    "character" : "ዥ",
+    "consonant" : "zh",
+    "romanization" : "zh",
+    "rowIndex" : 22,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "zho",
+    "character" : "ዦ",
+    "consonant" : "zh",
+    "romanization" : "zho",
+    "rowIndex" : 22,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ya",
+    "character" : "የ",
+    "consonant" : "y",
+    "romanization" : "ya",
+    "rowIndex" : 23,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "yu",
+    "character" : "ዩ",
+    "consonant" : "y",
+    "romanization" : "yu",
+    "rowIndex" : 23,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "yi",
+    "character" : "ዪ",
+    "consonant" : "y",
+    "romanization" : "yi",
+    "rowIndex" : 23,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ya",
+    "character" : "ያ",
+    "consonant" : "y",
+    "romanization" : "ya",
+    "rowIndex" : 23,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ye",
+    "character" : "ዬ",
+    "consonant" : "y",
+    "romanization" : "ye",
+    "rowIndex" : 23,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "y",
+    "character" : "ይ",
+    "consonant" : "y",
+    "romanization" : "y",
+    "rowIndex" : 23,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "yo",
+    "character" : "ዮ",
+    "consonant" : "y",
+    "romanization" : "yo",
+    "rowIndex" : 23,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "da",
+    "character" : "ደ",
+    "consonant" : "d",
+    "romanization" : "da",
+    "rowIndex" : 24,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "du",
+    "character" : "ዱ",
+    "consonant" : "d",
+    "romanization" : "du",
+    "rowIndex" : 24,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "di",
+    "character" : "ዲ",
+    "consonant" : "d",
+    "romanization" : "di",
+    "rowIndex" : 24,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "da",
+    "character" : "ዳ",
+    "consonant" : "d",
+    "romanization" : "da",
+    "rowIndex" : 24,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "de",
+    "character" : "ዴ",
+    "consonant" : "d",
+    "romanization" : "de",
+    "rowIndex" : 24,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "d",
+    "character" : "ድ",
+    "consonant" : "d",
+    "romanization" : "d",
+    "rowIndex" : 24,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "do",
+    "character" : "ዶ",
+    "consonant" : "d",
+    "romanization" : "do",
+    "rowIndex" : 24,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ja",
+    "character" : "ጀ",
+    "consonant" : "j",
+    "romanization" : "ja",
+    "rowIndex" : 25,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "ju",
+    "character" : "ጁ",
+    "consonant" : "j",
+    "romanization" : "ju",
+    "rowIndex" : 25,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ji",
+    "character" : "ጂ",
+    "consonant" : "j",
+    "romanization" : "ji",
+    "rowIndex" : 25,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ja",
+    "character" : "ጃ",
+    "consonant" : "j",
+    "romanization" : "ja",
+    "rowIndex" : 25,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "je",
+    "character" : "ጄ",
+    "consonant" : "j",
+    "romanization" : "je",
+    "rowIndex" : 25,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "j",
+    "character" : "ጅ",
+    "consonant" : "j",
+    "romanization" : "j",
+    "rowIndex" : 25,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "jo",
+    "character" : "ጆ",
+    "consonant" : "j",
+    "romanization" : "jo",
+    "rowIndex" : 25,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ga",
+    "character" : "ገ",
+    "consonant" : "g",
+    "romanization" : "ga",
+    "rowIndex" : 26,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "gu",
+    "character" : "ጉ",
+    "consonant" : "g",
+    "romanization" : "gu",
+    "rowIndex" : 26,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "gi",
+    "character" : "ጊ",
+    "consonant" : "g",
+    "romanization" : "gi",
+    "rowIndex" : 26,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ga",
+    "character" : "ጋ",
+    "consonant" : "g",
+    "romanization" : "ga",
+    "rowIndex" : 26,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ge",
+    "character" : "ጌ",
+    "consonant" : "g",
+    "romanization" : "ge",
+    "rowIndex" : 26,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "g",
+    "character" : "ግ",
+    "consonant" : "g",
+    "romanization" : "g",
+    "rowIndex" : 26,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "go",
+    "character" : "ጎ",
+    "consonant" : "g",
+    "romanization" : "go",
+    "rowIndex" : 26,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "t'a",
+    "character" : "ጠ",
+    "consonant" : "t'",
+    "romanization" : "t'a",
+    "rowIndex" : 27,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "t'u",
+    "character" : "ጡ",
+    "consonant" : "t'",
+    "romanization" : "t'u",
+    "rowIndex" : 27,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "t'i",
+    "character" : "ጢ",
+    "consonant" : "t'",
+    "romanization" : "t'i",
+    "rowIndex" : 27,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "t'a",
+    "character" : "ጣ",
+    "consonant" : "t'",
+    "romanization" : "t'a",
+    "rowIndex" : 27,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "t'e",
+    "character" : "ጤ",
+    "consonant" : "t'",
+    "romanization" : "t'e",
+    "rowIndex" : 27,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "t'",
+    "character" : "ጥ",
+    "consonant" : "t'",
+    "romanization" : "t'",
+    "rowIndex" : 27,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "t'o",
+    "character" : "ጦ",
+    "consonant" : "t'",
+    "romanization" : "t'o",
+    "rowIndex" : 27,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ch'a",
+    "character" : "ጨ",
+    "consonant" : "ch'",
+    "romanization" : "ch'a",
+    "rowIndex" : 28,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "ch'u",
+    "character" : "ጩ",
+    "consonant" : "ch'",
+    "romanization" : "ch'u",
+    "rowIndex" : 28,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ch'i",
+    "character" : "ጪ",
+    "consonant" : "ch'",
+    "romanization" : "ch'i",
+    "rowIndex" : 28,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ch'a",
+    "character" : "ጫ",
+    "consonant" : "ch'",
+    "romanization" : "ch'a",
+    "rowIndex" : 28,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ch'e",
+    "character" : "ጬ",
+    "consonant" : "ch'",
+    "romanization" : "ch'e",
+    "rowIndex" : 28,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "ch'",
+    "character" : "ጭ",
+    "consonant" : "ch'",
+    "romanization" : "ch'",
+    "rowIndex" : 28,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ch'o",
+    "character" : "ጮ",
+    "consonant" : "ch'",
+    "romanization" : "ch'o",
+    "rowIndex" : 28,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "p'a",
+    "character" : "ጰ",
+    "consonant" : "p'",
+    "romanization" : "p'a",
+    "rowIndex" : 29,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "p'u",
+    "character" : "ጱ",
+    "consonant" : "p'",
+    "romanization" : "p'u",
+    "rowIndex" : 29,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "p'i",
+    "character" : "ጲ",
+    "consonant" : "p'",
+    "romanization" : "p'i",
+    "rowIndex" : 29,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "p'a",
+    "character" : "ጳ",
+    "consonant" : "p'",
+    "romanization" : "p'a",
+    "rowIndex" : 29,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "p'e",
+    "character" : "ጴ",
+    "consonant" : "p'",
+    "romanization" : "p'e",
+    "rowIndex" : 29,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "p'",
+    "character" : "ጵ",
+    "consonant" : "p'",
+    "romanization" : "p'",
+    "rowIndex" : 29,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "p'o",
+    "character" : "ጶ",
+    "consonant" : "p'",
+    "romanization" : "p'o",
+    "rowIndex" : 29,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ts'a",
+    "character" : "ጸ",
+    "consonant" : "ts'",
+    "romanization" : "ts'a",
+    "rowIndex" : 30,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "ts'u",
+    "character" : "ጹ",
+    "consonant" : "ts'",
+    "romanization" : "ts'u",
+    "rowIndex" : 30,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ts'i",
+    "character" : "ጺ",
+    "consonant" : "ts'",
+    "romanization" : "ts'i",
+    "rowIndex" : 30,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ts'a",
+    "character" : "ጻ",
+    "consonant" : "ts'",
+    "romanization" : "ts'a",
+    "rowIndex" : 30,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ts'e",
+    "character" : "ጼ",
+    "consonant" : "ts'",
+    "romanization" : "ts'e",
+    "rowIndex" : 30,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "ts'",
+    "character" : "ጽ",
+    "consonant" : "ts'",
+    "romanization" : "ts'",
+    "rowIndex" : 30,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ts'o",
+    "character" : "ጾ",
+    "consonant" : "ts'",
+    "romanization" : "ts'o",
+    "rowIndex" : 30,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "ts'a",
+    "character" : "ፀ",
+    "consonant" : "ts'",
+    "romanization" : "ts'a",
+    "rowIndex" : 31,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "ts'u",
+    "character" : "ፁ",
+    "consonant" : "ts'",
+    "romanization" : "ts'u",
+    "rowIndex" : 31,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "ts'i",
+    "character" : "ፂ",
+    "consonant" : "ts'",
+    "romanization" : "ts'i",
+    "rowIndex" : 31,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "ts'a",
+    "character" : "ፃ",
+    "consonant" : "ts'",
+    "romanization" : "ts'a",
+    "rowIndex" : 31,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "ts'e",
+    "character" : "ፄ",
+    "consonant" : "ts'",
+    "romanization" : "ts'e",
+    "rowIndex" : 31,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "ts'",
+    "character" : "ፅ",
+    "consonant" : "ts'",
+    "romanization" : "ts'",
+    "rowIndex" : 31,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "ts'o",
+    "character" : "ፆ",
+    "consonant" : "ts'",
+    "romanization" : "ts'o",
+    "rowIndex" : 31,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "fa",
+    "character" : "ፈ",
+    "consonant" : "f",
+    "romanization" : "fa",
+    "rowIndex" : 32,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "fu",
+    "character" : "ፉ",
+    "consonant" : "f",
+    "romanization" : "fu",
+    "rowIndex" : 32,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "fi",
+    "character" : "ፊ",
+    "consonant" : "f",
+    "romanization" : "fi",
+    "rowIndex" : 32,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "fa",
+    "character" : "ፋ",
+    "consonant" : "f",
+    "romanization" : "fa",
+    "rowIndex" : 32,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "fe",
+    "character" : "ፌ",
+    "consonant" : "f",
+    "romanization" : "fe",
+    "rowIndex" : 32,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "f",
+    "character" : "ፍ",
+    "consonant" : "f",
+    "romanization" : "f",
+    "rowIndex" : 32,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "fo",
+    "character" : "ፎ",
+    "consonant" : "f",
+    "romanization" : "fo",
+    "rowIndex" : 32,
+    "vowelOrder" : 7
+  },
+  {
+    "audioHint" : "pa",
+    "character" : "ፐ",
+    "consonant" : "p",
+    "romanization" : "pa",
+    "rowIndex" : 33,
+    "vowelOrder" : 1
+  },
+  {
+    "audioHint" : "pu",
+    "character" : "ፑ",
+    "consonant" : "p",
+    "romanization" : "pu",
+    "rowIndex" : 33,
+    "vowelOrder" : 2
+  },
+  {
+    "audioHint" : "pi",
+    "character" : "ፒ",
+    "consonant" : "p",
+    "romanization" : "pi",
+    "rowIndex" : 33,
+    "vowelOrder" : 3
+  },
+  {
+    "audioHint" : "pa",
+    "character" : "ፓ",
+    "consonant" : "p",
+    "romanization" : "pa",
+    "rowIndex" : 33,
+    "vowelOrder" : 4
+  },
+  {
+    "audioHint" : "pe",
+    "character" : "ፔ",
+    "consonant" : "p",
+    "romanization" : "pe",
+    "rowIndex" : 33,
+    "vowelOrder" : 5
+  },
+  {
+    "audioHint" : "p",
+    "character" : "ፕ",
+    "consonant" : "p",
+    "romanization" : "p",
+    "rowIndex" : 33,
+    "vowelOrder" : 6
+  },
+  {
+    "audioHint" : "po",
+    "character" : "ፖ",
+    "consonant" : "p",
+    "romanization" : "po",
+    "rowIndex" : 33,
+    "vowelOrder" : 7
+  }
+]

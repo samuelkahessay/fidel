@@ -68,7 +68,7 @@ struct VocabularyWord: Identifiable, Codable, Hashable {
 }
 
 /// Fidel (Ethiopic script) character
-struct FidelCharacter: Identifiable, Hashable {
+struct FidelCharacter: Identifiable, Codable, Hashable {
     var id: String { "\(rowIndex)-\(vowelOrder)" }
     let character: String
     let consonant: String
@@ -88,6 +88,40 @@ struct Lesson: Identifiable, Hashable {
     let phrases: [Phrase]
     var isCompleted: Bool = false
     var progressPercent: Double = 0
+}
+
+// MARK: - Numeric Reference Types
+
+struct AmharicNumber: Codable, Hashable {
+    let amharic: String
+    let transliteration: String
+    let value: Int
+}
+
+struct EthiopianMonth: Codable, Hashable {
+    let amharic: String
+    let transliteration: String
+    let gregorian: String
+    let month: Int
+}
+
+struct OrdinalNumber: Codable, Hashable {
+    let amharic: String
+    let transliteration: String
+    let value: Int
+}
+
+struct AmharicFraction: Codable, Hashable {
+    let amharic: String
+    let transliteration: String
+    let english: String
+}
+
+struct NumericReferenceData: Codable {
+    let numbers: [AmharicNumber]
+    let months: [EthiopianMonth]
+    let ordinals: [OrdinalNumber]
+    let fractions: [AmharicFraction]
 }
 
 // MARK: - SwiftData Models for Persistence

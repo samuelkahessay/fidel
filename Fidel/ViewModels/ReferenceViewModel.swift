@@ -42,7 +42,7 @@ final class ReferenceViewModel {
         lessonRepository.getVocabularyCategories()
     }
 
-    var numbers: [(amharic: String, transliteration: String, value: Int)] {
+    var numbers: [AmharicNumber] {
         lessonRepository.getNumbers()
     }
 

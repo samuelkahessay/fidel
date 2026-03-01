@@ -1,0 +1,1220 @@
+[
+  {
+    "amharic" : "ጤና ይስጥልኝ",
+    "english" : "Hello",
+    "id" : 1,
+    "notes" : "Universal greeting",
+    "transliteration" : "t'ena yist'illiany"
+  },
+  {
+    "amharic" : "እንደምን ነህ?",
+    "english" : "How are you?",
+    "id" : 2,
+    "notes" : "Masc. informal",
+    "transliteration" : "indamin nah?"
+  },
+  {
+    "amharic" : "እንደምን ነሽ?",
+    "english" : "How are you?",
+    "id" : 3,
+    "notes" : "Fem. informal",
+    "transliteration" : "indamin nash?"
+  },
+  {
+    "amharic" : "እንደምን ነዎት?",
+    "english" : "How are you?",
+    "id" : 4,
+    "notes" : "Formal",
+    "transliteration" : "indamin nawot?"
+  },
+  {
+    "amharic" : "ደህና ነኝ",
+    "english" : "I'm fine",
+    "id" : 5,
+    "notes" : "Standard response",
+    "transliteration" : "dahna nany"
+  },
+  {
+    "amharic" : "እንደምን አደሩ?",
+    "english" : "Good morning",
+    "id" : 6,
+    "notes" : "Formal",
+    "transliteration" : "indamin addaru?"
+  },
+  {
+    "amharic" : "እንደምን ዋሉ?",
+    "english" : "Good evening",
+    "id" : 7,
+    "notes" : "Formal",
+    "transliteration" : "indamin walu?"
+  },
+  {
+    "amharic" : "ደህና ሁን",
+    "english" : "Goodbye",
+    "id" : 8,
+    "notes" : "Masc. informal",
+    "transliteration" : "dahna hun"
+  },
+  {
+    "amharic" : "ደህና ሁኝ",
+    "english" : "Goodbye",
+    "id" : 9,
+    "notes" : "Fem. informal",
+    "transliteration" : "dahna hunyi"
+  },
+  {
+    "amharic" : "ደህና ይዋሉ",
+    "english" : "Goodbye",
+    "id" : 10,
+    "notes" : "Formal",
+    "transliteration" : "dahna yiwalu"
+  },
+  {
+    "amharic" : "እግዚአብሔር ይመስገን",
+    "english" : "Thank God",
+    "id" : 11,
+    "notes" : "Standard thank you",
+    "transliteration" : "igziabher yimmesgan"
+  },
+  {
+    "amharic" : "አመሰግናለሁ",
+    "english" : "Thank you",
+    "id" : 12,
+    "notes" : "Direct thank you",
+    "transliteration" : "ameseginalehu"
+  },
+  {
+    "amharic" : "ምንም አይደለም",
+    "english" : "You're welcome",
+    "id" : 13,
+    "notes" : "It's nothing",
+    "transliteration" : "minim aydallam"
+  },
+  {
+    "amharic" : "ይቅርታ",
+    "english" : "Excuse me \/ Sorry",
+    "id" : 14,
+    "notes" : "Multi-purpose",
+    "transliteration" : "yikirta"
+  },
+  {
+    "amharic" : "አዝናለሁ",
+    "english" : "I'm sorry",
+    "id" : 15,
+    "notes" : "Sympathy",
+    "transliteration" : "aznalehu"
+  },
+  {
+    "amharic" : "ስምህ ማነው?",
+    "english" : "What's your name?",
+    "id" : 16,
+    "notes" : "Masc. informal",
+    "transliteration" : "simih mannaw?"
+  },
+  {
+    "amharic" : "ስሜ [name] ነው",
+    "english" : "My name is [name]",
+    "id" : 17,
+    "notes" : "Introduction",
+    "transliteration" : "sime [name] naw"
+  },
+  {
+    "amharic" : "ከየት ነህ?",
+    "english" : "Where are you from?",
+    "id" : 18,
+    "notes" : "Masc. informal",
+    "transliteration" : "kayat nah?"
+  },
+  {
+    "amharic" : "ከ[country] ነኝ",
+    "english" : "I'm from [country]",
+    "id" : 19,
+    "notes" : "Origin",
+    "transliteration" : "ka-[country] nany"
+  },
+  {
+    "amharic" : "የት ነው?",
+    "english" : "Where is it?",
+    "id" : 20,
+    "notes" : "Essential question",
+    "transliteration" : "yat naw?"
+  },
+  {
+    "amharic" : "ይህ ምን ነው?",
+    "english" : "What is this?",
+    "id" : 21,
+    "notes" : "Identifying objects",
+    "transliteration" : "yih min naw?"
+  },
+  {
+    "amharic" : "ምን ያህል ነው?",
+    "english" : "How much is it?",
+    "id" : 22,
+    "notes" : "Shopping",
+    "transliteration" : "min yahil naw?"
+  },
+  {
+    "amharic" : "መቼ ነው?",
+    "english" : "When is it?",
+    "id" : 23,
+    "notes" : "Time questions",
+    "transliteration" : "macha naw?"
+  },
+  {
+    "amharic" : "ለምን?",
+    "english" : "Why?",
+    "id" : 24,
+    "notes" : "Question word",
+    "transliteration" : "lamin?"
+  },
+  {
+    "amharic" : "እንዴት?",
+    "english" : "How?",
+    "id" : 25,
+    "notes" : "Question word",
+    "transliteration" : "indet?"
+  },
+  {
+    "amharic" : "አዎ",
+    "english" : "Yes",
+    "id" : 26,
+    "notes" : "Affirmative",
+    "transliteration" : "awo"
+  },
+  {
+    "amharic" : "አይ",
+    "english" : "No",
+    "id" : 27,
+    "notes" : "Negative",
+    "transliteration" : "ay"
+  },
+  {
+    "amharic" : "እሺ",
+    "english" : "OK \/ Alright",
+    "id" : 28,
+    "notes" : "Agreement",
+    "transliteration" : "ishi"
+  },
+  {
+    "amharic" : "ትክክል",
+    "english" : "Correct \/ Right",
+    "id" : 29,
+    "notes" : "Confirmation",
+    "transliteration" : "tikil"
+  },
+  {
+    "amharic" : "አልገባኝም",
+    "english" : "I don't understand",
+    "id" : 30,
+    "notes" : "Essential!",
+    "transliteration" : "algabanyim"
+  },
+  {
+    "amharic" : "እፈልጋለሁ",
+    "english" : "I want",
+    "id" : 31,
+    "notes" : "Add object before",
+    "transliteration" : "ifaligalahu"
+  },
+  {
+    "amharic" : "ቡና እፈልጋለሁ",
+    "english" : "I want coffee",
+    "id" : 32,
+    "notes" : "Common request",
+    "transliteration" : "buna ifaligalahu"
+  },
+  {
+    "amharic" : "ውሃ እፈልጋለሁ",
+    "english" : "I want water",
+    "id" : 33,
+    "notes" : "Common request",
+    "transliteration" : "wuha ifaligalahu"
+  },
+  {
+    "amharic" : "መሄድ አለብኝ",
+    "english" : "I have to go",
+    "id" : 34,
+    "notes" : "Obligation",
+    "transliteration" : "mahed allabiny"
+  },
+  {
+    "amharic" : "እችላለሁ",
+    "english" : "I can",
+    "id" : 35,
+    "notes" : "Ability",
+    "transliteration" : "ichilalahu"
+  },
+  {
+    "amharic" : "ተማሪ ነኝ",
+    "english" : "I'm a student",
+    "id" : 36,
+    "notes" : "Profession",
+    "transliteration" : "tamari nany"
+  },
+  {
+    "amharic" : "አማርኛ እማራለሁ",
+    "english" : "I'm learning Amharic",
+    "id" : 37,
+    "notes" : "Useful!",
+    "transliteration" : "amaranya imaralahu"
+  },
+  {
+    "amharic" : "ትንሽ",
+    "english" : "A little",
+    "id" : 38,
+    "notes" : "Modifier",
+    "transliteration" : "tinish"
+  },
+  {
+    "amharic" : "በጣም",
+    "english" : "Very \/ Too",
+    "id" : 39,
+    "notes" : "Emphasis",
+    "transliteration" : "batam"
+  },
+  {
+    "amharic" : "ደስ ብሎኛል",
+    "english" : "Nice to meet you",
+    "id" : 40,
+    "notes" : "Greeting",
+    "transliteration" : "das bilonyal"
+  },
+  {
+    "amharic" : "ጥሩ ሀሳብ ነው",
+    "english" : "Good idea",
+    "id" : 41,
+    "notes" : "Agreement",
+    "transliteration" : "tiru hasab naw"
+  },
+  {
+    "amharic" : "እንገናኝ",
+    "english" : "Let's meet",
+    "id" : 42,
+    "notes" : "Making plans",
+    "transliteration" : "inganany"
+  },
+  {
+    "amharic" : "ነገ",
+    "english" : "Tomorrow",
+    "id" : 43,
+    "notes" : "Time word",
+    "transliteration" : "naga"
+  },
+  {
+    "amharic" : "ዛሬ",
+    "english" : "Today",
+    "id" : 44,
+    "notes" : "Time word",
+    "transliteration" : "zare"
+  },
+  {
+    "amharic" : "አሁን",
+    "english" : "Now",
+    "id" : 45,
+    "notes" : "Time word",
+    "transliteration" : "ahun"
+  },
+  {
+    "amharic" : "እርዳታ!",
+    "english" : "Help!",
+    "id" : 46,
+    "notes" : "Emergency",
+    "transliteration" : "irdata!"
+  },
+  {
+    "amharic" : "ዶክተር ፈልጋለሁ",
+    "english" : "I need a doctor",
+    "id" : 47,
+    "notes" : "Medical",
+    "transliteration" : "doktar faligalahu"
+  },
+  {
+    "amharic" : "ፖሊስ ጥሪ",
+    "english" : "Call the police",
+    "id" : 48,
+    "notes" : "Emergency",
+    "transliteration" : "polis tiri"
+  },
+  {
+    "amharic" : "ሆስፒታል የት ነው?",
+    "english" : "Where is the hospital?",
+    "id" : 49,
+    "notes" : "Medical",
+    "transliteration" : "hospital yat naw?"
+  },
+  {
+    "amharic" : "አማርኛ አልችልም",
+    "english" : "I don't speak Amharic",
+    "id" : 50,
+    "notes" : "Useful!",
+    "transliteration" : "amaranya alichilim"
+  },
+  {
+    "amharic" : "አየር ማረፊያ የት ነው?",
+    "english" : "Where is the airport?",
+    "id" : 51,
+    "notes" : "Travel",
+    "transliteration" : "ayer marefiya yat naw?"
+  },
+  {
+    "amharic" : "ታክሲ ፈልጋለሁ",
+    "english" : "I need a taxi",
+    "id" : 52,
+    "notes" : "Travel",
+    "transliteration" : "taksi faligalahu"
+  },
+  {
+    "amharic" : "ምን ያህል ጊዜ ይወስዳል?",
+    "english" : "How long does it take?",
+    "id" : 53,
+    "notes" : "Travel",
+    "transliteration" : "min yahil gize yiwesdal?"
+  },
+  {
+    "amharic" : "ትኬት ፈልጋለሁ",
+    "english" : "I need a ticket",
+    "id" : 54,
+    "notes" : "Travel",
+    "transliteration" : "tiket faligalahu"
+  },
+  {
+    "amharic" : "ወደ [place] ውሰደኝ",
+    "english" : "Take me to [place]",
+    "id" : 55,
+    "notes" : "Taxi",
+    "transliteration" : "wada [place] wisadany"
+  },
+  {
+    "amharic" : "እዚህ ቆም በል",
+    "english" : "Stop here",
+    "id" : 56,
+    "notes" : "Taxi",
+    "transliteration" : "izzih kom bal"
+  },
+  {
+    "amharic" : "ፓስፖርቴን አጣሁ",
+    "english" : "I lost my passport",
+    "id" : 57,
+    "notes" : "Emergency travel",
+    "transliteration" : "pasporteny at'ahu"
+  },
+  {
+    "amharic" : "ሆቴል ፈልጋለሁ",
+    "english" : "I need a hotel",
+    "id" : 58,
+    "notes" : "Travel",
+    "transliteration" : "hotel faligalahu"
+  },
+  {
+    "amharic" : "ጭንቅላቴ ያመኛል",
+    "english" : "My head hurts",
+    "id" : 59,
+    "notes" : "Medical",
+    "transliteration" : "chinkilate yamanynal"
+  },
+  {
+    "amharic" : "መድሐኒት ፈልጋለሁ",
+    "english" : "I need medicine",
+    "id" : 60,
+    "notes" : "Medical",
+    "transliteration" : "madhanit faligalahu"
+  },
+  {
+    "amharic" : "ሆዴ ያመኛል",
+    "english" : "My stomach hurts",
+    "id" : 61,
+    "notes" : "Medical",
+    "transliteration" : "hode yamanynal"
+  },
+  {
+    "amharic" : "ታማሚ ነኝ",
+    "english" : "I am sick",
+    "id" : 62,
+    "notes" : "Medical",
+    "transliteration" : "tamami nany"
+  },
+  {
+    "amharic" : "ፋርማሲ የት ነው?",
+    "english" : "Where is the pharmacy?",
+    "id" : 63,
+    "notes" : "Medical",
+    "transliteration" : "farmasi yat naw?"
+  },
+  {
+    "amharic" : "ትኩሳት አለብኝ",
+    "english" : "I have a fever",
+    "id" : 64,
+    "notes" : "Medical",
+    "transliteration" : "tikusat allabiny"
+  },
+  {
+    "amharic" : "አለርጂ አለብኝ",
+    "english" : "I have an allergy",
+    "id" : 65,
+    "notes" : "Medical",
+    "transliteration" : "alerji allabiny"
+  },
+  {
+    "amharic" : "መደወል እችላለሁ?",
+    "english" : "Can I call?",
+    "id" : 66,
+    "notes" : "Phone",
+    "transliteration" : "madawal ichilalahu?"
+  },
+  {
+    "amharic" : "መልእክት ላክልኝ",
+    "english" : "Send me a message",
+    "id" : 67,
+    "notes" : "Phone",
+    "transliteration" : "mal'ikt lakiliny"
+  },
+  {
+    "amharic" : "ስልክ ቁጥርህ ስንት ነው?",
+    "english" : "What's your phone number?",
+    "id" : 68,
+    "notes" : "Phone (m)",
+    "transliteration" : "silk kutrih sint naw?"
+  },
+  {
+    "amharic" : "ዋይፋይ አለ?",
+    "english" : "Is there WiFi?",
+    "id" : 69,
+    "notes" : "Communication",
+    "transliteration" : "wifi alla?"
+  },
+  {
+    "amharic" : "ኢንተርኔት ፈልጋለሁ",
+    "english" : "I need internet",
+    "id" : 70,
+    "notes" : "Communication",
+    "transliteration" : "internet faligalahu"
+  },
+  {
+    "amharic" : "መልካም አዲስ ዓመት!",
+    "english" : "Happy New Year!",
+    "id" : 71,
+    "notes" : "Enkutatash",
+    "transliteration" : "melkam addis amet!"
+  },
+  {
+    "amharic" : "እንኳን አደረሰህ!",
+    "english" : "Congratulations! \/ Happy holiday!",
+    "id" : 72,
+    "notes" : "Celebrations (m)",
+    "transliteration" : "inkuan adarasah!"
+  },
+  {
+    "amharic" : "እግዚአብሔር ይስጥልኝ",
+    "english" : "God willing",
+    "id" : 73,
+    "notes" : "Religious expression",
+    "transliteration" : "igziabher yist'iliny"
+  },
+  {
+    "amharic" : "ቡና እንጠጣ",
+    "english" : "Let's have coffee",
+    "id" : 74,
+    "notes" : "Social invitation",
+    "transliteration" : "buna intat'a"
+  },
+  {
+    "amharic" : "እንኳን ደህና መጣህ",
+    "english" : "Welcome!",
+    "id" : 75,
+    "notes" : "Greeting (m)",
+    "transliteration" : "inkuan dahna mattah"
+  },
+  {
+    "amharic" : "ምን ያህል ቆንጆ!",
+    "english" : "How beautiful!",
+    "id" : 76,
+    "notes" : "Compliment",
+    "transliteration" : "min yahil konjo!"
+  },
+  {
+    "amharic" : "በጣም ጣፋጭ ነው",
+    "english" : "It's very delicious",
+    "id" : 77,
+    "notes" : "Food compliment",
+    "transliteration" : "batam tafach naw"
+  },
+  {
+    "amharic" : "ጸሎቴ ከአንተ ጋር ነው",
+    "english" : "My prayers are with you",
+    "id" : 78,
+    "notes" : "Sympathy",
+    "transliteration" : "tsalote ka-anta gar naw"
+  },
+  {
+    "amharic" : "ደስ ይበላችሁ",
+    "english" : "Enjoy! (plural)",
+    "id" : 79,
+    "notes" : "Social",
+    "transliteration" : "das yiballachihu"
+  },
+  {
+    "amharic" : "ፈጣሪ ይባርክ",
+    "english" : "God bless",
+    "id" : 80,
+    "notes" : "Blessing",
+    "transliteration" : "fatari yibarik"
+  },
+  {
+    "amharic" : "ዛሬ ሞቃት ነው",
+    "english" : "It's hot today",
+    "id" : 81,
+    "notes" : "Weather",
+    "transliteration" : "zare mokat naw"
+  },
+  {
+    "amharic" : "ዝናብ ይዘንባል",
+    "english" : "It's raining",
+    "id" : 82,
+    "notes" : "Weather",
+    "transliteration" : "zinab yizanbal"
+  },
+  {
+    "amharic" : "ቆንጆ የአየር ሁኔታ",
+    "english" : "Beautiful weather",
+    "id" : 83,
+    "notes" : "Weather",
+    "transliteration" : "konjo ya-ayer huneta"
+  },
+  {
+    "amharic" : "ቀዝቃዛ ነው",
+    "english" : "It's cold",
+    "id" : 84,
+    "notes" : "Weather",
+    "transliteration" : "kazkaza naw"
+  },
+  {
+    "amharic" : "ፀሐይ ወጥቷል",
+    "english" : "The sun is out",
+    "id" : 85,
+    "notes" : "Weather",
+    "transliteration" : "tsahay watwal"
+  },
+  {
+    "amharic" : "ቀድመው ይግቡ",
+    "english" : "After you (please enter first)",
+    "id" : 86,
+    "notes" : "Polite",
+    "transliteration" : "kadmaw yigbu"
+  },
+  {
+    "amharic" : "እባክዎ ይቀመጡ",
+    "english" : "Please sit down",
+    "id" : 87,
+    "notes" : "Polite (formal)",
+    "transliteration" : "ibakwo yikamatu"
+  },
+  {
+    "amharic" : "ምግብ ይባረክ",
+    "english" : "Bless this food",
+    "id" : 88,
+    "notes" : "Mealtime prayer",
+    "transliteration" : "migib yibarek"
+  },
+  {
+    "amharic" : "ይቅርታ ስላዘገየሁ",
+    "english" : "Sorry I'm late",
+    "id" : 89,
+    "notes" : "Apology",
+    "transliteration" : "yikirta sla-azagayahu"
+  },
+  {
+    "amharic" : "ደህና እደር",
+    "english" : "Good night",
+    "id" : 90,
+    "notes" : "Farewell",
+    "transliteration" : "dahna idar"
+  },
+  {
+    "amharic" : "አልጋ መያዝ እፈልጋለሁ",
+    "english" : "I'd like to book a room",
+    "id" : 91,
+    "notes" : "Hotel",
+    "transliteration" : "alga mayaz ifaligalahu"
+  },
+  {
+    "amharic" : "አልጋ አለ?",
+    "english" : "Are there any rooms available?",
+    "id" : 92,
+    "notes" : "Hotel",
+    "transliteration" : "alga alla?"
+  },
+  {
+    "amharic" : "ለ አንድ ማታ ስንት ነዉ?",
+    "english" : "How much is it per night?",
+    "id" : 93,
+    "notes" : "Hotel",
+    "transliteration" : "la and mata sint naw?"
+  },
+  {
+    "amharic" : "ክፍሉን ማየት እፈልጋለሁ",
+    "english" : "I want to see the room",
+    "id" : 94,
+    "notes" : "Hotel",
+    "transliteration" : "kiflun mayat ifaligalahu"
+  },
+  {
+    "amharic" : "ነገ ጠዋት እሄዳለሁ",
+    "english" : "I leave tomorrow morning",
+    "id" : 95,
+    "notes" : "Hotel",
+    "transliteration" : "naga tawat ihedalahu"
+  },
+  {
+    "amharic" : "አሁን መክፈል እፈልጋለሁ",
+    "english" : "I want to pay the bill now",
+    "id" : 96,
+    "notes" : "Hotel",
+    "transliteration" : "ahun makfal ifaligalahu"
+  },
+  {
+    "amharic" : "ሻንጣዬን እዚህ ማስቀመጥ እችላለሁ?",
+    "english" : "Can I leave my luggage here?",
+    "id" : 97,
+    "notes" : "Hotel",
+    "transliteration" : "shantayen izzih maskamit ichilalahu?"
+  },
+  {
+    "amharic" : "ደክሞኛል",
+    "english" : "I'm tired",
+    "id" : 98,
+    "notes" : "Hotel",
+    "transliteration" : "dakmonynal"
+  },
+  {
+    "amharic" : "ማረፍ እፈልጋለሁ",
+    "english" : "I want to rest",
+    "id" : 99,
+    "notes" : "Hotel",
+    "transliteration" : "maraf ifaligalahu"
+  },
+  {
+    "amharic" : "ገንዘብ መቀየሪያዉ የት ነዉ?",
+    "english" : "Where can I change money?",
+    "id" : 100,
+    "notes" : "Bank",
+    "transliteration" : "ganzab makayariyaw yat naw?"
+  },
+  {
+    "amharic" : "ገንዘብ መቀየር እፈልጋለሁ",
+    "english" : "I want to change money",
+    "id" : 101,
+    "notes" : "Bank",
+    "transliteration" : "ganzab makayar ifaligalahu"
+  },
+  {
+    "amharic" : "በስንት ዋጋ?",
+    "english" : "What's the exchange rate?",
+    "id" : 102,
+    "notes" : "Bank",
+    "transliteration" : "basint waga?"
+  },
+  {
+    "amharic" : "ገንዘብ በክሬዲት ካርድ ማዉጣት እችላለሁ?",
+    "english" : "Can I withdraw money with a credit card?",
+    "id" : 103,
+    "notes" : "Bank",
+    "transliteration" : "ganzab ba-kredit kard mawtat ichilalahu?"
+  },
+  {
+    "amharic" : "በስንት ሰዓት ይከፈታል ይዘጋል?",
+    "english" : "What time does it open\/close?",
+    "id" : 104,
+    "notes" : "Around town",
+    "transliteration" : "basint saat yikafatal yizagal?"
+  },
+  {
+    "amharic" : "መግቢያ ስንት ነዉ?",
+    "english" : "How much is the entry fee?",
+    "id" : 105,
+    "notes" : "Sightseeing",
+    "transliteration" : "magbiya sint naw?"
+  },
+  {
+    "amharic" : "እዚህ ፎቶ ማንሳት ይቻላል?",
+    "english" : "Am I allowed to take photos here?",
+    "id" : 106,
+    "notes" : "Sightseeing",
+    "transliteration" : "izzih foto mansat yichalal?"
+  },
+  {
+    "amharic" : "እባክህ ፎቶ አንሳኝ",
+    "english" : "Please take my photo",
+    "id" : 107,
+    "notes" : "Sightseeing",
+    "transliteration" : "ibakkih foto ansany"
+  },
+  {
+    "amharic" : "ካርታ አለህ?",
+    "english" : "Do you have a map?",
+    "id" : 108,
+    "notes" : "Sightseeing",
+    "transliteration" : "karta allah?"
+  },
+  {
+    "amharic" : "ቨዛየን ማሳደስ እፈልጋለሁ",
+    "english" : "I'd like to extend my visa",
+    "id" : 109,
+    "notes" : "Paperwork",
+    "transliteration" : "vizayen masadas ifaligalahu"
+  },
+  {
+    "amharic" : "ስንት ሰዓት ነዉ?",
+    "english" : "What time is it?",
+    "id" : 110,
+    "notes" : "Time",
+    "transliteration" : "sint saat naw?"
+  },
+  {
+    "amharic" : "በሃበሻ በፈረንጅ አቆጣጠር ነዉ?",
+    "english" : "Is that Ethiopian or foreign time?",
+    "id" : 111,
+    "notes" : "Time",
+    "transliteration" : "ba-habesha ba-faranj akotatir naw?"
+  },
+  {
+    "amharic" : "ዛሬ ቀኑ ምንድን ነዉ?",
+    "english" : "What day is it today?",
+    "id" : 112,
+    "notes" : "Time",
+    "transliteration" : "zare kanu mindin naw?"
+  },
+  {
+    "amharic" : "ወዲያዉኑ",
+    "english" : "Immediately",
+    "id" : 113,
+    "notes" : "Time",
+    "transliteration" : "wadiyawnu"
+  },
+  {
+    "amharic" : "ትናንትና",
+    "english" : "Yesterday",
+    "id" : 114,
+    "notes" : "Time",
+    "transliteration" : "tinantina"
+  },
+  {
+    "amharic" : "ታዲያስ",
+    "english" : "Hi! (informal)",
+    "id" : 115,
+    "notes" : "Social",
+    "transliteration" : "tadiyas"
+  },
+  {
+    "amharic" : "ምን አዲስ ነገር አለ?",
+    "english" : "So, what's new?",
+    "id" : 116,
+    "notes" : "Social",
+    "transliteration" : "min addis nagar alla?"
+  },
+  {
+    "amharic" : "በጣም እወዳለሁ",
+    "english" : "I like it a lot",
+    "id" : 117,
+    "notes" : "Social",
+    "transliteration" : "batam iwadalahu"
+  },
+  {
+    "amharic" : "ለጉብኝት ለእረፍት",
+    "english" : "For tourism \/ a holiday",
+    "id" : 118,
+    "notes" : "Social",
+    "transliteration" : "la-gubinyit la-ireft"
+  },
+  {
+    "amharic" : "ለስራ ለትምህርት",
+    "english" : "For work \/ study",
+    "id" : 119,
+    "notes" : "Social",
+    "transliteration" : "la-sira la-timhirt"
+  },
+  {
+    "amharic" : "ችግር የለም",
+    "english" : "No problem",
+    "id" : 120,
+    "notes" : "Social",
+    "transliteration" : "chigir yallam"
+  },
+  {
+    "amharic" : "ይቻላል",
+    "english" : "It's possible",
+    "id" : 121,
+    "notes" : "Social",
+    "transliteration" : "yichalal"
+  },
+  {
+    "amharic" : "አይቻልም",
+    "english" : "It's not possible",
+    "id" : 122,
+    "notes" : "Social",
+    "transliteration" : "aychallim"
+  },
+  {
+    "amharic" : "መልካም እድል!",
+    "english" : "Good luck!",
+    "id" : 123,
+    "notes" : "Social",
+    "transliteration" : "melkam idil!"
+  },
+  {
+    "amharic" : "ይቅርታ አሁን መሄድ አለብኝ",
+    "english" : "Sorry, I have to go now",
+    "id" : 124,
+    "notes" : "Social",
+    "transliteration" : "yikirta ahun mahed allabiny"
+  },
+  {
+    "amharic" : "ሌላ ጊዜ እንገናኛለን",
+    "english" : "We'll meet again another time",
+    "id" : 125,
+    "notes" : "Social",
+    "transliteration" : "lela gize ingananayallan"
+  },
+  {
+    "amharic" : "እባክህ ቀስ ብለህ ተናገር",
+    "english" : "Please speak slowly",
+    "id" : 126,
+    "notes" : "Language",
+    "transliteration" : "ibakkih kas bilah tanagar"
+  },
+  {
+    "amharic" : "ገብቶኛል",
+    "english" : "I understand",
+    "id" : 127,
+    "notes" : "Language",
+    "transliteration" : "gabtonynal"
+  },
+  {
+    "amharic" : "በ አማርኛ ምን ማለት ነዉ?",
+    "english" : "What does it mean in Amharic?",
+    "id" : 128,
+    "notes" : "Language",
+    "transliteration" : "ba-amaranya min malat naw?"
+  },
+  {
+    "amharic" : "አስተርጓሚ አለ?",
+    "english" : "Is there a translator?",
+    "id" : 129,
+    "notes" : "Language",
+    "transliteration" : "astargwami alla?"
+  },
+  {
+    "amharic" : "በጣም ደግ ነዎት",
+    "english" : "You're very kind",
+    "id" : 130,
+    "notes" : "Polite",
+    "transliteration" : "batam dag nawot"
+  },
+  {
+    "amharic" : "የኔ ግብዣ ነዉ!",
+    "english" : "It's my treat!",
+    "id" : 131,
+    "notes" : "Entertainment",
+    "transliteration" : "yane gibzha naw!"
+  },
+  {
+    "amharic" : "ለ ቡና እንሂድ",
+    "english" : "Let's go for coffee",
+    "id" : 132,
+    "notes" : "Entertainment",
+    "transliteration" : "la buna inhid"
+  },
+  {
+    "amharic" : "ዛሬ ማታ ፓርቲ አለን",
+    "english" : "We're having a party tonight",
+    "id" : 133,
+    "notes" : "Entertainment",
+    "transliteration" : "zare mata parti allan"
+  },
+  {
+    "amharic" : "ጥሩ ጊዜ እናሳልፋለን!",
+    "english" : "We'll have a great time!",
+    "id" : 134,
+    "notes" : "Entertainment",
+    "transliteration" : "tiru gize inasalfallan!"
+  },
+  {
+    "amharic" : "ስራ አለኝ",
+    "english" : "I'm busy (I have work)",
+    "id" : 135,
+    "notes" : "Entertainment",
+    "transliteration" : "sira allany"
+  },
+  {
+    "amharic" : "ለመምጣት እሞክራለሁ",
+    "english" : "I'll try to make it",
+    "id" : 136,
+    "notes" : "Entertainment",
+    "transliteration" : "la-mamtat imokralahu"
+  },
+  {
+    "amharic" : "መዳነስ ትፈልጋለህ?",
+    "english" : "Do you want to dance?",
+    "id" : 137,
+    "notes" : "Entertainment",
+    "transliteration" : "madanas tifaligallah?"
+  },
+  {
+    "amharic" : "ሌላ ቦታ እንሂድ?",
+    "english" : "Shall we go somewhere else?",
+    "id" : 138,
+    "notes" : "Entertainment",
+    "transliteration" : "lela bota inhid?"
+  },
+  {
+    "amharic" : "ለጤናችን!",
+    "english" : "Cheers! (To our health!)",
+    "id" : 139,
+    "notes" : "Entertainment",
+    "transliteration" : "la-tenachin!"
+  },
+  {
+    "amharic" : "አስቸኳይ ነዉ!",
+    "english" : "It's an emergency!",
+    "id" : 140,
+    "notes" : "Emergency",
+    "transliteration" : "aschekowai naw!"
+  },
+  {
+    "amharic" : "አደገኛ!",
+    "english" : "Dangerous!",
+    "id" : 141,
+    "notes" : "Emergency",
+    "transliteration" : "adaganya!"
+  },
+  {
+    "amharic" : "እሳት!",
+    "english" : "Fire!",
+    "id" : 142,
+    "notes" : "Emergency",
+    "transliteration" : "isat!"
+  },
+  {
+    "amharic" : "ሌባ!",
+    "english" : "Thief!",
+    "id" : 143,
+    "notes" : "Emergency",
+    "transliteration" : "leba!"
+  },
+  {
+    "amharic" : "ተጠንቀቅ!",
+    "english" : "Watch out!",
+    "id" : 144,
+    "notes" : "Emergency",
+    "transliteration" : "tatankak!"
+  },
+  {
+    "amharic" : "መንገድ ጠፍቶብኛል",
+    "english" : "I'm lost",
+    "id" : 145,
+    "notes" : "Emergency",
+    "transliteration" : "mangad taftobinynal"
+  },
+  {
+    "amharic" : "ተጎድቻለሁ",
+    "english" : "I'm hurt \/ injured",
+    "id" : 146,
+    "notes" : "Emergency",
+    "transliteration" : "tagodchalahu"
+  },
+  {
+    "amharic" : "ተዘረፍኩ",
+    "english" : "I've been robbed",
+    "id" : 147,
+    "notes" : "Emergency",
+    "transliteration" : "tazarafku"
+  },
+  {
+    "amharic" : "ሻንጣዬ ጠፍቶብኛል",
+    "english" : "I've lost my bag",
+    "id" : 148,
+    "notes" : "Emergency",
+    "transliteration" : "shantaye taftobinynal"
+  },
+  {
+    "amharic" : "ኤምባሲየን ማነጋገር እፈልጋለሁ",
+    "english" : "I want to contact my embassy",
+    "id" : 149,
+    "notes" : "Emergency",
+    "transliteration" : "embasiyen managagar ifaligalahu"
+  },
+  {
+    "amharic" : "እንግሊዝኛ የሚችል ጠበቃ እፈልጋለሁ",
+    "english" : "I need a lawyer who speaks English",
+    "id" : 150,
+    "notes" : "Emergency",
+    "transliteration" : "inglizanya yamichil tabaka ifaligalahu"
+  },
+  {
+    "amharic" : "የሚቀርበዉ ፖሊስ ጣቢያ የት ነዉ?",
+    "english" : "Where is the nearest police station?",
+    "id" : 151,
+    "notes" : "Emergency",
+    "transliteration" : "yamikarbaw polis tabiya yat naw?"
+  },
+  {
+    "amharic" : "አምቡላንስ እፈልጋለሁ",
+    "english" : "I need an ambulance",
+    "id" : 152,
+    "notes" : "Emergency",
+    "transliteration" : "ambulans ifaligalahu"
+  },
+  {
+    "amharic" : "እዚህ ጋ ያመኛል",
+    "english" : "I have a pain here",
+    "id" : 153,
+    "notes" : "Medical",
+    "transliteration" : "izzih ga yamanynal"
+  },
+  {
+    "amharic" : "ስጋ አልበላም",
+    "english" : "I don't eat meat",
+    "id" : 154,
+    "notes" : "Food",
+    "transliteration" : "siga albellam"
+  },
+  {
+    "amharic" : "የፆም ምግብ አለ?",
+    "english" : "Do you have vegetarian\/fasting food?",
+    "id" : 155,
+    "notes" : "Food",
+    "transliteration" : "ya-tsom migib alla?"
+  },
+  {
+    "amharic" : "ዛሬ ምን አላችሁ?",
+    "english" : "What's on the menu today?",
+    "id" : 156,
+    "notes" : "Food",
+    "transliteration" : "zare min alachuhu?"
+  },
+  {
+    "amharic" : "ራበኝ",
+    "english" : "I'm hungry",
+    "id" : 157,
+    "notes" : "Food",
+    "transliteration" : "rabany"
+  },
+  {
+    "amharic" : "ጠግቤአለሁ",
+    "english" : "I'm full \/ satisfied",
+    "id" : 158,
+    "notes" : "Food",
+    "transliteration" : "tagbeyalahu"
+  },
+  {
+    "amharic" : "ሂሳብ እባክህ",
+    "english" : "The bill, please",
+    "id" : 159,
+    "notes" : "Food",
+    "transliteration" : "hisab ibakkih"
+  },
+  {
+    "amharic" : "አልጫ ይሁንልኝ",
+    "english" : "Make it mild (not spicy)",
+    "id" : 160,
+    "notes" : "Food",
+    "transliteration" : "alicha yihunliny"
+  },
+  {
+    "amharic" : "እንብላ!",
+    "english" : "Let's eat! (Please join us!)",
+    "id" : 161,
+    "notes" : "Food",
+    "transliteration" : "inibla!"
+  },
+  {
+    "amharic" : "ቆንጆ ምግብ ነበር",
+    "english" : "It was a great meal",
+    "id" : 162,
+    "notes" : "Food",
+    "transliteration" : "konjo migib nabbar"
+  },
+  {
+    "amharic" : "መጠጥ አልጠጣም",
+    "english" : "I don't drink (alcohol)",
+    "id" : 163,
+    "notes" : "Food",
+    "transliteration" : "matit altattam"
+  },
+  {
+    "amharic" : "እንጠጣ!",
+    "english" : "Let's drink!",
+    "id" : 164,
+    "notes" : "Food",
+    "transliteration" : "intatta!"
+  },
+  {
+    "amharic" : "ሙዚቃ መስማት እወዳለሁ",
+    "english" : "I like listening to music",
+    "id" : 165,
+    "notes" : "Interests",
+    "transliteration" : "muzika masmat iwadalahu"
+  },
+  {
+    "amharic" : "መጽሐፍ ማንበብ እወዳለሁ",
+    "english" : "I like reading books",
+    "id" : 166,
+    "notes" : "Interests",
+    "transliteration" : "matshaf manbab iwadalahu"
+  },
+  {
+    "amharic" : "በጣም ወድጀዋለሁ!",
+    "english" : "I really liked it!",
+    "id" : 167,
+    "notes" : "Interests",
+    "transliteration" : "batam wadjewwalahu!"
+  },
+  {
+    "amharic" : "እያየሁ ነዉ",
+    "english" : "I'm just looking",
+    "id" : 168,
+    "notes" : "Shopping",
+    "transliteration" : "iyayahu naw"
+  },
+  {
+    "amharic" : "ይሄን መግዛት እፈልጋለሁ",
+    "english" : "I want to buy this",
+    "id" : 169,
+    "notes" : "Shopping",
+    "transliteration" : "yihen magzat ifaligalahu"
+  },
+  {
+    "amharic" : "ዋጋ ቀንስ",
+    "english" : "Give me a discount",
+    "id" : 170,
+    "notes" : "Shopping",
+    "transliteration" : "waga kanis"
+  },
+  {
+    "amharic" : "የመጨረሻ ዋጋ ነዉ?",
+    "english" : "Is that your final price?",
+    "id" : 171,
+    "notes" : "Shopping",
+    "transliteration" : "yamacherasha waga naw?"
+  },
+  {
+    "amharic" : "እሽ እወስደዋለሁ",
+    "english" : "OK, I'll take it",
+    "id" : 172,
+    "notes" : "Shopping",
+    "transliteration" : "ishi iwesdewwalahu"
+  },
+  {
+    "amharic" : "መመለስ እችላለሁ?",
+    "english" : "Can I return it?",
+    "id" : 173,
+    "notes" : "Shopping",
+    "transliteration" : "mamalles ichilalahu?"
+  },
+  {
+    "amharic" : "ለኔ የሚሆን አለ?",
+    "english" : "Do you have something in my size?",
+    "id" : 174,
+    "notes" : "Shopping",
+    "transliteration" : "lane yamihon alla?"
+  }
+]
