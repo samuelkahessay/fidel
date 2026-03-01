@@ -155,7 +155,8 @@ final class AuthManager {
             if let authError = error as? ASAuthorizationError, authError.code == .canceled {
                 errorMessage = nil
             } else {
-                errorMessage = error.localizedDescription
+                let code = (error as? ASAuthorizationError)?.code.rawValue ?? -1
+                errorMessage = "\(error.localizedDescription) (code: \(code))"
             }
         }
     }
