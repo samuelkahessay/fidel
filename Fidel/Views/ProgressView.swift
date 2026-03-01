@@ -492,7 +492,7 @@ struct LearningStat: View {
     authManager.currentUserId = AuthManager.previewUserId
     authManager.isCheckingSession = false
 
-    ProgressDashboardView()
+    return ProgressDashboardView()
         .modelContainer(for: [UserProgress.self], inMemory: true)
         .environment(authManager)
 }

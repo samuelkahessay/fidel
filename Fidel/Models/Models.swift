@@ -128,42 +128,26 @@ struct NumericReferenceData: Codable {
 
 @Model
 final class UserProgress {
-    var id: UUID
-    var ownerUserId: String
-    var updatedAt: Date
-    var totalXP: Int
-    var currentStreak: Int
-    var longestStreak: Int
+    var id: UUID = UUID()
+    var ownerUserId: String = ""
+    var updatedAt: Date = Date()
+    var totalXP: Int = 0
+    var currentStreak: Int = 0
+    var longestStreak: Int = 0
     var lastPracticeDate: Date?
-    var lessonsCompleted: [Int]
-    var patternsLearned: [String]
-    var vocabularyMastered: [String]
-    var conversationsPracticed: [Int]
-    var dailyGoal: Int
-    var todayXP: Int
-    var achievements: [String]
-    var fidelCharactersRecognized: [String]
-    var charactersTraced: [String]
-    var currentStage: Int
+    var lessonsCompleted: [Int] = []
+    var patternsLearned: [String] = []
+    var vocabularyMastered: [String] = []
+    var conversationsPracticed: [Int] = []
+    var dailyGoal: Int = 50
+    var todayXP: Int = 0
+    var achievements: [String] = []
+    var fidelCharactersRecognized: [String] = []
+    var charactersTraced: [String] = []
+    var currentStage: Int = 0
 
     init(ownerUserId: String = "") {
-        self.id = UUID()
         self.ownerUserId = ownerUserId
-        self.updatedAt = Date()
-        self.totalXP = 0
-        self.currentStreak = 0
-        self.longestStreak = 0
-        self.lastPracticeDate = nil
-        self.lessonsCompleted = []
-        self.patternsLearned = []
-        self.vocabularyMastered = []
-        self.conversationsPracticed = []
-        self.dailyGoal = 50
-        self.todayXP = 0
-        self.achievements = []
-        self.fidelCharactersRecognized = []
-        self.charactersTraced = []
-        self.currentStage = 0
     }
 
     func recognizeFidelCharacter(_ charId: String) {
@@ -251,34 +235,24 @@ final class UserProgress {
 
 @Model
 final class FlashcardProgress {
-    var id: UUID
-    var ownerUserId: String
-    var updatedAt: Date
-    var itemId: String
-    var itemType: String
-    var easeFactor: Double
-    var interval: Int
-    var repetitions: Int
-    var nextReviewDate: Date
+    var id: UUID = UUID()
+    var ownerUserId: String = ""
+    var updatedAt: Date = Date()
+    var itemId: String = ""
+    var itemType: String = ""
+    var easeFactor: Double = 2.5
+    var interval: Int = 0
+    var repetitions: Int = 0
+    var nextReviewDate: Date = Date()
     var lastReviewDate: Date?
-    var stability: Double
-    var difficulty: Double
-    var lapses: Int
-    
+    var stability: Double = 0
+    var difficulty: Double = 0
+    var lapses: Int = 0
+
     init(itemId: String, itemType: String, ownerUserId: String = "") {
-        self.id = UUID()
-        self.ownerUserId = ownerUserId
-        self.updatedAt = Date()
         self.itemId = itemId
         self.itemType = itemType
-        self.easeFactor = 2.5
-        self.interval = 0
-        self.repetitions = 0
-        self.nextReviewDate = Date()
-        self.lastReviewDate = nil
-        self.stability = 0
-        self.difficulty = 0
-        self.lapses = 0
+        self.ownerUserId = ownerUserId
     }
 }
 

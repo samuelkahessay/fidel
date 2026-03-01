@@ -5,7 +5,7 @@ import Security
 
 @main
 struct FidelApp: App {
-    private static let cloudKitContainerIdentifier = "iCloud.dev.skahessay.fidel"
+    private static let cloudKitContainerIdentifier = "iCloud.dev.skahessay.learnamharic"
     @State private var authManager = AuthManager.shared
 
     var sharedModelContainer: ModelContainer = {
@@ -20,7 +20,7 @@ struct FidelApp: App {
             isStoredInMemoryOnly: false,
             cloudKitDatabase: .private(Self.cloudKitContainerIdentifier)
         )
-        
+
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
@@ -221,7 +221,7 @@ final class AuthManager {
 }
 
 private enum KeychainStore {
-    private static let service = "dev.skahessay.fidel.auth"
+    private static let service = "dev.skahessay.learnamharic.auth"
 
     static func set(_ value: String, for key: String) -> Bool {
         let data = Data(value.utf8)

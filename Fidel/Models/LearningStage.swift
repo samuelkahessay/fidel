@@ -67,7 +67,7 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
         case .scriptAndSounds: return []
         case .survivalPhrases: return [1, 2]
         case .buildingSentences: return [1, 2, 3, 4, 5]
-        case .fluency: return [1, 2, 3, 4, 5]
+        case .fluency: return [1, 2, 3, 4, 5, 6, 7, 8]
         }
     }
 
@@ -76,7 +76,7 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
         case .scriptAndSounds: return []
         case .survivalPhrases: return [1, 5]
         case .buildingSentences: return Set(1...10)
-        case .fluency: return Set(1...10)
+        case .fluency: return Set(1...18)
         }
     }
 
@@ -133,7 +133,7 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
             return [
                 StageCriterion(
                     id: "all_lessons",
-                    description: "Complete all lessons",
+                    description: "Complete core lessons (1-5)",
                     icon: "book.fill",
                     evaluate: { Set($0.lessonsCompleted).isSuperset(of: [1, 2, 3, 4, 5]) },
                     progressFraction: { progress in

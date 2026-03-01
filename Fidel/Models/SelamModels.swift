@@ -6,30 +6,26 @@ import SwiftData
 /// Represents a conversation with Selam AI tutor
 @Model
 final class SelamConversation {
-    var id: UUID
+    var id: UUID = UUID()
     var title: String?
-    var createdAt: Date
-    var updatedAt: Date
+    var createdAt: Date = Date()
+    var updatedAt: Date = Date()
     @Relationship(deleteRule: .cascade, inverse: \SelamMessage.conversation)
-    var messages: [SelamMessage]
-    
+    var messages: [SelamMessage]? = []
+
     /// Entry context - where the conversation was started from
     var entryContextType: String?  // "lesson", "vocabulary", "practice", "general"
     var entryContextId: String?    // The ID of the lesson/vocabulary item
-    
+
     init(title: String? = nil, entryContextType: String? = nil, entryContextId: String? = nil) {
-        self.id = UUID()
         self.title = title
-        self.createdAt = Date()
-        self.updatedAt = Date()
-        self.messages = []
         self.entryContextType = entryContextType
         self.entryContextId = entryContextId
     }
-    
+
     /// Returns messages sorted by timestamp
     var sortedMessages: [SelamMessage] {
-        messages.sorted { $0.timestamp < $1.timestamp }
+        (messages ?? []).sorted { $0.timestamp < $1.timestamp }
     }
     
     /// Preview text for conversation list
@@ -52,26 +48,24 @@ final class SelamConversation {
 /// Represents a single message in a Selam conversation
 @Model
 final class SelamMessage {
-    var id: UUID
-    var content: String
-    var role: MessageRole
-    var timestamp: Date
+    var id: UUID = UUID()
+    var content: String = ""
+    var role: MessageRole = MessageRole.user
+    var timestamp: Date = Date()
     var conversation: SelamConversation?
-    
+
     /// Suggested actions returned by AI (stored as JSON string)
     var suggestedActionsJSON: String?
-    
+
     /// For streaming responses - marks if message is complete
-    var isComplete: Bool
-    
+    var isComplete: Bool = false
+
     /// Optional metadata for the message (stored as JSON string)
     var metadataJSON: String?
-    
+
     init(content: String, role: MessageRole, isComplete: Bool = true) {
-        self.id = UUID()
         self.content = content
         self.role = role
-        self.timestamp = Date()
         self.isComplete = isComplete
     }
     
