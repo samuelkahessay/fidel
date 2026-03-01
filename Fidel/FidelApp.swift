@@ -46,7 +46,7 @@ struct AuthGateView: View {
                 ProgressView("Checking account...")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color(.systemGroupedBackground))
-            } else if authManager.isAuthenticated {
+            } else if authManager.isAuthenticated || authManager.isGuest {
                 ContentView()
             } else {
                 AppleSignInView()
@@ -96,6 +96,15 @@ struct AppleSignInView: View {
             .frame(height: 52)
             .padding(.horizontal, AppTheme.Spacing.md)
 
+            Button {
+                authManager.continueAsGuest()
+            } label: {
+                Text("Continue as Guest")
+                    .font(AppTheme.Typography.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            .padding(.top, AppTheme.Spacing.xs)
+
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -114,6 +123,7 @@ final class AuthManager {
     var errorMessage: String?
 
     var isAuthenticated: Bool { currentUserId != nil }
+    private(set) var isGuest = false
 
     private let appleUserIdKey = "fidel.apple.user.id"
     private let displayNameKey = "fidel.apple.display.name"
@@ -155,13 +165,20 @@ final class AuthManager {
             if let authError = error as? ASAuthorizationError, authError.code == .canceled {
                 errorMessage = nil
             } else {
-                let code = (error as? ASAuthorizationError)?.code.rawValue ?? -1
-                errorMessage = "\(error.localizedDescription) (code: \(code))"
+                errorMessage = diagnosticMessage(for: error)
             }
         }
     }
 
+    func continueAsGuest() {
+        currentUserId = "guest"
+        isGuest = true
+        errorMessage = nil
+        isCheckingSession = false
+    }
+
     func signOut() {
+        isGuest = false
         clearStoredSession()
     }
 
@@ -218,6 +235,28 @@ final class AuthManager {
         let formatter = PersonNameComponentsFormatter()
         let value = formatter.string(from: components).trimmingCharacters(in: .whitespacesAndNewlines)
         return value.isEmpty ? nil : value
+    }
+
+    private func diagnosticMessage(for error: Error) -> String {
+        guard let authError = error as? ASAuthorizationError else {
+            return error.localizedDescription
+        }
+
+        let code = authError.code.rawValue
+        let bundleId = Bundle.main.bundleIdentifier ?? "this app"
+
+        switch authError.code {
+        case .unknown, .failed, .notHandled:
+            return "Apple Sign-In failed (code \(code)). Check that Sign in with Apple is enabled for \(bundleId) in Apple Developer and that Xcode regenerated the provisioning profile."
+        case .invalidResponse:
+            return "Apple Sign-In returned an invalid response (code \(code)). Try again."
+        case .notInteractive:
+            return "Apple Sign-In must start from a direct user tap (code \(code)). Try again."
+        case .canceled:
+            return ""
+        @unknown default:
+            return "\(authError.localizedDescription) (code: \(code))"
+        }
     }
 }
 
