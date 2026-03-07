@@ -49,7 +49,7 @@ This document provides step-by-step instructions for adding authentication and a
 2. Click **Add Native Application**
 3. Enter your iOS app details:
    - **App ID Prefix**: Found in Apple Developer Portal > Certificates, Identifiers & Profiles > App IDs
-   - **Bundle ID**: `dev.skahessay.fidel`
+   - **Bundle ID**: `dev.skahessay.learnamharic`
 
 ### Step 3: Install Clerk iOS SDK
 
