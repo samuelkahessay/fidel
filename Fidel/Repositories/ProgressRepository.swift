@@ -260,7 +260,9 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         var didMutate = primary.ownerUserId != ownerId
-        primary.ownerUserId = ownerId
+        if didMutate {
+            primary.ownerUserId = ownerId
+        }
 
         for record in records where record !== primary {
             primary.totalXP = max(primary.totalXP, record.totalXP)
@@ -326,7 +328,9 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         var didMutate = primary.ownerUserId != ownerId
-        primary.ownerUserId = ownerId
+        if didMutate {
+            primary.ownerUserId = ownerId
+        }
 
         for record in records where record !== primary {
             // Keep the most advanced scheduling state in case local and cloud copies both exist.

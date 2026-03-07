@@ -8,11 +8,7 @@ struct ProgressDashboardView: View {
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     @State private var cloudKitStatus: CloudKitStatus = .checking
-    
-    var progress: UserProgress? {
-        let progressRepository = ProgressRepository(modelContext: modelContext)
-        return progressRepository.getUserProgress()
-    }
+    @State private var progress: UserProgress?
     
     var body: some View {
         NavigationStack {
@@ -30,6 +26,9 @@ struct ProgressDashboardView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Progress")
+            .onAppear {
+                loadProgress()
+            }
             .task {
                 refreshCloudKitStatus()
             }
@@ -304,6 +303,11 @@ struct ProgressDashboardView: View {
     private func dayLabel(_ index: Int) -> String {
         let days = ["M", "T", "W", "T", "F", "S", "S"]
         return days[index]
+    }
+
+    private func loadProgress() {
+        let repo = ProgressRepository(modelContext: modelContext)
+        progress = repo.getUserProgress()
     }
 
     private func refreshCloudKitStatus() {
