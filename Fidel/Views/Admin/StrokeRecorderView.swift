@@ -25,7 +25,7 @@ struct StrokeRecorderView: View {
                             actionButtons
                         } else {
                             Text("No characters loaded")
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                         }
                     }
                     .padding()
@@ -63,11 +63,11 @@ struct StrokeRecorderView: View {
             HStack {
                 Text("\(viewModel.currentIndex + 1) of \(viewModel.totalCount)")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 Spacer()
                 Text("\(viewModel.recordedIds.count) recorded")
                     .font(.caption.bold())
-                    .foregroundColor(.indigo)
+                    .foregroundStyle(.indigo)
             }
         }
     }
@@ -84,7 +84,7 @@ struct StrokeRecorderView: View {
                     .font(.headline)
                 Text("\(character.consonant) — order \(character.vowelOrder)")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
 
             Spacer()
@@ -92,7 +92,7 @@ struct StrokeRecorderView: View {
             if viewModel.hasData {
                 Label("Recorded", systemImage: "checkmark.circle.fill")
                     .font(.caption)
-                    .foregroundColor(.green)
+                    .foregroundStyle(.green)
             }
         }
         .padding(.horizontal, 4)
@@ -179,7 +179,7 @@ struct StrokeRecorderView: View {
 
             Text("\(pct)%")
                 .font(.headline.monospacedDigit().bold())
-                .foregroundColor(color)
+                .foregroundStyle(color)
                 .frame(width: 50, alignment: .trailing)
         }
     }
@@ -211,7 +211,7 @@ struct StrokeRecorderView: View {
 
             Text("\(Int(viewModel.penWidth))/\(Int(viewModel.maskLineWidth))")
                 .font(.caption.monospacedDigit())
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .frame(width: 68, alignment: .trailing)
         }
     }
@@ -223,7 +223,7 @@ struct StrokeRecorderView: View {
             if viewModel.strokeCount == 0 {
                 Text("Draw the character above")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             } else {
                 // Per-stroke point counts
                 HStack(spacing: 6) {
@@ -236,7 +236,7 @@ struct StrokeRecorderView: View {
                             .clipShape(Capsule())
                     }
                 }
-                .foregroundColor(.indigo)
+                .foregroundStyle(.indigo)
             }
         }
     }

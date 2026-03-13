@@ -66,13 +66,13 @@ struct QuizView: View {
                                     .font(.headline)
                                 Text(descriptionForMode(mode))
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    .foregroundStyle(.secondary)
                             }
                             
                             Spacer()
                             
                             Image(systemName: "chevron.right")
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                         }
                         .padding()
                         .background(
@@ -80,7 +80,7 @@ struct QuizView: View {
                                 .fill(Color(.systemGray6))
                         )
                     }
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                 }
             }
         }
@@ -112,13 +112,13 @@ struct QuizView: View {
             HStack {
                 Text("Question \(currentIndex + 1) of \(questions.count)")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 
                 Spacer()
                 
                 Text("Score: \(score)")
                     .font(.headline)
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
             }
             
             questionCard(question: question)
@@ -146,13 +146,13 @@ struct QuizView: View {
             if let amharic = question.amharic {
                 Text(amharic)
                     .font(AppTheme.Typography.amharic(size: 36))
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
             }
             
             if question.type == .listening, let hint = question.transliterationHint {
                 Text("Hint: \(hint)")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
@@ -220,21 +220,21 @@ struct QuizView: View {
             HStack {
                 Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .font(.title2)
-                    .foregroundColor(isCorrect ? .green : .red)
+                    .foregroundStyle(isCorrect ? .green : .red)
                 
                 Text(isCorrect ? "Correct!" : "Not quite")
                     .font(.headline)
-                    .foregroundColor(isCorrect ? .green : .red)
+                    .foregroundStyle(isCorrect ? .green : .red)
             }
             
             if !isCorrect {
                 VStack(spacing: 4) {
                     Text("Correct answer:")
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text(question.correctAnswer)
                         .font(.headline)
-                        .foregroundColor(AppTheme.primaryColor)
+                        .foregroundStyle(AppTheme.primaryColor)
                 }
             }
             
@@ -255,7 +255,7 @@ struct QuizView: View {
         VStack(spacing: 24) {
             Image(systemName: score >= questions.count / 2 ? "trophy.fill" : "arrow.counterclockwise")
                 .font(.system(size: 60))
-                .foregroundColor(score >= questions.count / 2 ? .yellow : .orange)
+                .foregroundStyle(score >= questions.count / 2 ? .yellow : .orange)
             
             Text("Quiz Complete!")
                 .font(.title)
@@ -264,12 +264,12 @@ struct QuizView: View {
             VStack(spacing: 8) {
                 Text("\(score)/\(questions.count)")
                     .font(.system(size: 48, weight: .bold))
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
                 
                 let percentage = questions.count > 0 ? Int((Double(score) / Double(questions.count)) * 100) : 0
                 Text("\(percentage)% Correct")
                     .font(.title3)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             XPBadge(xp: score * 10)
@@ -482,16 +482,16 @@ struct AnswerButton: View {
             HStack {
                 Text(option)
                     .font(.body)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                 
                 Spacer()
                 
                 if isCorrect {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
+                        .foregroundStyle(.green)
                 } else if isWrong {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.red)
+                        .foregroundStyle(.red)
                 }
             }
             .padding()

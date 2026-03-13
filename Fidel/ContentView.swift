@@ -1,9 +1,11 @@
 import SwiftUI
 import SwiftData
 
+private enum AppTab { case journey, tools, progress }
+
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @State private var selectedTab = 0
+    @State private var selectedTab = AppTab.journey
     #if DEBUG
     @State private var showStrokeRecorder = false
     @State private var showStrokeReview = false
@@ -12,22 +14,14 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             JourneyView()
-                .tabItem {
-                    Label("Journey", systemImage: "map.fill")
-                }
-                .tag(0)
-
+                .tabItem { Label("Journey", systemImage: "map.fill") }
+                .tag(AppTab.journey)
             ToolsView()
-                .tabItem {
-                    Label("Tools", systemImage: "wrench.and.screwdriver.fill")
-                }
-                .tag(1)
-
+                .tabItem { Label("Tools", systemImage: "wrench.and.screwdriver.fill") }
+                .tag(AppTab.tools)
             ProgressDashboardView()
-                .tabItem {
-                    Label("Progress", systemImage: "chart.bar.fill")
-                }
-                .tag(2)
+                .tabItem { Label("Progress", systemImage: "chart.bar.fill") }
+                .tag(AppTab.progress)
         }
         .tint(AppTheme.primaryColor)
         .onAppear {
@@ -53,7 +47,7 @@ struct ContentView: View {
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
                     .background(.indigo, in: Capsule())
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
             }
             .padding(.trailing, 16)
             .padding(.top, 4)

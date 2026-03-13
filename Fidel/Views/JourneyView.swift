@@ -77,15 +77,15 @@ struct JourneyView: View {
             HStack {
                 Image(systemName: viewModel.currentStage.icon)
                     .font(.title2)
-                    .foregroundColor(viewModel.currentStage.color)
+                    .foregroundStyle(viewModel.currentStage.color)
 
                 VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text(viewModel.currentStage.displayName)
                         .font(AppTheme.Typography.title3)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                     Text(viewModel.currentStage.amharicTitle)
                         .font(AppTheme.Typography.amharic(size: 18))
-                        .foregroundColor(viewModel.currentStage.color)
+                        .foregroundStyle(viewModel.currentStage.color)
                 }
 
                 Spacer()
@@ -99,7 +99,7 @@ struct JourneyView: View {
 
             Text(viewModel.currentStage.stageDescription)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .tintedGlassCard(tint: viewModel.currentStage.color, tintOpacity: 0.06)
@@ -115,20 +115,20 @@ struct JourneyView: View {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
                 Text("Next Stage")
                     .font(AppTheme.Typography.headline)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
 
                 ForEach(criteria) { criterion in
                     let fraction = progress.map { criterion.progressFraction($0) } ?? 0
                     let isMet = progress.map { criterion.evaluate($0) } ?? false
                     HStack(spacing: AppTheme.Spacing.sm) {
                         Image(systemName: isMet ? "checkmark.circle.fill" : criterion.icon)
-                            .foregroundColor(isMet ? .green : .secondary)
+                            .foregroundStyle(isMet ? .green : .secondary)
                             .frame(width: 24)
 
                         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(criterion.description)
                                 .font(AppTheme.Typography.subheadline)
-                                .foregroundColor(isMet ? .green : .primary)
+                                .foregroundStyle(isMet ? .green : .primary)
 
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
@@ -155,13 +155,13 @@ struct JourneyView: View {
         VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
             Text("Activities")
                 .font(AppTheme.Typography.title2)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
 
             ForEach(viewModel.activities) { activity in
-                ActivityCard(activity: activity)
-                    .onTapGesture {
-                        handleActivityTap(activity)
-                    }
+                Button { handleActivityTap(activity) } label: {
+                    ActivityCard(activity: activity)
+                }
+                .buttonStyle(.plain)
             }
         }
     }
@@ -188,10 +188,10 @@ struct JourneyView: View {
         if !viewModel.lockedStages.isEmpty {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
                 ForEach(viewModel.lockedStages) { stage in
-                    LockedStageCard(stage: stage)
-                        .onTapGesture {
-                            viewModel.tappedLockedStage = stage
-                        }
+                    Button { viewModel.tappedLockedStage = stage } label: {
+                        LockedStageCard(stage: stage)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -212,11 +212,11 @@ struct ActivityCard: View {
 
                 if activity.isCompleted {
                     Image(systemName: "checkmark")
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .font(.body.bold())
                 } else {
                     Image(systemName: activity.icon)
-                        .foregroundColor(activity.color)
+                        .foregroundStyle(activity.color)
                         .font(.title3)
                 }
             }
@@ -224,11 +224,11 @@ struct ActivityCard: View {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(activity.title)
                     .font(AppTheme.Typography.headline)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
 
                 Text(activity.subtitle)
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .lineLimit(1)
             }
 
@@ -255,18 +255,18 @@ struct LockedStageCard: View {
                     .frame(width: 48, height: 48)
 
                 Image(systemName: "lock.fill")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .font(.title3)
             }
 
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(stage.displayName)
                     .font(AppTheme.Typography.headline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
 
                 Text(stage.stageDescription)
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary.opacity(0.7))
+                    .foregroundStyle(.secondary.opacity(0.7))
                     .lineLimit(1)
             }
 
@@ -306,12 +306,12 @@ struct LockedStageSheet: View {
                         .font(AppTheme.Typography.title2)
                     Text(stage.amharicTitle)
                         .font(AppTheme.Typography.amharic(size: 20))
-                        .foregroundColor(stage.color)
+                        .foregroundStyle(stage.color)
                 }
 
                 Text(stage.stageDescription)
                     .font(AppTheme.Typography.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
 
                 VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
@@ -325,7 +325,7 @@ struct LockedStageSheet: View {
                             let isMet = criterion.evaluate(progress)
                             HStack(spacing: AppTheme.Spacing.sm) {
                                 Image(systemName: isMet ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(isMet ? .green : .secondary)
+                                    .foregroundStyle(isMet ? .green : .secondary)
 
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(criterion.description)
@@ -386,21 +386,21 @@ struct StageAdvancementView: View {
                 VStack(spacing: AppTheme.Spacing.sm) {
                     Text("Stage Unlocked!")
                         .font(AppTheme.Typography.largeTitle)
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
 
                     Text(stage.displayName)
                         .font(AppTheme.Typography.title2)
-                        .foregroundColor(stage.color)
+                        .foregroundStyle(stage.color)
 
                     Text(stage.amharicTitle)
                         .font(AppTheme.Typography.amharic(size: 28))
-                        .foregroundColor(AppTheme.secondaryColor)
+                        .foregroundStyle(AppTheme.secondaryColor)
                 }
                 .opacity(animateIn ? 1.0 : 0)
 
                 Text("እንኳን ደስ ያለህ!")
                     .font(AppTheme.Typography.amharic(size: 24))
-                    .foregroundColor(.white.opacity(0.8))
+                    .foregroundStyle(.white.opacity(0.8))
                     .opacity(animateIn ? 1.0 : 0)
 
                 Spacer()

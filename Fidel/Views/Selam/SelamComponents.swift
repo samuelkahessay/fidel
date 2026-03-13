@@ -21,13 +21,13 @@ struct SelamAvatarView: View {
                 .overlay(
                     Text("ሰ")
                         .font(AppTheme.Typography.amharic(size: size * 0.5))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                 )
             
             if showBadge && badgeCount > 0 {
                 Text("\(min(badgeCount, 99))")
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .padding(4)
                     .background(Circle().fill(AppTheme.accentRed))
                     .offset(x: 4, y: -4)
@@ -80,7 +80,7 @@ struct MessageBubbleView: View {
     private var bubbleContent: some View {
         Text(message.content.isEmpty && isStreaming ? " " : message.content)
             .font(AppTheme.Typography.body)
-            .foregroundColor(isUser ? .white : .primary)
+            .foregroundStyle(isUser ? .white : .primary)
             .multilineTextAlignment(.leading)
             .textSelection(.enabled)
     }
@@ -247,6 +247,7 @@ struct ChatInputView: View {
                     canSend || isLoading ? AppTheme.primaryColor : Color.secondary.opacity(0.5)
                 )
         }
+        .accessibilityLabel(isLoading ? "Cancel" : "Send")
         .disabled(!canSend && !isLoading)
         .animation(AppTheme.Animation.quick, value: isLoading)
     }
@@ -264,13 +265,13 @@ struct SuggestedActionsView: View {
     
     var body: some View {
         if !actions.isEmpty {
-            ScrollView(.horizontal, showsIndicators: false) {
+            ScrollView(.horizontal) {
                 HStack(spacing: AppTheme.Spacing.xs) {
                     ForEach(actions, id: \.self) { action in
                         Button(action: { onSelect(action) }) {
                             Text(action)
                                 .font(AppTheme.Typography.subheadline)
-                                .foregroundColor(AppTheme.primaryColor)
+                                .foregroundStyle(AppTheme.primaryColor)
                                 .padding(.horizontal, AppTheme.Spacing.md)
                                 .padding(.vertical, AppTheme.Spacing.xs)
                                 .background(
@@ -287,6 +288,7 @@ struct SuggestedActionsView: View {
                 }
                 .padding(.horizontal, AppTheme.Spacing.md)
             }
+            .scrollIndicators(.hidden)
             .padding(.vertical, AppTheme.Spacing.xs)
         }
     }

@@ -22,6 +22,7 @@ struct JourneyActivity: Identifiable {
 
 // MARK: - Journey ViewModel
 
+@MainActor
 @Observable
 final class JourneyViewModel {
     var stageManager: StageManager?

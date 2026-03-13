@@ -30,11 +30,11 @@ struct EmptyStateView: View {
             
             Text(title)
                 .font(AppTheme.Typography.title2)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             Text(message)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppTheme.Spacing.xl)
             
@@ -61,7 +61,7 @@ struct LoadingView: View {
             
             Text(message)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
     }
 }
@@ -81,7 +81,7 @@ struct SectionHeader: View {
         HStack {
             Text(title)
                 .font(AppTheme.Typography.title3)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             Spacer()
             
@@ -93,7 +93,7 @@ struct SectionHeader: View {
                             .font(.caption)
                     }
                     .font(AppTheme.Typography.subheadline)
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
                 }
             }
         }
@@ -111,7 +111,7 @@ struct InfoCard: View {
         HStack(spacing: AppTheme.Spacing.md) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundColor(color)
+                .foregroundStyle(color)
                 .frame(width: 48, height: 48)
                 .background(
                     Circle()
@@ -121,11 +121,11 @@ struct InfoCard: View {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(title)
                     .font(AppTheme.Typography.headline)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                 
                 Text(subtitle)
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             Spacer()
@@ -155,17 +155,17 @@ struct AmharicTextView: View {
         VStack(spacing: AppTheme.Spacing.xs) {
             Text(amharic)
                 .font(AppTheme.Typography.amharic(size: 32))
-                .foregroundColor(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.primaryColor)
             
             if showAll {
                 Text(transliteration)
                     .font(AppTheme.Typography.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 
                 Text(english)
                     .font(AppTheme.Typography.body)
                     .fontWeight(.medium)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
             }
         }
     }
@@ -193,7 +193,7 @@ struct SuccessOverlay: View {
                     
                     Text(message)
                         .font(AppTheme.Typography.title2)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                     
                     XPBadge(xp: xpEarned)
                     
@@ -252,7 +252,7 @@ struct CountdownTimer: View {
             
             Text("\(seconds)")
                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                .foregroundColor(color)
+                .foregroundStyle(color)
         }
         .frame(width: 64, height: 64)
     }
@@ -267,7 +267,7 @@ struct GlassChip: View {
         Button(action: action) {
             Text(title)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(isSelected ? .white : .primary)
+                .foregroundStyle(isSelected ? .white : .primary)
                 .padding(.horizontal, AppTheme.Spacing.md)
                 .padding(.vertical, AppTheme.Spacing.xs)
                 .background {
@@ -302,7 +302,7 @@ struct StatPill: View {
                 .font(AppTheme.Typography.caption)
                 .fontWeight(.medium)
         }
-        .foregroundColor(color)
+        .foregroundStyle(color)
         .padding(.horizontal, AppTheme.Spacing.xs)
         .padding(.vertical, AppTheme.Spacing.xxs)
         .background(

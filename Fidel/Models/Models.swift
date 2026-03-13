@@ -154,7 +154,7 @@ final class UserProgress {
         if !fidelCharactersRecognized.contains(charId) {
             fidelCharactersRecognized.append(charId)
             addXP(2)
-            updatedAt = Date()
+            updatedAt = .now
         }
     }
 
@@ -162,7 +162,7 @@ final class UserProgress {
         if !charactersTraced.contains(charId) {
             charactersTraced.append(charId)
             addXP(5)
-            updatedAt = Date()
+            updatedAt = .now
         }
     }
 
@@ -173,13 +173,13 @@ final class UserProgress {
     func addXP(_ amount: Int) {
         totalXP += amount
         todayXP += amount
-        updatedAt = Date()
+        updatedAt = .now
         checkStreak()
     }
     
     func checkStreak() {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: Date.now)
         
         if let lastDate = lastPracticeDate {
             let lastDay = calendar.startOfDay(for: lastDate)
@@ -197,14 +197,14 @@ final class UserProgress {
             currentStreak = 1
         }
         
-        lastPracticeDate = Date()
+        lastPracticeDate = .now
     }
     
     func completeLesson(_ lessonId: Int) {
         if !lessonsCompleted.contains(lessonId) {
             lessonsCompleted.append(lessonId)
             addXP(25)
-            updatedAt = Date()
+            updatedAt = .now
         }
     }
     
@@ -212,7 +212,7 @@ final class UserProgress {
         if !patternsLearned.contains(patternId) {
             patternsLearned.append(patternId)
             addXP(10)
-            updatedAt = Date()
+            updatedAt = .now
         }
     }
     
@@ -220,7 +220,7 @@ final class UserProgress {
         if !vocabularyMastered.contains(wordId) {
             vocabularyMastered.append(wordId)
             addXP(5)
-            updatedAt = Date()
+            updatedAt = .now
         }
     }
     
@@ -228,7 +228,7 @@ final class UserProgress {
         if !conversationsPracticed.contains(conversationId) {
             conversationsPracticed.append(conversationId)
             addXP(20)
-            updatedAt = Date()
+            updatedAt = .now
         }
     }
 }

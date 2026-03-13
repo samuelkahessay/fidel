@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 @Observable
 final class AppViewModel {
     var isLoading = false
@@ -13,7 +14,8 @@ final class AppViewModel {
 
     func loadData() {
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        Task {
+            try? await Task.sleep(for: .seconds(0.5))
             self.isLoading = false
         }
     }

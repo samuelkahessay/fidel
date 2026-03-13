@@ -4,6 +4,7 @@ import PencilKit
 
 /// Manages state for a character tracing practice session.
 /// Presents 10 random first-order (ግዕዝ) Fidel characters for the user to trace.
+@MainActor
 @Observable
 final class TracingViewModel {
 

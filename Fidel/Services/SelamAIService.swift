@@ -299,7 +299,7 @@ final class MockSelamAIService: SelamAIServiceProtocol {
         entryContext: SelamEntryContext?,
         settings: SelamCoachingSettings
     ) async throws -> SelamChatResponse {
-        try await Task.sleep(nanoseconds: UInt64(mockDelay * 1_000_000_000))
+        try await Task.sleep(for: .seconds(mockDelay))
         return generateMockResponse(for: message, context: context)
     }
     
@@ -317,7 +317,7 @@ final class MockSelamAIService: SelamAIServiceProtocol {
                 let words = response.message.split(separator: " ")
                 
                 for (index, word) in words.enumerated() {
-                    try? await Task.sleep(nanoseconds: 50_000_000)
+                    try? await Task.sleep(for: .milliseconds(50))
                     let isLast = index == words.count - 1
                     continuation.yield(SelamStreamToken(
                         content: String(word) + (isLast ? "" : " "),

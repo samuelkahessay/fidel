@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 @Observable
 final class QuizViewModel {
     var questions: [QuizQuestion] = []

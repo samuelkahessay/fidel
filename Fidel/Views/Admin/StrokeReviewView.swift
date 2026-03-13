@@ -42,11 +42,10 @@ struct StrokeReviewView: View {
                 }
                 if !isFinished {
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button {
+                        Button("Undo", systemImage: "arrow.uturn.backward") {
                             undoLast()
-                        } label: {
-                            Image(systemName: "arrow.uturn.backward")
                         }
+                        .labelStyle(.iconOnly)
                         .disabled(history.isEmpty)
                     }
                 }
@@ -187,7 +186,7 @@ struct StrokeReviewView: View {
                     .font(.title3)
                 Text("\(flaggedIds.count) flagged")
                     .font(.title3)
-                    .foregroundColor(flaggedIds.isEmpty ? .secondary : .red)
+                    .foregroundStyle(flaggedIds.isEmpty ? Color.secondary : Color.red)
             }
 
             if !flaggedIds.isEmpty {
@@ -264,7 +263,8 @@ struct StrokeReviewView: View {
         withAnimation(.easeIn(duration: 0.2)) {
             offset = CGSize(width: targetX, height: 0)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        Task {
+            try? await Task.sleep(for: .seconds(0.2))
             commitAction(direction: direction)
         }
     }
@@ -274,7 +274,8 @@ struct StrokeReviewView: View {
         withAnimation(.easeIn(duration: 0.15)) {
             offset = CGSize(width: targetX, height: offset.height)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+        Task {
+            try? await Task.sleep(for: .seconds(0.15))
             commitAction(direction: direction)
         }
     }

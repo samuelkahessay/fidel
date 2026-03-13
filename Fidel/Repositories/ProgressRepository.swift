@@ -41,6 +41,7 @@ protocol ProgressRepositoryProtocol {
 
 // MARK: - ProgressRepository Implementation
 
+@MainActor
 @Observable
 final class ProgressRepository: ProgressRepositoryProtocol {
     
@@ -87,7 +88,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         if let legacyRecords = try? modelContext.fetch(legacyDescriptor), !legacyRecords.isEmpty {
             let legacyProgress = consolidateUserProgress(legacyRecords, ownerId: ownerId)
             legacyProgress.ownerUserId = ownerId
-            legacyProgress.updatedAt = Date()
+            legacyProgress.updatedAt = Date.now
             return legacyProgress
         }
 
@@ -213,7 +214,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func setCurrentStage(_ stage: Int) {
         let progress = getOrCreateUserProgress()
         progress.currentStage = stage
-        progress.updatedAt = Date()
+        progress.updatedAt = Date.now
     }
 
     // MARK: - Statistics
@@ -279,13 +280,13 @@ final class ProgressRepository: ProgressRepositoryProtocol {
             primary.achievements = mergedUnique(primary.achievements, record.achievements)
             primary.fidelCharactersRecognized = mergedUnique(primary.fidelCharactersRecognized, record.fidelCharactersRecognized)
             primary.charactersTraced = mergedUnique(primary.charactersTraced, record.charactersTraced)
-            primary.updatedAt = maxDate(primary.updatedAt, record.updatedAt) ?? Date()
+            primary.updatedAt = maxDate(primary.updatedAt, record.updatedAt) ?? Date.now
             didMutate = true
             modelContext.delete(record)
         }
 
         if didMutate {
-            primary.updatedAt = Date()
+            primary.updatedAt = Date.now
         }
 
         return primary
@@ -349,7 +350,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         if didMutate {
-            primary.updatedAt = Date()
+            primary.updatedAt = Date.now
         }
 
         return primary

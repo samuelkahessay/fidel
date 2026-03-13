@@ -26,11 +26,9 @@ struct ProgressDashboardView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Progress")
-            .onAppear {
-                loadProgress()
-            }
             .task {
-                refreshCloudKitStatus()
+                loadProgress()
+                await refreshCloudKitStatus()
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -50,21 +48,21 @@ struct ProgressDashboardView: View {
         HStack(spacing: 12) {
             Image(systemName: cloudKitStatus.icon)
                 .font(.title3)
-                .foregroundColor(cloudKitStatus.tint)
+                .foregroundStyle(cloudKitStatus.tint)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("Cloud Sync")
                     .font(AppTheme.Typography.headline)
                 Text(cloudKitStatus.message)
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
 
             Spacer()
 
             if cloudKitStatus.showsRetry {
                 Button("Retry") {
-                    refreshCloudKitStatus()
+                    Task { await refreshCloudKitStatus() }
                 }
                 .font(AppTheme.Typography.caption)
             }
@@ -96,21 +94,21 @@ struct ProgressDashboardView: View {
                             if stage < currentStage {
                                 Image(systemName: "checkmark")
                                     .font(.caption.bold())
-                                    .foregroundColor(.white)
+                                    .foregroundStyle(.white)
                             } else if isCurrent {
                                 Image(systemName: stage.icon)
                                     .font(.caption2)
-                                    .foregroundColor(.white)
+                                    .foregroundStyle(.white)
                             } else {
                                 Image(systemName: "lock.fill")
                                     .font(.caption2)
-                                    .foregroundColor(.gray)
+                                    .foregroundStyle(.gray)
                             }
                         }
 
                         Text(stage.displayName)
-                            .font(AppTheme.Typography.caption2)
-                            .foregroundColor(isCurrent ? stage.color : .secondary)
+                            .font(AppTheme.Typography.caption)
+                            .foregroundStyle(isCurrent ? stage.color : .secondary)
                             .multilineTextAlignment(.center)
                             .lineLimit(2)
                     }
@@ -177,7 +175,7 @@ struct ProgressDashboardView: View {
                         
                         Text(dayLabel(day))
                             .font(.caption2)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -186,7 +184,7 @@ struct ProgressDashboardView: View {
             if let longest = progress?.longestStreak, longest > 0 {
                 Text("Longest streak: \(longest) days")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
@@ -205,7 +203,7 @@ struct ProgressDashboardView: View {
                 Spacer()
                 Text("\(progress?.todayXP ?? 0)/\(progress?.dailyGoal ?? 50) XP")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(progress?.dailyGoal ?? 50), 1.0)
@@ -217,10 +215,10 @@ struct ProgressDashboardView: View {
             if goalProgress >= 1.0 {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
+                        .foregroundStyle(.green)
                     Text("Daily goal achieved!")
                         .font(.subheadline)
-                        .foregroundColor(.green)
+                        .foregroundStyle(.green)
                 }
             }
         }
@@ -240,7 +238,7 @@ struct ProgressDashboardView: View {
                 Spacer()
                 Text("\(earnedAchievements.count)/\(allAchievements.count)")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))], spacing: 16) {
@@ -310,30 +308,19 @@ struct ProgressDashboardView: View {
         progress = repo.getUserProgress()
     }
 
-    private func refreshCloudKitStatus() {
+    private func refreshCloudKitStatus() async {
         cloudKitStatus = .checking
-        CKContainer.default().accountStatus { status, error in
-            DispatchQueue.main.async {
-                if error != nil {
-                    cloudKitStatus = .error
-                    return
-                }
-
-                switch status {
-                case .available:
-                    cloudKitStatus = .available
-                case .noAccount:
-                    cloudKitStatus = .noAccount
-                case .restricted:
-                    cloudKitStatus = .restricted
-                case .couldNotDetermine:
-                    cloudKitStatus = .unknown
-                case .temporarilyUnavailable:
-                    cloudKitStatus = .temporarilyUnavailable
-                @unknown default:
-                    cloudKitStatus = .unknown
-                }
+        do {
+            let status = try await CKContainer.default().accountStatus()
+            switch status {
+            case .available: cloudKitStatus = .available
+            case .noAccount: cloudKitStatus = .noAccount
+            case .restricted: cloudKitStatus = .restricted
+            case .temporarilyUnavailable: cloudKitStatus = .temporarilyUnavailable
+            @unknown default: cloudKitStatus = .unknown
             }
+        } catch {
+            cloudKitStatus = .error
         }
     }
 }
@@ -414,14 +401,14 @@ struct StatCard: View {
         VStack(spacing: 8) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundColor(color)
+                .foregroundStyle(color)
             
             Text(value)
                 .font(.title2.bold())
             
             Text(title)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -446,12 +433,12 @@ struct AchievementBadge: View {
                 
                 Image(systemName: achievement.icon)
                     .font(.title2)
-                    .foregroundColor(isEarned ? .white : .gray)
+                    .foregroundStyle(isEarned ? .white : .gray)
             }
             
             Text(achievement.title)
                 .font(.caption2)
-                .foregroundColor(isEarned ? .primary : .secondary)
+                .foregroundStyle(isEarned ? .primary : .secondary)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
         }
@@ -481,11 +468,11 @@ struct LearningStat: View {
             
             Text("\(count)/\(total)")
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Text(title)
                 .font(.caption2)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
     }

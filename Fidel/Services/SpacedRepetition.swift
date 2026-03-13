@@ -105,7 +105,7 @@ struct FSRSAlgorithm {
         rating: ReviewRating
     ) {
         let elapsedDays = progress.lastReviewDate.map {
-            Calendar.current.dateComponents([.day], from: $0, to: Date()).day ?? 0
+            Calendar.current.dateComponents([.day], from: $0, to: Date.now).day ?? 0
         } ?? 0
         
         let result = calculateNextReview(
@@ -118,14 +118,14 @@ struct FSRSAlgorithm {
         progress.interval = result.newInterval
         progress.stability = result.newStability
         progress.difficulty = result.newDifficulty
-        progress.lastReviewDate = Date()
+        progress.lastReviewDate = Date.now
         progress.nextReviewDate = Calendar.current.date(
             byAdding: .day,
             value: result.newInterval,
-            to: Date()
-        ) ?? Date()
+            to: Date.now
+        ) ?? Date.now
         progress.repetitions += 1
-        progress.updatedAt = Date()
+        progress.updatedAt = Date.now
         
         if rating == .again {
             progress.lapses += 1
@@ -133,13 +133,13 @@ struct FSRSAlgorithm {
     }
     
     static func getDueCards(from cards: [FlashcardProgress]) -> [FlashcardProgress] {
-        let now = Date()
+        let now = Date.now
         return cards.filter { $0.nextReviewDate <= now }
             .sorted { $0.nextReviewDate < $1.nextReviewDate }
     }
     
     static func getUpcomingCards(from cards: [FlashcardProgress], days: Int = 7) -> [FlashcardProgress] {
-        let now = Date()
+        let now = Date.now
         let futureDate = Calendar.current.date(byAdding: .day, value: days, to: now) ?? now
         
         return cards.filter { $0.nextReviewDate > now && $0.nextReviewDate <= futureDate }
@@ -150,7 +150,7 @@ struct FSRSAlgorithm {
         guard progress.stability > 0 else { return 1.0 }
         
         let elapsedDays = progress.lastReviewDate.map {
-            Double(Calendar.current.dateComponents([.day], from: $0, to: Date()).day ?? 0)
+            Double(Calendar.current.dateComponents([.day], from: $0, to: Date.now).day ?? 0)
         } ?? 0
         
         return forgettingCurve(elapsedDays: elapsedDays, stability: progress.stability)
@@ -218,6 +218,7 @@ struct SpacedRepetitionAlgorithm {
 
 // MARK: - FlashcardManager
 
+@MainActor
 class FlashcardManager {
     private let modelContext: ModelContext
     private let explicitUserId: String?

@@ -25,10 +25,10 @@ struct SpeedDrillView: View {
                 VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text("Score: \(score)")
                         .font(AppTheme.Typography.headline)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
                     Text("\(currentIndex)/\(phrases.count)")
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 Spacer()
@@ -41,21 +41,21 @@ struct SpeedDrillView: View {
                 VStack(spacing: AppTheme.Spacing.lg) {
                     Text("Translate to Amharic:")
                         .font(AppTheme.Typography.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
 
                     Text(phrase.english)
                         .font(AppTheme.Typography.title2)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
 
                     if showAnswer {
                         VStack(spacing: AppTheme.Spacing.xs) {
                             Text(phrase.amharic)
                                 .font(AppTheme.Typography.amharic(size: 40))
-                                .foregroundColor(AppTheme.primaryColor)
+                                .foregroundStyle(AppTheme.primaryColor)
                             Text(phrase.transliteration)
                                 .font(AppTheme.Typography.subheadline)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                         }
                         .transition(.scale.combined(with: .opacity))
                     }
@@ -97,11 +97,11 @@ struct SpeedDrillView: View {
 
                     Text("Time's Up!")
                         .font(AppTheme.Typography.title)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
 
                     Text("Final Score: \(score)/\(phrases.count)")
                         .font(AppTheme.Typography.title2)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
 
                     XPBadge(xp: score * 5)
 

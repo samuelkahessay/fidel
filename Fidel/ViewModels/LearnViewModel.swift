@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 @Observable
 final class LearnViewModel {
     var selectedLesson: Lesson?

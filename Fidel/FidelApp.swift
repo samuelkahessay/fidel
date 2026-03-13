@@ -75,11 +75,11 @@ struct AppleSignInView: View {
                 VStack(spacing: AppTheme.Spacing.sm) {
                     Text("Fidel")
                         .font(AppTheme.Typography.largeTitle)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
 
                     Text("Sign in with Apple to save your personal learning progress.")
                         .font(AppTheme.Typography.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                 }
 
@@ -105,7 +105,7 @@ struct AppleSignInView: View {
                 } label: {
                     Text("Continue as Guest")
                         .font(AppTheme.Typography.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 .padding(.top, AppTheme.Spacing.xs)
             }
@@ -130,11 +130,11 @@ private struct AuthDiagnosticCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(diagnostic.title)
                         .font(AppTheme.Typography.headline)
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
 
                     Text(diagnostic.summary)
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -143,11 +143,11 @@ private struct AuthDiagnosticCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Likely cause")
                         .font(AppTheme.Typography.caption.weight(.semibold))
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
 
                     Text(likelyCause)
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -159,11 +159,11 @@ private struct AuthDiagnosticCard: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(detail.label)
                             .font(AppTheme.Typography.caption.weight(.semibold))
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
 
                         Text(detail.value)
                             .font(.caption.monospaced())
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                             .textSelection(.enabled)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -176,12 +176,12 @@ private struct AuthDiagnosticCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Next steps")
                         .font(AppTheme.Typography.caption.weight(.semibold))
-                        .foregroundColor(.primary)
+                        .foregroundStyle(.primary)
 
-                    ForEach(Array(diagnostic.nextSteps.enumerated()), id: \.offset) { index, step in
-                        Text("\(index + 1). \(step)")
+                    ForEach(diagnostic.nextSteps.indices, id: \.self) { index in
+                        Text("\(index + 1). \(diagnostic.nextSteps[index])")
                             .font(AppTheme.Typography.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                 }
@@ -199,6 +199,7 @@ private struct AuthDiagnosticCard: View {
     }
 }
 
+@MainActor
 @Observable
 final class AuthManager {
     static let shared = AuthManager()

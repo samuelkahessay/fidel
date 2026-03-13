@@ -13,6 +13,7 @@ struct ConversationDetailView: View {
     @State private var selectedRole: String?
     @State private var showCompletion = false
     @State private var showCulturalNote = false
+    @State private var autoPlayTask: Task<Void, Never>?
 
     private var culturalNotes: [CulturalNote] {
         LessonRepository.shared.getCulturalNotes(forConversation: conversation.id)
@@ -35,7 +36,7 @@ struct ConversationDetailView: View {
         .navigationTitle(conversation.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Toggle("Show Transliteration", isOn: $showTransliteration)
                     Toggle("Show English", isOn: $showEnglish)
@@ -54,6 +55,7 @@ struct ConversationDetailView: View {
         } message: {
             Text("You earned 20 XP for practicing this conversation!")
         }
+        .onDisappear { autoPlayTask?.cancel() }
     }
     
     private var readingModeView: some View {
@@ -66,7 +68,8 @@ struct ConversationDetailView: View {
                         culturalNoteBanner
                     }
 
-                    ForEach(Array(conversation.lines.enumerated()), id: \.element.id) { index, line in
+                    ForEach(conversation.lines) { line in
+                        let index = conversation.lines.firstIndex(where: { $0.id == line.id }) ?? 0
                         DialogueLineView(
                             line: line,
                             showTransliteration: showTransliteration,
@@ -101,11 +104,11 @@ struct ConversationDetailView: View {
         VStack(spacing: 20) {
             Text("Choose Your Role")
                 .font(.title2)
-                .fontWeight(.bold)
+                .bold()
             
             Text("You'll practice speaking as this character")
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             ForEach(speakers, id: \.self) { speaker in
                 Button(action: { selectedRole = speaker }) {
@@ -124,7 +127,7 @@ struct ConversationDetailView: View {
                             .fill(AppTheme.primaryColor.opacity(0.1))
                     )
                 }
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             }
         }
     }
@@ -138,11 +141,11 @@ struct ConversationDetailView: View {
                 VStack(spacing: 16) {
                     Text("Line \(currentLineIndex + 1) of \(conversation.lines.count)")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     
                     Text(line.speaker)
                         .font(.headline)
-                        .foregroundColor(isUserLine ? AppTheme.primaryColor : .secondary)
+                        .foregroundStyle(isUserLine ? AppTheme.primaryColor : .secondary)
                     
                     if isUserLine {
                         yourTurnView(line: line)
@@ -173,23 +176,23 @@ struct ConversationDetailView: View {
         VStack(spacing: 16) {
             Text("Your turn! Say:")
                 .font(.subheadline)
-                .foregroundColor(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.primaryColor)
             
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 32))
-                .foregroundColor(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.primaryColor)
                 .multilineTextAlignment(.center)
             
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             if showEnglish {
                 Text(line.english)
                     .font(.body)
-                    .foregroundColor(.blue)
+                    .foregroundStyle(.blue)
             }
         }
         .padding()
@@ -204,7 +207,7 @@ struct ConversationDetailView: View {
         VStack(spacing: 12) {
             Text("Partner says:")
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 24))
@@ -213,13 +216,13 @@ struct ConversationDetailView: View {
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             if showEnglish {
                 Text(line.english)
                     .font(.subheadline)
-                    .foregroundColor(.blue)
+                    .foregroundStyle(.blue)
             }
         }
         .padding()
@@ -236,13 +239,13 @@ struct ConversationDetailView: View {
             
             Text(difficultyText)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Spacer()
             
             Text("\(conversation.lines.count) lines")
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         .padding()
         .background(
@@ -261,25 +264,25 @@ struct ConversationDetailView: View {
                 HStack(spacing: 10) {
                     Image(systemName: culturalNotes.first?.icon ?? "globe")
                         .font(.title3)
-                        .foregroundColor(AppTheme.secondaryColor)
+                        .foregroundStyle(AppTheme.secondaryColor)
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Cultural Context")
                             .font(.caption)
                             .fontWeight(.semibold)
-                            .foregroundColor(AppTheme.secondaryColor)
+                            .foregroundStyle(AppTheme.secondaryColor)
 
                         Text(culturalNotes.first?.title ?? "")
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundColor(.primary)
+                            .foregroundStyle(.primary)
                     }
 
                     Spacer()
 
                     Image(systemName: showCulturalNote ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
             }
             .buttonStyle(.plain)
@@ -294,7 +297,7 @@ struct ConversationDetailView: View {
                         }
                         Text(note.content)
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                             .lineSpacing(3)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -319,32 +322,27 @@ struct ConversationDetailView: View {
     
     private var controlsBar: some View {
         HStack(spacing: 20) {
-            Button(action: { currentLineIndex = 0 }) {
-                Image(systemName: "backward.end.fill")
-            }
-            .disabled(currentLineIndex == 0)
-            
-            Button(action: { if currentLineIndex > 0 { currentLineIndex -= 1 } }) {
-                Image(systemName: "backward.fill")
-            }
-            .disabled(currentLineIndex == 0)
-            
-            Button(action: { togglePlayback() }) {
-                Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                    .font(.title)
-            }
-            
-            Button(action: { advanceLine() }) {
-                Image(systemName: "forward.fill")
-            }
-            .disabled(currentLineIndex >= conversation.lines.count - 1)
-            
-            Button(action: { currentLineIndex = conversation.lines.count - 1 }) {
-                Image(systemName: "forward.end.fill")
-            }
-            .disabled(currentLineIndex >= conversation.lines.count - 1)
+            Button("Jump to Start", systemImage: "backward.end.fill") { currentLineIndex = 0 }
+                .labelStyle(.iconOnly)
+                .disabled(currentLineIndex == 0)
+
+            Button("Previous Line", systemImage: "backward.fill") { if currentLineIndex > 0 { currentLineIndex -= 1 } }
+                .labelStyle(.iconOnly)
+                .disabled(currentLineIndex == 0)
+
+            Button(isPlaying ? "Pause" : "Play", systemImage: isPlaying ? "pause.fill" : "play.fill") { togglePlayback() }
+                .labelStyle(.iconOnly)
+                .font(.title)
+
+            Button("Next Line", systemImage: "forward.fill") { advanceLine() }
+                .labelStyle(.iconOnly)
+                .disabled(currentLineIndex >= conversation.lines.count - 1)
+
+            Button("Jump to End", systemImage: "forward.end.fill") { currentLineIndex = conversation.lines.count - 1 }
+                .labelStyle(.iconOnly)
+                .disabled(currentLineIndex >= conversation.lines.count - 1)
         }
-        .foregroundColor(AppTheme.primaryColor)
+        .foregroundStyle(AppTheme.primaryColor)
         .padding()
         .background(Color(.systemBackground))
         .shadow(color: Color.primary.opacity(0.1), radius: 10, y: -5)
@@ -354,20 +352,20 @@ struct ConversationDetailView: View {
         isPlaying.toggle()
         if isPlaying {
             startAutoPlay()
+        } else {
+            autoPlayTask?.cancel()
         }
     }
     
     private func startAutoPlay() {
-        guard isPlaying, currentLineIndex < conversation.lines.count - 1 else {
-            isPlaying = false
-            return
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            if isPlaying {
+        autoPlayTask?.cancel()
+        autoPlayTask = Task {
+            while isPlaying, currentLineIndex < conversation.lines.count - 1 {
+                try? await Task.sleep(for: .seconds(3))
+                guard !Task.isCancelled, isPlaying else { break }
                 advanceLine()
-                startAutoPlay()
             }
+            isPlaying = false
         }
     }
     
@@ -396,8 +394,8 @@ struct DialogueLineView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(line.speaker)
                 .font(.caption)
-                .fontWeight(.bold)
-                .foregroundColor(AppTheme.primaryColor)
+                .bold()
+                .foregroundStyle(AppTheme.primaryColor)
             
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 22))
@@ -405,13 +403,13 @@ struct DialogueLineView: View {
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             if showEnglish {
                 Text(line.english)
                     .font(.subheadline)
-                    .foregroundColor(.blue)
+                    .foregroundStyle(.blue)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

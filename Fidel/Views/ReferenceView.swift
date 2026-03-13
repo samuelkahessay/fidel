@@ -87,12 +87,12 @@ struct ReferenceView: View {
     }
     
     private var categoryFilter: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(.horizontal) {
             HStack(spacing: 8) {
                 CategoryChip(title: "All", isSelected: viewModel.selectedCategory == nil) {
                     viewModel.selectCategory(nil)
                 }
-                
+
                 ForEach(viewModel.vocabularyCategories, id: \.self) { category in
                     CategoryChip(title: category, isSelected: viewModel.selectedCategory == category) {
                         viewModel.selectCategory(category)
@@ -101,6 +101,7 @@ struct ReferenceView: View {
             }
             .padding(.horizontal)
         }
+        .scrollIndicators(.hidden)
         .padding(.vertical, 8)
         .background(Color(.systemBackground))
     }
@@ -137,13 +138,13 @@ struct PhraseReferenceRow: View {
                 
                 Button(action: copyToClipboard) {
                     Image(systemName: isCopied ? "checkmark" : "doc.on.doc")
-                        .foregroundColor(isCopied ? .green : .secondary)
+                        .foregroundStyle(isCopied ? .green : .secondary)
                 }
             }
             
             Text(phrase.transliteration)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             HStack {
                 Text(phrase.english)
@@ -153,7 +154,7 @@ struct PhraseReferenceRow: View {
                 if !phrase.notes.isEmpty {
                     Text("(\(phrase.notes))")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
             }
         }
@@ -167,7 +168,8 @@ struct PhraseReferenceRow: View {
         let feedback = UINotificationFeedbackGenerator()
         feedback.notificationOccurred(.success)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        Task {
+            try? await Task.sleep(for: .seconds(2))
             isCopied = false
         }
     }
@@ -183,7 +185,7 @@ struct VocabularyReferenceRow: View {
                     .font(AppTheme.Typography.amharic(size: 18))
                 Text(word.transliteration)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             Spacer()
@@ -194,7 +196,7 @@ struct VocabularyReferenceRow: View {
                     .fontWeight(.medium)
                 Text(word.category)
                     .font(.caption2)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 2)
                     .background(
@@ -214,8 +216,8 @@ struct NumberRow: View {
         HStack {
             Text("\(number.value)")
                 .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(AppTheme.primaryColor)
+                .bold()
+                .foregroundStyle(AppTheme.primaryColor)
                 .frame(width: 50)
             
             Text(number.amharic)
@@ -225,7 +227,7 @@ struct NumberRow: View {
             
             Text(number.transliteration)
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
     }
 }
@@ -245,7 +247,7 @@ struct CategoryChip: View {
                     Capsule()
                         .fill(isSelected ? AppTheme.primaryColor : Color(.systemGray5))
                 )
-                .foregroundColor(isSelected ? .white : .primary)
+                .foregroundStyle(isSelected ? .white : .primary)
         }
     }
 }

@@ -30,7 +30,8 @@ struct FidelView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         vowelHeaderRow
                         
-                        ForEach(Array(filteredChart.enumerated()), id: \.offset) { _, row in
+                        ForEach(filteredChart.indices, id: \.self) { index in
+                            let row = filteredChart[index]
                             if !row.isEmpty {
                                 FidelRow(characters: row, selectedCharacter: $selectedCharacter)
                             }
@@ -42,7 +43,7 @@ struct FidelView: View {
             .navigationTitle("Fidel Chart")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") { dismiss() }
                 }
             }
@@ -61,7 +62,7 @@ struct FidelView: View {
             
             Text("The Ethiopic Script has 34 basic consonants, each with 7 vowel forms")
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }
@@ -77,7 +78,7 @@ struct FidelView: View {
             ForEach(0..<7) { index in
                 Text(vowelHeaders[index])
                     .font(.caption.bold())
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
                     .frame(width: 60)
             }
         }
@@ -94,7 +95,7 @@ struct FidelRow: View {
             if let first = characters.first {
                 Text(first.consonant)
                     .font(.caption.bold())
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .frame(width: 50)
             }
             
@@ -124,7 +125,7 @@ struct FidelCell: View {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(isSelected ? AppTheme.primaryColor : Color.clear)
             )
-            .foregroundColor(isSelected ? .white : .primary)
+            .foregroundStyle(isSelected ? .white : .primary)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.gray.opacity(0.2), lineWidth: 1)
@@ -140,23 +141,23 @@ struct CharacterDetailView: View {
         VStack(spacing: 24) {
             Text(character.character)
                 .font(AppTheme.Typography.amharic(size: 120))
-                .foregroundColor(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.primaryColor)
             
             VStack(spacing: 8) {
                 Text("Romanization")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 
                 Text(character.romanization)
                     .font(.title)
-                    .fontWeight(.bold)
+                    .bold()
             }
             
             HStack(spacing: 32) {
                 VStack {
                     Text("Consonant")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text(character.consonant)
                         .font(.title2)
                 }
@@ -164,7 +165,7 @@ struct CharacterDetailView: View {
                 VStack {
                     Text("Vowel Form")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("\(character.vowelOrder)")
                         .font(.title2)
                 }
@@ -172,7 +173,7 @@ struct CharacterDetailView: View {
             
             Text("Pronunciation: \(character.audioHint)")
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 12)

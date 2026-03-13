@@ -276,7 +276,7 @@ struct SelamCoachingSettings: Codable {
     /// Check if coaching is currently snoozed
     var isSnoozed: Bool {
         if let snoozedUntil = snoozedUntil {
-            return Date() < snoozedUntil
+            return Date.now < snoozedUntil
         }
         return false
     }
