@@ -2518,5 +2518,101 @@
     "category" : "Time",
     "english" : "when",
     "transliteration" : "macha"
+  },
+  {
+    "amharic" : "ከኋላ",
+    "category" : "Directions",
+    "english" : "at the back",
+    "transliteration" : "kahuala"
+  },
+  {
+    "amharic" : "ጓሮ",
+    "category" : "Places",
+    "english" : "backyard",
+    "transliteration" : "guaro"
+  },
+  {
+    "amharic" : "ጦር",
+    "category" : "Common Nouns",
+    "english" : "army",
+    "transliteration" : "tor"
+  },
+  {
+    "amharic" : "የሰውነት አካል",
+    "category" : "Body Parts",
+    "english" : "body parts",
+    "transliteration" : "yasawinat akal"
+  },
+  {
+    "amharic" : "ስኒ",
+    "category" : "Food & Drink",
+    "english" : "coffee cup",
+    "transliteration" : "sini"
+  },
+  {
+    "amharic" : "በመጽሃፎቹ መሃል",
+    "category" : "Directions",
+    "english" : "between the books",
+    "transliteration" : "bamets'hafochu mahal"
+  },
+  {
+    "amharic" : "አምቦ ውሃ",
+    "category" : "Food & Drink",
+    "english" : "sparkling water",
+    "transliteration" : "ambo wuha"
+  },
+  {
+    "amharic" : "መርዝ",
+    "category" : "Common Nouns",
+    "english" : "poison",
+    "transliteration" : "mariz"
+  },
+  {
+    "amharic" : "የቤት እመቤት",
+    "category" : "Occupations",
+    "english" : "homemaker",
+    "transliteration" : "yabet imebet"
+  },
+  {
+    "amharic" : "በር ጋር",
+    "category" : "Directions",
+    "english" : "at the door",
+    "transliteration" : "bar gar"
+  },
+  {
+    "amharic" : "ከሶፋው ኋላ",
+    "category" : "Directions",
+    "english" : "behind the sofa",
+    "transliteration" : "kasofaw huala"
+  },
+  {
+    "amharic" : "ጠረጴዛ ላይ",
+    "category" : "Directions",
+    "english" : "on the table",
+    "transliteration" : "tarapeza lay"
+  },
+  {
+    "amharic" : "ጠረጴዛ ስር",
+    "category" : "Directions",
+    "english" : "under the table",
+    "transliteration" : "tarapeza sir"
+  },
+  {
+    "amharic" : "አዋቂ",
+    "category" : "Common Nouns",
+    "english" : "adult",
+    "transliteration" : "awaki"
+  },
+  {
+    "amharic" : "የተጨናነቀ",
+    "category" : "Common Adjectives",
+    "english" : "crowded",
+    "transliteration" : "yatachananaka"
+  },
+  {
+    "amharic" : "ኔትዎርክ",
+    "category" : "Technology",
+    "english" : "network\/service area",
+    "transliteration" : "network"
   }
 ]

@@ -98,6 +98,45 @@ final class LocalFirstTests: XCTestCase {
         }
     }
 
+    func testBundledVocabularyIncludesReviewedImportBatch() {
+        let expectedWords: [(category: String, amharic: String, transliteration: String, english: String)] = [
+            ("Directions", "ከኋላ", "kahuala", "at the back"),
+            ("Places", "ጓሮ", "guaro", "backyard"),
+            ("Common Nouns", "ጦር", "tor", "army"),
+            ("Body Parts", "የሰውነት አካል", "yasawinat akal", "body parts"),
+            ("Food & Drink", "ስኒ", "sini", "coffee cup"),
+            ("Directions", "በመጽሃፎቹ መሃል", "bamets'hafochu mahal", "between the books"),
+            ("Food & Drink", "አምቦ ውሃ", "ambo wuha", "sparkling water"),
+            ("Common Nouns", "መርዝ", "mariz", "poison"),
+            ("Occupations", "የቤት እመቤት", "yabet imebet", "homemaker"),
+            ("Directions", "በር ጋር", "bar gar", "at the door"),
+            ("Directions", "ከሶፋው ኋላ", "kasofaw huala", "behind the sofa"),
+            ("Directions", "ጠረጴዛ ላይ", "tarapeza lay", "on the table"),
+            ("Directions", "ጠረጴዛ ስር", "tarapeza sir", "under the table"),
+            ("Common Nouns", "አዋቂ", "awaki", "adult"),
+            ("Common Adjectives", "የተጨናነቀ", "yatachananaka", "crowded"),
+            ("Technology", "ኔትዎርክ", "network", "network/service area")
+        ]
+
+        XCTAssertEqual(AmharicData.vocabulary.count, 436)
+
+        for expectedWord in expectedWords {
+            let word = AmharicData.vocabulary.first { $0.amharic == expectedWord.amharic }
+
+            XCTAssertEqual(word?.category, expectedWord.category, expectedWord.amharic)
+            XCTAssertEqual(word?.transliteration, expectedWord.transliteration, expectedWord.amharic)
+            XCTAssertEqual(word?.english, expectedWord.english, expectedWord.amharic)
+        }
+    }
+
+    func testBundledVocabularyHasNoDuplicateAmharicEnglishPairs() {
+        let keys = AmharicData.vocabulary.map { word in
+            "\(normalizedVocabularyField(word.amharic))|\(normalizedVocabularyField(word.english))"
+        }
+
+        XCTAssertEqual(Set(keys).count, keys.count)
+    }
+
     func testRecordedStrokeShapePassesTracingEvaluation() throws {
         let characterId = "0-1"
         let strokeData = try XCTUnwrap(StrokeDataRepository.shared.getStrokeData(for: characterId))
@@ -135,6 +174,14 @@ final class LocalFirstTests: XCTestCase {
         let defaults = UserDefaults(suiteName: suiteName)!
         defaults.removePersistentDomain(forName: suiteName)
         return defaults
+    }
+
+    private func normalizedVocabularyField(_ value: String) -> String {
+        value
+            .precomposedStringWithCanonicalMapping
+            .lowercased()
+            .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func makeDrawing(points: [CGPoint]) -> PKDrawing {
