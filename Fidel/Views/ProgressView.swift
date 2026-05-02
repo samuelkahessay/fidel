@@ -65,7 +65,7 @@ struct ProgressDashboardView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Saved on This Device")
                     .font(AppTheme.Typography.headline)
-                Text("Your progress is saved automatically on this device. No account required.")
+                Text("Your progress is saved automatically on this device. No setup required.")
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(.secondary)
             }

@@ -302,9 +302,9 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 11: Final Local-First QA and Cleanup
 
 **Claim to verify**
-- [ ] No auth/account/cloud runtime references remain unless explicitly kept for optional services outside the core app path.
-- [ ] Core lessons, practice, reference, and progress work without sign-in.
-- [ ] All local-first tasks above have been checked off and committed.
+- [x] No auth/account/cloud runtime references remain unless explicitly kept for optional services outside the core app path.
+- [x] Core lessons, practice, reference, and progress work without sign-in.
+- [x] All local-first tasks above have been checked off and committed.
 
 **Likely files**
 - `README.md`
@@ -313,17 +313,17 @@ This document is the durable working checklist. Execute one task at a time. For 
 - Any source files flagged by final searches
 
 **Implementation checklist**
-- [ ] Run `rg -n "AuthManager|AuthGateView|AppleSignInView|AuthenticationServices|Keychain|CloudKit|cloudKitDatabase|Sign Out|Cloud Sync|iCloud|sign in|account" Fidel README.md AUTH_DATABASE_SETUP.md`.
-- [ ] Remove or update outdated account/cloud language in user-facing docs.
-- [ ] Run `build_sim`.
-- [ ] Run `test_sim` after test targets exist.
-- [ ] Run the app with `build_run_sim` and manually verify launch goes directly to learning content.
-- [ ] Manually verify Progress copy explains local device persistence.
-- [ ] Manually verify Reference exposes the full bundled content.
-- [ ] Mark this plan's completed task checkboxes only after fresh verification.
+- [x] Run `rg -n "AuthManager|AuthGateView|AppleSignInView|AuthenticationServices|Keychain|CloudKit|cloudKitDatabase|Sign Out|Cloud Sync|iCloud|sign in|account" Fidel README.md AUTH_DATABASE_SETUP.md`.
+- [x] Remove or update outdated account/cloud language in user-facing docs.
+- [x] Run `build_sim`.
+- [x] Run `test_sim` after test targets exist.
+- [x] Run the app with `build_run_sim` and manually verify launch goes directly to learning content.
+- [x] Manually verify Progress copy explains local device persistence.
+- [x] Manually verify Reference exposes the full bundled content.
+- [x] Mark this plan's completed task checkboxes only after fresh verification.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim`, `test_sim`, and `build_run_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim`, `test_sim`, and `build_run_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `chore: finish local-first cleanup`
@@ -331,15 +331,15 @@ This document is the durable working checklist. Execute one task at a time. For 
 ---
 
 ## Completion Criteria
-- [ ] App opens directly into learning content.
-- [ ] No sign-in or account state appears in the core UX.
-- [ ] SwiftData persistence is local-only.
-- [ ] Progress persists between launches under the single local learner ID.
-- [ ] New progress is created under the local learner record without account setup.
-- [ ] Settings persist locally.
-- [ ] Core lessons, practice, reference, and progress work offline.
-- [ ] Full bundled content is accessible through coherent app surfaces.
-- [ ] Flashcards prefer due cards and keep FSRS scheduling state.
-- [ ] Stage advancement happens after learning milestones.
-- [ ] Tests cover the critical local-first flows.
-- [ ] Final XcodeBuildMCP build and test validations pass.
+- [x] App opens directly into learning content.
+- [x] No sign-in or account state appears in the core UX.
+- [x] SwiftData persistence is local-only.
+- [x] Progress persists between launches under the single local learner ID.
+- [x] New progress is created under the local learner record without account setup.
+- [x] Settings persist locally.
+- [x] Core lessons, practice, reference, and progress work offline.
+- [x] Full bundled content is accessible through coherent app surfaces.
+- [x] Flashcards prefer due cards and keep FSRS scheduling state.
+- [x] Stage advancement happens after learning milestones.
+- [x] Tests cover the critical local-first flows.
+- [x] Final XcodeBuildMCP build and test validations pass.
