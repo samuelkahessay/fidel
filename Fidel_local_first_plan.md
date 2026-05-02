@@ -246,9 +246,9 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 9: Add Optional Export and Import Backup
 
 **Claim to verify**
-- [ ] Local-first removes account sync and CloudKit backup from the core path.
-- [ ] There is no existing user-controlled progress export/import service.
-- [ ] Progress and flashcard records are sufficient for a basic backup snapshot.
+- [x] Local-first removes account sync and CloudKit backup from the core path.
+- [x] There is no existing user-controlled progress export/import service.
+- [x] Progress and flashcard records are sufficient for a basic backup snapshot.
 
 **Likely files**
 - `Fidel/Services/ProgressExportService.swift`
@@ -256,14 +256,14 @@ This document is the durable working checklist. Execute one task at a time. For 
 - `Fidel/Models/Models.swift`
 
 **Implementation checklist**
-- [ ] Define a versioned Codable snapshot for `UserProgress`, `FlashcardProgress`, and relevant local settings.
-- [ ] Export the snapshot as JSON through a Files share/export flow.
-- [ ] Import a snapshot through Files, merge it into the local learner record, and preserve the strongest progress values.
-- [ ] Show clear local backup copy: "Export a backup file you control."
-- [ ] Keep import failure messages specific and recoverable.
+- [x] Define a versioned Codable snapshot for `UserProgress`, `FlashcardProgress`, and relevant local settings.
+- [x] Export the snapshot as JSON through a Files share/export flow.
+- [x] Import a snapshot through Files, merge it into the local learner record, and preserve the strongest progress values.
+- [x] Show clear local backup copy: "Export a backup file you control."
+- [x] Keep import failure messages specific and recoverable.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `feat: add local progress backup files`

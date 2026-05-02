@@ -70,6 +70,7 @@
 		AAA00096001 /* vocabulary.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00096000 /* vocabulary.json */; };
 		AAA00097001 /* AmharicDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00097000 /* AmharicDataLoader.swift */; };
 		AAA00098001 /* AppSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00098000 /* AppSettingsStore.swift */; };
+		AAA00099001 /* ProgressExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00099000 /* ProgressExportService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		AAA00096000 /* vocabulary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vocabulary.json; sourceTree = "<group>"; };
 		AAA00097000 /* AmharicDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmharicDataLoader.swift; sourceTree = "<group>"; };
 		AAA00098000 /* AppSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsStore.swift; sourceTree = "<group>"; };
+		AAA00099000 /* ProgressExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressExportService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -274,6 +276,7 @@
 				AAA00085000 /* StrokeSmoother.swift */,
 				AAA00097000 /* AmharicDataLoader.swift */,
 				AAA00098000 /* AppSettingsStore.swift */,
+				AAA00099000 /* ProgressExportService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				AAA00086001 /* StrokeReviewView.swift in Sources */,
 				AAA00097001 /* AmharicDataLoader.swift in Sources */,
 				AAA00098001 /* AppSettingsStore.swift in Sources */,
+				AAA00099001 /* ProgressExportService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

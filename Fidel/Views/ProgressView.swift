@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 
 struct ProgressDashboardView: View {
     @Environment(\.modelContext) private var modelContext
@@ -8,12 +9,16 @@ struct ProgressDashboardView: View {
     private let settingsStore = AppSettingsStore()
     @State private var dailyGoal = AppSettingsStore.defaultDailyXPGoal
     @State private var progress: UserProgress?
+    @State private var exportDocument: ProgressBackupDocument?
+    @State private var isImportingBackup = false
+    @State private var backupMessage: String?
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
                     localSaveStatusSection
+                    backupSection
                     stageTimeline
                     statsOverview
                     streakSection
@@ -27,6 +32,22 @@ struct ProgressDashboardView: View {
             .navigationTitle("Progress")
             .task {
                 loadProgress()
+            }
+            .fileExporter(
+                isPresented: Binding(
+                    get: { exportDocument != nil },
+                    set: { if !$0 { exportDocument = nil } }
+                ),
+                document: exportDocument,
+                contentType: .json,
+                defaultFilename: "Fidel Progress Backup"
+            ) { result in
+                if case .failure(let error) = result {
+                    backupMessage = error.localizedDescription
+                }
+            }
+            .fileImporter(isPresented: $isImportingBackup, allowedContentTypes: [.json]) { result in
+                importBackup(result)
             }
         }
     }
@@ -50,6 +71,50 @@ struct ProgressDashboardView: View {
             }
 
             Spacer()
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
+        )
+    }
+
+    private var backupSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Label("Local Backup", systemImage: "externaldrive.fill")
+                    .font(AppTheme.Typography.headline)
+                Spacer()
+            }
+
+            Text("Export a backup file you control, or import one from Files to restore progress on this device.")
+                .font(AppTheme.Typography.caption)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: 12) {
+                Button {
+                    exportBackup()
+                } label: {
+                    Label("Export", systemImage: "square.and.arrow.up")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(SecondaryButtonStyle())
+
+                Button {
+                    isImportingBackup = true
+                } label: {
+                    Label("Import", systemImage: "square.and.arrow.down")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(SecondaryButtonStyle())
+            }
+
+            if let backupMessage {
+                Text(backupMessage)
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
         .padding()
         .background(
@@ -310,6 +375,52 @@ struct ProgressDashboardView: View {
                 progress?.updatedAt = Date.now
             }
         )
+    }
+
+    private func exportBackup() {
+        do {
+            let data = try ProgressExportService(modelContext: modelContext, settingsStore: settingsStore).exportData()
+            exportDocument = ProgressBackupDocument(data: data)
+            backupMessage = "Backup ready to export."
+        } catch {
+            backupMessage = "Could not create backup: \(error.localizedDescription)"
+        }
+    }
+
+    private func importBackup(_ result: Result<URL, Error>) {
+        do {
+            let url = try result.get()
+            let canAccess = url.startAccessingSecurityScopedResource()
+            defer {
+                if canAccess {
+                    url.stopAccessingSecurityScopedResource()
+                }
+            }
+            let data = try Data(contentsOf: url)
+            try ProgressExportService(modelContext: modelContext, settingsStore: settingsStore).importData(data)
+            loadProgress()
+            backupMessage = "Backup imported on this device."
+        } catch {
+            backupMessage = "Could not import backup: \(error.localizedDescription)"
+        }
+    }
+}
+
+struct ProgressBackupDocument: FileDocument {
+    static var readableContentTypes: [UTType] { [.json] }
+
+    let data: Data
+
+    init(data: Data = Data()) {
+        self.data = data
+    }
+
+    init(configuration: ReadConfiguration) throws {
+        data = configuration.file.regularFileContents ?? Data()
+    }
+
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: data)
     }
 }
 
