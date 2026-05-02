@@ -165,6 +165,9 @@ final class UserProgress {
     func traceCharacter(_ charId: String) {
         if !charactersTraced.contains(charId) {
             charactersTraced.append(charId)
+            if !fidelCharactersRecognized.contains(charId) {
+                fidelCharactersRecognized.append(charId)
+            }
             addXP(5)
             updatedAt = .now
         }

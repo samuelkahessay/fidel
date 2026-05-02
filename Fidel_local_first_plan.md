@@ -215,9 +215,9 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 8: Wire Stage Advancement Into Completion Paths
 
 **Claim to verify**
-- [ ] `StageManager.checkAndAdvanceStage()` exists.
-- [ ] `JourneyViewModel.checkAdvancement()` exists.
-- [ ] Lesson completion, conversation completion, vocabulary mastery, and tracing currently do not reliably trigger advancement checks from their completion paths.
+- [x] `StageManager.checkAndAdvanceStage()` exists.
+- [x] `JourneyViewModel.checkAdvancement()` exists.
+- [x] Lesson completion, conversation completion, vocabulary mastery, and tracing currently do not reliably trigger advancement checks from their completion paths.
 
 **Likely files**
 - `Fidel/Views/JourneyView.swift`
@@ -228,15 +228,15 @@ This document is the durable working checklist. Execute one task at a time. For 
 - `Fidel/Repositories/ProgressRepository.swift`
 
 **Implementation checklist**
-- [ ] Trigger stage advancement checks after lesson completion.
-- [ ] Trigger stage advancement checks after conversation completion.
-- [ ] Trigger stage advancement checks after Fidel recognition or tracing milestones.
-- [ ] Trigger stage advancement checks after vocabulary mastery when that path records mastery.
-- [ ] Refresh Journey after returning from child activities so newly unlocked content appears.
-- [ ] Preserve the existing stage advancement presentation.
+- [x] Trigger stage advancement checks after lesson completion.
+- [x] Trigger stage advancement checks after conversation completion.
+- [x] Trigger stage advancement checks after Fidel recognition or tracing milestones.
+- [x] Trigger stage advancement checks after vocabulary mastery when that path records mastery.
+- [x] Refresh Journey after returning from child activities so newly unlocked content appears.
+- [x] Preserve the existing stage advancement presentation.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `feat: advance stages after learning milestones`

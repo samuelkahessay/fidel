@@ -68,6 +68,7 @@ struct JourneyView: View {
         _ = progressRepo.ensureUserProgress()
         let stageManager = StageManager(progressRepository: progressRepo)
         viewModel.configure(stageManager: stageManager, progressRepository: progressRepo)
+        viewModel.checkAdvancement()
     }
 
     // MARK: - Stage Header
