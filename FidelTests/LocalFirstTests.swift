@@ -1,4 +1,6 @@
 import SwiftData
+import PencilKit
+import UIKit
 import XCTest
 @testable import Fidel___Learn_Amharic
 
@@ -54,6 +56,69 @@ final class LocalFirstTests: XCTestCase {
         XCTAssertEqual(dueCards.map(\.itemId), ["old", "new"])
     }
 
+    func testBlankTracingDrawingCannotPass() {
+        let referencePath = PathExtractor.shared.extractCGPath(for: "ሀ", size: TracingLayout.canvasSize)
+
+        let result = DrawingEvaluator.shared.evaluate(
+            drawing: PKDrawing(),
+            referencePath: referencePath,
+            canvasSize: TracingLayout.canvasSize
+        )
+
+        XCTAssertFalse(result.evaluation.passed)
+        XCTAssertEqual(result.evaluation.retryReason, .blankDrawing)
+    }
+
+    func testTracingUsesOneCanvasGeometryForGuideAndEvaluation() {
+        XCTAssertEqual(TracingViewModel.canvasSize, TracingLayout.canvasSize)
+        XCTAssertEqual(TracingLayout.drawingGuideSize, TracingLayout.canvasSize)
+    }
+
+    func testDrawingThumbnailUsesFullSourceCanvas() {
+        let drawing = makeDrawing(points: [
+            CGPoint(x: 250, y: 250),
+            CGPoint(x: 285, y: 285)
+        ])
+
+        let thumbnail = TracingDrawingRenderer.thumbnail(
+            from: drawing,
+            sourceCanvasSize: TracingLayout.canvasSize,
+            outputSize: TracingLayout.reviewThumbnailSize
+        )
+
+        XCTAssertTrue(imageContainsVisiblePixel(thumbnail))
+    }
+
+    func testBundledStrokeDataIncludesSampledCharacters() {
+        for characterId in ["0-1", "12-1", "33-7"] {
+            XCTAssertTrue(
+                StrokeDataRepository.shared.hasStrokeData(for: characterId),
+                "Expected bundled stroke data for \(characterId)"
+            )
+        }
+    }
+
+    func testRecordedStrokeShapePassesTracingEvaluation() throws {
+        let characterId = "0-1"
+        let strokeData = try XCTUnwrap(StrokeDataRepository.shared.getStrokeData(for: characterId))
+        let drawing = makeDrawing(from: strokeData)
+        let referencePath = PathExtractor.shared.extractCGPath(
+            for: strokeData.character,
+            size: TracingLayout.canvasSize
+        )
+
+        let result = DrawingEvaluator.shared.evaluate(
+            drawing: drawing,
+            referencePath: referencePath,
+            canvasSize: TracingLayout.canvasSize
+        )
+
+        XCTAssertTrue(
+            result.evaluation.passed,
+            "Expected recorded stroke drawing to pass, got \(result.evaluation)"
+        )
+    }
+
     private func makeContainer() throws -> ModelContainer {
         let schema = Schema([
             UserProgress.self,
@@ -70,5 +135,74 @@ final class LocalFirstTests: XCTestCase {
         let defaults = UserDefaults(suiteName: suiteName)!
         defaults.removePersistentDomain(forName: suiteName)
         return defaults
+    }
+
+    private func makeDrawing(points: [CGPoint]) -> PKDrawing {
+        let strokePoints = points.enumerated().map { index, point in
+            PKStrokePoint(
+                location: point,
+                timeOffset: TimeInterval(index) * 0.05,
+                size: CGSize(width: 18, height: 18),
+                opacity: 1,
+                force: 1,
+                azimuth: 0,
+                altitude: .pi / 2
+            )
+        }
+        let path = PKStrokePath(controlPoints: strokePoints, creationDate: Date())
+        let stroke = PKStroke(ink: PKInk(.marker, color: .systemIndigo), path: path)
+        return PKDrawing(strokes: [stroke])
+    }
+
+    private func makeDrawing(from data: CharacterStrokeData) -> PKDrawing {
+        let recordingGlyphScale = 0.58
+        let offset = (1.0 - recordingGlyphScale) / 2.0
+        let canvasSize = TracingLayout.canvasSize
+
+        let strokes = data.strokes.map { recordedStroke in
+            let strokePoints = recordedStroke.points.enumerated().map { index, point in
+                PKStrokePoint(
+                    location: CGPoint(
+                        x: ((point.x - offset) / recordingGlyphScale) * canvasSize.width,
+                        y: ((point.y - offset) / recordingGlyphScale) * canvasSize.height
+                    ),
+                    timeOffset: TimeInterval(index) * 0.04,
+                    size: CGSize(width: 18, height: 18),
+                    opacity: 1,
+                    force: 1,
+                    azimuth: 0,
+                    altitude: .pi / 2
+                )
+            }
+            return PKStroke(
+                ink: PKInk(.marker, color: .systemIndigo),
+                path: PKStrokePath(controlPoints: strokePoints, creationDate: Date())
+            )
+        }
+
+        return PKDrawing(strokes: strokes)
+    }
+
+    private func imageContainsVisiblePixel(_ image: UIImage) -> Bool {
+        guard let cgImage = image.cgImage else { return false }
+        let width = cgImage.width
+        let height = cgImage.height
+        let bytesPerRow = width * 4
+        var pixels = [UInt8](repeating: 0, count: bytesPerRow * height)
+
+        guard let context = CGContext(
+            data: &pixels,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: bytesPerRow,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        ) else {
+            return false
+        }
+
+        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
+        return stride(from: 3, to: pixels.count, by: 4).contains { pixels[$0] > 10 }
     }
 }

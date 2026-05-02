@@ -1,6 +1,30 @@
 import Foundation
 import SwiftUI
 import PencilKit
+import UIKit
+
+enum TracingLayout {
+    static let canvasSize = CGSize(width: 300, height: 300)
+    static let drawingGuideSize = canvasSize
+    static let reviewThumbnailSize = CGSize(width: 130, height: 130)
+}
+
+enum TracingDrawingRenderer {
+    static func thumbnail(from drawing: PKDrawing, sourceCanvasSize: CGSize, outputSize: CGSize) -> UIImage {
+        let format = UIGraphicsImageRendererFormat.default()
+        format.opaque = false
+        format.scale = 1
+
+        let renderer = UIGraphicsImageRenderer(size: outputSize, format: format)
+        return renderer.image { _ in
+            let sourceImage = drawing.image(
+                from: CGRect(origin: .zero, size: sourceCanvasSize),
+                scale: 1
+            )
+            sourceImage.draw(in: CGRect(origin: .zero, size: outputSize))
+        }
+    }
+}
 
 /// Manages state for a character tracing practice session.
 /// Presents 10 random first-order (ግዕዝ) Fidel characters for the user to trace.
@@ -25,13 +49,15 @@ final class TracingViewModel {
     var completedCount = 0
     var skippedCount = 0
     var needsRetry = false
+    var lastEvaluation = DrawingEvaluation(score: 0, coverage: 0, precision: 0, retryReason: nil)
 
     // MARK: - Dependencies
 
     private var progressRepository: ProgressRepositoryProtocol?
     private let pathExtractor = PathExtractor.shared
     private let evaluator = DrawingEvaluator.shared
-    let canvasSize = CGSize(width: 300, height: 300)
+    static let canvasSize = TracingLayout.canvasSize
+    let canvasSize = TracingLayout.canvasSize
 
     // MARK: - Configuration
 
@@ -51,6 +77,7 @@ final class TracingViewModel {
         phase = .watching
         userDrawing = PKDrawing()
         lastScore = 0
+        lastEvaluation = DrawingEvaluation(score: 0, coverage: 0, precision: 0, retryReason: nil)
         showCompletion = false
         completedCount = 0
         skippedCount = 0
@@ -70,7 +97,29 @@ final class TracingViewModel {
 
     var progressFraction: Double {
         guard !characters.isEmpty else { return 0 }
-        return Double(currentIndex) / Double(characters.count)
+        return Double(currentIndex + 1) / Double(characters.count)
+    }
+
+    var hasDrawing: Bool {
+        !userDrawing.strokes.isEmpty
+    }
+
+    var retryMessage: String {
+        switch lastEvaluation.retryReason {
+        case .blankDrawing:
+            return "Draw the character before checking."
+        case .tooLittleCoverage:
+            return "Cover more of the guide before checking."
+        case .tooMuchOutsideGuide:
+            return "Stay closer to the guide."
+        case nil:
+            return "Try to follow the guide more closely."
+        }
+    }
+
+    var reviewMessage: String {
+        let percent = Int((lastEvaluation.score * 100).rounded())
+        return "Guide match \(percent)%"
     }
 
     // MARK: - Phase Transitions
@@ -86,14 +135,15 @@ final class TracingViewModel {
 
         let referencePath = pathExtractor.extractCGPath(for: character.character, size: canvasSize)
         let result = evaluator.evaluate(drawing: userDrawing, referencePath: referencePath, canvasSize: canvasSize)
+        lastEvaluation = result.evaluation
 
         switch result {
-        case .passedForReview(let score):
-            lastScore = score
+        case .passedForReview(let evaluation):
+            lastScore = evaluation.score
             needsRetry = false
             phase = .reviewing
-        case .needsRetry(let score):
-            lastScore = score
+        case .needsRetry(let evaluation):
+            lastScore = evaluation.score
             needsRetry = true
         }
     }
@@ -129,6 +179,7 @@ final class TracingViewModel {
             phase = .watching
             userDrawing = PKDrawing()
             lastScore = 0
+            lastEvaluation = DrawingEvaluation(score: 0, coverage: 0, precision: 0, retryReason: nil)
             needsRetry = false
         } else {
             showCompletion = true

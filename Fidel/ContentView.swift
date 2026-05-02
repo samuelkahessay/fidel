@@ -30,27 +30,29 @@ struct ContentView: View {
         }
         #if DEBUG
         .overlay(alignment: .topTrailing) {
-            Menu {
-                Button {
-                    showStrokeRecorder = true
+            if showsStrokeAdminMenu {
+                Menu {
+                    Button {
+                        showStrokeRecorder = true
+                    } label: {
+                        Label("Record Strokes", systemImage: "pencil.tip.crop.circle")
+                    }
+                    Button {
+                        showStrokeReview = true
+                    } label: {
+                        Label("Review Strokes", systemImage: "hand.thumbsup.fill")
+                    }
                 } label: {
-                    Label("Record Strokes", systemImage: "pencil.tip.crop.circle")
+                    Label("Strokes", systemImage: "pencil.tip.crop.circle")
+                        .font(.caption.bold())
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(.indigo, in: Capsule())
+                        .foregroundStyle(.white)
                 }
-                Button {
-                    showStrokeReview = true
-                } label: {
-                    Label("Review Strokes", systemImage: "hand.thumbsup.fill")
-                }
-            } label: {
-                Label("Strokes", systemImage: "pencil.tip.crop.circle")
-                    .font(.caption.bold())
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(.indigo, in: Capsule())
-                    .foregroundStyle(.white)
+                .padding(.trailing, 16)
+                .padding(.top, 4)
             }
-            .padding(.trailing, 16)
-            .padding(.top, 4)
         }
         .fullScreenCover(isPresented: $showStrokeRecorder) {
             StrokeRecorderView()
@@ -60,6 +62,13 @@ struct ContentView: View {
         }
         #endif
     }
+
+    #if DEBUG
+    private var showsStrokeAdminMenu: Bool {
+        ProcessInfo.processInfo.arguments.contains("-show-stroke-admin")
+            || ProcessInfo.processInfo.environment["FIDEL_SHOW_STROKE_ADMIN"] == "1"
+    }
+    #endif
 }
 
 #Preview {
