@@ -133,9 +133,9 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 5: Add Local Settings and Config Storage
 
 **Claim to verify**
-- [ ] Daily goal is stored on `UserProgress` but has no dedicated settings experience.
-- [ ] Selam coaching settings already use `UserDefaults`.
-- [ ] There is no shared app settings store for local preferences.
+- [x] Daily goal is stored on `UserProgress` but has no dedicated settings experience.
+- [x] Selam coaching settings already use `UserDefaults`.
+- [x] There is no shared app settings store for local preferences.
 
 **Likely files**
 - `Fidel/Services/AppSettingsStore.swift`
@@ -143,14 +143,14 @@ This document is the durable working checklist. Execute one task at a time. For 
 - `Fidel/Repositories/SelamRepository.swift`
 
 **Implementation checklist**
-- [ ] Add `SettingsKeys` constants for daily XP goal, preferred response language, transliteration visibility, auto-play pronunciation, haptics, selected reference tab, AI tools visibility, onboarding complete, and last opened activity.
-- [ ] Add `AppSettingsStore` backed by `UserDefaults`.
-- [ ] Keep small preferences in `UserDefaults`; reserve Application Support JSON for larger export/import or content-pack data.
-- [ ] Connect daily XP goal display and editing to the settings store.
-- [ ] Leave SwiftData progress counters in SwiftData.
+- [x] Add `SettingsKeys` constants for daily XP goal, preferred response language, transliteration visibility, auto-play pronunciation, haptics, selected reference tab, AI tools visibility, onboarding complete, and last opened activity.
+- [x] Add `AppSettingsStore` backed by `UserDefaults`.
+- [x] Keep small preferences in `UserDefaults`; reserve Application Support JSON for larger export/import or content-pack data.
+- [x] Connect daily XP goal display and editing to the settings store.
+- [x] Leave SwiftData progress counters in SwiftData.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `feat: add local app settings store`

@@ -5,6 +5,8 @@ struct ProgressDashboardView: View {
     @Environment(\.modelContext) private var modelContext
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
+    private let settingsStore = AppSettingsStore()
+    @State private var dailyGoal = AppSettingsStore.defaultDailyXPGoal
     @State private var progress: UserProgress?
     
     var body: some View {
@@ -183,16 +185,22 @@ struct ProgressDashboardView: View {
                 Text("Daily Goal")
                     .font(.headline)
                 Spacer()
-                Text("\(progress?.todayXP ?? 0)/\(progress?.dailyGoal ?? 50) XP")
+                Text("\(progress?.todayXP ?? 0)/\(dailyGoal) XP")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
             
-            let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(progress?.dailyGoal ?? 50), 1.0)
+            let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(dailyGoal), 1.0)
             
             ProgressView(value: goalProgress)
                 .tint(goalProgress >= 1.0 ? .green : AppTheme.primaryColor)
                 .scaleEffect(x: 1, y: 2, anchor: .center)
+
+            Stepper(value: dailyGoalBinding, in: 10...500, step: 10) {
+                Text("Goal: \(dailyGoal) XP")
+                    .font(AppTheme.Typography.subheadline)
+                    .foregroundStyle(.primary)
+            }
             
             if goalProgress >= 1.0 {
                 HStack {
@@ -288,6 +296,20 @@ struct ProgressDashboardView: View {
     private func loadProgress() {
         let repo = ProgressRepository(modelContext: modelContext)
         progress = repo.getUserProgress()
+        dailyGoal = settingsStore.dailyXPGoal
+        progress?.dailyGoal = dailyGoal
+    }
+
+    private var dailyGoalBinding: Binding<Int> {
+        Binding(
+            get: { dailyGoal },
+            set: { newValue in
+                dailyGoal = newValue
+                settingsStore.dailyXPGoal = newValue
+                progress?.dailyGoal = newValue
+                progress?.updatedAt = Date.now
+            }
+        )
     }
 }
 

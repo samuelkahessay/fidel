@@ -69,6 +69,7 @@
 		AAA00095001 /* phrases.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00095000 /* phrases.json */; };
 		AAA00096001 /* vocabulary.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00096000 /* vocabulary.json */; };
 		AAA00097001 /* AmharicDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00097000 /* AmharicDataLoader.swift */; };
+		AAA00098001 /* AppSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00098000 /* AppSettingsStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,7 @@
 		AAA00095000 /* phrases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phrases.json; sourceTree = "<group>"; };
 		AAA00096000 /* vocabulary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vocabulary.json; sourceTree = "<group>"; };
 		AAA00097000 /* AmharicDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmharicDataLoader.swift; sourceTree = "<group>"; };
+		AAA00098000 /* AppSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -271,6 +273,7 @@
 				AAA00081000 /* StrokeDataRepository.swift */,
 				AAA00085000 /* StrokeSmoother.swift */,
 				AAA00097000 /* AmharicDataLoader.swift */,
+				AAA00098000 /* AppSettingsStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				AAA00085001 /* StrokeSmoother.swift in Sources */,
 				AAA00086001 /* StrokeReviewView.swift in Sources */,
 				AAA00097001 /* AmharicDataLoader.swift in Sources */,
+				AAA00098001 /* AppSettingsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
