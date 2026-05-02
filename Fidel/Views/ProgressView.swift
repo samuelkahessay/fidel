@@ -1,20 +1,17 @@
 import SwiftUI
 import SwiftData
-import CloudKit
 
 struct ProgressDashboardView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(AuthManager.self) private var authManager
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
-    @State private var cloudKitStatus: CloudKitStatus = .checking
     @State private var progress: UserProgress?
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    cloudSyncStatusSection
+                    localSaveStatusSection
                     stageTimeline
                     statsOverview
                     streakSection
@@ -28,14 +25,6 @@ struct ProgressDashboardView: View {
             .navigationTitle("Progress")
             .task {
                 loadProgress()
-                await refreshCloudKitStatus()
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Sign Out") {
-                        authManager.signOut()
-                    }
-                }
             }
         }
     }
@@ -44,28 +33,21 @@ struct ProgressDashboardView: View {
         LearningStage(rawValue: progress?.currentStage ?? 0) ?? .scriptAndSounds
     }
 
-    private var cloudSyncStatusSection: some View {
+    private var localSaveStatusSection: some View {
         HStack(spacing: 12) {
-            Image(systemName: cloudKitStatus.icon)
+            Image(systemName: "iphone.gen3")
                 .font(.title3)
-                .foregroundStyle(cloudKitStatus.tint)
+                .foregroundStyle(AppTheme.primaryColor)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Cloud Sync")
+                Text("Saved on This Device")
                     .font(AppTheme.Typography.headline)
-                Text(cloudKitStatus.message)
+                Text("Your progress is saved automatically on this device. No account required.")
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(.secondary)
             }
 
             Spacer()
-
-            if cloudKitStatus.showsRetry {
-                Button("Retry") {
-                    Task { await refreshCloudKitStatus() }
-                }
-                .font(AppTheme.Typography.caption)
-            }
         }
         .padding()
         .background(
@@ -307,88 +289,6 @@ struct ProgressDashboardView: View {
         let repo = ProgressRepository(modelContext: modelContext)
         progress = repo.getUserProgress()
     }
-
-    private func refreshCloudKitStatus() async {
-        cloudKitStatus = .checking
-        do {
-            let status = try await CKContainer.default().accountStatus()
-            switch status {
-            case .available: cloudKitStatus = .available
-            case .noAccount: cloudKitStatus = .noAccount
-            case .restricted: cloudKitStatus = .restricted
-            case .temporarilyUnavailable: cloudKitStatus = .temporarilyUnavailable
-            @unknown default: cloudKitStatus = .unknown
-            }
-        } catch {
-            cloudKitStatus = .error
-        }
-    }
-}
-
-private enum CloudKitStatus {
-    case checking
-    case available
-    case noAccount
-    case restricted
-    case temporarilyUnavailable
-    case unknown
-    case error
-
-    var icon: String {
-        switch self {
-        case .checking:
-            return "arrow.trianglehead.2.clockwise"
-        case .available:
-            return "icloud.fill"
-        case .noAccount:
-            return "icloud.slash.fill"
-        case .restricted:
-            return "lock.icloud.fill"
-        case .temporarilyUnavailable, .unknown, .error:
-            return "exclamationmark.icloud.fill"
-        }
-    }
-
-    var tint: Color {
-        switch self {
-        case .available:
-            return .green
-        case .checking:
-            return AppTheme.primaryColor
-        case .temporarilyUnavailable:
-            return .orange
-        case .noAccount, .restricted, .unknown, .error:
-            return .red
-        }
-    }
-
-    var message: String {
-        switch self {
-        case .checking:
-            return "Checking iCloud status..."
-        case .available:
-            return "Progress sync is enabled."
-        case .noAccount:
-            return "Sign in to iCloud in Settings to sync progress."
-        case .restricted:
-            return "iCloud is restricted on this device."
-        case .temporarilyUnavailable:
-            return "iCloud is temporarily unavailable. Try again shortly."
-        case .unknown:
-            return "Unable to confirm iCloud status."
-        case .error:
-            return "Could not reach iCloud right now."
-        }
-    }
-
-    var showsRetry: Bool {
-        switch self {
-        case .available, .checking:
-            return false
-        case .noAccount, .restricted, .temporarilyUnavailable, .unknown, .error:
-            return true
-        }
-    }
 }
 
 struct StatCard: View {
@@ -479,11 +379,6 @@ struct LearningStat: View {
 }
 
 #Preview {
-    let authManager = AuthManager.shared
-    authManager.currentUserId = AuthManager.previewUserId
-    authManager.isCheckingSession = false
-
-    return ProgressDashboardView()
+    ProgressDashboardView()
         .modelContainer(for: [UserProgress.self], inMemory: true)
-        .environment(authManager)
 }

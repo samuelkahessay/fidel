@@ -2,6 +2,10 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+enum LocalLearner {
+    static let userId = "local-device"
+}
+
 // MARK: - Core Data Models
 
 /// Represents a sentence pattern for learning Amharic grammar

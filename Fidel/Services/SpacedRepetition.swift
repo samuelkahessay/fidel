@@ -223,7 +223,7 @@ class FlashcardManager {
     private let modelContext: ModelContext
     private let explicitUserId: String?
     private var activeUserId: String {
-        explicitUserId ?? AuthManager.shared.currentUserId ?? AuthManager.previewUserId
+        explicitUserId ?? LocalLearner.userId
     }
     
     init(modelContext: ModelContext, userId: String? = nil) {

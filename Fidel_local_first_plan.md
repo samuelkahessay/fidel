@@ -26,9 +26,9 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 1: Make Launch Local-First
 
 **Claim to verify**
-- [ ] `Fidel/FidelApp.swift` still imports `AuthenticationServices` and `Security`.
-- [ ] App launch still renders `AuthGateView()` instead of `ContentView()`.
-- [ ] SwiftData still configures `cloudKitDatabase: .private(...)`.
+- [x] `Fidel/FidelApp.swift` still imports `AuthenticationServices` and `Security`.
+- [x] App launch still renders `AuthGateView()` instead of `ContentView()`.
+- [x] SwiftData still configures `cloudKitDatabase: .private(...)`.
 
 **Likely files**
 - `Fidel/FidelApp.swift`
@@ -36,15 +36,15 @@ This document is the durable working checklist. Execute one task at a time. For 
 - `Fidel/Info.plist`
 
 **Implementation checklist**
-- [ ] Replace the authenticated launch gate with direct `ContentView()` launch.
-- [ ] Remove `AuthGateView`, `AppleSignInView`, auth diagnostics, `AuthManager`, and Keychain helpers from `FidelApp.swift`.
-- [ ] Change the SwiftData `ModelConfiguration` to local storage only by removing the CloudKit database argument.
-- [ ] Remove Sign in with Apple and CloudKit entitlements from `Fidel/Fidel.entitlements`.
-- [ ] Remove `remote-notification` from `Fidel/Info.plist` unless a real push path is introduced before this task runs.
-- [ ] Run `rg -n "AuthGateView|AppleSignInView|AuthenticationServices|Keychain|cloudKitDatabase|com.apple.developer.applesignin|com.apple.developer.icloud|remote-notification" Fidel`.
+- [x] Replace the authenticated launch gate with direct `ContentView()` launch.
+- [x] Remove `AuthGateView`, `AppleSignInView`, auth diagnostics, `AuthManager`, and Keychain helpers from `FidelApp.swift`.
+- [x] Change the SwiftData `ModelConfiguration` to local storage only by removing the CloudKit database argument.
+- [x] Remove Sign in with Apple and CloudKit entitlements from `Fidel/Fidel.entitlements`.
+- [x] Remove `remote-notification` from `Fidel/Info.plist` unless a real push path is introduced before this task runs.
+- [x] Run `rg -n "AuthGateView|AppleSignInView|AuthenticationServices|Keychain|cloudKitDatabase|com.apple.developer.applesignin|com.apple.developer.icloud|remote-notification" Fidel`.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `refactor: launch Fidel as a local-first app`
@@ -54,23 +54,23 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 2: Remove Account and Cloud UI
 
 **Claim to verify**
-- [ ] `Fidel/Views/ProgressView.swift` still imports CloudKit.
-- [ ] Progress UI still shows Cloud Sync state.
-- [ ] Progress UI still exposes Sign Out.
+- [x] `Fidel/Views/ProgressView.swift` still imports CloudKit.
+- [x] Progress UI still shows Cloud Sync state.
+- [x] Progress UI still exposes Sign Out.
 
 **Likely files**
 - `Fidel/Views/ProgressView.swift`
 
 **Implementation checklist**
-- [ ] Remove `import CloudKit`.
-- [ ] Remove `@Environment(AuthManager.self)`.
-- [ ] Remove the Cloud Sync status section and iCloud account refresh task.
-- [ ] Remove the Sign Out toolbar action.
-- [ ] Add local-first copy near the top of Progress: "Your progress is saved automatically on this device."
-- [ ] Run `rg -n "CloudKit|Cloud Sync|Sign Out|iCloud|authManager|refreshCloudKitStatus|CloudKitStatus" Fidel/Views/ProgressView.swift`.
+- [x] Remove `import CloudKit`.
+- [x] Remove `@Environment(AuthManager.self)`.
+- [x] Remove the Cloud Sync status section and iCloud account refresh task.
+- [x] Remove the Sign Out toolbar action.
+- [x] Add local-first copy near the top of Progress: "Your progress is saved automatically on this device."
+- [x] Run `rg -n "CloudKit|Cloud Sync|Sign Out|iCloud|authManager|refreshCloudKitStatus|CloudKitStatus" Fidel/Views/ProgressView.swift`.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `refactor: remove account status from progress dashboard`
@@ -80,24 +80,24 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 3: Use One Local Learner ID
 
 **Claim to verify**
-- [ ] `ProgressRepository` still falls back to `AuthManager.shared.currentUserId`.
-- [ ] `FlashcardManager` still falls back to `AuthManager.shared.currentUserId`.
-- [ ] `AuthManager.previewUserId` is still referenced outside previews or removed launch code.
+- [x] `ProgressRepository` still falls back to `AuthManager.shared.currentUserId`.
+- [x] `FlashcardManager` still falls back to `AuthManager.shared.currentUserId`.
+- [x] `AuthManager.previewUserId` is still referenced outside previews or removed launch code.
 
 **Likely files**
 - `Fidel/Repositories/ProgressRepository.swift`
 - `Fidel/Services/SpacedRepetition.swift`
 
 **Implementation checklist**
-- [ ] Add a single local learner identifier, `local-device`, in one shared place available to progress and flashcards.
-- [ ] Keep `ownerUserId` fields in the SwiftData models for migration safety.
-- [ ] Make `ProgressRepository` use the local learner ID by default.
-- [ ] Make `FlashcardManager` use the same local learner ID by default.
-- [ ] Preserve explicit `userId` injection for previews or tests when it already exists.
-- [ ] Run `rg -n "AuthManager|previewUserId|currentUserId" Fidel`.
+- [x] Add a single local learner identifier, `local-device`, in one shared place available to progress and flashcards.
+- [x] Keep `ownerUserId` fields in the SwiftData models for migration safety.
+- [x] Make `ProgressRepository` use the local learner ID by default.
+- [x] Make `FlashcardManager` use the same local learner ID by default.
+- [x] Preserve explicit `userId` injection for previews or tests when it already exists.
+- [x] Run `rg -n "AuthManager|previewUserId|currentUserId" Fidel`.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `refactor: use local learner progress ownership`
@@ -107,23 +107,23 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 4: Remove Migration From Scope
 
 **Claim to verify**
-- [ ] Fidel has never launched publicly, so there is no production user data to migrate.
-- [ ] The app can safely standardize on new local-only progress records.
-- [ ] `ownerUserId` fields can remain for schema stability, but no one-time migration service is required.
+- [x] Fidel has never launched publicly, so there is no production user data to migrate.
+- [x] The app can safely standardize on new local-only progress records.
+- [x] `ownerUserId` fields can remain for schema stability, but no one-time migration service is required.
 
 **Likely files**
 - `Fidel/Repositories/ProgressRepository.swift`
 - `Fidel/Services/SpacedRepetition.swift`
 
 **Implementation checklist**
-- [ ] Do not add a dedicated progress migration service.
-- [ ] Keep local progress creation simple and deterministic.
-- [ ] Keep duplicate consolidation helpers only if they are still useful for defensive cleanup inside repositories.
-- [ ] Remove any plan or code language implying a production migration is needed.
-- [ ] Confirm `find Fidel -name '*Migration*' -print` does not show a progress migration implementation.
+- [x] Do not add a dedicated progress migration service.
+- [x] Keep local progress creation simple and deterministic.
+- [x] Keep duplicate consolidation helpers only if they are still useful for defensive cleanup inside repositories.
+- [x] Remove any plan or code language implying a production migration is needed.
+- [x] Confirm `find Fidel -name '*Migration*' -print` does not show a progress migration implementation.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `docs: remove migration requirement from local-first plan`
