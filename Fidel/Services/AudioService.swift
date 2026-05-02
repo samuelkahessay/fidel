@@ -92,6 +92,7 @@ actor AudioCache {
 
 // MARK: - AudioService
 
+@MainActor
 @Observable
 class AudioService {
     private var audioPlayer: AVAudioPlayer?
@@ -269,11 +270,12 @@ class AudioService {
         isPlaying = true
         synthesizer.speak(utterance)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(text.count) * 0.15) {
+        Task {
+            try? await Task.sleep(for: .seconds(Double(text.count) * 0.15))
             self.isPlaying = false
         }
     }
-    
+
     func speakAmharic(_ text: String, transliteration: String? = nil) {
         if ElevenLabsConfig.isConfigured {
             speakAmharicWithElevenLabs(text)
@@ -294,7 +296,8 @@ class AudioService {
         isPlaying = true
         synthesizer.speak(utterance)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(text.count) * 0.08) {
+        Task {
+            try? await Task.sleep(for: .seconds(Double(text.count) * 0.08))
             self.isPlaying = false
         }
     }
@@ -340,7 +343,7 @@ class AudioService {
         stopPlayback()
         
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let audioFilename = documentsPath.appendingPathComponent("recording_\(Date().timeIntervalSince1970).m4a")
+        let audioFilename = documentsPath.appendingPathComponent("recording_\(Date.now.timeIntervalSince1970).m4a")
         
         let settings: [String: Any] = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),

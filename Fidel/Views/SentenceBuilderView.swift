@@ -31,7 +31,7 @@ struct SentenceBuilderView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if selectedPattern != nil {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("New Pattern") {
                         resetBuilder()
                     }
@@ -58,7 +58,7 @@ struct SentenceBuilderView: View {
             
             Text("Select a sentence pattern to practice building sentences")
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             ForEach(patterns) { pattern in
                 PatternSelectionCard(pattern: pattern) {
@@ -80,17 +80,17 @@ struct SentenceBuilderView: View {
                 
                 Text(pattern.category)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             VStack(spacing: 12) {
                 Text("Pattern Structure")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 
                 Text(pattern.structure)
                     .font(AppTheme.Typography.amharic(size: 24))
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(
@@ -137,13 +137,13 @@ struct SentenceBuilderView: View {
             if selectedSubstitutions.isEmpty {
                 Text("Select words above to build your sentence")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
-                            .foregroundColor(.gray.opacity(0.3))
+                            .foregroundStyle(.gray.opacity(0.3))
                     )
             } else {
                 VStack(spacing: 8) {
@@ -151,11 +151,11 @@ struct SentenceBuilderView: View {
                     
                     Text(sentence.amharic)
                         .font(AppTheme.Typography.amharic(size: 28))
-                        .foregroundColor(AppTheme.primaryColor)
+                        .foregroundStyle(AppTheme.primaryColor)
                     
                     Text(sentence.transliteration)
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     
                     Text(sentence.english)
                         .font(.body)
@@ -191,10 +191,10 @@ struct SentenceBuilderView: View {
                         .font(AppTheme.Typography.amharic(size: 18))
                     Text(example.transliteration)
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text(example.english)
                         .font(.subheadline)
-                        .foregroundColor(.blue)
+                        .foregroundStyle(.blue)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -258,21 +258,21 @@ struct PatternSelectionCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text(pattern.description)
                     .font(.headline)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                 
                 Text(pattern.structure)
                     .font(AppTheme.Typography.amharic(size: 18))
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
                 
                 HStack {
                     Label("\(pattern.substitutions.count) options", systemImage: "text.word.spacing")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     
                     Spacer()
                     
                     Image(systemName: "chevron.right")
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
             }
             .padding()
@@ -305,7 +305,7 @@ struct SubstitutionChip: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(isSelected ? AppTheme.primaryColor : Color(.systemGray6))
             )
-            .foregroundColor(isSelected ? .white : .primary)
+            .foregroundStyle(isSelected ? .white : .primary)
         }
     }
 }

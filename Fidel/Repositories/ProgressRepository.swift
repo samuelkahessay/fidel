@@ -41,13 +41,14 @@ protocol ProgressRepositoryProtocol {
 
 // MARK: - ProgressRepository Implementation
 
+@MainActor
 @Observable
 final class ProgressRepository: ProgressRepositoryProtocol {
     
     private let modelContext: ModelContext
     private let explicitUserId: String?
     private var activeUserId: String {
-        explicitUserId ?? AuthManager.shared.currentUserId ?? AuthManager.previewUserId
+        explicitUserId ?? LocalLearner.userId
     }
     
     init(modelContext: ModelContext, userId: String? = nil) {
@@ -87,7 +88,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         if let legacyRecords = try? modelContext.fetch(legacyDescriptor), !legacyRecords.isEmpty {
             let legacyProgress = consolidateUserProgress(legacyRecords, ownerId: ownerId)
             legacyProgress.ownerUserId = ownerId
-            legacyProgress.updatedAt = Date()
+            legacyProgress.updatedAt = Date.now
             return legacyProgress
         }
 
@@ -213,7 +214,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func setCurrentStage(_ stage: Int) {
         let progress = getOrCreateUserProgress()
         progress.currentStage = stage
-        progress.updatedAt = Date()
+        progress.updatedAt = Date.now
     }
 
     // MARK: - Statistics
@@ -260,7 +261,9 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         var didMutate = primary.ownerUserId != ownerId
-        primary.ownerUserId = ownerId
+        if didMutate {
+            primary.ownerUserId = ownerId
+        }
 
         for record in records where record !== primary {
             primary.totalXP = max(primary.totalXP, record.totalXP)
@@ -277,13 +280,13 @@ final class ProgressRepository: ProgressRepositoryProtocol {
             primary.achievements = mergedUnique(primary.achievements, record.achievements)
             primary.fidelCharactersRecognized = mergedUnique(primary.fidelCharactersRecognized, record.fidelCharactersRecognized)
             primary.charactersTraced = mergedUnique(primary.charactersTraced, record.charactersTraced)
-            primary.updatedAt = maxDate(primary.updatedAt, record.updatedAt) ?? Date()
+            primary.updatedAt = maxDate(primary.updatedAt, record.updatedAt) ?? Date.now
             didMutate = true
             modelContext.delete(record)
         }
 
         if didMutate {
-            primary.updatedAt = Date()
+            primary.updatedAt = Date.now
         }
 
         return primary
@@ -326,7 +329,9 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         var didMutate = primary.ownerUserId != ownerId
-        primary.ownerUserId = ownerId
+        if didMutate {
+            primary.ownerUserId = ownerId
+        }
 
         for record in records where record !== primary {
             // Keep the most advanced scheduling state in case local and cloud copies both exist.
@@ -345,7 +350,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         if didMutate {
-            primary.updatedAt = Date()
+            primary.updatedAt = Date.now
         }
 
         return primary

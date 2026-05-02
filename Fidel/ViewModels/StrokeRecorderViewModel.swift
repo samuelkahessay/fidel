@@ -4,6 +4,7 @@ import CoreGraphics
 
 /// Manages the admin stroke recording session — iterates all 238 Fidel characters,
 /// captures PencilKit drawings, normalizes strokes, and persists to JSON.
+@MainActor
 @Observable
 final class StrokeRecorderViewModel {
 

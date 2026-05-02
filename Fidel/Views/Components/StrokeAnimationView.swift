@@ -13,7 +13,6 @@ struct StrokeAnimationView: View {
 
     @State private var animationProgress: CGFloat = 0
     @State private var loopCount = 0
-    @State private var timer: Timer?
     private let maxLoops = 2
     private let totalDuration: CGFloat = 2.0
 
@@ -103,8 +102,7 @@ struct StrokeAnimationView: View {
             penTipOverlay(data: data, proportions: proportions)
         }
         .frame(width: size.width, height: size.height)
-        .onAppear { startAnimation() }
-        .onDisappear { stopTimer() }
+        .task(id: characterId) { await runAnimationLoop() }
     }
 
     // MARK: - Pen-Tip Indicator
@@ -189,48 +187,34 @@ struct StrokeAnimationView: View {
                 }
         }
         .frame(width: size.width, height: size.height)
-        .onAppear { startAnimation() }
-        .onDisappear { stopTimer() }
+        .task(id: characterId) { await runAnimationLoop() }
     }
 
-    // MARK: - Timer-Based Animation Loop
+    // MARK: - Task-Based Animation Loop
 
-    private func startAnimation() {
+    private func runAnimationLoop() async {
         animationProgress = 0
         loopCount = 0
-        runLoop()
-    }
 
-    private func runLoop() {
-        guard loopCount < maxLoops else { return }
-        stopTimer()
-
-        animationProgress = 0
         let interval: CGFloat = 1.0 / 60.0 // ~60fps
         let increment = interval / totalDuration
 
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { t in
-            animationProgress += increment
-            if animationProgress >= 1.0 {
-                animationProgress = 1.0
-                t.invalidate()
+        for loop in 0..<maxLoops {
+            animationProgress = 0
+            loopCount = loop
 
-                // Pause, then start next loop or stop
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    loopCount += 1
-                    if loopCount < maxLoops {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            runLoop()
-                        }
-                    }
-                }
+            while animationProgress < 1.0 {
+                try? await Task.sleep(for: .seconds(interval))
+                if Task.isCancelled { return }
+                animationProgress = min(animationProgress + increment, 1.0)
+            }
+
+            // Pause between loops
+            if loop < maxLoops - 1 {
+                try? await Task.sleep(for: .seconds(0.8))
+                if Task.isCancelled { return }
             }
         }
-    }
-
-    private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
     }
 
     private var debugShowInstantOwnedRegions: Bool {

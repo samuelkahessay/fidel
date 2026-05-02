@@ -68,13 +68,12 @@ struct PronunciationPracticeView: View {
             .navigationTitle("Pronunciation")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .topBarLeading) {
                     Button("Done") { dismiss() }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: skipToNext) {
-                        Image(systemName: "forward.fill")
-                    }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Skip", systemImage: "forward.fill", action: skipToNext)
+                        .labelStyle(.iconOnly)
                 }
             }
         }
@@ -99,11 +98,11 @@ struct PronunciationPracticeView: View {
             HStack {
                 Text("\(currentIndex + 1) of \(currentItems.count)")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 Spacer()
                 Text("\(Int(Double(currentIndex) / Double(currentItems.count) * 100))%")
                     .font(.subheadline.bold())
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
             }
             
             ProgressView(value: Double(currentIndex), total: Double(currentItems.count))
@@ -115,18 +114,18 @@ struct PronunciationPracticeView: View {
         VStack(spacing: 16) {
             Text(item.amharic)
                 .font(AppTheme.Typography.amharic(size: pronunciationMode == .fidel ? 72 : 36))
-                .foregroundColor(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.primaryColor)
                 .multilineTextAlignment(.center)
             
             Text(item.transliteration)
                 .font(.title3)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Divider()
             
             Text(item.english)
                 .font(.headline)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
         }
         .padding(24)
         .frame(maxWidth: .infinity)
@@ -147,10 +146,10 @@ struct PronunciationPracticeView: View {
                     VStack(spacing: 8) {
                         Image(systemName: audioService.isPlaying ? "speaker.wave.3.fill" : "speaker.wave.2.fill")
                             .font(.title)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                         Text("Play")
                             .font(.caption)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                     }
                     .frame(width: 80, height: 80)
                     .background(
@@ -164,10 +163,10 @@ struct PronunciationPracticeView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "tortoise.fill")
                             .font(.title)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                         Text("Slow")
                             .font(.caption)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                     }
                     .frame(width: 80, height: 80)
                     .background(
@@ -192,7 +191,7 @@ struct PronunciationPracticeView: View {
             
             Text(isRecording ? "Tap to stop" : "Tap to record your pronunciation")
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Button(action: toggleRecording) {
                 ZStack {
@@ -246,26 +245,26 @@ struct PronunciationPracticeView: View {
                     }) {
                         Image(systemName: "person.wave.2.fill")
                             .font(.title2)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .frame(width: 56, height: 56)
                             .background(Circle().fill(AppTheme.primaryColor))
                     }
                     Text("Native")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 VStack(spacing: 8) {
                     Button(action: { audioService.playRecording() }) {
                         Image(systemName: "mic.fill")
                             .font(.title2)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .frame(width: 56, height: 56)
                             .background(Circle().fill(AppTheme.accentRed))
                     }
                     Text("You")
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
             }
             
@@ -295,14 +294,14 @@ struct PronunciationPracticeView: View {
         VStack(spacing: 24) {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 80))
-                .foregroundColor(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.primaryColor)
             
             Text("Practice Complete!")
                 .font(.title)
                 .fontWeight(.bold)
             
             Text("You practiced \(currentItems.count) items")
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Button("Practice Again") {
                 currentIndex = 0

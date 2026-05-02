@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 @Observable
 final class FlashcardViewModel {
     var currentIndex = 0
@@ -24,10 +25,30 @@ final class FlashcardViewModel {
     }
 
     func startSession(cardCount: Int = 20, vocabulary filteredVocabulary: [VocabularyWord]? = nil) {
+        let sourceVocabulary: [VocabularyWord]
         if let filtered = filteredVocabulary, !filtered.isEmpty {
-            vocabulary = Array(filtered.shuffled().prefix(cardCount))
+            sourceVocabulary = filtered
         } else {
-            vocabulary = lessonRepository.getShuffledVocabulary(count: cardCount)
+            sourceVocabulary = lessonRepository.getVocabulary()
+        }
+
+        progressRepository?.initializeFlashcards(
+            vocabulary: sourceVocabulary,
+            phrases: filteredVocabulary == nil ? lessonRepository.getPhrases() : []
+        )
+
+        let vocabularyById = Dictionary(uniqueKeysWithValues: sourceVocabulary.map { ($0.id, $0) })
+        let dueWords = progressRepository?
+            .getDueFlashcards(type: "vocabulary")
+            .compactMap { vocabularyById[$0.itemId] } ?? []
+        let dueIds = Set(dueWords.map(\.id))
+        let fillWords = sourceVocabulary
+            .filter { !dueIds.contains($0.id) }
+            .shuffled()
+
+        vocabulary = Array((dueWords + fillWords).prefix(cardCount))
+        if vocabulary.isEmpty {
+            vocabulary = Array(sourceVocabulary.shuffled().prefix(cardCount))
         }
         currentIndex = 0
         isFlipped = false

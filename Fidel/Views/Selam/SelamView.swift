@@ -146,7 +146,7 @@ struct SelamSettingsView: View {
                                 Text(freq.rawValue)
                                 Text(freq.description)
                                     .font(.caption)
-                                    .foregroundColor(.secondary)
+                                    .foregroundStyle(.secondary)
                             }
                             .tag(freq)
                         }
@@ -164,7 +164,7 @@ struct SelamSettingsView: View {
                     
                     Text(languagePreference.description)
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 Section("Snooze") {
@@ -184,14 +184,14 @@ struct SelamSettingsView: View {
                         Text("Messages today")
                         Spacer()
                         Text("\(viewModel.messageCountToday) / 100")
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                     }
                     
                     HStack {
                         Text("Remaining")
                         Spacer()
                         Text("\(viewModel.remainingMessages)")
-                            .foregroundColor(viewModel.remainingMessages < 10 ? .orange : .secondary)
+                            .foregroundStyle(viewModel.remainingMessages < 10 ? .orange : .secondary)
                     }
                 } header: {
                     Text("Usage")
@@ -244,16 +244,16 @@ struct SelamHistoryView: View {
                         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(conversation.title ?? "New Conversation")
                                 .font(AppTheme.Typography.headline)
-                                .foregroundColor(.primary)
+                                .foregroundStyle(.primary)
                             
                             Text(conversation.preview)
                                 .font(AppTheme.Typography.caption)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                                 .lineLimit(2)
                             
                             Text(conversation.updatedAt.formatted(.relative(presentation: .named)))
-                                .font(AppTheme.Typography.caption2)
-                                .foregroundColor(.secondary.opacity(0.7))
+                                .font(AppTheme.Typography.caption)
+                                .foregroundStyle(.secondary.opacity(0.7))
                         }
                         .padding(.vertical, AppTheme.Spacing.xxs)
                     }

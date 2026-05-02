@@ -4,27 +4,28 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 
 ## Features
 
-### Learn Tab
+### Journey Tab
 - **Fidel Script Chart**: Interactive grid of all 238 Fidel characters (34 consonants x 7 vowel forms) with tap-to-hear pronunciation guides
-- **Structured Lessons**: 5 progressive lessons covering greetings, questions, numbers, family, and daily routines
-- **Sentence Patterns**: 15 pattern templates with substitution slots for building sentences
+- **Structured Lessons**: 8 progressive lessons covering greetings, family, directions, food, time, health, travel, and culture
+- **Sentence Patterns**: 30 pattern templates with substitution slots for building sentences
 - **Vocabulary Cards**: Visual flashcards organized by category
 
-### Practice Tab
-- **Flashcards**: Swipeable cards with spaced repetition algorithm (SM-2) for optimal retention
+### Practice Modes
+- **Flashcards**: Swipeable cards with FSRS-style spaced repetition for optimal retention
 - **Quizzes**: Multiple choice quizzes testing vocabulary, phrases, and Fidel recognition
 - **Sentence Builder**: Interactive grammar practice by dragging words to construct sentences
 - **Daily Goals**: Track your practice streak and daily XP targets
 
-### Conversations Tab
-- **10 Real-World Scenarios**: At the airport, hotel check-in, restaurant, market shopping, asking directions, introducing yourself, phone calls, emergencies, making friends, at the bank
+### Conversations
+- **24 Real-World Scenarios**: Practice practical dialogue across travel, food, shopping, family, emergencies, and daily life
 - **Role-Play Mode**: Practice either speaker role in dialogues
 - **Line-by-Line Translation**: See Amharic, transliteration, and English for each line
 
 ### Reference Tab
-- **Quick Phrases**: 50 essential phrases for travel and daily use
-- **Vocabulary Browser**: 68 words organized by category (Greetings, Numbers, Family, Food, Places, Time, Colors)
-- **Number System**: Ethiopian numbers 1-19 with pronunciation
+- **Quick Phrases**: 174 phrases for travel and daily use
+- **Vocabulary Browser**: 420 words organized by category
+- **Number System**: Ethiopian numbers, months, ordinals, and fractions
+- **Culture Notes**: 20 cultural notes connected to lessons and conversations
 - **Search**: Find any word or phrase instantly
 
 ### Progress Tab
@@ -37,9 +38,10 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 
 ### Architecture
 - **SwiftUI** for declarative UI
-- **SwiftData** for persistence
+- **SwiftData** for local progress persistence
 - **MVVM** pattern with Observable view models
-- **SM-2 Spaced Repetition** algorithm for flashcard scheduling
+- **FSRS-style Spaced Repetition** algorithm for flashcard scheduling
+- **User-controlled JSON backup** for progress export/import
 
 ### Requirements
 - iOS 17.0+
@@ -47,8 +49,8 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 
 ### Project Structure
 ```
-AmharicApp/
-├── AmharicApp/
+Fidel/
+├── Fidel/
 │   ├── Models/
 │   │   ├── Models.swift          # Core data models
 │   │   └── AmharicData.swift     # All Amharic content
@@ -70,14 +72,14 @@ AmharicApp/
 │   │   └── ViewModels.swift      # Observable state management
 │   ├── Services/
 │   │   └── SpacedRepetition.swift # SM-2 algorithm
-│   ├── AmharicAppApp.swift       # App entry point
+│   ├── FidelApp.swift            # App entry point
 │   └── ContentView.swift         # Tab navigation
-└── AmharicApp.xcodeproj
+└── Fidel.xcodeproj
 ```
 
 ## Building the App
 
-1. Open `AmharicApp.xcodeproj` in Xcode 15+
+1. Open `Fidel.xcodeproj` in Xcode 15+
 2. Select an iOS 17+ simulator or device
 3. Build and run (Cmd+R)
 
@@ -85,10 +87,11 @@ AmharicApp/
 
 All Amharic content is sourced from the companion web application, including:
 - Complete Fidel alphabet with 238 characters
-- 15 sentence patterns with grammar explanations
-- 10 conversation scripts with full dialogues
-- 50 essential travel phrases
-- 68 vocabulary words across 7 categories
+- 30 sentence patterns with grammar explanations
+- 24 conversation scripts with full dialogues
+- 174 phrases
+- 420 vocabulary words across multiple categories
+- 20 cultural notes
 
 ## Design
 
@@ -103,5 +106,6 @@ The app features an Ethiopian-inspired color palette:
 - [ ] Handwriting practice for Fidel characters
 - [ ] Speech recognition for pronunciation feedback
 - [ ] Additional vocabulary from CSV (547 words available)
-- [ ] Cloud sync for progress across devices
-- [ ] Offline mode with downloaded content
+- [x] Local progress persistence
+- [x] User-controlled JSON backup and restore
+- [ ] Additional downloadable content packs

@@ -33,7 +33,7 @@ struct TracingView: View {
         HStack {
             Text(viewModel.progress)
                 .font(AppTheme.Typography.headline)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
 
             Spacer()
 
@@ -52,15 +52,15 @@ struct TracingView: View {
         HStack(spacing: AppTheme.Spacing.md) {
             Text(character.character)
                 .font(AppTheme.Typography.amharic(size: 56))
-                .foregroundColor(.indigo)
+                .foregroundStyle(.indigo)
 
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(character.romanization)
                     .font(AppTheme.Typography.title3)
-                    .foregroundColor(.primary)
+                    .foregroundStyle(.primary)
                 Text(character.consonant)
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
 
             Spacer()
@@ -86,7 +86,7 @@ struct TracingView: View {
         VStack(spacing: AppTheme.Spacing.sm) {
             Text("Watch the stroke pattern")
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
 
             StrokeAnimationView(
                 character: character.character,
@@ -102,7 +102,7 @@ struct TracingView: View {
         VStack(spacing: AppTheme.Spacing.sm) {
             Text("Trace the character")
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
 
             ZStack {
                 // Reference filled guide — clean sans-serif shape to trace over
@@ -130,14 +130,14 @@ struct TracingView: View {
         VStack(spacing: AppTheme.Spacing.md) {
             Text("How did you do?")
                 .font(AppTheme.Typography.headline)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
 
             HStack(spacing: AppTheme.Spacing.xl) {
                 // Reference
                 VStack(spacing: AppTheme.Spacing.xs) {
                     Text("Reference")
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
 
                     PathExtractor.shared.extractPath(
                         for: character.character,
@@ -159,7 +159,7 @@ struct TracingView: View {
                 VStack(spacing: AppTheme.Spacing.xs) {
                     Text("Your drawing")
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
 
                     DrawingThumbnailView(drawing: viewModel.userDrawing, size: CGSize(width: 130, height: 130))
                         .frame(width: 130, height: 130)
@@ -177,7 +177,7 @@ struct TracingView: View {
         VStack(spacing: AppTheme.Spacing.sm) {
             Text("Rate your attempt")
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
 
             HStack(spacing: AppTheme.Spacing.lg) {
                 ForEach(1...3, id: \.self) { stars in
@@ -190,13 +190,13 @@ struct TracingView: View {
                             HStack(spacing: 2) {
                                 ForEach(0..<stars, id: \.self) { _ in
                                     Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
+                                        .foregroundStyle(.yellow)
                                         .font(.body)
                                 }
                             }
                             Text(starLabel(stars))
-                                .font(AppTheme.Typography.caption2)
-                                .foregroundColor(.secondary)
+                                .font(AppTheme.Typography.caption)
+                                .foregroundStyle(.secondary)
                         }
                         .padding(.horizontal, AppTheme.Spacing.sm)
                         .padding(.vertical, AppTheme.Spacing.xs)
@@ -226,7 +226,7 @@ struct TracingView: View {
         VStack(spacing: AppTheme.Spacing.sm) {
             Text("Try to follow the outline more closely")
                 .font(AppTheme.Typography.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
 
             HStack(spacing: AppTheme.Spacing.md) {
@@ -237,7 +237,7 @@ struct TracingView: View {
                 } label: {
                     Label("Try Again", systemImage: "arrow.counterclockwise")
                         .font(AppTheme.Typography.headline)
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .padding(.horizontal, AppTheme.Spacing.lg)
                         .padding(.vertical, AppTheme.Spacing.sm)
                         .background(
@@ -252,7 +252,7 @@ struct TracingView: View {
                 } label: {
                     Text("Skip")
                         .font(AppTheme.Typography.headline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                         .padding(.horizontal, AppTheme.Spacing.lg)
                         .padding(.vertical, AppTheme.Spacing.sm)
                         .background(
@@ -278,7 +278,7 @@ struct TracingView: View {
                 } label: {
                     Label("Start Drawing", systemImage: "pencil.tip")
                         .font(AppTheme.Typography.headline)
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, AppTheme.Spacing.sm)
                         .background(
@@ -294,7 +294,7 @@ struct TracingView: View {
                     } label: {
                         Label("Clear", systemImage: "trash")
                             .font(AppTheme.Typography.headline)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, AppTheme.Spacing.sm)
                             .background(
@@ -309,7 +309,7 @@ struct TracingView: View {
                     } label: {
                         Label("Done", systemImage: "checkmark")
                             .font(AppTheme.Typography.headline)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, AppTheme.Spacing.sm)
                             .background(
@@ -333,25 +333,25 @@ struct TracingView: View {
 
             Text("Session Complete!")
                 .font(AppTheme.Typography.title)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
 
             HStack(spacing: AppTheme.Spacing.xxl) {
                 VStack(spacing: AppTheme.Spacing.xxs) {
                     Text("\(viewModel.completedCount)")
                         .font(.system(size: 52, weight: .bold))
-                        .foregroundColor(AppTheme.primaryColor)
+                        .foregroundStyle(AppTheme.primaryColor)
                     Text("Traced")
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
 
                 VStack(spacing: AppTheme.Spacing.xxs) {
                     Text("\(viewModel.skippedCount)")
                         .font(.system(size: 52, weight: .bold))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Text("Skipped")
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
             }
 

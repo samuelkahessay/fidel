@@ -46,9 +46,9 @@ struct AppTheme {
     // MARK: - Typography (SF Pro system)
     
     struct Typography {
-        static let largeTitle = Font.system(size: 34, weight: .bold)
-        static let title = Font.system(size: 28, weight: .bold)
-        static let title2 = Font.system(size: 22, weight: .bold)
+        static let largeTitle = Font.system(size: 38, weight: .heavy)
+        static let title = Font.system(size: 30, weight: .bold)
+        static let title2 = Font.system(size: 24, weight: .bold)
         static let title3 = Font.system(size: 20, weight: .semibold)
         static let headline = Font.system(size: 17, weight: .semibold)
         static let body = Font.system(size: 17, weight: .regular)
@@ -67,11 +67,11 @@ struct AppTheme {
     // MARK: - Animations (Spring-based)
     
     struct Animation {
-        static let springResponse: Double = 0.4
-        static let springDamping: Double = 0.75
-        static let quick: SwiftUI.Animation = .spring(response: 0.3, dampingFraction: 0.7)
-        static let standard: SwiftUI.Animation = .spring(response: 0.4, dampingFraction: 0.75)
-        static let gentle: SwiftUI.Animation = .spring(response: 0.5, dampingFraction: 0.8)
+        static let springResponse: Double = 0.3
+        static let springDamping: Double = 1.0
+        static let quick: SwiftUI.Animation = .spring(response: 0.25, dampingFraction: 1.0)
+        static let standard: SwiftUI.Animation = .spring(response: 0.35, dampingFraction: 1.0)
+        static let gentle: SwiftUI.Animation = .spring(response: 0.5, dampingFraction: 1.0)
     }
     
     // MARK: - Difficulty Colors
@@ -111,8 +111,8 @@ struct GlassCardStyle: ViewModifier {
                         RoundedRectangle(cornerRadius: cornerRadius)
                             .stroke(
                                 colorScheme == .dark
-                                    ? Color.white.opacity(0.1)
-                                    : Color.black.opacity(0.05),
+                                    ? AppTheme.primaryColor.opacity(0.35)
+                                    : AppTheme.primaryColor.opacity(0.15),
                                 lineWidth: 0.5
                             )
                     )
@@ -143,8 +143,8 @@ struct TintedGlassCardStyle: ViewModifier {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(
                         colorScheme == .dark
-                            ? Color.white.opacity(0.1)
-                            : Color.black.opacity(0.05),
+                            ? AppTheme.primaryColor.opacity(0.4)
+                            : AppTheme.primaryColor.opacity(0.25),
                         lineWidth: 0.5
                     )
             )
@@ -173,8 +173,8 @@ struct AdaptiveCardBackground: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(
                         colorScheme == .dark
-                            ? Color.white.opacity(0.1)
-                            : Color.black.opacity(0.05),
+                            ? AppTheme.primaryColor.opacity(0.35)
+                            : AppTheme.primaryColor.opacity(0.15),
                         lineWidth: 0.5
                     )
             )
@@ -201,6 +201,7 @@ struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(AppTheme.Typography.headline)
+            .tracking(1.2)
             .foregroundColor(.white)
             .padding(.horizontal, AppTheme.Spacing.xl)
             .padding(.vertical, 14)
@@ -224,6 +225,7 @@ struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(AppTheme.Typography.headline)
+            .tracking(1.2)
             .foregroundColor(AppTheme.primaryColor)
             .padding(.horizontal, AppTheme.Spacing.lg)
             .padding(.vertical, 12)
@@ -253,6 +255,7 @@ struct GhostButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(AppTheme.Typography.headline)
+            .tracking(1.2)
             .foregroundColor(AppTheme.primaryColor)
             .padding(.horizontal, AppTheme.Spacing.md)
             .padding(.vertical, 12)

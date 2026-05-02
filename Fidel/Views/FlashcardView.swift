@@ -33,26 +33,26 @@ struct FlashcardView: View {
         HStack {
             HStack(spacing: AppTheme.Spacing.xxs) {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
+                    .foregroundStyle(.green)
                 Text("\(viewModel.correctCount)")
                     .font(AppTheme.Typography.headline)
-                    .foregroundColor(.green)
+                    .foregroundStyle(.green)
             }
             
             Spacer()
             
             Text(viewModel.progress)
                 .font(AppTheme.Typography.headline)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             Spacer()
             
             HStack(spacing: AppTheme.Spacing.xxs) {
                 Text("\(viewModel.incorrectCount)")
                     .font(AppTheme.Typography.headline)
-                    .foregroundColor(AppTheme.accentRed)
+                    .foregroundStyle(AppTheme.accentRed)
                 Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(AppTheme.accentRed)
+                    .foregroundStyle(AppTheme.accentRed)
             }
         }
         .padding(.horizontal, AppTheme.Spacing.md)
@@ -108,11 +108,11 @@ struct FlashcardView: View {
             
             Text(word.amharic)
                 .font(AppTheme.Typography.amharic(size: 64))
-                .foregroundColor(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.primaryColor)
             
             Text(word.transliteration)
                 .font(AppTheme.Typography.title3)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Spacer()
             
@@ -132,12 +132,12 @@ struct FlashcardView: View {
             
             Text(word.english)
                 .font(AppTheme.Typography.title)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
                 .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
             
             Text(word.category)
                 .font(AppTheme.Typography.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .padding(.horizontal, AppTheme.Spacing.sm)
                 .padding(.vertical, AppTheme.Spacing.xxs)
                 .background(
@@ -167,7 +167,7 @@ struct FlashcardView: View {
                     .overlay(
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 48))
-                            .foregroundColor(.green)
+                            .foregroundStyle(.green)
                     )
             } else if offset.width < -50 {
                 RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
@@ -175,7 +175,7 @@ struct FlashcardView: View {
                     .overlay(
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 48))
-                            .foregroundColor(AppTheme.accentRed)
+                            .foregroundStyle(AppTheme.accentRed)
                     )
             }
         }
@@ -186,19 +186,19 @@ struct FlashcardView: View {
             VStack(spacing: AppTheme.Spacing.xs) {
                 Image(systemName: "xmark.circle.fill")
                     .font(.title)
-                    .foregroundColor(AppTheme.accentRed.opacity(0.5))
+                    .foregroundStyle(AppTheme.accentRed.opacity(0.5))
                 Text("Still learning")
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             VStack(spacing: AppTheme.Spacing.xs) {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.title)
-                    .foregroundColor(.green.opacity(0.5))
+                    .foregroundStyle(.green.opacity(0.5))
                 Text("Got it!")
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding(.top, AppTheme.Spacing.lg)
@@ -210,25 +210,25 @@ struct FlashcardView: View {
             
             Text("Session Complete!")
                 .font(AppTheme.Typography.title)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
             
             HStack(spacing: AppTheme.Spacing.xxl) {
                 VStack(spacing: AppTheme.Spacing.xxs) {
                     Text("\(viewModel.correctCount)")
                         .font(.system(size: 52, weight: .bold))
-                        .foregroundColor(.green)
+                        .foregroundStyle(.green)
                     Text("Correct")
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 VStack(spacing: AppTheme.Spacing.xxs) {
                     Text("\(viewModel.incorrectCount)")
                         .font(.system(size: 52, weight: .bold))
-                        .foregroundColor(AppTheme.accentRed)
+                        .foregroundStyle(AppTheme.accentRed)
                     Text("To Review")
                         .font(AppTheme.Typography.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
             }
             
@@ -236,7 +236,7 @@ struct FlashcardView: View {
                 ProgressRing(progress: Double(viewModel.correctCount) / Double(max(viewModel.vocabulary.count, 1)), lineWidth: 6, size: 44)
                 Text("\(viewModel.accuracyPercentage)% Accuracy")
                     .font(AppTheme.Typography.headline)
-                    .foregroundColor(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.primaryColor)
             }
             
             XPBadge(xp: viewModel.earnedXP())
@@ -250,13 +250,15 @@ struct FlashcardView: View {
         withAnimation(AppTheme.Animation.standard) {
             if gesture.translation.width > threshold {
                 offset = CGSize(width: 500, height: 0)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                Task {
+                    try? await Task.sleep(for: .seconds(0.3))
                     viewModel.handleSwipe(correct: true)
                     offset = .zero
                 }
             } else if gesture.translation.width < -threshold {
                 offset = CGSize(width: -500, height: 0)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                Task {
+                    try? await Task.sleep(for: .seconds(0.3))
                     viewModel.handleSwipe(correct: false)
                     offset = .zero
                 }

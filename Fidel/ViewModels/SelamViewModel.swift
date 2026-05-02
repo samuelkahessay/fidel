@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+@MainActor
 @Observable
 final class SelamViewModel {
     
@@ -152,7 +153,7 @@ final class SelamViewModel {
     
     func snoozeCoaching(for hours: Int) {
         var settings = coachingSettings
-        settings.snoozedUntil = Date().addingTimeInterval(TimeInterval(hours * 3600))
+        settings.snoozedUntil = Date.now.addingTimeInterval(TimeInterval(hours * 3600))
         repository?.saveCoachingSettings(settings)
     }
     

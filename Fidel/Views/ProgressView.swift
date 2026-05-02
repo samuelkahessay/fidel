@@ -1,24 +1,24 @@
 import SwiftUI
 import SwiftData
-import CloudKit
+import UniformTypeIdentifiers
 
 struct ProgressDashboardView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(AuthManager.self) private var authManager
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
-    @State private var cloudKitStatus: CloudKitStatus = .checking
-    
-    var progress: UserProgress? {
-        let progressRepository = ProgressRepository(modelContext: modelContext)
-        return progressRepository.getUserProgress()
-    }
+    private let settingsStore = AppSettingsStore()
+    @State private var dailyGoal = AppSettingsStore.defaultDailyXPGoal
+    @State private var progress: UserProgress?
+    @State private var exportDocument: ProgressBackupDocument?
+    @State private var isImportingBackup = false
+    @State private var backupMessage: String?
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    cloudSyncStatusSection
+                    localSaveStatusSection
+                    backupSection
                     stageTimeline
                     statsOverview
                     streakSection
@@ -31,14 +31,23 @@ struct ProgressDashboardView: View {
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Progress")
             .task {
-                refreshCloudKitStatus()
+                loadProgress()
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Sign Out") {
-                        authManager.signOut()
-                    }
+            .fileExporter(
+                isPresented: Binding(
+                    get: { exportDocument != nil },
+                    set: { if !$0 { exportDocument = nil } }
+                ),
+                document: exportDocument,
+                contentType: .json,
+                defaultFilename: "Fidel Progress Backup"
+            ) { result in
+                if case .failure(let error) = result {
+                    backupMessage = error.localizedDescription
                 }
+            }
+            .fileImporter(isPresented: $isImportingBackup, allowedContentTypes: [.json]) { result in
+                importBackup(result)
             }
         }
     }
@@ -47,27 +56,64 @@ struct ProgressDashboardView: View {
         LearningStage(rawValue: progress?.currentStage ?? 0) ?? .scriptAndSounds
     }
 
-    private var cloudSyncStatusSection: some View {
+    private var localSaveStatusSection: some View {
         HStack(spacing: 12) {
-            Image(systemName: cloudKitStatus.icon)
+            Image(systemName: "iphone.gen3")
                 .font(.title3)
-                .foregroundColor(cloudKitStatus.tint)
+                .foregroundStyle(AppTheme.primaryColor)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Cloud Sync")
+                Text("Saved on This Device")
                     .font(AppTheme.Typography.headline)
-                Text(cloudKitStatus.message)
+                Text("Your progress is saved automatically on this device. No setup required.")
                     .font(AppTheme.Typography.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
 
             Spacer()
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
+        )
+    }
 
-            if cloudKitStatus.showsRetry {
-                Button("Retry") {
-                    refreshCloudKitStatus()
-                }
+    private var backupSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Label("Local Backup", systemImage: "externaldrive.fill")
+                    .font(AppTheme.Typography.headline)
+                Spacer()
+            }
+
+            Text("Export a backup file you control, or import one from Files to restore progress on this device.")
                 .font(AppTheme.Typography.caption)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: 12) {
+                Button {
+                    exportBackup()
+                } label: {
+                    Label("Export", systemImage: "square.and.arrow.up")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(SecondaryButtonStyle())
+
+                Button {
+                    isImportingBackup = true
+                } label: {
+                    Label("Import", systemImage: "square.and.arrow.down")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(SecondaryButtonStyle())
+            }
+
+            if let backupMessage {
+                Text(backupMessage)
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
@@ -97,21 +143,21 @@ struct ProgressDashboardView: View {
                             if stage < currentStage {
                                 Image(systemName: "checkmark")
                                     .font(.caption.bold())
-                                    .foregroundColor(.white)
+                                    .foregroundStyle(.white)
                             } else if isCurrent {
                                 Image(systemName: stage.icon)
                                     .font(.caption2)
-                                    .foregroundColor(.white)
+                                    .foregroundStyle(.white)
                             } else {
                                 Image(systemName: "lock.fill")
                                     .font(.caption2)
-                                    .foregroundColor(.gray)
+                                    .foregroundStyle(.gray)
                             }
                         }
 
                         Text(stage.displayName)
-                            .font(AppTheme.Typography.caption2)
-                            .foregroundColor(isCurrent ? stage.color : .secondary)
+                            .font(AppTheme.Typography.caption)
+                            .foregroundStyle(isCurrent ? stage.color : .secondary)
                             .multilineTextAlignment(.center)
                             .lineLimit(2)
                     }
@@ -178,7 +224,7 @@ struct ProgressDashboardView: View {
                         
                         Text(dayLabel(day))
                             .font(.caption2)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -187,7 +233,7 @@ struct ProgressDashboardView: View {
             if let longest = progress?.longestStreak, longest > 0 {
                 Text("Longest streak: \(longest) days")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
@@ -204,24 +250,30 @@ struct ProgressDashboardView: View {
                 Text("Daily Goal")
                     .font(.headline)
                 Spacer()
-                Text("\(progress?.todayXP ?? 0)/\(progress?.dailyGoal ?? 50) XP")
+                Text("\(progress?.todayXP ?? 0)/\(dailyGoal) XP")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
-            let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(progress?.dailyGoal ?? 50), 1.0)
+            let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(dailyGoal), 1.0)
             
             ProgressView(value: goalProgress)
                 .tint(goalProgress >= 1.0 ? .green : AppTheme.primaryColor)
                 .scaleEffect(x: 1, y: 2, anchor: .center)
+
+            Stepper(value: dailyGoalBinding, in: 10...500, step: 10) {
+                Text("Goal: \(dailyGoal) XP")
+                    .font(AppTheme.Typography.subheadline)
+                    .foregroundStyle(.primary)
+            }
             
             if goalProgress >= 1.0 {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
+                        .foregroundStyle(.green)
                     Text("Daily goal achieved!")
                         .font(.subheadline)
-                        .foregroundColor(.green)
+                        .foregroundStyle(.green)
                 }
             }
         }
@@ -241,7 +293,7 @@ struct ProgressDashboardView: View {
                 Spacer()
                 Text("\(earnedAchievements.count)/\(allAchievements.count)")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))], spacing: 16) {
@@ -306,97 +358,69 @@ struct ProgressDashboardView: View {
         return days[index]
     }
 
-    private func refreshCloudKitStatus() {
-        cloudKitStatus = .checking
-        CKContainer.default().accountStatus { status, error in
-            DispatchQueue.main.async {
-                if error != nil {
-                    cloudKitStatus = .error
-                    return
-                }
+    private func loadProgress() {
+        let repo = ProgressRepository(modelContext: modelContext)
+        progress = repo.getUserProgress()
+        dailyGoal = settingsStore.dailyXPGoal
+        progress?.dailyGoal = dailyGoal
+    }
 
-                switch status {
-                case .available:
-                    cloudKitStatus = .available
-                case .noAccount:
-                    cloudKitStatus = .noAccount
-                case .restricted:
-                    cloudKitStatus = .restricted
-                case .couldNotDetermine:
-                    cloudKitStatus = .unknown
-                case .temporarilyUnavailable:
-                    cloudKitStatus = .temporarilyUnavailable
-                @unknown default:
-                    cloudKitStatus = .unknown
+    private var dailyGoalBinding: Binding<Int> {
+        Binding(
+            get: { dailyGoal },
+            set: { newValue in
+                dailyGoal = newValue
+                settingsStore.dailyXPGoal = newValue
+                progress?.dailyGoal = newValue
+                progress?.updatedAt = Date.now
+            }
+        )
+    }
+
+    private func exportBackup() {
+        do {
+            let data = try ProgressExportService(modelContext: modelContext, settingsStore: settingsStore).exportData()
+            exportDocument = ProgressBackupDocument(data: data)
+            backupMessage = "Backup ready to export."
+        } catch {
+            backupMessage = "Could not create backup: \(error.localizedDescription)"
+        }
+    }
+
+    private func importBackup(_ result: Result<URL, Error>) {
+        do {
+            let url = try result.get()
+            let canAccess = url.startAccessingSecurityScopedResource()
+            defer {
+                if canAccess {
+                    url.stopAccessingSecurityScopedResource()
                 }
             }
+            let data = try Data(contentsOf: url)
+            try ProgressExportService(modelContext: modelContext, settingsStore: settingsStore).importData(data)
+            loadProgress()
+            backupMessage = "Backup imported on this device."
+        } catch {
+            backupMessage = "Could not import backup: \(error.localizedDescription)"
         }
     }
 }
 
-private enum CloudKitStatus {
-    case checking
-    case available
-    case noAccount
-    case restricted
-    case temporarilyUnavailable
-    case unknown
-    case error
+struct ProgressBackupDocument: FileDocument {
+    static var readableContentTypes: [UTType] { [.json] }
 
-    var icon: String {
-        switch self {
-        case .checking:
-            return "arrow.trianglehead.2.clockwise"
-        case .available:
-            return "icloud.fill"
-        case .noAccount:
-            return "icloud.slash.fill"
-        case .restricted:
-            return "lock.icloud.fill"
-        case .temporarilyUnavailable, .unknown, .error:
-            return "exclamationmark.icloud.fill"
-        }
+    let data: Data
+
+    init(data: Data = Data()) {
+        self.data = data
     }
 
-    var tint: Color {
-        switch self {
-        case .available:
-            return .green
-        case .checking:
-            return AppTheme.primaryColor
-        case .temporarilyUnavailable:
-            return .orange
-        case .noAccount, .restricted, .unknown, .error:
-            return .red
-        }
+    init(configuration: ReadConfiguration) throws {
+        data = configuration.file.regularFileContents ?? Data()
     }
 
-    var message: String {
-        switch self {
-        case .checking:
-            return "Checking iCloud status..."
-        case .available:
-            return "Progress sync is enabled."
-        case .noAccount:
-            return "Sign in to iCloud in Settings to sync progress."
-        case .restricted:
-            return "iCloud is restricted on this device."
-        case .temporarilyUnavailable:
-            return "iCloud is temporarily unavailable. Try again shortly."
-        case .unknown:
-            return "Unable to confirm iCloud status."
-        case .error:
-            return "Could not reach iCloud right now."
-        }
-    }
-
-    var showsRetry: Bool {
-        switch self {
-        case .available, .checking:
-            return false
-        case .noAccount, .restricted, .temporarilyUnavailable, .unknown, .error:
-            return true
-        }
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: data)
     }
 }
 
@@ -410,14 +434,14 @@ struct StatCard: View {
         VStack(spacing: 8) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundColor(color)
+                .foregroundStyle(color)
             
             Text(value)
                 .font(.title2.bold())
             
             Text(title)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -442,12 +466,12 @@ struct AchievementBadge: View {
                 
                 Image(systemName: achievement.icon)
                     .font(.title2)
-                    .foregroundColor(isEarned ? .white : .gray)
+                    .foregroundStyle(isEarned ? .white : .gray)
             }
             
             Text(achievement.title)
                 .font(.caption2)
-                .foregroundColor(isEarned ? .primary : .secondary)
+                .foregroundStyle(isEarned ? .primary : .secondary)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
         }
@@ -477,22 +501,17 @@ struct LearningStat: View {
             
             Text("\(count)/\(total)")
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             Text(title)
                 .font(.caption2)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
     }
 }
 
 #Preview {
-    let authManager = AuthManager.shared
-    authManager.currentUserId = AuthManager.previewUserId
-    authManager.isCheckingSession = false
-
-    return ProgressDashboardView()
+    ProgressDashboardView()
         .modelContainer(for: [UserProgress.self], inMemory: true)
-        .environment(authManager)
 }

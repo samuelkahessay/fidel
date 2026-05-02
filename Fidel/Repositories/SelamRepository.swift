@@ -24,6 +24,7 @@ protocol SelamRepositoryProtocol {
 
 // MARK: - SelamRepository Implementation
 
+@MainActor
 @Observable
 final class SelamRepository: SelamRepositoryProtocol {
     
@@ -54,7 +55,7 @@ final class SelamRepository: SelamRepositoryProtocol {
     }
     
     func getActiveConversation() -> SelamConversation? {
-        let oneDayAgo = Date().addingTimeInterval(-24 * 60 * 60)
+        let oneDayAgo = Date.now.addingTimeInterval(-24 * 60 * 60)
         let descriptor = FetchDescriptor<SelamConversation>(
             predicate: #Predicate { $0.updatedAt > oneDayAgo },
             sortBy: [SortDescriptor(\.updatedAt, order: .reverse)]
@@ -93,7 +94,7 @@ final class SelamRepository: SelamRepositoryProtocol {
     func addMessage(_ message: SelamMessage, to conversation: SelamConversation) {
         message.conversation = conversation
         modelContext.insert(message)
-        conversation.updatedAt = Date()
+        conversation.updatedAt = Date.now
         conversation.generateTitle()
         
         if message.role == .user {
@@ -141,7 +142,7 @@ final class SelamRepository: SelamRepositoryProtocol {
         resetDailyCountIfNeeded()
         let currentCount = userDefaults.integer(forKey: dailyMessageCountKey)
         userDefaults.set(currentCount + 1, forKey: dailyMessageCountKey)
-        userDefaults.set(Date(), forKey: lastMessageDateKey)
+        userDefaults.set(Date.now, forKey: lastMessageDateKey)
     }
     
     private func resetDailyCountIfNeeded() {
