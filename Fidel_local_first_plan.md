@@ -188,9 +188,9 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 7: Fix Flashcard Due-Card Flow
 
 **Claim to verify**
-- [ ] `FlashcardViewModel.startSession` currently uses shuffled random vocabulary.
-- [ ] `ProgressRepository` already exposes `initializeFlashcards` and `getDueFlashcards`.
-- [ ] Reviews already update FSRS scheduling state.
+- [x] `FlashcardViewModel.startSession` currently uses shuffled random vocabulary.
+- [x] `ProgressRepository` already exposes `initializeFlashcards` and `getDueFlashcards`.
+- [x] Reviews already update FSRS scheduling state.
 
 **Likely files**
 - `Fidel/ViewModels/FlashcardViewModel.swift`
@@ -198,14 +198,14 @@ This document is the durable working checklist. Execute one task at a time. For 
 - `Fidel/Repositories/ProgressRepository.swift`
 
 **Implementation checklist**
-- [ ] Initialize vocabulary and phrase flashcard progress before loading a session.
-- [ ] Load due vocabulary cards first.
-- [ ] Fill remaining session slots with new or not-due vocabulary cards when due cards are fewer than the requested count.
-- [ ] Keep filtered vocabulary sessions working for lesson-specific practice.
-- [ ] Ensure review swipes continue recording FSRS ratings.
+- [x] Initialize vocabulary and phrase flashcard progress before loading a session.
+- [x] Load due vocabulary cards first.
+- [x] Fill remaining session slots with new or not-due vocabulary cards when due cards are fewer than the requested count.
+- [x] Keep filtered vocabulary sessions working for lesson-specific practice.
+- [x] Ensure review swipes continue recording FSRS ratings.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `feat: prioritize due flashcards`
