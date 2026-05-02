@@ -71,7 +71,18 @@
 		AAA00097001 /* AmharicDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00097000 /* AmharicDataLoader.swift */; };
 		AAA00098001 /* AppSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00098000 /* AppSettingsStore.swift */; };
 		AAA00099001 /* ProgressExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00099000 /* ProgressExportService.swift */; };
+		BAA00002001 /* LocalFirstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00002000 /* LocalFirstTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BAA00003000 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAA01000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAA00800000;
+			remoteInfo = Fidel;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AAA00000000 /* Fidel - Learn Amharic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidel - Learn Amharic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +152,8 @@
 		AAA00097000 /* AmharicDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmharicDataLoader.swift; sourceTree = "<group>"; };
 		AAA00098000 /* AppSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsStore.swift; sourceTree = "<group>"; };
 		AAA00099000 /* ProgressExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressExportService.swift; sourceTree = "<group>"; };
+		BAA00001000 /* FidelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FidelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAA00002000 /* LocalFirstTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFirstTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -148,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA00200000 /* Fidel */,
+				BAA00004000 /* FidelTests */,
 				AAA00300000 /* Products */,
 				AAA00031000 /* Secrets.xcconfig */,
 			);
@@ -176,8 +190,17 @@
 			isa = PBXGroup;
 			children = (
 				AAA00000000 /* Fidel - Learn Amharic.app */,
+				BAA00001000 /* FidelTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BAA00004000 /* FidelTests */ = {
+			isa = PBXGroup;
+			children = (
+				BAA00002000 /* LocalFirstTests.swift */,
+			);
+			path = FidelTests;
 			sourceTree = "<group>";
 		};
 		AAA00400000 /* Models */ = {
@@ -324,6 +347,23 @@
 			productReference = AAA00000000 /* Fidel - Learn Amharic.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BAA00000000 /* FidelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAA00006000 /* Build configuration list for PBXNativeTarget "FidelTests" */;
+			buildPhases = (
+				BAA00000001 /* Sources */,
+				BAA00000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BAA00003001 /* PBXTargetDependency */,
+			);
+			name = FidelTests;
+			productName = FidelTests;
+			productReference = BAA00001000 /* FidelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -336,6 +376,10 @@
 				TargetAttributes = {
 					AAA00800000 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					BAA00000000 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = AAA00800000;
 					};
 				};
 			};
@@ -353,6 +397,7 @@
 			projectRoot = "";
 			targets = (
 				AAA00800000 /* Fidel */,
+				BAA00000000 /* FidelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +417,13 @@
 				AAA00094001 /* patterns.json in Resources */,
 				AAA00095001 /* phrases.json in Resources */,
 				AAA00096001 /* vocabulary.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BAA00000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +492,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BAA00000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAA00002001 /* LocalFirstTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BAA00003001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAA00800000 /* Fidel */;
+			targetProxy = BAA00003000 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AAA01200000 /* Debug */ = {
@@ -634,6 +702,52 @@
 			};
 			name = Release;
 		};
+		BAA00005000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9XWM5T8A87;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.learnamharic.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fidel - Learn Amharic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fidel - Learn Amharic";
+			};
+			name = Debug;
+		};
+		BAA00005001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9XWM5T8A87;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.skahessay.learnamharic.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fidel - Learn Amharic.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Fidel - Learn Amharic";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -651,6 +765,15 @@
 			buildConfigurations = (
 				AAA01200000 /* Debug */,
 				AAA01300000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAA00006000 /* Build configuration list for PBXNativeTarget "FidelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAA00005000 /* Debug */,
+				BAA00005001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
