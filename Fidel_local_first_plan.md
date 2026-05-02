@@ -160,9 +160,9 @@ This document is the durable working checklist. Execute one task at a time. For 
 ## Task 6: Expose Full Bundled Content
 
 **Claim to verify**
-- [ ] `Fidel/Data/conversations.json` contains 24 conversations.
-- [ ] `LearningStage.availableConversationIds` currently exposes only conversations 1 through 18 in Fluency.
-- [ ] `ReferenceView` groups phrases with hard-coded ID ranges.
+- [x] `Fidel/Data/conversations.json` contains 24 conversations.
+- [x] `LearningStage.availableConversationIds` currently exposes only conversations 1 through 18 in Fluency.
+- [x] `ReferenceView` groups phrases with hard-coded ID ranges.
 
 **Likely files**
 - `Fidel/Models/LearningStage.swift`
@@ -171,14 +171,14 @@ This document is the durable working checklist. Execute one task at a time. For 
 - `Fidel/Models/Models.swift`
 
 **Implementation checklist**
-- [ ] Update Fluency conversation availability to include all 24 bundled conversations.
-- [ ] Decide whether lessons 6 through 8 remain Fluency electives or become earlier advanced content based on the existing stage descriptions.
-- [ ] Replace phrase ID-band grouping with data-driven grouping from existing phrase data or a local metadata map.
-- [ ] Add reference navigation for cultural notes if the data is already loaded by `LessonRepository`.
-- [ ] Run `jq length Fidel/Data/conversations.json Fidel/Data/phrases.json Fidel/Data/cultural_notes.json`.
+- [x] Update Fluency conversation availability to include all 24 bundled conversations.
+- [x] Decide whether lessons 6 through 8 remain Fluency electives or become earlier advanced content based on the existing stage descriptions.
+- [x] Replace phrase ID-band grouping with data-driven grouping from existing phrase data or a local metadata map.
+- [x] Add reference navigation for cultural notes if the data is already loaded by `LessonRepository`.
+- [x] Run `jq length Fidel/Data/conversations.json Fidel/Data/phrases.json Fidel/Data/cultural_notes.json`.
 
 **XcodeBuildMCP validation command**
-- [ ] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
+- [x] `build_sim` with scheme `Fidel` on `iPhone 17 Pro`.
 
 **Commit message**
 - `feat: expose bundled reference content`

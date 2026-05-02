@@ -31,6 +31,9 @@ protocol LessonRepositoryProtocol {
 
     // Numbers
     func getNumbers() -> [AmharicNumber]
+    func getEthiopianMonths() -> [EthiopianMonth]
+    func getOrdinalNumbers() -> [OrdinalNumber]
+    func getFractions() -> [AmharicFraction]
 
     // Cultural Notes
     func getCulturalNotes() -> [CulturalNote]
@@ -111,6 +114,18 @@ final class LessonRepository: LessonRepositoryProtocol {
 
     func getNumbers() -> [AmharicNumber] {
         AmharicData.numbers
+    }
+
+    func getEthiopianMonths() -> [EthiopianMonth] {
+        AmharicData.ethiopianMonths
+    }
+
+    func getOrdinalNumbers() -> [OrdinalNumber] {
+        AmharicData.ordinalNumbers
+    }
+
+    func getFractions() -> [AmharicFraction] {
+        AmharicData.fractions
     }
 
     // MARK: - Cultural Notes

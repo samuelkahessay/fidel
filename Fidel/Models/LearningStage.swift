@@ -76,7 +76,7 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
         case .scriptAndSounds: return []
         case .survivalPhrases: return [1, 5]
         case .buildingSentences: return Set(1...10)
-        case .fluency: return Set(1...18)
+        case .fluency: return Set(1...24)
         }
     }
 

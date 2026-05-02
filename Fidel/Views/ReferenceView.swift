@@ -2,9 +2,16 @@ import SwiftUI
 
 struct ReferenceView: View {
     @State private var viewModel = ReferenceViewModel()
-    @State private var selectedTab = 0
+    @State private var selectedTab: Int
+    private let settingsStore: AppSettingsStore
 
-    var embedded: Bool = false
+    var embedded: Bool
+
+    init(embedded: Bool = false, settingsStore: AppSettingsStore = AppSettingsStore()) {
+        self.embedded = embedded
+        self.settingsStore = settingsStore
+        _selectedTab = State(initialValue: settingsStore.selectedReferenceTab)
+    }
 
     var body: some View {
         if embedded {
@@ -21,7 +28,8 @@ struct ReferenceView: View {
             Picker("Section", selection: $selectedTab) {
                 Text("Quick Phrases").tag(0)
                 Text("Vocabulary").tag(1)
-                Text("Numbers").tag(2)
+                Text("Culture").tag(2)
+                Text("Numbers").tag(3)
             }
             .pickerStyle(.segmented)
             .padding()
@@ -32,6 +40,8 @@ struct ReferenceView: View {
             case 1:
                 vocabularyView
             case 2:
+                cultureView
+            case 3:
                 numbersView
             default:
                 EmptyView()
@@ -40,37 +50,22 @@ struct ReferenceView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle("Reference")
         .searchable(text: $viewModel.searchText, prompt: "Search...")
+        .onChange(of: selectedTab) { _, newValue in
+            settingsStore.selectedReferenceTab = newValue
+        }
     }
     
     private var phrasesView: some View {
         List {
-            ForEach(groupedPhrases.keys.sorted(), id: \.self) { category in
-                Section(category) {
-                    ForEach(groupedPhrases[category] ?? []) { phrase in
+            ForEach(viewModel.phraseSections) { section in
+                Section(section.title) {
+                    ForEach(section.phrases) { phrase in
                         PhraseReferenceRow(phrase: phrase)
                     }
                 }
             }
         }
         .listStyle(.insetGrouped)
-    }
-    
-    private var groupedPhrases: [String: [Phrase]] {
-        Dictionary(grouping: viewModel.phrases) { phrase -> String in
-            if phrase.id <= 10 { return "Greetings" }
-            if phrase.id <= 15 { return "Thanks & Apologies" }
-            if phrase.id <= 25 { return "Questions" }
-            if phrase.id <= 30 { return "Responses" }
-            if phrase.id <= 35 { return "Wants & Needs" }
-            if phrase.id <= 45 { return "Useful Phrases" }
-            if phrase.id <= 50 { return "Emergency" }
-            if phrase.id <= 58 { return "Travel" }
-            if phrase.id <= 65 { return "Medical" }
-            if phrase.id <= 70 { return "Phone & Communication" }
-            if phrase.id <= 80 { return "Cultural & Social" }
-            if phrase.id <= 85 { return "Weather & Daily Life" }
-            return "Polite Expressions"
-        }
     }
     
     private var vocabularyView: some View {
@@ -108,16 +103,49 @@ struct ReferenceView: View {
     
     private var numbersView: some View {
         List {
-            Section("1-10") {
-                ForEach(viewModel.numbers.prefix(10), id: \.value) { number in
+            Section("Numbers") {
+                ForEach(viewModel.numbers, id: \.value) { number in
                     NumberRow(number: number)
                 }
             }
-            
-            Section("Tens") {
-                ForEach(viewModel.numbers.dropFirst(10), id: \.value) { number in
-                    NumberRow(number: number)
+
+            Section("Months") {
+                ForEach(viewModel.ethiopianMonths, id: \.month) { month in
+                    ReferencePairRow(
+                        leading: month.amharic,
+                        primary: month.transliteration,
+                        secondary: month.gregorian
+                    )
                 }
+            }
+
+            Section("Ordinals") {
+                ForEach(viewModel.ordinalNumbers, id: \.value) { ordinal in
+                    ReferencePairRow(
+                        leading: ordinal.amharic,
+                        primary: ordinal.transliteration,
+                        secondary: "\(ordinal.value)"
+                    )
+                }
+            }
+
+            Section("Fractions") {
+                ForEach(viewModel.fractions, id: \.english) { fraction in
+                    ReferencePairRow(
+                        leading: fraction.amharic,
+                        primary: fraction.transliteration,
+                        secondary: fraction.english
+                    )
+                }
+            }
+        }
+        .listStyle(.insetGrouped)
+    }
+
+    private var cultureView: some View {
+        List {
+            ForEach(viewModel.culturalNotes) { note in
+                CulturalNoteReferenceRow(note: note)
             }
         }
         .listStyle(.insetGrouped)
@@ -229,6 +257,59 @@ struct NumberRow: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
+    }
+}
+
+struct ReferencePairRow: View {
+    let leading: String
+    let primary: String
+    let secondary: String
+
+    var body: some View {
+        HStack {
+            Text(leading)
+                .font(AppTheme.Typography.amharic(size: 22))
+
+            Spacer()
+
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(primary)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                Text(secondary)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+}
+
+struct CulturalNoteReferenceRow: View {
+    let note: CulturalNote
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: note.icon)
+                .font(.title3)
+                .foregroundStyle(AppTheme.primaryColor)
+                .frame(width: 28)
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text(note.title)
+                    .font(AppTheme.Typography.headline)
+
+                Text(note.amharicTitle)
+                    .font(AppTheme.Typography.amharic(size: 18))
+                    .foregroundStyle(AppTheme.primaryColor)
+
+                Text(note.content)
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(4)
+            }
+        }
+        .padding(.vertical, 4)
     }
 }
 
