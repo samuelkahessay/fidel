@@ -4,26 +4,55 @@ import PencilKit
 struct TracingView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel = TracingViewModel()
+    @State private var replayToken = 0
 
     var body: some View {
-        VStack(spacing: AppTheme.Spacing.lg) {
-            if viewModel.showCompletion {
-                completionView
-            } else if let character = viewModel.currentCharacter {
-                progressHeader
-                characterInfo(character)
-                mainContent(character)
-                actionButtons
+        ZStack {
+            Color(.systemGroupedBackground).ignoresSafeArea()
+
+            ScrollView {
+                VStack(spacing: AppTheme.Spacing.lg) {
+                    if viewModel.showCompletion {
+                        completionView
+                    } else if let character = viewModel.currentCharacter {
+                        progressHeader
+                        characterInfo(character)
+                        mainContent(character)
+                    }
+                }
+                .padding(AppTheme.Spacing.md)
+                .padding(.bottom, bottomContentPadding)
             }
         }
-        .padding(AppTheme.Spacing.md)
-        .background(Color(.systemGroupedBackground))
+        .safeAreaInset(edge: .bottom) {
+            if !viewModel.showCompletion, viewModel.currentCharacter != nil {
+                bottomControls
+                    .padding(.horizontal, AppTheme.Spacing.md)
+                    .padding(.top, AppTheme.Spacing.sm)
+                    .padding(.bottom, AppTheme.Spacing.xs)
+                    .background(.ultraThinMaterial)
+            }
+        }
         .navigationTitle("Character Tracing")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             let progressRepo = ProgressRepository(modelContext: modelContext)
             viewModel.configure(progressRepository: progressRepo)
             viewModel.startSession()
+        }
+    }
+
+    private var bottomContentPadding: CGFloat {
+        if viewModel.showCompletion { return AppTheme.Spacing.lg }
+        return viewModel.needsRetry ? 150 : 86
+    }
+
+    @ViewBuilder
+    private var bottomControls: some View {
+        if viewModel.needsRetry {
+            retryPrompt
+        } else {
+            actionButtons
         }
     }
 
@@ -83,46 +112,74 @@ struct TracingView: View {
     }
 
     private func watchingPhase(_ character: FidelCharacter) -> some View {
-        VStack(spacing: AppTheme.Spacing.sm) {
-            Text("Watch the stroke pattern")
-                .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(.secondary)
+        VStack(spacing: AppTheme.Spacing.md) {
+            HStack {
+                Text("Watch the stroke order")
+                    .font(AppTheme.Typography.headline)
+                    .foregroundStyle(.primary)
+
+                Spacer()
+
+                Button {
+                    replayToken += 1
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                        .font(.headline)
+                        .foregroundStyle(.indigo)
+                        .frame(width: 36, height: 36)
+                        .background(Color.indigo.opacity(0.10), in: Circle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Replay stroke order")
+            }
 
             StrokeAnimationView(
                 character: character.character,
-                size: CGSize(width: 280, height: 280),
+                size: TracingLayout.canvasSize,
                 characterId: character.id
             )
-            .frame(width: 300, height: 300)
+            .id("\(character.id)-\(replayToken)")
+            .frame(width: TracingLayout.canvasSize.width, height: TracingLayout.canvasSize.height)
             .glassCard()
         }
     }
 
     private func drawingPhase(_ character: FidelCharacter) -> some View {
-        VStack(spacing: AppTheme.Spacing.sm) {
-            Text("Trace the character")
-                .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(.secondary)
+        VStack(spacing: AppTheme.Spacing.md) {
+            HStack {
+                Text("Trace the character")
+                    .font(AppTheme.Typography.headline)
+                    .foregroundStyle(.primary)
+                Spacer()
+                Text(viewModel.hasDrawing ? "Ready" : "Draw first")
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(viewModel.hasDrawing ? AppTheme.primaryColor : .secondary)
+                    .padding(.horizontal, AppTheme.Spacing.sm)
+                    .padding(.vertical, AppTheme.Spacing.xxs)
+                    .background(
+                        Capsule().fill((viewModel.hasDrawing ? AppTheme.primaryColor : Color.primary).opacity(0.08))
+                    )
+            }
+
+            let guidePath = PathExtractor.shared.extractPath(
+                for: character.character,
+                size: TracingLayout.drawingGuideSize
+            )
 
             ZStack {
-                // Reference filled guide — clean sans-serif shape to trace over
-                PathExtractor.shared.extractPath(
-                    for: character.character,
-                    size: CGSize(width: 280, height: 280)
-                )
-                .fill(Color.indigo.opacity(0.12))
-                .frame(width: 280, height: 280)
+                guidePath
+                    .fill(Color.indigo.opacity(0.10))
 
-                // Drawing canvas on top
+                guidePath
+                    .stroke(Color.indigo.opacity(0.22), lineWidth: 1.5)
+
                 DrawingCanvasView(drawing: $viewModel.userDrawing)
-                    .frame(width: 300, height: 300)
+                    .frame(width: TracingLayout.canvasSize.width, height: TracingLayout.canvasSize.height)
+                    .accessibilityLabel("Tracing canvas")
             }
-            .frame(width: 300, height: 300)
+            .frame(width: TracingLayout.canvasSize.width, height: TracingLayout.canvasSize.height)
             .glassCard()
 
-            if viewModel.needsRetry {
-                retryPrompt
-            }
         }
     }
 
@@ -132,37 +189,38 @@ struct TracingView: View {
                 .font(AppTheme.Typography.headline)
                 .foregroundStyle(.primary)
 
-            HStack(spacing: AppTheme.Spacing.xl) {
-                // Reference
+            Text(viewModel.reviewMessage)
+                .font(AppTheme.Typography.subheadline)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: AppTheme.Spacing.md) {
                 VStack(spacing: AppTheme.Spacing.xs) {
                     Text("Reference")
                         .font(AppTheme.Typography.caption)
                         .foregroundStyle(.secondary)
 
-                    PathExtractor.shared.extractPath(
+                    let referencePath = PathExtractor.shared.extractPath(
                         for: character.character,
-                        size: CGSize(width: 120, height: 120)
+                        size: TracingLayout.reviewThumbnailSize
                     )
-                    .fill(Color.indigo.opacity(0.3))
-                    .overlay(
-                        PathExtractor.shared.extractPath(
-                            for: character.character,
-                            size: CGSize(width: 120, height: 120)
-                        )
-                        .stroke(Color.indigo, lineWidth: 1.5)
-                    )
-                    .frame(width: 130, height: 130)
+                    referencePath
+                        .fill(Color.indigo.opacity(0.20))
+                        .overlay(referencePath.stroke(Color.indigo.opacity(0.55), lineWidth: 1.5))
+                        .frame(width: TracingLayout.reviewThumbnailSize.width, height: TracingLayout.reviewThumbnailSize.height)
                     .glassCard(padding: AppTheme.Spacing.xs)
                 }
 
-                // User's drawing
                 VStack(spacing: AppTheme.Spacing.xs) {
                     Text("Your drawing")
                         .font(AppTheme.Typography.caption)
                         .foregroundStyle(.secondary)
 
-                    DrawingThumbnailView(drawing: viewModel.userDrawing, size: CGSize(width: 130, height: 130))
-                        .frame(width: 130, height: 130)
+                    DrawingThumbnailView(
+                        drawing: viewModel.userDrawing,
+                        sourceCanvasSize: TracingLayout.canvasSize,
+                        outputSize: TracingLayout.reviewThumbnailSize
+                    )
+                        .frame(width: TracingLayout.reviewThumbnailSize.width, height: TracingLayout.reviewThumbnailSize.height)
                         .glassCard(padding: AppTheme.Spacing.xs)
                 }
             }
@@ -224,9 +282,9 @@ struct TracingView: View {
 
     private var retryPrompt: some View {
         VStack(spacing: AppTheme.Spacing.sm) {
-            Text("Try to follow the outline more closely")
+            Text(viewModel.retryMessage)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
 
             HStack(spacing: AppTheme.Spacing.md) {
@@ -250,7 +308,7 @@ struct TracingView: View {
                         viewModel.skipCharacter()
                     }
                 } label: {
-                    Text("Skip")
+                    Label("Skip", systemImage: "forward.fill")
                         .font(AppTheme.Typography.headline)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal, AppTheme.Spacing.lg)
@@ -285,7 +343,6 @@ struct TracingView: View {
                             Capsule().fill(.indigo)
                         )
                 }
-                .padding(.horizontal, AppTheme.Spacing.md)
 
             case .drawing:
                 HStack(spacing: AppTheme.Spacing.md) {
@@ -301,23 +358,25 @@ struct TracingView: View {
                                 Capsule().fill(Color.primary.opacity(0.06))
                             )
                     }
+                    .disabled(!viewModel.hasDrawing)
+                    .opacity(viewModel.hasDrawing ? 1 : 0.55)
 
                     Button {
                         withAnimation(AppTheme.Animation.standard) {
                             viewModel.evaluateDrawing()
                         }
                     } label: {
-                        Label("Done", systemImage: "checkmark")
+                        Label("Check", systemImage: "checkmark")
                             .font(AppTheme.Typography.headline)
                             .foregroundStyle(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, AppTheme.Spacing.sm)
                             .background(
-                                Capsule().fill(.indigo)
+                                Capsule().fill(Color.indigo.opacity(viewModel.hasDrawing ? 1 : 0.45))
                             )
                     }
+                    .disabled(!viewModel.hasDrawing)
                 }
-                .padding(.horizontal, AppTheme.Spacing.md)
 
             case .reviewing:
                 EmptyView()
@@ -366,12 +425,14 @@ struct TracingView: View {
 /// Renders a PKDrawing as an image for the review comparison.
 private struct DrawingThumbnailView: View {
     let drawing: PKDrawing
-    let size: CGSize
+    let sourceCanvasSize: CGSize
+    let outputSize: CGSize
 
     var body: some View {
-        Image(uiImage: drawing.image(
-            from: CGRect(origin: .zero, size: size),
-            scale: 1.0
+        Image(uiImage: TracingDrawingRenderer.thumbnail(
+            from: drawing,
+            sourceCanvasSize: sourceCanvasSize,
+            outputSize: outputSize
         ))
         .resizable()
         .aspectRatio(contentMode: .fit)
