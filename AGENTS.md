@@ -7,6 +7,7 @@ Fidel is a local-first Amharic learning iOS app built with SwiftUI, SwiftData, M
 Before starting consolidation, import, release, or large refactor work, read:
 
 - `docs/README.md`
+- `docs/backlog.md`
 - `docs/status/fidel-group-audit.md`
 - `Fidel_local_first_plan.md` if the task touches local-first behavior, auth removal, backup/restore, or release history
 

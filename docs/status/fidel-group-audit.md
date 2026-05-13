@@ -311,10 +311,7 @@ Location note: this file now lives inside the iOS product repo at `docs/status/f
 
 ## Deferred Work
 
-- Do not bulk-import additional vocabulary or phrasebook rows yet; use the de-dupe report and import schema first.
-- Keep the `.apkg` untracked and archival until native audio/image assets become an explicit product goal with source-rights review.
-- Keep `web_app/` archival as a UX/content reference unless a separate web companion plan is created.
-- Deploying or wiring a real waitlist provider for `FidelWeb` is still a product/ops task: production now requires `WAITLIST_WEBHOOK_URL`.
+Future product, content-import, waitlist, media-rights, and companion-web work has moved to `docs/backlog.md`.
 
 ## Repo Status Sweep
 

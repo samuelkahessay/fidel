@@ -105,10 +105,4 @@ The app features an Ethiopian-inspired color palette:
 
 ## Future Enhancements
 
-- [ ] Audio pronunciation by native speakers
-- [ ] Handwriting practice for Fidel characters
-- [ ] Speech recognition for pronunciation feedback
-- [ ] Additional vocabulary from CSV (547 words available)
-- [x] Local progress persistence
-- [x] User-controlled JSON backup and restore
-- [ ] Additional downloadable content packs
+Future product and content work is tracked in `docs/backlog.md`.
