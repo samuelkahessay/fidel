@@ -7,7 +7,7 @@ This is the single parking lot for future Fidel app, landing page, and content-p
 
 ## Active
 
-No active backlog items.
+- 2026-05-13 [feature] Finish the Azure-generated pronunciation pilot: app-side manifest loading, bundled playback, phrase-row gating, Journey gating, and generation tooling are implemented; remaining work is to provide Azure Speech credentials, generate 25 MP3s, add them to the Xcode resources, validate playback, and update shipped-scope docs.
 
 ## Ready Next
 
@@ -15,7 +15,6 @@ No ready-next backlog items.
 
 ## Later
 
-- 2026-05-13 [feature] Decide whether to add pronunciation/audio content at all; if yes, start with licensed native-speaker media and design a rights-reviewed asset pipeline before importing files.
 - 2026-05-13 [feature] Design downloadable content packs only after content provenance, media rights, and local-first/offline packaging rules are settled.
 
 ## Blocked Or Not Now

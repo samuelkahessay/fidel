@@ -6,10 +6,12 @@ Date: 2026-05-13
 
 Do not build scored pronunciation feedback yet. The product does not currently have a shipped pronunciation/audio content layer, so scoring should stay out of scope until audio content, recognition quality, and privacy/offline constraints are decided.
 
+Update: pronunciation content should start with the Azure-generated offline audio pilot, not scoring. The app-side manifest/player/gating path is in progress, and generated MP3 files remain blocked on Azure Speech credentials.
+
 ## Current App State
 
 - The app has implementation hooks for pronunciation practice and local recording, but these are not a finished shipped pronunciation/audio product.
-- There is no reviewed native-speaker audio corpus or accepted pronunciation content pipeline.
+- There is no reviewed native-speaker audio corpus. The accepted first pronunciation pipeline is an Azure-generated, clearly labeled, offline-bundled pilot.
 - The app does not use speech recognition, phoneme scoring, server-side audio upload, or a native-speaker scoring model.
 
 ## Why Not Now
@@ -30,4 +32,4 @@ Reconsider scored feedback when all of these are true:
 
 ## Near-Term Alternative
 
-If pronunciation becomes a near-term goal, start by adding a small rights-reviewed audio/content pilot. A self-rating step such as `Again`, `Close`, or `Good` can come after there is real content to practice against.
+Pronunciation is now a near-term content goal through the Azure-generated offline pilot. A self-rating step such as `Again`, `Close`, or `Good` can come after there is real content to practice against.
