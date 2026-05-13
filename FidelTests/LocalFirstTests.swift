@@ -145,6 +145,25 @@ final class LocalFirstTests: XCTestCase {
         XCTAssertTrue(AmharicData.audioAssets.allSatisfy { !$0.id.isEmpty && !$0.file.isEmpty })
     }
 
+    func testAudioAssetRepositoryFindsPhraseAsset() {
+        let asset = AudioAsset(
+            id: "phrase-12",
+            contentType: .phrase,
+            contentId: "12",
+            language: "am-ET",
+            provider: "azure",
+            voice: "am-ET-MekdesNeural",
+            format: "mp3",
+            file: "Audio/phrases/phrase-12.mp3",
+            text: "አመሰግናለሁ",
+            sourceTextHash: "abc123"
+        )
+        let repository = AudioAssetRepository(assets: [asset])
+
+        XCTAssertEqual(repository.asset(for: .phrase, contentId: "12"), asset)
+        XCTAssertNil(repository.asset(for: .phrase, contentId: "13"))
+    }
+
     func testBundledVocabularyIncludesReviewedImportBatch() {
         let expectedWords: [(category: String, amharic: String, transliteration: String, english: String)] = [
             ("Directions", "ከኋላ", "kahuala", "at the back"),

@@ -72,6 +72,8 @@
 		AAA00098001 /* AppSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00098000 /* AppSettingsStore.swift */; };
 		AAA00099001 /* ProgressExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00099000 /* ProgressExportService.swift */; };
 		AAA00101001 /* AudioAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00101000 /* AudioAsset.swift */; };
+		AAA00102001 /* AudioAssetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00102000 /* AudioAssetRepository.swift */; };
+		AAA00103001 /* BundledAudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00103000 /* BundledAudioService.swift */; };
 		AAA00104001 /* audio_manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00104000 /* audio_manifest.json */; };
 		BAA00002001 /* LocalFirstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00002000 /* LocalFirstTests.swift */; };
 /* End PBXBuildFile section */
@@ -155,6 +157,8 @@
 		AAA00098000 /* AppSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsStore.swift; sourceTree = "<group>"; };
 		AAA00099000 /* ProgressExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressExportService.swift; sourceTree = "<group>"; };
 		AAA00101000 /* AudioAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAsset.swift; sourceTree = "<group>"; };
+		AAA00102000 /* AudioAssetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAssetRepository.swift; sourceTree = "<group>"; };
+		AAA00103000 /* BundledAudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledAudioService.swift; sourceTree = "<group>"; };
 		AAA00104000 /* audio_manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = audio_manifest.json; sourceTree = "<group>"; };
 		BAA00001000 /* FidelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FidelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA00002000 /* LocalFirstTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFirstTests.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 				AAA00097000 /* AmharicDataLoader.swift */,
 				AAA00098000 /* AppSettingsStore.swift */,
 				AAA00099000 /* ProgressExportService.swift */,
+				AAA00103000 /* BundledAudioService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				AAA00023000 /* LessonRepository.swift */,
 				AAA00024000 /* ProgressRepository.swift */,
 				AAA00027000 /* SelamRepository.swift */,
+				AAA00102000 /* AudioAssetRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -497,6 +503,8 @@
 				AAA00098001 /* AppSettingsStore.swift in Sources */,
 				AAA00099001 /* ProgressExportService.swift in Sources */,
 				AAA00101001 /* AudioAsset.swift in Sources */,
+				AAA00102001 /* AudioAssetRepository.swift in Sources */,
+				AAA00103001 /* BundledAudioService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
