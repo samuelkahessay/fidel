@@ -17,6 +17,7 @@ struct AmharicData {
     static let ordinalNumbers: [OrdinalNumber] = AmharicDataLoader.ordinalNumbers
     static let fractions: [AmharicFraction] = AmharicDataLoader.fractions
     static let audioAssets: [AudioAsset] = AmharicDataLoader.audioAssets
+    static let audioCatalog: [AudioAsset] = AmharicDataLoader.audioCatalog
 
     // MARK: - Derived Data (computed in Swift)
 

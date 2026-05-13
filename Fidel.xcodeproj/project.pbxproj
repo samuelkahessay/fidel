@@ -76,6 +76,7 @@
 		AAA00103001 /* BundledAudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00103000 /* BundledAudioService.swift */; };
 		AAA00104001 /* audio_manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00104000 /* audio_manifest.json */; };
 		AAA00105001 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = AAA00105000 /* Audio */; };
+		AAA00106001 /* audio_catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00106000 /* audio_catalog.json */; };
 		BAA00002001 /* LocalFirstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00002000 /* LocalFirstTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +163,7 @@
 		AAA00103000 /* BundledAudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledAudioService.swift; sourceTree = "<group>"; };
 		AAA00104000 /* audio_manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = audio_manifest.json; sourceTree = "<group>"; };
 		AAA00105000 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
+		AAA00106000 /* audio_catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = audio_catalog.json; sourceTree = "<group>"; };
 		BAA00001000 /* FidelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FidelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA00002000 /* LocalFirstTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFirstTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -339,6 +341,7 @@
 				AAA00095000 /* phrases.json */,
 				AAA00096000 /* vocabulary.json */,
 				AAA00104000 /* audio_manifest.json */,
+				AAA00106000 /* audio_catalog.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				AAA00096001 /* vocabulary.json in Resources */,
 				AAA00104001 /* audio_manifest.json in Resources */,
 				AAA00105001 /* Audio in Resources */,
+				AAA00106001 /* audio_catalog.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

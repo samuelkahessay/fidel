@@ -149,8 +149,21 @@ final class LocalFirstTests: XCTestCase {
         let repository = AudioAssetRepository()
 
         XCTAssertEqual(AmharicData.audioAssets.count, 25)
+        XCTAssertEqual(Set(AmharicData.audioAssets.map(\.voice)), ["am-ET-MekdesNeural"])
         for asset in AmharicData.audioAssets {
             XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled audio file: \(asset.file)")
+        }
+    }
+
+    func testBundledAudioCatalogIncludesMaleAuditionClips() {
+        let repository = AudioAssetRepository()
+        let maleAuditionAssets = AmharicData.audioCatalog.filter { $0.voice == "am-ET-AmehaNeural" }
+
+        XCTAssertEqual(AmharicData.audioCatalog.count, 30)
+        XCTAssertEqual(maleAuditionAssets.count, 5)
+        XCTAssertTrue(maleAuditionAssets.allSatisfy { $0.file.contains("/am-ET-AmehaNeural/") })
+        for asset in maleAuditionAssets {
+            XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled male audition file: \(asset.file)")
         }
     }
 

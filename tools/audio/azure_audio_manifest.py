@@ -8,9 +8,13 @@ from pathlib import Path
 from urllib import error, request
 
 PILOT_IDS = [1, 2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 16, 20, 21, 22, 26, 27, 28, 30, 32, 33, 46, 47, 49, 50]
-DEFAULT_VOICE = "am-ET-MekdesNeural"
+AUDITION_IDS = [1, 2, 12, 20, 46]
+ACTIVE_VOICE = "am-ET-MekdesNeural"
+MALE_VOICE = "am-ET-AmehaNeural"
 LANGUAGE = "am-ET"
 OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3"
+PROVIDER = "azure"
+PILOT_SET = "survival-phrases-pilot"
 
 
 def repo_root() -> Path:
@@ -22,53 +26,83 @@ def load_phrases(root: Path) -> list[dict]:
 
 
 def source_hash(text: str, voice: str) -> str:
-    source = f"{LANGUAGE}|{voice}|{OUTPUT_FORMAT}|{text}"
+    source = f"{LANGUAGE}|{PROVIDER}|{voice}|{OUTPUT_FORMAT}|{text}"
     return hashlib.sha256(source.encode("utf-8")).hexdigest()
 
 
-def manifest_row(phrase: dict, voice: str) -> dict:
-    phrase_id = str(phrase["id"])
+def audio_file_path(phrase_id: int, voice: str) -> str:
+    return f"Audio/phrases/{PROVIDER}/{voice}/phrase-{phrase_id:03d}.mp3"
+
+
+def asset_id(phrase_id: int, voice: str) -> str:
+    return f"phrase-{phrase_id:03d}__{PROVIDER}__{voice}"
+
+
+def manifest_row(phrase: dict, voice: str, asset_role: str) -> dict:
+    phrase_id = int(phrase["id"])
     return {
-        "id": f"phrase-{phrase_id}",
+        "id": asset_id(phrase_id, voice),
         "contentType": "phrase",
-        "contentId": phrase_id,
+        "contentId": str(phrase_id),
         "language": LANGUAGE,
-        "provider": "azure",
+        "provider": PROVIDER,
         "voice": voice,
+        "assetRole": asset_role,
+        "assetSet": PILOT_SET,
         "format": "mp3",
-        "file": f"Audio/phrases/phrase-{phrase_id}.mp3",
+        "file": audio_file_path(phrase_id, voice),
         "text": phrase["amharic"],
         "sourceTextHash": source_hash(phrase["amharic"], voice),
     }
 
 
-def pilot_rows(root: Path, voice: str) -> list[dict]:
+def rows_for_ids(root: Path, phrase_ids: list[int], voice: str, asset_role: str) -> list[dict]:
     phrases = {item["id"]: item for item in load_phrases(root)}
-    missing_ids = [phrase_id for phrase_id in PILOT_IDS if phrase_id not in phrases]
+    missing_ids = [phrase_id for phrase_id in phrase_ids if phrase_id not in phrases]
     if missing_ids:
-        raise SystemExit(f"Missing pilot phrase IDs in phrases.json: {missing_ids}")
-    return [manifest_row(phrases[phrase_id], voice) for phrase_id in PILOT_IDS]
+        raise SystemExit(f"Missing phrase IDs in phrases.json: {missing_ids}")
+    return [manifest_row(phrases[phrase_id], voice, asset_role) for phrase_id in phrase_ids]
 
 
-def manifest_path(root: Path) -> Path:
+def active_manifest_rows(root: Path) -> list[dict]:
+    return rows_for_ids(root, PILOT_IDS, ACTIVE_VOICE, "active")
+
+
+def audition_rows(root: Path, voice: str) -> list[dict]:
+    return rows_for_ids(root, AUDITION_IDS, voice, "audition")
+
+
+def catalog_rows(root: Path) -> list[dict]:
+    return active_manifest_rows(root) + audition_rows(root, MALE_VOICE)
+
+
+def app_manifest_path(root: Path) -> Path:
     return root / "Fidel" / "Data" / "audio_manifest.json"
 
 
-def write_manifest(root: Path, rows: list[dict]) -> None:
-    target = manifest_path(root)
-    target.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"wrote {len(rows)} audio rows to {target}")
+def catalog_path(root: Path) -> Path:
+    return root / "Fidel" / "Data" / "audio_catalog.json"
 
 
-def validate(root: Path, rows: list[dict]) -> list[str]:
+def write_json(path: Path, rows: list[dict]) -> None:
+    path.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"wrote {len(rows)} rows to {path}")
+
+
+def validate(root: Path, rows: list[dict], *, allow_duplicate_content: bool) -> list[str]:
     errors = []
     phrases = {str(item["id"]): item for item in load_phrases(root)}
     seen_ids = set()
+    seen_content_keys = set()
     for row in rows:
         row_id = row["id"]
+        content_key = (row["contentType"], row["contentId"])
         if row_id in seen_ids:
-            errors.append(f"{row_id}: duplicate manifest row")
+            errors.append(f"{row_id}: duplicate asset id")
         seen_ids.add(row_id)
+        if not allow_duplicate_content and content_key in seen_content_keys:
+            errors.append(f"{row_id}: duplicate active content key {content_key}")
+        seen_content_keys.add(content_key)
 
         phrase = phrases.get(row["contentId"])
         if phrase is None:
@@ -78,10 +112,14 @@ def validate(root: Path, rows: list[dict]) -> list[str]:
 
         if row["language"] != LANGUAGE:
             errors.append(f"{row_id}: expected language {LANGUAGE}")
-        if row["provider"] != "azure":
-            errors.append(f"{row_id}: expected provider azure")
+        if row["provider"] != PROVIDER:
+            errors.append(f"{row_id}: expected provider {PROVIDER}")
         if row["format"] != "mp3":
             errors.append(f"{row_id}: expected mp3 format")
+        if not row["file"].startswith(f"Audio/phrases/{PROVIDER}/{row['voice']}/"):
+            errors.append(f"{row_id}: file path is not voice-scoped")
+        if row["sourceTextHash"] != source_hash(row["text"], row["voice"]):
+            errors.append(f"{row_id}: stale source hash")
 
         file_path = root / "Fidel" / row["file"]
         if not file_path.exists():
@@ -120,7 +158,7 @@ def synthesize(root: Path, rows: list[dict], force: bool) -> None:
         output = root / "Fidel" / row["file"]
         output.parent.mkdir(parents=True, exist_ok=True)
         if output.exists() and not force:
-            print(f"skipped existing {output.name}")
+            print(f"skipped existing {output.relative_to(root / 'Fidel')}")
             continue
 
         text = escape(row["text"], quote=False)
@@ -139,33 +177,47 @@ def synthesize(root: Path, rows: list[dict], force: bool) -> None:
         try:
             with request.urlopen(req, timeout=30) as response:
                 output.write_bytes(response.read())
-            print(f"generated {output.name}")
+            print(f"generated {output.relative_to(root / 'Fidel')}")
         except error.HTTPError as exc:
             details = exc.read().decode("utf-8", errors="replace")
             raise SystemExit(f"Azure TTS failed for {row['id']}: HTTP {exc.code} {details}") from exc
 
 
+def selected_rows(root: Path, scope: str, voice: str) -> list[dict]:
+    if scope == "active":
+        return active_manifest_rows(root)
+    if scope == "audition":
+        return audition_rows(root, voice)
+    if scope == "catalog":
+        return catalog_rows(root)
+    raise SystemExit(f"Unknown scope: {scope}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate and validate Fidel pronunciation audio assets.")
-    parser.add_argument("--write-manifest", action="store_true", help="Write the 25-row pilot audio manifest.")
+    parser.add_argument("--scope", choices=["active", "audition", "catalog"], default="active")
+    parser.add_argument("--write-manifest", action="store_true", help="Write the app-facing active audio manifest.")
+    parser.add_argument("--write-catalog", action="store_true", help="Write the full generated-audio catalog.")
     parser.add_argument("--generate", action="store_true", help="Generate MP3 files through Azure Speech.")
-    parser.add_argument("--validate", action="store_true", help="Validate manifest rows against source text and files.")
+    parser.add_argument("--validate", action="store_true", help="Validate selected rows against source text and files.")
     parser.add_argument("--force", action="store_true", help="Regenerate MP3 files that already exist.")
-    parser.add_argument("--voice", default=DEFAULT_VOICE, help=f"Azure voice name. Default: {DEFAULT_VOICE}")
+    parser.add_argument("--voice", default=ACTIVE_VOICE, help=f"Azure voice name. Default: {ACTIVE_VOICE}")
     args = parser.parse_args()
 
     root = repo_root()
-    rows = pilot_rows(root, args.voice)
+    rows = selected_rows(root, args.scope, args.voice)
 
     if args.write_manifest:
-        write_manifest(root, rows)
+        write_json(app_manifest_path(root), active_manifest_rows(root))
+    if args.write_catalog:
+        write_json(catalog_path(root), catalog_rows(root))
     if args.generate:
         synthesize(root, rows, args.force)
     if args.validate:
-        errors = validate(root, rows)
+        errors = validate(root, rows, allow_duplicate_content=args.scope == "catalog")
         if errors:
             raise SystemExit("\n".join(errors))
-        print(f"validated {len(rows)} audio rows")
+        print(f"validated {len(rows)} {args.scope} audio rows")
 
 
 if __name__ == "__main__":

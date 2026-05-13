@@ -20,6 +20,7 @@ enum AmharicDataLoader {
     static let vocabulary: [VocabularyWord] = load("vocabulary")
     static let culturalNotes: [CulturalNote] = load("cultural_notes")
     static let audioAssets: [AudioAsset] = load("audio_manifest")
+    static let audioCatalog: [AudioAsset] = load("audio_catalog")
 
     static let numericData: NumericReferenceData = load("numbers")
 

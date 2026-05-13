@@ -5,6 +5,7 @@ This folder holds durable planning, status, and decision records for the Fidel i
 ## Start Here
 
 - `backlog.md`: future product, content, landing-page, and research work.
+- `audio-asset-library.md`: generated pronunciation audio naming, manifest, catalog, and validation rules.
 - `status/fidel-group-audit.md`: group-level consolidation status across iOS, landing page, and resource workspaces.
 - `../Fidel_local_first_plan.md`: local-first conversion plan, verification history, and release notes.
 - `../README.md`: app overview, build steps, and current content scope.

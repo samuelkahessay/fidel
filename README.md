@@ -60,8 +60,8 @@ Fidel/
 │   ├── Models/
 │   │   ├── Models.swift          # Core data models
 │   │   └── AmharicData.swift     # JSON-backed content adapter
-│   ├── Data/                     # Bundled lessons, patterns, vocabulary, phrases, conversations, notes
-│   ├── Audio/                    # Bundled generated pronunciation MP3s
+│   ├── Data/                     # Bundled lessons, patterns, vocabulary, phrases, conversations, notes, audio manifests
+│   ├── Audio/                    # Voice-scoped generated pronunciation MP3s
 │   ├── Services/                 # Audio, stage, progress export, stroke, and spaced repetition services
 │   ├── Repositories/             # Lesson/progress/Selam data boundaries
 │   ├── ViewModels/               # Observable feature state
