@@ -145,6 +145,15 @@ final class LocalFirstTests: XCTestCase {
         XCTAssertTrue(AmharicData.audioAssets.allSatisfy { !$0.id.isEmpty && !$0.file.isEmpty })
     }
 
+    func testBundledAudioManifestFilesExist() {
+        let repository = AudioAssetRepository()
+
+        XCTAssertEqual(AmharicData.audioAssets.count, 25)
+        for asset in AmharicData.audioAssets {
+            XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled audio file: \(asset.file)")
+        }
+    }
+
     func testAudioAssetRepositoryFindsPhraseAsset() {
         let asset = AudioAsset(
             id: "phrase-12",
