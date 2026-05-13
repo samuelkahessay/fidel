@@ -4,19 +4,19 @@ Date: 2026-05-13
 
 ## Decision
 
-Do not build scored pronunciation feedback yet. The product does not currently have a shipped pronunciation/audio content layer, so scoring should stay out of scope until audio content, recognition quality, and privacy/offline constraints are decided.
+Do not build scored pronunciation feedback yet. The product now has a generated offline pronunciation-audio pilot, but scoring should stay out of scope until Amharic recognition quality, reference quality, and privacy/offline constraints are proven.
 
-Update: pronunciation content should start with the Azure-generated offline audio pilot, not scoring. The app-side manifest/player/gating path is in progress, and generated MP3 files remain blocked on Azure Speech credentials.
+Update: pronunciation content started with the Azure-generated offline audio pilot, not scoring. The app bundles 25 generated phrase clips and labels them as generated pronunciation.
 
 ## Current App State
 
-- The app has implementation hooks for pronunciation practice and local recording, but these are not a finished shipped pronunciation/audio product.
+- The app has a shipped generated pronunciation pilot for 25 phrase clips.
 - There is no reviewed native-speaker audio corpus. The accepted first pronunciation pipeline is an Azure-generated, clearly labeled, offline-bundled pilot.
 - The app does not use speech recognition, phoneme scoring, server-side audio upload, or a native-speaker scoring model.
 
 ## Why Not Now
 
-- Scoring needs a trustworthy Amharic reference target. That reference content does not exist in the product yet.
+- Scoring needs a trustworthy Amharic reference target. The current generated clips are useful for practice but are not native-speaker proof.
 - Speech-recognition quality for Amharic should be proven before it becomes learner-facing feedback.
 - Audio scoring has privacy and offline-product implications that do not match the current local-first app shape without an explicit design.
 - A weak score would be worse than no score because it would teach false confidence or false corrections.
@@ -32,4 +32,4 @@ Reconsider scored feedback when all of these are true:
 
 ## Near-Term Alternative
 
-Pronunciation is now a near-term content goal through the Azure-generated offline pilot. A self-rating step such as `Again`, `Close`, or `Good` can come after there is real content to practice against.
+Pronunciation content is now available through the Azure-generated offline pilot. A self-rating step such as `Again`, `Close`, or `Good` can come later if it stays clearly separate from automated scoring.

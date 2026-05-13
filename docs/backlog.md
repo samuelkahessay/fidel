@@ -7,7 +7,7 @@ This is the single parking lot for future Fidel app, landing page, and content-p
 
 ## Active
 
-- 2026-05-13 [feature] Finish the Azure-generated pronunciation pilot: app-side manifest loading, bundled playback, phrase-row gating, Journey gating, and generation tooling are implemented; remaining work is to provide Azure Speech credentials, generate 25 MP3s, add them to the Xcode resources, validate playback, and update shipped-scope docs.
+No active backlog items.
 
 ## Ready Next
 
@@ -20,7 +20,7 @@ No ready-next backlog items.
 ## Blocked Or Not Now
 
 - 2026-05-13 [not-now] Configure durable waitlist storage for `FidelWeb`: the subscribe API already supports `WAITLIST_WEBHOOK_URL`; choose the provider, set production env vars, and verify a real signup is stored when launch ops becomes active again.
-- 2026-05-13 [not-now] Keep pronunciation scoring out of scope because the product does not currently have shipped pronunciation/audio content; revisit only after reference audio, Amharic recognition quality, privacy/offline policy, and score-copy expectations are proven; see `pronunciation-feedback-decision.md`.
+- 2026-05-13 [not-now] Keep pronunciation scoring out of scope even with the generated-audio pilot; revisit only after Amharic recognition quality, privacy/offline policy, native-speaker reference quality, and score-copy expectations are proven; see `pronunciation-feedback-decision.md`.
 - 2026-05-13 [blocked] Keep the remaining vocabulary import queue blocked on editorial cleanup/native review: after the 16-word conservative import, the remaining likely-new rows are mostly concatenated verb rows, blank-English rows, embedded-media rows, or broad `Other` category rows.
 - 2026-05-13 [blocked] Do not bulk-import vocabulary or phrasebook rows until the review queue, provenance strategy, de-dupe rules, and rights/source review are applied.
 - 2026-05-13 [blocked] Keep `.apkg` media archival until source-rights review, audio-quality review, image-rights review, and mapping verification make app usage acceptable.
@@ -32,4 +32,5 @@ No ready-next backlog items.
 - 2026-05-13 [content] Built the small phrasebook pilot review sheet at `../../Fidel_Resources/fidel_resources/PHRASEBOOK_PILOT_REVIEW.md` and refreshed stale phrasebook product-decision counts.
 - 2026-05-13 [content] Accepted the phrasebook pilot as a review-only direction and generated provenance-preserving review artifacts at `../../Fidel_Resources/fidel_resources/PHRASEBOOK_PILOT_REVIEW.csv` and `../../Fidel_Resources/fidel_resources/PHRASEBOOK_PILOT_REVIEW.json`; no iOS app data was changed.
 - 2026-05-13 [feature] Completed the post-UI-branch tracing QA pass: launched Character Tracing in the simulator, verified animated-guide handoff to drawing canvas, confirmed a drawn stroke enables Clear/Check, and confirmed low-coverage feedback returns Try Again/Skip.
-- 2026-05-13 [feature] Decided pronunciation scoring is not now and documented reopen criteria in `pronunciation-feedback-decision.md`; the app should not imply a shipped audio/pronunciation product until reference audio/content exists.
+- 2026-05-13 [feature] Shipped the Azure-generated offline pronunciation pilot: created the free Azure Speech resource, generated 25 phrase MP3s, added bundle resource packaging, validated the manifest/files, replaced stale live/native pronunciation UI, and kept scoring out of scope.
+- 2026-05-13 [feature] Decided pronunciation scoring is not now and documented reopen criteria in `pronunciation-feedback-decision.md`; generated pronunciation should stay clearly labeled and should not imply native-speaker scoring or authoritative fluency judgment.

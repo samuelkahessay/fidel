@@ -13,6 +13,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 ### Practice Modes
 - **Flashcards**: Swipeable cards with FSRS-style spaced repetition for optimal retention
 - **Quizzes**: Multiple choice quizzes testing vocabulary, phrases, and Fidel recognition
+- **Pronunciation**: Generated offline phrase pronunciation for the 25-clip survival-phrase pilot
 - **Sentence Builder**: Interactive grammar practice by dragging words to construct sentences
 - **Daily Goals**: Track your practice streak and daily XP targets
 
@@ -22,7 +23,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **Line-by-Line Translation**: See Amharic, transliteration, and English for each line
 
 ### Reference Tab
-- **Quick Phrases**: 174 phrases for travel and daily use
+- **Quick Phrases**: 174 phrases for travel and daily use, including 25 generated offline pronunciation clips
 - **Vocabulary Browser**: 436 words organized by category
 - **Number System**: Ethiopian numbers, months, ordinals, and fractions
 - **Culture Notes**: 20 cultural notes connected to lessons and conversations
@@ -41,6 +42,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **SwiftData** for local progress persistence
 - **MVVM** pattern with Observable view models
 - **FSRS-style Spaced Repetition** algorithm for flashcard scheduling
+- **Manifest-driven bundled audio** for generated pronunciation playback without runtime API keys
 - **User-controlled JSON backup** for progress export/import
 
 ### Requirements
@@ -59,6 +61,7 @@ Fidel/
 │   │   ├── Models.swift          # Core data models
 │   │   └── AmharicData.swift     # JSON-backed content adapter
 │   ├── Data/                     # Bundled lessons, patterns, vocabulary, phrases, conversations, notes
+│   ├── Audio/                    # Bundled generated pronunciation MP3s
 │   ├── Services/                 # Audio, stage, progress export, stroke, and spaced repetition services
 │   ├── Repositories/             # Lesson/progress/Selam data boundaries
 │   ├── ViewModels/               # Observable feature state
