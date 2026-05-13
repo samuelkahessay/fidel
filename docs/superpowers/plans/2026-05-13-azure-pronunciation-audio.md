@@ -2,6 +2,8 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
+Current status: this historical pilot plan has been completed and superseded by the full phrase audio library. The current manifest ships 171 active `am-ET-AmehaNeural` phrase clips and catalogs 171 `am-ET-MekdesNeural` alternates; see `../../audio-asset-library.md`.
+
 **Goal:** Add a manifest-driven Azure-generated pronunciation audio pilot that plays bundled MP3 files offline for selected phrase content.
 
 **Architecture:** Azure is a local content-production dependency only. The app decodes a bundled `audio_manifest.json`, resolves bundle-relative MP3 paths, and exposes generated-audio playback only for content that has a validated bundled clip.

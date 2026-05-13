@@ -5,16 +5,17 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 from urllib import error, request
 
-PILOT_IDS = [1, 2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 16, 20, 21, 22, 26, 27, 28, 30, 32, 33, 46, 47, 49, 50]
 AUDITION_IDS = [1, 2, 12, 20, 46]
-ACTIVE_VOICE = "am-ET-MekdesNeural"
-MALE_VOICE = "am-ET-AmehaNeural"
+ACTIVE_VOICE = "am-ET-AmehaNeural"
+FEMALE_VOICE = "am-ET-MekdesNeural"
 LANGUAGE = "am-ET"
 OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3"
 PROVIDER = "azure"
-PILOT_SET = "survival-phrases-pilot"
+ASSET_SET = "all-phrases-v1"
+SKIPPED_PLACEHOLDER_IDS = {17, 19, 55}
 
 
 def repo_root() -> Path:
@@ -30,8 +31,16 @@ def source_hash(text: str, voice: str) -> str:
     return hashlib.sha256(source.encode("utf-8")).hexdigest()
 
 
-def audio_file_path(phrase_id: int, voice: str) -> str:
-    return f"Audio/phrases/{PROVIDER}/{voice}/phrase-{phrase_id:03d}.mp3"
+def slugify(value: str) -> str:
+    slug = value.lower().replace("&", "and")
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+    slug = slug.strip("-")
+    return slug or "phrase"
+
+
+def audio_file_path(phrase: dict, voice: str) -> str:
+    phrase_id = int(phrase["id"])
+    return f"Audio/phrases/{PROVIDER}/{voice}/phrase-{phrase_id:03d}-{slugify(phrase['english'])}.mp3"
 
 
 def asset_id(phrase_id: int, voice: str) -> str:
@@ -48,9 +57,10 @@ def manifest_row(phrase: dict, voice: str, asset_role: str) -> dict:
         "provider": PROVIDER,
         "voice": voice,
         "assetRole": asset_role,
-        "assetSet": PILOT_SET,
+        "assetSet": ASSET_SET,
         "format": "mp3",
-        "file": audio_file_path(phrase_id, voice),
+        "file": audio_file_path(phrase, voice),
+        "englishSlug": slugify(phrase["english"]),
         "text": phrase["amharic"],
         "sourceTextHash": source_hash(phrase["amharic"], voice),
     }
@@ -64,8 +74,28 @@ def rows_for_ids(root: Path, phrase_ids: list[int], voice: str, asset_role: str)
     return [manifest_row(phrases[phrase_id], voice, asset_role) for phrase_id in phrase_ids]
 
 
+def is_placeholder_phrase(phrase: dict) -> bool:
+    fields = (phrase["english"], phrase["amharic"], phrase["transliteration"])
+    return int(phrase["id"]) in SKIPPED_PLACEHOLDER_IDS or any("[" in field or "]" in field for field in fields)
+
+
+def full_phrase_rows(root: Path, voice: str, asset_role: str) -> list[dict]:
+    phrases = load_phrases(root)
+    placeholder_ids = {int(phrase["id"]) for phrase in phrases if is_placeholder_phrase(phrase)}
+    if placeholder_ids != SKIPPED_PLACEHOLDER_IDS:
+        raise SystemExit(
+            f"Placeholder phrase IDs changed. Expected {sorted(SKIPPED_PLACEHOLDER_IDS)}, "
+            f"found {sorted(placeholder_ids)}"
+        )
+    return [manifest_row(phrase, voice, asset_role) for phrase in phrases if int(phrase["id"]) not in placeholder_ids]
+
+
 def active_manifest_rows(root: Path) -> list[dict]:
-    return rows_for_ids(root, PILOT_IDS, ACTIVE_VOICE, "active")
+    return full_phrase_rows(root, ACTIVE_VOICE, "active")
+
+
+def female_rows(root: Path) -> list[dict]:
+    return full_phrase_rows(root, FEMALE_VOICE, "alternate")
 
 
 def audition_rows(root: Path, voice: str) -> list[dict]:
@@ -73,7 +103,12 @@ def audition_rows(root: Path, voice: str) -> list[dict]:
 
 
 def catalog_rows(root: Path) -> list[dict]:
-    return active_manifest_rows(root) + audition_rows(root, MALE_VOICE)
+    active_rows = active_manifest_rows(root)
+    female_catalog_rows = [
+        row for row in female_rows(root)
+        if (root / "Fidel" / row["file"]).exists()
+    ]
+    return active_rows + female_catalog_rows
 
 
 def app_manifest_path(root: Path) -> Path:
@@ -103,12 +138,18 @@ def validate(root: Path, rows: list[dict], *, allow_duplicate_content: bool) -> 
         if not allow_duplicate_content and content_key in seen_content_keys:
             errors.append(f"{row_id}: duplicate active content key {content_key}")
         seen_content_keys.add(content_key)
+        if row["contentType"] == "phrase" and int(row["contentId"]) in SKIPPED_PLACEHOLDER_IDS:
+            errors.append(f"{row_id}: placeholder phrase should not have generated audio")
 
         phrase = phrases.get(row["contentId"])
         if phrase is None:
             errors.append(f"{row_id}: missing phrase {row['contentId']}")
         elif phrase["amharic"] != row["text"]:
             errors.append(f"{row_id}: text mismatch")
+        elif row["file"] != audio_file_path(phrase, row["voice"]):
+            errors.append(f"{row_id}: expected file {audio_file_path(phrase, row['voice'])}")
+        elif row.get("englishSlug") != slugify(phrase["english"]):
+            errors.append(f"{row_id}: stale english slug")
 
         if row["language"] != LANGUAGE:
             errors.append(f"{row_id}: expected language {LANGUAGE}")
@@ -184,8 +225,10 @@ def synthesize(root: Path, rows: list[dict], force: bool) -> None:
 
 
 def selected_rows(root: Path, scope: str, voice: str) -> list[dict]:
-    if scope == "active":
+    if scope in {"active", "male"}:
         return active_manifest_rows(root)
+    if scope == "female":
+        return female_rows(root)
     if scope == "audition":
         return audition_rows(root, voice)
     if scope == "catalog":
@@ -195,13 +238,13 @@ def selected_rows(root: Path, scope: str, voice: str) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate and validate Fidel pronunciation audio assets.")
-    parser.add_argument("--scope", choices=["active", "audition", "catalog"], default="active")
+    parser.add_argument("--scope", choices=["active", "male", "female", "audition", "catalog"], default="active")
     parser.add_argument("--write-manifest", action="store_true", help="Write the app-facing active audio manifest.")
     parser.add_argument("--write-catalog", action="store_true", help="Write the full generated-audio catalog.")
     parser.add_argument("--generate", action="store_true", help="Generate MP3 files through Azure Speech.")
     parser.add_argument("--validate", action="store_true", help="Validate selected rows against source text and files.")
     parser.add_argument("--force", action="store_true", help="Regenerate MP3 files that already exist.")
-    parser.add_argument("--voice", default=ACTIVE_VOICE, help=f"Azure voice name. Default: {ACTIVE_VOICE}")
+    parser.add_argument("--voice", default=ACTIVE_VOICE, help=f"Azure voice name for audition scope. Default: {ACTIVE_VOICE}")
     args = parser.parse_args()
 
     root = repo_root()

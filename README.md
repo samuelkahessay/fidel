@@ -13,7 +13,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 ### Practice Modes
 - **Flashcards**: Swipeable cards with FSRS-style spaced repetition for optimal retention
 - **Quizzes**: Multiple choice quizzes testing vocabulary, phrases, and Fidel recognition
-- **Pronunciation**: Generated offline phrase pronunciation for the 25-clip survival-phrase pilot
+- **Pronunciation**: Generated offline phrase pronunciation for 171 non-placeholder quick phrases
 - **Sentence Builder**: Interactive grammar practice by dragging words to construct sentences
 - **Daily Goals**: Track your practice streak and daily XP targets
 
@@ -23,7 +23,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **Line-by-Line Translation**: See Amharic, transliteration, and English for each line
 
 ### Reference Tab
-- **Quick Phrases**: 174 phrases for travel and daily use, including 25 generated offline pronunciation clips
+- **Quick Phrases**: 174 phrases for travel and daily use, including generated offline pronunciation for the 171 non-placeholder phrases
 - **Vocabulary Browser**: 436 words organized by category
 - **Number System**: Ethiopian numbers, months, ordinals, and fractions
 - **Culture Notes**: 20 cultural notes connected to lessons and conversations

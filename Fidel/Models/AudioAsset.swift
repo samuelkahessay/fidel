@@ -19,8 +19,11 @@ struct AudioAsset: Identifiable, Codable, Hashable {
     let language: String
     let provider: String
     let voice: String
+    let assetRole: String?
+    let assetSet: String?
     let format: String
     let file: String
+    let englishSlug: String?
     let text: String
     let sourceTextHash: String
 

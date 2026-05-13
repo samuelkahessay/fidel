@@ -131,9 +131,12 @@ final class LocalFirstTests: XCTestCase {
             contentId: "12",
             language: "am-ET",
             provider: "azure",
-            voice: "am-ET-MekdesNeural",
+            voice: "am-ET-AmehaNeural",
+            assetRole: "active",
+            assetSet: "all-phrases-v1",
             format: "mp3",
-            file: "Audio/phrases/phrase-12.mp3",
+            file: "Audio/phrases/azure/am-ET-AmehaNeural/phrase-012-thank-you.mp3",
+            englishSlug: "thank-you",
             text: "አመሰግናለሁ",
             sourceTextHash: "abc123"
         )
@@ -147,23 +150,37 @@ final class LocalFirstTests: XCTestCase {
 
     func testBundledAudioManifestFilesExist() {
         let repository = AudioAssetRepository()
+        let placeholderIds: Set<String> = ["17", "19", "55"]
 
-        XCTAssertEqual(AmharicData.audioAssets.count, 25)
-        XCTAssertEqual(Set(AmharicData.audioAssets.map(\.voice)), ["am-ET-MekdesNeural"])
+        XCTAssertEqual(AmharicData.audioAssets.count, 171)
+        XCTAssertEqual(Set(AmharicData.audioAssets.map(\.voice)), ["am-ET-AmehaNeural"])
+        XCTAssertTrue(AmharicData.audioAssets.allSatisfy { $0.assetRole == "active" })
+        XCTAssertTrue(AmharicData.audioAssets.allSatisfy { $0.assetSet == "all-phrases-v1" })
+        XCTAssertTrue(AmharicData.audioAssets.allSatisfy { !placeholderIds.contains($0.contentId) })
         for asset in AmharicData.audioAssets {
+            XCTAssertTrue(asset.file.contains("/am-ET-AmehaNeural/"), asset.file)
+            XCTAssertNotNil(
+                asset.file.range(of: #"phrase-\d{3}-[a-z0-9-]+\.mp3$"#, options: .regularExpression),
+                asset.file
+            )
+            XCTAssertTrue(asset.englishSlug.map { asset.file.contains("-\($0).mp3") } ?? false, asset.file)
             XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled audio file: \(asset.file)")
         }
     }
 
-    func testBundledAudioCatalogIncludesMaleAuditionClips() {
+    func testBundledAudioCatalogIncludesFemaleRowsWithoutMakingThemActive() {
         let repository = AudioAssetRepository()
-        let maleAuditionAssets = AmharicData.audioCatalog.filter { $0.voice == "am-ET-AmehaNeural" }
+        let maleAssets = AmharicData.audioCatalog.filter { $0.voice == "am-ET-AmehaNeural" }
+        let femaleAssets = AmharicData.audioCatalog.filter { $0.voice == "am-ET-MekdesNeural" }
 
-        XCTAssertEqual(AmharicData.audioCatalog.count, 30)
-        XCTAssertEqual(maleAuditionAssets.count, 5)
-        XCTAssertTrue(maleAuditionAssets.allSatisfy { $0.file.contains("/am-ET-AmehaNeural/") })
-        for asset in maleAuditionAssets {
-            XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled male audition file: \(asset.file)")
+        XCTAssertGreaterThanOrEqual(AmharicData.audioCatalog.count, 171)
+        XCTAssertEqual(maleAssets.count, 171)
+        XCTAssertLessThanOrEqual(femaleAssets.count, 171)
+        XCTAssertTrue(maleAssets.allSatisfy { $0.assetRole == "active" })
+        XCTAssertTrue(femaleAssets.allSatisfy { $0.assetRole == "alternate" })
+        XCTAssertTrue(femaleAssets.allSatisfy { $0.file.contains("/am-ET-MekdesNeural/") })
+        for asset in AmharicData.audioCatalog {
+            XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled catalog audio file: \(asset.file)")
         }
     }
 
@@ -174,9 +191,12 @@ final class LocalFirstTests: XCTestCase {
             contentId: "12",
             language: "am-ET",
             provider: "azure",
-            voice: "am-ET-MekdesNeural",
+            voice: "am-ET-AmehaNeural",
+            assetRole: "active",
+            assetSet: "all-phrases-v1",
             format: "mp3",
-            file: "Audio/phrases/phrase-12.mp3",
+            file: "Audio/phrases/azure/am-ET-AmehaNeural/phrase-012-thank-you.mp3",
+            englishSlug: "thank-you",
             text: "አመሰግናለሁ",
             sourceTextHash: "abc123"
         )
@@ -295,9 +315,12 @@ final class LocalFirstTests: XCTestCase {
                 contentId: "\(id)",
                 language: "am-ET",
                 provider: "azure",
-                voice: "am-ET-MekdesNeural",
+                voice: "am-ET-AmehaNeural",
+                assetRole: "active",
+                assetSet: "all-phrases-v1",
                 format: "mp3",
-                file: "Audio/phrases/phrase-\(id).mp3",
+                file: "Audio/phrases/azure/am-ET-AmehaNeural/phrase-\(String(format: "%03d", id))-sample.mp3",
+                englishSlug: "sample",
                 text: "sample",
                 sourceTextHash: "hash-\(id)"
             )

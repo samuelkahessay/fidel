@@ -2,6 +2,8 @@
 
 Date: 2026-05-13
 
+Current status: this pilot design has been superseded by the full phrase audio library. The active app voice is `am-ET-AmehaNeural` for 171 non-placeholder phrases, with `am-ET-MekdesNeural` cataloged as alternate audio; see `../../audio-asset-library.md`.
+
 ## Decision
 
 Add pronunciation/audio through an Azure-generated offline asset pipeline. Azure is used only during content production to synthesize MP3 files from the app's existing Amharic text. The iOS app bundles and plays those files locally; it does not ship an Azure key, call Azure at runtime, or require network access for audio playback.
