@@ -57,7 +57,7 @@ final class TracingViewModel {
     private let pathExtractor = PathExtractor.shared
     private let evaluator = DrawingEvaluator.shared
     static let canvasSize = TracingLayout.canvasSize
-    let canvasSize = TracingLayout.canvasSize
+    var canvasSize = TracingLayout.canvasSize
 
     // MARK: - Configuration
 
@@ -169,6 +169,15 @@ final class TracingViewModel {
 
     func clearCanvas() {
         userDrawing = PKDrawing()
+    }
+
+    func updateCanvasSize(_ newSize: CGSize) {
+        guard newSize.width > 0, newSize.height > 0 else { return }
+        if abs(canvasSize.width - newSize.width) > 1 || abs(canvasSize.height - newSize.height) > 1 {
+            canvasSize = newSize
+            userDrawing = PKDrawing()
+            needsRetry = false
+        }
     }
 
     // MARK: - Navigation

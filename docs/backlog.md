@@ -7,8 +7,7 @@ This is the single parking lot for future Fidel app, landing page, and content-p
 
 ## Active
 
-- 2026-05-13 [debt] Finish the active `codex/ui-ux-remediation` work: 25 SwiftUI/test files are still modified; run XcodeBuildMCP build/test/run, split commits if useful, and land this branch before broad source-layout refactors.
-- 2026-05-13 [infra] Configure durable waitlist storage for `FidelWeb`: the subscribe API already supports `WAITLIST_WEBHOOK_URL`; choose the provider, set production env vars, and verify a real signup is stored.
+No active backlog items.
 
 ## Ready Next
 
@@ -24,6 +23,11 @@ This is the single parking lot for future Fidel app, landing page, and content-p
 
 ## Blocked Or Not Now
 
+- 2026-05-13 [not-now] Configure durable waitlist storage for `FidelWeb`: the subscribe API already supports `WAITLIST_WEBHOOK_URL`; choose the provider, set production env vars, and verify a real signup is stored when launch ops becomes active again.
 - 2026-05-13 [blocked] Do not bulk-import vocabulary or phrasebook rows until the review queue, provenance strategy, de-dupe rules, and rights/source review are applied.
 - 2026-05-13 [blocked] Keep `.apkg` media archival until source-rights review, audio-quality review, image-rights review, and mapping verification make app usage acceptable.
 - 2026-05-13 [blocked] Keep the static speaking-practice PWA archival; do not invest in public companion work unless a separate web product goal reopens that decision.
+
+## Completed
+
+- 2026-05-13 [debt] Finished the active `codex/ui-ux-remediation` work: XcodeBuildMCP `build_sim` succeeded, `test_sim` passed 15/15, simulator launch succeeded after clearing a stale install state, and Journey/Tools/Progress tab smoke checks passed.

@@ -5,7 +5,7 @@ import PencilKit
 struct DrawingCanvasView: UIViewRepresentable {
     @Binding var drawing: PKDrawing
     var penWidth: CGFloat = 15
-    private let inkColor = UIColor.systemIndigo.withAlphaComponent(0.42)
+    private let inkColor = UIColor(red: 0.33, green: 0.25, blue: 0.88, alpha: 0.42)
 
     private func makeTool() -> PKInkingTool {
         PKInkingTool(.marker, color: inkColor, width: penWidth)

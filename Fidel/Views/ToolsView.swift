@@ -13,6 +13,7 @@ struct ToolsView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
                 .padding(.top, AppTheme.Spacing.xs)
+                .accessibilityLabel("Tool section")
 
                 switch selectedTool {
                 case 0:
@@ -23,7 +24,7 @@ struct ToolsView: View {
                     EmptyView()
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.groupedBackground)
             .navigationTitle(selectedTool == 0 ? "Selam AI" : "Reference")
             .navigationBarTitleDisplayMode(.inline)
         }

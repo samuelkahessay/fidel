@@ -15,6 +15,18 @@ struct AppTheme {
     
     /// Accent Red - For errors/alerts only
     static let accentRed = Color(red: 0.81, green: 0.07, blue: 0.15)
+
+    static let successColor = Color(red: 0.05, green: 0.53, blue: 0.22)
+    static let warningColor = Color(red: 0.86, green: 0.47, blue: 0.0)
+    static let infoColor = Color(red: 0.0, green: 0.42, blue: 0.85)
+    static let practiceColor = Color(red: 0.33, green: 0.25, blue: 0.88)
+    static let disabledColor = Color.secondary.opacity(0.55)
+    static let groupedBackground = Color(.systemGroupedBackground)
+    static let surfaceColor = Color(.secondarySystemGroupedBackground)
+    static let elevatedSurfaceColor = Color(.systemBackground)
+    static let subtleSurfaceColor = Color(.tertiarySystemGroupedBackground)
+    static let hairlineColor = Color.primary.opacity(0.10)
+    static let subtleTextColor = Color.secondary
     
     /// Legacy color aliases
     static let ethiopianGreen = primaryColor
@@ -46,21 +58,21 @@ struct AppTheme {
     // MARK: - Typography (SF Pro system)
     
     struct Typography {
-        static let largeTitle = Font.system(size: 38, weight: .heavy)
-        static let title = Font.system(size: 30, weight: .bold)
-        static let title2 = Font.system(size: 24, weight: .bold)
-        static let title3 = Font.system(size: 20, weight: .semibold)
-        static let headline = Font.system(size: 17, weight: .semibold)
-        static let body = Font.system(size: 17, weight: .regular)
-        static let callout = Font.system(size: 16, weight: .regular)
-        static let subheadline = Font.system(size: 15, weight: .regular)
-        static let footnote = Font.system(size: 13, weight: .regular)
-        static let caption = Font.system(size: 12, weight: .regular)
-        static let caption2 = Font.system(size: 11, weight: .regular)
+        static let largeTitle = Font.largeTitle.weight(.heavy)
+        static let title = Font.title.weight(.bold)
+        static let title2 = Font.title2.weight(.bold)
+        static let title3 = Font.title3.weight(.semibold)
+        static let headline = Font.headline.weight(.semibold)
+        static let body = Font.body
+        static let callout = Font.callout
+        static let subheadline = Font.subheadline
+        static let footnote = Font.footnote
+        static let caption = Font.caption
+        static let caption2 = Font.caption2
         
         // Amharic display — Noto Sans Ethiopic for consistent rendering
-        static func amharic(size: CGFloat) -> Font {
-            .custom("NotoSansEthiopic-Regular", size: size)
+        static func amharic(size: CGFloat, relativeTo textStyle: Font.TextStyle = .body) -> Font {
+            .custom("NotoSansEthiopic-Regular", size: size, relativeTo: textStyle)
         }
     }
     
@@ -78,10 +90,10 @@ struct AppTheme {
     
     static func difficultyColor(_ level: Int) -> Color {
         switch level {
-        case 1: return .green
-        case 2: return .orange
+        case 1: return successColor
+        case 2: return warningColor
         case 3: return accentRed
-        default: return .gray
+        default: return disabledColor
         }
     }
     
@@ -91,6 +103,87 @@ struct AppTheme {
         static let primary = primaryColor.opacity(0.08)
         static let secondary = secondaryColor.opacity(0.08)
         static let neutral = Color.primary.opacity(0.03)
+    }
+
+    struct Shadow {
+        static let card = Color.primary.opacity(0.06)
+        static let elevated = Color.primary.opacity(0.08)
+        static let bottomBar = Color.primary.opacity(0.10)
+    }
+}
+
+// MARK: - Surface Styles
+
+enum FidelSurfaceProminence {
+    case solid
+    case glass
+    case tinted(Color, Double)
+    case muted
+}
+
+struct FidelSurface<Content: View>: View {
+    @Environment(\.colorScheme) private var colorScheme
+    let prominence: FidelSurfaceProminence
+    let padding: CGFloat
+    let cornerRadius: CGFloat
+    @ViewBuilder let content: () -> Content
+
+    init(
+        prominence: FidelSurfaceProminence = .solid,
+        padding: CGFloat = AppTheme.Spacing.md,
+        cornerRadius: CGFloat = AppTheme.CornerRadius.large,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.prominence = prominence
+        self.padding = padding
+        self.cornerRadius = cornerRadius
+        self.content = content
+    }
+
+    var body: some View {
+        content()
+            .padding(padding)
+            .background {
+                background
+            }
+            .overlay {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(borderColor, lineWidth: 0.75)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+    }
+
+    @ViewBuilder
+    private var background: some View {
+        switch prominence {
+        case .solid:
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(AppTheme.elevatedSurfaceColor)
+        case .glass:
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(.ultraThinMaterial)
+        case .tinted(let color, let opacity):
+            ZStack {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(colorScheme == .dark ? AppTheme.surfaceColor : AppTheme.elevatedSurfaceColor)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(color.opacity(opacity))
+            }
+        case .muted:
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(AppTheme.surfaceColor)
+        }
+    }
+
+    private var borderColor: Color {
+        switch prominence {
+        case .solid, .muted:
+            return AppTheme.hairlineColor
+        case .glass:
+            return colorScheme == .dark ? Color.white.opacity(0.16) : AppTheme.primaryColor.opacity(0.16)
+        case .tinted(let color, _):
+            return color.opacity(colorScheme == .dark ? 0.42 : 0.24)
+        }
     }
 }
 
@@ -102,21 +195,9 @@ struct GlassCardStyle: ViewModifier {
     var cornerRadius: CGFloat = AppTheme.CornerRadius.large
     
     func body(content: Content) -> some View {
-        content
-            .padding(padding)
-            .background(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(.ultraThinMaterial)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: cornerRadius)
-                            .stroke(
-                                colorScheme == .dark
-                                    ? AppTheme.primaryColor.opacity(0.35)
-                                    : AppTheme.primaryColor.opacity(0.15),
-                                lineWidth: 0.5
-                            )
-                    )
-            )
+        FidelSurface(prominence: .glass, padding: padding, cornerRadius: cornerRadius) {
+            content
+        }
     }
 }
 
@@ -128,26 +209,9 @@ struct TintedGlassCardStyle: ViewModifier {
     var cornerRadius: CGFloat = AppTheme.CornerRadius.large
     
     func body(content: Content) -> some View {
-        content
-            .padding(padding)
-            .background(
-                ZStack {
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .fill(.ultraThinMaterial)
-                    
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .fill(tintColor.opacity(tintOpacity))
-                }
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(
-                        colorScheme == .dark
-                            ? AppTheme.primaryColor.opacity(0.4)
-                            : AppTheme.primaryColor.opacity(0.25),
-                        lineWidth: 0.5
-                    )
-            )
+        FidelSurface(prominence: .tinted(tintColor, tintOpacity), padding: padding, cornerRadius: cornerRadius) {
+            content
+        }
     }
 }
 
@@ -168,15 +232,10 @@ struct AdaptiveCardBackground: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: cornerRadius)
-            .fill(.ultraThinMaterial)
+            .fill(AppTheme.elevatedSurfaceColor)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(
-                        colorScheme == .dark
-                            ? AppTheme.primaryColor.opacity(0.35)
-                            : AppTheme.primaryColor.opacity(0.15),
-                        lineWidth: 0.5
-                    )
+                    .stroke(AppTheme.hairlineColor, lineWidth: 0.75)
             )
     }
 }
@@ -196,13 +255,16 @@ struct AmharicTextStyle: ViewModifier {
 
 /// Primary button - Capsule shape, solid color
 struct PrimaryButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     var isFullWidth: Bool = false
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(AppTheme.Typography.headline)
-            .tracking(1.2)
             .foregroundColor(.white)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .minimumScaleFactor(0.85)
             .padding(.horizontal, AppTheme.Spacing.xl)
             .padding(.vertical, 14)
             .frame(maxWidth: isFullWidth ? .infinity : nil)
@@ -213,20 +275,23 @@ struct PrimaryButtonStyle: ButtonStyle {
             )
             .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
             .opacity(configuration.isPressed ? 0.9 : 1.0)
-            .animation(AppTheme.Animation.quick, value: configuration.isPressed)
+            .animation(reduceMotion ? nil : AppTheme.Animation.quick, value: configuration.isPressed)
     }
 }
 
 /// Secondary button - Glass material background
 struct SecondaryButtonStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     var isFullWidth: Bool = false
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(AppTheme.Typography.headline)
-            .tracking(1.2)
             .foregroundColor(AppTheme.primaryColor)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .minimumScaleFactor(0.85)
             .padding(.horizontal, AppTheme.Spacing.lg)
             .padding(.vertical, 12)
             .frame(maxWidth: isFullWidth ? .infinity : nil)
@@ -246,28 +311,40 @@ struct SecondaryButtonStyle: ButtonStyle {
             )
             .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
             .opacity(configuration.isPressed ? 0.8 : 1.0)
-            .animation(AppTheme.Animation.quick, value: configuration.isPressed)
+            .animation(reduceMotion ? nil : AppTheme.Animation.quick, value: configuration.isPressed)
     }
 }
 
 /// Ghost button - No background
 struct GhostButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(AppTheme.Typography.headline)
-            .tracking(1.2)
             .foregroundColor(AppTheme.primaryColor)
+            .multilineTextAlignment(.center)
             .padding(.horizontal, AppTheme.Spacing.md)
             .padding(.vertical, 12)
             .frame(minHeight: 44)
             .opacity(configuration.isPressed ? 0.6 : 1.0)
-            .animation(AppTheme.Animation.quick, value: configuration.isPressed)
+            .animation(reduceMotion ? nil : AppTheme.Animation.quick, value: configuration.isPressed)
     }
 }
 
 // MARK: - View Extensions
 
 extension View {
+    func fidelSurface(
+        _ prominence: FidelSurfaceProminence = .solid,
+        padding: CGFloat = AppTheme.Spacing.md,
+        cornerRadius: CGFloat = AppTheme.CornerRadius.large
+    ) -> some View {
+        FidelSurface(prominence: prominence, padding: padding, cornerRadius: cornerRadius) {
+            self
+        }
+    }
+
     /// Apply glass card styling
     func glassCard(padding: CGFloat = AppTheme.Spacing.md, cornerRadius: CGFloat = AppTheme.CornerRadius.large) -> some View {
         modifier(GlassCardStyle(padding: padding, cornerRadius: cornerRadius))
@@ -302,37 +379,49 @@ extension View {
 // MARK: - Streak Badge
 
 struct StreakBadge: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let streak: Int
     
     var body: some View {
         HStack(spacing: AppTheme.Spacing.xxs) {
-            Image(systemName: streak > 0 ? "flame.fill" : "flame")
-                .foregroundColor(streak > 0 ? .orange : .secondary)
-                .symbolEffect(.bounce, value: streak)
+            badgeIcon
             
             Text("\(streak)")
                 .font(AppTheme.Typography.headline)
-                .foregroundColor(streak > 0 ? .orange : .secondary)
+            .foregroundColor(streak > 0 ? AppTheme.warningColor : .secondary)
         }
         .padding(.horizontal, AppTheme.Spacing.sm)
         .padding(.vertical, AppTheme.Spacing.xs)
         .background(
             Capsule()
-                .fill(streak > 0 ? Color.orange.opacity(0.15) : Color.secondary.opacity(0.1))
+                .fill(streak > 0 ? AppTheme.warningColor.opacity(0.15) : Color.secondary.opacity(0.1))
         )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Current streak")
+        .accessibilityValue("\(streak) days")
+    }
+
+    @ViewBuilder
+    private var badgeIcon: some View {
+        let image = Image(systemName: streak > 0 ? "flame.fill" : "flame")
+            .foregroundColor(streak > 0 ? AppTheme.warningColor : .secondary)
+        if reduceMotion {
+            image
+        } else {
+            image.symbolEffect(.bounce, value: streak)
+        }
     }
 }
 
 // MARK: - XP Badge
 
 struct XPBadge: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let xp: Int
     
     var body: some View {
         HStack(spacing: AppTheme.Spacing.xxs) {
-            Image(systemName: "star.fill")
-                .foregroundColor(AppTheme.secondaryColor)
-                .symbolEffect(.bounce, value: xp)
+            badgeIcon
             
             Text("\(xp) XP")
                 .font(AppTheme.Typography.headline)
@@ -344,6 +433,20 @@ struct XPBadge: View {
             Capsule()
                 .fill(AppTheme.secondaryColor.opacity(0.15))
         )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Experience earned")
+        .accessibilityValue("\(xp) XP")
+    }
+
+    @ViewBuilder
+    private var badgeIcon: some View {
+        let image = Image(systemName: "star.fill")
+            .foregroundColor(AppTheme.secondaryColor)
+        if reduceMotion {
+            image
+        } else {
+            image.symbolEffect(.bounce, value: xp)
+        }
     }
 }
 
@@ -360,12 +463,16 @@ struct DifficultyStars: View {
                     .foregroundColor(index < level ? AppTheme.difficultyColor(level) : .secondary.opacity(0.3))
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Difficulty")
+        .accessibilityValue("\(level) out of 3")
     }
 }
 
 // MARK: - Animated Checkmark
 
 struct AnimatedCheckmark: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isAnimated = false
     
     var body: some View {
@@ -373,7 +480,7 @@ struct AnimatedCheckmark: View {
             .font(.system(size: 64))
             .foregroundStyle(
                 LinearGradient(
-                    colors: [.green, AppTheme.primaryColor],
+                    colors: [AppTheme.successColor, AppTheme.primaryColor],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -381,16 +488,18 @@ struct AnimatedCheckmark: View {
             .scaleEffect(isAnimated ? 1.0 : 0.3)
             .opacity(isAnimated ? 1.0 : 0.0)
             .onAppear {
-                withAnimation(AppTheme.Animation.standard) {
+                withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
                     isAnimated = true
                 }
             }
+            .accessibilityLabel("Success")
     }
 }
 
 // MARK: - Progress Ring (Gradient)
 
 struct ProgressRing: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let progress: Double
     var lineWidth: CGFloat = 8
     var size: CGFloat = 80
@@ -419,7 +528,7 @@ struct ProgressRing: View {
                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
-                .animation(AppTheme.Animation.gentle, value: progress)
+                .animation(reduceMotion ? nil : AppTheme.Animation.gentle, value: progress)
             
             // Percentage text
             if showPercentage {
@@ -433,11 +542,52 @@ struct ProgressRing: View {
     }
 }
 
+struct AccessibleProgressRing: View {
+    let progress: Double
+    var lineWidth: CGFloat = 8
+    var size: CGFloat = 80
+    var label: String
+    var valueText: String?
+    var showPercentage: Bool = false
+
+    private var clampedProgress: Double {
+        min(max(progress, 0), 1)
+    }
+
+    var body: some View {
+        ProgressRing(
+            progress: clampedProgress,
+            lineWidth: lineWidth,
+            size: size,
+            showPercentage: showPercentage
+        )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(label)
+        .accessibilityValue(valueText ?? "\(Int(clampedProgress * 100)) percent")
+    }
+}
+
 // MARK: - Glass Segmented Control Style
 
 struct GlassSegmentedStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .pickerStyle(.segmented)
+    }
+}
+
+// MARK: - Root Tab Bar Visibility
+
+struct FidelTabBarHiddenPreferenceKey: PreferenceKey {
+    static var defaultValue = false
+
+    static func reduce(value: inout Bool, nextValue: () -> Bool) {
+        value = value || nextValue()
+    }
+}
+
+extension View {
+    func fidelTabBarHidden(_ hidden: Bool = true) -> some View {
+        preference(key: FidelTabBarHiddenPreferenceKey.self, value: hidden)
     }
 }

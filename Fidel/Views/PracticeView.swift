@@ -114,9 +114,11 @@ struct SpeedDrillView: View {
 
             Spacer()
         }
-        .background(Color(.systemGroupedBackground))
+        .background(AppTheme.groupedBackground)
         .navigationTitle("Speed Drill")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
+        .fidelTabBarHidden()
         .onReceive(timer) { _ in
             guard isActive else { return }
             if timeRemaining > 0 {

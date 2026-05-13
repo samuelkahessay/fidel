@@ -75,6 +75,9 @@ struct MessageBubbleView: View {
         }
         .padding(.horizontal, AppTheme.Spacing.md)
         .padding(.vertical, AppTheme.Spacing.xxs)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(isUser ? "You" : "Selam")
+        .accessibilityValue(message.content.isEmpty && isStreaming ? "Typing" : message.content)
     }
     
     private var bubbleContent: some View {
@@ -162,6 +165,7 @@ struct ChatBubbleShape: Shape {
 // MARK: - Typing Indicator
 
 struct TypingIndicatorView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var animationPhase = 0.0
     
     var body: some View {
@@ -170,11 +174,12 @@ struct TypingIndicatorView: View {
                 Circle()
                     .fill(AppTheme.primaryColor.opacity(0.6))
                     .frame(width: 8, height: 8)
-                    .scaleEffect(scale(for: index))
+                    .scaleEffect(reduceMotion ? 1.0 : scale(for: index))
                     .animation(
-                        .easeInOut(duration: 0.6)
-                        .repeatForever()
-                        .delay(Double(index) * 0.2),
+                        reduceMotion ? nil :
+                            .easeInOut(duration: 0.6)
+                            .repeatForever()
+                            .delay(Double(index) * 0.2),
                         value: animationPhase
                     )
             }
@@ -182,6 +187,7 @@ struct TypingIndicatorView: View {
         .padding(.horizontal, AppTheme.Spacing.sm)
         .padding(.vertical, AppTheme.Spacing.xs)
         .onAppear { animationPhase = 1.0 }
+        .accessibilityLabel("Selam is typing")
     }
     
     private func scale(for index: Int) -> CGFloat {
@@ -226,6 +232,7 @@ struct ChatInputView: View {
                         onSend()
                     }
                 }
+                .accessibilityLabel("Message Selam")
             
             sendButton
         }
@@ -234,8 +241,9 @@ struct ChatInputView: View {
         .background(
             Rectangle()
                 .fill(.ultraThinMaterial)
-                .shadow(color: Color.primary.opacity(0.08), radius: 10, y: -5)
+                .shadow(color: AppTheme.Shadow.elevated, radius: 10, y: -5)
         )
+        .accessibilityElement(children: .contain)
     }
     
     @ViewBuilder
@@ -248,7 +256,9 @@ struct ChatInputView: View {
                 )
         }
         .accessibilityLabel(isLoading ? "Cancel" : "Send")
+        .accessibilityHint(isLoading ? "Stops Selam's response" : "Sends your message to Selam")
         .disabled(!canSend && !isLoading)
+        .frame(minWidth: 44, minHeight: 44)
         .animation(AppTheme.Animation.quick, value: isLoading)
     }
     
@@ -284,6 +294,7 @@ struct SuggestedActionsView: View {
                                 )
                         }
                         .buttonStyle(.plain)
+                        .accessibilityHint("Sends this suggested message")
                     }
                 }
                 .padding(.horizontal, AppTheme.Spacing.md)

@@ -3,6 +3,7 @@ import SwiftData
 
 struct PronunciationPracticeView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var audioService = AudioService()
     @State private var currentIndex = 0
     @State private var isRecording = false
@@ -64,9 +65,11 @@ struct PronunciationPracticeView: View {
                     completionView
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.groupedBackground)
             .navigationTitle("Pronunciation")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .tabBar)
+            .fidelTabBarHidden()
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Done") { dismiss() }
@@ -129,10 +132,10 @@ struct PronunciationPracticeView: View {
         }
         .padding(24)
         .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 10, y: 5)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color(.systemBackground))
+                .shadow(color: AppTheme.Shadow.elevated, radius: 10, y: 5)
         )
     }
     
@@ -158,6 +161,8 @@ struct PronunciationPracticeView: View {
                     )
                 }
                 .disabled(audioService.isPlaying)
+                .accessibilityLabel("Play native pronunciation")
+                .accessibilityHint("Speaks \(item.amharic)")
                 
                 Button(action: { audioService.speakAmharic(item.amharic) }) {
                     VStack(spacing: 8) {
@@ -171,16 +176,18 @@ struct PronunciationPracticeView: View {
                     .frame(width: 80, height: 80)
                     .background(
                         Circle()
-                            .fill(AppTheme.secondaryColor)
+                            .fill(AppTheme.warningColor)
                     )
                 }
+                .accessibilityLabel("Play slowly")
+                .accessibilityHint("Speaks \(item.amharic) for slower practice")
             }
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.06), radius: 8, y: 4)
+                .shadow(color: AppTheme.Shadow.card, radius: 8, y: 4)
         )
     }
     
@@ -196,7 +203,7 @@ struct PronunciationPracticeView: View {
             Button(action: toggleRecording) {
                 ZStack {
                     Circle()
-                        .fill(isRecording ? Color.red : AppTheme.accentRed)
+                        .fill(AppTheme.accentRed)
                         .frame(width: 80, height: 80)
                     
                     if isRecording {
@@ -210,24 +217,31 @@ struct PronunciationPracticeView: View {
                     }
                 }
             }
+            .accessibilityLabel(isRecording ? "Stop recording" : "Start recording")
+            .accessibilityHint(isRecording ? "Stops and saves your pronunciation recording" : "Records your pronunciation for comparison")
+            .accessibilityValue(hasRecorded ? "Recording captured" : "No recording yet")
             
             if isRecording {
                 HStack(spacing: 4) {
-                    ForEach(0..<5, id: \.self) { i in
+                    ForEach(Array(recordingBarHeights.enumerated()), id: \.offset) { _, height in
                         RoundedRectangle(cornerRadius: 2)
-                            .fill(Color.red)
-                            .frame(width: 4, height: CGFloat.random(in: 10...30))
-                            .animation(.easeInOut(duration: 0.2).repeatForever(), value: isRecording)
+                            .fill(AppTheme.accentRed)
+                            .frame(width: 4, height: height)
+                            .animation(
+                                reduceMotion ? nil : .easeInOut(duration: 0.35).repeatForever(autoreverses: true),
+                                value: isRecording
+                            )
                     }
                 }
                 .frame(height: 40)
+                .accessibilityLabel("Recording in progress")
             }
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.06), radius: 8, y: 4)
+                .shadow(color: AppTheme.Shadow.card, radius: 8, y: 4)
         )
     }
     
@@ -249,6 +263,7 @@ struct PronunciationPracticeView: View {
                             .frame(width: 56, height: 56)
                             .background(Circle().fill(AppTheme.primaryColor))
                     }
+                    .accessibilityLabel("Play native pronunciation again")
                     Text("Native")
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -262,6 +277,7 @@ struct PronunciationPracticeView: View {
                             .frame(width: 56, height: 56)
                             .background(Circle().fill(AppTheme.accentRed))
                     }
+                    .accessibilityLabel("Play your recording")
                     Text("You")
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -286,7 +302,7 @@ struct PronunciationPracticeView: View {
         .background(
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.06), radius: 8, y: 4)
+                .shadow(color: AppTheme.Shadow.card, radius: 8, y: 4)
         )
     }
     
@@ -321,6 +337,10 @@ struct PronunciationPracticeView: View {
             audioService.startRecording()
             isRecording = true
         }
+    }
+
+    private var recordingBarHeights: [CGFloat] {
+        reduceMotion ? [18, 18, 18, 18, 18] : [12, 26, 18, 32, 22]
     }
     
     private func moveToNext() {

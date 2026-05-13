@@ -40,8 +40,8 @@ struct LessonCard: View {
                     .lineLimit(2)
 
                 HStack(spacing: AppTheme.Spacing.sm) {
-                    StatPill(icon: "text.alignleft", value: "\(lesson.patterns.count)", color: .blue)
-                    StatPill(icon: "textformat.abc", value: "\(lesson.vocabulary.count)", color: .green)
+                    StatPill(icon: "text.alignleft", value: "\(lesson.patterns.count)", color: AppTheme.infoColor)
+                    StatPill(icon: "textformat.abc", value: "\(lesson.vocabulary.count)", color: AppTheme.successColor)
                 }
                 .padding(.top, AppTheme.Spacing.xxs)
             }

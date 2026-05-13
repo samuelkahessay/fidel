@@ -47,37 +47,47 @@ struct ReferenceView: View {
                 EmptyView()
             }
         }
-        .background(Color(.systemGroupedBackground))
+        .background(AppTheme.groupedBackground)
         .navigationTitle("Reference")
-        .searchable(text: $viewModel.searchText, prompt: "Search...")
+        .searchable(text: $viewModel.searchText, prompt: "Search Amharic, English, romanization")
         .onChange(of: selectedTab) { _, newValue in
             settingsStore.selectedReferenceTab = newValue
         }
     }
     
     private var phrasesView: some View {
-        List {
-            ForEach(viewModel.phraseSections) { section in
-                Section(section.title) {
-                    ForEach(section.phrases) { phrase in
-                        PhraseReferenceRow(phrase: phrase)
+        Group {
+            if viewModel.phraseSections.isEmpty {
+                referenceEmptyState
+            } else {
+                List {
+                    ForEach(viewModel.phraseSections) { section in
+                        Section(section.title) {
+                            ForEach(section.phrases) { phrase in
+                                PhraseReferenceRow(phrase: phrase)
+                            }
+                        }
                     }
                 }
+                .listStyle(.insetGrouped)
             }
         }
-        .listStyle(.insetGrouped)
     }
     
     private var vocabularyView: some View {
         VStack(spacing: 0) {
             categoryFilter
             
-            List {
-                ForEach(viewModel.vocabulary) { word in
-                    VocabularyReferenceRow(word: word)
+            if viewModel.vocabulary.isEmpty {
+                referenceEmptyState
+            } else {
+                List {
+                    ForEach(viewModel.vocabulary) { word in
+                        VocabularyReferenceRow(word: word)
+                    }
                 }
+                .listStyle(.insetGrouped)
             }
-            .listStyle(.insetGrouped)
         }
     }
     
@@ -98,7 +108,7 @@ struct ReferenceView: View {
         }
         .scrollIndicators(.hidden)
         .padding(.vertical, 8)
-        .background(Color(.systemBackground))
+        .background(AppTheme.elevatedSurfaceColor)
     }
     
     private var numbersView: some View {
@@ -143,12 +153,27 @@ struct ReferenceView: View {
     }
 
     private var cultureView: some View {
-        List {
-            ForEach(viewModel.culturalNotes) { note in
-                CulturalNoteReferenceRow(note: note)
+        Group {
+            if viewModel.culturalNotes.isEmpty {
+                referenceEmptyState
+            } else {
+                List {
+                    ForEach(viewModel.culturalNotes) { note in
+                        CulturalNoteReferenceRow(note: note)
+                    }
+                }
+                .listStyle(.insetGrouped)
             }
         }
-        .listStyle(.insetGrouped)
+    }
+
+    private var referenceEmptyState: some View {
+        EmptyStateView(
+            icon: "magnifyingglass",
+            title: "No Matches",
+            message: "Try another search term or clear the current filter."
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -166,8 +191,11 @@ struct PhraseReferenceRow: View {
                 
                 Button(action: copyToClipboard) {
                     Image(systemName: isCopied ? "checkmark" : "doc.on.doc")
-                        .foregroundStyle(isCopied ? .green : .secondary)
+                        .foregroundStyle(isCopied ? AppTheme.successColor : .secondary)
+                        .frame(width: 44, height: 44)
                 }
+                .accessibilityLabel(isCopied ? "Copied phrase" : "Copy Amharic phrase")
+                .accessibilityHint("Copies \(phrase.amharic) to the clipboard")
             }
             
             Text(phrase.transliteration)
@@ -187,6 +215,9 @@ struct PhraseReferenceRow: View {
             }
         }
         .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(phrase.amharic), \(phrase.transliteration), \(phrase.english)")
+        .accessibilityValue(isCopied ? "Copied" : "")
     }
     
     private func copyToClipboard() {
@@ -234,6 +265,8 @@ struct VocabularyReferenceRow: View {
             }
         }
         .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(word.amharic), \(word.transliteration), \(word.english), \(word.category)")
     }
 }
 
@@ -257,6 +290,8 @@ struct NumberRow: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(number.value), \(number.amharic), \(number.transliteration)")
     }
 }
 
@@ -282,6 +317,8 @@ struct ReferencePairRow: View {
             }
         }
         .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(leading), \(primary), \(secondary)")
     }
 }
 
@@ -310,6 +347,8 @@ struct CulturalNoteReferenceRow: View {
             }
         }
         .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(note.title), \(note.amharicTitle)")
     }
 }
 
@@ -330,6 +369,9 @@ struct CategoryChip: View {
                 )
                 .foregroundStyle(isSelected ? .white : .primary)
         }
+        .buttonStyle(.plain)
+        .accessibilityLabel(title)
+        .accessibilityValue(isSelected ? "Selected" : "")
     }
 }
 

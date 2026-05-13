@@ -380,12 +380,12 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
 
     var color: Color {
         switch self {
-        case .flashcards: return .blue
-        case .quiz: return .purple
+        case .flashcards: return AppTheme.infoColor
+        case .quiz: return AppTheme.practiceColor
         case .pronunciation: return AppTheme.primaryColor
-        case .sentenceBuilder: return .orange
+        case .sentenceBuilder: return AppTheme.warningColor
         case .speedDrill: return AppTheme.accentRed
-        case .tracing: return .indigo
+        case .tracing: return AppTheme.practiceColor
         }
     }
 }

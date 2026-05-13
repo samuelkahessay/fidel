@@ -26,9 +26,13 @@ struct SentenceBuilderView: View {
                 }
             }
             .padding()
+            .padding(.bottom, 40)
         }
+        .background(AppTheme.groupedBackground)
         .navigationTitle("Sentence Builder")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
+        .fidelTabBarHidden()
         .toolbar {
             if selectedPattern != nil {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -194,13 +198,13 @@ struct SentenceBuilderView: View {
                         .foregroundStyle(.secondary)
                     Text(example.english)
                         .font(.subheadline)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(AppTheme.infoColor)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color(.systemGray6))
+                        .fill(AppTheme.surfaceColor)
                 )
             }
         }
@@ -275,13 +279,13 @@ struct PatternSelectionCard: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: Color.primary.opacity(0.06), radius: 4, y: 2)
-            )
+            .fidelSurface(.solid, padding: AppTheme.Spacing.md, cornerRadius: AppTheme.CornerRadius.medium)
+            .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium))
         }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(pattern.description). \(pattern.structure). \(pattern.substitutions.count) options")
+        .accessibilityHint("Starts this sentence pattern")
     }
 }
 
@@ -303,10 +307,13 @@ struct SubstitutionChip: View {
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? AppTheme.primaryColor : Color(.systemGray6))
+                    .fill(isSelected ? AppTheme.primaryColor : AppTheme.surfaceColor)
             )
             .foregroundStyle(isSelected ? .white : .primary)
         }
+        .buttonStyle(.plain)
+        .accessibilityLabel("\(substitution.amharic), \(substitution.english)")
+        .accessibilityValue(isSelected ? "Selected" : "")
     }
 }
 

@@ -8,7 +8,7 @@ struct TracingView: View {
 
     var body: some View {
         ZStack {
-            Color(.systemGroupedBackground).ignoresSafeArea()
+            AppTheme.groupedBackground.ignoresSafeArea()
 
             ScrollView {
                 VStack(spacing: AppTheme.Spacing.lg) {
@@ -24,6 +24,8 @@ struct TracingView: View {
                 .padding(.bottom, bottomContentPadding)
             }
         }
+        .toolbar(.hidden, for: .tabBar)
+        .fidelTabBarHidden()
         .safeAreaInset(edge: .bottom) {
             if !viewModel.showCompletion, viewModel.currentCharacter != nil {
                 bottomControls
@@ -66,10 +68,12 @@ struct TracingView: View {
 
             Spacer()
 
-            ProgressRing(
+            AccessibleProgressRing(
                 progress: viewModel.progressFraction,
                 lineWidth: 4,
-                size: 36
+                size: 36,
+                label: "Tracing session progress",
+                valueText: viewModel.progress
             )
         }
         .padding(.horizontal, AppTheme.Spacing.xs)
@@ -81,7 +85,7 @@ struct TracingView: View {
         HStack(spacing: AppTheme.Spacing.md) {
             Text(character.character)
                 .font(AppTheme.Typography.amharic(size: 56))
-                .foregroundStyle(.indigo)
+                .foregroundStyle(AppTheme.practiceColor)
 
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(character.romanization)
@@ -125,22 +129,28 @@ struct TracingView: View {
                 } label: {
                     Image(systemName: "arrow.clockwise")
                         .font(.headline)
-                        .foregroundStyle(.indigo)
+                        .foregroundStyle(AppTheme.practiceColor)
                         .frame(width: 36, height: 36)
-                        .background(Color.indigo.opacity(0.10), in: Circle())
+                        .background(AppTheme.practiceColor.opacity(0.10), in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Replay stroke order")
             }
 
-            StrokeAnimationView(
-                character: character.character,
-                size: TracingLayout.canvasSize,
-                characterId: character.id
-            )
-            .id("\(character.id)-\(replayToken)")
-            .frame(width: TracingLayout.canvasSize.width, height: TracingLayout.canvasSize.height)
-            .glassCard()
+            AdaptivePracticeCanvas(
+                idealSize: TracingLayout.canvasSize,
+                onSizeChange: viewModel.updateCanvasSize
+            ) { canvasSize in
+                StrokeAnimationView(
+                    character: character.character,
+                    size: canvasSize,
+                    characterId: character.id
+                )
+                .id("\(character.id)-\(replayToken)-\(Int(canvasSize.width))")
+                .frame(width: canvasSize.width, height: canvasSize.height)
+                .background(AdaptiveCardBackground())
+                .accessibilityLabel("Animated stroke order for \(character.character)")
+            }
         }
     }
 
@@ -161,24 +171,30 @@ struct TracingView: View {
                     )
             }
 
-            let guidePath = PathExtractor.shared.extractPath(
-                for: character.character,
-                size: TracingLayout.drawingGuideSize
-            )
+            AdaptivePracticeCanvas(
+                idealSize: TracingLayout.canvasSize,
+                onSizeChange: viewModel.updateCanvasSize
+            ) { canvasSize in
+                let guidePath = PathExtractor.shared.extractPath(
+                    for: character.character,
+                    size: canvasSize
+                )
 
-            ZStack {
-                guidePath
-                    .fill(Color.indigo.opacity(0.10))
+                ZStack {
+                    guidePath
+                        .fill(AppTheme.practiceColor.opacity(0.10))
 
-                guidePath
-                    .stroke(Color.indigo.opacity(0.22), lineWidth: 1.5)
+                    guidePath
+                        .stroke(AppTheme.practiceColor.opacity(0.22), lineWidth: 1.5)
 
-                DrawingCanvasView(drawing: $viewModel.userDrawing)
-                    .frame(width: TracingLayout.canvasSize.width, height: TracingLayout.canvasSize.height)
-                    .accessibilityLabel("Tracing canvas")
+                    DrawingCanvasView(drawing: $viewModel.userDrawing)
+                        .frame(width: canvasSize.width, height: canvasSize.height)
+                        .accessibilityLabel("Tracing canvas for \(character.character)")
+                        .accessibilityHint("Draw over the guide, then use Check")
+                }
+                .frame(width: canvasSize.width, height: canvasSize.height)
+                .background(AdaptiveCardBackground())
             }
-            .frame(width: TracingLayout.canvasSize.width, height: TracingLayout.canvasSize.height)
-            .glassCard()
 
         }
     }
@@ -204,10 +220,11 @@ struct TracingView: View {
                         size: TracingLayout.reviewThumbnailSize
                     )
                     referencePath
-                        .fill(Color.indigo.opacity(0.20))
-                        .overlay(referencePath.stroke(Color.indigo.opacity(0.55), lineWidth: 1.5))
+                        .fill(AppTheme.practiceColor.opacity(0.20))
+                        .overlay(referencePath.stroke(AppTheme.practiceColor.opacity(0.55), lineWidth: 1.5))
                         .frame(width: TracingLayout.reviewThumbnailSize.width, height: TracingLayout.reviewThumbnailSize.height)
                     .glassCard(padding: AppTheme.Spacing.xs)
+                    .accessibilityLabel("Reference drawing")
                 }
 
                 VStack(spacing: AppTheme.Spacing.xs) {
@@ -217,11 +234,12 @@ struct TracingView: View {
 
                     DrawingThumbnailView(
                         drawing: viewModel.userDrawing,
-                        sourceCanvasSize: TracingLayout.canvasSize,
+                        sourceCanvasSize: viewModel.canvasSize,
                         outputSize: TracingLayout.reviewThumbnailSize
                     )
                         .frame(width: TracingLayout.reviewThumbnailSize.width, height: TracingLayout.reviewThumbnailSize.height)
                         .glassCard(padding: AppTheme.Spacing.xs)
+                        .accessibilityLabel("Your drawing")
                 }
             }
 
@@ -264,6 +282,9 @@ struct TracingView: View {
                         )
                     }
                     .buttonStyle(.plain)
+                    .frame(minWidth: 68, minHeight: 44)
+                    .accessibilityLabel(starLabel(stars))
+                    .accessibilityHint("Rates this tracing attempt \(stars) out of 3")
                 }
             }
         }
@@ -299,7 +320,7 @@ struct TracingView: View {
                         .padding(.horizontal, AppTheme.Spacing.lg)
                         .padding(.vertical, AppTheme.Spacing.sm)
                         .background(
-                            Capsule().fill(.indigo)
+                            Capsule().fill(AppTheme.practiceColor)
                         )
                 }
 
@@ -314,7 +335,7 @@ struct TracingView: View {
                         .padding(.horizontal, AppTheme.Spacing.lg)
                         .padding(.vertical, AppTheme.Spacing.sm)
                         .background(
-                            Capsule().fill(Color.primary.opacity(0.06))
+                            Capsule().fill(AppTheme.surfaceColor)
                         )
                 }
             }
@@ -340,7 +361,7 @@ struct TracingView: View {
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, AppTheme.Spacing.sm)
                         .background(
-                            Capsule().fill(.indigo)
+                            Capsule().fill(AppTheme.practiceColor)
                         )
                 }
 
@@ -355,7 +376,7 @@ struct TracingView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, AppTheme.Spacing.sm)
                             .background(
-                                Capsule().fill(Color.primary.opacity(0.06))
+                                Capsule().fill(AppTheme.surfaceColor)
                             )
                     }
                     .disabled(!viewModel.hasDrawing)
@@ -372,7 +393,7 @@ struct TracingView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, AppTheme.Spacing.sm)
                             .background(
-                                Capsule().fill(Color.indigo.opacity(viewModel.hasDrawing ? 1 : 0.45))
+                                Capsule().fill(AppTheme.practiceColor.opacity(viewModel.hasDrawing ? 1 : 0.45))
                             )
                     }
                     .disabled(!viewModel.hasDrawing)

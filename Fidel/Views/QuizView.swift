@@ -30,25 +30,32 @@ struct QuizView: View {
     }
     
     var body: some View {
-        VStack(spacing: 24) {
-            if questions.isEmpty {
-                modeSelectionView
-            } else if let question = currentQuestion, !showResult {
-                quizContent(question: question)
-            } else if showResult {
-                resultsView
+        ScrollView {
+            VStack(spacing: 24) {
+                if questions.isEmpty {
+                    modeSelectionView
+                } else if let question = currentQuestion, !showResult {
+                    quizContent(question: question)
+                } else if showResult {
+                    resultsView
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .top)
+            .padding()
         }
-        .padding()
+        .background(AppTheme.groupedBackground)
         .navigationTitle("Quiz")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
+        .fidelTabBarHidden()
     }
     
     private var modeSelectionView: some View {
-        VStack(spacing: 24) {
+        VStack(alignment: .leading, spacing: 16) {
             Text("Choose Quiz Type")
                 .font(.title2)
                 .fontWeight(.bold)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             VStack(spacing: 12) {
                 ForEach(QuizMode.allCases, id: \.self) { mode in
@@ -75,12 +82,13 @@ struct QuizView: View {
                                 .foregroundStyle(.secondary)
                         }
                         .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color(.systemGray6))
-                        )
+                        .fidelSurface(.solid, padding: AppTheme.Spacing.md, cornerRadius: AppTheme.CornerRadius.medium)
+                        .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium))
                     }
                     .foregroundStyle(.primary)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("\(mode.rawValue). \(descriptionForMode(mode))")
+                    .accessibilityHint("Starts this quiz type")
                 }
             }
         }
@@ -108,6 +116,8 @@ struct QuizView: View {
         VStack(spacing: 24) {
             ProgressView(value: Double(currentIndex), total: Double(questions.count))
                 .tint(AppTheme.primaryColor)
+                .accessibilityLabel("Quiz progress")
+                .accessibilityValue("Question \(currentIndex + 1) of \(questions.count)")
             
             HStack {
                 Text("Question \(currentIndex + 1) of \(questions.count)")
@@ -133,7 +143,6 @@ struct QuizView: View {
                 feedbackView(question: question)
             }
             
-            Spacer()
         }
     }
     
@@ -161,6 +170,7 @@ struct QuizView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(AppTheme.primaryColor.opacity(0.1))
         )
+        .accessibilityElement(children: .combine)
     }
     
     private func multipleChoiceOptions(question: QuizQuestion) -> some View {
@@ -220,11 +230,11 @@ struct QuizView: View {
             HStack {
                 Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .font(.title2)
-                    .foregroundStyle(isCorrect ? .green : .red)
+                    .foregroundStyle(isCorrect ? AppTheme.successColor : AppTheme.accentRed)
                 
                 Text(isCorrect ? "Correct!" : "Not quite")
                     .font(.headline)
-                    .foregroundStyle(isCorrect ? .green : .red)
+                    .foregroundStyle(isCorrect ? AppTheme.successColor : AppTheme.accentRed)
             }
             
             if !isCorrect {
@@ -247,15 +257,16 @@ struct QuizView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(isCorrect ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
+                .fill(isCorrect ? AppTheme.successColor.opacity(0.1) : AppTheme.accentRed.opacity(0.1))
         )
+        .accessibilityElement(children: .contain)
     }
     
     private var resultsView: some View {
         VStack(spacing: 24) {
             Image(systemName: score >= questions.count / 2 ? "trophy.fill" : "arrow.counterclockwise")
                 .font(.system(size: 60))
-                .foregroundStyle(score >= questions.count / 2 ? .yellow : .orange)
+                .foregroundStyle(score >= questions.count / 2 ? AppTheme.secondaryColor : AppTheme.warningColor)
             
             Text("Quiz Complete!")
                 .font(.title)
@@ -289,6 +300,7 @@ struct QuizView: View {
             }
         }
         .padding()
+        .accessibilityElement(children: .contain)
     }
     
     private func generateQuestions() {
@@ -464,15 +476,15 @@ struct AnswerButton: View {
     let action: () -> Void
     
     var backgroundColor: Color {
-        if isCorrect { return .green.opacity(0.2) }
-        if isWrong { return .red.opacity(0.2) }
+        if isCorrect { return AppTheme.successColor.opacity(0.2) }
+        if isWrong { return AppTheme.accentRed.opacity(0.2) }
         if isSelected { return AppTheme.primaryColor.opacity(0.2) }
-        return Color(.systemGray6)
+        return AppTheme.surfaceColor
     }
     
     var borderColor: Color {
-        if isCorrect { return .green }
-        if isWrong { return .red }
+        if isCorrect { return AppTheme.successColor }
+        if isWrong { return AppTheme.accentRed }
         if isSelected { return AppTheme.primaryColor }
         return .clear
     }
@@ -488,10 +500,10 @@ struct AnswerButton: View {
                 
                 if isCorrect {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.successColor)
                 } else if isWrong {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(.red)
+                        .foregroundStyle(AppTheme.accentRed)
                 }
             }
             .padding()
@@ -505,6 +517,9 @@ struct AnswerButton: View {
             )
         }
         .disabled(isCorrect || isWrong)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(option)
+        .accessibilityValue(isCorrect ? "Correct answer" : (isWrong ? "Incorrect answer" : (isSelected ? "Selected" : "")))
     }
 }
 

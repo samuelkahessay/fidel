@@ -1,4 +1,5 @@
 import SwiftData
+import SwiftUI
 import PencilKit
 import UIKit
 import XCTest
@@ -72,6 +73,31 @@ final class LocalFirstTests: XCTestCase {
     func testTracingUsesOneCanvasGeometryForGuideAndEvaluation() {
         XCTAssertEqual(TracingViewModel.canvasSize, TracingLayout.canvasSize)
         XCTAssertEqual(TracingLayout.drawingGuideSize, TracingLayout.canvasSize)
+    }
+
+    func testAdaptivePracticeCanvasFitsNarrowWidths() {
+        let fitted = AdaptivePracticeCanvas<EmptyView>.fittedSize(
+            for: 260,
+            idealSize: CGSize(width: 300, height: 300)
+        )
+
+        XCTAssertEqual(fitted.width, 260)
+        XCTAssertEqual(fitted.height, 260)
+    }
+
+    func testFidelChartLayoutFitsPhoneWidthWithoutHorizontalScroll() {
+        let metrics = FidelChartLayoutMetrics(containerWidth: 402)
+
+        XCTAssertLessThanOrEqual(metrics.totalWidth, 402)
+        XCTAssertGreaterThanOrEqual(metrics.cellWidth, 44)
+    }
+
+    func testTracingViewModelUpdatesCanvasGeometryForAdaptiveLayout() {
+        let viewModel = TracingViewModel()
+
+        viewModel.updateCanvasSize(CGSize(width: 260, height: 260))
+
+        XCTAssertEqual(viewModel.canvasSize, CGSize(width: 260, height: 260))
     }
 
     func testDrawingThumbnailUsesFullSourceCanvas() {

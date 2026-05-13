@@ -7,6 +7,7 @@ import SwiftUI
 ///   moving pen-tip indicator produce CJK-quality animation.
 /// - **Fallback mode**: Top-to-bottom mask wipe (original behavior).
 struct StrokeAnimationView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let character: String
     let size: CGSize
     var characterId: String? = nil
@@ -68,10 +69,10 @@ struct StrokeAnimationView: View {
 
         return ZStack {
             // Faint outline always visible as guide
-            glyphPath.fill(Color.indigo.opacity(0.08))
+            glyphPath.fill(AppTheme.practiceColor.opacity(0.08))
 
             // Filled glyph masked by per-pixel arc-length reveal.
-            glyphPath.fill(Color.indigo)
+            glyphPath.fill(AppTheme.practiceColor)
                 .mask {
                     Canvas { context, canvasSize in
                         for (index, region) in revealRegions.enumerated() {
@@ -111,9 +112,9 @@ struct StrokeAnimationView: View {
     private func penTipOverlay(data: CharacterStrokeData, proportions: [CGFloat]) -> some View {
         if let tip = activeTipPosition(data: data, proportions: proportions) {
             Circle()
-                .fill(Color.indigo.opacity(0.7))
+                .fill(AppTheme.practiceColor.opacity(0.7))
                 .frame(width: 8, height: 8)
-                .scaleEffect(pulseScale)
+                .scaleEffect(reduceMotion ? 1 : pulseScale)
                 .position(tip)
                 .allowsHitTesting(false)
         }
@@ -177,9 +178,9 @@ struct StrokeAnimationView: View {
         let path = PathExtractor.shared.extractPath(for: character, size: size)
 
         return ZStack {
-            path.fill(Color.indigo.opacity(0.08))
+            path.fill(AppTheme.practiceColor.opacity(0.08))
 
-            path.fill(Color.indigo)
+            path.fill(AppTheme.practiceColor)
                 .mask(alignment: .top) {
                     Rectangle()
                         .frame(height: size.height * animationProgress)
@@ -195,6 +196,11 @@ struct StrokeAnimationView: View {
     private func runAnimationLoop() async {
         animationProgress = 0
         loopCount = 0
+
+        if reduceMotion {
+            animationProgress = 1
+            return
+        }
 
         let interval: CGFloat = 1.0 / 60.0 // ~60fps
         let increment = interval / totalDuration

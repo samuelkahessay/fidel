@@ -66,6 +66,78 @@ struct LoadingView: View {
     }
 }
 
+// MARK: - Shared Interaction Primitives
+
+struct LearningCardButton<Content: View>: View {
+    let accessibilityLabel: String
+    var accessibilityHint: String?
+    let action: () -> Void
+    @ViewBuilder let content: () -> Content
+
+    var body: some View {
+        Button(action: action) {
+            content()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large))
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(accessibilityLabel)
+        .accessibilityHint(accessibilityHint ?? "")
+        .frame(minHeight: 44)
+    }
+}
+
+private struct PracticeCanvasWidthKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+struct AdaptivePracticeCanvas<Content: View>: View {
+    let idealSize: CGSize
+    var minimumSide: CGFloat = 240
+    var onSizeChange: (CGSize) -> Void = { _ in }
+    @ViewBuilder let content: (CGSize) -> Content
+
+    @State private var availableWidth: CGFloat = 0
+
+    var body: some View {
+        let size = fittedSize(for: availableWidth, idealSize: idealSize, minimumSide: minimumSide)
+
+        ZStack {
+            content(size)
+                .frame(width: size.width, height: size.height)
+        }
+        .frame(maxWidth: .infinity)
+        .background(
+            GeometryReader { proxy in
+                Color.clear.preference(key: PracticeCanvasWidthKey.self, value: proxy.size.width)
+            }
+        )
+        .onPreferenceChange(PracticeCanvasWidthKey.self) { newWidth in
+            availableWidth = newWidth
+            onSizeChange(fittedSize(for: newWidth, idealSize: idealSize, minimumSide: minimumSide))
+        }
+        .accessibilityElement(children: .contain)
+    }
+
+    static func fittedSize(for availableWidth: CGFloat, idealSize: CGSize, minimumSide: CGFloat = 240) -> CGSize {
+        guard idealSize.width > 0, idealSize.height > 0 else { return .zero }
+        let usableWidth = availableWidth > 0 ? availableWidth : idealSize.width
+        let cappedWidth = min(idealSize.width, usableWidth)
+        let fittedWidth = usableWidth < minimumSide ? max(1, usableWidth) : max(minimumSide, cappedWidth)
+        let scale = fittedWidth / idealSize.width
+        return CGSize(width: fittedWidth, height: idealSize.height * scale)
+    }
+
+    private func fittedSize(for availableWidth: CGFloat, idealSize: CGSize, minimumSide: CGFloat) -> CGSize {
+        Self.fittedSize(for: availableWidth, idealSize: idealSize, minimumSide: minimumSide)
+    }
+}
+
 struct SectionHeader: View {
     let title: String
     let action: (() -> Void)?
@@ -389,7 +461,7 @@ struct GlassProgressBar: View {
                 icon: "flame.fill",
                 title: "5 Day Streak",
                 subtitle: "Keep it up!",
-                color: .orange
+                color: AppTheme.warningColor
             )
             .padding(.horizontal)
             

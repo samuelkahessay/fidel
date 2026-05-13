@@ -33,8 +33,11 @@ struct ConversationDetailView: View {
             
             controlsBar
         }
+        .background(AppTheme.groupedBackground)
         .navigationTitle(conversation.title)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
+        .fidelTabBarHidden()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -192,7 +195,7 @@ struct ConversationDetailView: View {
             if showEnglish {
                 Text(line.english)
                     .font(.body)
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(AppTheme.infoColor)
             }
         }
         .padding()
@@ -222,14 +225,14 @@ struct ConversationDetailView: View {
             if showEnglish {
                 Text(line.english)
                     .font(.subheadline)
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(AppTheme.infoColor)
             }
         }
         .padding()
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemGray6))
+                .fill(AppTheme.surfaceColor)
         )
     }
     
@@ -250,7 +253,7 @@ struct ConversationDetailView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemGray6))
+                .fill(AppTheme.surfaceColor)
         )
     }
     
@@ -344,8 +347,9 @@ struct ConversationDetailView: View {
         }
         .foregroundStyle(AppTheme.primaryColor)
         .padding()
-        .background(Color(.systemBackground))
-        .shadow(color: Color.primary.opacity(0.1), radius: 10, y: -5)
+        .background(AppTheme.elevatedSurfaceColor)
+        .shadow(color: AppTheme.Shadow.bottomBar, radius: 10, y: -5)
+        .accessibilityElement(children: .contain)
     }
     
     private func togglePlayback() {
@@ -409,7 +413,7 @@ struct DialogueLineView: View {
             if showEnglish {
                 Text(line.english)
                     .font(.subheadline)
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(AppTheme.infoColor)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -417,12 +421,14 @@ struct DialogueLineView: View {
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(isHighlighted ? AppTheme.primaryColor.opacity(0.1) : Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.06), radius: 4, y: 2)
+                .shadow(color: AppTheme.Shadow.card, radius: 4, y: 2)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(isHighlighted ? AppTheme.primaryColor : Color.clear, lineWidth: 2)
         )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(line.speaker): \(line.amharic)")
     }
 }
 

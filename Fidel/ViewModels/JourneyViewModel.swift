@@ -84,7 +84,7 @@ final class JourneyViewModel {
                 title: "Explore the Fidel Chart",
                 subtitle: "Learn the Ethiopic script characters",
                 icon: "character.textbox",
-                color: .blue,
+                color: AppTheme.infoColor,
                 isCompleted: false
             ))
             result.append(JourneyActivity(
@@ -93,7 +93,7 @@ final class JourneyViewModel {
                 title: "Fidel Flashcards",
                 subtitle: "Practice character recognition",
                 icon: "rectangle.stack.fill",
-                color: .blue,
+                color: AppTheme.infoColor,
                 isCompleted: false
             ))
             result.append(JourneyActivity(
@@ -102,7 +102,7 @@ final class JourneyViewModel {
                 title: "Character Quiz",
                 subtitle: "Test your Fidel knowledge",
                 icon: "questionmark.circle.fill",
-                color: .purple,
+                color: AppTheme.practiceColor,
                 isCompleted: false
             ))
             result.append(JourneyActivity(
@@ -111,7 +111,7 @@ final class JourneyViewModel {
                 title: "Character Tracing",
                 subtitle: "Practice writing Fidel characters",
                 icon: "scribble.variable",
-                color: .indigo,
+                color: AppTheme.practiceColor,
                 isCompleted: false
             ))
 
@@ -137,7 +137,7 @@ final class JourneyViewModel {
                 title: "Flashcards",
                 subtitle: "Review vocabulary with spaced repetition",
                 icon: "rectangle.stack.fill",
-                color: .blue,
+                color: AppTheme.infoColor,
                 isCompleted: false
             ))
 
@@ -169,7 +169,7 @@ final class JourneyViewModel {
                 title: "Quiz",
                 subtitle: "Test your knowledge",
                 icon: "questionmark.circle.fill",
-                color: .purple,
+                color: AppTheme.practiceColor,
                 isCompleted: false
             ))
 
@@ -180,7 +180,7 @@ final class JourneyViewModel {
                     title: conv.title,
                     subtitle: "\(conv.lines.count) lines",
                     icon: "bubble.left.and.bubble.right",
-                    color: .indigo,
+                    color: AppTheme.practiceColor,
                     isCompleted: progress?.conversationsPracticed.contains(conv.id) ?? false
                 ))
             }
@@ -220,7 +220,7 @@ final class JourneyViewModel {
                     title: conv.title,
                     subtitle: "\(conv.lines.count) lines",
                     icon: "bubble.left.and.bubble.right",
-                    color: .indigo,
+                    color: AppTheme.practiceColor,
                     isCompleted: progress?.conversationsPracticed.contains(conv.id) ?? false
                 ))
             }
@@ -258,7 +258,7 @@ final class JourneyViewModel {
                     title: conv.title,
                     subtitle: "\(conv.lines.count) lines",
                     icon: "bubble.left.and.bubble.right",
-                    color: .indigo,
+                    color: AppTheme.practiceColor,
                     isCompleted: progress?.conversationsPracticed.contains(conv.id) ?? false
                 ))
             }

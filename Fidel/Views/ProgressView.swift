@@ -4,6 +4,7 @@ import UniformTypeIdentifiers
 
 struct ProgressDashboardView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     private let settingsStore = AppSettingsStore()
@@ -17,18 +18,19 @@ struct ProgressDashboardView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    localSaveStatusSection
-                    backupSection
                     stageTimeline
                     statsOverview
                     streakSection
                     dailyGoalSection
                     achievementsSection
                     learningStatsSection
+                    localSaveStatusSection
+                    backupSection
                 }
                 .padding()
+                .padding(.bottom, 110)
             }
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.groupedBackground)
             .navigationTitle("Progress")
             .task {
                 loadProgress()
@@ -72,12 +74,8 @@ struct ProgressDashboardView: View {
 
             Spacer()
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .fidelSurface(.solid)
+        .accessibilityElement(children: .combine)
     }
 
     private var backupSection: some View {
@@ -116,12 +114,7 @@ struct ProgressDashboardView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .fidelSurface(.solid)
     }
 
     private var stageTimeline: some View {
@@ -162,6 +155,9 @@ struct ProgressDashboardView: View {
                             .lineLimit(2)
                     }
                     .frame(maxWidth: .infinity)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel(stage.displayName)
+                    .accessibilityValue(isCurrent ? "Current stage" : (isUnlocked ? "Unlocked" : "Locked"))
 
                     if stage != .fluency {
                         Rectangle()
@@ -173,37 +169,45 @@ struct ProgressDashboardView: View {
                 }
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .fidelSurface(.solid)
     }
 
     private var statsOverview: some View {
-        HStack(spacing: 16) {
-            StatCard(
-                title: "Total XP",
-                value: "\(progress?.totalXP ?? 0)",
-                icon: "star.fill",
-                color: AppTheme.secondaryColor
-            )
-            
-            StatCard(
-                title: "Streak",
-                value: "\(progress?.currentStreak ?? 0)",
-                icon: "flame.fill",
-                color: .orange
-            )
-            
-            StatCard(
-                title: "Lessons",
-                value: "\(progress?.lessonsCompleted.count ?? 0)",
-                icon: "book.fill",
-                color: AppTheme.primaryColor
-            )
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(spacing: 12) {
+                    statCards
+                }
+            } else {
+                HStack(spacing: 16) {
+                    statCards
+                }
+            }
         }
+    }
+
+    @ViewBuilder
+    private var statCards: some View {
+        StatCard(
+            title: "Total XP",
+            value: "\(progress?.totalXP ?? 0)",
+            icon: "star.fill",
+            color: AppTheme.secondaryColor
+        )
+
+        StatCard(
+            title: "Streak",
+            value: "\(progress?.currentStreak ?? 0)",
+            icon: "flame.fill",
+            color: AppTheme.warningColor
+        )
+
+        StatCard(
+            title: "Lessons",
+            value: "\(progress?.lessonsCompleted.count ?? 0)",
+            icon: "book.fill",
+            color: AppTheme.primaryColor
+        )
     }
     
     private var streakSection: some View {
@@ -236,12 +240,7 @@ struct ProgressDashboardView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .fidelSurface(.solid)
     }
     
     private var dailyGoalSection: some View {
@@ -258,8 +257,10 @@ struct ProgressDashboardView: View {
             let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(dailyGoal), 1.0)
             
             ProgressView(value: goalProgress)
-                .tint(goalProgress >= 1.0 ? .green : AppTheme.primaryColor)
+                .tint(goalProgress >= 1.0 ? AppTheme.successColor : AppTheme.primaryColor)
                 .scaleEffect(x: 1, y: 2, anchor: .center)
+                .accessibilityLabel("Daily goal progress")
+                .accessibilityValue("\(progress?.todayXP ?? 0) of \(dailyGoal) XP")
 
             Stepper(value: dailyGoalBinding, in: 10...500, step: 10) {
                 Text("Goal: \(dailyGoal) XP")
@@ -270,19 +271,14 @@ struct ProgressDashboardView: View {
             if goalProgress >= 1.0 {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.successColor)
                     Text("Daily goal achieved!")
                         .font(.subheadline)
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.successColor)
                 }
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .fidelSurface(.solid)
     }
     
     private var achievementsSection: some View {
@@ -305,12 +301,7 @@ struct ProgressDashboardView: View {
                 }
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .fidelSurface(.solid)
     }
     
     private var earnedAchievements: [Achievement] {
@@ -327,30 +318,25 @@ struct ProgressDashboardView: View {
                     title: "Patterns",
                     count: progress?.patternsLearned.count ?? 0,
                     total: lessonRepository.getPatterns().count,
-                    color: .blue
+                    color: AppTheme.infoColor
                 )
                 
                 LearningStat(
                     title: "Vocabulary",
                     count: progress?.vocabularyMastered.count ?? 0,
                     total: lessonRepository.getVocabulary().count,
-                    color: .green
+                    color: AppTheme.successColor
                 )
                 
                 LearningStat(
                     title: "Conversations",
                     count: progress?.conversationsPracticed.count ?? 0,
                     total: lessonRepository.getConversations().count,
-                    color: .purple
+                    color: AppTheme.practiceColor
                 )
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.08), radius: 8, y: 4)
-        )
+        .fidelSurface(.solid)
     }
     
     private func dayLabel(_ index: Int) -> String {
@@ -438,18 +424,19 @@ struct StatCard: View {
             
             Text(value)
                 .font(.title2.bold())
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
             
             Text(title)
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
-                .shadow(color: Color.primary.opacity(0.06), radius: 4, y: 2)
-        )
+        .fidelSurface(.muted, padding: AppTheme.Spacing.md, cornerRadius: AppTheme.CornerRadius.medium)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(title)
+        .accessibilityValue(value)
     }
 }
 
@@ -477,6 +464,9 @@ struct AchievementBadge: View {
         }
         .frame(width: 80)
         .opacity(isEarned ? 1.0 : 0.5)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(achievement.title)
+        .accessibilityValue(isEarned ? "Earned" : "Locked")
     }
 }
 
@@ -493,7 +483,13 @@ struct LearningStat: View {
     var body: some View {
         VStack(spacing: 8) {
             ZStack {
-                ProgressRing(progress: progress, lineWidth: 6, size: 50)
+                AccessibleProgressRing(
+                    progress: progress,
+                    lineWidth: 6,
+                    size: 50,
+                    label: "\(title) progress",
+                    valueText: "\(count) of \(total)"
+                )
                 
                 Text("\(Int(progress * 100))%")
                     .font(.caption2.bold())
@@ -508,6 +504,9 @@ struct LearningStat: View {
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(title)
+        .accessibilityValue("\(count) of \(total)")
     }
 }
 

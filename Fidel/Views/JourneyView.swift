@@ -19,8 +19,9 @@ struct JourneyView: View {
                     lockedStagesSection
                 }
                 .padding(AppTheme.Spacing.md)
+                .padding(.bottom, 110)
             }
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.groupedBackground)
             .navigationTitle("Journey")
             .sheet(isPresented: $viewModel.showFidelChart) {
                 FidelView()
@@ -91,10 +92,12 @@ struct JourneyView: View {
 
                 Spacer()
 
-                ProgressRing(
+                AccessibleProgressRing(
                     progress: viewModel.progressToNextStage,
                     lineWidth: 4,
-                    size: 44
+                    size: 44,
+                    label: "Progress to next stage",
+                    valueText: "\(Int((viewModel.progressToNextStage * 100).rounded())) percent"
                 )
             }
 
@@ -104,6 +107,9 @@ struct JourneyView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .tintedGlassCard(tint: viewModel.currentStage.color, tintOpacity: 0.06)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(viewModel.currentStage.displayName), \(viewModel.currentStage.stageDescription)")
+        .accessibilityValue("\(Int((viewModel.progressToNextStage * 100).rounded())) percent to next stage")
     }
 
     // MARK: - Next Stage Criteria
@@ -123,27 +129,31 @@ struct JourneyView: View {
                     let isMet = progress.map { criterion.evaluate($0) } ?? false
                     HStack(spacing: AppTheme.Spacing.sm) {
                         Image(systemName: isMet ? "checkmark.circle.fill" : criterion.icon)
-                            .foregroundStyle(isMet ? .green : .secondary)
+                            .foregroundStyle(isMet ? AppTheme.successColor : .secondary)
                             .frame(width: 24)
 
                         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(criterion.description)
                                 .font(AppTheme.Typography.subheadline)
-                                .foregroundStyle(isMet ? .green : .primary)
+                                .foregroundStyle(isMet ? AppTheme.successColor : .primary)
 
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
                                     RoundedRectangle(cornerRadius: 4)
-                                        .fill(Color.primary.opacity(0.08))
+                                        .fill(AppTheme.hairlineColor)
                                         .frame(height: 6)
                                     RoundedRectangle(cornerRadius: 4)
-                                        .fill(isMet ? Color.green : viewModel.currentStage.color)
+                                        .fill(isMet ? AppTheme.successColor : viewModel.currentStage.color)
                                         .frame(width: geo.size.width * fraction, height: 6)
                                 }
                             }
                             .frame(height: 6)
+                            .accessibilityLabel(criterion.description)
+                            .accessibilityValue("\(Int((fraction * 100).rounded())) percent")
                         }
                     }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityValue(isMet ? "Complete" : "\(Int((fraction * 100).rounded())) percent")
                 }
             }
             .glassCard()
@@ -159,10 +169,14 @@ struct JourneyView: View {
                 .foregroundStyle(.primary)
 
             ForEach(viewModel.activities) { activity in
-                Button { handleActivityTap(activity) } label: {
+                LearningCardButton(
+                    accessibilityLabel: "\(activity.title). \(activity.subtitle)",
+                    accessibilityHint: "Opens this learning activity"
+                ) {
+                    handleActivityTap(activity)
+                } content: {
                     ActivityCard(activity: activity)
                 }
-                .buttonStyle(.plain)
             }
         }
     }
@@ -189,10 +203,14 @@ struct JourneyView: View {
         if !viewModel.lockedStages.isEmpty {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
                 ForEach(viewModel.lockedStages) { stage in
-                    Button { viewModel.tappedLockedStage = stage } label: {
+                    LearningCardButton(
+                        accessibilityLabel: "\(stage.displayName). Locked. \(stage.stageDescription)",
+                        accessibilityHint: "Shows the requirements to unlock this stage"
+                    ) {
+                        viewModel.tappedLockedStage = stage
+                    } content: {
                         LockedStageCard(stage: stage)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }
@@ -230,7 +248,7 @@ struct ActivityCard: View {
                 Text(activity.subtitle)
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                    .lineLimit(2)
             }
 
             Spacer()
@@ -240,6 +258,7 @@ struct ActivityCard: View {
                 .foregroundStyle(.tertiary)
         }
         .glassCard()
+        .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large))
     }
 }
 
@@ -268,7 +287,7 @@ struct LockedStageCard: View {
                 Text(stage.stageDescription)
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(.secondary.opacity(0.7))
-                    .lineLimit(1)
+                    .lineLimit(2)
             }
 
             Spacer()
@@ -279,6 +298,7 @@ struct LockedStageCard: View {
         }
         .glassCard()
         .opacity(0.6)
+        .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large))
     }
 }
 
@@ -326,16 +346,20 @@ struct LockedStageSheet: View {
                             let isMet = criterion.evaluate(progress)
                             HStack(spacing: AppTheme.Spacing.sm) {
                                 Image(systemName: isMet ? "checkmark.circle.fill" : "circle")
-                                    .foregroundStyle(isMet ? .green : .secondary)
+                                    .foregroundStyle(isMet ? AppTheme.successColor : .secondary)
 
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(criterion.description)
                                         .font(AppTheme.Typography.subheadline)
 
                                     ProgressView(value: fraction)
-                                        .tint(isMet ? .green : stage.color)
+                                        .tint(isMet ? AppTheme.successColor : stage.color)
+                                        .accessibilityLabel(criterion.description)
+                                        .accessibilityValue("\(Int((fraction * 100).rounded())) percent")
                                 }
                             }
+                            .accessibilityElement(children: .combine)
+                            .accessibilityValue(isMet ? "Complete" : "\(Int((fraction * 100).rounded())) percent")
                         }
                     }
                 }
@@ -418,7 +442,7 @@ struct StageAdvancementView: View {
             }
         }
         .onAppear {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+            withAnimation(AppTheme.Animation.gentle) {
                 animateIn = true
             }
         }

@@ -37,7 +37,7 @@ struct SelamView: View {
                 onCancel: { viewModel.cancelStreaming() }
             )
         }
-        .background(Color(.systemGroupedBackground))
+        .background(AppTheme.groupedBackground)
         .navigationTitle("Selam")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -101,6 +101,12 @@ struct SelamView: View {
                 }
                 .padding(.vertical, AppTheme.Spacing.md)
             }
+            .overlay {
+                if viewModel.messages.isEmpty {
+                    SelamWelcomeView(onSelect: viewModel.sendSuggestedAction)
+                        .padding(AppTheme.Spacing.xl)
+                }
+            }
             .scrollDismissesKeyboard(.interactively)
             .defaultScrollAnchor(.bottom)
             .onChange(of: viewModel.messages.count) { _, _ in
@@ -126,6 +132,42 @@ struct SelamView: View {
             repository: selamRepository,
             progressRepository: progressRepository
         )
+    }
+}
+
+struct SelamWelcomeView: View {
+    let onSelect: (String) -> Void
+
+    private let prompts = [
+        "Teach me everyday greetings",
+        "Quiz me on Fidel sounds",
+        "Practice ordering coffee"
+    ]
+
+    var body: some View {
+        VStack(spacing: AppTheme.Spacing.lg) {
+            SelamAvatarView(size: 56)
+
+            VStack(spacing: AppTheme.Spacing.xs) {
+                Text("Ask Selam Anything")
+                    .font(AppTheme.Typography.title3)
+                Text("Start with a short goal, a word you saw, or a phrase you want to practice.")
+                    .font(AppTheme.Typography.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+
+            VStack(spacing: AppTheme.Spacing.xs) {
+                ForEach(prompts, id: \.self) { prompt in
+                    Button(prompt) {
+                        onSelect(prompt)
+                    }
+                    .buttonStyle(SecondaryButtonStyle(isFullWidth: true))
+                    .accessibilityHint("Starts a conversation with this prompt")
+                }
+            }
+        }
+        .fidelSurface(.solid)
     }
 }
 
@@ -191,7 +233,7 @@ struct SelamSettingsView: View {
                         Text("Remaining")
                         Spacer()
                         Text("\(viewModel.remainingMessages)")
-                            .foregroundStyle(viewModel.remainingMessages < 10 ? .orange : .secondary)
+                            .foregroundStyle(viewModel.remainingMessages < 10 ? AppTheme.warningColor : .secondary)
                     }
                 } header: {
                     Text("Usage")

@@ -4,6 +4,7 @@ import SwiftData
 struct FlashcardView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var viewModel = FlashcardViewModel()
     @State private var offset: CGSize = .zero
     
@@ -13,15 +14,18 @@ struct FlashcardView: View {
             
             if let word = viewModel.currentWord, !viewModel.showCompletion {
                 flashcardStack(word: word)
+                reviewControls
                 swipeHints
             } else if viewModel.showCompletion {
                 completionView
             }
         }
         .padding(AppTheme.Spacing.md)
-        .background(Color(.systemGroupedBackground))
+        .background(AppTheme.groupedBackground)
         .navigationTitle("Flashcards")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
+        .fidelTabBarHidden()
         .onAppear {
             let progressRepo = ProgressRepository(modelContext: modelContext)
             viewModel.configure(progressRepository: progressRepo)
@@ -33,10 +37,10 @@ struct FlashcardView: View {
         HStack {
             HStack(spacing: AppTheme.Spacing.xxs) {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundStyle(.green)
+                    .foregroundStyle(AppTheme.successColor)
                 Text("\(viewModel.correctCount)")
                     .font(AppTheme.Typography.headline)
-                    .foregroundStyle(.green)
+                    .foregroundStyle(AppTheme.successColor)
             }
             
             Spacer()
@@ -82,9 +86,9 @@ struct FlashcardView: View {
             .padding(AppTheme.Spacing.xxl)
         }
         .frame(height: 380)
-        .rotation3DEffect(.degrees(viewModel.isFlipped ? 180 : 0), axis: (x: 0, y: 1, z: 0))
+        .rotation3DEffect(.degrees(reduceMotion ? 0 : (viewModel.isFlipped ? 180 : 0)), axis: (x: 0, y: 1, z: 0))
         .offset(offset)
-        .rotationEffect(.degrees(Double(offset.width / 25)))
+        .rotationEffect(.degrees(reduceMotion ? 0 : Double(offset.width / 25)))
         .gesture(
             DragGesture()
                 .onChanged { gesture in
@@ -95,11 +99,17 @@ struct FlashcardView: View {
                 }
         )
         .onTapGesture {
-            withAnimation(AppTheme.Animation.standard) {
+            withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
                 viewModel.flip()
             }
         }
         .overlay(swipeOverlay)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(viewModel.isFlipped ? "\(word.english), \(word.category)" : "\(word.amharic), \(word.transliteration)")
+        .accessibilityHint(viewModel.isFlipped ? "Use the review buttons below" : "Double tap to show the answer")
+        .accessibilityAction(named: "Flip card") {
+            viewModel.flip()
+        }
     }
     
     private func frontContent(word: VocabularyWord) -> some View {
@@ -133,7 +143,7 @@ struct FlashcardView: View {
             Text(word.english)
                 .font(AppTheme.Typography.title)
                 .foregroundStyle(.primary)
-                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                .rotation3DEffect(.degrees(reduceMotion ? 0 : 180), axis: (x: 0, y: 1, z: 0))
             
             Text(word.category)
                 .font(AppTheme.Typography.caption)
@@ -144,7 +154,7 @@ struct FlashcardView: View {
                     Capsule()
                         .fill(AppTheme.primaryColor.opacity(0.12))
                 )
-                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                .rotation3DEffect(.degrees(reduceMotion ? 0 : 180), axis: (x: 0, y: 1, z: 0))
             
             Spacer()
             
@@ -155,7 +165,43 @@ struct FlashcardView: View {
                     .font(AppTheme.Typography.caption)
             }
             .foregroundStyle(.tertiary)
-            .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+            .rotation3DEffect(.degrees(reduceMotion ? 0 : 180), axis: (x: 0, y: 1, z: 0))
+        }
+    }
+
+    private var reviewControls: some View {
+        Group {
+            if viewModel.isFlipped {
+                HStack(spacing: AppTheme.Spacing.md) {
+                    Button {
+                        answerCard(correct: false)
+                    } label: {
+                        Label("Still Learning", systemImage: "xmark.circle")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(SecondaryButtonStyle())
+                    .accessibilityHint("Marks this card for more review")
+
+                    Button {
+                        answerCard(correct: true)
+                    } label: {
+                        Label("Got It", systemImage: "checkmark.circle")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
+                    .accessibilityHint("Marks this card correct")
+                }
+            } else {
+                Button {
+                    withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
+                        viewModel.flip()
+                    }
+                } label: {
+                    Label("Show Answer", systemImage: "arrow.triangle.2.circlepath")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(PrimaryButtonStyle(isFullWidth: true))
+            }
         }
     }
     
@@ -163,11 +209,11 @@ struct FlashcardView: View {
         ZStack {
             if offset.width > 50 {
                 RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
-                    .stroke(Color.green, lineWidth: 3)
+                    .stroke(AppTheme.successColor, lineWidth: 3)
                     .overlay(
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 48))
-                            .foregroundStyle(.green)
+                            .foregroundStyle(AppTheme.successColor)
                     )
             } else if offset.width < -50 {
                 RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
@@ -195,7 +241,7 @@ struct FlashcardView: View {
             VStack(spacing: AppTheme.Spacing.xs) {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.title)
-                    .foregroundStyle(.green.opacity(0.5))
+                    .foregroundStyle(AppTheme.successColor.opacity(0.5))
                 Text("Got it!")
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(.secondary)
@@ -216,7 +262,7 @@ struct FlashcardView: View {
                 VStack(spacing: AppTheme.Spacing.xxs) {
                     Text("\(viewModel.correctCount)")
                         .font(.system(size: 52, weight: .bold))
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.successColor)
                     Text("Correct")
                         .font(AppTheme.Typography.caption)
                         .foregroundStyle(.secondary)
@@ -233,7 +279,13 @@ struct FlashcardView: View {
             }
             
             HStack(spacing: AppTheme.Spacing.xs) {
-                ProgressRing(progress: Double(viewModel.correctCount) / Double(max(viewModel.vocabulary.count, 1)), lineWidth: 6, size: 44)
+                AccessibleProgressRing(
+                    progress: Double(viewModel.correctCount) / Double(max(viewModel.vocabulary.count, 1)),
+                    lineWidth: 6,
+                    size: 44,
+                    label: "Flashcard accuracy",
+                    valueText: "\(viewModel.accuracyPercentage) percent"
+                )
                 Text("\(viewModel.accuracyPercentage)% Accuracy")
                     .font(AppTheme.Typography.headline)
                     .foregroundStyle(AppTheme.primaryColor)
@@ -247,7 +299,7 @@ struct FlashcardView: View {
     private func handleSwipe(gesture: DragGesture.Value) {
         let threshold: CGFloat = 100
         
-        withAnimation(AppTheme.Animation.standard) {
+        withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
             if gesture.translation.width > threshold {
                 offset = CGSize(width: 500, height: 0)
                 Task {
@@ -265,6 +317,17 @@ struct FlashcardView: View {
             } else {
                 offset = .zero
             }
+        }
+    }
+
+    private func answerCard(correct: Bool) {
+        withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
+            offset = correct ? CGSize(width: 500, height: 0) : CGSize(width: -500, height: 0)
+        }
+        Task {
+            try? await Task.sleep(for: .seconds(reduceMotion ? 0 : 0.2))
+            viewModel.handleSwipe(correct: correct)
+            offset = .zero
         }
     }
 }

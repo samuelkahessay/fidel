@@ -53,9 +53,9 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
 
     var color: Color {
         switch self {
-        case .scriptAndSounds: return .blue
+        case .scriptAndSounds: return AppTheme.infoColor
         case .survivalPhrases: return AppTheme.primaryColor
-        case .buildingSentences: return .orange
+        case .buildingSentences: return AppTheme.warningColor
         case .fluency: return AppTheme.secondaryColor
         }
     }

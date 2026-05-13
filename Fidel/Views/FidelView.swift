@@ -26,18 +26,17 @@ struct FidelView: View {
             VStack(spacing: 0) {
                 headerView
                 
-                ScrollView([.horizontal, .vertical]) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        vowelHeaderRow
-                        
-                        ForEach(filteredChart.indices, id: \.self) { index in
-                            let row = filteredChart[index]
-                            if !row.isEmpty {
-                                FidelRow(characters: row, selectedCharacter: $selectedCharacter)
-                            }
-                        }
+                if filteredChart.isEmpty {
+                    EmptyStateView(
+                        icon: "magnifyingglass",
+                        title: "No Characters Found",
+                        message: "Try searching by an Ethiopic character or romanized sound."
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    GeometryReader { geometry in
+                        chartContent(width: geometry.size.width)
                     }
-                    .padding()
                 }
             }
             .navigationTitle("Fidel Chart")
@@ -54,6 +53,30 @@ struct FidelView: View {
             }
         }
     }
+
+    private func chartContent(width: CGFloat) -> some View {
+        let metrics = FidelChartLayoutMetrics(containerWidth: width)
+
+        return ScrollView(.vertical) {
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
+                vowelHeaderRow(metrics: metrics)
+
+                ForEach(filteredChart.indices, id: \.self) { index in
+                    let row = filteredChart[index]
+                    if !row.isEmpty {
+                        FidelRow(
+                            characters: row,
+                            metrics: metrics,
+                            selectedCharacter: $selectedCharacter
+                        )
+                    }
+                }
+            }
+            .padding(.horizontal, metrics.horizontalPadding)
+            .padding(.vertical, AppTheme.Spacing.md)
+            .frame(width: width, alignment: .topLeading)
+        }
+    }
     
     private var headerView: some View {
         VStack(spacing: 8) {
@@ -68,68 +91,109 @@ struct FidelView: View {
         }
         .padding()
         .background(AppTheme.primaryColor.opacity(0.1))
+        .accessibilityElement(children: .combine)
     }
     
-    private var vowelHeaderRow: some View {
+    private func vowelHeaderRow(metrics: FidelChartLayoutMetrics) -> some View {
         HStack(spacing: 0) {
-            Text("")
-                .frame(width: 50)
-            
             ForEach(0..<7) { index in
                 Text(vowelHeaders[index])
                     .font(.caption.bold())
                     .foregroundStyle(AppTheme.primaryColor)
-                    .frame(width: 60)
+                    .frame(width: metrics.cellWidth, height: 24)
+                    .accessibilityLabel("Vowel form \(vowelHeaders[index])")
             }
         }
-        .padding(.bottom, 8)
+        .accessibilityElement(children: .contain)
+    }
+}
+
+struct FidelChartLayoutMetrics {
+    let containerWidth: CGFloat
+
+    var horizontalPadding: CGFloat {
+        min(AppTheme.Spacing.sm, max(AppTheme.Spacing.xxs, containerWidth * 0.015))
+    }
+
+    var cellWidth: CGFloat {
+        floor(max(0, containerWidth - (horizontalPadding * 2)) / 7)
+    }
+
+    var cellHeight: CGFloat {
+        min(52, max(44, cellWidth * 0.92))
+    }
+
+    var characterFontSize: CGFloat {
+        min(28, max(22, cellWidth * 0.52))
+    }
+
+    var totalWidth: CGFloat {
+        (horizontalPadding * 2) + (cellWidth * 7)
     }
 }
 
 struct FidelRow: View {
     let characters: [FidelCharacter]
+    let metrics: FidelChartLayoutMetrics
     @Binding var selectedCharacter: FidelCharacter?
     
     var body: some View {
-        HStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
             if let first = characters.first {
                 Text(first.consonant)
                     .font(.caption.bold())
                     .foregroundStyle(.secondary)
-                    .frame(width: 50)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityLabel("Consonant row \(first.consonant)")
             }
-            
-            ForEach(characters) { char in
-                FidelCell(character: char, isSelected: selectedCharacter?.id == char.id)
-                    .onTapGesture {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+
+            HStack(spacing: 0) {
+                ForEach(characters) { char in
+                    FidelCell(
+                        character: char,
+                        metrics: metrics,
+                        isSelected: selectedCharacter?.id == char.id
+                    ) {
+                        withAnimation(AppTheme.Animation.quick) {
                             selectedCharacter = char
                         }
                         let impactFeedback = UIImpactFeedbackGenerator(style: .light)
                         impactFeedback.impactOccurred()
                     }
+                }
             }
         }
+        .accessibilityElement(children: .contain)
     }
 }
 
 struct FidelCell: View {
     let character: FidelCharacter
+    let metrics: FidelChartLayoutMetrics
     let isSelected: Bool
+    let action: () -> Void
     
     var body: some View {
-        Text(character.character)
-            .font(AppTheme.Typography.amharic(size: 28))
-            .frame(width: 60, height: 50)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(isSelected ? AppTheme.primaryColor : Color.clear)
-            )
-            .foregroundStyle(isSelected ? .white : .primary)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-            )
+        Button(action: action) {
+            Text(character.character)
+                .font(AppTheme.Typography.amharic(size: metrics.characterFontSize, relativeTo: .title2))
+                .minimumScaleFactor(0.75)
+                .frame(width: metrics.cellWidth, height: metrics.cellHeight)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(isSelected ? AppTheme.primaryColor : Color.clear)
+                )
+                .foregroundStyle(isSelected ? .white : .primary)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(AppTheme.hairlineColor, lineWidth: 1)
+                )
+                .contentShape(RoundedRectangle(cornerRadius: 8))
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("\(character.character), \(character.romanization)")
+        .accessibilityHint("Shows pronunciation details")
+        .accessibilityValue(isSelected ? "Selected" : "")
     }
 }
 
@@ -142,6 +206,7 @@ struct CharacterDetailView: View {
             Text(character.character)
                 .font(AppTheme.Typography.amharic(size: 120))
                 .foregroundStyle(AppTheme.primaryColor)
+                .minimumScaleFactor(0.6)
             
             VStack(spacing: 8) {
                 Text("Romanization")
@@ -187,6 +252,7 @@ struct CharacterDetailView: View {
             .buttonStyle(SecondaryButtonStyle())
         }
         .padding(32)
+        .accessibilityElement(children: .contain)
     }
 }
 
