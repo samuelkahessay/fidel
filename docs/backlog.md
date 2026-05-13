@@ -1,33 +1,29 @@
 # Fidel Backlog
 
 Last updated: 2026-05-13
+Last audited: 2026-05-13
 
 This is the single parking lot for future Fidel app, landing page, and content-pipeline work. Completed plans and historical audit checklists should link here instead of carrying their own separate future-work lists.
 
-## Now
+## Active
 
-- 2026-05-13 [debt] Finish and verify the active UI/UX remediation branch before starting broad source-layout refactors.
-- 2026-05-13 [infra] Wire a real durable waitlist provider for `FidelWeb`; production requires `WAITLIST_WEBHOOK_URL`.
+- 2026-05-13 [debt] Finish the active `codex/ui-ux-remediation` work: 25 SwiftUI/test files are still modified; run XcodeBuildMCP build/test/run, split commits if useful, and land this branch before broad source-layout refactors.
+- 2026-05-13 [infra] Configure durable waitlist storage for `FidelWeb`: the subscribe API already supports `WAITLIST_WEBHOOK_URL`; choose the provider, set production env vars, and verify a real signup is stored.
 
-## Next
+## Ready Next
 
-- 2026-05-13 [feature] Add native-speaker audio pronunciation once source rights and an asset pipeline are clear.
-- 2026-05-13 [feature] Audit and finish handwriting practice for Fidel characters, including coverage, progression, and UX polish.
-- 2026-05-13 [feature] Add speech recognition or pronunciation feedback after choosing the local/on-device versus service-backed approach.
-- 2026-05-13 [content] Import additional reviewed vocabulary only after applying the de-dupe report and editorial review.
-- 2026-05-13 [content] Design and ship a phrasebook-derived content pack only after the import schema, duplicate rules, and product scope are accepted.
+- 2026-05-13 [content] Review the remaining vocabulary import queue from `../../Fidel_Resources/amharic/VOCAB_DEDUPE_REPORT.md`, starting with unimported clean candidates; fix or exclude rows with missing English, concatenated glosses, broad `Other` category, or embedded media tags.
+- 2026-05-13 [content] Build a small phrasebook pilot review sheet from `../../Fidel_Resources/fidel_resources/PHRASEBOOK_IMPORT_SCHEMA.md`; keep phrasebook content reference-only until a reviewed pilot set is accepted.
+- 2026-05-13 [feature] Run a post-UI-branch tracing QA pass: tracing, stroke recordings, animation, and unit coverage exist, so focus on remaining UX gaps instead of adding handwriting from scratch.
+- 2026-05-13 [feature] Decide whether pronunciation needs scored feedback; the current pronunciation flow plays TTS/ElevenLabs audio and records user playback, but there is no speech-recognition feedback loop.
 
 ## Later
 
-- 2026-05-13 [feature] Add optional downloadable content packs.
-- 2026-05-13 [feature] Decide whether the archived static speaking-practice PWA should become a public web companion or remain a UX/content reference.
+- 2026-05-13 [feature] Decide whether licensed native-speaker media should replace or supplement TTS/ElevenLabs pronunciation; if yes, design a rights-reviewed asset pipeline before importing files.
+- 2026-05-13 [feature] Design downloadable content packs only after content provenance, media rights, and local-first/offline packaging rules are settled.
 
-## Research
+## Blocked Or Not Now
 
-- 2026-05-13 [research] Review rights and technical feasibility before using `.apkg` audio or images as native app assets.
-- 2026-05-13 [research] Evaluate whether native-speaker media, speech recognition, and downloadable packs require a backend or can stay local-first.
-
-## Blocked
-
-- 2026-05-13 [blocked] Do not bulk-import vocabulary or phrasebook rows until the de-dupe report, import schema, and rights/source review are applied.
-- 2026-05-13 [blocked] Keep `.apkg` media archival until source-rights review makes app usage acceptable.
+- 2026-05-13 [blocked] Do not bulk-import vocabulary or phrasebook rows until the review queue, provenance strategy, de-dupe rules, and rights/source review are applied.
+- 2026-05-13 [blocked] Keep `.apkg` media archival until source-rights review, audio-quality review, image-rights review, and mapping verification make app usage acceptable.
+- 2026-05-13 [blocked] Keep the static speaking-practice PWA archival; do not invest in public companion work unless a separate web product goal reopens that decision.
