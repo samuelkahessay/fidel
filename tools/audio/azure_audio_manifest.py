@@ -91,11 +91,29 @@ def validate(root: Path, rows: list[dict]) -> list[str]:
     return errors
 
 
+def load_local_env(root: Path) -> None:
+    env_path = root / ".env"
+    if not env_path.exists():
+        return
+
+    allowed_keys = {"AZURE_SPEECH_KEY", "AZURE_SPEECH_REGION"}
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        if key not in allowed_keys or os.environ.get(key):
+            continue
+        os.environ[key] = value.strip().strip("\"'")
+
+
 def synthesize(root: Path, rows: list[dict], force: bool) -> None:
+    load_local_env(root)
     key = os.environ.get("AZURE_SPEECH_KEY")
     region = os.environ.get("AZURE_SPEECH_REGION")
     if not key or not region:
-        raise SystemExit("Set AZURE_SPEECH_KEY and AZURE_SPEECH_REGION before generating audio.")
+        raise SystemExit("Set AZURE_SPEECH_KEY and AZURE_SPEECH_REGION in the shell or ignored .env before generating audio.")
 
     endpoint = f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1"
     for row in rows:
