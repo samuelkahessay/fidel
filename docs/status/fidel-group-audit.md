@@ -205,7 +205,7 @@ Location note: this file now lives inside the iOS product repo at `docs/status/f
 
 **Claim to verify**
 - [x] `Fidel_Resources/amharic/Amharic_Most_common_words_Abugida_Language_School.apkg` exists locally but is untracked.
-- [x] The iOS app currently uses TTS/cache/recording flows, not bundled native media for each vocabulary item.
+- [x] The iOS app has implementation hooks for generated speech/cache/recording, but no accepted pronunciation/audio content pipeline or bundled native media for vocabulary items.
 
 **Likely files**
 - `Fidel_Resources/amharic/anki_deck_analysis.md`

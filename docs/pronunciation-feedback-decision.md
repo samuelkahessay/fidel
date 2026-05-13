@@ -4,17 +4,17 @@ Date: 2026-05-13
 
 ## Decision
 
-Do not build scored pronunciation feedback yet. Keep the current listen, record, playback, and self-compare loop as the supported pronunciation experience until reference audio, recognition quality, and privacy/offline constraints are decided.
+Do not build scored pronunciation feedback yet. The product does not currently have a shipped pronunciation/audio content layer, so scoring should stay out of scope until audio content, recognition quality, and privacy/offline constraints are decided.
 
 ## Current App State
 
-- `PronunciationPracticeView` supports phrase, vocabulary, and Fidel practice modes.
-- `AudioService` plays generated Amharic speech and records local `.m4a` learner audio for playback.
+- The app has implementation hooks for pronunciation practice and local recording, but these are not a finished shipped pronunciation/audio product.
+- There is no reviewed native-speaker audio corpus or accepted pronunciation content pipeline.
 - The app does not use speech recognition, phoneme scoring, server-side audio upload, or a native-speaker scoring model.
 
 ## Why Not Now
 
-- Scoring needs a trustworthy Amharic reference target. The current audio path is generated speech, not a rights-reviewed native-speaker corpus.
+- Scoring needs a trustworthy Amharic reference target. That reference content does not exist in the product yet.
 - Speech-recognition quality for Amharic should be proven before it becomes learner-facing feedback.
 - Audio scoring has privacy and offline-product implications that do not match the current local-first app shape without an explicit design.
 - A weak score would be worse than no score because it would teach false confidence or false corrections.
@@ -30,4 +30,4 @@ Reconsider scored feedback when all of these are true:
 
 ## Near-Term Alternative
 
-If pronunciation needs more structure before scoring is ready, add a lightweight self-rating step after playback: `Again`, `Close`, or `Good`, stored locally like other practice progress.
+If pronunciation becomes a near-term goal, start by adding a small rights-reviewed audio/content pilot. A self-rating step such as `Again`, `Close`, or `Good` can come after there is real content to practice against.

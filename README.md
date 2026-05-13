@@ -5,7 +5,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 ## Features
 
 ### Journey Tab
-- **Fidel Script Chart**: Interactive grid of all 238 Fidel characters (34 consonants x 7 vowel forms) with tap-to-hear pronunciation guides
+- **Fidel Script Chart**: Interactive grid of all 238 Fidel characters (34 consonants x 7 vowel forms) with visual pronunciation hints
 - **Structured Lessons**: 8 progressive lessons covering greetings, family, directions, food, time, health, travel, and culture
 - **Sentence Patterns**: 30 pattern templates with substitution slots for building sentences
 - **Vocabulary Cards**: Visual flashcards organized by category
