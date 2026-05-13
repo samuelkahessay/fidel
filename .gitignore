@@ -21,3 +21,10 @@ Pods/
 
 # OS
 .DS_Store
+
+# Local agent/browser state
+.playwright-mcp/
+
+# Generated or archived local artifacts
+fidel_stroke_data.json
+fidel drawing artifacts and passes/

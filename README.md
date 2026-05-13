@@ -23,7 +23,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 
 ### Reference Tab
 - **Quick Phrases**: 174 phrases for travel and daily use
-- **Vocabulary Browser**: 420 words organized by category
+- **Vocabulary Browser**: 436 words organized by category
 - **Number System**: Ethiopian numbers, months, ordinals, and fractions
 - **Culture Notes**: 20 cultural notes connected to lessons and conversations
 - **Search**: Find any word or phrase instantly
@@ -50,28 +50,31 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 ### Project Structure
 ```
 Fidel/
+├── docs/
+│   ├── README.md
+│   └── status/
+│       └── fidel-group-audit.md
 ├── Fidel/
 │   ├── Models/
 │   │   ├── Models.swift          # Core data models
-│   │   └── AmharicData.swift     # All Amharic content
+│   │   └── AmharicData.swift     # JSON-backed content adapter
+│   ├── Data/                     # Bundled lessons, patterns, vocabulary, phrases, conversations, notes
+│   ├── Services/                 # Audio, stage, progress export, stroke, and spaced repetition services
+│   ├── Repositories/             # Lesson/progress/Selam data boundaries
+│   ├── ViewModels/               # Observable feature state
 │   ├── Views/
 │   │   ├── Theme.swift           # Ethiopian-inspired design system
 │   │   ├── Components.swift      # Reusable UI components
-│   │   ├── LearnView.swift       # Lessons & patterns
+│   │   ├── JourneyView.swift     # Stage-gated learning path
 │   │   ├── FidelView.swift       # Fidel alphabet chart
 │   │   ├── PracticeView.swift    # Practice hub
 │   │   ├── FlashcardView.swift   # Swipeable flashcards
 │   │   ├── QuizView.swift        # Multiple choice quizzes
 │   │   ├── SentenceBuilderView.swift
-│   │   ├── ConversationsView.swift
 │   │   ├── ConversationDetailView.swift
 │   │   ├── ReferenceView.swift   # Quick reference
 │   │   ├── ProgressView.swift    # Stats & achievements
-│   │   └── LessonView.swift
-│   ├── ViewModels/
-│   │   └── ViewModels.swift      # Observable state management
-│   ├── Services/
-│   │   └── SpacedRepetition.swift # SM-2 algorithm
+│   │   └── TracingView.swift     # Handwriting practice
 │   ├── FidelApp.swift            # App entry point
 │   └── ContentView.swift         # Tab navigation
 └── Fidel.xcodeproj
@@ -90,7 +93,7 @@ All Amharic content is sourced from the companion web application, including:
 - 30 sentence patterns with grammar explanations
 - 24 conversation scripts with full dialogues
 - 174 phrases
-- 420 vocabulary words across multiple categories
+- 436 vocabulary words across multiple categories
 - 20 cultural notes
 
 ## Design
