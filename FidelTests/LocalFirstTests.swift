@@ -124,6 +124,27 @@ final class LocalFirstTests: XCTestCase {
         }
     }
 
+    func testAudioAssetKeyMatchesPhraseContent() {
+        let asset = AudioAsset(
+            id: "phrase-12",
+            contentType: .phrase,
+            contentId: "12",
+            language: "am-ET",
+            provider: "azure",
+            voice: "am-ET-MekdesNeural",
+            format: "mp3",
+            file: "Audio/phrases/phrase-12.mp3",
+            text: "አመሰግናለሁ",
+            sourceTextHash: "abc123"
+        )
+
+        XCTAssertEqual(asset.contentKey, AudioContentKey(contentType: .phrase, contentId: "12"))
+    }
+
+    func testBundledAudioManifestLoads() {
+        XCTAssertTrue(AmharicData.audioAssets.allSatisfy { !$0.id.isEmpty && !$0.file.isEmpty })
+    }
+
     func testBundledVocabularyIncludesReviewedImportBatch() {
         let expectedWords: [(category: String, amharic: String, transliteration: String, english: String)] = [
             ("Directions", "ከኋላ", "kahuala", "at the back"),
