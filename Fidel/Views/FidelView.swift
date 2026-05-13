@@ -1,9 +1,12 @@
+import SwiftData
 import SwiftUI
 
 struct FidelView: View {
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @State private var selectedCharacter: FidelCharacter?
     @State private var searchText = ""
+    @State private var recognizedCharacterIds: Set<String> = []
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     let vowelHeaders = ["ä", "u", "i", "a", "e", "ə", "o"]
@@ -39,7 +42,8 @@ struct FidelView: View {
                     }
                 }
             }
-            .navigationTitle("Fidel Chart")
+            .background(FidelPaperBackground())
+            .navigationTitle("Fidel")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -50,6 +54,9 @@ struct FidelView: View {
             .sheet(item: $selectedCharacter) { char in
                 CharacterDetailView(character: char)
                     .presentationDetents([.medium])
+            }
+            .onAppear {
+                refreshRecognition()
             }
         }
     }
@@ -67,6 +74,7 @@ struct FidelView: View {
                         FidelRow(
                             characters: row,
                             metrics: metrics,
+                            recognizedCharacterIds: recognizedCharacterIds,
                             selectedCharacter: $selectedCharacter
                         )
                     }
@@ -74,23 +82,28 @@ struct FidelView: View {
             }
             .padding(.horizontal, metrics.horizontalPadding)
             .padding(.vertical, AppTheme.Spacing.md)
+            .padding(.bottom, AppTheme.Spacing.xl)
             .frame(width: width, alignment: .topLeading)
         }
     }
     
     private var headerView: some View {
-        VStack(spacing: 8) {
-            Text("ፊደል - Fidel")
-                .font(.title2.bold())
-            
-            Text("The Ethiopic Script has 34 basic consonants, each with 7 vowel forms")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
+            FidelScreenHeader(
+                title: "Fidel grid",
+                amharicTitle: "ፊደል",
+                subtitle: "Search, compare vowel forms, and open any character for sound cues."
+            )
+
+            HStack(spacing: AppTheme.Spacing.sm) {
+                FidelChip(title: "34 rows", color: AppTheme.terracottaColor)
+                FidelChip(title: "7 forms", color: AppTheme.goldColor)
+                FidelChip(title: "\(recognizedCharacterIds.count) learned", color: AppTheme.eucalyptusColor)
+            }
         }
-        .padding()
-        .background(AppTheme.primaryColor.opacity(0.1))
+        .padding(.horizontal, AppTheme.Spacing.lg)
+        .padding(.top, AppTheme.Spacing.md)
+        .padding(.bottom, AppTheme.Spacing.sm)
         .accessibilityElement(children: .combine)
     }
     
@@ -99,12 +112,18 @@ struct FidelView: View {
             ForEach(0..<7) { index in
                 Text(vowelHeaders[index])
                     .font(.caption.bold())
-                    .foregroundStyle(AppTheme.primaryColor)
+                    .foregroundStyle(AppTheme.terracottaDeepColor)
                     .frame(width: metrics.cellWidth, height: 24)
                     .accessibilityLabel("Vowel form \(vowelHeaders[index])")
             }
         }
         .accessibilityElement(children: .contain)
+    }
+
+    private func refreshRecognition() {
+        let repository = ProgressRepository(modelContext: modelContext)
+        let progress = repository.ensureUserProgress()
+        recognizedCharacterIds = Set(progress.fidelCharactersRecognized)
     }
 }
 
@@ -135,6 +154,7 @@ struct FidelChartLayoutMetrics {
 struct FidelRow: View {
     let characters: [FidelCharacter]
     let metrics: FidelChartLayoutMetrics
+    let recognizedCharacterIds: Set<String>
     @Binding var selectedCharacter: FidelCharacter?
     
     var body: some View {
@@ -142,7 +162,7 @@ struct FidelRow: View {
             if let first = characters.first {
                 Text(first.consonant)
                     .font(.caption.bold())
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .accessibilityLabel("Consonant row \(first.consonant)")
             }
@@ -152,7 +172,8 @@ struct FidelRow: View {
                     FidelCell(
                         character: char,
                         metrics: metrics,
-                        isSelected: selectedCharacter?.id == char.id
+                        isSelected: selectedCharacter?.id == char.id,
+                        isRecognized: recognizedCharacterIds.contains(char.id)
                     ) {
                         withAnimation(AppTheme.Animation.quick) {
                             selectedCharacter = char
@@ -171,29 +192,51 @@ struct FidelCell: View {
     let character: FidelCharacter
     let metrics: FidelChartLayoutMetrics
     let isSelected: Bool
+    let isRecognized: Bool
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            Text(character.character)
-                .font(AppTheme.Typography.amharic(size: metrics.characterFontSize, relativeTo: .title2))
-                .minimumScaleFactor(0.75)
-                .frame(width: metrics.cellWidth, height: metrics.cellHeight)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(isSelected ? AppTheme.primaryColor : Color.clear)
-                )
-                .foregroundStyle(isSelected ? .white : .primary)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(AppTheme.hairlineColor, lineWidth: 1)
-                )
-                .contentShape(RoundedRectangle(cornerRadius: 8))
+            ZStack(alignment: .topTrailing) {
+                Text(character.character)
+                    .font(AppTheme.Typography.amharicDisplay(size: metrics.characterFontSize, relativeTo: .title2))
+                    .minimumScaleFactor(0.75)
+                    .frame(width: metrics.cellWidth, height: metrics.cellHeight)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(cellBackground)
+                    )
+                    .foregroundStyle(isSelected ? AppTheme.onAccentColor : AppTheme.inkColor)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .stroke(cellStroke, lineWidth: 1)
+                    )
+
+                if isRecognized {
+                    Circle()
+                        .fill(isSelected ? AppTheme.onAccentColor : AppTheme.eucalyptusColor)
+                        .frame(width: 7, height: 7)
+                        .padding(5)
+                }
+            }
+            .contentShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         }
         .buttonStyle(.plain)
         .accessibilityLabel("\(character.character), \(character.romanization)")
         .accessibilityHint("Shows pronunciation details")
-        .accessibilityValue(isSelected ? "Selected" : "")
+        .accessibilityValue(isRecognized ? "Recognized" : (isSelected ? "Selected" : "Not yet recognized"))
+    }
+
+    private var cellBackground: Color {
+        if isSelected { return AppTheme.terracottaColor }
+        if isRecognized { return AppTheme.eucalyptusColor.opacity(0.12) }
+        return AppTheme.cardColor
+    }
+
+    private var cellStroke: Color {
+        if isSelected { return AppTheme.terracottaDeepColor.opacity(0.35) }
+        if isRecognized { return AppTheme.eucalyptusColor.opacity(0.35) }
+        return AppTheme.hairlineColor
     }
 }
 
@@ -204,45 +247,48 @@ struct CharacterDetailView: View {
     var body: some View {
         VStack(spacing: 24) {
             Text(character.character)
-                .font(AppTheme.Typography.amharic(size: 120))
-                .foregroundStyle(AppTheme.primaryColor)
+                .font(AppTheme.Typography.amharicDisplay(size: 120, relativeTo: .largeTitle))
+                .foregroundStyle(AppTheme.terracottaColor)
                 .minimumScaleFactor(0.6)
             
             VStack(spacing: 8) {
                 Text("Romanization")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                 
                 Text(character.romanization)
                     .font(.title)
                     .bold()
+                    .foregroundStyle(AppTheme.inkColor)
             }
             
             HStack(spacing: 32) {
                 VStack {
                     Text("Consonant")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                     Text(character.consonant)
                         .font(.title2)
+                        .foregroundStyle(AppTheme.inkColor)
                 }
                 
                 VStack {
                     Text("Vowel Form")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                     Text("\(character.vowelOrder)")
                         .font(.title2)
+                        .foregroundStyle(AppTheme.inkColor)
                 }
             }
             
             Text("Pronunciation: \(character.audioHint)")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(AppTheme.primaryColor.opacity(0.1))
+                        .fill(AppTheme.terracottaColor.opacity(0.1))
                 )
             
             Button(action: { dismiss() }) {
@@ -252,6 +298,7 @@ struct CharacterDetailView: View {
             .buttonStyle(SecondaryButtonStyle())
         }
         .padding(32)
+        .background(FidelPaperBackground())
         .accessibilityElement(children: .contain)
     }
 }

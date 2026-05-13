@@ -21,13 +21,13 @@ struct SelamAvatarView: View {
                 .overlay(
                     Text("ሰ")
                         .font(AppTheme.Typography.amharic(size: size * 0.5))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.onAccentColor)
                 )
             
             if showBadge && badgeCount > 0 {
                 Text("\(min(badgeCount, 99))")
                     .font(.system(size: 10, weight: .bold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(AppTheme.onAccentColor)
                     .padding(4)
                     .background(Circle().fill(AppTheme.accentRed))
                     .offset(x: 4, y: -4)
@@ -83,7 +83,7 @@ struct MessageBubbleView: View {
     private var bubbleContent: some View {
         Text(message.content.isEmpty && isStreaming ? " " : message.content)
             .font(AppTheme.Typography.body)
-            .foregroundStyle(isUser ? .white : .primary)
+            .foregroundStyle(isUser ? AppTheme.onAccentColor : AppTheme.inkColor)
             .multilineTextAlignment(.leading)
             .textSelection(.enabled)
     }
@@ -102,9 +102,7 @@ struct MessageBubbleView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large)
                         .stroke(
-                            colorScheme == .dark
-                                ? Color.white.opacity(0.1)
-                                : Color.black.opacity(0.05),
+                            AppTheme.hairlineColor,
                             lineWidth: 0.5
                         )
                 )
@@ -219,8 +217,7 @@ struct ChatInputView: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large)
                                 .stroke(
-                                    isFocused ? AppTheme.primaryColor.opacity(0.5) :
-                                        (colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.08)),
+                                    isFocused ? AppTheme.primaryColor.opacity(0.5) : AppTheme.hairlineColor,
                                     lineWidth: isFocused ? 2 : 0.5
                                 )
                         )
@@ -252,7 +249,7 @@ struct ChatInputView: View {
             Image(systemName: isLoading ? "stop.fill" : "arrow.up.circle.fill")
                 .font(.system(size: 32))
                 .foregroundStyle(
-                    canSend || isLoading ? AppTheme.primaryColor : Color.secondary.opacity(0.5)
+                    canSend || isLoading ? AppTheme.primaryColor : AppTheme.inkSecondaryColor.opacity(0.5)
                 )
         }
         .accessibilityLabel(isLoading ? "Cancel" : "Send")
@@ -335,7 +332,7 @@ struct SuggestedActionsView: View {
         )
     }
     .padding()
-    .background(Color(.systemGroupedBackground))
+    .background(AppTheme.groupedBackground)
 }
 
 #Preview("Typing Indicator") {

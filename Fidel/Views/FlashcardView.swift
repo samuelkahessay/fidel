@@ -47,7 +47,7 @@ struct FlashcardView: View {
             
             Text(viewModel.progress)
                 .font(AppTheme.Typography.headline)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
             
             Spacer()
             
@@ -69,9 +69,7 @@ struct FlashcardView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
                         .stroke(
-                            colorScheme == .dark
-                                ? Color.white.opacity(0.1)
-                                : Color.black.opacity(0.05),
+                            AppTheme.hairlineColor,
                             lineWidth: 0.5
                         )
                 )
@@ -122,7 +120,7 @@ struct FlashcardView: View {
             
             Text(word.transliteration)
                 .font(AppTheme.Typography.title3)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             
             Spacer()
             
@@ -132,7 +130,7 @@ struct FlashcardView: View {
                 Text("Tap to flip")
                     .font(AppTheme.Typography.caption)
             }
-            .foregroundStyle(.tertiary)
+            .foregroundStyle(AppTheme.mutedInkColor)
         }
     }
     
@@ -142,12 +140,12 @@ struct FlashcardView: View {
             
             Text(word.english)
                 .font(AppTheme.Typography.title)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
                 .rotation3DEffect(.degrees(reduceMotion ? 0 : 180), axis: (x: 0, y: 1, z: 0))
             
             Text(word.category)
                 .font(AppTheme.Typography.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
                 .padding(.horizontal, AppTheme.Spacing.sm)
                 .padding(.vertical, AppTheme.Spacing.xxs)
                 .background(
@@ -164,7 +162,7 @@ struct FlashcardView: View {
                 Text("Swipe right if correct, left if not")
                     .font(AppTheme.Typography.caption)
             }
-            .foregroundStyle(.tertiary)
+            .foregroundStyle(AppTheme.mutedInkColor)
             .rotation3DEffect(.degrees(reduceMotion ? 0 : 180), axis: (x: 0, y: 1, z: 0))
         }
     }
@@ -235,7 +233,7 @@ struct FlashcardView: View {
                     .foregroundStyle(AppTheme.accentRed.opacity(0.5))
                 Text("Still learning")
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             VStack(spacing: AppTheme.Spacing.xs) {
@@ -244,7 +242,7 @@ struct FlashcardView: View {
                     .foregroundStyle(AppTheme.successColor.opacity(0.5))
                 Text("Got it!")
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
         }
         .padding(.top, AppTheme.Spacing.lg)
@@ -256,7 +254,7 @@ struct FlashcardView: View {
             
             Text("Session Complete!")
                 .font(AppTheme.Typography.title)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
             
             HStack(spacing: AppTheme.Spacing.xxl) {
                 VStack(spacing: AppTheme.Spacing.xxs) {
@@ -265,7 +263,7 @@ struct FlashcardView: View {
                         .foregroundStyle(AppTheme.successColor)
                     Text("Correct")
                         .font(AppTheme.Typography.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
                 
                 VStack(spacing: AppTheme.Spacing.xxs) {
@@ -274,7 +272,7 @@ struct FlashcardView: View {
                         .foregroundStyle(AppTheme.accentRed)
                     Text("To Review")
                         .font(AppTheme.Typography.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
             }
             

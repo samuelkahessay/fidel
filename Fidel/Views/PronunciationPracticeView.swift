@@ -81,7 +81,7 @@ struct PronunciationPracticeView: View {
             HStack {
                 Text("\(currentIndex + 1) of \(practiceItems.count)")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                 Spacer()
                 Text("\(Int(Double(currentIndex) / Double(practiceItems.count) * 100))%")
                     .font(.subheadline.bold())
@@ -102,20 +102,20 @@ struct PronunciationPracticeView: View {
 
             Text(item.phrase.transliteration)
                 .font(.title3)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
 
             Divider()
 
             Text(item.phrase.english)
                 .font(.headline)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
                 .multilineTextAlignment(.center)
         }
         .padding(24)
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
+                .fill(AppTheme.cardColor)
                 .shadow(color: AppTheme.Shadow.elevated, radius: 10, y: 5)
         )
     }
@@ -131,10 +131,10 @@ struct PronunciationPracticeView: View {
                 VStack(spacing: 8) {
                     Image(systemName: audioService.playingAssetId == item.asset.id ? "speaker.wave.3.fill" : "speaker.wave.2.fill")
                         .font(.title)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.onAccentColor)
                     Text(audioService.playingAssetId == item.asset.id ? "Playing" : "Play")
                         .font(.caption)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.onAccentColor)
                 }
                 .frame(width: 88, height: 88)
                 .background(Circle().fill(AppTheme.primaryColor))
@@ -146,7 +146,7 @@ struct PronunciationPracticeView: View {
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.systemBackground))
+                .fill(AppTheme.cardColor)
                 .shadow(color: AppTheme.Shadow.card, radius: 8, y: 4)
         )
     }
@@ -188,7 +188,7 @@ struct PronunciationPracticeView: View {
                 .fontWeight(.bold)
 
             Text("You practiced \(practiceItems.count) generated clips")
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
 
             Button("Practice Again") {
                 currentIndex = 0

@@ -111,7 +111,7 @@ struct ConversationDetailView: View {
             
             Text("You'll practice speaking as this character")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             
             ForEach(speakers, id: \.self) { speaker in
                 Button(action: { selectedRole = speaker }) {
@@ -130,7 +130,7 @@ struct ConversationDetailView: View {
                             .fill(AppTheme.primaryColor.opacity(0.1))
                     )
                 }
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
             }
         }
     }
@@ -144,7 +144,7 @@ struct ConversationDetailView: View {
                 VStack(spacing: 16) {
                     Text("Line \(currentLineIndex + 1) of \(conversation.lines.count)")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                     
                     Text(line.speaker)
                         .font(.headline)
@@ -189,7 +189,7 @@ struct ConversationDetailView: View {
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             if showEnglish {
@@ -210,7 +210,7 @@ struct ConversationDetailView: View {
         VStack(spacing: 12) {
             Text("Partner says:")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 24))
@@ -219,7 +219,7 @@ struct ConversationDetailView: View {
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             if showEnglish {
@@ -242,13 +242,13 @@ struct ConversationDetailView: View {
             
             Text(difficultyText)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             
             Spacer()
             
             Text("\(conversation.lines.count) lines")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
         }
         .padding()
         .background(
@@ -278,14 +278,14 @@ struct ConversationDetailView: View {
                         Text(culturalNotes.first?.title ?? "")
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(AppTheme.inkColor)
                     }
 
                     Spacer()
 
                     Image(systemName: showCulturalNote ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
             }
             .buttonStyle(.plain)
@@ -300,7 +300,7 @@ struct ConversationDetailView: View {
                         }
                         Text(note.content)
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.inkSecondaryColor)
                             .lineSpacing(3)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -407,7 +407,7 @@ struct DialogueLineView: View {
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             if showEnglish {
@@ -420,7 +420,7 @@ struct DialogueLineView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(isHighlighted ? AppTheme.primaryColor.opacity(0.1) : Color(.systemBackground))
+                .fill(isHighlighted ? AppTheme.primaryColor.opacity(0.1) : AppTheme.cardColor)
                 .shadow(color: AppTheme.Shadow.card, radius: 4, y: 2)
         )
         .overlay(

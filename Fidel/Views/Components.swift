@@ -30,11 +30,11 @@ struct EmptyStateView: View {
             
             Text(title)
                 .font(AppTheme.Typography.title2)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
             
             Text(message)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppTheme.Spacing.xl)
             
@@ -61,8 +61,230 @@ struct LoadingView: View {
             
             Text(message)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
         }
+    }
+}
+
+// MARK: - Claude Design Primitives
+
+struct FidelPaperBackground: View {
+    var body: some View {
+        ZStack {
+            AppTheme.paperColor
+            RadialGradient(
+                colors: [AppTheme.terracottaColor.opacity(0.16), .clear],
+                center: .topTrailing,
+                startRadius: 24,
+                endRadius: 360
+            )
+            RadialGradient(
+                colors: [AppTheme.eucalyptusColor.opacity(0.13), .clear],
+                center: .bottomLeading,
+                startRadius: 12,
+                endRadius: 320
+            )
+        }
+        .ignoresSafeArea()
+    }
+}
+
+struct FidelDesignCard<Content: View>: View {
+    var padding: CGFloat = AppTheme.Spacing.md
+    var cornerRadius: CGFloat = 22
+    var background: Color = AppTheme.cardColor
+    var borderColor: Color = AppTheme.hairlineColor
+    @ViewBuilder let content: () -> Content
+
+    var body: some View {
+        content()
+            .padding(padding)
+            .background(background, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                    .stroke(borderColor, lineWidth: 1)
+            }
+            .shadow(color: AppTheme.Shadow.card, radius: 8, x: 0, y: 2)
+    }
+}
+
+struct FidelSectionLabel: View {
+    let title: String
+
+    var body: some View {
+        Text(title.uppercased())
+            .font(AppTheme.Typography.caption2.weight(.bold))
+            .tracking(1.4)
+            .foregroundStyle(AppTheme.terracottaColor)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+struct FidelProgressBar: View {
+    var value: Double
+    var color: Color = AppTheme.terracottaColor
+    var trackColor: Color = AppTheme.paperAccentColor
+    var height: CGFloat = 6
+
+    private var clampedValue: Double {
+        min(max(value, 0), 1)
+    }
+
+    var body: some View {
+        GeometryReader { proxy in
+            ZStack(alignment: .leading) {
+                Capsule()
+                    .fill(trackColor)
+                Capsule()
+                    .fill(color)
+                    .frame(width: proxy.size.width * clampedValue)
+            }
+        }
+        .frame(height: height)
+        .accessibilityElement(children: .ignore)
+        .accessibilityValue("\(Int((clampedValue * 100).rounded())) percent")
+    }
+}
+
+struct FidelChip: View {
+    let title: String
+    var isSelected = false
+    var color: Color = AppTheme.inkColor
+
+    var body: some View {
+        Text(title)
+            .font(AppTheme.Typography.caption.weight(.bold))
+            .lineLimit(1)
+            .minimumScaleFactor(0.82)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 7)
+            .foregroundStyle(isSelected ? AppTheme.onAccentColor : color)
+            .background(isSelected ? color : AppTheme.cardColor, in: Capsule())
+            .overlay {
+                Capsule()
+                    .stroke(isSelected ? .clear : AppTheme.hairlineColor, lineWidth: 1)
+            }
+    }
+}
+
+struct FidelQuickActionTile: View {
+    let title: String
+    let subtitle: String
+    let icon: String
+    var tint: Color = AppTheme.paperAccentColor
+    var iconColor: Color = AppTheme.terracottaColor
+    var textColor: Color = AppTheme.inkColor
+    var subtitleColor: Color = AppTheme.mutedInkColor
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 10) {
+                Image(systemName: icon)
+                    .font(.headline)
+                    .foregroundStyle(AppTheme.onAccentColor)
+                    .frame(width: 34, height: 34)
+                    .background(iconColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title)
+                        .font(AppTheme.Typography.headline)
+                        .foregroundStyle(textColor)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    Text(subtitle)
+                        .font(AppTheme.Typography.caption.weight(.semibold))
+                        .foregroundStyle(subtitleColor)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.85)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
+            .background(tint, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .stroke(AppTheme.hairlineColor, lineWidth: 1)
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(title). \(subtitle)")
+    }
+}
+
+struct FidelMetricTile: View {
+    let icon: String
+    let value: String
+    let label: String
+    var subtitle: String?
+    var color: Color = AppTheme.terracottaColor
+    var background: Color = AppTheme.cardColor
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(systemName: icon)
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(color)
+                .frame(width: 32, height: 32)
+                .background(color.opacity(0.13), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+
+            Text(value)
+                .font(.system(size: 26, weight: .heavy, design: .rounded))
+                .foregroundStyle(AppTheme.inkColor)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+
+            Text(label)
+                .font(AppTheme.Typography.caption.weight(.semibold))
+                .foregroundStyle(AppTheme.inkSecondaryColor)
+
+            if let subtitle, !subtitle.isEmpty {
+                Text(subtitle)
+                    .font(AppTheme.Typography.caption2.weight(.semibold))
+                    .foregroundStyle(AppTheme.mutedInkColor)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .fidelDesignCard(background: background)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+struct FidelScreenHeader: View {
+    var eyebrow: String?
+    let title: String
+    var amharicTitle: String?
+    var subtitle: String?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            if let eyebrow {
+                FidelSectionLabel(title: eyebrow)
+            }
+
+            Text(title)
+                .font(.system(size: 30, weight: .heavy, design: .rounded))
+                .foregroundStyle(AppTheme.inkColor)
+                .lineLimit(2)
+                .minimumScaleFactor(0.82)
+
+            if let amharicTitle {
+                Text(amharicTitle)
+                    .font(AppTheme.Typography.amharicDisplay(size: 22, relativeTo: .title3))
+                    .foregroundStyle(AppTheme.terracottaDeepColor)
+            }
+
+            if let subtitle {
+                Text(subtitle)
+                    .font(AppTheme.Typography.subheadline)
+                    .foregroundStyle(AppTheme.mutedInkColor)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -153,7 +375,7 @@ struct SectionHeader: View {
         HStack {
             Text(title)
                 .font(AppTheme.Typography.title3)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
             
             Spacer()
             
@@ -193,18 +415,18 @@ struct InfoCard: View {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(title)
                     .font(AppTheme.Typography.headline)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
                 
                 Text(subtitle)
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             Spacer()
             
             Image(systemName: "chevron.right")
                 .font(.caption)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(AppTheme.mutedInkColor)
         }
         .glassCard()
     }
@@ -232,12 +454,12 @@ struct AmharicTextView: View {
             if showAll {
                 Text(transliteration)
                     .font(AppTheme.Typography.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                 
                 Text(english)
                     .font(AppTheme.Typography.body)
                     .fontWeight(.medium)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
             }
         }
     }
@@ -265,7 +487,7 @@ struct SuccessOverlay: View {
                     
                     Text(message)
                         .font(AppTheme.Typography.title2)
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(AppTheme.inkColor)
                     
                     XPBadge(xp: xpEarned)
                     
@@ -283,9 +505,7 @@ struct SuccessOverlay: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
                                 .stroke(
-                                    colorScheme == .dark
-                                        ? Color.white.opacity(0.15)
-                                        : Color.black.opacity(0.05),
+                                    AppTheme.hairlineColor,
                                     lineWidth: 0.5
                                 )
                         )
@@ -311,7 +531,7 @@ struct CountdownTimer: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.primary.opacity(0.08), lineWidth: 4)
+                .stroke(AppTheme.inkColor.opacity(0.08), lineWidth: 4)
             
             Circle()
                 .trim(from: 0, to: progress)
@@ -339,7 +559,7 @@ struct GlassChip: View {
         Button(action: action) {
             Text(title)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(isSelected ? .white : .primary)
+                .foregroundStyle(isSelected ? AppTheme.onAccentColor : AppTheme.inkColor)
                 .padding(.horizontal, AppTheme.Spacing.md)
                 .padding(.vertical, AppTheme.Spacing.xs)
                 .background {
@@ -352,7 +572,7 @@ struct GlassChip: View {
                 .overlay(
                     Capsule()
                         .stroke(
-                            isSelected ? Color.clear : Color.primary.opacity(0.1),
+                            isSelected ? Color.clear : AppTheme.inkColor.opacity(0.1),
                             lineWidth: 0.5
                         )
                 )
@@ -403,9 +623,7 @@ struct GlassTextField: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
                             .stroke(
-                                colorScheme == .dark
-                                    ? Color.white.opacity(0.1)
-                                    : Color.black.opacity(0.08),
+                                AppTheme.hairlineColor,
                                 lineWidth: 0.5
                             )
                     )
@@ -422,7 +640,7 @@ struct GlassProgressBar: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: height / 2)
-                    .fill(Color.primary.opacity(0.08))
+                    .fill(AppTheme.inkColor.opacity(0.08))
                 
                 RoundedRectangle(cornerRadius: height / 2)
                     .fill(
@@ -484,5 +702,5 @@ struct GlassProgressBar: View {
         }
         .padding()
     }
-    .background(Color(.systemGroupedBackground))
+    .background(AppTheme.groupedBackground)
 }

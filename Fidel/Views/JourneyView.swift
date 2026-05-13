@@ -11,18 +11,25 @@ struct JourneyView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: AppTheme.Spacing.xl) {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.lg) {
+                    FidelScreenHeader(
+                        title: "Learn",
+                        amharicTitle: "መማር",
+                        subtitle: "A guided path from letters and sounds into everyday Amharic."
+                    )
+                    stageScroller
                     stageHeader
                     nextStageCriteria
                     activitiesSection
                     lockedStagesSection
                 }
-                .padding(AppTheme.Spacing.md)
+                .padding(.horizontal, AppTheme.Spacing.lg)
+                .padding(.top, AppTheme.Spacing.md)
                 .padding(.bottom, 110)
             }
-            .background(AppTheme.groupedBackground)
-            .navigationTitle("Journey")
+            .background(FidelPaperBackground())
+            .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $viewModel.showFidelChart) {
                 FidelView()
             }
@@ -74,19 +81,44 @@ struct JourneyView: View {
 
     // MARK: - Stage Header
 
+    private var stageScroller: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: AppTheme.Spacing.md) {
+                ForEach(LearningStage.allCases) { stage in
+                    Button {
+                        if viewModel.lockedStages.contains(stage) {
+                            viewModel.tappedLockedStage = stage
+                        }
+                    } label: {
+                        StagePathTile(
+                            stage: stage,
+                            isCurrent: stage == viewModel.currentStage,
+                            isLocked: viewModel.lockedStages.contains(stage)
+                        )
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(!viewModel.lockedStages.contains(stage) && stage != viewModel.currentStage)
+                }
+            }
+            .padding(.horizontal, 1)
+        }
+    }
+
     private var stageHeader: some View {
-        VStack(spacing: AppTheme.Spacing.sm) {
+        VStack(spacing: AppTheme.Spacing.md) {
             HStack {
                 Image(systemName: viewModel.currentStage.icon)
-                    .font(.title2)
-                    .foregroundStyle(viewModel.currentStage.color)
+                    .font(.title2.weight(.semibold))
+                    .foregroundStyle(AppTheme.onAccentColor)
+                    .frame(width: 52, height: 52)
+                    .background(viewModel.currentStage.color, in: RoundedRectangle(cornerRadius: 17, style: .continuous))
 
                 VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text(viewModel.currentStage.displayName)
                         .font(AppTheme.Typography.title3)
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(AppTheme.inkColor)
                     Text(viewModel.currentStage.amharicTitle)
-                        .font(AppTheme.Typography.amharic(size: 18))
+                        .font(AppTheme.Typography.amharicDisplay(size: 22, relativeTo: .title2))
                         .foregroundStyle(viewModel.currentStage.color)
                 }
 
@@ -103,10 +135,10 @@ struct JourneyView: View {
 
             Text(viewModel.currentStage.stageDescription)
                 .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .tintedGlassCard(tint: viewModel.currentStage.color, tintOpacity: 0.06)
+        .fidelDesignCard(padding: AppTheme.Spacing.lg)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(viewModel.currentStage.displayName), \(viewModel.currentStage.stageDescription)")
         .accessibilityValue("\(Int((viewModel.progressToNextStage * 100).rounded())) percent to next stage")
@@ -120,9 +152,7 @@ struct JourneyView: View {
            !criteria.isEmpty {
             let progress = progressRepository.getUserProgress()
             VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
-                Text("Next Stage")
-                    .font(AppTheme.Typography.headline)
-                    .foregroundStyle(.primary)
+                FidelSectionLabel(title: "Next stage")
 
                 ForEach(criteria) { criterion in
                     let fraction = progress.map { criterion.progressFraction($0) } ?? 0
@@ -135,7 +165,7 @@ struct JourneyView: View {
                         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(criterion.description)
                                 .font(AppTheme.Typography.subheadline)
-                                .foregroundStyle(isMet ? AppTheme.successColor : .primary)
+                                .foregroundStyle(isMet ? AppTheme.successColor : AppTheme.inkColor)
 
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
@@ -156,7 +186,7 @@ struct JourneyView: View {
                     .accessibilityValue(isMet ? "Complete" : "\(Int((fraction * 100).rounded())) percent")
                 }
             }
-            .glassCard()
+            .fidelDesignCard()
         }
     }
 
@@ -164,9 +194,7 @@ struct JourneyView: View {
 
     private var activitiesSection: some View {
         VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
-            Text("Activities")
-                .font(AppTheme.Typography.title2)
-                .foregroundStyle(.primary)
+            FidelSectionLabel(title: "Unit path")
 
             ForEach(viewModel.activities) { activity in
                 LearningCardButton(
@@ -217,6 +245,58 @@ struct JourneyView: View {
     }
 }
 
+private struct StagePathTile: View {
+    let stage: LearningStage
+    let isCurrent: Bool
+    let isLocked: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
+            HStack {
+                Image(systemName: isLocked ? "lock.fill" : stage.icon)
+                    .font(.headline)
+                    .foregroundStyle(isCurrent ? onStageAccent : stage.color)
+                    .frame(width: 34, height: 34)
+                    .background(
+                        isCurrent ? stage.color : stage.color.opacity(0.12),
+                        in: Circle()
+                    )
+
+                Spacer()
+
+                Text(String(format: "%02d", stage.rawValue + 1))
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(AppTheme.mutedInkColor)
+            }
+
+            Text(stage.displayName)
+                .font(AppTheme.Typography.subheadline.weight(.semibold))
+                .foregroundStyle(isLocked ? AppTheme.mutedInkColor : AppTheme.inkColor)
+                .lineLimit(2)
+                .frame(width: 126, alignment: .leading)
+
+            Text(stage.amharicTitle)
+                .font(AppTheme.Typography.amharicDisplay(size: 18, relativeTo: .headline))
+                .foregroundStyle(isLocked ? AppTheme.mutedInkColor : stage.color)
+                .lineLimit(1)
+        }
+        .padding(AppTheme.Spacing.md)
+        .frame(width: 160, height: 138, alignment: .topLeading)
+        .background(
+            isCurrent ? AppTheme.cardColor : AppTheme.paperAccentColor,
+            in: RoundedRectangle(cornerRadius: 22, style: .continuous)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .stroke(isCurrent ? stage.color.opacity(0.35) : AppTheme.hairlineColor, lineWidth: 1)
+        )
+    }
+
+    private var onStageAccent: Color {
+        stage == .buildingSentences ? AppTheme.onGoldColor : AppTheme.onAccentColor
+    }
+}
+
 // MARK: - Activity Card
 
 struct ActivityCard: View {
@@ -226,12 +306,12 @@ struct ActivityCard: View {
         HStack(spacing: AppTheme.Spacing.md) {
             ZStack {
                 Circle()
-                    .fill(activity.isCompleted ? AppTheme.primaryColor : activity.color.opacity(0.12))
+                    .fill(activity.isCompleted ? AppTheme.eucalyptusColor : activity.color.opacity(0.12))
                     .frame(width: 48, height: 48)
 
                 if activity.isCompleted {
                     Image(systemName: "checkmark")
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.onAccentColor)
                         .font(.body.bold())
                 } else {
                     Image(systemName: activity.icon)
@@ -243,11 +323,11 @@ struct ActivityCard: View {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(activity.title)
                     .font(AppTheme.Typography.headline)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
 
                 Text(activity.subtitle)
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .lineLimit(2)
             }
 
@@ -255,9 +335,9 @@ struct ActivityCard: View {
 
             Image(systemName: "chevron.right")
                 .font(.caption)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(AppTheme.mutedInkColor)
         }
-        .glassCard()
+        .fidelDesignCard(padding: AppTheme.Spacing.md, cornerRadius: 20)
         .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large))
     }
 }
@@ -270,23 +350,23 @@ struct LockedStageCard: View {
     var body: some View {
         HStack(spacing: AppTheme.Spacing.md) {
             ZStack {
-                Circle()
-                    .fill(Color.primary.opacity(0.06))
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(AppTheme.inkColor.opacity(0.06))
                     .frame(width: 48, height: 48)
 
                 Image(systemName: "lock.fill")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .font(.title3)
             }
 
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(stage.displayName)
                     .font(AppTheme.Typography.headline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
 
                 Text(stage.stageDescription)
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary.opacity(0.7))
+                    .foregroundStyle(AppTheme.mutedInkColor)
                     .lineLimit(2)
             }
 
@@ -294,9 +374,9 @@ struct LockedStageCard: View {
 
             Image(systemName: "lock.fill")
                 .font(.caption)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(AppTheme.mutedInkColor)
         }
-        .glassCard()
+        .fidelDesignCard(padding: AppTheme.Spacing.md, cornerRadius: 20, background: AppTheme.paperAccentColor)
         .opacity(0.6)
         .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large))
     }
@@ -332,7 +412,7 @@ struct LockedStageSheet: View {
 
                 Text(stage.stageDescription)
                     .font(AppTheme.Typography.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .multilineTextAlignment(.center)
 
                 VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
@@ -411,7 +491,7 @@ struct StageAdvancementView: View {
                 VStack(spacing: AppTheme.Spacing.sm) {
                     Text("Stage Unlocked!")
                         .font(AppTheme.Typography.largeTitle)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.onAccentColor)
 
                     Text(stage.displayName)
                         .font(AppTheme.Typography.title2)
@@ -425,7 +505,7 @@ struct StageAdvancementView: View {
 
                 Text("እንኳን ደስ ያለህ!")
                     .font(AppTheme.Typography.amharic(size: 24))
-                    .foregroundStyle(.white.opacity(0.8))
+                    .foregroundStyle(AppTheme.onAccentColor.opacity(0.82))
                     .opacity(animateIn ? 1.0 : 0)
 
                 Spacer()

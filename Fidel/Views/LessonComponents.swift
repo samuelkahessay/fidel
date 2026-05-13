@@ -15,12 +15,12 @@ struct LessonCard: View {
         HStack(spacing: AppTheme.Spacing.md) {
             ZStack {
                 Circle()
-                    .fill(isCompleted ? AppTheme.primaryColor : Color.primary.opacity(0.08))
+                    .fill(isCompleted ? AppTheme.primaryColor : AppTheme.inkColor.opacity(0.08))
                     .frame(width: 52, height: 52)
 
                 if isCompleted {
                     Image(systemName: "checkmark")
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.onAccentColor)
                         .font(.title3.bold())
                 } else {
                     Text("\(lesson.id)")
@@ -32,11 +32,11 @@ struct LessonCard: View {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(lesson.title)
                     .font(AppTheme.Typography.headline)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
 
                 Text(lesson.description)
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .lineLimit(2)
 
                 HStack(spacing: AppTheme.Spacing.sm) {
@@ -50,7 +50,7 @@ struct LessonCard: View {
 
             Image(systemName: "chevron.right")
                 .font(.caption)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(AppTheme.mutedInkColor)
         }
         .glassCard()
     }
@@ -83,7 +83,7 @@ struct LessonDetailView: View {
             }
             .padding(AppTheme.Spacing.md)
         }
-        .background(Color(.systemGroupedBackground))
+        .background(AppTheme.groupedBackground)
         .navigationTitle(lesson.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -182,11 +182,11 @@ struct PatternCard: View {
                 VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                     Text(pattern.description)
                         .font(AppTheme.Typography.headline)
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(AppTheme.inkColor)
 
                     Text(pattern.category)
                         .font(AppTheme.Typography.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
 
                 Spacer()
@@ -198,9 +198,9 @@ struct PatternCard: View {
                 }) {
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                         .frame(width: 32, height: 32)
-                        .background(Circle().fill(Color.primary.opacity(0.05)))
+                        .background(Circle().fill(AppTheme.inkColor.opacity(0.05)))
                 }
                 .buttonStyle(.plain)
             }
@@ -218,16 +218,16 @@ struct PatternCard: View {
                     Text("Examples")
                         .font(AppTheme.Typography.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
 
                     ForEach(pattern.examples, id: \.amharic) { example in
                         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(example.amharic)
                                 .font(AppTheme.Typography.amharic(size: 20))
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(AppTheme.inkColor)
                             Text(example.transliteration)
                                 .font(AppTheme.Typography.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.inkSecondaryColor)
                             Text(example.english)
                                 .font(AppTheme.Typography.subheadline)
                                 .foregroundStyle(AppTheme.primaryColor)
@@ -244,17 +244,17 @@ struct PatternCard: View {
                         Text("Substitutions")
                             .font(AppTheme.Typography.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.inkSecondaryColor)
 
                         FlowLayout(spacing: AppTheme.Spacing.xs) {
                             ForEach(pattern.substitutions, id: \.amharic) { sub in
                                 VStack(spacing: 2) {
                                     Text(sub.amharic)
                                         .font(AppTheme.Typography.amharic(size: 16))
-                                        .foregroundStyle(.primary)
+                                        .foregroundStyle(AppTheme.inkColor)
                                     Text(sub.english)
                                         .font(AppTheme.Typography.caption)
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(AppTheme.inkSecondaryColor)
                                 }
                                 .padding(.horizontal, AppTheme.Spacing.sm)
                                 .padding(.vertical, AppTheme.Spacing.xs)
@@ -283,12 +283,12 @@ struct VocabularyCard: View {
 
             Text(word.transliteration)
                 .font(AppTheme.Typography.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
 
             Text(word.english)
                 .font(AppTheme.Typography.subheadline)
                 .fontWeight(.medium)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.inkColor)
         }
         .frame(maxWidth: .infinity)
         .glassCard()
@@ -303,10 +303,10 @@ struct PhraseRow: View {
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(phrase.amharic)
                     .font(AppTheme.Typography.amharic(size: 20))
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
                 Text(phrase.transliteration)
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
 
             Spacer()
@@ -315,11 +315,11 @@ struct PhraseRow: View {
                 Text(phrase.english)
                     .font(AppTheme.Typography.subheadline)
                     .fontWeight(.medium)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
                 if !phrase.notes.isEmpty {
                     Text(phrase.notes)
                         .font(AppTheme.Typography.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
             }
         }
@@ -351,20 +351,20 @@ struct CulturalNoteCard: View {
                     VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                         Text(note.title)
                             .font(AppTheme.Typography.headline)
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(AppTheme.inkColor)
 
                         Text(note.amharicTitle)
                             .font(AppTheme.Typography.amharic(size: 16))
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.inkSecondaryColor)
                     }
 
                     Spacer()
 
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                         .frame(width: 32, height: 32)
-                        .background(Circle().fill(Color.primary.opacity(0.05)))
+                        .background(Circle().fill(AppTheme.inkColor.opacity(0.05)))
                 }
             }
             .buttonStyle(.plain)
@@ -375,7 +375,7 @@ struct CulturalNoteCard: View {
 
                 Text(note.content)
                     .font(AppTheme.Typography.body)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
                     .lineSpacing(4)
                     .fixedSize(horizontal: false, vertical: true)
             }

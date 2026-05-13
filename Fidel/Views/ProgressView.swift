@@ -16,22 +16,26 @@ struct ProgressDashboardView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    stageTimeline
-                    statsOverview
-                    streakSection
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.lg) {
+                    FidelScreenHeader(
+                        title: "You",
+                        amharicTitle: "አንተ",
+                        subtitle: "Your local learning record, preferences, achievements, and backup controls."
+                    )
+                    youHeroSection
+                    metricGrid
                     dailyGoalSection
                     achievementsSection
-                    learningStatsSection
                     localSaveStatusSection
                     backupSection
                 }
-                .padding()
+                .padding(.horizontal, AppTheme.Spacing.lg)
+                .padding(.top, AppTheme.Spacing.md)
                 .padding(.bottom, 110)
             }
-            .background(AppTheme.groupedBackground)
-            .navigationTitle("Progress")
+            .background(FidelPaperBackground())
+            .toolbar(.hidden, for: .navigationBar)
             .task {
                 loadProgress()
             }
@@ -58,23 +62,95 @@ struct ProgressDashboardView: View {
         LearningStage(rawValue: progress?.currentStage ?? 0) ?? .scriptAndSounds
     }
 
+    private var level: Int {
+        max((progress?.totalXP ?? 0) / 100 + 1, 1)
+    }
+
+    private var levelProgress: Double {
+        Double((progress?.totalXP ?? 0) % 100) / 100.0
+    }
+
+    private var youHeroSection: some View {
+        HStack(alignment: .center, spacing: AppTheme.Spacing.lg) {
+            YouLevelRing(level: level, progress: levelProgress)
+
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
+                Text(currentStage.displayName)
+                    .font(AppTheme.Typography.title2)
+                    .foregroundStyle(AppTheme.inkColor)
+
+                Text(currentStage.amharicTitle)
+                    .font(AppTheme.Typography.amharicDisplay(size: 28, relativeTo: .title))
+                    .foregroundStyle(currentStage.color)
+
+                Text("\((progress?.totalXP ?? 0) % 100) of 100 XP toward the next level")
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
+
+                FidelProgressBar(value: levelProgress, color: currentStage.color)
+            }
+        }
+        .fidelDesignCard(padding: AppTheme.Spacing.lg)
+    }
+
+    private var metricGrid: some View {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
+            FidelSectionLabel(title: "Learning record")
+
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppTheme.Spacing.md) {
+                FidelMetricTile(
+                    icon: "bolt.fill",
+                    value: "\(progress?.totalXP ?? 0)",
+                    label: "Total XP",
+                    subtitle: "earned",
+                    color: AppTheme.goldColor
+                )
+
+                FidelMetricTile(
+                    icon: "flame.fill",
+                    value: "\(progress?.currentStreak ?? 0)",
+                    label: "Streak",
+                    subtitle: "days",
+                    color: AppTheme.terracottaColor
+                )
+
+                FidelMetricTile(
+                    icon: "book.fill",
+                    value: "\(progress?.lessonsCompleted.count ?? 0)",
+                    label: "Lessons",
+                    subtitle: "complete",
+                    color: AppTheme.eucalyptusColor
+                )
+
+                FidelMetricTile(
+                    icon: "character.textbox",
+                    value: "\(progress?.fidelCharactersRecognized.count ?? 0)",
+                    label: "Fidel",
+                    subtitle: "recognized",
+                    color: AppTheme.plumColor
+                )
+            }
+        }
+    }
+
     private var localSaveStatusSection: some View {
         HStack(spacing: 12) {
             Image(systemName: "iphone.gen3")
                 .font(.title3)
-                .foregroundStyle(AppTheme.primaryColor)
+                .foregroundStyle(AppTheme.terracottaColor)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("Saved on This Device")
                     .font(AppTheme.Typography.headline)
+                    .foregroundStyle(AppTheme.inkColor)
                 Text("Your progress is saved automatically on this device. No setup required.")
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
 
             Spacer()
         }
-        .fidelSurface(.solid)
+        .fidelDesignCard()
         .accessibilityElement(children: .combine)
     }
 
@@ -83,12 +159,13 @@ struct ProgressDashboardView: View {
             HStack {
                 Label("Local Backup", systemImage: "externaldrive.fill")
                     .font(AppTheme.Typography.headline)
+                    .foregroundStyle(AppTheme.inkColor)
                 Spacer()
             }
 
             Text("Export a backup file you control, or import one from Files to restore progress on this device.")
                 .font(AppTheme.Typography.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
 
             HStack(spacing: 12) {
                 Button {
@@ -111,10 +188,10 @@ struct ProgressDashboardView: View {
             if let backupMessage {
                 Text(backupMessage)
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
         }
-        .fidelSurface(.solid)
+        .fidelDesignCard()
     }
 
     private var stageTimeline: some View {
@@ -130,27 +207,27 @@ struct ProgressDashboardView: View {
                     VStack(spacing: AppTheme.Spacing.xs) {
                         ZStack {
                             Circle()
-                                .fill(isUnlocked ? stage.color : Color.gray.opacity(0.2))
+                                .fill(isUnlocked ? stage.color : AppTheme.mutedInkColor.opacity(0.2))
                                 .frame(width: 36, height: 36)
 
                             if stage < currentStage {
                                 Image(systemName: "checkmark")
                                     .font(.caption.bold())
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(AppTheme.onAccentColor)
                             } else if isCurrent {
                                 Image(systemName: stage.icon)
                                     .font(.caption2)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(AppTheme.onAccentColor)
                             } else {
                                 Image(systemName: "lock.fill")
                                     .font(.caption2)
-                                    .foregroundStyle(.gray)
+                                    .foregroundStyle(AppTheme.mutedInkColor)
                             }
                         }
 
                         Text(stage.displayName)
                             .font(AppTheme.Typography.caption)
-                            .foregroundStyle(isCurrent ? stage.color : .secondary)
+                            .foregroundStyle(isCurrent ? stage.color : AppTheme.inkSecondaryColor)
                             .multilineTextAlignment(.center)
                             .lineLimit(2)
                     }
@@ -161,7 +238,7 @@ struct ProgressDashboardView: View {
 
                     if stage != .fluency {
                         Rectangle()
-                            .fill(stage < currentStage ? stage.color : Color.gray.opacity(0.2))
+                            .fill(stage < currentStage ? stage.color : AppTheme.mutedInkColor.opacity(0.2))
                             .frame(height: 2)
                             .frame(maxWidth: 20)
                             .padding(.bottom, 24)
@@ -223,12 +300,12 @@ struct ProgressDashboardView: View {
                 ForEach(0..<7) { day in
                     VStack(spacing: 4) {
                         Circle()
-                            .fill(day < (progress?.currentStreak ?? 0) % 7 ? AppTheme.primaryColor : Color.gray.opacity(0.2))
+                            .fill(day < (progress?.currentStreak ?? 0) % 7 ? AppTheme.primaryColor : AppTheme.mutedInkColor.opacity(0.2))
                             .frame(width: 32, height: 32)
                         
                         Text(dayLabel(day))
                             .font(.caption2)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.inkSecondaryColor)
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -237,7 +314,7 @@ struct ProgressDashboardView: View {
             if let longest = progress?.longestStreak, longest > 0 {
                 Text("Longest streak: \(longest) days")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
         }
         .fidelSurface(.solid)
@@ -246,26 +323,28 @@ struct ProgressDashboardView: View {
     private var dailyGoalSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text("Daily Goal")
-                    .font(.headline)
+                FidelSectionLabel(title: "Daily goal")
                 Spacer()
                 Text("\(progress?.todayXP ?? 0)/\(dailyGoal) XP")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(dailyGoal), 1.0)
             
-            ProgressView(value: goalProgress)
-                .tint(goalProgress >= 1.0 ? AppTheme.successColor : AppTheme.primaryColor)
-                .scaleEffect(x: 1, y: 2, anchor: .center)
+            FidelProgressBar(
+                value: goalProgress,
+                color: goalProgress >= 1.0 ? AppTheme.successColor : AppTheme.terracottaColor,
+                trackColor: AppTheme.terracottaColor.opacity(0.13),
+                height: 9
+            )
                 .accessibilityLabel("Daily goal progress")
                 .accessibilityValue("\(progress?.todayXP ?? 0) of \(dailyGoal) XP")
 
             Stepper(value: dailyGoalBinding, in: 10...500, step: 10) {
                 Text("Goal: \(dailyGoal) XP")
                     .font(AppTheme.Typography.subheadline)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
             }
             
             if goalProgress >= 1.0 {
@@ -278,18 +357,17 @@ struct ProgressDashboardView: View {
                 }
             }
         }
-        .fidelSurface(.solid)
+        .fidelDesignCard()
     }
     
     private var achievementsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text("Achievements")
-                    .font(.headline)
+                FidelSectionLabel(title: "Achievements")
                 Spacer()
                 Text("\(earnedAchievements.count)/\(allAchievements.count)")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))], spacing: 16) {
@@ -301,7 +379,7 @@ struct ProgressDashboardView: View {
                 }
             }
         }
-        .fidelSurface(.solid)
+        .fidelDesignCard()
     }
     
     private var earnedAchievements: [Achievement] {
@@ -346,7 +424,7 @@ struct ProgressDashboardView: View {
 
     private func loadProgress() {
         let repo = ProgressRepository(modelContext: modelContext)
-        progress = repo.getUserProgress()
+        progress = repo.ensureUserProgress()
         dailyGoal = settingsStore.dailyXPGoal
         progress?.dailyGoal = dailyGoal
     }
@@ -392,6 +470,38 @@ struct ProgressDashboardView: View {
     }
 }
 
+private struct YouLevelRing: View {
+    let level: Int
+    let progress: Double
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(AppTheme.goldColor.opacity(0.18), lineWidth: 10)
+
+            Circle()
+                .trim(from: 0, to: max(0.04, min(progress, 1)))
+                .stroke(
+                    AppTheme.goldColor,
+                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                )
+                .rotationEffect(.degrees(-90))
+
+            VStack(spacing: 2) {
+                Text("LV")
+                    .font(AppTheme.Typography.caption2)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
+                Text("\(level)")
+                    .font(.system(.title, design: .rounded).weight(.bold))
+                    .foregroundStyle(AppTheme.inkColor)
+            }
+        }
+        .frame(width: 104, height: 104)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Level \(level)")
+    }
+}
+
 struct ProgressBackupDocument: FileDocument {
     static var readableContentTypes: [UTType] { [.json] }
 
@@ -429,7 +539,7 @@ struct StatCard: View {
             
             Text(title)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
@@ -448,17 +558,17 @@ struct AchievementBadge: View {
         VStack(spacing: 4) {
             ZStack {
                 Circle()
-                    .fill(isEarned ? AppTheme.secondaryColor : Color.gray.opacity(0.2))
+                    .fill(isEarned ? AppTheme.secondaryColor : AppTheme.mutedInkColor.opacity(0.2))
                     .frame(width: 50, height: 50)
                 
                 Image(systemName: achievement.icon)
                     .font(.title2)
-                    .foregroundStyle(isEarned ? .white : .gray)
+                    .foregroundStyle(isEarned ? AppTheme.onAccentColor : AppTheme.mutedInkColor)
             }
             
             Text(achievement.title)
                 .font(.caption2)
-                .foregroundStyle(isEarned ? .primary : .secondary)
+                .foregroundStyle(isEarned ? AppTheme.inkColor : AppTheme.inkSecondaryColor)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
         }
@@ -497,11 +607,11 @@ struct LearningStat: View {
             
             Text("\(count)/\(total)")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             
             Text(title)
                 .font(.caption2)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .combine)

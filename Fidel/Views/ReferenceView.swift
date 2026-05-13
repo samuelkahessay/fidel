@@ -27,6 +27,15 @@ struct ReferenceView: View {
 
     private var referenceContent: some View {
         VStack(spacing: 0) {
+            FidelScreenHeader(
+                title: "Reference",
+                amharicTitle: "መዝገብ",
+                subtitle: "Phrasebook, words, cultural notes, and numbers for quick lookup."
+            )
+            .padding(.horizontal, AppTheme.Spacing.lg)
+            .padding(.top, AppTheme.Spacing.md)
+            .padding(.bottom, AppTheme.Spacing.sm)
+
             Picker("Section", selection: $selectedTab) {
                 Text("Quick Phrases").tag(0)
                 Text("Vocabulary").tag(1)
@@ -34,7 +43,8 @@ struct ReferenceView: View {
                 Text("Numbers").tag(3)
             }
             .pickerStyle(.segmented)
-            .padding()
+            .padding(.horizontal, AppTheme.Spacing.lg)
+            .padding(.bottom, AppTheme.Spacing.md)
 
             switch selectedTab {
             case 0:
@@ -49,7 +59,7 @@ struct ReferenceView: View {
                 EmptyView()
             }
         }
-        .background(AppTheme.groupedBackground)
+        .background(FidelPaperBackground())
         .navigationTitle("Reference")
         .searchable(text: $viewModel.searchText, prompt: "Search Amharic, English, romanization")
         .onChange(of: selectedTab) { _, newValue in
@@ -225,12 +235,12 @@ struct PhraseReferenceRow: View {
             if playableAudioURL != nil {
                 Text("Generated pronunciation")
                     .font(.caption2)
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(AppTheme.mutedInkColor)
             }
             
             Text(phrase.transliteration)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             
             HStack {
                 Text(phrase.english)
@@ -240,7 +250,7 @@ struct PhraseReferenceRow: View {
                 if !phrase.notes.isEmpty {
                     Text("(\(phrase.notes))")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
             }
         }
@@ -279,7 +289,7 @@ struct VocabularyReferenceRow: View {
                     .font(AppTheme.Typography.amharic(size: 18))
                 Text(word.transliteration)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             Spacer()
@@ -290,7 +300,7 @@ struct VocabularyReferenceRow: View {
                     .fontWeight(.medium)
                 Text(word.category)
                     .font(.caption2)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 2)
                     .background(
@@ -323,7 +333,7 @@ struct NumberRow: View {
             
             Text(number.transliteration)
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(number.value), \(number.amharic), \(number.transliteration)")
@@ -348,7 +358,7 @@ struct ReferencePairRow: View {
                     .fontWeight(.medium)
                 Text(secondary)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
         }
         .padding(.vertical, 4)
@@ -377,7 +387,7 @@ struct CulturalNoteReferenceRow: View {
 
                 Text(note.content)
                     .font(AppTheme.Typography.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .lineLimit(4)
             }
         }
@@ -400,9 +410,9 @@ struct CategoryChip: View {
                 .padding(.vertical, 8)
                 .background(
                     Capsule()
-                        .fill(isSelected ? AppTheme.primaryColor : Color(.systemGray5))
+                        .fill(isSelected ? AppTheme.primaryColor : AppTheme.paperAccentColor)
                 )
-                .foregroundStyle(isSelected ? .white : .primary)
+                .foregroundStyle(isSelected ? AppTheme.onAccentColor : AppTheme.inkColor)
         }
         .buttonStyle(.plain)
         .accessibilityLabel(title)

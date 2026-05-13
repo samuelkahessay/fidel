@@ -438,11 +438,11 @@ struct RecordButton: View {
                 
                 if audioService.isRecording {
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(Color.white)
+                        .fill(AppTheme.onAccentColor)
                         .frame(width: 24, height: 24)
                 } else {
                     Circle()
-                        .fill(Color.white)
+                        .fill(AppTheme.onAccentColor)
                         .frame(width: 24, height: 24)
                 }
             }

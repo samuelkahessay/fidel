@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansEthiopic-Regular.ttf</string>
+		<string>NotoSerifEthiopic-Regular.ttf</string>
 	</array>
 	<key>OPENROUTER_API_KEY</key>
 	<string>$(OPENROUTER_API_KEY)</string>

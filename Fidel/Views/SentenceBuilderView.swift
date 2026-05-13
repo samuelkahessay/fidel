@@ -62,7 +62,7 @@ struct SentenceBuilderView: View {
             
             Text("Select a sentence pattern to practice building sentences")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             
             ForEach(patterns) { pattern in
                 PatternSelectionCard(pattern: pattern) {
@@ -84,13 +84,13 @@ struct SentenceBuilderView: View {
                 
                 Text(pattern.category)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             VStack(spacing: 12) {
                 Text("Pattern Structure")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                 
                 Text(pattern.structure)
                     .font(AppTheme.Typography.amharic(size: 24))
@@ -141,13 +141,13 @@ struct SentenceBuilderView: View {
             if selectedSubstitutions.isEmpty {
                 Text("Select words above to build your sentence")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(style: StrokeStyle(lineWidth: 2, dash: [5]))
-                            .foregroundStyle(.gray.opacity(0.3))
+                            .foregroundStyle(AppTheme.hairlineColor)
                     )
             } else {
                 VStack(spacing: 8) {
@@ -159,7 +159,7 @@ struct SentenceBuilderView: View {
                     
                     Text(sentence.transliteration)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                     
                     Text(sentence.english)
                         .font(.body)
@@ -195,7 +195,7 @@ struct SentenceBuilderView: View {
                         .font(AppTheme.Typography.amharic(size: 18))
                     Text(example.transliteration)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                     Text(example.english)
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.infoColor)
@@ -262,7 +262,7 @@ struct PatternSelectionCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text(pattern.description)
                     .font(.headline)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
                 
                 Text(pattern.structure)
                     .font(AppTheme.Typography.amharic(size: 18))
@@ -271,12 +271,12 @@ struct PatternSelectionCard: View {
                 HStack {
                     Label("\(pattern.substitutions.count) options", systemImage: "text.word.spacing")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                     
                     Spacer()
                     
                     Image(systemName: "chevron.right")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
             }
             .fidelSurface(.solid, padding: AppTheme.Spacing.md, cornerRadius: AppTheme.CornerRadius.medium)
@@ -309,7 +309,7 @@ struct SubstitutionChip: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(isSelected ? AppTheme.primaryColor : AppTheme.surfaceColor)
             )
-            .foregroundStyle(isSelected ? .white : .primary)
+            .foregroundStyle(isSelected ? AppTheme.onAccentColor : AppTheme.inkColor)
         }
         .buttonStyle(.plain)
         .accessibilityLabel("\(substitution.amharic), \(substitution.english)")

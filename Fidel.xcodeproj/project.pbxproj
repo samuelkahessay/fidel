@@ -54,6 +54,7 @@
 		AAA00064001 /* TracingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00064000 /* TracingViewModel.swift */; };
 		AAA00065001 /* TracingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00065000 /* TracingView.swift */; };
 		AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAA00070000 /* NotoSansEthiopic-Regular.ttf */; };
+		AAA00071001 /* NotoSerifEthiopic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAA00071000 /* NotoSerifEthiopic-Regular.ttf */; };
 		AAA00080001 /* StrokeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00080000 /* StrokeData.swift */; };
 		AAA00081001 /* StrokeDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00081000 /* StrokeDataRepository.swift */; };
 		AAA00082001 /* StrokeRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00082000 /* StrokeRecorderViewModel.swift */; };
@@ -141,6 +142,7 @@
 		AAA00064000 /* TracingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingViewModel.swift; sourceTree = "<group>"; };
 		AAA00065000 /* TracingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingView.swift; sourceTree = "<group>"; };
 		AAA00070000 /* NotoSansEthiopic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansEthiopic-Regular.ttf"; sourceTree = "<group>"; };
+		AAA00071000 /* NotoSerifEthiopic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifEthiopic-Regular.ttf"; sourceTree = "<group>"; };
 		AAA00080000 /* StrokeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeData.swift; sourceTree = "<group>"; };
 		AAA00081000 /* StrokeDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeDataRepository.swift; sourceTree = "<group>"; };
 		AAA00082000 /* StrokeRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeRecorderViewModel.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				AAA00003000 /* Assets.xcassets */,
 				AAA00032000 /* Info.plist */,
 				AAA00070000 /* NotoSansEthiopic-Regular.ttf */,
+				AAA00071000 /* NotoSerifEthiopic-Regular.ttf */,
 				AAA00084000 /* fidel_stroke_data.json */,
 			);
 			path = Fidel;
@@ -427,6 +430,7 @@
 			files = (
 				AAA00003001 /* Assets.xcassets in Resources */,
 				AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */,
+				AAA00071001 /* NotoSerifEthiopic-Regular.ttf in Resources */,
 				AAA00084001 /* fidel_stroke_data.json in Resources */,
 				AAA00090001 /* conversations.json in Resources */,
 				AAA00091001 /* cultural_notes.json in Resources */,
@@ -666,7 +670,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fidel/Fidel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 9XWM5T8A87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -700,7 +704,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Fidel/Fidel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 9XWM5T8A87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

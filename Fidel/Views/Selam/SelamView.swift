@@ -37,7 +37,7 @@ struct SelamView: View {
                 onCancel: { viewModel.cancelStreaming() }
             )
         }
-        .background(AppTheme.groupedBackground)
+        .background(FidelPaperBackground())
         .navigationTitle("Selam")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -149,25 +149,41 @@ struct SelamWelcomeView: View {
             SelamAvatarView(size: 56)
 
             VStack(spacing: AppTheme.Spacing.xs) {
+                Text("ሰላም")
+                    .font(AppTheme.Typography.amharicDisplay(size: 42, relativeTo: .largeTitle))
+                    .foregroundStyle(AppTheme.terracottaColor)
+
                 Text("Ask Selam Anything")
                     .font(AppTheme.Typography.title3)
+                    .foregroundStyle(AppTheme.inkColor)
                 Text("Start with a short goal, a word you saw, or a phrase you want to practice.")
                     .font(AppTheme.Typography.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                     .multilineTextAlignment(.center)
             }
 
             VStack(spacing: AppTheme.Spacing.xs) {
                 ForEach(prompts, id: \.self) { prompt in
-                    Button(prompt) {
+                    Button {
                         onSelect(prompt)
+                    } label: {
+                        HStack {
+                            Text(prompt)
+                                .font(AppTheme.Typography.subheadline.weight(.semibold))
+                            Spacer()
+                            Image(systemName: "arrow.right")
+                                .font(.caption.weight(.bold))
+                        }
+                        .foregroundStyle(AppTheme.inkColor)
+                        .padding(AppTheme.Spacing.md)
+                        .background(AppTheme.paperAccentColor, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                     }
-                    .buttonStyle(SecondaryButtonStyle(isFullWidth: true))
+                    .buttonStyle(.plain)
                     .accessibilityHint("Starts a conversation with this prompt")
                 }
             }
         }
-        .fidelSurface(.solid)
+        .fidelDesignCard(padding: AppTheme.Spacing.lg)
     }
 }
 
@@ -188,7 +204,7 @@ struct SelamSettingsView: View {
                                 Text(freq.rawValue)
                                 Text(freq.description)
                                     .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(AppTheme.inkSecondaryColor)
                             }
                             .tag(freq)
                         }
@@ -206,7 +222,7 @@ struct SelamSettingsView: View {
                     
                     Text(languagePreference.description)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
                 
                 Section("Snooze") {
@@ -226,7 +242,7 @@ struct SelamSettingsView: View {
                         Text("Messages today")
                         Spacer()
                         Text("\(viewModel.messageCountToday) / 100")
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.inkSecondaryColor)
                     }
                     
                     HStack {
@@ -286,16 +302,16 @@ struct SelamHistoryView: View {
                         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                             Text(conversation.title ?? "New Conversation")
                                 .font(AppTheme.Typography.headline)
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(AppTheme.inkColor)
                             
                             Text(conversation.preview)
                                 .font(AppTheme.Typography.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.inkSecondaryColor)
                                 .lineLimit(2)
                             
                             Text(conversation.updatedAt.formatted(.relative(presentation: .named)))
                                 .font(AppTheme.Typography.caption)
-                                .foregroundStyle(.secondary.opacity(0.7))
+                                .foregroundStyle(AppTheme.mutedInkColor.opacity(0.7))
                         }
                         .padding(.vertical, AppTheme.Spacing.xxs)
                     }
@@ -358,7 +374,7 @@ struct SelamContextSheet: View {
                     onCancel: { viewModel.cancelStreaming() }
                 )
             }
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.groupedBackground)
             .navigationTitle("Ask Selam")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

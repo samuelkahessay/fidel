@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 // MARK: - iOS 26 Liquid Glass Design System
 
@@ -7,30 +8,92 @@ struct AppTheme {
     
     // MARK: - Colors (Ethiopian theme, modernized)
     
-    /// Primary Ethiopian Green - Vibrant, modern
-    static let primaryColor = Color(red: 0.0, green: 0.45, blue: 0.2)
-    
-    /// Secondary Ethiopian Gold - Clean, bright
-    static let secondaryColor = Color(red: 1.0, green: 0.84, blue: 0.0)
-    
-    /// Accent Red - For errors/alerts only
-    static let accentRed = Color(red: 0.81, green: 0.07, blue: 0.15)
+    static let paperColor = adaptiveColor(
+        light: (0.965, 0.941, 0.894),
+        dark: (0.115, 0.081, 0.061)
+    )
+    static let paperAccentColor = adaptiveColor(
+        light: (0.937, 0.906, 0.835),
+        dark: (0.170, 0.124, 0.092)
+    )
+    static let cardColor = adaptiveColor(
+        light: (1.000, 0.992, 0.965),
+        dark: (0.224, 0.164, 0.120)
+    )
+    static let inkColor = adaptiveColor(
+        light: (0.133, 0.110, 0.086),
+        dark: (0.965, 0.925, 0.850)
+    )
+    static let inkSecondaryColor = adaptiveColor(
+        light: (0.290, 0.247, 0.200),
+        dark: (0.828, 0.756, 0.650)
+    )
+    static let mutedInkColor = adaptiveColor(
+        light: (0.490, 0.435, 0.369),
+        dark: (0.704, 0.626, 0.522)
+    )
+    static let terracottaColor = adaptiveColor(
+        light: (0.710, 0.318, 0.188),
+        dark: (0.790, 0.374, 0.236)
+    )
+    static let terracottaDeepColor = adaptiveColor(
+        light: (0.494, 0.214, 0.133),
+        dark: (0.925, 0.560, 0.395)
+    )
+    static let eucalyptusColor = adaptiveColor(
+        light: (0.294, 0.478, 0.392),
+        dark: (0.345, 0.596, 0.472)
+    )
+    static let goldColor = adaptiveColor(
+        light: (0.811, 0.605, 0.180),
+        dark: (0.902, 0.690, 0.268)
+    )
+    static let plumColor = adaptiveColor(
+        light: (0.298, 0.196, 0.180),
+        dark: (0.704, 0.406, 0.352)
+    )
 
-    static let successColor = Color(red: 0.05, green: 0.53, blue: 0.22)
-    static let warningColor = Color(red: 0.86, green: 0.47, blue: 0.0)
-    static let infoColor = Color(red: 0.0, green: 0.42, blue: 0.85)
-    static let practiceColor = Color(red: 0.33, green: 0.25, blue: 0.88)
-    static let disabledColor = Color.secondary.opacity(0.55)
-    static let groupedBackground = Color(.systemGroupedBackground)
-    static let surfaceColor = Color(.secondarySystemGroupedBackground)
-    static let elevatedSurfaceColor = Color(.systemBackground)
-    static let subtleSurfaceColor = Color(.tertiarySystemGroupedBackground)
-    static let hairlineColor = Color.primary.opacity(0.10)
-    static let subtleTextColor = Color.secondary
+    /// Primary design accent from the Claude Design handoff.
+    static let primaryColor = terracottaColor
+
+    /// Secondary accent used for progress and achievement emphasis.
+    static let secondaryColor = goldColor
+
+    /// Accent Red - For errors/alerts only
+    static let accentRed = adaptiveColor(
+        light: (0.760, 0.190, 0.140),
+        dark: (0.930, 0.370, 0.300)
+    )
+
+    static let successColor = eucalyptusColor
+    static let warningColor = goldColor
+    static let infoColor = terracottaDeepColor
+    static let practiceColor = plumColor
+    static let disabledColor = mutedInkColor.opacity(0.58)
+    static let groupedBackground = paperColor
+    static let surfaceColor = paperAccentColor
+    static let elevatedSurfaceColor = cardColor
+    static let subtleSurfaceColor = adaptiveColor(
+        light: (0.976, 0.953, 0.902),
+        dark: (0.190, 0.139, 0.104)
+    )
+    static let hairlineColor = adaptiveColor(
+        light: (0.875, 0.824, 0.733),
+        dark: (0.363, 0.273, 0.205)
+    )
+    static let subtleTextColor = mutedInkColor
+    static let onAccentColor = adaptiveColor(
+        light: (1.000, 0.973, 0.910),
+        dark: (1.000, 0.946, 0.850)
+    )
+    static let onGoldColor = adaptiveColor(
+        light: (0.133, 0.110, 0.086),
+        dark: (0.115, 0.081, 0.061)
+    )
     
     /// Legacy color aliases
-    static let ethiopianGreen = primaryColor
-    static let ethiopianYellow = secondaryColor
+    static let ethiopianGreen = eucalyptusColor
+    static let ethiopianYellow = goldColor
     static let ethiopianRed = accentRed
     
     // MARK: - Spacing (4pt grid)
@@ -70,9 +133,17 @@ struct AppTheme {
         static let caption = Font.caption
         static let caption2 = Font.caption2
         
-        // Amharic display — Noto Sans Ethiopic for consistent rendering
+        // Amharic body — Noto Sans Ethiopic for consistent rendering
         static func amharic(size: CGFloat, relativeTo textStyle: Font.TextStyle = .body) -> Font {
             .custom("NotoSansEthiopic-Regular", size: size, relativeTo: textStyle)
+        }
+
+        static func amharicDisplay(size: CGFloat, relativeTo textStyle: Font.TextStyle = .title) -> Font {
+            .custom("NotoSerifEthiopic-Regular", size: size, relativeTo: textStyle)
+        }
+
+        static func transliteration(size: CGFloat, relativeTo textStyle: Font.TextStyle = .caption) -> Font {
+            .system(size: size, weight: .medium, design: .monospaced)
         }
     }
     
@@ -102,13 +173,29 @@ struct AppTheme {
     struct GlassTint {
         static let primary = primaryColor.opacity(0.08)
         static let secondary = secondaryColor.opacity(0.08)
-        static let neutral = Color.primary.opacity(0.03)
+        static let neutral = inkColor.opacity(0.03)
     }
 
     struct Shadow {
-        static let card = Color.primary.opacity(0.06)
-        static let elevated = Color.primary.opacity(0.08)
-        static let bottomBar = Color.primary.opacity(0.10)
+        static let card = Color.black.opacity(0.14)
+        static let elevated = Color.black.opacity(0.20)
+        static let bottomBar = Color.black.opacity(0.26)
+    }
+
+    private static func adaptiveColor(
+        light: (Double, Double, Double),
+        dark: (Double, Double, Double),
+        alpha: Double = 1
+    ) -> Color {
+        Color(UIColor { traitCollection in
+            let values = traitCollection.userInterfaceStyle == .dark ? dark : light
+            return UIColor(
+                red: CGFloat(values.0),
+                green: CGFloat(values.1),
+                blue: CGFloat(values.2),
+                alpha: CGFloat(alpha)
+            )
+        })
     }
 }
 
@@ -180,7 +267,7 @@ struct FidelSurface<Content: View>: View {
         case .solid, .muted:
             return AppTheme.hairlineColor
         case .glass:
-            return colorScheme == .dark ? Color.white.opacity(0.16) : AppTheme.primaryColor.opacity(0.16)
+            return AppTheme.hairlineColor
         case .tinted(let color, _):
             return color.opacity(colorScheme == .dark ? 0.42 : 0.24)
         }
@@ -261,7 +348,7 @@ struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(AppTheme.Typography.headline)
-            .foregroundColor(.white)
+            .foregroundColor(AppTheme.onAccentColor)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .minimumScaleFactor(0.85)
@@ -302,9 +389,7 @@ struct SecondaryButtonStyle: ButtonStyle {
                     .overlay(
                         Capsule()
                             .stroke(
-                                colorScheme == .dark
-                                    ? Color.white.opacity(0.1)
-                                    : AppTheme.primaryColor.opacity(0.2),
+                                AppTheme.hairlineColor,
                                 lineWidth: 1
                             )
                     )
@@ -341,6 +426,22 @@ extension View {
         cornerRadius: CGFloat = AppTheme.CornerRadius.large
     ) -> some View {
         FidelSurface(prominence: prominence, padding: padding, cornerRadius: cornerRadius) {
+            self
+        }
+    }
+
+    func fidelDesignCard(
+        padding: CGFloat = AppTheme.Spacing.md,
+        cornerRadius: CGFloat = 22,
+        background: Color = AppTheme.cardColor,
+        borderColor: Color = AppTheme.hairlineColor
+    ) -> some View {
+        FidelDesignCard(
+            padding: padding,
+            cornerRadius: cornerRadius,
+            background: background,
+            borderColor: borderColor
+        ) {
             self
         }
     }
@@ -394,7 +495,7 @@ struct StreakBadge: View {
         .padding(.vertical, AppTheme.Spacing.xs)
         .background(
             Capsule()
-                .fill(streak > 0 ? AppTheme.warningColor.opacity(0.15) : Color.secondary.opacity(0.1))
+                .fill(streak > 0 ? AppTheme.warningColor.opacity(0.15) : AppTheme.inkSecondaryColor.opacity(0.1))
         )
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Current streak")
@@ -460,7 +561,7 @@ struct DifficultyStars: View {
             ForEach(0..<3) { index in
                 Image(systemName: index < level ? "star.fill" : "star")
                     .font(.caption2)
-                    .foregroundColor(index < level ? AppTheme.difficultyColor(level) : .secondary.opacity(0.3))
+                    .foregroundColor(index < level ? AppTheme.difficultyColor(level) : AppTheme.mutedInkColor.opacity(0.45))
             }
         }
         .accessibilityElement(children: .ignore)
@@ -513,7 +614,7 @@ struct ProgressRing: View {
         ZStack {
             // Background track
             Circle()
-                .stroke(Color.primary.opacity(0.08), lineWidth: lineWidth)
+                .stroke(AppTheme.inkColor.opacity(0.08), lineWidth: lineWidth)
             
             // Progress arc with gradient
             Circle()
@@ -535,7 +636,7 @@ struct ProgressRing: View {
                 Text("\(Int(progress * 100))%")
                     .font(AppTheme.Typography.caption)
                     .fontWeight(.semibold)
-                    .foregroundColor(.primary)
+                    .foregroundColor(AppTheme.inkColor)
             }
         }
         .frame(width: size, height: size)

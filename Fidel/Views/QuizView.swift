@@ -73,19 +73,19 @@ struct QuizView: View {
                                     .font(.headline)
                                 Text(descriptionForMode(mode))
                                     .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(AppTheme.inkSecondaryColor)
                             }
                             
                             Spacer()
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.inkSecondaryColor)
                         }
                         .padding()
                         .fidelSurface(.solid, padding: AppTheme.Spacing.md, cornerRadius: AppTheme.CornerRadius.medium)
                         .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium))
                     }
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
                     .accessibilityElement(children: .combine)
                     .accessibilityLabel("\(mode.rawValue). \(descriptionForMode(mode))")
                     .accessibilityHint("Starts this quiz type")
@@ -122,7 +122,7 @@ struct QuizView: View {
             HStack {
                 Text("Question \(currentIndex + 1) of \(questions.count)")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
                 
                 Spacer()
                 
@@ -161,7 +161,7 @@ struct QuizView: View {
             if question.type == .listening, let hint = question.transliterationHint {
                 Text("Hint: \(hint)")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
         }
         .padding()
@@ -241,7 +241,7 @@ struct QuizView: View {
                 VStack(spacing: 4) {
                     Text("Correct answer:")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.inkSecondaryColor)
                     Text(question.correctAnswer)
                         .font(.headline)
                         .foregroundStyle(AppTheme.primaryColor)
@@ -280,7 +280,7 @@ struct QuizView: View {
                 let percentage = questions.count > 0 ? Int((Double(score) / Double(questions.count)) * 100) : 0
                 Text("\(percentage)% Correct")
                     .font(.title3)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
             }
             
             XPBadge(xp: score * 10)
@@ -494,7 +494,7 @@ struct AnswerButton: View {
             HStack {
                 Text(option)
                     .font(.body)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.inkColor)
                 
                 Spacer()
                 
