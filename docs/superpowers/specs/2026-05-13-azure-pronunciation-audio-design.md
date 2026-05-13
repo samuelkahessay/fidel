@@ -17,7 +17,7 @@ Azure is the strongest synthetic option found for Amharic because it explicitly 
 
 Other checked options were weaker for this goal:
 
-- Apple system speech is not a dependable Amharic source; Apple VoiceOver supported-language documentation does not list Amharic.
+- Apple system speech is not a dependable Amharic source; Apple's public feature-availability pages show Amharic keyboard support but do not provide an Amharic synthesized-speech voice to target from `AVSpeechSynthesizer`.
 - Google Cloud Text-to-Speech and Amazon Polly do not list Amharic in their supported voice/language tables.
 - ElevenLabs' documented multilingual TTS language lists do not include Amharic.
 - OpenAI TTS language support does not list Amharic, even though it can generate audio for many languages.
@@ -159,14 +159,16 @@ The app should not care whether the audio came from Azure or a native recording,
 
 ## Sources Checked
 
-- Azure language support: Amharic TTS voices and STT support are listed for `am-ET`; Amharic is not listed in pronunciation assessment.
-- Azure Text-to-Speech REST API: supports MP3 output formats through `X-Microsoft-OutputFormat`.
-- Azure Text-to-Speech transparency note: calls out disclosure, editorial control, and possible pronunciation/intonation errors.
-- Apple VoiceOver supported languages: Amharic is not listed.
-- Google Cloud Text-to-Speech supported voices: no `am-ET` entry found.
-- Amazon Polly supported languages: no Amharic entry found.
-- ElevenLabs documented TTS language lists: Amharic is not listed.
-- OpenAI TTS supported languages: Amharic is not listed.
+Verified on 2026-05-13 against current provider documentation:
+
+- Azure language support: Amharic TTS voices `am-ET-MekdesNeural` and `am-ET-AmehaNeural` are listed for `am-ET`; Amharic is not listed in the pronunciation assessment table. Source: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support
+- Azure Text-to-Speech REST API: supports MP3 output formats through `X-Microsoft-OutputFormat`, including `audio-24khz-48kbitrate-mono-mp3`. Source: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-text-to-speech
+- Azure Text-to-Speech transparency note: calls out disclosure, editorial control, and possible pronunciation/intonation errors. Source: https://learn.microsoft.com/en-us/legal/cognitive-services/speech-service/text-to-speech/transparency-note
+- Apple feature availability / VoiceOver docs: no targetable Amharic synthesized-speech voice was found for app playback. Source: https://support.apple.com/en-gb/111748
+- Google Cloud Text-to-Speech supported voices: no `am-ET` or Amharic voice found. Source: https://cloud.google.com/text-to-speech/docs/voices
+- Amazon Polly supported languages: no Amharic language entry found. Source: https://docs.aws.amazon.com/polly/latest/dg/supported-languages.html
+- ElevenLabs documented TTS language lists: Amharic is not listed for the documented TTS models checked. Sources: https://elevenlabs.io/docs/capabilities/text-to-speech and https://help.elevenlabs.io/hc/en-us/articles/13313366263441-What-languages-do-you-support
+- OpenAI TTS supported languages: Amharic is not listed in the published supported-language list. Source: https://platform.openai.com/docs/guides/text-to-speech
 
 ## Voice Audition Before Full Generation
 
