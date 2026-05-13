@@ -11,10 +11,7 @@ No active backlog items.
 
 ## Ready Next
 
-- 2026-05-13 [content] Review the remaining vocabulary import queue from `../../Fidel_Resources/amharic/VOCAB_DEDUPE_REPORT.md`, starting with unimported clean candidates; fix or exclude rows with missing English, concatenated glosses, broad `Other` category, or embedded media tags.
-- 2026-05-13 [content] Build a small phrasebook pilot review sheet from `../../Fidel_Resources/fidel_resources/PHRASEBOOK_IMPORT_SCHEMA.md`; keep phrasebook content reference-only until a reviewed pilot set is accepted.
-- 2026-05-13 [feature] Run a post-UI-branch tracing QA pass: tracing, stroke recordings, animation, and unit coverage exist, so focus on remaining UX gaps instead of adding handwriting from scratch.
-- 2026-05-13 [feature] Decide whether pronunciation needs scored feedback; the current pronunciation flow plays TTS/ElevenLabs audio and records user playback, but there is no speech-recognition feedback loop.
+No ready-next backlog items.
 
 ## Later
 
@@ -24,6 +21,8 @@ No active backlog items.
 ## Blocked Or Not Now
 
 - 2026-05-13 [not-now] Configure durable waitlist storage for `FidelWeb`: the subscribe API already supports `WAITLIST_WEBHOOK_URL`; choose the provider, set production env vars, and verify a real signup is stored when launch ops becomes active again.
+- 2026-05-13 [not-now] Keep scored pronunciation feedback out of scope until reference audio, Amharic recognition quality, privacy/offline policy, and score-copy expectations are proven; see `pronunciation-feedback-decision.md`.
+- 2026-05-13 [blocked] Keep the remaining vocabulary import queue blocked on editorial cleanup/native review: after the 16-word conservative import, the remaining likely-new rows are mostly concatenated verb rows, blank-English rows, embedded-media rows, or broad `Other` category rows.
 - 2026-05-13 [blocked] Do not bulk-import vocabulary or phrasebook rows until the review queue, provenance strategy, de-dupe rules, and rights/source review are applied.
 - 2026-05-13 [blocked] Keep `.apkg` media archival until source-rights review, audio-quality review, image-rights review, and mapping verification make app usage acceptable.
 - 2026-05-13 [blocked] Keep the static speaking-practice PWA archival; do not invest in public companion work unless a separate web product goal reopens that decision.
@@ -31,3 +30,7 @@ No active backlog items.
 ## Completed
 
 - 2026-05-13 [debt] Finished the active `codex/ui-ux-remediation` work: XcodeBuildMCP `build_sim` succeeded, `test_sim` passed 15/15, simulator launch succeeded after clearing a stale install state, and Journey/Tools/Progress tab smoke checks passed.
+- 2026-05-13 [content] Built the small phrasebook pilot review sheet at `../../Fidel_Resources/fidel_resources/PHRASEBOOK_PILOT_REVIEW.md` and refreshed stale phrasebook product-decision counts.
+- 2026-05-13 [content] Accepted the phrasebook pilot as a review-only direction and generated provenance-preserving review artifacts at `../../Fidel_Resources/fidel_resources/PHRASEBOOK_PILOT_REVIEW.csv` and `../../Fidel_Resources/fidel_resources/PHRASEBOOK_PILOT_REVIEW.json`; no iOS app data was changed.
+- 2026-05-13 [feature] Completed the post-UI-branch tracing QA pass: launched Character Tracing in the simulator, verified animated-guide handoff to drawing canvas, confirmed a drawn stroke enables Clear/Check, and confirmed low-coverage feedback returns Try Again/Skip.
+- 2026-05-13 [feature] Decided pronunciation scored feedback is not now and documented reopen criteria in `pronunciation-feedback-decision.md`; keep the current listen/record/playback comparison loop unless a self-rating step becomes necessary.
