@@ -164,6 +164,21 @@ final class LocalFirstTests: XCTestCase {
         XCTAssertNil(repository.asset(for: .phrase, contentId: "13"))
     }
 
+    func testAudioRepositoryRequiresTenPlayablePhraseAssetsForPronunciationPractice() {
+        let nineAssets = makePhraseAudioAssets(count: 9)
+        let tenAssets = makePhraseAudioAssets(count: 10)
+
+        XCTAssertFalse(
+            AudioAssetRepository(assets: nineAssets, fileExists: { _ in true }).hasPronunciationPracticeContent
+        )
+        XCTAssertTrue(
+            AudioAssetRepository(assets: tenAssets, fileExists: { _ in true }).hasPronunciationPracticeContent
+        )
+        XCTAssertFalse(
+            AudioAssetRepository(assets: tenAssets, fileExists: { _ in false }).hasPronunciationPracticeContent
+        )
+    }
+
     func testBundledVocabularyIncludesReviewedImportBatch() {
         let expectedWords: [(category: String, amharic: String, transliteration: String, english: String)] = [
             ("Directions", "ከኋላ", "kahuala", "at the back"),
@@ -248,6 +263,23 @@ final class LocalFirstTests: XCTestCase {
             .lowercased()
             .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
             .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func makePhraseAudioAssets(count: Int) -> [AudioAsset] {
+        (1...count).map { id in
+            AudioAsset(
+                id: "phrase-\(id)",
+                contentType: .phrase,
+                contentId: "\(id)",
+                language: "am-ET",
+                provider: "azure",
+                voice: "am-ET-MekdesNeural",
+                format: "mp3",
+                file: "Audio/phrases/phrase-\(id).mp3",
+                text: "sample",
+                sourceTextHash: "hash-\(id)"
+            )
+        }
     }
 
     private func makeDrawing(points: [CGPoint]) -> PKDrawing {

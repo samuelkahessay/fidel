@@ -40,9 +40,14 @@ final class JourneyViewModel {
 
     private var progressRepository: ProgressRepositoryProtocol?
     private let lessonRepository: LessonRepositoryProtocol
+    private let audioAssetRepository: AudioAssetRepository
 
-    init(lessonRepository: LessonRepositoryProtocol = LessonRepository.shared) {
+    init(
+        lessonRepository: LessonRepositoryProtocol = LessonRepository.shared,
+        audioAssetRepository: AudioAssetRepository = .shared
+    ) {
         self.lessonRepository = lessonRepository
+        self.audioAssetRepository = audioAssetRepository
     }
 
     func configure(stageManager: StageManager, progressRepository: ProgressRepositoryProtocol) {
@@ -141,15 +146,7 @@ final class JourneyViewModel {
                 isCompleted: false
             ))
 
-            result.append(JourneyActivity(
-                id: "pronunciation_s1",
-                type: .practiceMode(.pronunciation),
-                title: "Pronunciation Practice",
-                subtitle: "Listen and practice speaking",
-                icon: "waveform.and.mic",
-                color: AppTheme.primaryColor,
-                isCompleted: false
-            ))
+            appendPronunciationPracticeIfAvailable(to: &result, id: "pronunciation_s1")
 
             if let lesson2 = lessons.first(where: { $0.id == 2 }) {
                 result.append(JourneyActivity(
@@ -201,7 +198,7 @@ final class JourneyViewModel {
                 ))
             }
 
-            for mode in stageManager.availablePracticeModes() {
+            for mode in visiblePracticeModes(stageManager.availablePracticeModes()) {
                 result.append(JourneyActivity(
                     id: "practice_\(mode.rawValue)",
                     type: .practiceMode(mode),
@@ -239,7 +236,7 @@ final class JourneyViewModel {
                 ))
             }
 
-            for mode in PracticeMode.allCases {
+            for mode in visiblePracticeModes(PracticeMode.allCases) {
                 result.append(JourneyActivity(
                     id: "practice_\(mode.rawValue)",
                     type: .practiceMode(mode),
@@ -265,5 +262,24 @@ final class JourneyViewModel {
         }
 
         return result
+    }
+
+    private func appendPronunciationPracticeIfAvailable(to result: inout [JourneyActivity], id: String) {
+        guard audioAssetRepository.hasPronunciationPracticeContent else { return }
+        result.append(JourneyActivity(
+            id: id,
+            type: .practiceMode(.pronunciation),
+            title: "Pronunciation Practice",
+            subtitle: "Listen to generated pronunciation",
+            icon: "waveform",
+            color: AppTheme.primaryColor,
+            isCompleted: false
+        ))
+    }
+
+    private func visiblePracticeModes(_ modes: [PracticeMode]) -> [PracticeMode] {
+        modes.filter { mode in
+            mode != .pronunciation || audioAssetRepository.hasPronunciationPracticeContent
+        }
     }
 }

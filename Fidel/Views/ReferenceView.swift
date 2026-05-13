@@ -2,8 +2,10 @@ import SwiftUI
 
 struct ReferenceView: View {
     @State private var viewModel = ReferenceViewModel()
+    @State private var audioService = BundledAudioService()
     @State private var selectedTab: Int
     private let settingsStore: AppSettingsStore
+    private let audioRepository = AudioAssetRepository.shared
 
     var embedded: Bool
 
@@ -64,7 +66,12 @@ struct ReferenceView: View {
                     ForEach(viewModel.phraseSections) { section in
                         Section(section.title) {
                             ForEach(section.phrases) { phrase in
-                                PhraseReferenceRow(phrase: phrase)
+                                PhraseReferenceRow(
+                                    phrase: phrase,
+                                    audioAsset: audioRepository.asset(for: phrase),
+                                    audioService: audioService,
+                                    audioRepository: audioRepository
+                                )
                             }
                         }
                     }
@@ -179,6 +186,9 @@ struct ReferenceView: View {
 
 struct PhraseReferenceRow: View {
     let phrase: Phrase
+    let audioAsset: AudioAsset?
+    var audioService: BundledAudioService?
+    var audioRepository: AudioAssetRepository = .shared
     @State private var isCopied = false
     
     var body: some View {
@@ -188,6 +198,20 @@ struct PhraseReferenceRow: View {
                     .font(AppTheme.Typography.amharic(size: 20))
                 
                 Spacer()
+
+                if let audioAsset,
+                   let audioService,
+                   let url = playableAudioURL {
+                    Button {
+                        audioService.play(asset: audioAsset, url: url)
+                    } label: {
+                        Image(systemName: audioService.playingAssetId == audioAsset.id ? "speaker.wave.3.fill" : "speaker.wave.2.fill")
+                            .foregroundStyle(AppTheme.primaryColor)
+                            .frame(width: 44, height: 44)
+                    }
+                    .accessibilityLabel("Generated pronunciation")
+                    .accessibilityHint("Plays generated pronunciation for \(phrase.amharic)")
+                }
                 
                 Button(action: copyToClipboard) {
                     Image(systemName: isCopied ? "checkmark" : "doc.on.doc")
@@ -196,6 +220,12 @@ struct PhraseReferenceRow: View {
                 }
                 .accessibilityLabel(isCopied ? "Copied phrase" : "Copy Amharic phrase")
                 .accessibilityHint("Copies \(phrase.amharic) to the clipboard")
+            }
+
+            if playableAudioURL != nil {
+                Text("Generated pronunciation")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
             }
             
             Text(phrase.transliteration)
@@ -218,6 +248,11 @@ struct PhraseReferenceRow: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(phrase.amharic), \(phrase.transliteration), \(phrase.english)")
         .accessibilityValue(isCopied ? "Copied" : "")
+    }
+
+    private var playableAudioURL: URL? {
+        guard let audioAsset else { return nil }
+        return audioRepository.audioURL(for: audioAsset)
     }
     
     private func copyToClipboard() {

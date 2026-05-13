@@ -4,9 +4,17 @@ struct AudioAssetRepository {
     static let shared = AudioAssetRepository()
 
     private let assetsByKey: [AudioContentKey: AudioAsset]
+    private let bundle: Bundle
+    private let fileExists: (URL) -> Bool
 
-    init(assets: [AudioAsset] = AmharicData.audioAssets) {
+    init(
+        assets: [AudioAsset] = AmharicData.audioAssets,
+        bundle: Bundle = .main,
+        fileExists: @escaping (URL) -> Bool = { FileManager.default.fileExists(atPath: $0.path) }
+    ) {
         self.assetsByKey = Dictionary(uniqueKeysWithValues: assets.map { ($0.contentKey, $0) })
+        self.bundle = bundle
+        self.fileExists = fileExists
     }
 
     func asset(for contentType: AudioContentType, contentId: String) -> AudioAsset? {
@@ -17,13 +25,23 @@ struct AudioAssetRepository {
         asset(for: .phrase, contentId: "\(phrase.id)")
     }
 
-    func audioURL(for asset: AudioAsset, bundle: Bundle = .main) -> URL? {
+    func audioURL(for asset: AudioAsset) -> URL? {
         guard let resourceURL = bundle.resourceURL else { return nil }
         let url = resourceURL.appendingPathComponent(asset.file)
-        return FileManager.default.fileExists(atPath: url.path) ? url : nil
+        return fileExists(url) ? url : nil
     }
 
     var phraseAudioCount: Int {
         assetsByKey.values.filter { $0.contentType == .phrase }.count
+    }
+
+    var playablePhraseAudioCount: Int {
+        assetsByKey.values.filter { asset in
+            asset.contentType == .phrase && audioURL(for: asset) != nil
+        }.count
+    }
+
+    var hasPronunciationPracticeContent: Bool {
+        playablePhraseAudioCount >= 10
     }
 }
