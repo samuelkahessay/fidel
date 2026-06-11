@@ -79,6 +79,9 @@
 		AAA00105001 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = AAA00105000 /* Audio */; };
 		AAA00106001 /* audio_catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00106000 /* audio_catalog.json */; };
 		BAA00002001 /* LocalFirstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00002000 /* LocalFirstTests.swift */; };
+		AAA00110001 /* TraceGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00110000 /* TraceGeometry.swift */; };
+		AAA00111001 /* TraceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00111000 /* TraceEngine.swift */; };
+		BAA00010001 /* TraceEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00010000 /* TraceEngineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +171,9 @@
 		AAA00106000 /* audio_catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = audio_catalog.json; sourceTree = "<group>"; };
 		BAA00001000 /* FidelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FidelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA00002000 /* LocalFirstTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFirstTests.swift; sourceTree = "<group>"; };
+		AAA00110000 /* TraceGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceGeometry.swift; sourceTree = "<group>"; };
+		AAA00111000 /* TraceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngine.swift; sourceTree = "<group>"; };
+		BAA00010000 /* TraceEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngineTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -215,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				BAA00002000 /* LocalFirstTests.swift */,
+				BAA00010000 /* TraceEngineTests.swift */,
 			);
 			path = FidelTests;
 			sourceTree = "<group>";
@@ -314,6 +321,8 @@
 				AAA00061000 /* DrawingEvaluator.swift */,
 				AAA00081000 /* StrokeDataRepository.swift */,
 				AAA00085000 /* StrokeSmoother.swift */,
+				AAA00110000 /* TraceGeometry.swift */,
+				AAA00111000 /* TraceEngine.swift */,
 				AAA00097000 /* AmharicDataLoader.swift */,
 				AAA00098000 /* AppSettingsStore.swift */,
 				AAA00099000 /* ProgressExportService.swift */,
@@ -510,6 +519,8 @@
 				AAA00082001 /* StrokeRecorderViewModel.swift in Sources */,
 				AAA00083001 /* StrokeRecorderView.swift in Sources */,
 				AAA00085001 /* StrokeSmoother.swift in Sources */,
+				AAA00110001 /* TraceGeometry.swift in Sources */,
+				AAA00111001 /* TraceEngine.swift in Sources */,
 				AAA00086001 /* StrokeReviewView.swift in Sources */,
 				AAA00097001 /* AmharicDataLoader.swift in Sources */,
 				AAA00098001 /* AppSettingsStore.swift in Sources */,
@@ -525,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAA00002001 /* LocalFirstTests.swift in Sources */,
+				BAA00010001 /* TraceEngineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
