@@ -4,7 +4,12 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 
 ## Features
 
-### Journey Tab
+### Today Tab
+- **Daily Focus**: A local, device-first daily learning prompt based on current progress
+- **Quick Paths**: Fast access to the Fidel grid, Practice, guided conversation, Selam, and Reference
+- **Phrase of the Day**: A bundled phrase preview from the local phrase library
+
+### Learn Tab
 - **Fidel Script Chart**: Interactive grid of all 238 Fidel characters (34 consonants x 7 vowel forms) with visual pronunciation hints
 - **Structured Lessons**: 8 progressive lessons covering greetings, family, directions, food, time, health, travel, and culture
 - **Sentence Patterns**: 30 pattern templates with substitution slots for building sentences
@@ -22,18 +27,23 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **Role-Play Mode**: Practice either speaker role in dialogues
 - **Line-by-Line Translation**: See Amharic, transliteration, and English for each line
 
-### Reference Tab
+### Reference
 - **Quick Phrases**: 174 phrases for travel and daily use, including generated offline pronunciation for the 171 non-placeholder phrases
 - **Vocabulary Browser**: 436 words organized by category
 - **Number System**: Ethiopian numbers, months, ordinals, and fractions
 - **Culture Notes**: 20 cultural notes connected to lessons and conversations
 - **Search**: Find any word or phrase instantly
+- **Navigation**: Open from Today > Quick paths > Reference
 
-### Progress Tab
+### Selam Tab
+- **Tutor Chat**: Local-progress-aware conversational tutor surface
+
+### You Tab
 - **XP & Levels**: Gamified progression system
 - **Streaks**: Track consecutive days of practice
 - **Achievements**: Unlock badges for milestones
 - **Statistics**: Words learned, accuracy rates, time practiced
+- **Backup & Restore**: User-controlled JSON export/import for local progress
 
 ## Technical Details
 
@@ -42,7 +52,7 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **SwiftData** for local progress persistence
 - **MVVM** pattern with Observable view models
 - **FSRS-style Spaced Repetition** algorithm for flashcard scheduling
-- **Manifest-driven bundled audio** for generated pronunciation playback without runtime API keys
+- **Manifest-driven bundled audio** for Azure-generated pronunciation playback without runtime API keys or network dependency
 - **User-controlled JSON backup** for progress export/import
 
 ### Requirements
@@ -62,8 +72,8 @@ Fidel/
 │   │   └── AmharicData.swift     # JSON-backed content adapter
 │   ├── Data/                     # Bundled lessons, patterns, vocabulary, phrases, conversations, notes, audio manifests
 │   ├── Audio/                    # Voice-scoped generated pronunciation MP3s
-│   ├── Services/                 # Audio, stage, progress export, stroke, and spaced repetition services
-│   ├── Repositories/             # Lesson/progress/Selam data boundaries
+│   ├── Services/                 # Bundled audio, stage, progress export, stroke, and spaced repetition services
+│   ├── Repositories/             # Lesson/progress/Selam/audio asset boundaries
 │   ├── ViewModels/               # Observable feature state
 │   ├── Views/
 │   │   ├── Theme.swift           # Ethiopian-inspired design system
@@ -73,10 +83,11 @@ Fidel/
 │   │   ├── PracticeView.swift    # Practice hub
 │   │   ├── FlashcardView.swift   # Swipeable flashcards
 │   │   ├── QuizView.swift        # Multiple choice quizzes
+│   │   ├── PronunciationPracticeView.swift
 │   │   ├── SentenceBuilderView.swift
 │   │   ├── ConversationDetailView.swift
-│   │   ├── ReferenceView.swift   # Quick reference
-│   │   ├── ProgressView.swift    # Stats & achievements
+│   │   ├── ReferenceView.swift   # Quick reference reached from Today quick paths
+│   │   ├── ProgressView.swift    # You tab stats, achievements, backup/restore
 │   │   └── TracingView.swift     # Handwriting practice
 │   ├── FidelApp.swift            # App entry point
 │   └── ContentView.swift         # Tab navigation
@@ -89,15 +100,30 @@ Fidel/
 2. Select an iOS 17+ simulator or device
 3. Build and run (Cmd+R)
 
+## Current Navigation
+
+The bottom tab bar is:
+
+1. **Today**: Daily focus, phrase preview, and quick paths.
+2. **Learn**: Stage-gated learning path and unit activities.
+3. **Practice**: Flashcards, quiz, pronunciation, sentence builder, speed drill, and tracing.
+4. **Selam**: Tutor chat.
+5. **You**: Progress, achievements, statistics, and backup/restore.
+
+Reference is not a bottom tab. Open it from **Today > Quick paths > Reference**. Pronunciation audio is surfaced in **Practice > Pronunciation**, in eligible Learn/Journey activities, and as speaker buttons on **Reference > Quick Phrases** rows.
+
 ## Content Source
 
-All Amharic content is sourced from the companion web application, including:
+Learner-facing content is bundled in `Fidel/Data/*.json`, including:
 - Complete Fidel alphabet with 238 characters
 - 30 sentence patterns with grammar explanations
 - 24 conversation scripts with full dialogues
 - 174 phrases
 - 436 vocabulary words across multiple categories
 - 20 cultural notes
+- 171 active Azure-generated phrase pronunciation clips in `audio_manifest.json`
+
+The full generated audio catalog also records alternate reviewed/generated clips. See `docs/audio-asset-library.md` before changing audio files, manifests, or voice selection.
 
 ## Design
 

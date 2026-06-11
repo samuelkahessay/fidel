@@ -26,5 +26,6 @@ Pods/
 .playwright-mcp/
 
 # Generated or archived local artifacts
+.asc/
 fidel_stroke_data.json
 fidel drawing artifacts and passes/
