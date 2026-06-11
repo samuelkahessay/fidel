@@ -25,6 +25,11 @@ struct FidelApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .task(priority: .utility) {
+                    // Warm the 9.7MB stroke database off the main thread so the
+                    // first tracing screen doesn't pay the JSON decode.
+                    _ = StrokeDataRepository.shared.recordedCharacterIds()
+                }
         }
         .modelContainer(sharedModelContainer)
     }

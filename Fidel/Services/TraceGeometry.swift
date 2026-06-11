@@ -216,9 +216,10 @@ enum TraceGeometry {
 
     // MARK: - Flattening
 
-    /// Flattens a smoothed stroke path to a dense polyline using the same
-    /// sampling density as StrokeRegionBuilder (48 cubic / 28 quad steps,
-    /// 0.001pt dedupe) so trace progress aligns with the reveal masks.
+    /// Flattens a smoothed stroke path to a polyline using the same sampling
+    /// and decimation as StrokeRegionBuilder's projection segments (48 cubic /
+    /// 28 quad steps, then ~2pt decimation) so trace progress aligns with the
+    /// reveal masks at the same cost profile.
     private static func flattenedPoints(from path: CGPath) -> [CGPoint] {
         let cubicSteps = 48
         let quadSteps = 28
@@ -281,7 +282,7 @@ enum TraceGeometry {
             }
         }
 
-        return deduplicated
+        return StrokeRegionBuilder.decimate(deduplicated, minSpacing: 2.0)
     }
 
     private static func quadPoint(start: CGPoint, control: CGPoint, end: CGPoint, t: CGFloat) -> CGPoint {

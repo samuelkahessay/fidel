@@ -322,6 +322,102 @@ final class TraceEngineTests: XCTestCase {
         XCTAssertEqual(stats.hintsAutoPlayed, 0)
     }
 
+    // MARK: - Reveal mask diagnostics
+
+    /// The guided canvas fills strokes by masking the glyph with
+    /// StrokeRevealRegion images. If these masks are thin or sparse the traced
+    /// ink looks like a marker line instead of filling the glyph limb.
+    func testRevealRegionMasksCoverGlyphLimbsForGuidedTracing() throws {
+        for characterId in ["0-1", "12-1", "25-1"] {
+            let data = try XCTUnwrap(StrokeDataRepository.shared.getStrokeData(for: characterId))
+            let size = TracingLayout.canvasSize
+            let glyphCGPath = PathExtractor.shared.extractCGPath(for: data.character, size: size)
+            let glyphStrokeWidth = PathExtractor.shared.glyphStrokeWidth(for: data.character, size: size)
+
+            let result = StrokeRegionBuilder.shared.regions(
+                characterKey: characterId,
+                glyphPath: glyphCGPath,
+                strokes: data.strokes,
+                canvasSize: size,
+                glyphStrokeWidth: glyphStrokeWidth,
+                recordingGlyphScale: 0.58
+            )
+
+            for (index, region) in result.regions.enumerated() {
+                let fullPixels = alphaPixelCount(region.regionImage)
+                let halfPixels = alphaPixelCount(region.image(for: 0.5))
+                print("[trace-diag] \(characterId) stroke \(index): full=\(fullPixels)px half=\(halfPixels)px")
+
+                XCTAssertGreaterThan(
+                    fullPixels, 1200,
+                    "\(characterId) stroke \(index): owned region is suspiciously thin"
+                )
+                XCTAssertGreaterThan(
+                    halfPixels, fullPixels / 6,
+                    "\(characterId) stroke \(index): half-progress mask is suspiciously sparse"
+                )
+            }
+        }
+    }
+
+    /// Breaks down where tracing-screen load time goes. Thresholds are generous;
+    /// failures carry the measured times so regressions are visible in CI output.
+    func testTracingLoadHotspotBreakdown() throws {
+        // 1. Stroke JSON decode (9.7MB) — what StrokeDataRepository does on first access.
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "fidel_stroke_data", withExtension: "json"))
+        var start = Date()
+        let rawData = try Data(contentsOf: url)
+        let store = try JSONDecoder().decode(StrokeDataStore.self, from: rawData)
+        let decodeMs = Date().timeIntervalSince(start) * 1000
+        print("[perf] stroke JSON decode: \(Int(decodeMs)) ms for \(store.characters.count) characters")
+
+        // 2. Region build for one typical character at canvas size.
+        let characterId = "1-1"
+        let data = try XCTUnwrap(store.characters[characterId])
+        let size = TracingLayout.canvasSize
+        let glyphPath = PathExtractor.shared.extractCGPath(for: data.character, size: size)
+        let glyphStrokeWidth = PathExtractor.shared.glyphStrokeWidth(for: data.character, size: size)
+
+        start = Date()
+        _ = StrokeRegionBuilder.shared.regions(
+            characterKey: "perf-\(characterId)",
+            glyphPath: glyphPath,
+            strokes: data.strokes,
+            canvasSize: size,
+            glyphStrokeWidth: glyphStrokeWidth,
+            recordingGlyphScale: 0.58
+        )
+        let buildMs = Date().timeIntervalSince(start) * 1000
+        print("[perf] region build \(characterId): \(Int(buildMs)) ms")
+
+        XCTAssertLessThan(decodeMs, 1500, "stroke JSON decode took \(Int(decodeMs)) ms")
+        XCTAssertLessThan(buildMs, 1500, "region build took \(Int(buildMs)) ms")
+    }
+
+    private func alphaPixelCount(_ image: CGImage) -> Int {
+        let width = image.width
+        let height = image.height
+        let bytesPerRow = width * 4
+        var pixels = [UInt8](repeating: 0, count: bytesPerRow * height)
+
+        guard let context = CGContext(
+            data: &pixels,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: bytesPerRow,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        ) else {
+            return 0
+        }
+
+        context.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+        return stride(from: 3, to: pixels.count, by: 4).reduce(0) { count, offset in
+            pixels[offset] > 127 ? count + 1 : count
+        }
+    }
+
     private func completeHorizontalStroke(_ engine: TraceEngine, startTime: TimeInterval = 0) {
         engine.touchBegan(at: CGPoint(x: 30, y: 150), time: startTime)
         engine.touchMoved(to: CGPoint(x: 100, y: 150), time: startTime + 0.1)

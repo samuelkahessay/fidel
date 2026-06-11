@@ -706,8 +706,15 @@ final class StrokeRegionBuilder {
         return current
     }
 
+    /// Minimum spacing between projection segment endpoints. The dense curve
+    /// sampling (48 steps per cubic) is needed for smooth rendering but is
+    /// ~50x redundant for nearest-point projection, where error is bounded by
+    /// segment length. Decimating keeps progress maps accurate to ~2pt while
+    /// cutting the per-pixel projection cost by the same factor.
+    private static let projectionSegmentSpacing: CGFloat = 2.0
+
     private func buildPathSegments(from path: CGPath) -> ([PathSegment], CGFloat) {
-        let points = sampledPoints(from: path)
+        let points = Self.decimate(sampledPoints(from: path), minSpacing: Self.projectionSegmentSpacing)
         guard points.count > 1 else { return ([], 0) }
 
         var segments: [PathSegment] = []
@@ -736,6 +743,27 @@ final class StrokeRegionBuilder {
         }
 
         return (segments, cumulative)
+    }
+
+    /// Drops points closer than `minSpacing` to the previously kept point,
+    /// always preserving the exact final point so arc endpoints stay stable.
+    static func decimate(_ points: [CGPoint], minSpacing: CGFloat) -> [CGPoint] {
+        guard points.count > 2 else { return points }
+
+        var kept: [CGPoint] = [points[0]]
+        for point in points.dropFirst() {
+            let last = kept[kept.count - 1]
+            if hypot(point.x - last.x, point.y - last.y) >= minSpacing {
+                kept.append(point)
+            }
+        }
+
+        if let final = points.last, let lastKept = kept.last,
+           final.x != lastKept.x || final.y != lastKept.y {
+            kept.append(final)
+        }
+
+        return kept
     }
 
     private func sampledPoints(from path: CGPath) -> [CGPoint] {
