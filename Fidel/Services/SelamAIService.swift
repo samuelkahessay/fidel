@@ -28,14 +28,14 @@ struct OpenRouterConfig {
     static let baseURL = URL(string: "https://openrouter.ai/api/v1/chat/completions")!
     static let model = "anthropic/claude-3.5-sonnet"
     
+    /// Debug-only. Release builds ship no client API key; callers fall back to
+    /// MockSelamAIService when this is empty (see SelamViewModel).
     static var apiKey: String {
-        if let key = ProcessInfo.processInfo.environment["OPENROUTER_API_KEY"] {
+        #if DEBUG
+        if let key = ProcessInfo.processInfo.environment["OPENROUTER_API_KEY"], !key.isEmpty {
             return key
         }
-        if let key = Bundle.main.object(forInfoDictionaryKey: "OPENROUTER_API_KEY") as? String,
-           !key.isEmpty, key != "$(OPENROUTER_API_KEY)" {
-            return key
-        }
+        #endif
         return ""
     }
 }

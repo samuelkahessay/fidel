@@ -5,14 +5,14 @@ import SwiftUI
 // MARK: - ElevenLabs Configuration
 
 struct ElevenLabsConfig {
+    /// Debug-only. Release builds ship no client API key; bundled pronunciation
+    /// audio is the production path and isConfigured gates live TTS.
     static var apiKey: String {
+        #if DEBUG
         if let key = ProcessInfo.processInfo.environment["ELEVENLABS_API_KEY"], !key.isEmpty {
             return key
         }
-        if let key = Bundle.main.object(forInfoDictionaryKey: "ELEVENLABS_API_KEY") as? String,
-           !key.isEmpty, key != "$(ELEVENLABS_API_KEY)" {
-            return key
-        }
+        #endif
         return ""
     }
     
