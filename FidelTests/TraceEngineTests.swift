@@ -322,6 +322,34 @@ final class TraceEngineTests: XCTestCase {
         XCTAssertEqual(stats.hintsAutoPlayed, 0)
     }
 
+    // MARK: - Accessibility
+
+    func testAccessibilityCompletionCompletesStrokeAndCountsInStats() {
+        let (engine, recorder) = makeEngine(strokes: [horizontalStroke()])
+
+        engine.accessibilityCompleteActiveStroke()
+        XCTAssertEqual(engine.phase, .strokeComplete)
+        XCTAssertEqual(engine.displayProgress, 1)
+
+        engine.strokeSnapFinished()
+        XCTAssertEqual(engine.phase, .characterComplete)
+
+        guard case .characterCompleted(let stats)? = recorder.events.last else {
+            return XCTFail("Expected characterCompleted event")
+        }
+        XCTAssertEqual(stats.accessibilityCompletions, 1)
+    }
+
+    func testAccessibilityCompletionIgnoredWhileTracing() {
+        let (engine, _) = makeEngine(strokes: [horizontalStroke(), verticalStroke()])
+
+        engine.touchBegan(at: CGPoint(x: 30, y: 150), time: 0)
+        XCTAssertEqual(engine.phase, .tracing)
+
+        engine.accessibilityCompleteActiveStroke()
+        XCTAssertEqual(engine.phase, .strokeComplete, "Completing mid-trace is allowed for accessibility")
+    }
+
     // MARK: - Reveal mask diagnostics
 
     /// The guided canvas fills strokes by masking the glyph with

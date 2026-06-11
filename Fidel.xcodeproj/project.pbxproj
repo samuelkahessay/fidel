@@ -53,6 +53,7 @@
 		AAA00063001 /* StrokeAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00063000 /* StrokeAnimationView.swift */; };
 		AAA00112001 /* GuidedTracingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00112000 /* GuidedTracingCanvas.swift */; };
 		AAA00115001 /* TraceMastery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00115000 /* TraceMastery.swift */; };
+		AAA00116001 /* TraceCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00116000 /* TraceCelebrationView.swift */; };
 		AAA00113001 /* TracingSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00113000 /* TracingSessionView.swift */; };
 		AAA00114001 /* TracingSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00114000 /* TracingSessionViewModel.swift */; };
 		AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAA00070000 /* NotoSansEthiopic-Regular.ttf */; };
@@ -147,6 +148,7 @@
 		AAA00063000 /* StrokeAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimationView.swift; sourceTree = "<group>"; };
 		AAA00112000 /* GuidedTracingCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTracingCanvas.swift; sourceTree = "<group>"; };
 		AAA00115000 /* TraceMastery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceMastery.swift; sourceTree = "<group>"; };
+		AAA00116000 /* TraceCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceCelebrationView.swift; sourceTree = "<group>"; };
 		AAA00113000 /* TracingSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionView.swift; sourceTree = "<group>"; };
 		AAA00114000 /* TracingSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionViewModel.swift; sourceTree = "<group>"; };
 		AAA00070000 /* NotoSansEthiopic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansEthiopic-Regular.ttf"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				AAA00062000 /* DrawingCanvasView.swift */,
 				AAA00063000 /* StrokeAnimationView.swift */,
 				AAA00112000 /* GuidedTracingCanvas.swift */,
+				AAA00116000 /* TraceCelebrationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				AAA00112001 /* GuidedTracingCanvas.swift in Sources */,
 				AAA00113001 /* TracingSessionView.swift in Sources */,
 				AAA00115001 /* TraceMastery.swift in Sources */,
+				AAA00116001 /* TraceCelebrationView.swift in Sources */,
 				AAA00114001 /* TracingSessionViewModel.swift in Sources */,
 				AAA00080001 /* StrokeData.swift in Sources */,
 				AAA00081001 /* StrokeDataRepository.swift in Sources */,

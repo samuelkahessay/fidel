@@ -172,7 +172,12 @@ struct TracingSessionView: View {
         }
         .task(id: celebrationTaskKey) {
             guard viewModel.itemPhase == .celebrating else { return }
-            try? await Task.sleep(for: .seconds(0.75))
+            try? await Task.sleep(for: .seconds(0.6))
+            guard !Task.isCancelled else { return }
+            // Build the next character's reveal regions while the success
+            // state is on screen, so the transition lands without a hitch.
+            viewModel.prewarmNextCharacter()
+            try? await Task.sleep(for: .seconds(0.15))
             guard !Task.isCancelled else { return }
             withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
                 viewModel.advanceAfterCelebration()
@@ -202,8 +207,8 @@ struct TracingSessionView: View {
         }
     }
 
-    /// Completed character: clean filled glyph; for memory level, the
-    /// learner's own writing is overlaid for comparison.
+    /// Completed character: clean filled glyph with a sparkle burst; for the
+    /// memory level, the learner's own writing is overlaid for comparison.
     private func celebrationCanvas(_ item: TracingSessionViewModel.SessionItem, canvasSize: CGSize) -> some View {
         let glyphPath = PathExtractor.shared.extractPath(for: item.character.character, size: canvasSize)
 
@@ -220,6 +225,8 @@ struct TracingSessionView: View {
                 .aspectRatio(contentMode: .fit)
                 .opacity(0.4)
             }
+
+            TraceCelebrationView(size: canvasSize)
         }
     }
 

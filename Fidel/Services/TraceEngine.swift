@@ -41,6 +41,7 @@ final class TraceEngine {
         var misses: Int = 0
         var hintsAutoPlayed: Int = 0
         var duration: TimeInterval = 0
+        var accessibilityCompletions: Int = 0
     }
 
     // MARK: - Rendering state
@@ -70,6 +71,7 @@ final class TraceEngine {
     private var outsideSince: TimeInterval?
     private var totalMisses = 0
     private var totalHintsAutoPlayed = 0
+    private var totalAccessibilityCompletions = 0
     private var firstTouchTime: TimeInterval?
     private var lastTouchTime: TimeInterval = 0
 
@@ -103,6 +105,7 @@ final class TraceEngine {
         outsideSince = nil
         totalMisses = 0
         totalHintsAutoPlayed = 0
+        totalAccessibilityCompletions = 0
         firstTouchTime = nil
         lastTouchTime = 0
     }
@@ -215,7 +218,8 @@ final class TraceEngine {
             emit(.characterCompleted(TraceAttemptStats(
                 misses: totalMisses,
                 hintsAutoPlayed: totalHintsAutoPlayed,
-                duration: duration
+                duration: duration,
+                accessibilityCompletions: totalAccessibilityCompletions
             )))
         }
     }
@@ -224,6 +228,14 @@ final class TraceEngine {
     func requestHint() {
         guard phase == .waitingForStart else { return }
         phase = .playingHint
+    }
+
+    /// VoiceOver action: completes the active stroke without tracing.
+    /// Counted in stats so the attempt scores a fixed, promotion-reachable value.
+    func accessibilityCompleteActiveStroke() {
+        guard phase == .waitingForStart || phase == .tracing, activeStroke != nil else { return }
+        totalAccessibilityCompletions += 1
+        completeActiveStroke()
     }
 
     /// The canvas finished demonstrating the active stroke.

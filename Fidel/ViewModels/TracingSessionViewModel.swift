@@ -90,6 +90,9 @@ final class TracingSessionViewModel {
     private let strokeHaptic = UIImpactFeedbackGenerator(style: .light)
     private let missHaptic = UIImpactFeedbackGenerator(style: .soft)
     private let successHaptic = UINotificationFeedbackGenerator()
+    private let bundledAudio = BundledAudioService()
+    private let audioAssets = AudioAssetRepository.shared
+    @ObservationIgnored private lazy var ttsService = AudioService()
 
     // MARK: - Scoring
 
@@ -104,6 +107,16 @@ final class TracingSessionViewModel {
     static func memoryScore(evaluationScore: Double, usedAssist: Bool) -> Int {
         let base = min(100, max(50, Int((evaluationScore * 100).rounded()) + 25))
         return usedAssist ? min(base, 69) : base
+    }
+
+    /// Final score for a guided attempt. VoiceOver stroke completions score a
+    /// fixed 70 - exactly the promotion threshold - so accessible users can
+    /// still progress; the guide assist cap applies on top.
+    static func sessionScore(stats: TraceEngine.TraceAttemptStats, usedGuideAssist: Bool) -> Int {
+        let base = stats.accessibilityCompletions > 0
+            ? 70
+            : guidedScore(misses: stats.misses, hintsAutoPlayed: stats.hintsAutoPlayed)
+        return usedGuideAssist ? min(base, 69) : base
     }
 
     // MARK: - Configuration
@@ -316,9 +329,8 @@ final class TracingSessionViewModel {
 
         case .characterCompleted(let stats):
             lastStats = stats
-            let base = Self.guidedScore(misses: stats.misses, hintsAutoPlayed: stats.hintsAutoPlayed)
             completeCharacter(
-                score: usedGuideAssist ? min(base, 69) : base,
+                score: Self.sessionScore(stats: stats, usedGuideAssist: usedGuideAssist),
                 misses: stats.misses
             )
         }
@@ -331,6 +343,7 @@ final class TracingSessionViewModel {
 
         completedCount += 1
         successHaptic.notificationOccurred(.success)
+        playPronunciation(for: item.character)
 
         if let outcome = progressRepository?.recordTraceCompletion(
             characterId: item.character.id,
@@ -342,6 +355,34 @@ final class TracingSessionViewModel {
         }
 
         itemPhase = .celebrating
+    }
+
+    /// Plays the character's pronunciation: bundled Azure audio when present,
+    /// otherwise the existing TTS pipeline (with AVSpeech am-ET fallback).
+    private func playPronunciation(for character: FidelCharacter) {
+        if let asset = audioAssets.asset(for: .fidelCharacter, contentId: character.id),
+           let url = audioAssets.audioURL(for: asset) {
+            bundledAudio.play(asset: asset, url: url)
+        } else {
+            ttsService.speakAmharic(character.character, transliteration: character.romanization)
+        }
+    }
+
+    /// Builds the next character's reveal regions during the celebration pause
+    /// so the upcoming canvas appears without a hitch.
+    func prewarmNextCharacter() {
+        guard currentIndex + 1 < items.count else { return }
+        let next = items[currentIndex + 1]
+        guard let strokeData = StrokeDataRepository.shared.getStrokeData(for: next.character.id) else { return }
+
+        _ = StrokeRegionBuilder.shared.regions(
+            characterKey: next.character.id,
+            glyphPath: PathExtractor.shared.extractCGPath(for: next.character.character, size: canvasSize),
+            strokes: strokeData.strokes,
+            canvasSize: canvasSize,
+            glyphStrokeWidth: PathExtractor.shared.glyphStrokeWidth(for: next.character.character, size: canvasSize),
+            recordingGlyphScale: Self.recordingGlyphScale
+        )
     }
 
     private func prepareCurrentItem() {

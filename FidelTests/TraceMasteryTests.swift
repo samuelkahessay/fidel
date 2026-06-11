@@ -147,6 +147,24 @@ final class TraceMasteryTests: XCTestCase {
         XCTAssertEqual(TracingSessionViewModel.guidedScore(misses: 9, hintsAutoPlayed: 3), 50)
     }
 
+    func testSessionScoreUsesFixedScoreForAccessibilityCompletions() {
+        let cleanStats = TraceEngine.TraceAttemptStats(misses: 0, hintsAutoPlayed: 0, duration: 4)
+        XCTAssertEqual(
+            TracingSessionViewModel.sessionScore(stats: cleanStats, usedGuideAssist: false), 100
+        )
+
+        var accessibleStats = cleanStats
+        accessibleStats.accessibilityCompletions = 2
+        XCTAssertEqual(
+            TracingSessionViewModel.sessionScore(stats: accessibleStats, usedGuideAssist: false), 70,
+            "Accessibility completions score a fixed 70 so promotion stays reachable"
+        )
+        XCTAssertEqual(
+            TracingSessionViewModel.sessionScore(stats: accessibleStats, usedGuideAssist: true), 69,
+            "Guide assist still caps below promotion"
+        )
+    }
+
     func testMemoryScoreFormulaAndAssistCap() {
         XCTAssertEqual(TracingSessionViewModel.memoryScore(evaluationScore: 0.5, usedAssist: false), 75)
         XCTAssertEqual(TracingSessionViewModel.memoryScore(evaluationScore: 0.9, usedAssist: false), 100)

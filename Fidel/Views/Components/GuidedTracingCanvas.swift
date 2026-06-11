@@ -141,6 +141,13 @@ struct GuidedTracingCanvas: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityDescription)
+        .accessibilityValue("\(Int((engine.displayProgress * 100).rounded())) percent traced")
+        .accessibilityAction(named: "Play demonstration") {
+            engine.requestHint()
+        }
+        .accessibilityAction(named: "Mark stroke complete") {
+            engine.accessibilityCompleteActiveStroke()
+        }
     }
 
     // MARK: - Stroke fill
