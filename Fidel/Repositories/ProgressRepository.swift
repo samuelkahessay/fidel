@@ -28,6 +28,12 @@ protocol ProgressRepositoryProtocol {
     func getCurrentStage() -> Int
     func setCurrentStage(_ stage: Int)
 
+    // Trace Mastery
+    func getTraceMastery(for characterId: String) -> CharacterTraceMastery?
+    func allTraceMastery() -> [CharacterTraceMastery]
+    @discardableResult
+    func recordTraceCompletion(characterId: String, completedLevel: Int, score: Int, misses: Int) -> TraceCompletionOutcome
+
     // Statistics
     func getLessonsCompletedCount() -> Int
     func getVocabularyMasteredCount() -> Int
@@ -215,6 +221,117 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         let progress = getOrCreateUserProgress()
         progress.currentStage = stage
         progress.updatedAt = Date.now
+    }
+
+    // MARK: - Trace Mastery
+
+    /// Score at or above which completing the next level promotes the character.
+    static let tracePromotionScore = 70
+
+    func getTraceMastery(for characterId: String) -> CharacterTraceMastery? {
+        let ownerId = activeUserId
+        let descriptor = FetchDescriptor<CharacterTraceMastery>(
+            predicate: #Predicate<CharacterTraceMastery> {
+                $0.ownerUserId == ownerId && $0.characterId == characterId
+            }
+        )
+        guard let records = try? modelContext.fetch(descriptor), !records.isEmpty else {
+            return nil
+        }
+        return consolidateTraceMastery(records, ownerId: ownerId)
+    }
+
+    func allTraceMastery() -> [CharacterTraceMastery] {
+        let ownerId = activeUserId
+        let descriptor = FetchDescriptor<CharacterTraceMastery>(
+            predicate: #Predicate<CharacterTraceMastery> { $0.ownerUserId == ownerId }
+        )
+        guard let records = try? modelContext.fetch(descriptor) else { return [] }
+
+        var grouped: [String: [CharacterTraceMastery]] = [:]
+        for record in records {
+            grouped[record.characterId, default: []].append(record)
+        }
+        return grouped.values.map { consolidateTraceMastery($0, ownerId: ownerId) }
+    }
+
+    @discardableResult
+    func recordTraceCompletion(characterId: String, completedLevel: Int, score: Int, misses: Int) -> TraceCompletionOutcome {
+        let mastery = getTraceMastery(for: characterId) ?? {
+            let created = CharacterTraceMastery(characterId: characterId, ownerUserId: activeUserId)
+            modelContext.insert(created)
+            return created
+        }()
+
+        mastery.attempts += 1
+        mastery.totalMisses += misses
+        mastery.bestScore = max(mastery.bestScore, score)
+        mastery.lastPracticedAt = Date.now
+        mastery.updatedAt = Date.now
+
+        let didPromote = completedLevel == mastery.level + 1 && score >= Self.tracePromotionScore
+        let xpAwarded: Int
+        if didPromote {
+            mastery.level = completedLevel
+            switch completedLevel {
+            case 1:
+                // First-ever completion: existing path awards +5 XP and feeds
+                // the stage-0 "characters recognized" criterion.
+                traceCharacter(characterId)
+                xpAwarded = 5
+            case 2:
+                addXP(8)
+                xpAwarded = 8
+            default:
+                addXP(12)
+                xpAwarded = 12
+            }
+        } else {
+            addXP(1)
+            xpAwarded = 1
+        }
+
+        return TraceCompletionOutcome(
+            xpAwarded: xpAwarded,
+            didPromote: didPromote,
+            newLevel: mastery.level
+        )
+    }
+
+    private func consolidateTraceMastery(_ records: [CharacterTraceMastery], ownerId: String) -> CharacterTraceMastery {
+        precondition(!records.isEmpty, "Expected at least one CharacterTraceMastery record")
+        var primary = records[0]
+        if let strongest = records.max(by: { !isTraceMastery($0, strongerThan: $1) }) {
+            primary = strongest
+        }
+
+        var didMutate = primary.ownerUserId != ownerId
+        if didMutate {
+            primary.ownerUserId = ownerId
+        }
+
+        for record in records where record !== primary {
+            primary.level = max(primary.level, record.level)
+            primary.bestScore = max(primary.bestScore, record.bestScore)
+            primary.attempts = max(primary.attempts, record.attempts)
+            primary.totalMisses = max(primary.totalMisses, record.totalMisses)
+            primary.lastPracticedAt = maxDate(primary.lastPracticedAt, record.lastPracticedAt)
+            didMutate = true
+            modelContext.delete(record)
+        }
+
+        if didMutate {
+            primary.updatedAt = Date.now
+        }
+
+        return primary
+    }
+
+    private func isTraceMastery(_ lhs: CharacterTraceMastery, strongerThan rhs: CharacterTraceMastery) -> Bool {
+        if lhs.level != rhs.level { return lhs.level > rhs.level }
+        if lhs.bestScore != rhs.bestScore { return lhs.bestScore > rhs.bestScore }
+        if lhs.attempts != rhs.attempts { return lhs.attempts > rhs.attempts }
+        return lhs.updatedAt > rhs.updatedAt
     }
 
     // MARK: - Statistics

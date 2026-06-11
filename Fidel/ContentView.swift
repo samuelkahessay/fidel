@@ -562,7 +562,7 @@ private struct PracticeModeDestination: View {
         case .pronunciation:
             PronunciationPracticeView()
         case .tracing:
-            TracingView()
+            TracingSessionView()
         }
     }
 }

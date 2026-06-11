@@ -161,7 +161,7 @@ private struct PracticeHubDestination: View {
         case .pronunciation:
             PronunciationPracticeView()
         case .tracing:
-            TracingView()
+            TracingSessionView()
         }
     }
 }

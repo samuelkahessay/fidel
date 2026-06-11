@@ -51,8 +51,11 @@
 		AAA00061001 /* DrawingEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00061000 /* DrawingEvaluator.swift */; };
 		AAA00062001 /* DrawingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00062000 /* DrawingCanvasView.swift */; };
 		AAA00063001 /* StrokeAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00063000 /* StrokeAnimationView.swift */; };
-		AAA00064001 /* TracingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00064000 /* TracingViewModel.swift */; };
-		AAA00065001 /* TracingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00065000 /* TracingView.swift */; };
+		AAA00112001 /* GuidedTracingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00112000 /* GuidedTracingCanvas.swift */; };
+		AAA00115001 /* TraceMastery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00115000 /* TraceMastery.swift */; };
+		AAA00116001 /* TraceCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00116000 /* TraceCelebrationView.swift */; };
+		AAA00113001 /* TracingSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00113000 /* TracingSessionView.swift */; };
+		AAA00114001 /* TracingSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00114000 /* TracingSessionViewModel.swift */; };
 		AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAA00070000 /* NotoSansEthiopic-Regular.ttf */; };
 		AAA00071001 /* NotoSerifEthiopic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAA00071000 /* NotoSerifEthiopic-Regular.ttf */; };
 		AAA00080001 /* StrokeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00080000 /* StrokeData.swift */; };
@@ -79,6 +82,10 @@
 		AAA00105001 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = AAA00105000 /* Audio */; };
 		AAA00106001 /* audio_catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00106000 /* audio_catalog.json */; };
 		BAA00002001 /* LocalFirstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00002000 /* LocalFirstTests.swift */; };
+		AAA00110001 /* TraceGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00110000 /* TraceGeometry.swift */; };
+		AAA00111001 /* TraceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00111000 /* TraceEngine.swift */; };
+		BAA00010001 /* TraceEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00010000 /* TraceEngineTests.swift */; };
+		BAA00011001 /* TraceMasteryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00011000 /* TraceMasteryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,8 +146,11 @@
 		AAA00061000 /* DrawingEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingEvaluator.swift; sourceTree = "<group>"; };
 		AAA00062000 /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
 		AAA00063000 /* StrokeAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimationView.swift; sourceTree = "<group>"; };
-		AAA00064000 /* TracingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingViewModel.swift; sourceTree = "<group>"; };
-		AAA00065000 /* TracingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingView.swift; sourceTree = "<group>"; };
+		AAA00112000 /* GuidedTracingCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTracingCanvas.swift; sourceTree = "<group>"; };
+		AAA00115000 /* TraceMastery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceMastery.swift; sourceTree = "<group>"; };
+		AAA00116000 /* TraceCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceCelebrationView.swift; sourceTree = "<group>"; };
+		AAA00113000 /* TracingSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionView.swift; sourceTree = "<group>"; };
+		AAA00114000 /* TracingSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionViewModel.swift; sourceTree = "<group>"; };
 		AAA00070000 /* NotoSansEthiopic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansEthiopic-Regular.ttf"; sourceTree = "<group>"; };
 		AAA00071000 /* NotoSerifEthiopic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifEthiopic-Regular.ttf"; sourceTree = "<group>"; };
 		AAA00080000 /* StrokeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeData.swift; sourceTree = "<group>"; };
@@ -168,6 +178,10 @@
 		AAA00106000 /* audio_catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = audio_catalog.json; sourceTree = "<group>"; };
 		BAA00001000 /* FidelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FidelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAA00002000 /* LocalFirstTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFirstTests.swift; sourceTree = "<group>"; };
+		AAA00110000 /* TraceGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceGeometry.swift; sourceTree = "<group>"; };
+		AAA00111000 /* TraceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngine.swift; sourceTree = "<group>"; };
+		BAA00010000 /* TraceEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngineTests.swift; sourceTree = "<group>"; };
+		BAA00011000 /* TraceMasteryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceMasteryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -215,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				BAA00002000 /* LocalFirstTests.swift */,
+				BAA00010000 /* TraceEngineTests.swift */,
+				BAA00011000 /* TraceMasteryTests.swift */,
 			);
 			path = FidelTests;
 			sourceTree = "<group>";
@@ -228,6 +244,7 @@
 				AAA00025000 /* SelamModels.swift */,
 				AAA00050000 /* LearningStage.swift */,
 				AAA00080000 /* StrokeData.swift */,
+				AAA00115000 /* TraceMastery.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,7 +269,7 @@
 				AAA00053000 /* JourneyView.swift */,
 				AAA00054000 /* ToolsView.swift */,
 				AAA00055000 /* LessonComponents.swift */,
-				AAA00065000 /* TracingView.swift */,
+				AAA00113000 /* TracingSessionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +288,8 @@
 			children = (
 				AAA00062000 /* DrawingCanvasView.swift */,
 				AAA00063000 /* StrokeAnimationView.swift */,
+				AAA00112000 /* GuidedTracingCanvas.swift */,
+				AAA00116000 /* TraceCelebrationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -297,7 +316,7 @@
 				AAA00047000 /* ProgressDashboardViewModel.swift */,
 				AAA00028000 /* SelamViewModel.swift */,
 				AAA00052000 /* JourneyViewModel.swift */,
-				AAA00064000 /* TracingViewModel.swift */,
+				AAA00114000 /* TracingSessionViewModel.swift */,
 				AAA00082000 /* StrokeRecorderViewModel.swift */,
 			);
 			path = ViewModels;
@@ -314,6 +333,8 @@
 				AAA00061000 /* DrawingEvaluator.swift */,
 				AAA00081000 /* StrokeDataRepository.swift */,
 				AAA00085000 /* StrokeSmoother.swift */,
+				AAA00110000 /* TraceGeometry.swift */,
+				AAA00111000 /* TraceEngine.swift */,
 				AAA00097000 /* AmharicDataLoader.swift */,
 				AAA00098000 /* AppSettingsStore.swift */,
 				AAA00099000 /* ProgressExportService.swift */,
@@ -503,13 +524,18 @@
 				AAA00061001 /* DrawingEvaluator.swift in Sources */,
 				AAA00062001 /* DrawingCanvasView.swift in Sources */,
 				AAA00063001 /* StrokeAnimationView.swift in Sources */,
-				AAA00064001 /* TracingViewModel.swift in Sources */,
-				AAA00065001 /* TracingView.swift in Sources */,
+				AAA00112001 /* GuidedTracingCanvas.swift in Sources */,
+				AAA00113001 /* TracingSessionView.swift in Sources */,
+				AAA00115001 /* TraceMastery.swift in Sources */,
+				AAA00116001 /* TraceCelebrationView.swift in Sources */,
+				AAA00114001 /* TracingSessionViewModel.swift in Sources */,
 				AAA00080001 /* StrokeData.swift in Sources */,
 				AAA00081001 /* StrokeDataRepository.swift in Sources */,
 				AAA00082001 /* StrokeRecorderViewModel.swift in Sources */,
 				AAA00083001 /* StrokeRecorderView.swift in Sources */,
 				AAA00085001 /* StrokeSmoother.swift in Sources */,
+				AAA00110001 /* TraceGeometry.swift in Sources */,
+				AAA00111001 /* TraceEngine.swift in Sources */,
 				AAA00086001 /* StrokeReviewView.swift in Sources */,
 				AAA00097001 /* AmharicDataLoader.swift in Sources */,
 				AAA00098001 /* AppSettingsStore.swift in Sources */,
@@ -525,6 +551,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAA00002001 /* LocalFirstTests.swift in Sources */,
+				BAA00010001 /* TraceEngineTests.swift in Sources */,
+				BAA00011001 /* TraceMasteryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

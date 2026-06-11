@@ -52,7 +52,7 @@ struct JourneyView: View {
                 case .speedDrill:
                     SpeedDrillView()
                 case .tracing:
-                    TracingView()
+                    TracingSessionView()
                 }
             }
             .sheet(item: $viewModel.tappedLockedStage) { stage in
