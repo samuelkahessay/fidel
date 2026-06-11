@@ -266,13 +266,17 @@ def synthesize(root: Path, rows: list[dict], force: bool) -> None:
             continue
 
         tts_text = row["text"]
+        # Isolated character pronunciation is spoken noticeably slower than
+        # phrases so learners can hear the syllable clearly.
+        rate = "-8%"
         if row["contentType"] == "fidelCharacter":
             tts_text = FIDEL_TTS_SUBSTITUTIONS.get(row["contentId"], tts_text)
+            rate = "-35%"
         text = escape(tts_text, quote=False)
         ssml = (
             f"<speak version='1.0' xml:lang='{LANGUAGE}'>"
             f"<voice xml:lang='{LANGUAGE}' name='{row['voice']}'>"
-            f"<prosody rate='-8%'>{text}</prosody>"
+            f"<prosody rate='{rate}'>{text}</prosody>"
             "</voice></speak>"
         )
         req = request.Request(endpoint, data=ssml.encode("utf-8"), method="POST")
