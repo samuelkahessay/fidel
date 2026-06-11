@@ -151,13 +151,14 @@ final class LocalFirstTests: XCTestCase {
     func testBundledAudioManifestFilesExist() {
         let repository = AudioAssetRepository()
         let placeholderIds: Set<String> = ["17", "19", "55"]
+        let phraseAssets = AmharicData.audioAssets.filter { $0.contentType == .phrase }
 
-        XCTAssertEqual(AmharicData.audioAssets.count, 171)
+        XCTAssertEqual(phraseAssets.count, 171)
         XCTAssertEqual(Set(AmharicData.audioAssets.map(\.voice)), ["am-ET-AmehaNeural"])
         XCTAssertTrue(AmharicData.audioAssets.allSatisfy { $0.assetRole == "active" })
-        XCTAssertTrue(AmharicData.audioAssets.allSatisfy { $0.assetSet == "all-phrases-v1" })
-        XCTAssertTrue(AmharicData.audioAssets.allSatisfy { !placeholderIds.contains($0.contentId) })
-        for asset in AmharicData.audioAssets {
+        XCTAssertTrue(phraseAssets.allSatisfy { $0.assetSet == "all-phrases-v1" })
+        XCTAssertTrue(phraseAssets.allSatisfy { !placeholderIds.contains($0.contentId) })
+        for asset in phraseAssets {
             XCTAssertTrue(asset.file.contains("/am-ET-AmehaNeural/"), asset.file)
             XCTAssertNotNil(
                 asset.file.range(of: #"phrase-\d{3}-[a-z0-9-]+\.mp3$"#, options: .regularExpression),
@@ -165,6 +166,33 @@ final class LocalFirstTests: XCTestCase {
             )
             XCTAssertTrue(asset.englishSlug.map { asset.file.contains("-\($0).mp3") } ?? false, asset.file)
             XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled audio file: \(asset.file)")
+        }
+    }
+
+    func testBundledFidelCharacterAudioIsCompleteWhenPresent() {
+        let repository = AudioAssetRepository()
+        let fidelAssets = AmharicData.audioAssets.filter { $0.contentType == .fidelCharacter }
+
+        // The manifest only carries fidel rows once their mp3s are generated;
+        // when present, the library must cover every character completely.
+        XCTAssertTrue(
+            fidelAssets.isEmpty || fidelAssets.count == 238,
+            "Partial fidel audio library: \(fidelAssets.count) of 238 rows"
+        )
+
+        for asset in fidelAssets {
+            XCTAssertEqual(asset.assetSet, "fidel-characters-v1")
+            XCTAssertTrue(asset.file.hasPrefix("Audio/fidel/azure/"), asset.file)
+            XCTAssertNotNil(
+                asset.file.range(of: #"fidel-\d{2}-\d-[a-z0-9-]+\.mp3$"#, options: .regularExpression),
+                asset.file
+            )
+            XCTAssertNotNil(repository.audioURL(for: asset), "Missing bundled audio file: \(asset.file)")
+        }
+
+        if !fidelAssets.isEmpty {
+            let sample = repository.asset(for: .fidelCharacter, contentId: "0-1")
+            XCTAssertNotNil(sample, "Expected fidel audio asset for character 0-1")
         }
     }
 
