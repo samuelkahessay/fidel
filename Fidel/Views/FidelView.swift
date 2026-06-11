@@ -243,6 +243,7 @@ struct FidelCell: View {
 struct CharacterDetailView: View {
     let character: FidelCharacter
     @Environment(\.dismiss) private var dismiss
+    @State private var showTracing = false
     
     var body: some View {
         VStack(spacing: 24) {
@@ -291,6 +292,14 @@ struct CharacterDetailView: View {
                         .fill(AppTheme.terracottaColor.opacity(0.1))
                 )
             
+            Button {
+                showTracing = true
+            } label: {
+                Label("Practice writing", systemImage: "pencil.and.outline")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(PrimaryButtonStyle())
+
             Button(action: { dismiss() }) {
                 Text("Close")
                     .frame(maxWidth: .infinity)
@@ -300,6 +309,16 @@ struct CharacterDetailView: View {
         .padding(32)
         .background(FidelPaperBackground())
         .accessibilityElement(children: .contain)
+        .fullScreenCover(isPresented: $showTracing) {
+            NavigationStack {
+                TracingSessionView(plan: .single(character))
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button("Done") { showTracing = false }
+                        }
+                    }
+            }
+        }
     }
 }
 

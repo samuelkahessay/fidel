@@ -80,6 +80,16 @@ struct TracingSessionView: View {
 
             Spacer()
 
+            Text(levelLabel(item.level))
+                .font(AppTheme.Typography.caption2.weight(.semibold))
+                .foregroundStyle(AppTheme.practiceColor)
+                .padding(.horizontal, AppTheme.Spacing.xs)
+                .padding(.vertical, AppTheme.Spacing.xxs)
+                .background(
+                    Capsule().fill(AppTheme.practiceColor.opacity(0.10))
+                )
+                .accessibilityLabel("Practice level: \(levelLabel(item.level))")
+
             if viewModel.itemPhase == .tracing {
                 Button {
                     replayToken += 1
@@ -96,6 +106,14 @@ struct TracingSessionView: View {
             }
         }
         .glassCard(padding: AppTheme.Spacing.sm)
+    }
+
+    private func levelLabel(_ level: Int) -> String {
+        switch level {
+        case 1: return "Guided"
+        case 2: return "Faint guide"
+        default: return "From memory"
+        }
     }
 
     // MARK: - Canvas
@@ -130,18 +148,21 @@ struct TracingSessionView: View {
                     .accessibilityLabel("Animated stroke order for \(item.character.character)")
                     .accessibilityHint("Double tap to skip ahead and start tracing")
 
-                case .tracing, .celebrating:
+                case .tracing:
                     GuidedTracingCanvas(
                         character: item.character.character,
                         characterId: item.character.id,
                         size: canvasSize,
-                        guideLevel: item.level >= 2 ? .faint : .full,
-                        fillColor: viewModel.itemPhase == .celebrating
-                            ? AppTheme.successColor
-                            : AppTheme.practiceColor,
+                        guideLevel: item.level >= 2 && !viewModel.usedGuideAssist ? .faint : .full,
+                        fillColor: AppTheme.practiceColor,
                         engine: viewModel.engine
                     )
-                    .allowsHitTesting(viewModel.itemPhase == .tracing)
+
+                case .memoryDrawing:
+                    memoryCanvas(item, canvasSize: canvasSize)
+
+                case .celebrating:
+                    celebrationCanvas(item, canvasSize: canvasSize)
                 }
             }
             .frame(width: canvasSize.width, height: canvasSize.height)
@@ -163,6 +184,45 @@ struct TracingSessionView: View {
         "\(viewModel.currentIndex)-\(viewModel.itemPhase == .celebrating)"
     }
 
+    /// Level 3: blank canvas, no ghost. The learner writes from memory and
+    /// the shape evaluator checks the result.
+    private func memoryCanvas(_ item: TracingSessionViewModel.SessionItem, canvasSize: CGSize) -> some View {
+        ZStack {
+            Text("Write \(item.character.romanization) from memory")
+                .font(AppTheme.Typography.caption)
+                .foregroundStyle(AppTheme.mutedInkColor)
+                .frame(maxHeight: .infinity, alignment: .top)
+                .padding(.top, AppTheme.Spacing.sm)
+                .opacity(viewModel.hasMemoryDrawing ? 0 : 1)
+
+            DrawingCanvasView(drawing: $viewModel.userDrawing)
+                .frame(width: canvasSize.width, height: canvasSize.height)
+                .accessibilityLabel("Writing canvas for \(item.character.character)")
+                .accessibilityHint("Write the character from memory, then use Check")
+        }
+    }
+
+    /// Completed character: clean filled glyph; for memory level, the
+    /// learner's own writing is overlaid for comparison.
+    private func celebrationCanvas(_ item: TracingSessionViewModel.SessionItem, canvasSize: CGSize) -> some View {
+        let glyphPath = PathExtractor.shared.extractPath(for: item.character.character, size: canvasSize)
+
+        return ZStack {
+            glyphPath.fill(AppTheme.successColor)
+
+            if item.level >= 3, viewModel.hasMemoryDrawing {
+                Image(uiImage: TracingDrawingRenderer.thumbnail(
+                    from: viewModel.userDrawing,
+                    sourceCanvasSize: viewModel.canvasSize,
+                    outputSize: canvasSize
+                ))
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .opacity(0.4)
+            }
+        }
+    }
+
     // MARK: - Footer
 
     @ViewBuilder
@@ -181,25 +241,78 @@ struct TracingSessionView: View {
         case .tracing:
             HStack {
                 Spacer()
-                Button {
-                    withAnimation(AppTheme.Animation.standard) {
-                        viewModel.skipCharacter()
-                    }
-                } label: {
-                    Label("Skip", systemImage: "forward.fill")
-                        .font(AppTheme.Typography.subheadline)
-                        .foregroundStyle(AppTheme.inkSecondaryColor)
-                }
-                .buttonStyle(.plain)
-                .frame(minHeight: 44)
-                .accessibilityHint("Skips this character without tracing it")
+                skipButton
                 Spacer()
+            }
+
+        case .memoryDrawing:
+            VStack(spacing: AppTheme.Spacing.sm) {
+                if viewModel.memoryRetryReason != nil {
+                    Text(viewModel.memoryRetryMessage)
+                        .font(AppTheme.Typography.subheadline)
+                        .foregroundStyle(AppTheme.inkColor)
+                        .multilineTextAlignment(.center)
+                }
+
+                HStack(spacing: AppTheme.Spacing.md) {
+                    Button {
+                        viewModel.clearMemoryDrawing()
+                    } label: {
+                        Label("Clear", systemImage: "trash")
+                    }
+                    .buttonStyle(SecondaryButtonStyle(isFullWidth: true))
+                    .disabled(!viewModel.hasMemoryDrawing)
+                    .opacity(viewModel.hasMemoryDrawing ? 1 : 0.55)
+
+                    Button {
+                        withAnimation(AppTheme.Animation.standard) {
+                            viewModel.evaluateMemoryDrawing()
+                        }
+                    } label: {
+                        Label("Check", systemImage: "checkmark")
+                    }
+                    .buttonStyle(PrimaryButtonStyle(isFullWidth: true))
+                    .disabled(!viewModel.hasMemoryDrawing)
+                    .opacity(viewModel.hasMemoryDrawing ? 1 : 0.7)
+                }
+
+                HStack(spacing: AppTheme.Spacing.xl) {
+                    Button {
+                        withAnimation(AppTheme.Animation.standard) {
+                            viewModel.showGuideAssist()
+                        }
+                    } label: {
+                        Label("Show guide", systemImage: "eye")
+                            .font(AppTheme.Typography.subheadline)
+                            .foregroundStyle(AppTheme.practiceColor)
+                    }
+                    .buttonStyle(.plain)
+                    .frame(minHeight: 44)
+                    .accessibilityHint("Switches to guided tracing for this character")
+
+                    skipButton
+                }
             }
 
         case .celebrating:
             // Keeps the footer height stable while celebrating.
             Color.clear.frame(height: 44)
         }
+    }
+
+    private var skipButton: some View {
+        Button {
+            withAnimation(AppTheme.Animation.standard) {
+                viewModel.skipCharacter()
+            }
+        } label: {
+            Label("Skip", systemImage: "forward.fill")
+                .font(AppTheme.Typography.subheadline)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
+        }
+        .buttonStyle(.plain)
+        .frame(minHeight: 44)
+        .accessibilityHint("Skips this character")
     }
 
     // MARK: - Completion
@@ -246,6 +359,7 @@ struct TracingSessionView: View {
     }
     .modelContainer(for: [
         UserProgress.self,
-        FlashcardProgress.self
+        FlashcardProgress.self,
+        CharacterTraceMastery.self
     ], inMemory: true)
 }

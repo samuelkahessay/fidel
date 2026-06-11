@@ -286,7 +286,8 @@ final class LocalFirstTests: XCTestCase {
             UserProgress.self,
             FlashcardProgress.self,
             SelamConversation.self,
-            SelamMessage.self
+            SelamMessage.self,
+            CharacterTraceMastery.self
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
         return try ModelContainer(for: schema, configurations: [configuration])

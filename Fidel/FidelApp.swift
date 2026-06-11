@@ -8,7 +8,8 @@ struct FidelApp: App {
             UserProgress.self,
             FlashcardProgress.self,
             SelamConversation.self,
-            SelamMessage.self
+            SelamMessage.self,
+            CharacterTraceMastery.self
         ])
         let modelConfiguration = ModelConfiguration(
             schema: schema,
