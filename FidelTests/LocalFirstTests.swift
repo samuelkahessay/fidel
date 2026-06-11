@@ -71,7 +71,7 @@ final class LocalFirstTests: XCTestCase {
     }
 
     func testTracingUsesOneCanvasGeometryForGuideAndEvaluation() {
-        XCTAssertEqual(TracingViewModel.canvasSize, TracingLayout.canvasSize)
+        XCTAssertEqual(TracingSessionViewModel().canvasSize, TracingLayout.canvasSize)
         XCTAssertEqual(TracingLayout.drawingGuideSize, TracingLayout.canvasSize)
     }
 
@@ -92,8 +92,8 @@ final class LocalFirstTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(metrics.cellWidth, 44)
     }
 
-    func testTracingViewModelUpdatesCanvasGeometryForAdaptiveLayout() {
-        let viewModel = TracingViewModel()
+    func testTracingSessionViewModelUpdatesCanvasGeometryForAdaptiveLayout() {
+        let viewModel = TracingSessionViewModel()
 
         viewModel.updateCanvasSize(CGSize(width: 260, height: 260))
 

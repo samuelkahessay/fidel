@@ -14,7 +14,7 @@ import Observation
 @Observable
 final class TraceEngine {
 
-    enum StrokePhase: Equatable {
+    enum StrokePhase: Equatable, Hashable {
         /// Hint loop runs; a touch must land near the active stroke's start.
         case waitingForStart
         /// Finger down, advancing arc-length progress along the stroke.

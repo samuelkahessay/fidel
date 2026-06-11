@@ -11,11 +11,14 @@ struct StrokeAnimationView: View {
     let character: String
     let size: CGSize
     var characterId: String? = nil
+    var maxLoops = 2
+    var totalDuration: CGFloat = 2.0
+    /// Called once after the final loop completes (or shortly after the static
+    /// reveal under Reduce Motion).
+    var onFinished: (() -> Void)? = nil
 
     @State private var animationProgress: CGFloat = 0
     @State private var loopCount = 0
-    private let maxLoops = 2
-    private let totalDuration: CGFloat = 2.0
 
     /// The glyph occupied 58% of the canvas (centered) during recording.
     /// Strokes must be remapped from recording space to full-glyph space.
@@ -71,25 +74,32 @@ struct StrokeAnimationView: View {
             // Faint outline always visible as guide
             glyphPath.fill(AppTheme.practiceColor.opacity(0.08))
 
-            // Filled glyph masked by per-pixel arc-length reveal.
-            glyphPath.fill(AppTheme.practiceColor)
-                .mask {
-                    Canvas { context, canvasSize in
-                        for (index, region) in revealRegions.enumerated() {
-                            let strokeProgress = progressForStroke(
-                                index: index,
-                                proportions: proportions
-                            )
-                            guard strokeProgress > 0 else { continue }
+            // Filled glyph masked by per-pixel arc-length reveal. Once the
+            // animation completes, show the plain glyph fill instead: stroke
+            // ownership masks can leave a few unclaimed pixels ("dust"), and
+            // the unmasked fill guarantees a clean final frame.
+            if animationProgress >= 1 {
+                glyphPath.fill(AppTheme.practiceColor)
+            } else {
+                glyphPath.fill(AppTheme.practiceColor)
+                    .mask {
+                        Canvas { context, canvasSize in
+                            for (index, region) in revealRegions.enumerated() {
+                                let strokeProgress = progressForStroke(
+                                    index: index,
+                                    proportions: proportions
+                                )
+                                guard strokeProgress > 0 else { continue }
 
-                            let image = debugShowInstantOwnedRegions
-                                ? region.regionImage
-                                : region.image(for: strokeProgress)
-                            let revealed = Image(decorative: image, scale: 1)
-                            context.draw(revealed, in: CGRect(origin: .zero, size: canvasSize))
+                                let image = debugShowInstantOwnedRegions
+                                    ? region.regionImage
+                                    : region.image(for: strokeProgress)
+                                let revealed = Image(decorative: image, scale: 1)
+                                context.draw(revealed, in: CGRect(origin: .zero, size: canvasSize))
+                            }
                         }
                     }
-                }
+            }
 
             if let debugOverlay {
                 Image(decorative: debugOverlay, scale: 1)
@@ -199,6 +209,9 @@ struct StrokeAnimationView: View {
 
         if reduceMotion {
             animationProgress = 1
+            try? await Task.sleep(for: .seconds(0.8))
+            if Task.isCancelled { return }
+            onFinished?()
             return
         }
 
@@ -221,6 +234,10 @@ struct StrokeAnimationView: View {
                 if Task.isCancelled { return }
             }
         }
+
+        try? await Task.sleep(for: .seconds(0.35))
+        if Task.isCancelled { return }
+        onFinished?()
     }
 
     private var debugShowInstantOwnedRegions: Bool {
