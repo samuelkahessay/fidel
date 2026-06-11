@@ -113,7 +113,7 @@ Common operations:
 
 ## ASC/Xcode Cloud Release Access
 
-- Fidel's App Store Connect app ID is `6758070348`, live ASC bundle ID is `dev.skahessay.learnamharic`, and the Xcode Cloud workflow that runs from `main` is `Default` (`B307BED0-021D-4C68-83D8-8B15B0BD7C7D`). The local Xcode target bundle ID is `dev.skahessay.fidel`; ASC rejected in-place reassignment of the existing app record on 2026-06-11, so release work must resolve that mismatch before uploading.
+- Fidel's App Store Connect app ID is `6758070348`, bundle ID is `dev.skahessay.learnamharic` (live ASC and local Xcode both), and the Xcode Cloud workflow that runs from `main` is `Default` (`B307BED0-021D-4C68-83D8-8B15B0BD7C7D`). `dev.skahessay.learnamharic` is a permanent grandfathered exception to the portfolio's `dev.skahessay.<product-slug>` standard (ASC rejected reassignment on 2026-06-11; see ios-app-ops `decisions/2026-06-11-bundle-identity-grandfathered.md`). Never "fix" it toward `dev.skahessay.fidel`.
 - In non-interactive Codex shells, prefer the file-backed ASC credential fallback:
   ```bash
   ASC_KEY_ID=$(jq -r '.keychain_metadata[] | select(.name=="Fidel") | .key_id' "$HOME/.asc/config.json")
