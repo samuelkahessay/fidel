@@ -29,6 +29,16 @@ private enum AppTab: String, CaseIterable, Identifiable {
         case .you: return "person.crop.circle"
         }
     }
+
+    /// Selam is DEBUG-only until it has a real backend; release builds hide
+    /// the tab and its Today quick action.
+    static var visibleCases: [AppTab] {
+        #if DEBUG
+        return allCases
+        #else
+        return allCases.filter { $0 != .selam }
+        #endif
+    }
 }
 
 private enum FidelRoute: Identifiable, Hashable {
@@ -277,6 +287,7 @@ private struct TodayView: View {
                     }
                     .frame(width: 154)
 
+                    #if DEBUG
                     FidelQuickActionTile(
                         title: "Selam",
                         subtitle: "Tutor chat",
@@ -288,6 +299,7 @@ private struct TodayView: View {
                         actions.selectTab(.selam)
                     }
                     .frame(width: 154)
+                    #endif
 
                     FidelQuickActionTile(
                         title: "Reference",
@@ -587,7 +599,7 @@ private struct RootTabBar: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(AppTab.allCases) { tab in
+            ForEach(AppTab.visibleCases) { tab in
                 Button {
                     withAnimation(.spring(response: 0.32, dampingFraction: 0.82)) {
                         selectedTab = tab
