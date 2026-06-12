@@ -57,6 +57,7 @@
 		AAA00113001 /* TracingSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00113000 /* TracingSessionView.swift */; };
 		AAA00114001 /* TracingSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00114000 /* TracingSessionViewModel.swift */; };
 		AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAA00070000 /* NotoSansEthiopic-Regular.ttf */; };
+		AAA00099901 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AAA00099900 /* PrivacyInfo.xcprivacy */; };
 		AAA00071001 /* NotoSerifEthiopic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAA00071000 /* NotoSerifEthiopic-Regular.ttf */; };
 		AAA00080001 /* StrokeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00080000 /* StrokeData.swift */; };
 		AAA00081001 /* StrokeDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00081000 /* StrokeDataRepository.swift */; };
@@ -151,6 +152,7 @@
 		AAA00113000 /* TracingSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionView.swift; sourceTree = "<group>"; };
 		AAA00114000 /* TracingSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionViewModel.swift; sourceTree = "<group>"; };
 		AAA00070000 /* NotoSansEthiopic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansEthiopic-Regular.ttf"; sourceTree = "<group>"; };
+		AAA00099900 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AAA00071000 /* NotoSerifEthiopic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerifEthiopic-Regular.ttf"; sourceTree = "<group>"; };
 		AAA00080000 /* StrokeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeData.swift; sourceTree = "<group>"; };
 		AAA00081000 /* StrokeDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeDataRepository.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				AAA00105000 /* Audio */,
 				AAA00003000 /* Assets.xcassets */,
 				AAA00032000 /* Info.plist */,
+				AAA00099900 /* PrivacyInfo.xcprivacy */,
 				AAA00070000 /* NotoSansEthiopic-Regular.ttf */,
 				AAA00071000 /* NotoSerifEthiopic-Regular.ttf */,
 				AAA00084000 /* fidel_stroke_data.json */,
@@ -449,6 +452,7 @@
 			files = (
 				AAA00003001 /* Assets.xcassets in Resources */,
 				AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */,
+				AAA00099901 /* PrivacyInfo.xcprivacy in Resources */,
 				AAA00071001 /* NotoSerifEthiopic-Regular.ttf in Resources */,
 				AAA00084001 /* fidel_stroke_data.json in Resources */,
 				AAA00090001 /* conversations.json in Resources */,
