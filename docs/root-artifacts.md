@@ -8,9 +8,14 @@ mistaken for app source or active import work.
 - `AppStore/`: local App Store screenshot, metadata, and review-prep material.
   Keep generated images and upload-only assets out of the app target unless a
   release task deliberately promotes them.
+  - 2026-06-13 observed screenshots:
+    `AppStore/Screenshots/iphone-pro-max/01-today.png` through
+    `05-progress.png`.
 - `design-references/`: design inspiration, generated logo explorations, and
   visual reference notes. It can inform future product/design work, but it is
   not bundled learner content.
+  - 2026-06-13 observed material: Amine Store analysis/homepage reference and
+    generated Fidel logo candidates.
 - `deep_research_amharic_resources`: research note about the wider Amharic
   learning ecosystem. Treat it as product-research input, not importable app
   JSON.

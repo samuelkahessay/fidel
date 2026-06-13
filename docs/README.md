@@ -9,7 +9,6 @@ This folder holds durable planning, status, and decision records for the Fidel i
 - `root-artifacts.md`: local root-level App Store, design, research, and tracing
   reference buckets that should stay out of accidental app imports.
 - `status/fidel-group-audit.md`: group-level consolidation status across iOS, landing page, and resource workspaces.
-- `status/2026-06-13-root-artifact-inventory.md`: local untracked App Store, design, and research artifact handling.
 - `../Fidel_local_first_plan.md`: local-first conversion plan, verification history, and release notes.
 - `../README.md`: app overview, build steps, and current content scope.
 
