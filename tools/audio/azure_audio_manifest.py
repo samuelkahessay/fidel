@@ -16,6 +16,7 @@ OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3"
 PROVIDER = "azure"
 ASSET_SET = "all-phrases-v1"
 FIDEL_ASSET_SET = "fidel-characters-v1"
+WORDS_ASSET_SET = "words-v1"
 SKIPPED_PLACEHOLDER_IDS = {17, 19, 55}
 
 # The Azure am-ET voices return empty audio for these archaic Ge'ez code
@@ -38,6 +39,14 @@ def load_phrases(root: Path) -> list[dict]:
 
 def load_fidel_chart(root: Path) -> list[dict]:
     return json.loads((root / "Fidel" / "Data" / "fidel_chart.json").read_text(encoding="utf-8"))
+
+
+def load_sentence_exercises(root: Path) -> list[dict]:
+    return json.loads((root / "Fidel" / "Data" / "sentence_exercises.json").read_text(encoding="utf-8"))
+
+
+def load_vocabulary(root: Path) -> list[dict]:
+    return json.loads((root / "Fidel" / "Data" / "vocabulary.json").read_text(encoding="utf-8"))
 
 
 def source_hash(text: str, voice: str) -> str:
@@ -138,6 +147,56 @@ def fidel_rows(root: Path) -> list[dict]:
     return [fidel_manifest_row(char, ACTIVE_VOICE) for char in load_fidel_chart(root)]
 
 
+def word_digest(amharic: str) -> str:
+    return hashlib.sha256(amharic.encode("utf-8")).hexdigest()[:12]
+
+
+def word_audio_file_path(amharic: str, voice: str) -> str:
+    return f"Audio/words/{PROVIDER}/{voice}/word-{word_digest(amharic)}.mp3"
+
+
+def word_manifest_row(amharic: str, english: str | None, voice: str) -> dict:
+    # Word audio is keyed by the Amharic text under the "vocabulary" content
+    # type so the app can look it up by the word itself
+    # (AudioAssetRepository.wordAsset(forAmharic:)). The filename uses a hash to
+    # keep non-ASCII words off the filesystem.
+    return {
+        "id": f"word-{word_digest(amharic)}__{PROVIDER}__{voice}",
+        "contentType": "vocabulary",
+        "contentId": amharic,
+        "language": LANGUAGE,
+        "provider": PROVIDER,
+        "voice": voice,
+        "assetRole": "active",
+        "assetSet": WORDS_ASSET_SET,
+        "format": "mp3",
+        "file": word_audio_file_path(amharic, voice),
+        "englishSlug": slugify(english) if english else None,
+        "text": amharic,
+        "sourceTextHash": source_hash(amharic, voice),
+    }
+
+
+def unique_words(root: Path) -> list[tuple[str, str | None]]:
+    """Every unique Amharic word tile that needs audio, as (amharic, english).
+
+    Drawn from the sentence exercises (correct tokens + distractors) and the
+    full vocabulary list so both the Word Order and Match Pairs exercises have
+    tappable pronunciation.
+    """
+    seen: dict[str, str | None] = {}
+    for exercise in load_sentence_exercises(root):
+        for token in exercise.get("amharicTokens", []) + exercise.get("amharicDistractors", []):
+            seen.setdefault(token["amharic"], token.get("english"))
+    for word in load_vocabulary(root):
+        seen.setdefault(word["amharic"], word.get("english"))
+    return list(seen.items())
+
+
+def word_rows(root: Path) -> list[dict]:
+    return [word_manifest_row(amharic, english, ACTIVE_VOICE) for amharic, english in unique_words(root)]
+
+
 def active_manifest_rows(root: Path) -> list[dict]:
     return full_phrase_rows(root, ACTIVE_VOICE, "active")
 
@@ -199,6 +258,9 @@ def validate(root: Path, rows: list[dict], *, allow_duplicate_content: bool) -> 
             elif row.get("englishSlug") != slugify(char["romanization"]):
                 errors.append(f"{row_id}: stale romanization slug")
             if not row["file"].startswith(f"Audio/fidel/{PROVIDER}/{row['voice']}/"):
+                errors.append(f"{row_id}: file path is not voice-scoped")
+        elif row["contentType"] == "vocabulary":
+            if not row["file"].startswith(f"Audio/words/{PROVIDER}/{row['voice']}/"):
                 errors.append(f"{row_id}: file path is not voice-scoped")
         else:
             if row["contentType"] == "phrase" and int(row["contentId"]) in SKIPPED_PLACEHOLDER_IDS:
@@ -272,6 +334,9 @@ def synthesize(root: Path, rows: list[dict], force: bool) -> None:
         if row["contentType"] == "fidelCharacter":
             tts_text = FIDEL_TTS_SUBSTITUTIONS.get(row["contentId"], tts_text)
             rate = "-35%"
+        elif row["contentType"] == "vocabulary":
+            # Single words are spoken a little slower than phrases for clarity.
+            rate = "-10%"
         text = escape(tts_text, quote=False)
         ssml = (
             f"<speak version='1.0' xml:lang='{LANGUAGE}'>"
@@ -305,12 +370,14 @@ def selected_rows(root: Path, scope: str, voice: str) -> list[dict]:
         return catalog_rows(root)
     if scope == "fidel":
         return fidel_rows(root)
+    if scope == "words":
+        return word_rows(root)
     raise SystemExit(f"Unknown scope: {scope}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate and validate Fidel pronunciation audio assets.")
-    parser.add_argument("--scope", choices=["active", "male", "female", "audition", "catalog", "fidel"], default="active")
+    parser.add_argument("--scope", choices=["active", "male", "female", "audition", "catalog", "fidel", "words"], default="active")
     parser.add_argument("--write-manifest", action="store_true", help="Write the app-facing active audio manifest.")
     parser.add_argument("--write-catalog", action="store_true", help="Write the full generated-audio catalog.")
     parser.add_argument("--generate", action="store_true", help="Generate MP3 files through Azure Speech.")
@@ -330,7 +397,14 @@ def main() -> None:
             row for row in fidel_rows(root)
             if (root / "Fidel" / row["file"]).exists()
         ]
-        write_json(app_manifest_path(root), active_manifest_rows(root) + generated_fidel_rows)
+        generated_word_rows = [
+            row for row in word_rows(root)
+            if (root / "Fidel" / row["file"]).exists()
+        ]
+        write_json(
+            app_manifest_path(root),
+            active_manifest_rows(root) + generated_fidel_rows + generated_word_rows,
+        )
     if args.write_catalog:
         write_json(catalog_path(root), catalog_rows(root))
     if args.generate:
