@@ -1,0 +1,421 @@
+[
+  {
+    "id": "wo-001",
+    "unit": 1,
+    "english": "How are you?",
+    "amharic": "እንደምን ነህ",
+    "transliteration": "endemen neh",
+    "amharicTokens": [
+      { "amharic": "እንደምን", "transliteration": "endemen", "english": "how" },
+      { "amharic": "ነህ", "transliteration": "neh", "english": "are you" }
+    ],
+    "englishTokens": ["how", "are", "you"],
+    "amharicDistractors": [
+      { "amharic": "ነሽ", "transliteration": "nesh", "english": "are you (f)" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishDistractors": ["is", "what"]
+  },
+  {
+    "id": "wo-002",
+    "unit": 1,
+    "english": "I am fine",
+    "amharic": "ደህና ነኝ",
+    "transliteration": "dehna neny",
+    "amharicTokens": [
+      { "amharic": "ደህና", "transliteration": "dehna", "english": "fine" },
+      { "amharic": "ነኝ", "transliteration": "neny", "english": "I am" }
+    ],
+    "englishTokens": ["i", "am", "fine"],
+    "amharicDistractors": [
+      { "amharic": "ነው", "transliteration": "new", "english": "is" },
+      { "amharic": "ናት", "transliteration": "nat", "english": "is (f)" }
+    ],
+    "englishDistractors": ["you", "good"]
+  },
+  {
+    "id": "wo-003",
+    "unit": 1,
+    "english": "My name is Sara",
+    "amharic": "ስሜ ሳራ ነው",
+    "transliteration": "sime sara new",
+    "amharicTokens": [
+      { "amharic": "ስሜ", "transliteration": "sime", "english": "my name" },
+      { "amharic": "ሳራ", "transliteration": "sara", "english": "Sara" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["my", "name", "is", "sara"],
+    "amharicDistractors": [
+      { "amharic": "ስምህ", "transliteration": "simih", "english": "your name" },
+      { "amharic": "ነኝ", "transliteration": "neny", "english": "I am" }
+    ],
+    "englishDistractors": ["your", "what"]
+  },
+  {
+    "id": "wo-004",
+    "unit": 1,
+    "english": "What is your name?",
+    "amharic": "ስምህ ማን ነው",
+    "transliteration": "simih man new",
+    "amharicTokens": [
+      { "amharic": "ስምህ", "transliteration": "simih", "english": "your name" },
+      { "amharic": "ማን", "transliteration": "man", "english": "what" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["what", "is", "your", "name"],
+    "amharicDistractors": [
+      { "amharic": "ስሜ", "transliteration": "sime", "english": "my name" },
+      { "amharic": "የት", "transliteration": "yet", "english": "where" }
+    ],
+    "englishDistractors": ["my", "where"]
+  },
+  {
+    "id": "wo-005",
+    "unit": 1,
+    "english": "Thank you very much",
+    "amharic": "በጣም አመሰግናለሁ",
+    "transliteration": "bet'am ameseginalehu",
+    "amharicTokens": [
+      { "amharic": "በጣም", "transliteration": "bet'am", "english": "very much" },
+      { "amharic": "አመሰግናለሁ", "transliteration": "ameseginalehu", "english": "thank you" }
+    ],
+    "englishTokens": ["thank", "you", "very", "much"],
+    "amharicDistractors": [
+      { "amharic": "እባክህ", "transliteration": "ibakih", "english": "please" },
+      { "amharic": "አዎ", "transliteration": "awo", "english": "yes" }
+    ],
+    "englishDistractors": ["please", "sorry"]
+  },
+  {
+    "id": "wo-006",
+    "unit": 1,
+    "english": "Good morning",
+    "amharic": "እንደምን አደርክ",
+    "transliteration": "endemen aderk",
+    "amharicTokens": [
+      { "amharic": "እንደምን", "transliteration": "endemen", "english": "how" },
+      { "amharic": "አደርክ", "transliteration": "aderk", "english": "did you wake" }
+    ],
+    "englishTokens": ["good", "morning"],
+    "amharicDistractors": [
+      { "amharic": "ነህ", "transliteration": "neh", "english": "are you" },
+      { "amharic": "ዋልክ", "transliteration": "walk", "english": "spent the day" }
+    ],
+    "englishDistractors": ["evening", "night"]
+  },
+  {
+    "id": "wo-007",
+    "unit": 1,
+    "english": "Yes, thank you",
+    "amharic": "አዎ አመሰግናለሁ",
+    "transliteration": "awo ameseginalehu",
+    "amharicTokens": [
+      { "amharic": "አዎ", "transliteration": "awo", "english": "yes" },
+      { "amharic": "አመሰግናለሁ", "transliteration": "ameseginalehu", "english": "thank you" }
+    ],
+    "englishTokens": ["yes", "thank", "you"],
+    "amharicDistractors": [
+      { "amharic": "አይ", "transliteration": "ai", "english": "no" },
+      { "amharic": "እባክህ", "transliteration": "ibakih", "english": "please" }
+    ],
+    "englishDistractors": ["no", "please"]
+  },
+  {
+    "id": "wo-008",
+    "unit": 1,
+    "english": "See you later",
+    "amharic": "በኋላ እንገናኛለን",
+    "transliteration": "behwala ingenanyalen",
+    "amharicTokens": [
+      { "amharic": "በኋላ", "transliteration": "behwala", "english": "later" },
+      { "amharic": "እንገናኛለን", "transliteration": "ingenanyalen", "english": "we will meet" }
+    ],
+    "englishTokens": ["see", "you", "later"],
+    "amharicDistractors": [
+      { "amharic": "ደህና", "transliteration": "dehna", "english": "well" },
+      { "amharic": "ሁን", "transliteration": "hun", "english": "be" }
+    ],
+    "englishDistractors": ["now", "soon"]
+  },
+  {
+    "id": "wo-009",
+    "unit": 2,
+    "english": "This is my father",
+    "amharic": "ይህ አባቴ ነው",
+    "transliteration": "yih abbate new",
+    "amharicTokens": [
+      { "amharic": "ይህ", "transliteration": "yih", "english": "this" },
+      { "amharic": "አባቴ", "transliteration": "abbate", "english": "my father" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["this", "is", "my", "father"],
+    "amharicDistractors": [
+      { "amharic": "እናቴ", "transliteration": "innate", "english": "my mother" },
+      { "amharic": "ናት", "transliteration": "nat", "english": "is (f)" }
+    ],
+    "englishDistractors": ["mother", "her"]
+  },
+  {
+    "id": "wo-010",
+    "unit": 2,
+    "english": "She is my mother",
+    "amharic": "እሷ እናቴ ናት",
+    "transliteration": "iswa innate nat",
+    "amharicTokens": [
+      { "amharic": "እሷ", "transliteration": "iswa", "english": "she" },
+      { "amharic": "እናቴ", "transliteration": "innate", "english": "my mother" },
+      { "amharic": "ናት", "transliteration": "nat", "english": "is" }
+    ],
+    "englishTokens": ["she", "is", "my", "mother"],
+    "amharicDistractors": [
+      { "amharic": "እሱ", "transliteration": "isu", "english": "he" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishDistractors": ["he", "father"]
+  },
+  {
+    "id": "wo-011",
+    "unit": 2,
+    "english": "I have a brother",
+    "amharic": "ወንድም አለኝ",
+    "transliteration": "wendim aleny",
+    "amharicTokens": [
+      { "amharic": "ወንድም", "transliteration": "wendim", "english": "brother" },
+      { "amharic": "አለኝ", "transliteration": "aleny", "english": "I have" }
+    ],
+    "englishTokens": ["i", "have", "a", "brother"],
+    "amharicDistractors": [
+      { "amharic": "እህት", "transliteration": "ihit", "english": "sister" },
+      { "amharic": "የለኝም", "transliteration": "yelenyim", "english": "I don't have" }
+    ],
+    "englishDistractors": ["sister", "no"]
+  },
+  {
+    "id": "wo-012",
+    "unit": 2,
+    "english": "My sister is here",
+    "amharic": "እህቴ እዚህ ናት",
+    "transliteration": "ihite izih nat",
+    "amharicTokens": [
+      { "amharic": "እህቴ", "transliteration": "ihite", "english": "my sister" },
+      { "amharic": "እዚህ", "transliteration": "izih", "english": "here" },
+      { "amharic": "ናት", "transliteration": "nat", "english": "is" }
+    ],
+    "englishTokens": ["my", "sister", "is", "here"],
+    "amharicDistractors": [
+      { "amharic": "እዚያ", "transliteration": "iziya", "english": "there" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishDistractors": ["there", "brother"]
+  },
+  {
+    "id": "wo-013",
+    "unit": 2,
+    "english": "He is my friend",
+    "amharic": "እሱ ጓደኛዬ ነው",
+    "transliteration": "isu gwadenyaye new",
+    "amharicTokens": [
+      { "amharic": "እሱ", "transliteration": "isu", "english": "he" },
+      { "amharic": "ጓደኛዬ", "transliteration": "gwadenyaye", "english": "my friend" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["he", "is", "my", "friend"],
+    "amharicDistractors": [
+      { "amharic": "እሷ", "transliteration": "iswa", "english": "she" },
+      { "amharic": "ናት", "transliteration": "nat", "english": "is (f)" }
+    ],
+    "englishDistractors": ["she", "teacher"]
+  },
+  {
+    "id": "wo-014",
+    "unit": 2,
+    "english": "I am a student",
+    "amharic": "ተማሪ ነኝ",
+    "transliteration": "temari neny",
+    "amharicTokens": [
+      { "amharic": "ተማሪ", "transliteration": "temari", "english": "student" },
+      { "amharic": "ነኝ", "transliteration": "neny", "english": "I am" }
+    ],
+    "englishTokens": ["i", "am", "a", "student"],
+    "amharicDistractors": [
+      { "amharic": "መምህር", "transliteration": "memhir", "english": "teacher" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishDistractors": ["teacher", "he"]
+  },
+  {
+    "id": "wo-015",
+    "unit": 3,
+    "english": "Where are you going?",
+    "amharic": "ወዴት ትሄዳለህ",
+    "transliteration": "wedet tihedaleh",
+    "amharicTokens": [
+      { "amharic": "ወዴት", "transliteration": "wedet", "english": "where to" },
+      { "amharic": "ትሄዳለህ", "transliteration": "tihedaleh", "english": "are you going" }
+    ],
+    "englishTokens": ["where", "are", "you", "going"],
+    "amharicDistractors": [
+      { "amharic": "የት", "transliteration": "yet", "english": "where" },
+      { "amharic": "እሄዳለሁ", "transliteration": "ihedalehu", "english": "I am going" }
+    ],
+    "englishDistractors": ["what", "coming"]
+  },
+  {
+    "id": "wo-016",
+    "unit": 3,
+    "english": "Where is the market?",
+    "amharic": "ገበያ የት ነው",
+    "transliteration": "gebeya yet new",
+    "amharicTokens": [
+      { "amharic": "ገበያ", "transliteration": "gebeya", "english": "market" },
+      { "amharic": "የት", "transliteration": "yet", "english": "where" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["where", "is", "the", "market"],
+    "amharicDistractors": [
+      { "amharic": "ቤት", "transliteration": "bet", "english": "house" },
+      { "amharic": "ናት", "transliteration": "nat", "english": "is (f)" }
+    ],
+    "englishDistractors": ["house", "when"]
+  },
+  {
+    "id": "wo-017",
+    "unit": 3,
+    "english": "How much is this?",
+    "amharic": "ይህ ስንት ነው",
+    "transliteration": "yih sint new",
+    "amharicTokens": [
+      { "amharic": "ይህ", "transliteration": "yih", "english": "this" },
+      { "amharic": "ስንት", "transliteration": "sint", "english": "how much" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["how", "much", "is", "this"],
+    "amharicDistractors": [
+      { "amharic": "ያ", "transliteration": "ya", "english": "that" },
+      { "amharic": "ማን", "transliteration": "man", "english": "who" }
+    ],
+    "englishDistractors": ["that", "many"]
+  },
+  {
+    "id": "wo-018",
+    "unit": 3,
+    "english": "I want water",
+    "amharic": "ውሃ እፈልጋለሁ",
+    "transliteration": "wiha ifeligalehu",
+    "amharicTokens": [
+      { "amharic": "ውሃ", "transliteration": "wiha", "english": "water" },
+      { "amharic": "እፈልጋለሁ", "transliteration": "ifeligalehu", "english": "I want" }
+    ],
+    "englishTokens": ["i", "want", "water"],
+    "amharicDistractors": [
+      { "amharic": "ቡና", "transliteration": "buna", "english": "coffee" },
+      { "amharic": "አልፈልግም", "transliteration": "alfeligim", "english": "I don't want" }
+    ],
+    "englishDistractors": ["need", "coffee"]
+  },
+  {
+    "id": "wo-019",
+    "unit": 3,
+    "english": "Where do you live?",
+    "amharic": "የት ትኖራለህ",
+    "transliteration": "yet tinoraleh",
+    "amharicTokens": [
+      { "amharic": "የት", "transliteration": "yet", "english": "where" },
+      { "amharic": "ትኖራለህ", "transliteration": "tinoraleh", "english": "do you live" }
+    ],
+    "englishTokens": ["where", "do", "you", "live"],
+    "amharicDistractors": [
+      { "amharic": "ወዴት", "transliteration": "wedet", "english": "where to" },
+      { "amharic": "እኖራለሁ", "transliteration": "inoralehu", "english": "I live" }
+    ],
+    "englishDistractors": ["work", "go"]
+  },
+  {
+    "id": "wo-020",
+    "unit": 4,
+    "english": "I want coffee",
+    "amharic": "ቡና እፈልጋለሁ",
+    "transliteration": "buna ifeligalehu",
+    "amharicTokens": [
+      { "amharic": "ቡና", "transliteration": "buna", "english": "coffee" },
+      { "amharic": "እፈልጋለሁ", "transliteration": "ifeligalehu", "english": "I want" }
+    ],
+    "englishTokens": ["i", "want", "coffee"],
+    "amharicDistractors": [
+      { "amharic": "ሻይ", "transliteration": "shai", "english": "tea" },
+      { "amharic": "ውሃ", "transliteration": "wiha", "english": "water" }
+    ],
+    "englishDistractors": ["tea", "like"]
+  },
+  {
+    "id": "wo-021",
+    "unit": 4,
+    "english": "The food is delicious",
+    "amharic": "ምግቡ ጣፋጭ ነው",
+    "transliteration": "migibu t'afach' new",
+    "amharicTokens": [
+      { "amharic": "ምግቡ", "transliteration": "migibu", "english": "the food" },
+      { "amharic": "ጣፋጭ", "transliteration": "t'afach'", "english": "delicious" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["the", "food", "is", "delicious"],
+    "amharicDistractors": [
+      { "amharic": "ቡናው", "transliteration": "bunaw", "english": "the coffee" },
+      { "amharic": "ሙቅ", "transliteration": "muq", "english": "hot" }
+    ],
+    "englishDistractors": ["hot", "good"]
+  },
+  {
+    "id": "wo-022",
+    "unit": 4,
+    "english": "The coffee is hot",
+    "amharic": "ቡናው ሙቅ ነው",
+    "transliteration": "bunaw muq new",
+    "amharicTokens": [
+      { "amharic": "ቡናው", "transliteration": "bunaw", "english": "the coffee" },
+      { "amharic": "ሙቅ", "transliteration": "muq", "english": "hot" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["the", "coffee", "is", "hot"],
+    "amharicDistractors": [
+      { "amharic": "ውሃው", "transliteration": "wihaw", "english": "the water" },
+      { "amharic": "ቀዝቃዛ", "transliteration": "qezqaza", "english": "cold" }
+    ],
+    "englishDistractors": ["cold", "water"]
+  },
+  {
+    "id": "wo-023",
+    "unit": 4,
+    "english": "How much is the bread?",
+    "amharic": "ዳቦ ስንት ነው",
+    "transliteration": "dabo sint new",
+    "amharicTokens": [
+      { "amharic": "ዳቦ", "transliteration": "dabo", "english": "bread" },
+      { "amharic": "ስንት", "transliteration": "sint", "english": "how much" },
+      { "amharic": "ነው", "transliteration": "new", "english": "is" }
+    ],
+    "englishTokens": ["how", "much", "is", "the", "bread"],
+    "amharicDistractors": [
+      { "amharic": "እንጀራ", "transliteration": "injera", "english": "injera" },
+      { "amharic": "ማን", "transliteration": "man", "english": "who" }
+    ],
+    "englishDistractors": ["many", "injera"]
+  },
+  {
+    "id": "wo-024",
+    "unit": 4,
+    "english": "I would like injera",
+    "amharic": "እንጀራ እፈልጋለሁ",
+    "transliteration": "injera ifeligalehu",
+    "amharicTokens": [
+      { "amharic": "እንጀራ", "transliteration": "injera", "english": "injera" },
+      { "amharic": "እፈልጋለሁ", "transliteration": "ifeligalehu", "english": "I would like" }
+    ],
+    "englishTokens": ["i", "would", "like", "injera"],
+    "amharicDistractors": [
+      { "amharic": "ዳቦ", "transliteration": "dabo", "english": "bread" },
+      { "amharic": "አልፈልግም", "transliteration": "alfeligim", "english": "I don't want" }
+    ],
+    "englishDistractors": ["bread", "want"]
+  }
+]

@@ -15,6 +15,7 @@ enum AmharicDataLoader {
     }()
 
     static let patterns: [Pattern] = load("patterns")
+    static let sentenceExercises: [SentenceExercise] = load("sentence_exercises")
     static let conversations: [Conversation] = load("conversations")
     static let phrases: [Phrase] = load("phrases")
     static let vocabulary: [VocabularyWord] = load("vocabulary")

@@ -94,6 +94,32 @@ struct Lesson: Identifiable, Hashable {
     var progressPercent: Double = 0
 }
 
+/// A word-bank translation exercise (Duolingo-style "arrange the tiles").
+///
+/// Answer keys are stored explicitly per direction so the exercise never has to
+/// guess word alignment at runtime: `amharicTokens` (in order) is the answer for
+/// the English→Amharic direction, and `englishTokens` (in order) is the answer
+/// for the Amharic→English direction. Per-word Amharic audio is keyed by each
+/// token's `amharic` text (see AudioAssetRepository.wordAsset(forAmharic:)).
+struct SentenceExercise: Identifiable, Codable, Hashable {
+    let id: String
+    let unit: Int
+    let english: String
+    let amharic: String
+    let transliteration: String
+    let amharicTokens: [Token]
+    let englishTokens: [String]
+    let amharicDistractors: [Token]
+    let englishDistractors: [String]
+
+    struct Token: Codable, Hashable, Identifiable {
+        var id: String { amharic }
+        let amharic: String
+        let transliteration: String
+        let english: String
+    }
+}
+
 // MARK: - Numeric Reference Types
 
 struct AmharicNumber: Codable, Hashable {
@@ -351,6 +377,8 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
     case quiz = "Quiz"
     case pronunciation = "Pronunciation"
     case sentenceBuilder = "Sentence Builder"
+    case wordOrder = "Word Order"
+    case matchPairs = "Match Pairs"
     case speedDrill = "Speed Drill"
     case tracing = "Character Tracing"
 
@@ -362,6 +390,8 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .quiz: return "questionmark.circle.fill"
         case .pronunciation: return "waveform.and.mic"
         case .sentenceBuilder: return "text.word.spacing"
+        case .wordOrder: return "arrow.left.arrow.right"
+        case .matchPairs: return "square.on.square"
         case .speedDrill: return "timer"
         case .tracing: return "scribble.variable"
         }
@@ -373,6 +403,8 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .quiz: return "Test your knowledge with multiple choice"
         case .pronunciation: return "Listen and practice speaking"
         case .sentenceBuilder: return "Build sentences using patterns"
+        case .wordOrder: return "Tap word tiles into the right order to translate"
+        case .matchPairs: return "Match Amharic words to their English meaning"
         case .speedDrill: return "Rapid-fire translation practice"
         case .tracing: return "Practice writing Fidel characters"
         }
@@ -384,6 +416,8 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .quiz: return AppTheme.practiceColor
         case .pronunciation: return AppTheme.primaryColor
         case .sentenceBuilder: return AppTheme.warningColor
+        case .wordOrder: return AppTheme.successColor
+        case .matchPairs: return AppTheme.secondaryColor
         case .speedDrill: return AppTheme.accentRed
         case .tracing: return AppTheme.practiceColor
         }

@@ -12,7 +12,10 @@ protocol LessonRepositoryProtocol {
     // Patterns
     func getPatterns() -> [Pattern]
     func getPatterns(for unit: Int) -> [Pattern]
-    
+
+    // Sentence (word-bank) exercises
+    func getSentenceExercises() -> [SentenceExercise]
+
     // Conversations
     func getConversations() -> [Conversation]
     func getConversation(by id: Int) -> Conversation?
@@ -69,7 +72,13 @@ final class LessonRepository: LessonRepositoryProtocol {
     func getPatterns(for unit: Int) -> [Pattern] {
         AmharicData.patterns.filter { $0.unit == unit }
     }
-    
+
+    // MARK: - Sentence Exercises
+
+    func getSentenceExercises() -> [SentenceExercise] {
+        AmharicData.sentenceExercises
+    }
+
     // MARK: - Conversations
     
     func getConversations() -> [Conversation] {

@@ -569,6 +569,10 @@ private struct PracticeModeDestination: View {
             QuizView()
         case .sentenceBuilder:
             SentenceBuilderView()
+        case .wordOrder:
+            WordOrderView()
+        case .matchPairs:
+            MatchPairsView()
         case .speedDrill:
             SpeedDrillView()
         case .pronunciation:
