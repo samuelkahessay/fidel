@@ -71,26 +71,23 @@ struct ContentView: View {
     @State private var activeRoute: FidelRoute?
 
     var body: some View {
-        VStack(spacing: 0) {
-            selectedContent
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-            VStack(spacing: 0) {
-                RootTabBar(selectedTab: $selectedTab)
-                    .padding(.horizontal, AppTheme.Spacing.lg)
-                    .padding(.top, 8)
-                    .padding(.bottom, 8)
+        TabView(selection: $selectedTab) {
+            ForEach(AppTab.visibleCases) { tab in
+                Tab(tab.title, systemImage: tab.icon, value: tab) {
+                    tabContent(for: tab)
+                }
             }
         }
-        .background(FidelPaperBackground())
+        .tint(AppTheme.terracottaColor)
+        .tabBarMinimizeBehavior(.onScrollDown)
         .sheet(item: $activeRoute) { route in
             routeDestination(route)
         }
     }
 
     @ViewBuilder
-    private var selectedContent: some View {
-        switch selectedTab {
+    private func tabContent(for tab: AppTab) -> some View {
+        switch tab {
         case .today:
             TodayView(actions: navigationActions)
         case .learn:
@@ -178,7 +175,7 @@ private struct TodayView: View {
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)
                 .padding(.top, AppTheme.Spacing.md)
-                .padding(.bottom, 110)
+                .padding(.bottom, AppTheme.Spacing.lg)
             }
             .background(FidelPaperBackground())
             .toolbar(.hidden, for: .navigationBar)
@@ -594,49 +591,3 @@ private struct MissingRouteView: View {
     }
 }
 
-private struct RootTabBar: View {
-    @Binding var selectedTab: AppTab
-
-    var body: some View {
-        HStack(spacing: 0) {
-            ForEach(AppTab.visibleCases) { tab in
-                Button {
-                    withAnimation(.spring(response: 0.32, dampingFraction: 0.82)) {
-                        selectedTab = tab
-                    }
-                } label: {
-                    VStack(spacing: 5) {
-                        Image(systemName: tab.icon)
-                            .font(.system(size: 18, weight: selectedTab == tab ? .bold : .semibold))
-
-                        Text(tab.title)
-                            .font(.system(size: 10, weight: selectedTab == tab ? .bold : .semibold))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.75)
-                    }
-                    .foregroundStyle(selectedTab == tab ? AppTheme.terracottaColor : AppTheme.mutedInkColor)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 58)
-                    .background {
-                        if selectedTab == tab {
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(AppTheme.terracottaColor.opacity(0.12))
-                        }
-                    }
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel(tab.title)
-                .accessibilityAddTraits(selectedTab == tab ? .isSelected : [])
-            }
-        }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 8)
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 26, style: .continuous)
-                .stroke(AppTheme.hairlineColor, lineWidth: 1)
-        )
-        .shadow(color: AppTheme.terracottaDeepColor.opacity(0.14), radius: 18, x: 0, y: 10)
-    }
-}
