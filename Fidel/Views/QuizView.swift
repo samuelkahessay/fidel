@@ -211,7 +211,7 @@ struct QuizView: View {
                     Text("Check Answer")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .primaryGlassButton()
                 .disabled(typedAnswer.trimmingCharacters(in: .whitespaces).isEmpty)
             }
         }
@@ -252,7 +252,7 @@ struct QuizView: View {
                 Text(currentIndex < questions.count - 1 ? "Next Question" : "See Results")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(PrimaryButtonStyle())
+            .primaryGlassButton()
         }
         .padding()
         .background(
@@ -290,13 +290,13 @@ struct QuizView: View {
                     Label("Try Again", systemImage: "arrow.counterclockwise")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .primaryGlassButton()
                 
                 Button(action: { dismiss() }) {
                     Text("Done")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(SecondaryButtonStyle())
+                .secondaryGlassButton()
             }
         }
         .padding()

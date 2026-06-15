@@ -158,12 +158,12 @@ struct PronunciationPracticeView: View {
             } label: {
                 Label("Again", systemImage: "arrow.counterclockwise")
             }
-            .buttonStyle(SecondaryButtonStyle())
+            .secondaryGlassButton()
 
             Button(action: moveToNext) {
                 Label(isLastItem ? "Finish" : "Next", systemImage: isLastItem ? "checkmark" : "arrow.right")
             }
-            .buttonStyle(PrimaryButtonStyle())
+            .primaryGlassButton()
         }
     }
 
@@ -193,7 +193,7 @@ struct PronunciationPracticeView: View {
             Button("Practice Again") {
                 currentIndex = 0
             }
-            .buttonStyle(PrimaryButtonStyle())
+            .primaryGlassButton()
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)

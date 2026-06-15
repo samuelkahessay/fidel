@@ -96,7 +96,7 @@ struct LessonDetailView: View {
                 Button("Complete") {
                     completeLesson()
                 }
-                .buttonStyle(SecondaryButtonStyle())
+                .secondaryGlassButton()
             }
         }
         .sheet(isPresented: $showSelam) {

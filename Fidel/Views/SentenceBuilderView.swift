@@ -179,7 +179,7 @@ struct SentenceBuilderView: View {
                     Label("Complete", systemImage: "checkmark.circle.fill")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .primaryGlassButton()
             }
         }
     }

@@ -298,13 +298,13 @@ struct CharacterDetailView: View {
                 Label("Practice writing", systemImage: "pencil.and.outline")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(PrimaryButtonStyle())
+            .primaryGlassButton()
 
             Button(action: { dismiss() }) {
                 Text("Close")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(SecondaryButtonStyle())
+            .secondaryGlassButton()
         }
         .padding(32)
         .background(FidelPaperBackground())

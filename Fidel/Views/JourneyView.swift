@@ -26,7 +26,7 @@ struct JourneyView: View {
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)
                 .padding(.top, AppTheme.Spacing.md)
-                .padding(.bottom, 110)
+                .padding(.bottom, AppTheme.Spacing.lg)
             }
             .background(FidelPaperBackground())
             .toolbar(.hidden, for: .navigationBar)
@@ -513,7 +513,7 @@ struct StageAdvancementView: View {
                 Button("Continue") {
                     onDismiss()
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .primaryGlassButton()
                 .padding(.horizontal, AppTheme.Spacing.xl)
                 .opacity(animateIn ? 1.0 : 0)
 

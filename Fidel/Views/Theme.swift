@@ -338,85 +338,6 @@ struct AmharicTextStyle: ViewModifier {
     }
 }
 
-// MARK: - Button Styles
-
-/// Primary button - Capsule shape, solid color
-struct PrimaryButtonStyle: ButtonStyle {
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    var isFullWidth: Bool = false
-    
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(AppTheme.Typography.headline)
-            .foregroundColor(AppTheme.onAccentColor)
-            .multilineTextAlignment(.center)
-            .lineLimit(2)
-            .minimumScaleFactor(0.85)
-            .padding(.horizontal, AppTheme.Spacing.xl)
-            .padding(.vertical, 14)
-            .frame(maxWidth: isFullWidth ? .infinity : nil)
-            .frame(minHeight: 44)
-            .background(
-                Capsule()
-                    .fill(AppTheme.primaryColor)
-            )
-            .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
-            .opacity(configuration.isPressed ? 0.9 : 1.0)
-            .animation(reduceMotion ? nil : AppTheme.Animation.quick, value: configuration.isPressed)
-    }
-}
-
-/// Secondary button - Glass material background
-struct SecondaryButtonStyle: ButtonStyle {
-    @Environment(\.colorScheme) var colorScheme
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    var isFullWidth: Bool = false
-    
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(AppTheme.Typography.headline)
-            .foregroundColor(AppTheme.primaryColor)
-            .multilineTextAlignment(.center)
-            .lineLimit(2)
-            .minimumScaleFactor(0.85)
-            .padding(.horizontal, AppTheme.Spacing.lg)
-            .padding(.vertical, 12)
-            .frame(maxWidth: isFullWidth ? .infinity : nil)
-            .frame(minHeight: 44)
-            .background(
-                Capsule()
-                    .fill(.thinMaterial)
-                    .overlay(
-                        Capsule()
-                            .stroke(
-                                AppTheme.hairlineColor,
-                                lineWidth: 1
-                            )
-                    )
-            )
-            .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
-            .opacity(configuration.isPressed ? 0.8 : 1.0)
-            .animation(reduceMotion ? nil : AppTheme.Animation.quick, value: configuration.isPressed)
-    }
-}
-
-/// Ghost button - No background
-struct GhostButtonStyle: ButtonStyle {
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(AppTheme.Typography.headline)
-            .foregroundColor(AppTheme.primaryColor)
-            .multilineTextAlignment(.center)
-            .padding(.horizontal, AppTheme.Spacing.md)
-            .padding(.vertical, 12)
-            .frame(minHeight: 44)
-            .opacity(configuration.isPressed ? 0.6 : 1.0)
-            .animation(reduceMotion ? nil : AppTheme.Animation.quick, value: configuration.isPressed)
-    }
-}
-
 // MARK: - View Extensions
 
 extension View {
@@ -475,6 +396,23 @@ extension View {
     func amharicText(size: CGFloat = 24) -> some View {
         modifier(AmharicTextStyle(size: size))
     }
+
+    /// Primary call-to-action as a native prominent Liquid Glass button.
+    /// Tint is inherited from the app accent set on the root `TabView`.
+    func primaryGlassButton(fullWidth: Bool = false) -> some View {
+        buttonStyle(.glassProminent)
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .frame(maxWidth: fullWidth ? .infinity : nil)
+    }
+
+    /// Secondary action as a native translucent Liquid Glass button.
+    func secondaryGlassButton(fullWidth: Bool = false) -> some View {
+        buttonStyle(.glass)
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .frame(maxWidth: fullWidth ? .infinity : nil)
+    }
 }
 
 // MARK: - Streak Badge
@@ -489,7 +427,7 @@ struct StreakBadge: View {
             
             Text("\(streak)")
                 .font(AppTheme.Typography.headline)
-            .foregroundColor(streak > 0 ? AppTheme.warningColor : .secondary)
+            .foregroundStyle(streak > 0 ? AppTheme.warningColor : .secondary)
         }
         .padding(.horizontal, AppTheme.Spacing.sm)
         .padding(.vertical, AppTheme.Spacing.xs)
@@ -505,7 +443,7 @@ struct StreakBadge: View {
     @ViewBuilder
     private var badgeIcon: some View {
         let image = Image(systemName: streak > 0 ? "flame.fill" : "flame")
-            .foregroundColor(streak > 0 ? AppTheme.warningColor : .secondary)
+            .foregroundStyle(streak > 0 ? AppTheme.warningColor : .secondary)
         if reduceMotion {
             image
         } else {
@@ -526,7 +464,7 @@ struct XPBadge: View {
             
             Text("\(xp) XP")
                 .font(AppTheme.Typography.headline)
-                .foregroundColor(AppTheme.secondaryColor)
+                .foregroundStyle(AppTheme.secondaryColor)
         }
         .padding(.horizontal, AppTheme.Spacing.sm)
         .padding(.vertical, AppTheme.Spacing.xs)
@@ -542,7 +480,7 @@ struct XPBadge: View {
     @ViewBuilder
     private var badgeIcon: some View {
         let image = Image(systemName: "star.fill")
-            .foregroundColor(AppTheme.secondaryColor)
+            .foregroundStyle(AppTheme.secondaryColor)
         if reduceMotion {
             image
         } else {
@@ -561,7 +499,7 @@ struct DifficultyStars: View {
             ForEach(0..<3) { index in
                 Image(systemName: index < level ? "star.fill" : "star")
                     .font(.caption2)
-                    .foregroundColor(index < level ? AppTheme.difficultyColor(level) : AppTheme.mutedInkColor.opacity(0.45))
+                    .foregroundStyle(index < level ? AppTheme.difficultyColor(level) : AppTheme.mutedInkColor.opacity(0.45))
             }
         }
         .accessibilityElement(children: .ignore)
@@ -636,7 +574,7 @@ struct ProgressRing: View {
                 Text("\(Int(progress * 100))%")
                     .font(AppTheme.Typography.caption)
                     .fontWeight(.semibold)
-                    .foregroundColor(AppTheme.inkColor)
+                    .foregroundStyle(AppTheme.inkColor)
             }
         }
         .frame(width: size, height: size)

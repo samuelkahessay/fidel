@@ -32,7 +32,7 @@ struct ProgressDashboardView: View {
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)
                 .padding(.top, AppTheme.Spacing.md)
-                .padding(.bottom, 110)
+                .padding(.bottom, AppTheme.Spacing.lg)
             }
             .background(FidelPaperBackground())
             .toolbar(.hidden, for: .navigationBar)
@@ -174,7 +174,7 @@ struct ProgressDashboardView: View {
                     Label("Export", systemImage: "square.and.arrow.up")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(SecondaryButtonStyle())
+                .secondaryGlassButton()
 
                 Button {
                     isImportingBackup = true
@@ -182,7 +182,7 @@ struct ProgressDashboardView: View {
                     Label("Import", systemImage: "square.and.arrow.down")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(SecondaryButtonStyle())
+                .secondaryGlassButton()
             }
 
             if let backupMessage {

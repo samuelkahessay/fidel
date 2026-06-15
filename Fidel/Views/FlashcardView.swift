@@ -177,7 +177,7 @@ struct FlashcardView: View {
                         Label("Still Learning", systemImage: "xmark.circle")
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(SecondaryButtonStyle())
+                    .secondaryGlassButton()
                     .accessibilityHint("Marks this card for more review")
 
                     Button {
@@ -186,7 +186,7 @@ struct FlashcardView: View {
                         Label("Got It", systemImage: "checkmark.circle")
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(PrimaryButtonStyle())
+                    .primaryGlassButton()
                     .accessibilityHint("Marks this card correct")
                 }
             } else {
@@ -198,7 +198,7 @@ struct FlashcardView: View {
                     Label("Show Answer", systemImage: "arrow.triangle.2.circlepath")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(PrimaryButtonStyle(isFullWidth: true))
+                .primaryGlassButton(fullWidth: true)
             }
         }
     }

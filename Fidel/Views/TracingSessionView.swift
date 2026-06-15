@@ -243,7 +243,7 @@ struct TracingSessionView: View {
             } label: {
                 Label("Trace it", systemImage: "pencil.tip")
             }
-            .buttonStyle(PrimaryButtonStyle(isFullWidth: true))
+            .primaryGlassButton(fullWidth: true)
 
         case .tracing:
             HStack {
@@ -267,7 +267,7 @@ struct TracingSessionView: View {
                     } label: {
                         Label("Clear", systemImage: "trash")
                     }
-                    .buttonStyle(SecondaryButtonStyle(isFullWidth: true))
+                    .secondaryGlassButton(fullWidth: true)
                     .disabled(!viewModel.hasMemoryDrawing)
                     .opacity(viewModel.hasMemoryDrawing ? 1 : 0.55)
 
@@ -278,7 +278,7 @@ struct TracingSessionView: View {
                     } label: {
                         Label("Check", systemImage: "checkmark")
                     }
-                    .buttonStyle(PrimaryButtonStyle(isFullWidth: true))
+                    .primaryGlassButton(fullWidth: true)
                     .disabled(!viewModel.hasMemoryDrawing)
                     .opacity(viewModel.hasMemoryDrawing ? 1 : 0.7)
                 }

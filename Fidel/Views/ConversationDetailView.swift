@@ -162,14 +162,14 @@ struct ConversationDetailView: View {
                         Button(action: { currentLineIndex -= 1 }) {
                             Label("Back", systemImage: "chevron.left")
                         }
-                        .buttonStyle(SecondaryButtonStyle())
+                        .secondaryGlassButton()
                     }
                     
                     Button(action: { advanceLine() }) {
                         Label("Next", systemImage: "chevron.right")
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(PrimaryButtonStyle())
+                    .primaryGlassButton()
                 }
             }
         }

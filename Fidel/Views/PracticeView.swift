@@ -31,7 +31,7 @@ struct PracticeHubView: View {
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)
                 .padding(.top, AppTheme.Spacing.md)
-                .padding(.bottom, 110)
+                .padding(.bottom, AppTheme.Spacing.lg)
             }
             .background(FidelPaperBackground())
             .toolbar(.hidden, for: .navigationBar)
@@ -273,7 +273,7 @@ struct SpeedDrillView: View {
                     Button("Done") {
                         dismiss()
                     }
-                    .buttonStyle(PrimaryButtonStyle())
+                    .primaryGlassButton()
                 }
             }
 
