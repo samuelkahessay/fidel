@@ -62,6 +62,8 @@ struct LessonDetailView: View {
     @State private var currentSection = 0
     @State private var showCompletion = false
     @State private var showSelam = false
+    @State private var bundledAudio = BundledAudioService()
+    @State private var ttsAudio = AudioService()
 
     var body: some View {
         ScrollView {
@@ -135,7 +137,7 @@ struct LessonDetailView: View {
     private var patternsSection: some View {
         VStack(spacing: AppTheme.Spacing.md) {
             ForEach(lesson.patterns) { pattern in
-                PatternCard(pattern: pattern)
+                PatternCard(pattern: pattern, bundled: bundledAudio, tts: ttsAudio)
             }
         }
     }
@@ -143,7 +145,7 @@ struct LessonDetailView: View {
     private var vocabularySection: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppTheme.Spacing.sm) {
             ForEach(lesson.vocabulary) { word in
-                VocabularyCard(word: word)
+                VocabularyCard(word: word, bundled: bundledAudio, tts: ttsAudio)
             }
         }
     }
@@ -151,7 +153,7 @@ struct LessonDetailView: View {
     private var phrasesSection: some View {
         VStack(spacing: AppTheme.Spacing.sm) {
             ForEach(lesson.phrases) { phrase in
-                PhraseRow(phrase: phrase)
+                PhraseRow(phrase: phrase, bundled: bundledAudio, tts: ttsAudio)
             }
         }
     }
@@ -174,6 +176,8 @@ struct LessonDetailView: View {
 struct PatternCard: View {
     @Environment(\.colorScheme) var colorScheme
     let pattern: Pattern
+    var bundled: BundledAudioService
+    var tts: AudioService
     @State private var isExpanded = false
 
     var body: some View {
@@ -221,16 +225,26 @@ struct PatternCard: View {
                         .foregroundStyle(AppTheme.inkSecondaryColor)
 
                     ForEach(pattern.examples, id: \.amharic) { example in
-                        VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
-                            Text(example.amharic)
-                                .font(AppTheme.Typography.amharic(size: 20))
-                                .foregroundStyle(AppTheme.inkColor)
-                            Text(example.transliteration)
-                                .font(AppTheme.Typography.caption)
-                                .foregroundStyle(AppTheme.inkSecondaryColor)
-                            Text(example.english)
-                                .font(AppTheme.Typography.subheadline)
-                                .foregroundStyle(AppTheme.primaryColor)
+                        HStack(alignment: .top, spacing: AppTheme.Spacing.xs) {
+                            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
+                                Text(example.amharic)
+                                    .font(AppTheme.Typography.amharic(size: 20))
+                                    .foregroundStyle(AppTheme.inkColor)
+                                Text(example.transliteration)
+                                    .font(AppTheme.Typography.caption)
+                                    .foregroundStyle(AppTheme.inkSecondaryColor)
+                                Text(example.english)
+                                    .font(AppTheme.Typography.subheadline)
+                                    .foregroundStyle(AppTheme.primaryColor)
+                            }
+
+                            Spacer(minLength: 0)
+
+                            PronunciationButton(
+                                content: .dynamic(amharic: example.amharic, transliteration: example.transliteration),
+                                bundled: bundled,
+                                tts: tts
+                            )
                         }
                         .padding(.vertical, AppTheme.Spacing.xxs)
                     }
@@ -274,6 +288,8 @@ struct PatternCard: View {
 
 struct VocabularyCard: View {
     let word: VocabularyWord
+    var bundled: BundledAudioService
+    var tts: AudioService
 
     var body: some View {
         VStack(spacing: AppTheme.Spacing.xs) {
@@ -289,6 +305,8 @@ struct VocabularyCard: View {
                 .font(AppTheme.Typography.subheadline)
                 .fontWeight(.medium)
                 .foregroundStyle(AppTheme.inkColor)
+
+            PronunciationButton(content: .vocabulary(word), bundled: bundled, tts: tts)
         }
         .frame(maxWidth: .infinity)
         .glassCard()
@@ -297,6 +315,8 @@ struct VocabularyCard: View {
 
 struct PhraseRow: View {
     let phrase: Phrase
+    var bundled: BundledAudioService
+    var tts: AudioService
 
     var body: some View {
         HStack {
@@ -308,6 +328,8 @@ struct PhraseRow: View {
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
+
+            PronunciationButton(content: .phrase(phrase), bundled: bundled, tts: tts)
 
             Spacer()
 

@@ -3,6 +3,7 @@ import SwiftUI
 struct ReferenceView: View {
     @State private var viewModel = ReferenceViewModel()
     @State private var audioService = BundledAudioService()
+    @State private var ttsAudio = AudioService()
     @State private var selectedTab: Int
     private let settingsStore: AppSettingsStore
     private let audioRepository = AudioAssetRepository.shared
@@ -100,7 +101,7 @@ struct ReferenceView: View {
             } else {
                 List {
                     ForEach(viewModel.vocabulary) { word in
-                        VocabularyReferenceRow(word: word)
+                        VocabularyReferenceRow(word: word, bundled: audioService, tts: ttsAudio)
                     }
                 }
                 .listStyle(.insetGrouped)
@@ -281,7 +282,9 @@ struct PhraseReferenceRow: View {
 
 struct VocabularyReferenceRow: View {
     let word: VocabularyWord
-    
+    var bundled: BundledAudioService
+    var tts: AudioService
+
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
@@ -291,7 +294,9 @@ struct VocabularyReferenceRow: View {
                     .font(.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
+            PronunciationButton(content: .vocabulary(word), bundled: bundled, tts: tts)
+
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {

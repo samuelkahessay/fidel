@@ -244,7 +244,9 @@ struct CharacterDetailView: View {
     let character: FidelCharacter
     @Environment(\.dismiss) private var dismiss
     @State private var showTracing = false
-    
+    @State private var bundledAudio = BundledAudioService()
+    @State private var ttsAudio = AudioService()
+
     var body: some View {
         VStack(spacing: 24) {
             Text(character.character)
@@ -262,7 +264,14 @@ struct CharacterDetailView: View {
                     .bold()
                     .foregroundStyle(AppTheme.inkColor)
             }
-            
+
+            PronunciationButton(
+                content: .fidelCharacter(character),
+                size: .emphasis,
+                bundled: bundledAudio,
+                tts: ttsAudio
+            )
+
             HStack(spacing: 32) {
                 VStack {
                     Text("Consonant")

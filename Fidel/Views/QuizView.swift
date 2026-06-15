@@ -23,6 +23,8 @@ struct QuizView: View {
     @State private var score = 0
     @State private var showFeedback = false
     @State private var isCorrect = false
+    @State private var bundledAudio = BundledAudioService()
+    @State private var ttsAudio = AudioService()
     @FocusState private var isTextFieldFocused: Bool
     
     var currentQuestion: QuizQuestion? {
@@ -156,8 +158,21 @@ struct QuizView: View {
                 Text(amharic)
                     .font(AppTheme.Typography.amharic(size: 36))
                     .foregroundStyle(AppTheme.primaryColor)
+
+                // No speaker on listening questions — the answer *is* the pronunciation.
+                if question.type != .listening {
+                    if let word = question.vocabularyWord {
+                        PronunciationButton(content: .vocabulary(word), bundled: bundledAudio, tts: ttsAudio)
+                    } else {
+                        PronunciationButton(
+                            content: .dynamic(amharic: amharic, transliteration: question.transliterationHint),
+                            bundled: bundledAudio,
+                            tts: ttsAudio
+                        )
+                    }
+                }
             }
-            
+
             if question.type == .listening, let hint = question.transliterationHint {
                 Text("Hint: \(hint)")
                     .font(.caption)
@@ -340,7 +355,8 @@ struct QuizView: View {
                     amharic: word.amharic,
                     correctAnswer: word.english,
                     options: options,
-                    transliterationHint: nil
+                    transliterationHint: nil,
+                    vocabularyWord: word
                 )
                 
             case .translation:
@@ -350,7 +366,8 @@ struct QuizView: View {
                     amharic: word.amharic,
                     correctAnswer: word.english,
                     options: [],
-                    transliterationHint: nil
+                    transliterationHint: nil,
+                    vocabularyWord: word
                 )
                 
             case .listening:

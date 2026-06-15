@@ -9,7 +9,9 @@ struct SentenceBuilderView: View {
     @State private var builtSentence = ""
     @State private var showSuccess = false
     @State private var score = 0
-    
+    @State private var bundledAudio = BundledAudioService()
+    @State private var ttsAudio = AudioService()
+
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     
     var patterns: [Pattern] {
@@ -160,10 +162,16 @@ struct SentenceBuilderView: View {
                     Text(sentence.transliteration)
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.inkSecondaryColor)
-                    
+
                     Text(sentence.english)
                         .font(.body)
                         .fontWeight(.medium)
+
+                    PronunciationButton(
+                        content: .dynamic(amharic: sentence.amharic, transliteration: sentence.transliteration),
+                        bundled: bundledAudio,
+                        tts: ttsAudio
+                    )
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
@@ -190,15 +198,25 @@ struct SentenceBuilderView: View {
                 .font(.headline)
             
             ForEach(pattern.examples.prefix(3), id: \.amharic) { example in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(example.amharic)
-                        .font(AppTheme.Typography.amharic(size: 18))
-                    Text(example.transliteration)
-                        .font(.caption)
-                        .foregroundStyle(AppTheme.inkSecondaryColor)
-                    Text(example.english)
-                        .font(.subheadline)
-                        .foregroundStyle(AppTheme.infoColor)
+                HStack(alignment: .top, spacing: AppTheme.Spacing.xs) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(example.amharic)
+                            .font(AppTheme.Typography.amharic(size: 18))
+                        Text(example.transliteration)
+                            .font(.caption)
+                            .foregroundStyle(AppTheme.inkSecondaryColor)
+                        Text(example.english)
+                            .font(.subheadline)
+                            .foregroundStyle(AppTheme.infoColor)
+                    }
+
+                    Spacer(minLength: 0)
+
+                    PronunciationButton(
+                        content: .dynamic(amharic: example.amharic, transliteration: example.transliteration),
+                        bundled: bundledAudio,
+                        tts: ttsAudio
+                    )
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -281,15 +281,19 @@ struct QuizQuestion: Identifiable {
     let correctAnswer: String
     let options: [String]
     let transliterationHint: String?
+    /// The source word, when this question came from one — lets the UI play its
+    /// pre-recorded pronunciation. Nil for questions not built from a vocabulary word.
+    let vocabularyWord: VocabularyWord?
     var userAnswer: String?
-    
-    init(type: QuizType, question: String, amharic: String?, correctAnswer: String, options: [String], transliterationHint: String? = nil) {
+
+    init(type: QuizType, question: String, amharic: String?, correctAnswer: String, options: [String], transliterationHint: String? = nil, vocabularyWord: VocabularyWord? = nil) {
         self.type = type
         self.question = question
         self.amharic = amharic
         self.correctAnswer = correctAnswer
         self.options = options
         self.transliterationHint = transliterationHint
+        self.vocabularyWord = vocabularyWord
     }
     
     var isCorrect: Bool {

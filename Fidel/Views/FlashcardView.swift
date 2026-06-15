@@ -7,13 +7,16 @@ struct FlashcardView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var viewModel = FlashcardViewModel()
     @State private var offset: CGSize = .zero
-    
+    @State private var bundledAudio = BundledAudioService()
+    @State private var ttsAudio = AudioService()
+
     var body: some View {
         VStack(spacing: AppTheme.Spacing.xl) {
             progressHeader
             
             if let word = viewModel.currentWord, !viewModel.showCompletion {
                 flashcardStack(word: word)
+                PronunciationButton(content: .vocabulary(word), bundled: bundledAudio, tts: ttsAudio)
                 reviewControls
                 swipeHints
             } else if viewModel.showCompletion {

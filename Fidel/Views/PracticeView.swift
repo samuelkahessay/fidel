@@ -176,6 +176,8 @@ struct SpeedDrillView: View {
     @State private var userInput = ""
     @State private var showAnswer = false
     @State private var phrases: [Phrase] = []
+    @State private var bundledAudio = BundledAudioService()
+    @State private var ttsAudio = AudioService()
 
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -221,6 +223,7 @@ struct SpeedDrillView: View {
                             Text(phrase.transliteration)
                                 .font(AppTheme.Typography.subheadline)
                                 .foregroundStyle(AppTheme.inkSecondaryColor)
+                            PronunciationButton(content: .phrase(phrase), bundled: bundledAudio, tts: ttsAudio)
                         }
                         .transition(.scale.combined(with: .opacity))
                     }
