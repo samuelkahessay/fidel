@@ -9,6 +9,9 @@ final class BundledAudioService {
     var playingAssetId: String?
     var lastError: String?
 
+    /// Duration of the currently loaded clip, if any — used to pace conversation auto-play.
+    var currentDuration: TimeInterval? { player?.duration }
+
     func play(asset: AudioAsset, url: URL) {
         stop()
         do {

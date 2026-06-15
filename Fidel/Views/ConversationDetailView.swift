@@ -14,6 +14,9 @@ struct ConversationDetailView: View {
     @State private var showCompletion = false
     @State private var showCulturalNote = false
     @State private var autoPlayTask: Task<Void, Never>?
+    @State private var bundledAudio = BundledAudioService()
+    @State private var ttsAudio = AudioService()
+    private let audioRepository = AudioAssetRepository.shared
 
     private var culturalNotes: [CulturalNote] {
         LessonRepository.shared.getCulturalNotes(forConversation: conversation.id)
@@ -58,7 +61,11 @@ struct ConversationDetailView: View {
         } message: {
             Text("You earned 20 XP for practicing this conversation!")
         }
-        .onDisappear { autoPlayTask?.cancel() }
+        .onDisappear {
+            autoPlayTask?.cancel()
+            bundledAudio.stop()
+            ttsAudio.stopPlayback()
+        }
     }
     
     private var readingModeView: some View {
@@ -75,9 +82,12 @@ struct ConversationDetailView: View {
                         let index = conversation.lines.firstIndex(where: { $0.id == line.id }) ?? 0
                         DialogueLineView(
                             line: line,
+                            conversationId: conversation.id,
                             showTransliteration: showTransliteration,
                             showEnglish: showEnglish,
-                            isHighlighted: index == currentLineIndex && isPlaying
+                            isHighlighted: index == currentLineIndex && isPlaying,
+                            bundled: bundledAudio,
+                            tts: ttsAudio
                         )
                         .id(index)
                     }
@@ -185,13 +195,19 @@ struct ConversationDetailView: View {
                 .font(AppTheme.Typography.amharic(size: 32))
                 .foregroundStyle(AppTheme.primaryColor)
                 .multilineTextAlignment(.center)
-            
+
+            PronunciationButton(
+                content: .conversationLine(conversationId: conversation.id, line: line),
+                bundled: bundledAudio,
+                tts: ttsAudio
+            )
+
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
             if showEnglish {
                 Text(line.english)
                     .font(.body)
@@ -215,7 +231,13 @@ struct ConversationDetailView: View {
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 24))
                 .multilineTextAlignment(.center)
-            
+
+            PronunciationButton(
+                content: .conversationLine(conversationId: conversation.id, line: line),
+                bundled: bundledAudio,
+                tts: ttsAudio
+            )
+
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.caption)
@@ -358,18 +380,46 @@ struct ConversationDetailView: View {
             startAutoPlay()
         } else {
             autoPlayTask?.cancel()
+            bundledAudio.stop()
+            ttsAudio.stopPlayback()
         }
     }
-    
+
+    /// Plays each line's pronunciation, advancing when the clip finishes (paced by its
+    /// real duration) rather than on a fixed timer. Falls back to TTS for any line
+    /// without a bundled clip.
     private func startAutoPlay() {
         autoPlayTask?.cancel()
         autoPlayTask = Task {
-            while isPlaying, currentLineIndex < conversation.lines.count - 1 {
-                try? await Task.sleep(for: .seconds(3))
+            while isPlaying {
+                await playCurrentLine()
                 guard !Task.isCancelled, isPlaying else { break }
-                advanceLine()
+                if currentLineIndex < conversation.lines.count - 1 {
+                    currentLineIndex += 1
+                } else {
+                    break
+                }
             }
             isPlaying = false
+            bundledAudio.stop()
+        }
+    }
+
+    @MainActor
+    private func playCurrentLine() async {
+        guard currentLineIndex < conversation.lines.count else { return }
+        let line = conversation.lines[currentLineIndex]
+        if let asset = audioRepository.asset(for: .conversationLine, contentId: "\(conversation.id)-\(line.lineNum)"),
+           let url = audioRepository.audioURL(for: asset) {
+            ttsAudio.stopPlayback()
+            bundledAudio.play(asset: asset, url: url)
+            let duration = (bundledAudio.playingAssetId == asset.id ? bundledAudio.currentDuration : nil) ?? 2.5
+            try? await Task.sleep(for: .seconds(duration + 0.6))
+        } else {
+            // No bundled clip — speak it and pace on a rough per-line gap.
+            bundledAudio.stop()
+            ttsAudio.speakAmharic(line.amharic, transliteration: line.transliteration)
+            try? await Task.sleep(for: .seconds(2.5))
         }
     }
     
@@ -390,17 +440,30 @@ struct ConversationDetailView: View {
 
 struct DialogueLineView: View {
     let line: Conversation.DialogueLine
+    let conversationId: Int
     let showTransliteration: Bool
     let showEnglish: Bool
     let isHighlighted: Bool
-    
+    var bundled: BundledAudioService
+    var tts: AudioService
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(line.speaker)
-                .font(.caption)
-                .bold()
-                .foregroundStyle(AppTheme.primaryColor)
-            
+            HStack {
+                Text(line.speaker)
+                    .font(.caption)
+                    .bold()
+                    .foregroundStyle(AppTheme.primaryColor)
+
+                Spacer()
+
+                PronunciationButton(
+                    content: .conversationLine(conversationId: conversationId, line: line),
+                    bundled: bundled,
+                    tts: tts
+                )
+            }
+
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 22))
             
