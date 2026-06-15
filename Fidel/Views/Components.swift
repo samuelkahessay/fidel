@@ -42,7 +42,7 @@ struct EmptyStateView: View {
                 Button(action: action) {
                     Text(actionTitle)
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .primaryGlassButton()
                 .padding(.top, AppTheme.Spacing.xs)
             }
         }
@@ -496,20 +496,10 @@ struct SuccessOverlay: View {
                             isShowing = false
                         }
                     }
-                    .buttonStyle(PrimaryButtonStyle())
+                    .primaryGlassButton()
                 }
                 .padding(AppTheme.Spacing.xxl)
-                .background(
-                    RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
-                        .fill(.ultraThinMaterial)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
-                                .stroke(
-                                    AppTheme.hairlineColor,
-                                    lineWidth: 0.5
-                                )
-                        )
-                )
+                .glassEffect(in: .rect(cornerRadius: AppTheme.CornerRadius.xlarge))
                 .padding(AppTheme.Spacing.xl)
             }
             .transition(.opacity.combined(with: .scale(scale: 0.9)))

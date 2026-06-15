@@ -406,7 +406,7 @@ struct SpeakButton: View {
                         .scaleEffect(0.8)
                 } else {
                     Image(systemName: audioService.isPlaying ? "speaker.wave.3.fill" : "speaker.wave.2.fill")
-                        .foregroundColor(audioService.isPlaying ? AppTheme.primaryColor : .secondary)
+                        .foregroundStyle(audioService.isPlaying ? AppTheme.primaryColor : .secondary)
                         .font(.title3)
                 }
             }

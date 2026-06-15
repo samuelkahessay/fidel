@@ -235,11 +235,7 @@ struct ChatInputView: View {
         }
         .padding(.horizontal, AppTheme.Spacing.md)
         .padding(.vertical, AppTheme.Spacing.sm)
-        .background(
-            Rectangle()
-                .fill(.ultraThinMaterial)
-                .shadow(color: AppTheme.Shadow.elevated, radius: 10, y: -5)
-        )
+        .glassEffect(.regular, in: .rect)
         .accessibilityElement(children: .contain)
     }
     
