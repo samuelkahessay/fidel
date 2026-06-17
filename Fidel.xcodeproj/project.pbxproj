@@ -15,14 +15,8 @@
 		AAA00007001 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00007000 /* PracticeView.swift */; };
 		AAA00009001 /* ReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00009000 /* ReferenceView.swift */; };
 		AAA00010001 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00010000 /* ProgressView.swift */; };
-		AAA00040001 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00040000 /* AppViewModel.swift */; };
-		AAA00041001 /* LearnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00041000 /* LearnViewModel.swift */; };
-		AAA00042001 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00042000 /* PracticeViewModel.swift */; };
-		AAA00043001 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00043000 /* ConversationViewModel.swift */; };
 		AAA00044001 /* FlashcardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00044000 /* FlashcardViewModel.swift */; };
-		AAA00045001 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00045000 /* QuizViewModel.swift */; };
 		AAA00046001 /* ReferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00046000 /* ReferenceViewModel.swift */; };
-		AAA00047001 /* ProgressDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00047000 /* ProgressDashboardViewModel.swift */; };
 		AAA00012001 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00012000 /* Components.swift */; };
 		AAA00013001 /* FidelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00013000 /* FidelView.swift */; };
 		AAA00014001 /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00014000 /* FlashcardView.swift */; };
@@ -110,14 +104,8 @@
 		AAA00007000 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
 		AAA00009000 /* ReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceView.swift; sourceTree = "<group>"; };
 		AAA00010000 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
-		AAA00040000 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
-		AAA00041000 /* LearnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnViewModel.swift; sourceTree = "<group>"; };
-		AAA00042000 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
-		AAA00043000 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		AAA00044000 /* FlashcardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardViewModel.swift; sourceTree = "<group>"; };
-		AAA00045000 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		AAA00046000 /* ReferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceViewModel.swift; sourceTree = "<group>"; };
-		AAA00047000 /* ProgressDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDashboardViewModel.swift; sourceTree = "<group>"; };
 		AAA00012000 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		AAA00013000 /* FidelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FidelView.swift; sourceTree = "<group>"; };
 		AAA00014000 /* FlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardView.swift; sourceTree = "<group>"; };
@@ -310,14 +298,8 @@
 		AAA00600000 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AAA00040000 /* AppViewModel.swift */,
-				AAA00041000 /* LearnViewModel.swift */,
-				AAA00042000 /* PracticeViewModel.swift */,
-				AAA00043000 /* ConversationViewModel.swift */,
 				AAA00044000 /* FlashcardViewModel.swift */,
-				AAA00045000 /* QuizViewModel.swift */,
 				AAA00046000 /* ReferenceViewModel.swift */,
-				AAA00047000 /* ProgressDashboardViewModel.swift */,
 				AAA00028000 /* SelamViewModel.swift */,
 				AAA00052000 /* JourneyViewModel.swift */,
 				AAA00114000 /* TracingSessionViewModel.swift */,
@@ -492,14 +474,8 @@
 				AAA00007001 /* PracticeView.swift in Sources */,
 				AAA00009001 /* ReferenceView.swift in Sources */,
 				AAA00010001 /* ProgressView.swift in Sources */,
-				AAA00040001 /* AppViewModel.swift in Sources */,
-				AAA00041001 /* LearnViewModel.swift in Sources */,
-				AAA00042001 /* PracticeViewModel.swift in Sources */,
-				AAA00043001 /* ConversationViewModel.swift in Sources */,
 				AAA00044001 /* FlashcardViewModel.swift in Sources */,
-				AAA00045001 /* QuizViewModel.swift in Sources */,
 				AAA00046001 /* ReferenceViewModel.swift in Sources */,
-				AAA00047001 /* ProgressDashboardViewModel.swift in Sources */,
 				AAA00012001 /* Components.swift in Sources */,
 				AAA00013001 /* FidelView.swift in Sources */,
 				AAA00014001 /* FlashcardView.swift in Sources */,
