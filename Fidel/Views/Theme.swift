@@ -302,17 +302,6 @@ struct TintedGlassCardStyle: ViewModifier {
     }
 }
 
-// MARK: - Legacy Card Style (for compatibility)
-
-struct EthiopianCardStyle: ViewModifier {
-    @Environment(\.colorScheme) var colorScheme
-    
-    func body(content: Content) -> some View {
-        content
-            .modifier(GlassCardStyle())
-    }
-}
-
 struct AdaptiveCardBackground: View {
     @Environment(\.colorScheme) var colorScheme
     var cornerRadius: CGFloat = AppTheme.CornerRadius.large
@@ -385,11 +374,6 @@ extension View {
             padding: padding,
             cornerRadius: cornerRadius
         ))
-    }
-    
-    /// Legacy ethiopian card style
-    func ethiopianCard() -> some View {
-        modifier(EthiopianCardStyle())
     }
     
     /// Apply Amharic text styling
@@ -603,6 +587,36 @@ struct AccessibleProgressRing: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(label)
         .accessibilityValue(valueText ?? "\(Int(clampedProgress * 100)) percent")
+    }
+}
+
+/// Solid gold accent ring with a minimum-visible arc, used by the level/goal rings.
+/// Distinct from `ProgressRing` (which is an animated gradient ring).
+struct GoldProgressRing<Content: View>: View {
+    let progress: Double
+    var lineWidth: CGFloat = 9
+    var size: CGFloat = 78
+    var accessibilityLabel: String
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(AppTheme.goldColor.opacity(0.18), lineWidth: lineWidth)
+
+            Circle()
+                .trim(from: 0, to: max(0.04, min(progress, 1)))
+                .stroke(
+                    AppTheme.goldColor,
+                    style: StrokeStyle(lineWidth: lineWidth, lineCap: .round)
+                )
+                .rotationEffect(.degrees(-90))
+
+            content
+        }
+        .frame(width: size, height: size)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel)
     }
 }
 

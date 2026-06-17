@@ -481,18 +481,12 @@ private struct DailyGoalRing: View {
     var goal: Int
 
     var body: some View {
-        ZStack {
-            Circle()
-                .stroke(AppTheme.goldColor.opacity(0.18), lineWidth: 9)
-
-            Circle()
-                .trim(from: 0, to: max(0.04, min(progress, 1)))
-                .stroke(
-                    AppTheme.goldColor,
-                    style: StrokeStyle(lineWidth: 9, lineCap: .round)
-                )
-                .rotationEffect(.degrees(-90))
-
+        GoldProgressRing(
+            progress: progress,
+            lineWidth: 9,
+            size: 78,
+            accessibilityLabel: "Daily goal \(value) of \(goal) XP"
+        ) {
             VStack(spacing: 0) {
                 Text("\(value)")
                     .font(.system(.title3, design: .rounded).weight(.bold))
@@ -502,9 +496,6 @@ private struct DailyGoalRing: View {
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
         }
-        .frame(width: 78, height: 78)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Daily goal \(value) of \(goal) XP")
     }
 }
 

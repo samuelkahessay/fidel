@@ -194,132 +194,6 @@ struct ProgressDashboardView: View {
         .fidelDesignCard()
     }
 
-    private var stageTimeline: some View {
-        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
-            Text("Learning Journey")
-                .font(AppTheme.Typography.headline)
-
-            HStack(spacing: 0) {
-                ForEach(LearningStage.allCases) { stage in
-                    let isUnlocked = stage <= currentStage
-                    let isCurrent = stage == currentStage
-
-                    VStack(spacing: AppTheme.Spacing.xs) {
-                        ZStack {
-                            Circle()
-                                .fill(isUnlocked ? stage.color : AppTheme.mutedInkColor.opacity(0.2))
-                                .frame(width: 36, height: 36)
-
-                            if stage < currentStage {
-                                Image(systemName: "checkmark")
-                                    .font(.caption.bold())
-                                    .foregroundStyle(AppTheme.onAccentColor)
-                            } else if isCurrent {
-                                Image(systemName: stage.icon)
-                                    .font(.caption2)
-                                    .foregroundStyle(AppTheme.onAccentColor)
-                            } else {
-                                Image(systemName: "lock.fill")
-                                    .font(.caption2)
-                                    .foregroundStyle(AppTheme.mutedInkColor)
-                            }
-                        }
-
-                        Text(stage.displayName)
-                            .font(AppTheme.Typography.caption)
-                            .foregroundStyle(isCurrent ? stage.color : AppTheme.inkSecondaryColor)
-                            .multilineTextAlignment(.center)
-                            .lineLimit(2)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel(stage.displayName)
-                    .accessibilityValue(isCurrent ? "Current stage" : (isUnlocked ? "Unlocked" : "Locked"))
-
-                    if stage != .fluency {
-                        Rectangle()
-                            .fill(stage < currentStage ? stage.color : AppTheme.mutedInkColor.opacity(0.2))
-                            .frame(height: 2)
-                            .frame(maxWidth: 20)
-                            .padding(.bottom, 24)
-                    }
-                }
-            }
-        }
-        .fidelSurface(.solid)
-    }
-
-    private var statsOverview: some View {
-        Group {
-            if dynamicTypeSize.isAccessibilitySize {
-                VStack(spacing: 12) {
-                    statCards
-                }
-            } else {
-                HStack(spacing: 16) {
-                    statCards
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var statCards: some View {
-        StatCard(
-            title: "Total XP",
-            value: "\(progress?.totalXP ?? 0)",
-            icon: "star.fill",
-            color: AppTheme.secondaryColor
-        )
-
-        StatCard(
-            title: "Streak",
-            value: "\(progress?.currentStreak ?? 0)",
-            icon: "flame.fill",
-            color: AppTheme.warningColor
-        )
-
-        StatCard(
-            title: "Lessons",
-            value: "\(progress?.lessonsCompleted.count ?? 0)",
-            icon: "book.fill",
-            color: AppTheme.primaryColor
-        )
-    }
-    
-    private var streakSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text("Current Streak")
-                    .font(.headline)
-                Spacer()
-                StreakBadge(streak: progress?.currentStreak ?? 0)
-            }
-            
-            HStack(spacing: 8) {
-                ForEach(0..<7) { day in
-                    VStack(spacing: 4) {
-                        Circle()
-                            .fill(day < (progress?.currentStreak ?? 0) % 7 ? AppTheme.primaryColor : AppTheme.mutedInkColor.opacity(0.2))
-                            .frame(width: 32, height: 32)
-                        
-                        Text(dayLabel(day))
-                            .font(.caption2)
-                            .foregroundStyle(AppTheme.inkSecondaryColor)
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-            }
-            
-            if let longest = progress?.longestStreak, longest > 0 {
-                Text("Longest streak: \(longest) days")
-                    .font(.caption)
-                    .foregroundStyle(AppTheme.inkSecondaryColor)
-            }
-        }
-        .fidelSurface(.solid)
-    }
-    
     private var dailyGoalSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
@@ -385,42 +259,6 @@ struct ProgressDashboardView: View {
     private var earnedAchievements: [Achievement] {
         allAchievements.filter { progress?.achievements.contains($0.id) ?? false }
     }
-    
-    private var learningStatsSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Learning Stats")
-                .font(.headline)
-            
-            HStack(spacing: 16) {
-                LearningStat(
-                    title: "Patterns",
-                    count: progress?.patternsLearned.count ?? 0,
-                    total: lessonRepository.getPatterns().count,
-                    color: AppTheme.infoColor
-                )
-                
-                LearningStat(
-                    title: "Vocabulary",
-                    count: progress?.vocabularyMastered.count ?? 0,
-                    total: lessonRepository.getVocabulary().count,
-                    color: AppTheme.successColor
-                )
-                
-                LearningStat(
-                    title: "Conversations",
-                    count: progress?.conversationsPracticed.count ?? 0,
-                    total: lessonRepository.getConversations().count,
-                    color: AppTheme.practiceColor
-                )
-            }
-        }
-        .fidelSurface(.solid)
-    }
-    
-    private func dayLabel(_ index: Int) -> String {
-        let days = ["M", "T", "W", "T", "F", "S", "S"]
-        return days[index]
-    }
 
     private func loadProgress() {
         let repo = ProgressRepository(modelContext: modelContext)
@@ -475,18 +313,12 @@ private struct YouLevelRing: View {
     let progress: Double
 
     var body: some View {
-        ZStack {
-            Circle()
-                .stroke(AppTheme.goldColor.opacity(0.18), lineWidth: 10)
-
-            Circle()
-                .trim(from: 0, to: max(0.04, min(progress, 1)))
-                .stroke(
-                    AppTheme.goldColor,
-                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                )
-                .rotationEffect(.degrees(-90))
-
+        GoldProgressRing(
+            progress: progress,
+            lineWidth: 10,
+            size: 104,
+            accessibilityLabel: "Level \(level)"
+        ) {
             VStack(spacing: 2) {
                 Text("LV")
                     .font(AppTheme.Typography.caption2)
@@ -496,9 +328,6 @@ private struct YouLevelRing: View {
                     .foregroundStyle(AppTheme.inkColor)
             }
         }
-        .frame(width: 104, height: 104)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Level \(level)")
     }
 }
 
@@ -517,36 +346,6 @@ struct ProgressBackupDocument: FileDocument {
 
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         FileWrapper(regularFileWithContents: data)
-    }
-}
-
-struct StatCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundStyle(color)
-            
-            Text(value)
-                .font(.title2.bold())
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-            
-            Text(title)
-                .font(.caption)
-                .foregroundStyle(AppTheme.inkSecondaryColor)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-        .fidelSurface(.muted, padding: AppTheme.Spacing.md, cornerRadius: AppTheme.CornerRadius.medium)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
-        .accessibilityValue(value)
     }
 }
 
@@ -577,46 +376,6 @@ struct AchievementBadge: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel(achievement.title)
         .accessibilityValue(isEarned ? "Earned" : "Locked")
-    }
-}
-
-struct LearningStat: View {
-    let title: String
-    let count: Int
-    let total: Int
-    let color: Color
-    
-    var progress: Double {
-        total > 0 ? Double(count) / Double(total) : 0
-    }
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            ZStack {
-                AccessibleProgressRing(
-                    progress: progress,
-                    lineWidth: 6,
-                    size: 50,
-                    label: "\(title) progress",
-                    valueText: "\(count) of \(total)"
-                )
-                
-                Text("\(Int(progress * 100))%")
-                    .font(.caption2.bold())
-            }
-            
-            Text("\(count)/\(total)")
-                .font(.caption)
-                .foregroundStyle(AppTheme.inkSecondaryColor)
-            
-            Text(title)
-                .font(.caption2)
-                .foregroundStyle(AppTheme.inkSecondaryColor)
-        }
-        .frame(maxWidth: .infinity)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
-        .accessibilityValue("\(count) of \(total)")
     }
 }
 
