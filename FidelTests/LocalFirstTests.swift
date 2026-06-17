@@ -92,6 +92,19 @@ final class LocalFirstTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(metrics.cellWidth, 44)
     }
 
+    func testCurrentScriptAndSoundsStageSelectsFidelGrid() throws {
+        let container = try makeContainer()
+        let repository = ProgressRepository(modelContext: container.mainContext)
+        _ = repository.ensureUserProgress()
+        let stageManager = StageManager(progressRepository: repository)
+        let viewModel = JourneyViewModel()
+        viewModel.configure(stageManager: stageManager, progressRepository: repository)
+
+        viewModel.selectCurrentStagePrimaryActivity()
+
+        XCTAssertTrue(viewModel.showFidelChart)
+    }
+
     func testTracingSessionViewModelUpdatesCanvasGeometryForAdaptiveLayout() {
         let viewModel = TracingSessionViewModel()
 

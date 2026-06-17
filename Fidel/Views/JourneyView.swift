@@ -30,8 +30,8 @@ struct JourneyView: View {
             }
             .background(FidelPaperBackground())
             .toolbar(.hidden, for: .navigationBar)
-            .sheet(isPresented: $viewModel.showFidelChart) {
-                FidelView()
+            .navigationDestination(isPresented: $viewModel.showFidelChart) {
+                FidelView(embedded: true)
             }
             .navigationDestination(item: $viewModel.selectedLesson) { lesson in
                 LessonDetailView(lesson: lesson)
@@ -90,9 +90,7 @@ struct JourneyView: View {
             HStack(spacing: AppTheme.Spacing.md) {
                 ForEach(LearningStage.allCases) { stage in
                     Button {
-                        if viewModel.lockedStages.contains(stage) {
-                            viewModel.tappedLockedStage = stage
-                        }
+                        handleStageTap(stage)
                     } label: {
                         StagePathTile(
                             stage: stage,
@@ -214,17 +212,14 @@ struct JourneyView: View {
     }
 
     private func handleActivityTap(_ activity: JourneyActivity) {
-        switch activity.type {
-        case .fidel:
-            viewModel.showFidelChart = true
-        case .lesson(let id):
-            let lessons = LessonRepository.shared.getLessons()
-            viewModel.selectedLesson = lessons.first(where: { $0.id == id })
-        case .practiceMode(let mode):
-            viewModel.selectedPracticeMode = mode
-        case .conversation(let id):
-            let conversations = LessonRepository.shared.getConversations()
-            viewModel.selectedConversation = conversations.first(where: { $0.id == id })
+        viewModel.selectActivity(activity)
+    }
+
+    private func handleStageTap(_ stage: LearningStage) {
+        if viewModel.lockedStages.contains(stage) {
+            viewModel.tappedLockedStage = stage
+        } else if stage == viewModel.currentStage {
+            viewModel.selectCurrentStagePrimaryActivity()
         }
     }
 

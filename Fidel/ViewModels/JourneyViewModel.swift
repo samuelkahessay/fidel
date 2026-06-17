@@ -73,6 +73,24 @@ final class JourneyViewModel {
         }
     }
 
+    func selectCurrentStagePrimaryActivity() {
+        guard let primaryActivity = activities.first else { return }
+        selectActivity(primaryActivity)
+    }
+
+    func selectActivity(_ activity: JourneyActivity) {
+        switch activity.type {
+        case .fidel:
+            showFidelChart = true
+        case .lesson(let id):
+            selectedLesson = lessonRepository.getLessons().first(where: { $0.id == id })
+        case .practiceMode(let mode):
+            selectedPracticeMode = mode
+        case .conversation(let id):
+            selectedConversation = lessonRepository.getConversations().first(where: { $0.id == id })
+        }
+    }
+
     // MARK: - Activity Building
 
     private func buildActivities() -> [JourneyActivity] {

@@ -7,10 +7,15 @@ struct FidelView: View {
     @State private var selectedCharacter: FidelCharacter?
     @State private var searchText = ""
     @State private var recognizedCharacterIds: Set<String> = []
-    
+
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
+    let embedded: Bool
     let vowelHeaders = ["ä", "u", "i", "a", "e", "ə", "o"]
-    
+
+    init(embedded: Bool = false) {
+        self.embedded = embedded
+    }
+
     var filteredChart: [[FidelCharacter]] {
         let chart = lessonRepository.getFidelChart()
         if searchText.isEmpty {
@@ -25,39 +30,49 @@ struct FidelView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                headerView
-                
-                if filteredChart.isEmpty {
-                    EmptyStateView(
-                        icon: "magnifyingglass",
-                        title: "No Characters Found",
-                        message: "Try searching by an Ethiopic character or romanized sound."
-                    )
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    GeometryReader { geometry in
-                        chartContent(width: geometry.size.width)
-                    }
+        if embedded {
+            content
+        } else {
+            NavigationStack {
+                content
+            }
+        }
+    }
+
+    private var content: some View {
+        VStack(spacing: 0) {
+            headerView
+
+            if filteredChart.isEmpty {
+                EmptyStateView(
+                    icon: "magnifyingglass",
+                    title: "No Characters Found",
+                    message: "Try searching by an Ethiopic character or romanized sound."
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                GeometryReader { geometry in
+                    chartContent(width: geometry.size.width)
                 }
             }
-            .background(FidelPaperBackground())
-            .navigationTitle("Fidel")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
+        }
+        .background(FidelPaperBackground())
+        .navigationTitle("Fidel")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if !embedded {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") { dismiss() }
                 }
             }
-            .searchable(text: $searchText, prompt: "Search characters")
-            .sheet(item: $selectedCharacter) { char in
-                CharacterDetailView(character: char)
-                    .presentationDetents([.medium])
-            }
-            .onAppear {
-                refreshRecognition()
-            }
+        }
+        .searchable(text: $searchText, prompt: "Search characters")
+        .sheet(item: $selectedCharacter) { char in
+            CharacterDetailView(character: char)
+                .presentationDetents([.medium])
+        }
+        .onAppear {
+            refreshRecognition()
         }
     }
 
