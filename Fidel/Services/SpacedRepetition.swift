@@ -157,65 +157,6 @@ struct FSRSAlgorithm {
     }
 }
 
-// MARK: - Legacy SM-2 Compatibility
-
-enum ReviewQuality: Int {
-    case again = 0
-    case hard = 1
-    case good = 2
-    case easy = 3
-    
-    var toFSRSRating: ReviewRating {
-        switch self {
-        case .again: return .again
-        case .hard: return .hard
-        case .good: return .good
-        case .easy: return .easy
-        }
-    }
-}
-
-struct SpacedRepetitionAlgorithm {
-    
-    static func calculateNextReview(
-        quality: ReviewQuality,
-        currentEaseFactor: Double,
-        currentInterval: Int,
-        currentRepetitions: Int
-    ) -> (newInterval: Int, newEaseFactor: Double, newRepetitions: Int) {
-        
-        let stability = currentEaseFactor > 0 ? Double(currentInterval) / currentEaseFactor : 0
-        let difficulty = 11.0 - currentEaseFactor
-        
-        let result = FSRSAlgorithm.calculateNextReview(
-            rating: quality.toFSRSRating,
-            currentStability: stability,
-            currentDifficulty: max(1, min(10, difficulty)),
-            elapsedDays: Double(currentInterval)
-        )
-        
-        let newEaseFactor = 11.0 - result.newDifficulty
-        let newRepetitions = quality == .again ? 0 : currentRepetitions + 1
-        
-        return (result.newInterval, newEaseFactor, newRepetitions)
-    }
-    
-    static func updateFlashcardProgress(
-        progress: FlashcardProgress,
-        quality: ReviewQuality
-    ) {
-        FSRSAlgorithm.updateFlashcardProgress(progress: progress, rating: quality.toFSRSRating)
-    }
-    
-    static func getDueCards(from cards: [FlashcardProgress]) -> [FlashcardProgress] {
-        FSRSAlgorithm.getDueCards(from: cards)
-    }
-    
-    static func getUpcomingCards(from cards: [FlashcardProgress], days: Int = 7) -> [FlashcardProgress] {
-        FSRSAlgorithm.getUpcomingCards(from: cards, days: days)
-    }
-}
-
 // MARK: - FlashcardManager
 
 @MainActor
@@ -251,10 +192,6 @@ class FlashcardManager {
     func recordReview(for itemId: String, type: String, rating: ReviewRating) {
         let progress = getOrCreateProgress(for: itemId, type: type)
         FSRSAlgorithm.updateFlashcardProgress(progress: progress, rating: rating)
-    }
-    
-    func recordReview(for itemId: String, type: String, quality: ReviewQuality) {
-        recordReview(for: itemId, type: type, rating: quality.toFSRSRating)
     }
     
     func getDueItems(type: String? = nil) -> [FlashcardProgress] {
