@@ -11,7 +11,6 @@ protocol LessonRepositoryProtocol {
     
     // Patterns
     func getPatterns() -> [Pattern]
-    func getPatterns(for unit: Int) -> [Pattern]
     
     // Conversations
     func getConversations() -> [Conversation]
@@ -24,7 +23,6 @@ protocol LessonRepositoryProtocol {
     func getVocabulary() -> [VocabularyWord]
     func getVocabulary(for category: String) -> [VocabularyWord]
     func getVocabularyCategories() -> [String]
-    func getShuffledVocabulary(count: Int) -> [VocabularyWord]
     
     // Fidel
     func getFidelChart() -> [[FidelCharacter]]
@@ -66,10 +64,6 @@ final class LessonRepository: LessonRepositoryProtocol {
         AmharicData.patterns
     }
     
-    func getPatterns(for unit: Int) -> [Pattern] {
-        AmharicData.patterns.filter { $0.unit == unit }
-    }
-    
     // MARK: - Conversations
     
     func getConversations() -> [Conversation] {
@@ -98,10 +92,6 @@ final class LessonRepository: LessonRepositoryProtocol {
     
     func getVocabularyCategories() -> [String] {
         AmharicData.vocabularyCategories
-    }
-    
-    func getShuffledVocabulary(count: Int) -> [VocabularyWord] {
-        Array(AmharicData.vocabulary.shuffled().prefix(count))
     }
     
     // MARK: - Fidel

@@ -269,8 +269,6 @@ enum QuizType: String, CaseIterable {
     case multipleChoice = "Multiple Choice"
     case translation = "Translation"
     case listening = "Listening"
-    case fillInBlank = "Fill in the Blank"
-    case matching = "Matching"
 }
 
 struct QuizQuestion: Identifiable {
