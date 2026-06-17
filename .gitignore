@@ -29,3 +29,6 @@ Pods/
 .asc/
 fidel_stroke_data.json
 fidel drawing artifacts and passes/
+
+# App Store marketing screenshots — regenerated from the simulator per UI change
+AppStore/
