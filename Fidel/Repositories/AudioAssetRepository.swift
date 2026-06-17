@@ -25,6 +25,13 @@ struct AudioAssetRepository {
         asset(for: .phrase, contentId: "\(phrase.id)")
     }
 
+    /// Looks up per-word pronunciation audio. Word assets are keyed by the
+    /// Amharic text itself under the `.vocabulary` content type (see the
+    /// `words` scope in tools/audio/azure_audio_manifest.py).
+    func wordAsset(forAmharic amharic: String) -> AudioAsset? {
+        asset(for: .vocabulary, contentId: amharic)
+    }
+
     func audioURL(for asset: AudioAsset) -> URL? {
         guard let resourceURL = bundle.resourceURL else { return nil }
         let url = resourceURL.appendingPathComponent(asset.file)

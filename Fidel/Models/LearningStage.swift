@@ -83,7 +83,7 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
     var availablePracticeModes: Set<PracticeMode> {
         switch self {
         case .scriptAndSounds: return [.flashcards, .quiz, .tracing]
-        case .survivalPhrases: return [.flashcards, .quiz, .pronunciation]
+        case .survivalPhrases: return [.flashcards, .quiz, .pronunciation, .wordOrder, .matchPairs]
         case .buildingSentences: return Set(PracticeMode.allCases)
         case .fluency: return Set(PracticeMode.allCases)
         }

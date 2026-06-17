@@ -82,6 +82,13 @@
 		AAA00111001 /* TraceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00111000 /* TraceEngine.swift */; };
 		BAA00010001 /* TraceEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00010000 /* TraceEngineTests.swift */; };
 		BAA00011001 /* TraceMasteryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00011000 /* TraceMasteryTests.swift */; };
+		BAA00012001 /* DuolingoExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00012000 /* DuolingoExerciseTests.swift */; };
+		AAA00120001 /* WordAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00120000 /* WordAudioPlayer.swift */; };
+		AAA00121001 /* WordOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00121000 /* WordOrderViewModel.swift */; };
+		AAA00122001 /* WordOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00122000 /* WordOrderView.swift */; };
+		AAA00123001 /* MatchPairsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00123000 /* MatchPairsViewModel.swift */; };
+		AAA00124001 /* MatchPairsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00124000 /* MatchPairsView.swift */; };
+		AAA00125001 /* sentence_exercises.json in Resources */ = {isa = PBXBuildFile; fileRef = AAA00125000 /* sentence_exercises.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +180,13 @@
 		AAA00111000 /* TraceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngine.swift; sourceTree = "<group>"; };
 		BAA00010000 /* TraceEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngineTests.swift; sourceTree = "<group>"; };
 		BAA00011000 /* TraceMasteryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceMasteryTests.swift; sourceTree = "<group>"; };
+		BAA00012000 /* DuolingoExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuolingoExerciseTests.swift; sourceTree = "<group>"; };
+		AAA00120000 /* WordAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAudioPlayer.swift; sourceTree = "<group>"; };
+		AAA00121000 /* WordOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderViewModel.swift; sourceTree = "<group>"; };
+		AAA00122000 /* WordOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderView.swift; sourceTree = "<group>"; };
+		AAA00123000 /* MatchPairsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPairsViewModel.swift; sourceTree = "<group>"; };
+		AAA00124000 /* MatchPairsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPairsView.swift; sourceTree = "<group>"; };
+		AAA00125000 /* sentence_exercises.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sentence_exercises.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -222,6 +236,7 @@
 				BAA00002000 /* LocalFirstTests.swift */,
 				BAA00010000 /* TraceEngineTests.swift */,
 				BAA00011000 /* TraceMasteryTests.swift */,
+				BAA00012000 /* DuolingoExerciseTests.swift */,
 			);
 			path = FidelTests;
 			sourceTree = "<group>";
@@ -261,6 +276,8 @@
 				AAA00054000 /* ToolsView.swift */,
 				AAA00055000 /* LessonComponents.swift */,
 				AAA00113000 /* TracingSessionView.swift */,
+				AAA00122000 /* WordOrderView.swift */,
+				AAA00124000 /* MatchPairsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,6 +321,8 @@
 				AAA00052000 /* JourneyViewModel.swift */,
 				AAA00114000 /* TracingSessionViewModel.swift */,
 				AAA00082000 /* StrokeRecorderViewModel.swift */,
+				AAA00121000 /* WordOrderViewModel.swift */,
+				AAA00123000 /* MatchPairsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -325,6 +344,7 @@
 				AAA00098000 /* AppSettingsStore.swift */,
 				AAA00099000 /* ProgressExportService.swift */,
 				AAA00103000 /* BundledAudioService.swift */,
+				AAA00120000 /* WordAudioPlayer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -348,6 +368,7 @@
 				AAA00092000 /* fidel_chart.json */,
 				AAA00093000 /* numbers.json */,
 				AAA00094000 /* patterns.json */,
+				AAA00125000 /* sentence_exercises.json */,
 				AAA00095000 /* phrases.json */,
 				AAA00096000 /* vocabulary.json */,
 				AAA00104000 /* audio_manifest.json */,
@@ -445,6 +466,7 @@
 				AAA00092001 /* fidel_chart.json in Resources */,
 				AAA00093001 /* numbers.json in Resources */,
 				AAA00094001 /* patterns.json in Resources */,
+				AAA00125001 /* sentence_exercises.json in Resources */,
 				AAA00095001 /* phrases.json in Resources */,
 				AAA00096001 /* vocabulary.json in Resources */,
 				AAA00104001 /* audio_manifest.json in Resources */,
@@ -525,6 +547,11 @@
 				AAA00101001 /* AudioAsset.swift in Sources */,
 				AAA00102001 /* AudioAssetRepository.swift in Sources */,
 				AAA00103001 /* BundledAudioService.swift in Sources */,
+				AAA00120001 /* WordAudioPlayer.swift in Sources */,
+				AAA00121001 /* WordOrderViewModel.swift in Sources */,
+				AAA00122001 /* WordOrderView.swift in Sources */,
+				AAA00123001 /* MatchPairsViewModel.swift in Sources */,
+				AAA00124001 /* MatchPairsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +562,7 @@
 				BAA00002001 /* LocalFirstTests.swift in Sources */,
 				BAA00010001 /* TraceEngineTests.swift in Sources */,
 				BAA00011001 /* TraceMasteryTests.swift in Sources */,
+				BAA00012001 /* DuolingoExerciseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

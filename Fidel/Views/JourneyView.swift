@@ -49,6 +49,10 @@ struct JourneyView: View {
                     PronunciationPracticeView()
                 case .sentenceBuilder:
                     SentenceBuilderView()
+                case .wordOrder:
+                    WordOrderView()
+                case .matchPairs:
+                    MatchPairsView()
                 case .speedDrill:
                     SpeedDrillView()
                 case .tracing:

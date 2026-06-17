@@ -8,6 +8,7 @@ struct AmharicData {
 
     static let fidelChart: [[FidelCharacter]] = AmharicDataLoader.fidelChart
     static let patterns: [Pattern] = AmharicDataLoader.patterns
+    static let sentenceExercises: [SentenceExercise] = AmharicDataLoader.sentenceExercises
     static let conversations: [Conversation] = AmharicDataLoader.conversations
     static let phrases: [Phrase] = AmharicDataLoader.phrases
     static let vocabulary: [VocabularyWord] = AmharicDataLoader.vocabulary

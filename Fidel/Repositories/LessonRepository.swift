@@ -11,7 +11,10 @@ protocol LessonRepositoryProtocol {
     
     // Patterns
     func getPatterns() -> [Pattern]
-    
+
+    // Sentence (word-bank) exercises
+    func getSentenceExercises() -> [SentenceExercise]
+
     // Conversations
     func getConversations() -> [Conversation]
     func getConversation(by id: Int) -> Conversation?
@@ -64,6 +67,12 @@ final class LessonRepository: LessonRepositoryProtocol {
         AmharicData.patterns
     }
     
+    // MARK: - Sentence Exercises
+
+    func getSentenceExercises() -> [SentenceExercise] {
+        AmharicData.sentenceExercises
+    }
+
     // MARK: - Conversations
     
     func getConversations() -> [Conversation] {

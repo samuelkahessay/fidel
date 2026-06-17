@@ -11,6 +11,8 @@ struct PracticeHubView: View {
         .flashcards,
         .quiz,
         .sentenceBuilder,
+        .wordOrder,
+        .matchPairs,
         .speedDrill,
         .pronunciation,
         .tracing
@@ -156,6 +158,10 @@ private struct PracticeHubDestination: View {
             QuizView()
         case .sentenceBuilder:
             SentenceBuilderView()
+        case .wordOrder:
+            WordOrderView()
+        case .matchPairs:
+            MatchPairsView()
         case .speedDrill:
             SpeedDrillView()
         case .pronunciation:
