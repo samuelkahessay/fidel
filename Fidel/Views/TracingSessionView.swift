@@ -6,6 +6,7 @@ import SwiftUI
 struct TracingSessionView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dismiss) private var dismiss
     @State private var viewModel = TracingSessionViewModel()
     @State private var replayToken = 0
 
@@ -362,6 +363,32 @@ struct TracingSessionView: View {
             }
 
             XPBadge(xp: viewModel.sessionXP)
+
+            VStack(spacing: AppTheme.Spacing.sm) {
+                // The adaptive session keeps composing fresh batches from live
+                // mastery, so let learners stay in the loop toward the 50-char
+                // goal instead of popping out after every 8 characters.
+                if case .standard = plan {
+                    Button {
+                        withAnimation(AppTheme.Animation.standard) {
+                            viewModel.startSession(plan: plan)
+                        }
+                    } label: {
+                        Label("Keep practicing", systemImage: "arrow.clockwise")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .primaryGlassButton(fullWidth: true)
+                }
+
+                Button {
+                    dismiss()
+                } label: {
+                    Text("Done")
+                        .frame(maxWidth: .infinity)
+                }
+                .secondaryGlassButton(fullWidth: true)
+            }
+            .padding(.top, AppTheme.Spacing.xs)
         }
         .glassCard()
     }

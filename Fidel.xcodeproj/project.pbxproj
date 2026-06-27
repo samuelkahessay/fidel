@@ -83,6 +83,7 @@
 		BAA00010001 /* TraceEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00010000 /* TraceEngineTests.swift */; };
 		BAA00011001 /* TraceMasteryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00011000 /* TraceMasteryTests.swift */; };
 		BAA00012001 /* DuolingoExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00012000 /* DuolingoExerciseTests.swift */; };
+		BAA00013001 /* LearnHeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00013000 /* LearnHeroTests.swift */; };
 		AAA00120001 /* WordAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00120000 /* WordAudioPlayer.swift */; };
 		AAA00121001 /* WordOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00121000 /* WordOrderViewModel.swift */; };
 		AAA00122001 /* WordOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00122000 /* WordOrderView.swift */; };
@@ -181,6 +182,7 @@
 		BAA00010000 /* TraceEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngineTests.swift; sourceTree = "<group>"; };
 		BAA00011000 /* TraceMasteryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceMasteryTests.swift; sourceTree = "<group>"; };
 		BAA00012000 /* DuolingoExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuolingoExerciseTests.swift; sourceTree = "<group>"; };
+		BAA00013000 /* LearnHeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnHeroTests.swift; sourceTree = "<group>"; };
 		AAA00120000 /* WordAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAudioPlayer.swift; sourceTree = "<group>"; };
 		AAA00121000 /* WordOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderViewModel.swift; sourceTree = "<group>"; };
 		AAA00122000 /* WordOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderView.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				BAA00010000 /* TraceEngineTests.swift */,
 				BAA00011000 /* TraceMasteryTests.swift */,
 				BAA00012000 /* DuolingoExerciseTests.swift */,
+				BAA00013000 /* LearnHeroTests.swift */,
 			);
 			path = FidelTests;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				BAA00010001 /* TraceEngineTests.swift in Sources */,
 				BAA00011001 /* TraceMasteryTests.swift in Sources */,
 				BAA00012001 /* DuolingoExerciseTests.swift in Sources */,
+				BAA00013001 /* LearnHeroTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

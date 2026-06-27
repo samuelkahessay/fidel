@@ -92,7 +92,7 @@ final class LocalFirstTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(metrics.cellWidth, 44)
     }
 
-    func testCurrentScriptAndSoundsStageSelectsFidelGrid() throws {
+    func testCurrentScriptAndSoundsStagePrimaryActivityIsAdaptiveTracing() throws {
         let container = try makeContainer()
         let repository = ProgressRepository(modelContext: container.mainContext)
         _ = repository.ensureUserProgress()
@@ -100,9 +100,14 @@ final class LocalFirstTests: XCTestCase {
         let viewModel = JourneyViewModel()
         viewModel.configure(stageManager: stageManager, progressRepository: repository)
 
+        // The primary Script & Sounds activity is now "Practice Fidel", which
+        // launches the adaptive tracing session rather than the chart.
+        XCTAssertEqual(viewModel.activities.first?.id, "practice_fidel")
+
         viewModel.selectCurrentStagePrimaryActivity()
 
-        XCTAssertTrue(viewModel.showFidelChart)
+        XCTAssertEqual(viewModel.selectedPracticeMode, .tracing)
+        XCTAssertFalse(viewModel.showFidelChart)
     }
 
     func testTracingSessionViewModelUpdatesCanvasGeometryForAdaptiveLayout() {
