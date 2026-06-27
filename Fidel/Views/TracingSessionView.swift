@@ -132,6 +132,8 @@ struct TracingSessionView: View {
                         size: canvasSize,
                         characterId: item.character.id,
                         maxLoops: 1,
+                        inkColor: AppTheme.traceInkColor,
+                        ghostColor: AppTheme.traceChannelColor,
                         onFinished: {
                             withAnimation(AppTheme.Animation.standard) {
                                 viewModel.finishWatching()
@@ -154,7 +156,7 @@ struct TracingSessionView: View {
                         characterId: item.character.id,
                         size: canvasSize,
                         guideLevel: item.level >= 2 && !viewModel.usedGuideAssist ? .faint : .full,
-                        fillColor: AppTheme.practiceColor,
+                        fillColor: AppTheme.traceInkColor,
                         engine: viewModel.engine
                     )
 
@@ -166,22 +168,16 @@ struct TracingSessionView: View {
                 }
             }
             .frame(width: canvasSize.width, height: canvasSize.height)
-            .background(AdaptiveCardBackground())
+            .background(TraceSlateBackground())
             .scaleEffect(viewModel.itemPhase == .celebrating && !reduceMotion ? 1.05 : 1.0)
             .animation(reduceMotion ? nil : AppTheme.Animation.standard, value: viewModel.itemPhase)
         }
         .task(id: celebrationTaskKey) {
             guard viewModel.itemPhase == .celebrating else { return }
-            try? await Task.sleep(for: .seconds(0.6))
-            guard !Task.isCancelled else { return }
-            // Build the next character's reveal regions while the success
-            // state is on screen, so the transition lands without a hitch.
+            // Prewarm the next character's reveal regions while the success
+            // state is on screen, so tapping Continue lands without a hitch.
+            // No auto-advance: the learner taps Continue when ready.
             viewModel.prewarmNextCharacter()
-            try? await Task.sleep(for: .seconds(0.15))
-            guard !Task.isCancelled else { return }
-            withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
-                viewModel.advanceAfterCelebration()
-            }
         }
     }
 
@@ -195,12 +191,15 @@ struct TracingSessionView: View {
         ZStack {
             Text("Write \(item.character.romanization) from memory")
                 .font(AppTheme.Typography.caption)
-                .foregroundStyle(AppTheme.mutedInkColor)
+                .foregroundStyle(AppTheme.traceInkColor.opacity(0.55))
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(.top, AppTheme.Spacing.sm)
                 .opacity(viewModel.hasMemoryDrawing ? 0 : 1)
 
-            DrawingCanvasView(drawing: $viewModel.userDrawing)
+            DrawingCanvasView(
+                drawing: $viewModel.userDrawing,
+                inkColor: AppTheme.traceInkUIColor
+            )
                 .frame(width: canvasSize.width, height: canvasSize.height)
                 .accessibilityLabel("Writing canvas for \(item.character.character)")
                 .accessibilityHint("Write the character from memory, then use Check")
@@ -302,8 +301,16 @@ struct TracingSessionView: View {
             }
 
         case .celebrating:
-            // Keeps the footer height stable while celebrating.
-            Color.clear.frame(height: 44)
+            Button {
+                withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
+                    viewModel.advanceAfterCelebration()
+                }
+            } label: {
+                let isLast = viewModel.currentIndex >= viewModel.items.count - 1
+                Label(isLast ? "Finish" : "Continue", systemImage: isLast ? "checkmark" : "arrow.right")
+            }
+            .primaryGlassButton(fullWidth: true)
+            .accessibilityHint("Goes to the next character")
         }
     }
 

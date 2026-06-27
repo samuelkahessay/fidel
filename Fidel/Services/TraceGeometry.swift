@@ -3,21 +3,30 @@ import Foundation
 
 /// Tunable constants for the guided trace interaction.
 /// Centralized so forgiveness can be adjusted during QA without touching engine logic.
+///
+/// Forgiveness philosophy (the "magnet"): two levers control feel — corridor
+/// *width* (precision tolerance) and the acceptance *coverage* (how much of the
+/// stroke you must traverse). Delight comes from pulling them apart: a WIDE
+/// corridor (sloppy lines are fine) with a HIGH coverage bar (you still have to
+/// traverse the glyph). Straying never erases mid-drag; it only pauses.
 struct TraceTuning {
     /// Corridor radius = clamp(max(penWidth·canvasW, glyphStrokeWidth) × factor, min, maxRatio·canvasW).
-    var corridorFactor: CGFloat = 2.4
-    var minCorridorRadius: CGFloat = 26
+    /// Wide on purpose — precision forgiveness lives here.
+    var corridorFactor: CGFloat = 2.9
+    var minCorridorRadius: CGFloat = 32
     var maxCorridorRadiusRatio: CGFloat = 0.16
     /// Strokes shorter than this fraction of the canvas width get extra corridor forgiveness.
     var smallStrokeLengthRatio: CGFloat = 0.15
     var smallStrokeCorridorBoost: CGFloat = 1.3
     /// Touch must begin within corridorRadius × startRadiusFactor of the stroke start.
-    var startRadiusFactor: CGFloat = 1.6
+    /// Kept meaningful: forgiveness is about precision, never about where you start.
+    var startRadiusFactor: CGFloat = 2.0
     /// Lift must land within corridorRadius × endRadiusFactor of the stroke end.
-    var endRadiusFactor: CGFloat = 1.8
-    /// Lifting at or beyond this progress completes the stroke.
-    var completionProgress: CGFloat = 0.88
-    var shortStrokeCompletionProgress: CGFloat = 0.78
+    var endRadiusFactor: CGFloat = 2.2
+    /// Lifting at or beyond this in-corridor coverage completes the stroke.
+    /// HIGH on purpose — completion is earned by traversal, not by a low bar.
+    var completionProgress: CGFloat = 0.82
+    var shortStrokeCompletionProgress: CGFloat = 0.72
     /// Strokes shorter than this (points) use the short-stroke completion threshold.
     var shortStrokeLength: CGFloat = 60
     /// Strokes shorter than this (points) complete on a single tap near them.
@@ -27,19 +36,30 @@ struct TraceTuning {
     /// Forward arc look-ahead = max(factor × corridorRadius, lengthFraction × totalLength).
     var forwardWindowFactor: CGFloat = 2.5
     var forwardWindowLengthFraction: CGFloat = 0.08
-    /// Continuous time outside the corridor before a miss is registered.
-    var deviationGrace: TimeInterval = 0.12
+    /// Continuous time outside the corridor before guidance nudges (no longer a miss).
+    var deviationGrace: TimeInterval = 0.45
     var missesBeforeAutoHint: Int = 2
-    /// Visual timings consumed by the canvas layer, not the engine.
-    var rollbackDuration: TimeInterval = 0.25
     var hesitationHintDelay: TimeInterval = 4.0
+
+    // MARK: - Magnet (snap-to-complete on release)
+
+    /// In-corridor coverage that lets a release snap-complete the stroke. Kept
+    /// HIGH so it stays earned; the wide corridor is what makes it forgiving.
+    var magnetCompletionFraction: CGFloat = 0.80
+    /// Release may land this many corridor-radii from the true end and still
+    /// snap (the magnet pulls the remaining tail). Modest, to avoid a sloppy
+    /// drag satisfying an adjacent stroke in a multi-stroke glyph.
+    var magnetEndRadiusFactor: CGFloat = 2.4
+    /// Forward snap-fill animation duration (consumed by the canvas).
+    var snapDuration: TimeInterval = 0.28
 
     static let standard = TraceTuning()
 
-    /// Slightly tighter corridor and later auto-hints for the faint-guide level.
+    /// Faint-guide level. Intentionally the SAME input forgiveness as standard —
+    /// difficulty comes purely from reduced visual scaffolding (dimmer channel,
+    /// guidance only after a miss), not a tighter target.
     static func level2() -> TraceTuning {
         var tuning = TraceTuning()
-        tuning.corridorFactor = 2.0
         tuning.missesBeforeAutoHint = 3
         return tuning
     }

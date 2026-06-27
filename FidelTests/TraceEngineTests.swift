@@ -199,26 +199,34 @@ final class TraceEngineTests: XCTestCase {
         XCTAssertLessThan(engine.displayProgress, 0.6)
     }
 
-    // MARK: - Misses
+    // MARK: - Forgiveness (stray pauses, give-up resets)
 
-    func testDeviationBeyondCorridorTriggersMissAfterGrace() {
+    /// Straying outside the corridor must never erase progress or count a miss —
+    /// it just pauses, and returning inside resumes advancement.
+    func testStrayOutsideCorridorPreservesProgressAndResumes() {
         let (engine, recorder) = makeEngine(strokes: [horizontalStroke()])
 
         engine.touchBegan(at: CGPoint(x: 30, y: 150), time: 0)
-        engine.touchMoved(to: CGPoint(x: 100, y: 150), time: 0.1)
-        // Far outside the corridor, held past the grace interval.
-        engine.touchMoved(to: CGPoint(x: 100, y: 280), time: 0.2)
-        engine.touchMoved(to: CGPoint(x: 100, y: 280), time: 0.5)
+        engine.touchMoved(to: CGPoint(x: 150, y: 150), time: 0.1)
+        let progressBeforeStray = engine.displayProgress
+        XCTAssertGreaterThan(progressBeforeStray, 0)
 
-        XCTAssertEqual(engine.phase, .rollingBack)
-        XCTAssertTrue(recorder.events.contains(.miss(index: 0, count: 1)))
+        // Far outside the corridor, held well past the old grace interval.
+        engine.touchMoved(to: CGPoint(x: 150, y: 290), time: 0.2)
+        engine.touchMoved(to: CGPoint(x: 150, y: 290), time: 1.0)
 
-        engine.rollbackAnimationFinished()
-        XCTAssertEqual(engine.phase, .waitingForStart)
-        XCTAssertEqual(engine.displayProgress, 0)
+        XCTAssertEqual(engine.phase, .tracing)
+        XCTAssertEqual(engine.displayProgress, progressBeforeStray)
+        XCTAssertFalse(recorder.events.contains { if case .miss = $0 { return true }; return false })
+
+        // Returning inside the corridor resumes advancement.
+        engine.touchMoved(to: CGPoint(x: 210, y: 150), time: 1.1)
+        XCTAssertGreaterThan(engine.displayProgress, progressBeforeStray)
     }
 
-    func testEarlyLiftTriggersMiss() {
+    /// Lifting with too little coverage is a give-up: it resets cleanly (no
+    /// rollback phase) and counts a miss for scoring.
+    func testEarlyLiftIsGiveUpAndResetsCleanly() {
         let (engine, recorder) = makeEngine(strokes: [horizontalStroke()])
 
         engine.touchBegan(at: CGPoint(x: 30, y: 150), time: 0)
@@ -226,18 +234,17 @@ final class TraceEngineTests: XCTestCase {
         engine.touchMoved(to: CGPoint(x: 150, y: 150), time: 0.2)
         engine.touchEnded(at: CGPoint(x: 150, y: 150), time: 0.3)
 
-        XCTAssertEqual(engine.phase, .rollingBack)
+        XCTAssertEqual(engine.phase, .waitingForStart)
+        XCTAssertEqual(engine.displayProgress, 0)
         XCTAssertTrue(recorder.events.contains(.miss(index: 0, count: 1)))
     }
 
-    func testSecondMissAutoPlaysHint() {
+    func testSecondGiveUpAutoPlaysHint() {
         let (engine, recorder) = makeEngine(strokes: [horizontalStroke()])
 
         for attempt in 1...2 {
             engine.touchBegan(at: CGPoint(x: 30, y: 150), time: TimeInterval(attempt))
             engine.touchEnded(at: CGPoint(x: 35, y: 150), time: TimeInterval(attempt) + 0.1)
-            XCTAssertEqual(engine.phase, .rollingBack)
-            engine.rollbackAnimationFinished()
         }
 
         XCTAssertEqual(engine.phase, .playingHint)
@@ -253,7 +260,6 @@ final class TraceEngineTests: XCTestCase {
         for attempt in 1...2 {
             engine.touchBegan(at: CGPoint(x: 30, y: 150), time: TimeInterval(attempt))
             engine.touchEnded(at: CGPoint(x: 35, y: 150), time: TimeInterval(attempt) + 0.1)
-            engine.rollbackAnimationFinished()
         }
         XCTAssertEqual(engine.phase, .playingHint)
 
@@ -276,7 +282,29 @@ final class TraceEngineTests: XCTestCase {
         engine.touchMoved(to: CGPoint(x: 265, y: 150), time: 0.4)
         engine.touchEnded(at: CGPoint(x: 265, y: 150), time: 0.5)
 
-        XCTAssertEqual(engine.phase, .strokeComplete)
+        XCTAssertTrue(engine.phase == .snapping || engine.phase == .strokeComplete)
+        finishStroke(engine)
+        XCTAssertEqual(engine.displayProgress, 1)
+        XCTAssertTrue(recorder.events.contains(.strokeCompleted(index: 0)))
+    }
+
+    /// A loose drag that covers most of the stroke snaps to complete via the
+    /// magnet: it enters `.snapping` with the captured partial progress, then
+    /// fills to 1 when the canvas reports the snap finished.
+    func testLenientLiftSnapsToComplete() {
+        let (engine, recorder) = makeEngine(strokes: [horizontalStroke()])
+
+        engine.touchBegan(at: CGPoint(x: 30, y: 150), time: 0)
+        engine.touchMoved(to: CGPoint(x: 120, y: 150), time: 0.1)
+        engine.touchMoved(to: CGPoint(x: 200, y: 150), time: 0.2)
+        engine.touchMoved(to: CGPoint(x: 234, y: 150), time: 0.3) // ~0.85 coverage
+        engine.touchEnded(at: CGPoint(x: 234, y: 150), time: 0.4)
+
+        XCTAssertEqual(engine.phase, .snapping)
+        XCTAssertGreaterThan(engine.snapStartProgress, 0.8)
+        XCTAssertLessThan(engine.displayProgress, 1)
+
+        engine.strokeMagnetSnapFinished()
         XCTAssertEqual(engine.displayProgress, 1)
         XCTAssertTrue(recorder.events.contains(.strokeCompleted(index: 0)))
     }
@@ -294,9 +322,9 @@ final class TraceEngineTests: XCTestCase {
         let (engine, _) = makeEngine(strokes: [horizontalStroke(), verticalStroke()])
 
         completeHorizontalStroke(engine)
-        XCTAssertEqual(engine.phase, .strokeComplete)
+        XCTAssertTrue(engine.phase == .snapping || engine.phase == .strokeComplete)
 
-        engine.strokeSnapFinished()
+        finishStroke(engine)
 
         XCTAssertEqual(engine.activeStrokeIndex, 1)
         XCTAssertEqual(engine.phase, .waitingForStart)
@@ -307,12 +335,13 @@ final class TraceEngineTests: XCTestCase {
     func testCharacterCompletesAfterLastStroke() {
         let (engine, recorder) = makeEngine(strokes: [horizontalStroke()])
 
+        // One give-up (early lift) then a full trace that snaps to complete.
         engine.touchBegan(at: CGPoint(x: 30, y: 150), time: 0)
         engine.touchEnded(at: CGPoint(x: 35, y: 150), time: 0.1)
-        engine.rollbackAnimationFinished()
+        XCTAssertEqual(engine.phase, .waitingForStart)
 
         completeHorizontalStroke(engine, startTime: 1)
-        engine.strokeSnapFinished()
+        finishStroke(engine)
 
         XCTAssertEqual(engine.phase, .characterComplete)
         guard case .characterCompleted(let stats)? = recorder.events.last else {
@@ -453,5 +482,15 @@ final class TraceEngineTests: XCTestCase {
         engine.touchMoved(to: CGPoint(x: 210, y: 150), time: startTime + 0.3)
         engine.touchMoved(to: CGPoint(x: 265, y: 150), time: startTime + 0.4)
         engine.touchEnded(at: CGPoint(x: 265, y: 150), time: startTime + 0.5)
+    }
+
+    /// Drives whichever finisher matches the engine's completion phase: the
+    /// magnet snap (`.snapping`) or the instant snap pause (`.strokeComplete`).
+    private func finishStroke(_ engine: TraceEngine) {
+        switch engine.phase {
+        case .snapping: engine.strokeMagnetSnapFinished()
+        case .strokeComplete: engine.strokeSnapFinished()
+        default: XCTFail("Expected a completion phase, got \(engine.phase)")
+        }
     }
 }

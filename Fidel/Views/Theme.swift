@@ -95,7 +95,45 @@ struct AppTheme {
     static let ethiopianGreen = eucalyptusColor
     static let ethiopianYellow = goldColor
     static let ethiopianRed = accentRed
-    
+
+    // MARK: - Tracing canvas ("ink slate")
+
+    /// The tracing canvas is a deliberate dark "ink slate" in BOTH app
+    /// appearances (same tuple for light & dark), so bright strokes pop with
+    /// Duolingo-grade contrast while the surrounding chrome stays on paper.
+    static let traceSlateColor = adaptiveColor(
+        light: (0.082, 0.072, 0.064),
+        dark: (0.082, 0.072, 0.064)
+    )
+    /// The recessed, unfilled stroke ("engraved channel") the bright ink fills.
+    static let traceChannelColor = adaptiveColor(
+        light: (0.224, 0.205, 0.188),
+        dark: (0.224, 0.205, 0.188)
+    )
+    /// A 1pt lighter top edge that makes the channel read as engraved.
+    static let traceChannelEdgeColor = adaptiveColor(
+        light: (0.305, 0.283, 0.262),
+        dark: (0.305, 0.283, 0.262)
+    )
+    /// The bright, high-contrast filled stroke (warm off-white).
+    static let traceInkColor = adaptiveColor(
+        light: (0.965, 0.945, 0.890),
+        dark: (0.965, 0.945, 0.890)
+    )
+    /// Accent for guidance: direction arrows + dashed guide path (Ethiopian gold).
+    static let traceGuideColor = adaptiveColor(
+        light: (0.945, 0.745, 0.290),
+        dark: (0.945, 0.745, 0.290)
+    )
+    /// Very faint hairline for the crosshair writing grid.
+    static let traceGridColor = adaptiveColor(
+        light: (0.380, 0.355, 0.330),
+        dark: (0.380, 0.355, 0.330)
+    )
+    /// UIColor form of the bright ink, for PencilKit marker ink on the level-3
+    /// memory canvas (reads on the dark ink slate).
+    static let traceInkUIColor = UIColor(red: 0.965, green: 0.945, blue: 0.890, alpha: 0.92)
+
     // MARK: - Spacing (4pt grid)
     
     struct Spacing {
@@ -305,7 +343,7 @@ struct TintedGlassCardStyle: ViewModifier {
 struct AdaptiveCardBackground: View {
     @Environment(\.colorScheme) var colorScheme
     var cornerRadius: CGFloat = AppTheme.CornerRadius.large
-    
+
     var body: some View {
         RoundedRectangle(cornerRadius: cornerRadius)
             .fill(AppTheme.elevatedSurfaceColor)
@@ -313,6 +351,23 @@ struct AdaptiveCardBackground: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(AppTheme.hairlineColor, lineWidth: 0.75)
             )
+    }
+}
+
+/// The dark "ink slate" backdrop for the tracing canvas — an intentional inset
+/// dark zone (in both app appearances) so bright strokes read with high
+/// contrast while the surrounding chrome stays on paper.
+struct TraceSlateBackground: View {
+    var cornerRadius: CGFloat = AppTheme.CornerRadius.large
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: cornerRadius)
+            .fill(AppTheme.traceSlateColor)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color.black.opacity(0.35), lineWidth: 0.75)
+            )
+            .shadow(color: Color.black.opacity(0.18), radius: 6, y: 2)
     }
 }
 
