@@ -18,6 +18,7 @@ struct JourneyView: View {
                         amharicTitle: "መማር",
                         subtitle: "A guided path from letters and sounds into everyday Amharic."
                     )
+                    nextActionHeroSection
                     stageScroller
                     stageHeader
                     nextStageCriteria
@@ -72,7 +73,27 @@ struct JourneyView: View {
             .onAppear {
                 configureViewModel()
             }
+            // A tracing session / lesson / quiz is a navigationDestination push;
+            // popping back does NOT re-fire .onAppear, so re-evaluate progress and
+            // stage advancement whenever an activity's navigation binding clears.
+            .onChange(of: viewModel.selectedPracticeMode) { _, value in
+                if value == nil { refreshAfterReturn() }
+            }
+            .onChange(of: viewModel.selectedLesson) { _, value in
+                if value == nil { refreshAfterReturn() }
+            }
+            .onChange(of: viewModel.selectedConversation) { _, value in
+                if value == nil { refreshAfterReturn() }
+            }
+            .onChange(of: viewModel.showFidelChart) { _, value in
+                if value == false { refreshAfterReturn() }
+            }
         }
+    }
+
+    private func refreshAfterReturn() {
+        viewModel.refresh()
+        viewModel.checkAdvancement()
     }
 
     private func configureViewModel() {
@@ -81,6 +102,81 @@ struct JourneyView: View {
         let stageManager = StageManager(progressRepository: progressRepo)
         viewModel.configure(stageManager: stageManager, progressRepository: progressRepo)
         viewModel.checkAdvancement()
+    }
+
+    // MARK: - Next-Action Hero
+
+    @ViewBuilder
+    private var nextActionHeroSection: some View {
+        if let hero = viewModel.nextActionHero {
+            let tint = heroTint(hero.style)
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
+                Text(hero.eyebrow.uppercased())
+                    .font(.caption2.weight(.bold))
+                    .tracking(1.4)
+                    .foregroundStyle(AppTheme.onAccentColor)
+
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
+                    Text(hero.title)
+                        .font(AppTheme.Typography.title3)
+                        .foregroundStyle(AppTheme.onAccentColor)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    if !hero.detail.isEmpty {
+                        Text(hero.detail)
+                            .font(AppTheme.Typography.subheadline)
+                            .foregroundStyle(AppTheme.onAccentColor)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+
+                if hero.style == .action, hero.showsProgressBar {
+                    FidelProgressBar(
+                        value: hero.progress,
+                        color: AppTheme.onAccentColor,
+                        trackColor: AppTheme.onAccentColor.opacity(0.25),
+                        height: 8
+                    )
+                    .accessibilityHidden(true)
+                }
+
+                Button {
+                    if hero.style == .ready {
+                        refreshAfterReturn()
+                    } else {
+                        viewModel.performHeroAction(hero.action)
+                    }
+                } label: {
+                    HStack(spacing: AppTheme.Spacing.sm) {
+                        Image(systemName: hero.ctaIcon)
+                        Text(hero.ctaLabel)
+                        Spacer()
+                        Image(systemName: "arrow.right")
+                    }
+                    .font(AppTheme.Typography.headline)
+                    .foregroundStyle(tint)
+                    .padding(.horizontal, AppTheme.Spacing.md)
+                    .padding(.vertical, AppTheme.Spacing.md)
+                    .background(AppTheme.onAccentColor, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(hero.ctaLabel)
+                .accessibilityHint(hero.style == .ready ? "Continues to the next stage" : "Starts this activity")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .fidelDesignCard(padding: AppTheme.Spacing.lg, background: tint)
+            .accessibilityElement(children: .contain)
+        }
+    }
+
+    private func heroTint(_ style: HeroStyle) -> Color {
+        // Deeper terracotta on the primary hero so the onAccent eyebrow/detail
+        // text clears WCAG AA contrast in both light and dark appearances.
+        switch style {
+        case .action: return AppTheme.terracottaDeepColor
+        case .ready: return AppTheme.eucalyptusColor
+        case .freePractice: return AppTheme.plumColor
+        }
     }
 
     // MARK: - Stage Header
@@ -150,8 +246,10 @@ struct JourneyView: View {
 
     @ViewBuilder
     private var nextStageCriteria: some View {
+        // The hero already conveys a single requirement; show the full checklist
+        // only when the next stage has more than one criterion.
         if let criteria = viewModel.stageManager?.criteriaForNextStage(),
-           !criteria.isEmpty {
+           criteria.count > 1 {
             let progress = progressRepository.getUserProgress()
             VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
                 FidelSectionLabel(title: "Next stage")
@@ -200,7 +298,7 @@ struct JourneyView: View {
 
             ForEach(viewModel.activities) { activity in
                 LearningCardButton(
-                    accessibilityLabel: "\(activity.title). \(activity.subtitle)",
+                    accessibilityLabel: accessibilityLabel(for: activity),
                     accessibilityHint: "Opens this learning activity"
                 ) {
                     handleActivityTap(activity)
@@ -209,6 +307,16 @@ struct JourneyView: View {
                 }
             }
         }
+    }
+
+    private func accessibilityLabel(for activity: JourneyActivity) -> String {
+        var label = "\(activity.title). \(activity.subtitle)"
+        if activity.isCompleted {
+            label += ". Completed"
+        } else if let progress = activity.progress {
+            label += ". \(progress.current) of \(progress.target) \(progress.unit)"
+        }
+        return label
     }
 
     private func handleActivityTap(_ activity: JourneyActivity) {
@@ -328,6 +436,17 @@ struct ActivityCard: View {
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
                     .lineLimit(2)
+
+                if let progress = activity.progress, !activity.isCompleted {
+                    VStack(alignment: .leading, spacing: 4) {
+                        FidelProgressBar(value: progress.fraction, color: activity.color, height: 5)
+                            .accessibilityHidden(true)
+                        Text("\(progress.current)/\(progress.target) \(progress.unit)")
+                            .font(.caption2.weight(.semibold))
+                            .foregroundStyle(AppTheme.inkSecondaryColor)
+                    }
+                    .padding(.top, 2)
+                }
             }
 
             Spacer()
