@@ -5,7 +5,9 @@ import PencilKit
 struct DrawingCanvasView: UIViewRepresentable {
     @Binding var drawing: PKDrawing
     var penWidth: CGFloat = 15
-    private let inkColor = UIColor(red: 0.33, green: 0.25, blue: 0.88, alpha: 0.42)
+    /// Marker ink. Defaults to the legacy translucent purple; the tracing flow
+    /// passes a bright warm white so the writing reads on the dark ink slate.
+    var inkColor = UIColor(red: 0.33, green: 0.25, blue: 0.88, alpha: 0.42)
 
     private func makeTool() -> PKInkingTool {
         PKInkingTool(.marker, color: inkColor, width: penWidth)

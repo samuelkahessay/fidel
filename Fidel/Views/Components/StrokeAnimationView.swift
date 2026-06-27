@@ -13,6 +13,11 @@ struct StrokeAnimationView: View {
     var characterId: String? = nil
     var maxLoops = 2
     var totalDuration: CGFloat = 2.0
+    /// The revealed (bright) ink color. Defaults to the legacy plum; the tracing
+    /// flow passes the ink-slate color for a bright-on-dark demo.
+    var inkColor: Color = AppTheme.practiceColor
+    /// The faint backdrop glyph shown before/under the reveal.
+    var ghostColor: Color = AppTheme.practiceColor.opacity(0.08)
     /// Called once after the final loop completes (or shortly after the static
     /// reveal under Reduce Motion).
     var onFinished: (() -> Void)? = nil
@@ -72,16 +77,16 @@ struct StrokeAnimationView: View {
 
         return ZStack {
             // Faint outline always visible as guide
-            glyphPath.fill(AppTheme.practiceColor.opacity(0.08))
+            glyphPath.fill(ghostColor)
 
             // Filled glyph masked by per-pixel arc-length reveal. Once the
             // animation completes, show the plain glyph fill instead: stroke
             // ownership masks can leave a few unclaimed pixels ("dust"), and
             // the unmasked fill guarantees a clean final frame.
             if animationProgress >= 1 {
-                glyphPath.fill(AppTheme.practiceColor)
+                glyphPath.fill(inkColor)
             } else {
-                glyphPath.fill(AppTheme.practiceColor)
+                glyphPath.fill(inkColor)
                     .mask {
                         Canvas { context, canvasSize in
                             for (index, region) in revealRegions.enumerated() {
@@ -122,7 +127,7 @@ struct StrokeAnimationView: View {
     private func penTipOverlay(data: CharacterStrokeData, proportions: [CGFloat]) -> some View {
         if let tip = activeTipPosition(data: data, proportions: proportions) {
             Circle()
-                .fill(AppTheme.practiceColor.opacity(0.7))
+                .fill(inkColor.opacity(0.85))
                 .frame(width: 8, height: 8)
                 .scaleEffect(reduceMotion ? 1 : pulseScale)
                 .position(tip)
@@ -188,9 +193,9 @@ struct StrokeAnimationView: View {
         let path = PathExtractor.shared.extractPath(for: character, size: size)
 
         return ZStack {
-            path.fill(AppTheme.practiceColor.opacity(0.08))
+            path.fill(ghostColor)
 
-            path.fill(AppTheme.practiceColor)
+            path.fill(inkColor)
                 .mask(alignment: .top) {
                     Rectangle()
                         .frame(height: size.height * animationProgress)
