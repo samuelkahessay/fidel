@@ -246,7 +246,7 @@ private struct TodayView: View {
                 HStack(spacing: AppTheme.Spacing.md) {
                     FidelQuickActionTile(
                         title: "Fidel grid",
-                        subtitle: "Letters and tracing",
+                        subtitle: "Browse letters",
                         icon: "character.book.closed",
                         tint: AppTheme.terracottaColor,
                         textColor: AppTheme.onAccentColor,
@@ -390,11 +390,11 @@ private struct TodayView: View {
     }
 
     private var nextRoute: FidelRoute {
-        guard let progress else { return .fidelGrid }
+        guard let progress else { return .practice(.tracing) }
         let stage = currentLearningStage
 
         if stage == .scriptAndSounds {
-            return .fidelGrid
+            return .practice(.tracing)
         }
 
         if let lesson = nextLesson(for: progress, stage: stage) {
@@ -409,7 +409,7 @@ private struct TodayView: View {
         let stage = currentLearningStage
 
         if stage == .scriptAndSounds {
-            return "Strengthen your Fidel foundation"
+            return "Practice your Fidel"
         }
 
         if let lesson = nextLesson(for: progress, stage: stage) {
@@ -421,12 +421,14 @@ private struct TodayView: View {
 
     private var nextActionSubtitle: String {
         guard let progress else {
-            return "Learn the letter shapes and sounds that unlock the rest of the app."
+            return "Trace the letter shapes to recognize them and unlock the rest of the app."
         }
         let stage = currentLearningStage
 
         if stage == .scriptAndSounds {
-            return "Search, compare vowels, and open a character when you are ready to trace."
+            let recognized = progress.fidelCharactersRecognized.count
+            let target = LearningStage.fidelRecognitionTarget
+            return "Trace characters to recognize them — \(recognized) of \(target) recognized to unlock the next stage."
         }
 
         if let lesson = nextLesson(for: progress, stage: stage) {
@@ -439,6 +441,7 @@ private struct TodayView: View {
     private var nextActionIcon: String {
         switch nextRoute {
         case .fidelGrid: return "character.book.closed"
+        case .practice(.tracing): return "scribble.variable"
         case .practice: return "rectangle.stack"
         case .lesson: return "play.circle.fill"
         default: return "arrow.forward.circle.fill"
