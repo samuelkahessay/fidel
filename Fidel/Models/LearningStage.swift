@@ -93,6 +93,11 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
         true // Fidel chart is always available
     }
 
+    /// Number of recognized Fidel characters that unlocks Survival Phrases.
+    /// Single source of truth shared by the `fidel_50` criterion and the
+    /// stage-0 "Practice Fidel" activity progress so the two cannot drift.
+    static let fidelRecognitionTarget = 50
+
     // MARK: - Stage Criteria
 
     static func criteria(for stage: LearningStage) -> [StageCriterion] {
@@ -103,10 +108,11 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
             return [
                 StageCriterion(
                     id: "fidel_50",
-                    description: "Recognize 50+ Fidel characters",
+                    description: "Recognize \(fidelRecognitionTarget)+ Fidel characters",
                     icon: "character.textbox",
-                    evaluate: { $0.fidelCharactersRecognized.count >= 50 },
-                    progressFraction: { min(Double($0.fidelCharactersRecognized.count) / 50.0, 1.0) }
+                    evaluate: { $0.fidelCharactersRecognized.count >= fidelRecognitionTarget },
+                    current: { $0.fidelCharactersRecognized.count },
+                    target: fidelRecognitionTarget
                 )
             ]
         case .buildingSentences:
@@ -116,17 +122,16 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
                     description: "Complete Lessons 1 & 2",
                     icon: "book.fill",
                     evaluate: { $0.lessonsCompleted.contains(1) && $0.lessonsCompleted.contains(2) },
-                    progressFraction: { progress in
-                        let count = [1, 2].filter { progress.lessonsCompleted.contains($0) }.count
-                        return Double(count) / 2.0
-                    }
+                    current: { [1, 2].filter($0.lessonsCompleted.contains).count },
+                    target: 2
                 ),
                 StageCriterion(
                     id: "vocab_30",
                     description: "Master 30+ vocabulary words",
                     icon: "textformat.abc",
                     evaluate: { $0.vocabularyMastered.count >= 30 },
-                    progressFraction: { min(Double($0.vocabularyMastered.count) / 30.0, 1.0) }
+                    current: { $0.vocabularyMastered.count },
+                    target: 30
                 )
             ]
         case .fluency:
@@ -136,24 +141,24 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
                     description: "Complete core lessons (1-5)",
                     icon: "book.fill",
                     evaluate: { Set($0.lessonsCompleted).isSuperset(of: [1, 2, 3, 4, 5]) },
-                    progressFraction: { progress in
-                        let count = Set([1, 2, 3, 4, 5]).intersection(progress.lessonsCompleted).count
-                        return Double(count) / 5.0
-                    }
+                    current: { Set([1, 2, 3, 4, 5]).intersection($0.lessonsCompleted).count },
+                    target: 5
                 ),
                 StageCriterion(
                     id: "vocab_100",
                     description: "Master 100+ vocabulary words",
                     icon: "textformat.abc",
                     evaluate: { $0.vocabularyMastered.count >= 100 },
-                    progressFraction: { min(Double($0.vocabularyMastered.count) / 100.0, 1.0) }
+                    current: { $0.vocabularyMastered.count },
+                    target: 100
                 ),
                 StageCriterion(
                     id: "conversations_5",
                     description: "Practice 5+ conversations",
                     icon: "bubble.left.and.bubble.right",
                     evaluate: { $0.conversationsPracticed.count >= 5 },
-                    progressFraction: { min(Double($0.conversationsPracticed.count) / 5.0, 1.0) }
+                    current: { $0.conversationsPracticed.count },
+                    target: 5
                 )
             ]
         }
@@ -166,6 +171,21 @@ struct StageCriterion: Identifiable {
     let id: String
     let description: String
     let icon: String
+    /// Authoritative gate used by `StageManager.checkAndAdvanceStage`. Kept
+    /// independent of `current`/`target` so set-style checks (e.g. superset of
+    /// lessons 1-5) keep their exact semantics.
     let evaluate: (UserProgress) -> Bool
-    let progressFraction: (UserProgress) -> Double
+    /// Current count toward `target`, used for progress display and `remaining`.
+    let current: (UserProgress) -> Int
+    let target: Int
+
+    func progressFraction(_ progress: UserProgress) -> Double {
+        guard target > 0 else { return evaluate(progress) ? 1 : 0 }
+        return min(Double(current(progress)) / Double(target), 1)
+    }
+
+    /// How many more units are needed to satisfy `target` (never negative).
+    func remaining(_ progress: UserProgress) -> Int {
+        max(target - current(progress), 0)
+    }
 }
