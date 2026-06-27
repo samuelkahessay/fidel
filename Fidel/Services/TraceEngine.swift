@@ -5,9 +5,9 @@ import Observation
 /// Gesture-driven state machine for guided stroke-by-stroke tracing.
 ///
 /// The engine is fully synchronous: touch handlers receive explicit timestamps
-/// and all timing-based visuals (rollback animation, snap pause, hint playback)
+/// and all timing-based visuals (magnet snap-fill, snap pause, hint playback)
 /// are owned by the view layer, which reports back via
-/// `rollbackAnimationFinished()`, `strokeSnapFinished()`, and
+/// `strokeMagnetSnapFinished()`, `strokeSnapFinished()`, and
 /// `hintPlaybackFinished()`. This keeps every transition deterministic and
 /// unit-testable.
 @MainActor
@@ -19,8 +19,9 @@ final class TraceEngine {
         case waitingForStart
         /// Finger down, advancing arc-length progress along the stroke.
         case tracing
-        /// View animates the partial fill back to zero after a miss.
-        case rollingBack
+        /// Release accepted: the canvas animates the bright fill forward from
+        /// the captured partial progress up to 1.0 (the "magnet" snap).
+        case snapping
         /// View auto-demonstrates the active stroke after repeated misses.
         case playingHint
         /// Brief snap state before advancing to the next stroke.
@@ -52,6 +53,9 @@ final class TraceEngine {
     /// Active stroke fill 0...1, quantized to 1/128 steps so repeated frames
     /// hit StrokeRevealRegion's progress short-circuit.
     private(set) var displayProgress: CGFloat = 0
+    /// The partial progress captured at release; the canvas animates the bright
+    /// fill from here to 1.0 during `.snapping` (the magnet snap).
+    private(set) var snapStartProgress: CGFloat = 0
     /// Projected point under the finger while tracing.
     private(set) var fingerSnapPoint: CGPoint?
     private(set) var missCountForActiveStroke = 0
@@ -99,6 +103,7 @@ final class TraceEngine {
         activeStrokeIndex = 0
         phase = .waitingForStart
         displayProgress = 0
+        snapStartProgress = 0
         fingerSnapPoint = nil
         missCountForActiveStroke = 0
         currentArc = 0
@@ -164,50 +169,56 @@ final class TraceEngine {
         }
     }
 
+    /// Release: the magnet decision. If the finger covered enough of the stroke
+    /// in-corridor (coverage is the earned bar; the wide corridor is the
+    /// forgiveness), snap-complete by animating the bright fill the rest of the
+    /// way. Otherwise it's a give-up — reset cleanly for another attempt.
     func touchEnded(at point: CGPoint, time: TimeInterval) {
         guard phase == .tracing, let stroke = activeStroke else { return }
         lastTouchTime = time
 
         let threshold = stroke.totalLength < tuning.shortStrokeLength
             ? tuning.shortStrokeCompletionProgress
-            : tuning.completionProgress
+            : tuning.magnetCompletionFraction
         let progress = stroke.totalLength > .ulpOfOne ? currentArc / stroke.totalLength : 1
-        let nearEnd = distance(point, stroke.endPoint) <= stroke.corridorRadius * tuning.endRadiusFactor
+        // The magnet pulls the remaining tail, so the lift may land well short
+        // of the true end and still snap — but not so far it grabs a neighbour.
+        let nearEnd = distance(point, stroke.endPoint) <= stroke.corridorRadius * tuning.magnetEndRadiusFactor
 
-        if progress >= threshold && nearEnd {
-            completeActiveStroke()
+        if progress >= threshold && (nearEnd || progress >= 0.95) {
+            magnetSnapToComplete()
         } else {
-            registerMiss()
+            registerGiveUp()
         }
     }
 
     // MARK: - View callbacks
 
-    /// The canvas finished animating the partial fill back to zero.
-    func rollbackAnimationFinished() {
-        guard phase == .rollingBack else { return }
-        currentArc = 0
-        displayProgress = 0
-        fingerSnapPoint = nil
-
-        if missCountForActiveStroke >= tuning.missesBeforeAutoHint {
-            missCountForActiveStroke = 0
-            totalHintsAutoPlayed += 1
-            phase = .playingHint
-            emit(.hintAutoPlayed(index: activeStrokeIndex))
-        } else {
-            phase = .waitingForStart
-        }
+    /// The canvas finished animating the magnet snap-fill up to 1.0. The
+    /// completion event (and its haptic) fires here — when the ink lands — not
+    /// at the start of the snap, so it stays in sync with the visual.
+    func strokeMagnetSnapFinished() {
+        guard phase == .snapping else { return }
+        displayProgress = 1
+        emit(.strokeCompleted(index: activeStrokeIndex))
+        advanceAfterStrokeFinished()
     }
 
-    /// The canvas finished the brief snap presentation of a completed stroke.
+    /// The canvas finished the brief snap presentation of a completed stroke
+    /// (instant-complete path: dots, in-corridor 0.995, accessibility).
     func strokeSnapFinished() {
         guard phase == .strokeComplete else { return }
+        advanceAfterStrokeFinished()
+    }
 
+    /// Advance to the next stroke or emit character completion. Shared by both
+    /// the instant (`.strokeComplete`) and magnet (`.snapping`) finishers.
+    private func advanceAfterStrokeFinished() {
         if activeStrokeIndex < strokes.count - 1 {
             activeStrokeIndex += 1
             currentArc = 0
             displayProgress = 0
+            snapStartProgress = 0
             fingerSnapPoint = nil
             missCountForActiveStroke = 0
             outsideSince = nil
@@ -246,28 +257,58 @@ final class TraceEngine {
 
     // MARK: - Private
 
+    /// Finger strayed outside the corridor: pause advancement and remember when
+    /// (for hint-nudge timing). Progress is PRESERVED — straying never erases,
+    /// it just waits for the finger to come back. Never a miss.
     private func registerOutsideCorridor(at time: TimeInterval) {
-        if let since = outsideSince {
-            if time - since > tuning.deviationGrace {
-                registerMiss()
-            }
+        if outsideSince == nil { outsideSince = time }
+    }
+
+    /// Release without enough coverage: a genuine give-up. Reset the partial
+    /// fill cleanly (no rollback animation) and either wait for another attempt
+    /// or auto-play the hint after repeated give-ups. Still emits `.miss` so
+    /// scoring/haptics are preserved.
+    private func registerGiveUp() {
+        missCountForActiveStroke += 1
+        totalMisses += 1
+        currentArc = 0
+        displayProgress = 0
+        snapStartProgress = 0
+        fingerSnapPoint = nil
+        outsideSince = nil
+        emit(.miss(index: activeStrokeIndex, count: missCountForActiveStroke))
+
+        if missCountForActiveStroke >= tuning.missesBeforeAutoHint {
+            missCountForActiveStroke = 0
+            totalHintsAutoPlayed += 1
+            phase = .playingHint
+            emit(.hintAutoPlayed(index: activeStrokeIndex))
         } else {
-            outsideSince = time
+            phase = .waitingForStart
         }
     }
 
-    private func registerMiss() {
-        missCountForActiveStroke += 1
-        totalMisses += 1
+    /// The magnet: accept the loose drag and hand off to the canvas to animate
+    /// the bright fill forward from the captured partial progress to 1.0. The
+    /// canvas reports back via `strokeMagnetSnapFinished()`.
+    private func magnetSnapToComplete() {
+        guard let stroke = activeStroke else { return }
+        snapStartProgress = displayProgress
+        currentArc = stroke.totalLength
+        fingerSnapPoint = nil
         outsideSince = nil
-        phase = .rollingBack
-        emit(.miss(index: activeStrokeIndex, count: missCountForActiveStroke))
+        phase = .snapping
+        // `.strokeCompleted` is emitted from `strokeMagnetSnapFinished()` when
+        // the snap animation lands, keeping the haptic synced to the visual.
     }
 
+    /// Instant completion (dots, in-corridor 0.995 fast-path, accessibility):
+    /// jump straight to a filled stroke with the brief snap pause.
     private func completeActiveStroke() {
         guard let stroke = activeStroke else { return }
         currentArc = stroke.totalLength
         displayProgress = 1
+        snapStartProgress = 1
         fingerSnapPoint = nil
         outsideSince = nil
         phase = .strokeComplete
