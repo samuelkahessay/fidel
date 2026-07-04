@@ -56,13 +56,6 @@ struct JourneyView: View {
                     TracingSessionView()
                 }
             }
-            .fullScreenCover(isPresented: $viewModel.showStageAdvancement) {
-                if let stage = viewModel.advancedToStage {
-                    StageAdvancementView(stage: stage) {
-                        viewModel.showStageAdvancement = false
-                    }
-                }
-            }
             .onAppear {
                 configureViewModel()
             }
@@ -86,7 +79,6 @@ struct JourneyView: View {
 
     private func refreshAfterReturn() {
         viewModel.refresh()
-        viewModel.checkAdvancement()
     }
 
     private func configureViewModel() {
@@ -94,7 +86,6 @@ struct JourneyView: View {
         _ = progressRepo.ensureUserProgress()
         let stageManager = StageManager(progressRepository: progressRepo)
         viewModel.configure(stageManager: stageManager, progressRepository: progressRepo, modelContext: modelContext)
-        viewModel.checkAdvancement()
     }
 
     // MARK: - Recommended Hero
@@ -105,64 +96,6 @@ struct JourneyView: View {
             RecommendedHeroCard(session: session) {
                 viewModel.performHeroAction(session.heroAction)
             }
-        } else {
-            // Only reachable before the view model is configured; falls back to
-            // the pre-open-path hero (retired with the view model in Task 8).
-            nextActionHeroSection
-        }
-    }
-
-    /// Fallback hero used only until `recommendedSession` is built. Removed in
-    /// Task 8 alongside `nextActionHero`.
-    @ViewBuilder
-    private var nextActionHeroSection: some View {
-        if let hero = viewModel.nextActionHero {
-            let tint = heroTint(hero.style)
-            VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
-                Text(hero.eyebrow.uppercased())
-                    .font(.caption2.weight(.bold))
-                    .tracking(1.4)
-                    .foregroundStyle(AppTheme.onAccentColor)
-
-                VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
-                    Text(hero.title)
-                        .font(AppTheme.Typography.title3)
-                        .foregroundStyle(AppTheme.onAccentColor)
-                        .fixedSize(horizontal: false, vertical: true)
-
-                    if !hero.detail.isEmpty {
-                        Text(hero.detail)
-                            .font(AppTheme.Typography.subheadline)
-                            .foregroundStyle(AppTheme.onAccentColor)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-
-                Button {
-                    viewModel.performHeroAction(hero.action)
-                } label: {
-                    HStack(spacing: AppTheme.Spacing.sm) {
-                        Text(hero.ctaLabel)
-                        Image(systemName: "arrow.right")
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                .primaryGlassButton(fullWidth: true)
-                .accessibilityLabel(hero.ctaLabel)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .fidelDesignCard(padding: AppTheme.Spacing.lg, background: tint)
-            .accessibilityElement(children: .contain)
-        }
-    }
-
-    private func heroTint(_ style: HeroStyle) -> Color {
-        // Deeper terracotta on the primary hero so the onAccent eyebrow/detail
-        // text clears WCAG AA contrast in both light and dark appearances.
-        switch style {
-        case .action: return AppTheme.terracottaDeepColor
-        case .ready: return AppTheme.eucalyptusColor
-        case .freePractice: return AppTheme.plumColor
         }
     }
 
@@ -414,75 +347,6 @@ private struct ScriptIntroCard: View {
                 .foregroundStyle(AppTheme.mutedInkColor)
         }
         .fidelDesignCard(padding: AppTheme.Spacing.md, cornerRadius: 20)
-    }
-}
-
-// MARK: - Stage Advancement View
-
-struct StageAdvancementView: View {
-    let stage: LearningStage
-    let onDismiss: () -> Void
-
-    @State private var animateIn = false
-
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.6)
-                .ignoresSafeArea()
-
-            VStack(spacing: AppTheme.Spacing.xl) {
-                Spacer()
-
-                Image(systemName: stage.icon)
-                    .font(.system(size: 80))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [stage.color, AppTheme.secondaryColor],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .scaleEffect(animateIn ? 1.0 : 0.3)
-                    .opacity(animateIn ? 1.0 : 0)
-
-                VStack(spacing: AppTheme.Spacing.sm) {
-                    Text("Stage Unlocked!")
-                        .font(AppTheme.Typography.largeTitle)
-                        .foregroundStyle(AppTheme.onAccentColor)
-
-                    Text(stage.displayName)
-                        .font(AppTheme.Typography.title2)
-                        .foregroundStyle(stage.color)
-
-                    Text(stage.amharicTitle)
-                        .font(AppTheme.Typography.amharic(size: 28))
-                        .foregroundStyle(AppTheme.secondaryColor)
-                }
-                .opacity(animateIn ? 1.0 : 0)
-
-                Text("እንኳን ደስ ያለህ!")
-                    .font(AppTheme.Typography.amharic(size: 24))
-                    .foregroundStyle(AppTheme.onAccentColor.opacity(0.82))
-                    .opacity(animateIn ? 1.0 : 0)
-
-                Spacer()
-
-                Button("Continue") {
-                    onDismiss()
-                }
-                .primaryGlassButton()
-                .padding(.horizontal, AppTheme.Spacing.xl)
-                .opacity(animateIn ? 1.0 : 0)
-
-                Spacer()
-                    .frame(height: 40)
-            }
-        }
-        .onAppear {
-            withAnimation(AppTheme.Animation.gentle) {
-                animateIn = true
-            }
-        }
     }
 }
 

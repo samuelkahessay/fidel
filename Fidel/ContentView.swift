@@ -426,9 +426,7 @@ private struct TodayView: View {
         let stage = currentLearningStage
 
         if stage == .scriptAndSounds {
-            let recognized = progress.fidelCharactersRecognized.count
-            let target = LearningStage.fidelRecognitionTarget
-            return "Trace characters to recognize them — \(recognized) of \(target) recognized to unlock the next stage."
+            return "Trace the letter shapes to learn how they look and sound."
         }
 
         if let lesson = nextLesson(for: progress, stage: stage) {

@@ -64,8 +64,6 @@ final class JourneyViewModelOpenPathTests: XCTestCase {
 
     func testNothingIsLocked() throws {
         let vm = try makeConfiguredJourneyViewModel(progress: freshProgress())
-        XCTAssertTrue(vm.lockedStages.isEmpty)
-        XCTAssertEqual(vm.progressToNextStage, 0)
         XCTAssertFalse(vm.pathSections.isEmpty)
         // Every section carries content except the (lesson-less) Script & Sounds
         // intro section, which is allowed to be represented minimally.
