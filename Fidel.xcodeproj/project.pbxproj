@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF000101 /* DailyGoalTierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000100 /* DailyGoalTierTests.swift */; };
+		AAAFF000101 /* DailyGoalTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000100 /* DailyGoalTier.swift */; };
 		AAA00001001 /* FidelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00001000 /* FidelApp.swift */; };
 		AAA00002001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00002000 /* ContentView.swift */; };
 		AAA00003001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA00003000 /* Assets.xcassets */; };
@@ -103,6 +105,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF000100 /* DailyGoalTierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalTierTests.swift; sourceTree = "<group>"; };
+		AAAFF000100 /* DailyGoalTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalTier.swift; sourceTree = "<group>"; };
 		AAA00000000 /* Fidel - Learn Amharic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidel - Learn Amharic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA00001000 /* FidelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FidelApp.swift; sourceTree = "<group>"; };
 		AAA00002000 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF000100 /* DailyGoalTierTests.swift */,
 				BAA00002000 /* LocalFirstTests.swift */,
 				BAA00010000 /* TraceEngineTests.swift */,
 				BAA00011000 /* TraceMasteryTests.swift */,
@@ -247,6 +252,7 @@
 		AAA00400000 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF000100 /* DailyGoalTier.swift */,
 				AAA00004000 /* Models.swift */,
 				AAA00005000 /* AmharicData.swift */,
 				AAA00101000 /* AudioAsset.swift */,
@@ -492,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFF000101 /* DailyGoalTier.swift in Sources */,
 				AAA00001001 /* FidelApp.swift in Sources */,
 				AAA00002001 /* ContentView.swift in Sources */,
 				AAA00004001 /* Models.swift in Sources */,
@@ -562,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF000101 /* DailyGoalTierTests.swift in Sources */,
 				BAA00002001 /* LocalFirstTests.swift in Sources */,
 				BAA00010001 /* TraceEngineTests.swift in Sources */,
 				BAA00011001 /* TraceMasteryTests.swift in Sources */,
