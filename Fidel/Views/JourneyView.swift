@@ -100,7 +100,7 @@ struct JourneyView: View {
         let progressRepo = progressRepository
         _ = progressRepo.ensureUserProgress()
         let stageManager = StageManager(progressRepository: progressRepo)
-        viewModel.configure(stageManager: stageManager, progressRepository: progressRepo)
+        viewModel.configure(stageManager: stageManager, progressRepository: progressRepo, modelContext: modelContext)
         viewModel.checkAdvancement()
     }
 

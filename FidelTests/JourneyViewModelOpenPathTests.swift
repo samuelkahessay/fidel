@@ -1,1 +1,110 @@
-// JourneyViewModelOpenPathTests — implemented in Task 6 of the open-learning-path plan.
+import SwiftData
+import XCTest
+@testable import Fidel___Learn_Amharic
+
+/// Covers the open-path rewire of `JourneyViewModel` (Task 6): nothing is
+/// locked, the `NextStepPlanner`-driven recommendation, and per-lesson mastery
+/// tiers in `pathSections`.
+@MainActor
+final class JourneyViewModelOpenPathTests: XCTestCase {
+
+    // Keep each container alive for the lifetime of its repository/context.
+    private var retainedContainers: [ModelContainer] = []
+
+    override func tearDown() {
+        retainedContainers.removeAll()
+        super.tearDown()
+    }
+
+    private func makeContainer() throws -> ModelContainer {
+        let schema = Schema([
+            UserProgress.self,
+            FlashcardProgress.self,
+            SelamConversation.self,
+            SelamMessage.self,
+            CharacterTraceMastery.self
+        ])
+        let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+        return try ModelContainer(for: schema, configurations: [configuration])
+    }
+
+    private typealias ProgressSeed = (UserProgress) -> Void
+
+    /// A learner with no progress at all.
+    private func freshProgress() -> ProgressSeed { { _ in } }
+
+    /// Builds a configured JourneyViewModel over a fresh in-memory store. The
+    /// `progress` seed mutates the seeded UserProgress; `completedLessons` are
+    /// completed through the repository (which also records their Fidel
+    /// characters, exactly like real completion).
+    private func makeConfiguredJourneyViewModel(
+        progress seed: @escaping ProgressSeed = { _ in },
+        completedLessons: [Int] = []
+    ) throws -> JourneyViewModel {
+        let container = try makeContainer()
+        retainedContainers.append(container)
+        let context = container.mainContext
+        let repository = ProgressRepository(modelContext: context)
+        let progress = repository.ensureUserProgress()
+        seed(progress)
+        for lessonId in completedLessons {
+            repository.completeLesson(lessonId)
+        }
+        let stageManager = StageManager(progressRepository: repository)
+        let viewModel = JourneyViewModel()
+        viewModel.configure(
+            stageManager: stageManager,
+            progressRepository: repository,
+            modelContext: context
+        )
+        return viewModel
+    }
+
+    // MARK: - Nothing is locked
+
+    func testNothingIsLocked() throws {
+        let vm = try makeConfiguredJourneyViewModel(progress: freshProgress())
+        XCTAssertTrue(vm.lockedStages.isEmpty)
+        XCTAssertEqual(vm.progressToNextStage, 0)
+        XCTAssertFalse(vm.pathSections.isEmpty)
+        // Every section carries content except the (lesson-less) Script & Sounds
+        // intro section, which is allowed to be represented minimally.
+        XCTAssertTrue(vm.pathSections.allSatisfy { !$0.items.isEmpty || $0.title == "Script & Sounds" })
+        // All lesson items are always available — the open path never locks.
+        let allItems = vm.pathSections.flatMap(\.items)
+        XCTAssertFalse(allItems.isEmpty)
+    }
+
+    // MARK: - Recommendation for a fresh user
+
+    func testFreshUserRecommendationIsFirstLesson() throws {
+        let vm = try makeConfiguredJourneyViewModel(progress: freshProgress())
+        XCTAssertEqual(vm.recommendedSession?.heroAction, .lesson(1))
+    }
+
+    // MARK: - Completed lesson shows mastery
+
+    func testCompletedLessonShowsMastery() throws {
+        let progress = freshProgress()
+        let vm = try makeConfiguredJourneyViewModel(progress: progress, completedLessons: [1])
+        let item = try XCTUnwrap(vm.pathSections.flatMap(\.items).first { $0.lesson.id == 1 })
+        XCTAssertTrue(item.isCompleted)
+        XCTAssertGreaterThan(item.masteryTier, .new)
+        XCTAssertGreaterThan(item.masteryFraction, 0)
+    }
+
+    // MARK: - Section shape
+
+    func testSectionTitlesUseLearningStageNames() throws {
+        let vm = try makeConfiguredJourneyViewModel(progress: freshProgress())
+        let titles = vm.pathSections.map(\.title)
+        XCTAssertEqual(titles.first, LearningStage.scriptAndSounds.displayName)
+        XCTAssertTrue(titles.contains(LearningStage.survivalPhrases.displayName))
+        XCTAssertTrue(titles.contains(LearningStage.buildingSentences.displayName))
+        XCTAssertTrue(titles.contains(LearningStage.fluency.displayName))
+        // Survival Phrases owns lessons 1 & 2.
+        let survival = try XCTUnwrap(vm.pathSections.first { $0.title == LearningStage.survivalPhrases.displayName })
+        XCTAssertEqual(survival.items.map(\.lesson.id), [1, 2])
+        XCTAssertEqual(survival.amharicTitle, LearningStage.survivalPhrases.amharicTitle)
+    }
+}
