@@ -176,9 +176,14 @@ struct TracingSessionView: View {
         .task(id: celebrationTaskKey) {
             guard viewModel.itemPhase == .celebrating else { return }
             // Prewarm the next character's reveal regions while the success
-            // state is on screen, so tapping Continue lands without a hitch.
-            // No auto-advance: the learner taps Continue when ready.
+            // state is on screen, then auto-advance after a brief pause so
+            // the learner doesn't have to tap Continue on every character.
             viewModel.prewarmNextCharacter()
+            let pause: Duration = reduceMotion ? .seconds(1.6) : .milliseconds(900)
+            try? await Task.sleep(for: pause)
+            guard !Task.isCancelled, viewModel.itemPhase == .celebrating else { return }
+            if UIAccessibility.isVoiceOverRunning { return }   // VoiceOver advances via the button
+            viewModel.advanceAfterCelebration()
         }
     }
 
