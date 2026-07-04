@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF000401 /* NextStepPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000400 /* NextStepPlannerTests.swift */; };
+		AAAFF000301 /* NextStepPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000300 /* NextStepPlanner.swift */; };
 		BAAFF000301 /* LessonCreditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000300 /* LessonCreditTests.swift */; };
 		BAAFF000201 /* CurriculumServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000200 /* CurriculumServiceTests.swift */; };
 		AAAFF000201 /* CurriculumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000200 /* CurriculumService.swift */; };
@@ -108,6 +110,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF000400 /* NextStepPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepPlannerTests.swift; sourceTree = "<group>"; };
+		AAAFF000300 /* NextStepPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepPlanner.swift; sourceTree = "<group>"; };
 		BAAFF000300 /* LessonCreditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCreditTests.swift; sourceTree = "<group>"; };
 		BAAFF000200 /* CurriculumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumServiceTests.swift; sourceTree = "<group>"; };
 		AAAFF000200 /* CurriculumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumService.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF000400 /* NextStepPlannerTests.swift */,
 				BAAFF000300 /* LessonCreditTests.swift */,
 				BAAFF000200 /* CurriculumServiceTests.swift */,
 				BAAFF000100 /* DailyGoalTierTests.swift */,
@@ -347,6 +352,7 @@
 		AAA00700000 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF000300 /* NextStepPlanner.swift */,
 				AAAFF000200 /* CurriculumService.swift */,
 				AAA00018000 /* SpacedRepetition.swift */,
 				AAA00021000 /* AudioService.swift */,
@@ -507,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFF000301 /* NextStepPlanner.swift in Sources */,
 				AAAFF000201 /* CurriculumService.swift in Sources */,
 				AAAFF000101 /* DailyGoalTier.swift in Sources */,
 				AAA00001001 /* FidelApp.swift in Sources */,
@@ -579,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF000401 /* NextStepPlannerTests.swift in Sources */,
 				BAAFF000301 /* LessonCreditTests.swift in Sources */,
 				BAAFF000201 /* CurriculumServiceTests.swift in Sources */,
 				BAAFF000101 /* DailyGoalTierTests.swift in Sources */,
