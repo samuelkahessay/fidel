@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF000201 /* CurriculumServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000200 /* CurriculumServiceTests.swift */; };
+		AAAFF000201 /* CurriculumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000200 /* CurriculumService.swift */; };
 		BAAFF000101 /* DailyGoalTierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000100 /* DailyGoalTierTests.swift */; };
 		AAAFF000101 /* DailyGoalTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000100 /* DailyGoalTier.swift */; };
 		AAA00001001 /* FidelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00001000 /* FidelApp.swift */; };
@@ -105,6 +107,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF000200 /* CurriculumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumServiceTests.swift; sourceTree = "<group>"; };
+		AAAFF000200 /* CurriculumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumService.swift; sourceTree = "<group>"; };
 		BAAFF000100 /* DailyGoalTierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalTierTests.swift; sourceTree = "<group>"; };
 		AAAFF000100 /* DailyGoalTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalTier.swift; sourceTree = "<group>"; };
 		AAA00000000 /* Fidel - Learn Amharic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidel - Learn Amharic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +243,7 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF000200 /* CurriculumServiceTests.swift */,
 				BAAFF000100 /* DailyGoalTierTests.swift */,
 				BAA00002000 /* LocalFirstTests.swift */,
 				BAA00010000 /* TraceEngineTests.swift */,
@@ -339,6 +344,7 @@
 		AAA00700000 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF000200 /* CurriculumService.swift */,
 				AAA00018000 /* SpacedRepetition.swift */,
 				AAA00021000 /* AudioService.swift */,
 				AAA00026000 /* SelamAIService.swift */,
@@ -498,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFF000201 /* CurriculumService.swift in Sources */,
 				AAAFF000101 /* DailyGoalTier.swift in Sources */,
 				AAA00001001 /* FidelApp.swift in Sources */,
 				AAA00002001 /* ContentView.swift in Sources */,
@@ -569,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF000201 /* CurriculumServiceTests.swift in Sources */,
 				BAAFF000101 /* DailyGoalTierTests.swift in Sources */,
 				BAA00002001 /* LocalFirstTests.swift in Sources */,
 				BAA00010001 /* TraceEngineTests.swift in Sources */,
