@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF000301 /* LessonCreditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000300 /* LessonCreditTests.swift */; };
 		BAAFF000201 /* CurriculumServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000200 /* CurriculumServiceTests.swift */; };
 		AAAFF000201 /* CurriculumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000200 /* CurriculumService.swift */; };
 		BAAFF000101 /* DailyGoalTierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000100 /* DailyGoalTierTests.swift */; };
@@ -107,6 +108,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF000300 /* LessonCreditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCreditTests.swift; sourceTree = "<group>"; };
 		BAAFF000200 /* CurriculumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumServiceTests.swift; sourceTree = "<group>"; };
 		AAAFF000200 /* CurriculumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumService.swift; sourceTree = "<group>"; };
 		BAAFF000100 /* DailyGoalTierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalTierTests.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF000300 /* LessonCreditTests.swift */,
 				BAAFF000200 /* CurriculumServiceTests.swift */,
 				BAAFF000100 /* DailyGoalTierTests.swift */,
 				BAA00002000 /* LocalFirstTests.swift */,
@@ -576,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF000301 /* LessonCreditTests.swift in Sources */,
 				BAAFF000201 /* CurriculumServiceTests.swift in Sources */,
 				BAAFF000101 /* DailyGoalTierTests.swift in Sources */,
 				BAA00002001 /* LocalFirstTests.swift in Sources */,
