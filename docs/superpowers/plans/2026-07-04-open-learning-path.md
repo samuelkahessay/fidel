@@ -722,19 +722,29 @@ import SwiftData
 
 @MainActor
 final class TracingSessionSizeTests: XCTestCase {
-    func testStandardSessionRespectsTierSize() throws {
+    override func tearDown() { AppSettingsStore().dailyGoalTier = .regular; super.tearDown() }
+
+    private func freshRepo() throws -> ProgressRepository {
         let container = try ModelContainer(
             for: UserProgress.self, FlashcardProgress.self, CharacterTraceMastery.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-        let repo = ProgressRepository(modelContext: container.mainContext)
-        AppSettingsStore().dailyGoalTier = .serious   // 12
+        return ProgressRepository(modelContext: container.mainContext)
+    }
 
-        let vm = TracingSessionViewModel()
-        vm.configure(progressRepository: repo)
-        vm.startSession(plan: .standard)
+    // A fresh learner has empty trace mastery, so the session fills to the tier
+    // size from the 238 new characters — proving the size both scales and is exact.
+    func testStandardSessionSizeFollowsTier() throws {
+        let store = AppSettingsStore()
 
-        XCTAssertLessThanOrEqual(vm.items.count, DailyGoalTier.serious.tracingSessionSize)
-        XCTAssertEqual(vm.items.count, min(12, /*available chars*/ vm.items.count))
+        store.dailyGoalTier = .casual
+        let casual = TracingSessionViewModel(); casual.configure(progressRepository: try freshRepo())
+        casual.startSession(plan: .standard)
+        XCTAssertEqual(casual.items.count, DailyGoalTier.casual.tracingSessionSize) // 5
+
+        store.dailyGoalTier = .intense
+        let intense = TracingSessionViewModel(); intense.configure(progressRepository: try freshRepo())
+        intense.startSession(plan: .standard)
+        XCTAssertEqual(intense.items.count, DailyGoalTier.intense.tracingSessionSize) // 16
     }
 }
 ```
