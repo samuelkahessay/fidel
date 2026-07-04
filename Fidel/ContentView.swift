@@ -405,7 +405,7 @@ private struct TodayView: View {
     }
 
     private var nextActionTitle: String {
-        guard let progress else { return "Start with Fidel" }
+        guard let progress else { return "Practice your Fidel" }
         let stage = currentLearningStage
 
         if stage == .scriptAndSounds {
@@ -421,12 +421,12 @@ private struct TodayView: View {
 
     private var nextActionSubtitle: String {
         guard let progress else {
-            return "Trace the letter shapes to recognize them and unlock the rest of the app."
+            return "Trace characters to learn them — go at your own pace."
         }
         let stage = currentLearningStage
 
         if stage == .scriptAndSounds {
-            return "Trace the letter shapes to learn how they look and sound."
+            return "Trace characters to learn them — go at your own pace."
         }
 
         if let lesson = nextLesson(for: progress, stage: stage) {
