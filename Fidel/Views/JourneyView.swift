@@ -18,12 +18,8 @@ struct JourneyView: View {
                         amharicTitle: "መማር",
                         subtitle: "A guided path from letters and sounds into everyday Amharic."
                     )
-                    nextActionHeroSection
-                    stageScroller
-                    stageHeader
-                    nextStageCriteria
-                    activitiesSection
-                    lockedStagesSection
+                    recommendedHeroSection
+                    openPathSection
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)
                 .padding(.top, AppTheme.Spacing.md)
@@ -60,9 +56,6 @@ struct JourneyView: View {
                     TracingSessionView()
                 }
             }
-            .sheet(item: $viewModel.tappedLockedStage) { stage in
-                LockedStageSheet(stage: stage, progressRepository: progressRepository)
-            }
             .fullScreenCover(isPresented: $viewModel.showStageAdvancement) {
                 if let stage = viewModel.advancedToStage {
                     StageAdvancementView(stage: stage) {
@@ -74,8 +67,8 @@ struct JourneyView: View {
                 configureViewModel()
             }
             // A tracing session / lesson / quiz is a navigationDestination push;
-            // popping back does NOT re-fire .onAppear, so re-evaluate progress and
-            // stage advancement whenever an activity's navigation binding clears.
+            // popping back does NOT re-fire .onAppear, so re-evaluate progress
+            // (and refresh the mastery rings) whenever a navigation binding clears.
             .onChange(of: viewModel.selectedPracticeMode) { _, value in
                 if value == nil { refreshAfterReturn() }
             }
@@ -104,8 +97,23 @@ struct JourneyView: View {
         viewModel.checkAdvancement()
     }
 
-    // MARK: - Next-Action Hero
+    // MARK: - Recommended Hero
 
+    @ViewBuilder
+    private var recommendedHeroSection: some View {
+        if let session = viewModel.recommendedSession {
+            RecommendedHeroCard(session: session) {
+                viewModel.performHeroAction(session.heroAction)
+            }
+        } else {
+            // Only reachable before the view model is configured; falls back to
+            // the pre-open-path hero (retired with the view model in Task 8).
+            nextActionHeroSection
+        }
+    }
+
+    /// Fallback hero used only until `recommendedSession` is built. Removed in
+    /// Task 8 alongside `nextActionHero`.
     @ViewBuilder
     private var nextActionHeroSection: some View {
         if let hero = viewModel.nextActionHero {
@@ -130,38 +138,17 @@ struct JourneyView: View {
                     }
                 }
 
-                if hero.style == .action, hero.showsProgressBar {
-                    FidelProgressBar(
-                        value: hero.progress,
-                        color: AppTheme.onAccentColor,
-                        trackColor: AppTheme.onAccentColor.opacity(0.25),
-                        height: 8
-                    )
-                    .accessibilityHidden(true)
-                }
-
                 Button {
-                    if hero.style == .ready {
-                        refreshAfterReturn()
-                    } else {
-                        viewModel.performHeroAction(hero.action)
-                    }
+                    viewModel.performHeroAction(hero.action)
                 } label: {
                     HStack(spacing: AppTheme.Spacing.sm) {
-                        Image(systemName: hero.ctaIcon)
                         Text(hero.ctaLabel)
-                        Spacer()
                         Image(systemName: "arrow.right")
                     }
-                    .font(AppTheme.Typography.headline)
-                    .foregroundStyle(tint)
-                    .padding(.horizontal, AppTheme.Spacing.md)
-                    .padding(.vertical, AppTheme.Spacing.md)
-                    .background(AppTheme.onAccentColor, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.plain)
+                .primaryGlassButton(fullWidth: true)
                 .accessibilityLabel(hero.ctaLabel)
-                .accessibilityHint(hero.style == .ready ? "Continues to the next stage" : "Starts this activity")
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .fidelDesignCard(padding: AppTheme.Spacing.lg, background: tint)
@@ -179,402 +166,254 @@ struct JourneyView: View {
         }
     }
 
-    // MARK: - Stage Header
+    // MARK: - Open Path
 
-    private var stageScroller: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: AppTheme.Spacing.md) {
-                ForEach(LearningStage.allCases) { stage in
-                    Button {
-                        handleStageTap(stage)
-                    } label: {
-                        StagePathTile(
-                            stage: stage,
-                            isCurrent: stage == viewModel.currentStage,
-                            isLocked: viewModel.lockedStages.contains(stage)
-                        )
-                    }
-                    .buttonStyle(.plain)
-                    .disabled(!viewModel.lockedStages.contains(stage) && stage != viewModel.currentStage)
-                }
-            }
-            .padding(.horizontal, 1)
-        }
-    }
+    private var openPathSection: some View {
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.xl) {
+            ForEach(viewModel.pathSections) { section in
+                VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
+                    pathSectionHeader(section)
 
-    private var stageHeader: some View {
-        VStack(spacing: AppTheme.Spacing.md) {
-            HStack {
-                Image(systemName: viewModel.currentStage.icon)
-                    .font(.title2.weight(.semibold))
-                    .foregroundStyle(AppTheme.onAccentColor)
-                    .frame(width: 52, height: 52)
-                    .background(viewModel.currentStage.color, in: RoundedRectangle(cornerRadius: 17, style: .continuous))
-
-                VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
-                    Text(viewModel.currentStage.displayName)
-                        .font(AppTheme.Typography.title3)
-                        .foregroundStyle(AppTheme.inkColor)
-                    Text(viewModel.currentStage.amharicTitle)
-                        .font(AppTheme.Typography.amharicDisplay(size: 22, relativeTo: .title2))
-                        .foregroundStyle(viewModel.currentStage.color)
-                }
-
-                Spacer()
-
-                AccessibleProgressRing(
-                    progress: viewModel.progressToNextStage,
-                    lineWidth: 4,
-                    size: 44,
-                    label: "Progress to next stage",
-                    valueText: "\(Int((viewModel.progressToNextStage * 100).rounded())) percent"
-                )
-            }
-
-            Text(viewModel.currentStage.stageDescription)
-                .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(AppTheme.inkSecondaryColor)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .fidelDesignCard(padding: AppTheme.Spacing.lg)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(viewModel.currentStage.displayName), \(viewModel.currentStage.stageDescription)")
-        .accessibilityValue("\(Int((viewModel.progressToNextStage * 100).rounded())) percent to next stage")
-    }
-
-    // MARK: - Next Stage Criteria
-
-    @ViewBuilder
-    private var nextStageCriteria: some View {
-        // The hero already conveys a single requirement; show the full checklist
-        // only when the next stage has more than one criterion.
-        if let criteria = viewModel.stageManager?.criteriaForNextStage(),
-           criteria.count > 1 {
-            let progress = progressRepository.getUserProgress()
-            VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
-                FidelSectionLabel(title: "Next stage")
-
-                ForEach(criteria) { criterion in
-                    let fraction = progress.map { criterion.progressFraction($0) } ?? 0
-                    let isMet = progress.map { criterion.evaluate($0) } ?? false
-                    HStack(spacing: AppTheme.Spacing.sm) {
-                        Image(systemName: isMet ? "checkmark.circle.fill" : criterion.icon)
-                            .foregroundStyle(isMet ? AppTheme.successColor : .secondary)
-                            .frame(width: 24)
-
-                        VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
-                            Text(criterion.description)
-                                .font(AppTheme.Typography.subheadline)
-                                .foregroundStyle(isMet ? AppTheme.successColor : AppTheme.inkColor)
-
-                            GeometryReader { geo in
-                                ZStack(alignment: .leading) {
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(AppTheme.hairlineColor)
-                                        .frame(height: 6)
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .fill(isMet ? AppTheme.successColor : viewModel.currentStage.color)
-                                        .frame(width: geo.size.width * fraction, height: 6)
-                                }
-                            }
-                            .frame(height: 6)
-                            .accessibilityLabel(criterion.description)
-                            .accessibilityValue("\(Int((fraction * 100).rounded())) percent")
+                    if section.items.isEmpty {
+                        // Script & Sounds leads the path but owns no lessons — its
+                        // content is Fidel tracing/chart, surfaced here as an entry.
+                        scriptIntroCard
+                    } else {
+                        ForEach(section.items) { item in
+                            pathLessonRow(item)
                         }
                     }
-                    .accessibilityElement(children: .combine)
-                    .accessibilityValue(isMet ? "Complete" : "\(Int((fraction * 100).rounded())) percent")
-                }
-            }
-            .fidelDesignCard()
-        }
-    }
-
-    // MARK: - Activities
-
-    private var activitiesSection: some View {
-        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
-            FidelSectionLabel(title: "Unit path")
-
-            ForEach(viewModel.activities) { activity in
-                LearningCardButton(
-                    accessibilityLabel: accessibilityLabel(for: activity),
-                    accessibilityHint: "Opens this learning activity"
-                ) {
-                    handleActivityTap(activity)
-                } content: {
-                    ActivityCard(activity: activity)
                 }
             }
         }
     }
 
-    private func accessibilityLabel(for activity: JourneyActivity) -> String {
-        var label = "\(activity.title). \(activity.subtitle)"
-        if activity.isCompleted {
+    private func pathSectionHeader(_ section: JourneyPathSection) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: AppTheme.Spacing.sm) {
+            Text(section.title)
+                .font(AppTheme.Typography.title3)
+                .foregroundStyle(AppTheme.inkColor)
+            Text(section.amharicTitle)
+                .font(AppTheme.Typography.amharicDisplay(size: 18, relativeTo: .headline))
+                .foregroundStyle(AppTheme.terracottaColor)
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isHeader)
+        .accessibilityLabel("\(section.title), \(section.amharicTitle)")
+    }
+
+    private func pathLessonRow(_ item: JourneyLessonItem) -> some View {
+        LearningCardButton(
+            accessibilityLabel: pathAccessibilityLabel(item),
+            accessibilityHint: "Opens this lesson"
+        ) {
+            viewModel.selectedLesson = item.lesson
+        } content: {
+            PathLessonCard(item: item)
+        }
+    }
+
+    private var scriptIntroCard: some View {
+        LearningCardButton(
+            accessibilityLabel: "Practice Fidel. Trace characters and explore the chart.",
+            accessibilityHint: "Opens Fidel practice"
+        ) {
+            viewModel.performHeroAction(.practiceTracing)
+        } content: {
+            ScriptIntroCard()
+        }
+    }
+
+    private func pathAccessibilityLabel(_ item: JourneyLessonItem) -> String {
+        var label = "\(item.lesson.title). \(item.masteryTier.label)"
+        if item.isCompleted {
             label += ". Completed"
-        } else if let progress = activity.progress {
-            label += ". \(progress.current) of \(progress.target) \(progress.unit)"
         }
+        label += ". \(Int((item.masteryFraction * 100).rounded())) percent mastery"
         return label
     }
-
-    private func handleActivityTap(_ activity: JourneyActivity) {
-        viewModel.selectActivity(activity)
-    }
-
-    private func handleStageTap(_ stage: LearningStage) {
-        if viewModel.lockedStages.contains(stage) {
-            viewModel.tappedLockedStage = stage
-        } else if stage == viewModel.currentStage {
-            viewModel.selectCurrentStagePrimaryActivity()
-        }
-    }
-
-    // MARK: - Locked Stages
-
-    @ViewBuilder
-    private var lockedStagesSection: some View {
-        if !viewModel.lockedStages.isEmpty {
-            VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
-                ForEach(viewModel.lockedStages) { stage in
-                    LearningCardButton(
-                        accessibilityLabel: "\(stage.displayName). Locked. \(stage.stageDescription)",
-                        accessibilityHint: "Shows the requirements to unlock this stage"
-                    ) {
-                        viewModel.tappedLockedStage = stage
-                    } content: {
-                        LockedStageCard(stage: stage)
-                    }
-                }
-            }
-        }
-    }
 }
 
-private struct StagePathTile: View {
-    let stage: LearningStage
-    let isCurrent: Bool
-    let isLocked: Bool
+// MARK: - Recommended Hero Card
+
+private struct RecommendedHeroCard: View {
+    let session: RecommendedSession
+    let action: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppTheme.Spacing.sm) {
-            HStack {
-                Image(systemName: isLocked ? "lock.fill" : stage.icon)
-                    .font(.headline)
-                    .foregroundStyle(isCurrent ? onStageAccent : stage.color)
-                    .frame(width: 34, height: 34)
-                    .background(
-                        isCurrent ? stage.color : stage.color.opacity(0.12),
-                        in: Circle()
-                    )
+        VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
+            Text(session.eyebrow.uppercased())
+                .font(.caption2.weight(.bold))
+                .tracking(1.4)
+                .foregroundStyle(AppTheme.onAccentColor)
 
-                Spacer()
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
+                Text(session.title)
+                    .font(AppTheme.Typography.title3)
+                    .foregroundStyle(AppTheme.onAccentColor)
+                    .fixedSize(horizontal: false, vertical: true)
 
-                Text(String(format: "%02d", stage.rawValue + 1))
-                    .font(AppTheme.Typography.caption)
-                    .foregroundStyle(AppTheme.mutedInkColor)
+                if !session.detail.isEmpty {
+                    Text(session.detail)
+                        .font(AppTheme.Typography.subheadline)
+                        .foregroundStyle(AppTheme.onAccentColor)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
 
-            Text(stage.displayName)
-                .font(AppTheme.Typography.subheadline.weight(.semibold))
-                .foregroundStyle(isLocked ? AppTheme.mutedInkColor : AppTheme.inkColor)
-                .lineLimit(2)
-                .frame(width: 126, alignment: .leading)
-
-            Text(stage.amharicTitle)
-                .font(AppTheme.Typography.amharicDisplay(size: 18, relativeTo: .headline))
-                .foregroundStyle(isLocked ? AppTheme.mutedInkColor : stage.color)
-                .lineLimit(1)
+            Button(action: action) {
+                HStack(spacing: AppTheme.Spacing.sm) {
+                    Text("Start")
+                    Image(systemName: "arrow.right")
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .primaryGlassButton(fullWidth: true)
+            .accessibilityLabel("Start")
+            .accessibilityHint("Starts your recommended session")
         }
-        .padding(AppTheme.Spacing.md)
-        .frame(width: 160, height: 138, alignment: .topLeading)
-        .background(
-            isCurrent ? AppTheme.cardColor : AppTheme.paperAccentColor,
-            in: RoundedRectangle(cornerRadius: 22, style: .continuous)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(isCurrent ? stage.color.opacity(0.35) : AppTheme.hairlineColor, lineWidth: 1)
-        )
-    }
-
-    private var onStageAccent: Color {
-        stage == .buildingSentences ? AppTheme.onGoldColor : AppTheme.onAccentColor
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .fidelDesignCard(padding: AppTheme.Spacing.lg, background: AppTheme.terracottaDeepColor)
+        .accessibilityElement(children: .contain)
     }
 }
 
-// MARK: - Activity Card
+// MARK: - Open Path Cards
 
-struct ActivityCard: View {
-    let activity: JourneyActivity
+/// A single always-open lesson on the path. Never disabled; the mastery ring and
+/// tier are display-only. In-progress lessons get a subtle accent border; a
+/// not-yet-started (`.new`) lesson shows a "Start" affordance.
+private struct PathLessonCard: View {
+    let item: JourneyLessonItem
+
+    private var isInProgress: Bool {
+        item.masteryFraction > 0 && item.masteryFraction < 1
+    }
+
+    private var percentText: String {
+        "\(Int((item.masteryFraction * 100).rounded())) percent"
+    }
 
     var body: some View {
         HStack(spacing: AppTheme.Spacing.md) {
-            ZStack {
-                Circle()
-                    .fill(activity.isCompleted ? AppTheme.eucalyptusColor : activity.color.opacity(0.12))
-                    .frame(width: 48, height: 48)
-
-                if activity.isCompleted {
+            AccessibleProgressRing(
+                progress: item.masteryFraction,
+                lineWidth: 5,
+                size: 46,
+                label: "\(item.lesson.title) mastery",
+                valueText: percentText
+            )
+            .overlay {
+                if item.isCompleted {
                     Image(systemName: "checkmark")
-                        .foregroundStyle(AppTheme.onAccentColor)
-                        .font(.body.bold())
-                } else {
-                    Image(systemName: activity.icon)
-                        .foregroundStyle(activity.color)
-                        .font(.title3)
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(AppTheme.successColor)
                 }
             }
 
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
-                Text(activity.title)
+                Text(item.lesson.title)
                     .font(AppTheme.Typography.headline)
                     .foregroundStyle(AppTheme.inkColor)
 
-                Text(activity.subtitle)
+                Text(item.lesson.description)
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
                     .lineLimit(2)
 
-                if let progress = activity.progress, !activity.isCompleted {
-                    VStack(alignment: .leading, spacing: 4) {
-                        FidelProgressBar(value: progress.fraction, color: activity.color, height: 5)
-                            .accessibilityHidden(true)
-                        Text("\(progress.current)/\(progress.target) \(progress.unit)")
-                            .font(.caption2.weight(.semibold))
-                            .foregroundStyle(AppTheme.inkSecondaryColor)
-                    }
+                MasteryPill(tier: item.masteryTier)
                     .padding(.top, 2)
-                }
             }
 
-            Spacer()
+            Spacer(minLength: AppTheme.Spacing.sm)
+
+            trailingAffordance
+        }
+        .fidelDesignCard(
+            padding: AppTheme.Spacing.md,
+            cornerRadius: 20,
+            borderColor: isInProgress ? AppTheme.terracottaColor.opacity(0.55) : AppTheme.hairlineColor
+        )
+    }
+
+    @ViewBuilder
+    private var trailingAffordance: some View {
+        if item.masteryTier == .new {
+            HStack(spacing: 4) {
+                Text("Start")
+                Image(systemName: "arrow.right")
+            }
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(AppTheme.onAccentColor)
+            .padding(.horizontal, AppTheme.Spacing.sm)
+            .padding(.vertical, AppTheme.Spacing.xs)
+            .background(Capsule().fill(AppTheme.terracottaColor))
+        } else {
+            Image(systemName: "chevron.right")
+                .font(.caption)
+                .foregroundStyle(AppTheme.mutedInkColor)
+        }
+    }
+}
+
+/// Display-only tier badge (e.g. "Familiar"). Not interactive, so it is a plain
+/// styled label rather than a `GlassChip`, which would nest a button in the card.
+private struct MasteryPill: View {
+    let tier: MasteryTier
+
+    private var color: Color {
+        switch tier {
+        case .new: return AppTheme.mutedInkColor
+        case .started: return AppTheme.terracottaColor
+        case .familiar: return AppTheme.infoColor
+        case .proficient: return AppTheme.plumColor
+        case .mastered: return AppTheme.successColor
+        }
+    }
+
+    var body: some View {
+        Text(tier.label)
+            .font(.caption2.weight(.bold))
+            .foregroundStyle(color)
+            .padding(.horizontal, AppTheme.Spacing.xs)
+            .padding(.vertical, 2)
+            .background(Capsule().fill(color.opacity(0.14)))
+    }
+}
+
+/// Entry card for the lesson-less Script & Sounds section, routing into Fidel
+/// tracing practice.
+private struct ScriptIntroCard: View {
+    var body: some View {
+        HStack(spacing: AppTheme.Spacing.md) {
+            ZStack {
+                Circle()
+                    .fill(AppTheme.practiceColor.opacity(0.12))
+                    .frame(width: 46, height: 46)
+                Image(systemName: "scribble.variable")
+                    .foregroundStyle(AppTheme.practiceColor)
+                    .font(.title3)
+            }
+
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
+                Text("Practice Fidel")
+                    .font(AppTheme.Typography.headline)
+                    .foregroundStyle(AppTheme.inkColor)
+                Text("Trace characters to learn them — adapts to what you know")
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
+                    .lineLimit(2)
+            }
+
+            Spacer(minLength: AppTheme.Spacing.sm)
 
             Image(systemName: "chevron.right")
                 .font(.caption)
                 .foregroundStyle(AppTheme.mutedInkColor)
         }
         .fidelDesignCard(padding: AppTheme.Spacing.md, cornerRadius: 20)
-        .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large))
-    }
-}
-
-// MARK: - Locked Stage Card
-
-struct LockedStageCard: View {
-    let stage: LearningStage
-
-    var body: some View {
-        HStack(spacing: AppTheme.Spacing.md) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(AppTheme.inkColor.opacity(0.06))
-                    .frame(width: 48, height: 48)
-
-                Image(systemName: "lock.fill")
-                    .foregroundStyle(AppTheme.inkSecondaryColor)
-                    .font(.title3)
-            }
-
-            VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
-                Text(stage.displayName)
-                    .font(AppTheme.Typography.headline)
-                    .foregroundStyle(AppTheme.inkSecondaryColor)
-
-                Text(stage.stageDescription)
-                    .font(AppTheme.Typography.caption)
-                    .foregroundStyle(AppTheme.mutedInkColor)
-                    .lineLimit(2)
-            }
-
-            Spacer()
-
-            Image(systemName: "lock.fill")
-                .font(.caption)
-                .foregroundStyle(AppTheme.mutedInkColor)
-        }
-        .fidelDesignCard(padding: AppTheme.Spacing.md, cornerRadius: 20, background: AppTheme.paperAccentColor)
-        .opacity(0.6)
-        .contentShape(RoundedRectangle(cornerRadius: AppTheme.CornerRadius.large))
-    }
-}
-
-// MARK: - Locked Stage Sheet
-
-struct LockedStageSheet: View {
-    @Environment(\.dismiss) private var dismiss
-    let stage: LearningStage
-    let progressRepository: ProgressRepositoryProtocol
-
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: AppTheme.Spacing.xl) {
-                Image(systemName: stage.icon)
-                    .font(.system(size: 56))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [stage.color, stage.color.opacity(0.6)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-
-                VStack(spacing: AppTheme.Spacing.xs) {
-                    Text(stage.displayName)
-                        .font(AppTheme.Typography.title2)
-                    Text(stage.amharicTitle)
-                        .font(AppTheme.Typography.amharic(size: 20))
-                        .foregroundStyle(stage.color)
-                }
-
-                Text(stage.stageDescription)
-                    .font(AppTheme.Typography.subheadline)
-                    .foregroundStyle(AppTheme.inkSecondaryColor)
-                    .multilineTextAlignment(.center)
-
-                VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
-                    Text("Requirements")
-                        .font(AppTheme.Typography.headline)
-
-                    let criteria = LearningStage.criteria(for: stage)
-                    if let progress = progressRepository.getUserProgress() {
-                        ForEach(criteria) { criterion in
-                            let fraction = criterion.progressFraction(progress)
-                            let isMet = criterion.evaluate(progress)
-                            HStack(spacing: AppTheme.Spacing.sm) {
-                                Image(systemName: isMet ? "checkmark.circle.fill" : "circle")
-                                    .foregroundStyle(isMet ? AppTheme.successColor : .secondary)
-
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(criterion.description)
-                                        .font(AppTheme.Typography.subheadline)
-
-                                    ProgressView(value: fraction)
-                                        .tint(isMet ? AppTheme.successColor : stage.color)
-                                        .accessibilityLabel(criterion.description)
-                                        .accessibilityValue("\(Int((fraction * 100).rounded())) percent")
-                                }
-                            }
-                            .accessibilityElement(children: .combine)
-                            .accessibilityValue(isMet ? "Complete" : "\(Int((fraction * 100).rounded())) percent")
-                        }
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .glassCard()
-
-                Spacer()
-            }
-            .padding(AppTheme.Spacing.xl)
-            .navigationTitle("Locked Stage")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
-                }
-            }
-        }
     }
 }
 
