@@ -111,6 +111,11 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func completeLesson(_ lessonId: Int) {
         let progress = getOrCreateUserProgress()
         progress.completeLesson(lessonId)
+        if let lesson = LessonRepository.shared.getLesson(by: lessonId) {
+            for charId in CurriculumService.shared.characterIds(in: lesson) {
+                progress.recognizeFidelCharacter(charId)
+            }
+        }
     }
     
     func learnPattern(_ patternId: String) {
