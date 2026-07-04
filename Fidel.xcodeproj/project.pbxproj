@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF000701 /* StreakSlackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000700 /* StreakSlackTests.swift */; };
 		BAAFF000601 /* TracingSessionSizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000600 /* TracingSessionSizeTests.swift */; };
 		BAAFF000501 /* JourneyViewModelOpenPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000500 /* JourneyViewModelOpenPathTests.swift */; };
 		BAAFF000401 /* NextStepPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000400 /* NextStepPlannerTests.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF000700 /* StreakSlackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakSlackTests.swift; sourceTree = "<group>"; };
 		BAAFF000600 /* TracingSessionSizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionSizeTests.swift; sourceTree = "<group>"; };
 		BAAFF000500 /* JourneyViewModelOpenPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewModelOpenPathTests.swift; sourceTree = "<group>"; };
 		BAAFF000400 /* NextStepPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepPlannerTests.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF000700 /* StreakSlackTests.swift */,
 				BAAFF000600 /* TracingSessionSizeTests.swift */,
 				BAAFF000500 /* JourneyViewModelOpenPathTests.swift */,
 				BAAFF000400 /* NextStepPlannerTests.swift */,
@@ -589,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF000701 /* StreakSlackTests.swift in Sources */,
 				BAAFF000601 /* TracingSessionSizeTests.swift in Sources */,
 				BAAFF000501 /* JourneyViewModelOpenPathTests.swift in Sources */,
 				BAAFF000401 /* NextStepPlannerTests.swift in Sources */,
