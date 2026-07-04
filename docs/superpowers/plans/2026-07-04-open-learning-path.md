@@ -13,6 +13,8 @@
 - Build & test **only** via XcodeBuildMCP (never raw `xcodebuild`). Scheme `Fidel`, project `Fidel.xcodeproj`, simulator **iPhone 17 Pro**, `useLatestOS: true`, `suppressWarnings: true`. Call `session_show_defaults` before the first build/test.
 - Design spec: `docs/superpowers/specs/2026-07-04-open-learning-path-design.md` (read before starting).
 - Tests use in-memory `ModelContainer` fixtures (existing `FidelTests` convention).
+- **Test target import:** every test file imports the app module as `@testable import Fidel___Learn_Amharic` (the product name "Fidel - Learn Amharic" sanitizes to this — it is NOT `Fidel`). The `@testable import Fidel` shown in task test snippets below is shorthand; use `Fidel___Learn_Amharic`.
+- New Swift files must be registered in the Xcode project (objectVersion 56, manual refs) via `python3 tools/add_swift_file.py <repo-relative-path>` — never hand-edit `project.pbxproj`.
 - **No energy/hearts/lives** mechanic. Gating removal must never re-introduce a content wall.
 - Default pace tier is `.regular`, and `.regular.tracingSessionSize == 8` and its promotion count `== 3` — this preserves today's exact tracing behavior for existing users.
 - Ethiopic color palette + Theme components only; reuse `AccessibleProgressRing`, `FidelProgressBar`, `GlassChip`. No new design system.
