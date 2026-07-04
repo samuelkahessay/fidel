@@ -10,6 +10,7 @@ enum SettingsKeys {
     static let showsAITools = "fidel.settings.showsAITools"
     static let onboardingComplete = "fidel.settings.onboardingComplete"
     static let lastOpenedActivity = "fidel.settings.lastOpenedActivity"
+    static let dailyGoalTier = "fidel.settings.dailyGoalTier"
 }
 
 struct AppSettingsStore {
@@ -72,6 +73,15 @@ struct AppSettingsStore {
         nonmutating set { defaults.set(newValue, forKey: SettingsKeys.lastOpenedActivity) }
     }
 
+    var dailyGoalTier: DailyGoalTier {
+        get {
+            guard let raw = defaults.string(forKey: SettingsKeys.dailyGoalTier),
+                  let tier = DailyGoalTier(rawValue: raw) else { return .default }
+            return tier
+        }
+        nonmutating set { defaults.set(newValue.rawValue, forKey: SettingsKeys.dailyGoalTier) }
+    }
+
     private func registerDefaults() {
         defaults.register(defaults: [
             SettingsKeys.dailyXPGoal: Self.defaultDailyXPGoal,
@@ -81,7 +91,8 @@ struct AppSettingsStore {
             SettingsKeys.hapticsEnabled: true,
             SettingsKeys.selectedReferenceTab: 0,
             SettingsKeys.showsAITools: true,
-            SettingsKeys.onboardingComplete: false
+            SettingsKeys.onboardingComplete: false,
+            SettingsKeys.dailyGoalTier: DailyGoalTier.default.rawValue
         ])
     }
 
