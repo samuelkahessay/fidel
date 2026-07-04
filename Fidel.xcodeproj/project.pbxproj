@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF000601 /* TracingSessionSizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000600 /* TracingSessionSizeTests.swift */; };
 		BAAFF000501 /* JourneyViewModelOpenPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000500 /* JourneyViewModelOpenPathTests.swift */; };
 		BAAFF000401 /* NextStepPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000400 /* NextStepPlannerTests.swift */; };
 		AAAFF000301 /* NextStepPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000300 /* NextStepPlanner.swift */; };
@@ -110,6 +111,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF000600 /* TracingSessionSizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionSizeTests.swift; sourceTree = "<group>"; };
 		BAAFF000500 /* JourneyViewModelOpenPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewModelOpenPathTests.swift; sourceTree = "<group>"; };
 		BAAFF000400 /* NextStepPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepPlannerTests.swift; sourceTree = "<group>"; };
 		AAAFF000300 /* NextStepPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepPlanner.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF000600 /* TracingSessionSizeTests.swift */,
 				BAAFF000500 /* JourneyViewModelOpenPathTests.swift */,
 				BAAFF000400 /* NextStepPlannerTests.swift */,
 				BAAFF000300 /* LessonCreditTests.swift */,
@@ -586,6 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF000601 /* TracingSessionSizeTests.swift in Sources */,
 				BAAFF000501 /* JourneyViewModelOpenPathTests.swift in Sources */,
 				BAAFF000401 /* NextStepPlannerTests.swift in Sources */,
 				BAAFF000301 /* LessonCreditTests.swift in Sources */,
