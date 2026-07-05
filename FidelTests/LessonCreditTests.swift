@@ -71,4 +71,16 @@ final class LessonCreditTests: XCTestCase {
         XCTAssertTrue(progress.lessonsCompleted.contains(1), "existing completion tracking must be preserved")
         XCTAssertGreaterThanOrEqual(progress.totalXP, 25, "existing lesson-completion XP must be preserved")
     }
+
+    // MARK: - In-progress lesson tracking (UserProgress model level)
+
+    func testMarkLessonStartedAddsToInProgressAndCompleteLessonRemovesIt() {
+        let progress = UserProgress()
+
+        progress.markLessonStarted(3)
+        XCTAssertEqual(progress.lessonsInProgress, [3])
+
+        progress.completeLesson(3)
+        XCTAssertFalse(progress.lessonsInProgress.contains(3), "completing a lesson must clear it from lessonsInProgress")
+    }
 }

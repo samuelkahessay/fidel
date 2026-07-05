@@ -80,6 +80,20 @@ final class JourneyViewModelOpenPathTests: XCTestCase {
         XCTAssertEqual(vm.recommendedSession?.heroAction, .lesson(1))
     }
 
+    // MARK: - Resuming an in-progress lesson
+
+    /// Lesson 1 is completed and lesson 2 was started (persisted via
+    /// `lessonsInProgress`) with no due reviews — the recommender should
+    /// resume lesson 2 rather than fall through to a new lesson.
+    func testInProgressLessonTriggersResume() throws {
+        let vm = try makeConfiguredJourneyViewModel(
+            progress: { $0.lessonsInProgress = [2] },
+            completedLessons: [1]
+        )
+        XCTAssertEqual(vm.recommendedSession?.kind, .resumeLesson(2))
+        XCTAssertEqual(vm.recommendedSession?.heroAction, .lesson(2))
+    }
+
     // MARK: - Completed lesson shows mastery
 
     func testCompletedLessonShowsMastery() throws {
@@ -89,6 +103,59 @@ final class JourneyViewModelOpenPathTests: XCTestCase {
         XCTAssertTrue(item.isCompleted)
         XCTAssertGreaterThan(item.masteryTier, .new)
         XCTAssertGreaterThan(item.masteryFraction, 0)
+    }
+
+    // MARK: - FSRS-reviewed items count toward mastery
+
+    /// `FlashcardManager.learnedItemIds` is the primitive `buildPathSections`
+    /// unions with `vocabularyMastered` — verify its stability threshold
+    /// directly: at/above the minimum counts, below it doesn't.
+    func testLearnedItemIdsIncludesHighStabilityAndExcludesLowStability() throws {
+        let container = try makeContainer()
+        retainedContainers.append(container)
+        let context = container.mainContext
+        let flashcardManager = FlashcardManager(modelContext: context)
+
+        let highId = "vocab-high-stability"
+        let lowId = "vocab-low-stability"
+        flashcardManager.getOrCreateProgress(for: highId, type: "vocabulary").stability = 7
+        flashcardManager.getOrCreateProgress(for: lowId, type: "vocabulary").stability = 3
+
+        let learned = flashcardManager.learnedItemIds(minStability: 7)
+        XCTAssertTrue(learned.contains(highId))
+        XCTAssertFalse(learned.contains(lowId))
+    }
+
+    /// A vocab word that is NOT in `vocabularyMastered` but has been reviewed
+    /// enough (FSRS stability >= the mastery threshold) must still raise its
+    /// lesson's mastery fraction — reviewed-but-not-"mastered" items should no
+    /// longer be invisible to the mastery ring.
+    func testFSRSReviewedItemRaisesMasteryAboveVocabularyMasteredBaseline() throws {
+        let lesson = try XCTUnwrap(LessonRepository.shared.getLessons().first { $0.id == 1 })
+        try XCTSkipIf(lesson.vocabulary.count < 2, "test needs at least two vocab words in lesson 1")
+        let masteredWordId = lesson.vocabulary[0].id
+        let fsrsWordId = lesson.vocabulary[1].id
+
+        let container = try makeContainer()
+        retainedContainers.append(container)
+        let context = container.mainContext
+        let repository = ProgressRepository(modelContext: context)
+        let progress = repository.ensureUserProgress()
+        progress.masterVocabulary(masteredWordId)
+        let stageManager = StageManager(progressRepository: repository)
+
+        let vm = JourneyViewModel()
+        vm.configure(stageManager: stageManager, progressRepository: repository, modelContext: context)
+        let baselineItem = try XCTUnwrap(vm.pathSections.flatMap(\.items).first { $0.lesson.id == 1 })
+        let baselineFraction = baselineItem.masteryFraction
+        XCTAssertGreaterThan(baselineFraction, 0, "one mastered vocab word should already register some mastery")
+
+        let flashcardManager = FlashcardManager(modelContext: context)
+        flashcardManager.getOrCreateProgress(for: fsrsWordId, type: "vocabulary").stability = 10
+
+        vm.refresh()
+        let updatedItem = try XCTUnwrap(vm.pathSections.flatMap(\.items).first { $0.lesson.id == 1 })
+        XCTAssertGreaterThan(updatedItem.masteryFraction, baselineFraction)
     }
 
     // MARK: - Section shape

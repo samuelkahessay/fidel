@@ -216,7 +216,23 @@ class FlashcardManager {
         
         return FSRSAlgorithm.getDueCards(from: allProgress)
     }
-    
+
+    /// Item ids (matching `VocabularyWord.id` / `String(phrase.id)`) whose FSRS
+    /// stability has reached `minStability` — items reviewed enough to count as
+    /// "learned" for mastery display, independent of `vocabularyMastered`.
+    func learnedItemIds(minStability: Double) -> Set<String> {
+        let ownerId = activeUserId
+        let descriptor = FetchDescriptor<FlashcardProgress>(
+            predicate: #Predicate<FlashcardProgress> { $0.ownerUserId == ownerId }
+        )
+
+        guard let allProgress = try? modelContext.fetch(descriptor) else {
+            return []
+        }
+
+        return Set(allProgress.filter { $0.stability >= minStability }.map(\.itemId))
+    }
+
     func initializeVocabularyCards() {
         for word in AmharicData.vocabulary {
             _ = getOrCreateProgress(for: word.id, type: "vocabulary")

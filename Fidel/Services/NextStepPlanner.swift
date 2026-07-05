@@ -18,6 +18,15 @@ struct RecommendedSession: Equatable {
 /// lesson -> all caught up. This recommender is what makes a fully-open path
 /// usable for beginners without re-introducing locks.
 struct NextStepPlanner {
+    /// Computes plan inputs from domain objects so the Learn tab and Today tab
+    /// stay in sync. inProgressLessonId is the most recent started-but-not-completed lesson.
+    func recommend(progress: UserProgress?, lessons: [Lesson], tier: DailyGoalTier, dueReviewCount: Int) -> RecommendedSession {
+        let completed = Set(progress?.lessonsCompleted ?? [])
+        let ordered = lessons.map(\.id).sorted()
+        let inProgress = (progress?.lessonsInProgress ?? []).last { !completed.contains($0) }
+        return plan(completedLessonIds: completed, inProgressLessonId: inProgress, tier: tier, dueReviewCount: dueReviewCount, orderedLessonIds: ordered)
+    }
+
     func plan(completedLessonIds: Set<Int>,
               inProgressLessonId: Int?,
               tier: DailyGoalTier,
