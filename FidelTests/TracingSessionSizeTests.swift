@@ -9,6 +9,11 @@ final class TracingSessionSizeTests: XCTestCase {
     /// Containers must outlive the repositories using their contexts.
     private var retainedContainers: [ModelContainer] = []
 
+    override func setUp() {
+        super.setUp()
+        AppSettingsStore().dailyGoalTier = .regular
+    }
+
     override func tearDown() {
         retainedContainers.removeAll()
         AppSettingsStore().dailyGoalTier = .regular

@@ -14,6 +14,11 @@ final class ProgressExportRoundTripTests: XCTestCase {
     /// Containers must outlive the model instances/contexts using them.
     private var retainedContainers: [ModelContainer] = []
 
+    override func setUp() {
+        super.setUp()
+        AppSettingsStore().dailyGoalTier = .regular
+    }
+
     override func tearDown() {
         retainedContainers.removeAll()
         AppSettingsStore().dailyGoalTier = .regular

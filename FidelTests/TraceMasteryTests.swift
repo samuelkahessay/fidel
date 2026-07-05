@@ -10,6 +10,14 @@ final class TraceMasteryTests: XCTestCase {
     /// Containers must outlive the repositories using their contexts.
     private var retainedContainers: [ModelContainer] = []
 
+    override func setUp() {
+        super.setUp()
+        // Session-composition asserts a tier-sized session (8 for .regular),
+        // backed by real UserDefaults. Reset the shared tier so no other suite's
+        // ordering can leak a different pace into this one.
+        AppSettingsStore().dailyGoalTier = .regular
+    }
+
     override func tearDown() {
         retainedContainers.removeAll()
         super.tearDown()
