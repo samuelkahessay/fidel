@@ -1,2618 +1,6230 @@
 [
   {
-    "amharic" : "አባት",
-    "category" : "Family",
-    "english" : "father",
-    "transliteration" : "abbat"
+    "amharic": "አባት",
+    "category": "Family",
+    "english": "father",
+    "transliteration": "abbat"
   },
   {
-    "amharic" : "እናት",
-    "category" : "Family",
-    "english" : "mother",
-    "transliteration" : "innat"
+    "amharic": "እናት",
+    "category": "Family",
+    "english": "mother",
+    "transliteration": "innat"
   },
   {
-    "amharic" : "ወንድም",
-    "category" : "Family",
-    "english" : "brother",
-    "transliteration" : "wandim"
+    "amharic": "ወንድም",
+    "category": "Family",
+    "english": "brother",
+    "transliteration": "wandim"
   },
   {
-    "amharic" : "እህት",
-    "category" : "Family",
-    "english" : "sister",
-    "transliteration" : "ihit"
+    "amharic": "እህት",
+    "category": "Family",
+    "english": "sister",
+    "transliteration": "ihit"
   },
   {
-    "amharic" : "ልጅ",
-    "category" : "Family",
-    "english" : "child",
-    "transliteration" : "lij"
+    "amharic": "ልጅ",
+    "category": "Family",
+    "english": "child",
+    "transliteration": "lij"
   },
   {
-    "amharic" : "ሚስት",
-    "category" : "Family",
-    "english" : "wife",
-    "transliteration" : "mist"
+    "amharic": "ሚስት",
+    "category": "Family",
+    "english": "wife",
+    "transliteration": "mist"
   },
   {
-    "amharic" : "ባል",
-    "category" : "Family",
-    "english" : "husband",
-    "transliteration" : "bal"
+    "amharic": "ባል",
+    "category": "Family",
+    "english": "husband",
+    "transliteration": "bal"
   },
   {
-    "amharic" : "ቤተሰብ",
-    "category" : "Family",
-    "english" : "family",
-    "transliteration" : "betasab"
+    "amharic": "ቤተሰብ",
+    "category": "Family",
+    "english": "family",
+    "transliteration": "betasab"
   },
   {
-    "amharic" : "አያት",
-    "category" : "Family",
-    "english" : "grandparent",
-    "transliteration" : "ayat"
+    "amharic": "አያት",
+    "category": "Family",
+    "english": "grandparent",
+    "transliteration": "ayat"
   },
   {
-    "amharic" : "ቡና",
-    "category" : "Food & Drink",
-    "english" : "coffee",
-    "transliteration" : "buna"
+    "amharic": "ቡና",
+    "category": "Food & Drink",
+    "english": "coffee",
+    "transliteration": "buna"
   },
   {
-    "amharic" : "ሻይ",
-    "category" : "Food & Drink",
-    "english" : "tea",
-    "transliteration" : "shay"
+    "amharic": "ሻይ",
+    "category": "Food & Drink",
+    "english": "tea",
+    "transliteration": "shay"
   },
   {
-    "amharic" : "ውሃ",
-    "category" : "Food & Drink",
-    "english" : "water",
-    "transliteration" : "wuha"
+    "amharic": "ውሃ",
+    "category": "Food & Drink",
+    "english": "water",
+    "transliteration": "wuha"
   },
   {
-    "amharic" : "ወተት",
-    "category" : "Food & Drink",
-    "english" : "milk",
-    "transliteration" : "watat"
+    "amharic": "ወተት",
+    "category": "Food & Drink",
+    "english": "milk",
+    "transliteration": "watat"
   },
   {
-    "amharic" : "ዳቦ",
-    "category" : "Food & Drink",
-    "english" : "bread",
-    "transliteration" : "dabo"
+    "amharic": "ዳቦ",
+    "category": "Food & Drink",
+    "english": "bread",
+    "transliteration": "dabo"
   },
   {
-    "amharic" : "እንጀራ",
-    "category" : "Food & Drink",
-    "english" : "injera",
-    "transliteration" : "injara"
+    "amharic": "እንጀራ",
+    "category": "Food & Drink",
+    "english": "injera",
+    "transliteration": "injara"
   },
   {
-    "amharic" : "ምግብ",
-    "category" : "Food & Drink",
-    "english" : "food",
-    "transliteration" : "migib"
+    "amharic": "ምግብ",
+    "category": "Food & Drink",
+    "english": "food",
+    "transliteration": "migib"
   },
   {
-    "amharic" : "ስኳር",
-    "category" : "Food & Drink",
-    "english" : "sugar",
-    "transliteration" : "sukuar"
+    "amharic": "ስኳር",
+    "category": "Food & Drink",
+    "english": "sugar",
+    "transliteration": "sukuar"
   },
   {
-    "amharic" : "ጨው",
-    "category" : "Food & Drink",
-    "english" : "salt",
-    "transliteration" : "chaw"
+    "amharic": "ጨው",
+    "category": "Food & Drink",
+    "english": "salt",
+    "transliteration": "chaw"
   },
   {
-    "amharic" : "ቤት",
-    "category" : "Places",
-    "english" : "house",
-    "transliteration" : "bet"
+    "amharic": "ቤት",
+    "category": "Places",
+    "english": "house",
+    "transliteration": "bet"
   },
   {
-    "amharic" : "ሆቴል",
-    "category" : "Places",
-    "english" : "hotel",
-    "transliteration" : "hotel"
+    "amharic": "ሆቴል",
+    "category": "Places",
+    "english": "hotel",
+    "transliteration": "hotel"
   },
   {
-    "amharic" : "ገበያ",
-    "category" : "Places",
-    "english" : "market",
-    "transliteration" : "gabaya"
+    "amharic": "ገበያ",
+    "category": "Places",
+    "english": "market",
+    "transliteration": "gabaya"
   },
   {
-    "amharic" : "ሱቅ",
-    "category" : "Places",
-    "english" : "shop",
-    "transliteration" : "suk"
+    "amharic": "ሱቅ",
+    "category": "Places",
+    "english": "shop",
+    "transliteration": "suk"
   },
   {
-    "amharic" : "ሆስፒታል",
-    "category" : "Places",
-    "english" : "hospital",
-    "transliteration" : "hospital"
+    "amharic": "ሆስፒታል",
+    "category": "Places",
+    "english": "hospital",
+    "transliteration": "hospital"
   },
   {
-    "amharic" : "ትምህርት ቤት",
-    "category" : "Places",
-    "english" : "school",
-    "transliteration" : "timhirt bet"
+    "amharic": "ትምህርት ቤት",
+    "category": "Places",
+    "english": "school",
+    "transliteration": "timhirt bet"
   },
   {
-    "amharic" : "ቤተ ክርስቲያን",
-    "category" : "Places",
-    "english" : "church",
-    "transliteration" : "beta kristiyan"
+    "amharic": "ቤተ ክርስቲያን",
+    "category": "Places",
+    "english": "church",
+    "transliteration": "beta kristiyan"
   },
   {
-    "amharic" : "መስጊድ",
-    "category" : "Places",
-    "english" : "mosque",
-    "transliteration" : "masgid"
+    "amharic": "መስጊድ",
+    "category": "Places",
+    "english": "mosque",
+    "transliteration": "masgid"
   },
   {
-    "amharic" : "ጭንቅላት",
-    "category" : "Body Parts",
-    "english" : "head",
-    "transliteration" : "chinkilat"
+    "amharic": "ጭንቅላት",
+    "category": "Body Parts",
+    "english": "head",
+    "transliteration": "chinkilat"
   },
   {
-    "amharic" : "አይን",
-    "category" : "Body Parts",
-    "english" : "eye",
-    "transliteration" : "ayn"
+    "amharic": "አይን",
+    "category": "Body Parts",
+    "english": "eye",
+    "transliteration": "ayn"
   },
   {
-    "amharic" : "አፍ",
-    "category" : "Body Parts",
-    "english" : "mouth",
-    "transliteration" : "af"
+    "amharic": "አፍ",
+    "category": "Body Parts",
+    "english": "mouth",
+    "transliteration": "af"
   },
   {
-    "amharic" : "እጅ",
-    "category" : "Body Parts",
-    "english" : "hand",
-    "transliteration" : "ij"
+    "amharic": "እጅ",
+    "category": "Body Parts",
+    "english": "hand",
+    "transliteration": "ij"
   },
   {
-    "amharic" : "እግር",
-    "category" : "Body Parts",
-    "english" : "foot\/leg",
-    "transliteration" : "igir"
+    "amharic": "እግር",
+    "category": "Body Parts",
+    "english": "foot/leg",
+    "transliteration": "igir"
   },
   {
-    "amharic" : "ጆሮ",
-    "category" : "Body Parts",
-    "english" : "ear",
-    "transliteration" : "joro"
+    "amharic": "ጆሮ",
+    "category": "Body Parts",
+    "english": "ear",
+    "transliteration": "joro"
   },
   {
-    "amharic" : "ቀይ",
-    "category" : "Colors",
-    "english" : "red",
-    "transliteration" : "kay"
+    "amharic": "ቀይ",
+    "category": "Colors",
+    "english": "red",
+    "transliteration": "kay"
   },
   {
-    "amharic" : "አረንጓዴ",
-    "category" : "Colors",
-    "english" : "green",
-    "transliteration" : "aranguade"
+    "amharic": "አረንጓዴ",
+    "category": "Colors",
+    "english": "green",
+    "transliteration": "aranguade"
   },
   {
-    "amharic" : "ሰማያዊ",
-    "category" : "Colors",
-    "english" : "blue",
-    "transliteration" : "samayawi"
+    "amharic": "ሰማያዊ",
+    "category": "Colors",
+    "english": "blue",
+    "transliteration": "samayawi"
   },
   {
-    "amharic" : "ቢጫ",
-    "category" : "Colors",
-    "english" : "yellow",
-    "transliteration" : "bicha"
+    "amharic": "ቢጫ",
+    "category": "Colors",
+    "english": "yellow",
+    "transliteration": "bicha"
   },
   {
-    "amharic" : "ጥቁር",
-    "category" : "Colors",
-    "english" : "black",
-    "transliteration" : "tikur"
+    "amharic": "ጥቁር",
+    "category": "Colors",
+    "english": "black",
+    "transliteration": "tikur"
   },
   {
-    "amharic" : "ነጭ",
-    "category" : "Colors",
-    "english" : "white",
-    "transliteration" : "nach"
+    "amharic": "ነጭ",
+    "category": "Colors",
+    "english": "white",
+    "transliteration": "nach"
   },
   {
-    "amharic" : "ዛሬ",
-    "category" : "Time",
-    "english" : "today",
-    "transliteration" : "zare"
+    "amharic": "ዛሬ",
+    "category": "Time",
+    "english": "today",
+    "transliteration": "zare"
   },
   {
-    "amharic" : "ነገ",
-    "category" : "Time",
-    "english" : "tomorrow",
-    "transliteration" : "naga"
+    "amharic": "ነገ",
+    "category": "Time",
+    "english": "tomorrow",
+    "transliteration": "naga"
   },
   {
-    "amharic" : "ትናንት",
-    "category" : "Time",
-    "english" : "yesterday",
-    "transliteration" : "tinant"
+    "amharic": "ትናንት",
+    "category": "Time",
+    "english": "yesterday",
+    "transliteration": "tinant"
   },
   {
-    "amharic" : "አሁን",
-    "category" : "Time",
-    "english" : "now",
-    "transliteration" : "ahun"
+    "amharic": "አሁን",
+    "category": "Time",
+    "english": "now",
+    "transliteration": "ahun"
   },
   {
-    "amharic" : "ሰዓት",
-    "category" : "Time",
-    "english" : "hour\/time",
-    "transliteration" : "saat"
+    "amharic": "ሰዓት",
+    "category": "Time",
+    "english": "hour/time",
+    "transliteration": "saat"
   },
   {
-    "amharic" : "ቀን",
-    "category" : "Time",
-    "english" : "day",
-    "transliteration" : "kan"
+    "amharic": "ቀን",
+    "category": "Time",
+    "english": "day",
+    "transliteration": "kan"
   },
   {
-    "amharic" : "ሳምንት",
-    "category" : "Time",
-    "english" : "week",
-    "transliteration" : "samint"
+    "amharic": "ሳምንት",
+    "category": "Time",
+    "english": "week",
+    "transliteration": "samint"
   },
   {
-    "amharic" : "ወር",
-    "category" : "Time",
-    "english" : "month",
-    "transliteration" : "war"
+    "amharic": "ወር",
+    "category": "Time",
+    "english": "month",
+    "transliteration": "war"
   },
   {
-    "amharic" : "ቀኝ",
-    "category" : "Directions",
-    "english" : "right",
-    "transliteration" : "kany"
+    "amharic": "ቀኝ",
+    "category": "Directions",
+    "english": "right",
+    "transliteration": "kany"
   },
   {
-    "amharic" : "ግራ",
-    "category" : "Directions",
-    "english" : "left",
-    "transliteration" : "gira"
+    "amharic": "ግራ",
+    "category": "Directions",
+    "english": "left",
+    "transliteration": "gira"
   },
   {
-    "amharic" : "ቀጥታ",
-    "category" : "Directions",
-    "english" : "straight",
-    "transliteration" : "kattita"
+    "amharic": "ቀጥታ",
+    "category": "Directions",
+    "english": "straight",
+    "transliteration": "kattita"
   },
   {
-    "amharic" : "ከላይ",
-    "category" : "Directions",
-    "english" : "up\/above",
-    "transliteration" : "kalay"
+    "amharic": "ከላይ",
+    "category": "Directions",
+    "english": "up/above",
+    "transliteration": "kalay"
   },
   {
-    "amharic" : "ከታች",
-    "category" : "Directions",
-    "english" : "down\/below",
-    "transliteration" : "katach"
+    "amharic": "ከታች",
+    "category": "Directions",
+    "english": "down/below",
+    "transliteration": "katach"
   },
   {
-    "amharic" : "እዚህ",
-    "category" : "Directions",
-    "english" : "here",
-    "transliteration" : "izzih"
+    "amharic": "እዚህ",
+    "category": "Directions",
+    "english": "here",
+    "transliteration": "izzih"
   },
   {
-    "amharic" : "እዚያ",
-    "category" : "Directions",
-    "english" : "there",
-    "transliteration" : "izziya"
+    "amharic": "እዚያ",
+    "category": "Directions",
+    "english": "there",
+    "transliteration": "izziya"
   },
   {
-    "amharic" : "ደህና",
-    "category" : "Common Adjectives",
-    "english" : "well\/fine",
-    "transliteration" : "dahna"
+    "amharic": "ደህና",
+    "category": "Common Adjectives",
+    "english": "well/fine",
+    "transliteration": "dahna"
   },
   {
-    "amharic" : "ጥሩ",
-    "category" : "Common Adjectives",
-    "english" : "good",
-    "transliteration" : "tiru"
+    "amharic": "ጥሩ",
+    "category": "Common Adjectives",
+    "english": "good",
+    "transliteration": "tiru"
   },
   {
-    "amharic" : "መጥፎ",
-    "category" : "Common Adjectives",
-    "english" : "bad",
-    "transliteration" : "matfo"
+    "amharic": "መጥፎ",
+    "category": "Common Adjectives",
+    "english": "bad",
+    "transliteration": "matfo"
   },
   {
-    "amharic" : "ትልቅ",
-    "category" : "Common Adjectives",
-    "english" : "big",
-    "transliteration" : "tilik"
+    "amharic": "ትልቅ",
+    "category": "Common Adjectives",
+    "english": "big",
+    "transliteration": "tilik"
   },
   {
-    "amharic" : "ትንሽ",
-    "category" : "Common Adjectives",
-    "english" : "small\/little",
-    "transliteration" : "tinish"
+    "amharic": "ትንሽ",
+    "category": "Common Adjectives",
+    "english": "small/little",
+    "transliteration": "tinish"
   },
   {
-    "amharic" : "ቆንጆ",
-    "category" : "Common Adjectives",
-    "english" : "beautiful\/nice",
-    "transliteration" : "konjo"
+    "amharic": "ቆንጆ",
+    "category": "Common Adjectives",
+    "english": "beautiful/nice",
+    "transliteration": "konjo"
   },
   {
-    "amharic" : "ውድ",
-    "category" : "Common Adjectives",
-    "english" : "expensive",
-    "transliteration" : "wid"
+    "amharic": "ውድ",
+    "category": "Common Adjectives",
+    "english": "expensive",
+    "transliteration": "wid"
   },
   {
-    "amharic" : "ርካሽ",
-    "category" : "Common Adjectives",
-    "english" : "cheap",
-    "transliteration" : "rikash"
+    "amharic": "ርካሽ",
+    "category": "Common Adjectives",
+    "english": "cheap",
+    "transliteration": "rikash"
   },
   {
-    "amharic" : "ሰኞ",
-    "category" : "Days",
-    "english" : "Monday",
-    "transliteration" : "sanyo"
+    "amharic": "ሰኞ",
+    "category": "Days",
+    "english": "Monday",
+    "transliteration": "sanyo"
   },
   {
-    "amharic" : "ማክሰኞ",
-    "category" : "Days",
-    "english" : "Tuesday",
-    "transliteration" : "maksanyo"
+    "amharic": "ማክሰኞ",
+    "category": "Days",
+    "english": "Tuesday",
+    "transliteration": "maksanyo"
   },
   {
-    "amharic" : "ረቡዕ",
-    "category" : "Days",
-    "english" : "Wednesday",
-    "transliteration" : "rabu"
+    "amharic": "ረቡዕ",
+    "category": "Days",
+    "english": "Wednesday",
+    "transliteration": "rabu"
   },
   {
-    "amharic" : "ሐሙስ",
-    "category" : "Days",
-    "english" : "Thursday",
-    "transliteration" : "hamus"
+    "amharic": "ሐሙስ",
+    "category": "Days",
+    "english": "Thursday",
+    "transliteration": "hamus"
   },
   {
-    "amharic" : "አርብ",
-    "category" : "Days",
-    "english" : "Friday",
-    "transliteration" : "arb"
+    "amharic": "አርብ",
+    "category": "Days",
+    "english": "Friday",
+    "transliteration": "arb"
   },
   {
-    "amharic" : "ቅዳሜ",
-    "category" : "Days",
-    "english" : "Saturday",
-    "transliteration" : "kidame"
+    "amharic": "ቅዳሜ",
+    "category": "Days",
+    "english": "Saturday",
+    "transliteration": "kidame"
   },
   {
-    "amharic" : "እሁድ",
-    "category" : "Days",
-    "english" : "Sunday",
-    "transliteration" : "ihud"
+    "amharic": "እሁድ",
+    "category": "Days",
+    "english": "Sunday",
+    "transliteration": "ihud"
   },
   {
-    "amharic" : "ዶሮ ወጥ",
-    "category" : "Food & Drink",
-    "english" : "chicken stew",
-    "transliteration" : "doro wat"
+    "amharic": "ዶሮ ወጥ",
+    "category": "Food & Drink",
+    "english": "chicken stew",
+    "transliteration": "doro wat"
   },
   {
-    "amharic" : "ሽሮ",
-    "category" : "Food & Drink",
-    "english" : "shiro (chickpea stew)",
-    "transliteration" : "shiro"
+    "amharic": "ሽሮ",
+    "category": "Food & Drink",
+    "english": "shiro (chickpea stew)",
+    "transliteration": "shiro"
   },
   {
-    "amharic" : "በርበሬ",
-    "category" : "Food & Drink",
-    "english" : "pepper\/spice",
-    "transliteration" : "barbere"
+    "amharic": "በርበሬ",
+    "category": "Food & Drink",
+    "english": "pepper/spice",
+    "transliteration": "barbere"
   },
   {
-    "amharic" : "ጥብስ",
-    "category" : "Food & Drink",
-    "english" : "roasted meat",
-    "transliteration" : "tibs"
+    "amharic": "ጥብስ",
+    "category": "Food & Drink",
+    "english": "roasted meat",
+    "transliteration": "tibs"
   },
   {
-    "amharic" : "ጠላ",
-    "category" : "Food & Drink",
-    "english" : "tella (barley beer)",
-    "transliteration" : "talla"
+    "amharic": "ጠላ",
+    "category": "Food & Drink",
+    "english": "tella (barley beer)",
+    "transliteration": "talla"
   },
   {
-    "amharic" : "ጠጅ",
-    "category" : "Food & Drink",
-    "english" : "tej (honey wine)",
-    "transliteration" : "tej"
+    "amharic": "ጠጅ",
+    "category": "Food & Drink",
+    "english": "tej (honey wine)",
+    "transliteration": "tej"
   },
   {
-    "amharic" : "ፍራፍሬ",
-    "category" : "Food & Drink",
-    "english" : "fruit",
-    "transliteration" : "firafre"
+    "amharic": "ፍራፍሬ",
+    "category": "Food & Drink",
+    "english": "fruit",
+    "transliteration": "firafre"
   },
   {
-    "amharic" : "አትክልት",
-    "category" : "Food & Drink",
-    "english" : "vegetable",
-    "transliteration" : "atikilt"
+    "amharic": "አትክልት",
+    "category": "Food & Drink",
+    "english": "vegetable",
+    "transliteration": "atikilt"
   },
   {
-    "amharic" : "ቅቤ",
-    "category" : "Food & Drink",
-    "english" : "butter",
-    "transliteration" : "kibe"
+    "amharic": "ቅቤ",
+    "category": "Food & Drink",
+    "english": "butter",
+    "transliteration": "kibe"
   },
   {
-    "amharic" : "አፍንጫ",
-    "category" : "Body Parts",
-    "english" : "nose",
-    "transliteration" : "afincha"
+    "amharic": "አፍንጫ",
+    "category": "Body Parts",
+    "english": "nose",
+    "transliteration": "afincha"
   },
   {
-    "amharic" : "ደረት",
-    "category" : "Body Parts",
-    "english" : "chest",
-    "transliteration" : "daret"
+    "amharic": "ደረት",
+    "category": "Body Parts",
+    "english": "chest",
+    "transliteration": "daret"
   },
   {
-    "amharic" : "ሆድ",
-    "category" : "Body Parts",
-    "english" : "stomach",
-    "transliteration" : "hod"
+    "amharic": "ሆድ",
+    "category": "Body Parts",
+    "english": "stomach",
+    "transliteration": "hod"
   },
   {
-    "amharic" : "ጀርባ",
-    "category" : "Body Parts",
-    "english" : "back",
-    "transliteration" : "jarba"
+    "amharic": "ጀርባ",
+    "category": "Body Parts",
+    "english": "back",
+    "transliteration": "jarba"
   },
   {
-    "amharic" : "ጣት",
-    "category" : "Body Parts",
-    "english" : "finger",
-    "transliteration" : "tat"
+    "amharic": "ጣት",
+    "category": "Body Parts",
+    "english": "finger",
+    "transliteration": "tat"
   },
   {
-    "amharic" : "ጉልበት",
-    "category" : "Body Parts",
-    "english" : "knee",
-    "transliteration" : "gulbet"
+    "amharic": "ጉልበት",
+    "category": "Body Parts",
+    "english": "knee",
+    "transliteration": "gulbet"
   },
   {
-    "amharic" : "ባንክ",
-    "category" : "Places",
-    "english" : "bank",
-    "transliteration" : "bank"
+    "amharic": "ባንክ",
+    "category": "Places",
+    "english": "bank",
+    "transliteration": "bank"
   },
   {
-    "amharic" : "ፖስታ ቤት",
-    "category" : "Places",
-    "english" : "post office",
-    "transliteration" : "posta bet"
+    "amharic": "ፖስታ ቤት",
+    "category": "Places",
+    "english": "post office",
+    "transliteration": "posta bet"
   },
   {
-    "amharic" : "ቤተ መጻሕፍት",
-    "category" : "Places",
-    "english" : "library",
-    "transliteration" : "beta matsahift"
+    "amharic": "ቤተ መጻሕፍት",
+    "category": "Places",
+    "english": "library",
+    "transliteration": "beta matsahift"
   },
   {
-    "amharic" : "አየር ማረፊያ",
-    "category" : "Places",
-    "english" : "airport",
-    "transliteration" : "ayer marefiya"
+    "amharic": "አየር ማረፊያ",
+    "category": "Places",
+    "english": "airport",
+    "transliteration": "ayer marefiya"
   },
   {
-    "amharic" : "ፋርማሲ",
-    "category" : "Places",
-    "english" : "pharmacy",
-    "transliteration" : "farmasi"
+    "amharic": "ፋርማሲ",
+    "category": "Places",
+    "english": "pharmacy",
+    "transliteration": "farmasi"
   },
   {
-    "amharic" : "ፖሊስ ጣቢያ",
-    "category" : "Places",
-    "english" : "police station",
-    "transliteration" : "polis tabiya"
+    "amharic": "ፖሊስ ጣቢያ",
+    "category": "Places",
+    "english": "police station",
+    "transliteration": "polis tabiya"
   },
   {
-    "amharic" : "ዝናብ",
-    "category" : "Weather & Nature",
-    "english" : "rain",
-    "transliteration" : "zinab"
+    "amharic": "ዝናብ",
+    "category": "Weather & Nature",
+    "english": "rain",
+    "transliteration": "zinab"
   },
   {
-    "amharic" : "ፀሐይ",
-    "category" : "Weather & Nature",
-    "english" : "sun",
-    "transliteration" : "tsahay"
+    "amharic": "ፀሐይ",
+    "category": "Weather & Nature",
+    "english": "sun",
+    "transliteration": "tsahay"
   },
   {
-    "amharic" : "ነፋስ",
-    "category" : "Weather & Nature",
-    "english" : "wind",
-    "transliteration" : "nafas"
+    "amharic": "ነፋስ",
+    "category": "Weather & Nature",
+    "english": "wind",
+    "transliteration": "nafas"
   },
   {
-    "amharic" : "ደመና",
-    "category" : "Weather & Nature",
-    "english" : "cloud",
-    "transliteration" : "damana"
+    "amharic": "ደመና",
+    "category": "Weather & Nature",
+    "english": "cloud",
+    "transliteration": "damana"
   },
   {
-    "amharic" : "ሞቃት",
-    "category" : "Weather & Nature",
-    "english" : "hot",
-    "transliteration" : "mokat"
+    "amharic": "ሞቃት",
+    "category": "Weather & Nature",
+    "english": "hot",
+    "transliteration": "mokat"
   },
   {
-    "amharic" : "ቀዝቃዛ",
-    "category" : "Weather & Nature",
-    "english" : "cold",
-    "transliteration" : "kazkaza"
+    "amharic": "ቀዝቃዛ",
+    "category": "Weather & Nature",
+    "english": "cold",
+    "transliteration": "kazkaza"
   },
   {
-    "amharic" : "በረዶ",
-    "category" : "Weather & Nature",
-    "english" : "snow\/hail",
-    "transliteration" : "barado"
+    "amharic": "በረዶ",
+    "category": "Weather & Nature",
+    "english": "snow/hail",
+    "transliteration": "barado"
   },
   {
-    "amharic" : "ክረምት",
-    "category" : "Weather & Nature",
-    "english" : "rainy season",
-    "transliteration" : "kiramt"
+    "amharic": "ክረምት",
+    "category": "Weather & Nature",
+    "english": "rainy season",
+    "transliteration": "kiramt"
   },
   {
-    "amharic" : "በጋ",
-    "category" : "Weather & Nature",
-    "english" : "dry season",
-    "transliteration" : "baga"
+    "amharic": "በጋ",
+    "category": "Weather & Nature",
+    "english": "dry season",
+    "transliteration": "baga"
   },
   {
-    "amharic" : "ተፈጥሮ",
-    "category" : "Weather & Nature",
-    "english" : "nature",
-    "transliteration" : "tafatro"
+    "amharic": "ተፈጥሮ",
+    "category": "Weather & Nature",
+    "english": "nature",
+    "transliteration": "tafatro"
   },
   {
-    "amharic" : "ደስተኛ",
-    "category" : "Emotions",
-    "english" : "happy",
-    "transliteration" : "dastanya"
+    "amharic": "ደስተኛ",
+    "category": "Emotions",
+    "english": "happy",
+    "transliteration": "dastanya"
   },
   {
-    "amharic" : "አዝኛለሁ",
-    "category" : "Emotions",
-    "english" : "I am sad",
-    "transliteration" : "aznalahu"
+    "amharic": "አዝኛለሁ",
+    "category": "Emotions",
+    "english": "I am sad",
+    "transliteration": "aznalahu"
   },
   {
-    "amharic" : "ፈርቻለሁ",
-    "category" : "Emotions",
-    "english" : "I am scared",
-    "transliteration" : "farchalahu"
+    "amharic": "ፈርቻለሁ",
+    "category": "Emotions",
+    "english": "I am scared",
+    "transliteration": "farchalahu"
   },
   {
-    "amharic" : "ተናድጃለሁ",
-    "category" : "Emotions",
-    "english" : "I am angry",
-    "transliteration" : "tanadjalahu"
+    "amharic": "ተናድጃለሁ",
+    "category": "Emotions",
+    "english": "I am angry",
+    "transliteration": "tanadjalahu"
   },
   {
-    "amharic" : "ድንገተኛ",
-    "category" : "Emotions",
-    "english" : "surprised",
-    "transliteration" : "dingatanya"
+    "amharic": "ድንገተኛ",
+    "category": "Emotions",
+    "english": "surprised",
+    "transliteration": "dingatanya"
   },
   {
-    "amharic" : "ፍቅር",
-    "category" : "Emotions",
-    "english" : "love",
-    "transliteration" : "fikir"
+    "amharic": "ፍቅር",
+    "category": "Emotions",
+    "english": "love",
+    "transliteration": "fikir"
   },
   {
-    "amharic" : "ተስፋ",
-    "category" : "Emotions",
-    "english" : "hope",
-    "transliteration" : "tasfa"
+    "amharic": "ተስፋ",
+    "category": "Emotions",
+    "english": "hope",
+    "transliteration": "tasfa"
   },
   {
-    "amharic" : "ደክሞኛል",
-    "category" : "Emotions",
-    "english" : "tired",
-    "transliteration" : "dakmonynal"
+    "amharic": "ደክሞኛል",
+    "category": "Emotions",
+    "english": "tired",
+    "transliteration": "dakmonynal"
   },
   {
-    "amharic" : "ረሀብ",
-    "category" : "Emotions",
-    "english" : "hungry",
-    "transliteration" : "rahab"
+    "amharic": "ረሀብ",
+    "category": "Emotions",
+    "english": "hungry",
+    "transliteration": "rahab"
   },
   {
-    "amharic" : "ጥማት",
-    "category" : "Emotions",
-    "english" : "thirsty",
-    "transliteration" : "timat"
+    "amharic": "ጥማት",
+    "category": "Emotions",
+    "english": "thirsty",
+    "transliteration": "timat"
   },
   {
-    "amharic" : "ውሻ",
-    "category" : "Animals",
-    "english" : "dog",
-    "transliteration" : "wiша"
+    "amharic": "ውሻ",
+    "category": "Animals",
+    "english": "dog",
+    "transliteration": "wiша"
   },
   {
-    "amharic" : "ድመት",
-    "category" : "Animals",
-    "english" : "cat",
-    "transliteration" : "dimat"
+    "amharic": "ድመት",
+    "category": "Animals",
+    "english": "cat",
+    "transliteration": "dimat"
   },
   {
-    "amharic" : "ፈረስ",
-    "category" : "Animals",
-    "english" : "horse",
-    "transliteration" : "faras"
+    "amharic": "ፈረስ",
+    "category": "Animals",
+    "english": "horse",
+    "transliteration": "faras"
   },
   {
-    "amharic" : "ላም",
-    "category" : "Animals",
-    "english" : "cow",
-    "transliteration" : "lam"
+    "amharic": "ላም",
+    "category": "Animals",
+    "english": "cow",
+    "transliteration": "lam"
   },
   {
-    "amharic" : "በግ",
-    "category" : "Animals",
-    "english" : "sheep",
-    "transliteration" : "bag"
+    "amharic": "በግ",
+    "category": "Animals",
+    "english": "sheep",
+    "transliteration": "bag"
   },
   {
-    "amharic" : "ዶሮ",
-    "category" : "Animals",
-    "english" : "chicken",
-    "transliteration" : "doro"
+    "amharic": "ዶሮ",
+    "category": "Animals",
+    "english": "chicken",
+    "transliteration": "doro"
   },
   {
-    "amharic" : "ወፍ",
-    "category" : "Animals",
-    "english" : "bird",
-    "transliteration" : "waf"
+    "amharic": "ወፍ",
+    "category": "Animals",
+    "english": "bird",
+    "transliteration": "waf"
   },
   {
-    "amharic" : "አህያ",
-    "category" : "Animals",
-    "english" : "donkey",
-    "transliteration" : "ahiya"
+    "amharic": "አህያ",
+    "category": "Animals",
+    "english": "donkey",
+    "transliteration": "ahiya"
   },
   {
-    "amharic" : "ዝንጀሮ",
-    "category" : "Animals",
-    "english" : "monkey",
-    "transliteration" : "zinjaro"
+    "amharic": "ዝንጀሮ",
+    "category": "Animals",
+    "english": "monkey",
+    "transliteration": "zinjaro"
   },
   {
-    "amharic" : "አንበሳ",
-    "category" : "Animals",
-    "english" : "lion",
-    "transliteration" : "anbasa"
+    "amharic": "አንበሳ",
+    "category": "Animals",
+    "english": "lion",
+    "transliteration": "anbasa"
   },
   {
-    "amharic" : "ልብስ",
-    "category" : "Clothing",
-    "english" : "clothes",
-    "transliteration" : "libs"
+    "amharic": "ልብስ",
+    "category": "Clothing",
+    "english": "clothes",
+    "transliteration": "libs"
   },
   {
-    "amharic" : "ጫማ",
-    "category" : "Clothing",
-    "english" : "shoes",
-    "transliteration" : "chama"
+    "amharic": "ጫማ",
+    "category": "Clothing",
+    "english": "shoes",
+    "transliteration": "chama"
   },
   {
-    "amharic" : "ቀሚስ",
-    "category" : "Clothing",
-    "english" : "dress",
-    "transliteration" : "kamis"
+    "amharic": "ቀሚስ",
+    "category": "Clothing",
+    "english": "dress",
+    "transliteration": "kamis"
   },
   {
-    "amharic" : "ሱሪ",
-    "category" : "Clothing",
-    "english" : "pants",
-    "transliteration" : "suri"
+    "amharic": "ሱሪ",
+    "category": "Clothing",
+    "english": "pants",
+    "transliteration": "suri"
   },
   {
-    "amharic" : "ኮት",
-    "category" : "Clothing",
-    "english" : "coat",
-    "transliteration" : "kot"
+    "amharic": "ኮት",
+    "category": "Clothing",
+    "english": "coat",
+    "transliteration": "kot"
   },
   {
-    "amharic" : "ባርኔጣ",
-    "category" : "Clothing",
-    "english" : "hat",
-    "transliteration" : "barneta"
+    "amharic": "ባርኔጣ",
+    "category": "Clothing",
+    "english": "hat",
+    "transliteration": "barneta"
   },
   {
-    "amharic" : "ነጠላ",
-    "category" : "Clothing",
-    "english" : "shawl\/netela",
-    "transliteration" : "natala"
+    "amharic": "ነጠላ",
+    "category": "Clothing",
+    "english": "shawl/netela",
+    "transliteration": "natala"
   },
   {
-    "amharic" : "ጋቢ",
-    "category" : "Clothing",
-    "english" : "gabi (thick wrap)",
-    "transliteration" : "gabi"
+    "amharic": "ጋቢ",
+    "category": "Clothing",
+    "english": "gabi (thick wrap)",
+    "transliteration": "gabi"
   },
   {
-    "amharic" : "መኪና",
-    "category" : "Transportation",
-    "english" : "car",
-    "transliteration" : "makina"
+    "amharic": "መኪና",
+    "category": "Transportation",
+    "english": "car",
+    "transliteration": "makina"
   },
   {
-    "amharic" : "አውቶቡስ",
-    "category" : "Transportation",
-    "english" : "bus",
-    "transliteration" : "awtobus"
+    "amharic": "አውቶቡስ",
+    "category": "Transportation",
+    "english": "bus",
+    "transliteration": "awtobus"
   },
   {
-    "amharic" : "ታክሲ",
-    "category" : "Transportation",
-    "english" : "taxi\/minibus",
-    "transliteration" : "taksi"
+    "amharic": "ታክሲ",
+    "category": "Transportation",
+    "english": "taxi/minibus",
+    "transliteration": "taksi"
   },
   {
-    "amharic" : "አውሮፕላን",
-    "category" : "Transportation",
-    "english" : "airplane",
-    "transliteration" : "awroplan"
+    "amharic": "አውሮፕላን",
+    "category": "Transportation",
+    "english": "airplane",
+    "transliteration": "awroplan"
   },
   {
-    "amharic" : "ባቡር",
-    "category" : "Transportation",
-    "english" : "train",
-    "transliteration" : "babur"
+    "amharic": "ባቡር",
+    "category": "Transportation",
+    "english": "train",
+    "transliteration": "babur"
   },
   {
-    "amharic" : "ጀልባ",
-    "category" : "Transportation",
-    "english" : "boat",
-    "transliteration" : "jalba"
+    "amharic": "ጀልባ",
+    "category": "Transportation",
+    "english": "boat",
+    "transliteration": "jalba"
   },
   {
-    "amharic" : "ብስክሌት",
-    "category" : "Transportation",
-    "english" : "bicycle",
-    "transliteration" : "bisiklet"
+    "amharic": "ብስክሌት",
+    "category": "Transportation",
+    "english": "bicycle",
+    "transliteration": "bisiklet"
   },
   {
-    "amharic" : "መንገድ",
-    "category" : "Transportation",
-    "english" : "road",
-    "transliteration" : "mangad"
+    "amharic": "መንገድ",
+    "category": "Transportation",
+    "english": "road",
+    "transliteration": "mangad"
   },
   {
-    "amharic" : "ዶክተር",
-    "category" : "Occupations",
-    "english" : "doctor",
-    "transliteration" : "doktar"
+    "amharic": "ዶክተር",
+    "category": "Occupations",
+    "english": "doctor",
+    "transliteration": "doktar"
   },
   {
-    "amharic" : "መምህር",
-    "category" : "Occupations",
-    "english" : "teacher",
-    "transliteration" : "mamhir"
+    "amharic": "መምህር",
+    "category": "Occupations",
+    "english": "teacher",
+    "transliteration": "mamhir"
   },
   {
-    "amharic" : "ፖሊስ",
-    "category" : "Occupations",
-    "english" : "police",
-    "transliteration" : "polis"
+    "amharic": "ፖሊስ",
+    "category": "Occupations",
+    "english": "police",
+    "transliteration": "polis"
   },
   {
-    "amharic" : "ነጋዴ",
-    "category" : "Occupations",
-    "english" : "merchant",
-    "transliteration" : "nagade"
+    "amharic": "ነጋዴ",
+    "category": "Occupations",
+    "english": "merchant",
+    "transliteration": "nagade"
   },
   {
-    "amharic" : "ገበሬ",
-    "category" : "Occupations",
-    "english" : "farmer",
-    "transliteration" : "gabare"
+    "amharic": "ገበሬ",
+    "category": "Occupations",
+    "english": "farmer",
+    "transliteration": "gabare"
   },
   {
-    "amharic" : "ምህንድስ",
-    "category" : "Occupations",
-    "english" : "engineer",
-    "transliteration" : "mihindis"
+    "amharic": "ምህንድስ",
+    "category": "Occupations",
+    "english": "engineer",
+    "transliteration": "mihindis"
   },
   {
-    "amharic" : "ነርስ",
-    "category" : "Occupations",
-    "english" : "nurse",
-    "transliteration" : "nars"
+    "amharic": "ነርስ",
+    "category": "Occupations",
+    "english": "nurse",
+    "transliteration": "nars"
   },
   {
-    "amharic" : "ጠበቃ",
-    "category" : "Occupations",
-    "english" : "lawyer",
-    "transliteration" : "tabaka"
+    "amharic": "ጠበቃ",
+    "category": "Occupations",
+    "english": "lawyer",
+    "transliteration": "tabaka"
   },
   {
-    "amharic" : "ሠራተኛ",
-    "category" : "Occupations",
-    "english" : "worker",
-    "transliteration" : "saratanya"
+    "amharic": "ሠራተኛ",
+    "category": "Occupations",
+    "english": "worker",
+    "transliteration": "saratanya"
   },
   {
-    "amharic" : "አስተማሪ",
-    "category" : "Occupations",
-    "english" : "instructor",
-    "transliteration" : "astamari"
+    "amharic": "አስተማሪ",
+    "category": "Occupations",
+    "english": "instructor",
+    "transliteration": "astamari"
   },
   {
-    "amharic" : "ወንበር",
-    "category" : "Household",
-    "english" : "chair",
-    "transliteration" : "wanbar"
+    "amharic": "ወንበር",
+    "category": "Household",
+    "english": "chair",
+    "transliteration": "wanbar"
   },
   {
-    "amharic" : "ጠረጴዛ",
-    "category" : "Household",
-    "english" : "table",
-    "transliteration" : "tarapeza"
+    "amharic": "ጠረጴዛ",
+    "category": "Household",
+    "english": "table",
+    "transliteration": "tarapeza"
   },
   {
-    "amharic" : "አልጋ",
-    "category" : "Household",
-    "english" : "bed",
-    "transliteration" : "alga"
+    "amharic": "አልጋ",
+    "category": "Household",
+    "english": "bed",
+    "transliteration": "alga"
   },
   {
-    "amharic" : "በር",
-    "category" : "Household",
-    "english" : "door",
-    "transliteration" : "bar"
+    "amharic": "በር",
+    "category": "Household",
+    "english": "door",
+    "transliteration": "bar"
   },
   {
-    "amharic" : "መስኮት",
-    "category" : "Household",
-    "english" : "window",
-    "transliteration" : "maskot"
+    "amharic": "መስኮት",
+    "category": "Household",
+    "english": "window",
+    "transliteration": "maskot"
   },
   {
-    "amharic" : "መብራት",
-    "category" : "Household",
-    "english" : "light",
-    "transliteration" : "mabrat"
+    "amharic": "መብራት",
+    "category": "Household",
+    "english": "light",
+    "transliteration": "mabrat"
   },
   {
-    "amharic" : "ምድጃ",
-    "category" : "Household",
-    "english" : "stove",
-    "transliteration" : "midija"
+    "amharic": "ምድጃ",
+    "category": "Household",
+    "english": "stove",
+    "transliteration": "midija"
   },
   {
-    "amharic" : "ማንኪያ",
-    "category" : "Household",
-    "english" : "spoon",
-    "transliteration" : "mankiya"
+    "amharic": "ማንኪያ",
+    "category": "Household",
+    "english": "spoon",
+    "transliteration": "mankiya"
   },
   {
-    "amharic" : "ሳህን",
-    "category" : "Household",
-    "english" : "plate",
-    "transliteration" : "sahin"
+    "amharic": "ሳህን",
+    "category": "Household",
+    "english": "plate",
+    "transliteration": "sahin"
   },
   {
-    "amharic" : "ብርጭቆ",
-    "category" : "Household",
-    "english" : "glass\/cup",
-    "transliteration" : "birchiko"
+    "amharic": "ብርጭቆ",
+    "category": "Household",
+    "english": "glass/cup",
+    "transliteration": "birchiko"
   },
   {
-    "amharic" : "መሄድ",
-    "category" : "Common Verbs",
-    "english" : "to go",
-    "transliteration" : "mahed"
+    "amharic": "መሄድ",
+    "category": "Common Verbs",
+    "english": "to go",
+    "transliteration": "mahed"
   },
   {
-    "amharic" : "መምጣት",
-    "category" : "Common Verbs",
-    "english" : "to come",
-    "transliteration" : "mamtat"
+    "amharic": "መምጣት",
+    "category": "Common Verbs",
+    "english": "to come",
+    "transliteration": "mamtat"
   },
   {
-    "amharic" : "መብላት",
-    "category" : "Common Verbs",
-    "english" : "to eat",
-    "transliteration" : "mablat"
+    "amharic": "መብላት",
+    "category": "Common Verbs",
+    "english": "to eat",
+    "transliteration": "mablat"
   },
   {
-    "amharic" : "መጠጣት",
-    "category" : "Common Verbs",
-    "english" : "to drink",
-    "transliteration" : "matat'at"
+    "amharic": "መጠጣት",
+    "category": "Common Verbs",
+    "english": "to drink",
+    "transliteration": "matat'at"
   },
   {
-    "amharic" : "መስራት",
-    "category" : "Common Verbs",
-    "english" : "to work\/make",
-    "transliteration" : "masrat"
+    "amharic": "መስራት",
+    "category": "Common Verbs",
+    "english": "to work/make",
+    "transliteration": "masrat"
   },
   {
-    "amharic" : "መናገር",
-    "category" : "Common Verbs",
-    "english" : "to speak",
-    "transliteration" : "managar"
+    "amharic": "መናገር",
+    "category": "Common Verbs",
+    "english": "to speak",
+    "transliteration": "managar"
   },
   {
-    "amharic" : "ማየት",
-    "category" : "Common Verbs",
-    "english" : "to see",
-    "transliteration" : "mayet"
+    "amharic": "ማየት",
+    "category": "Common Verbs",
+    "english": "to see",
+    "transliteration": "mayet"
   },
   {
-    "amharic" : "መስማት",
-    "category" : "Common Verbs",
-    "english" : "to hear",
-    "transliteration" : "masmat"
+    "amharic": "መስማት",
+    "category": "Common Verbs",
+    "english": "to hear",
+    "transliteration": "masmat"
   },
   {
-    "amharic" : "መማር",
-    "category" : "Common Verbs",
-    "english" : "to learn\/study",
-    "transliteration" : "mamar"
+    "amharic": "መማር",
+    "category": "Common Verbs",
+    "english": "to learn/study",
+    "transliteration": "mamar"
   },
   {
-    "amharic" : "መጻፍ",
-    "category" : "Common Verbs",
-    "english" : "to write",
-    "transliteration" : "matsaf"
+    "amharic": "መጻፍ",
+    "category": "Common Verbs",
+    "english": "to write",
+    "transliteration": "matsaf"
   },
   {
-    "amharic" : "ማንበብ",
-    "category" : "Common Verbs",
-    "english" : "to read",
-    "transliteration" : "manbab"
+    "amharic": "ማንበብ",
+    "category": "Common Verbs",
+    "english": "to read",
+    "transliteration": "manbab"
   },
   {
-    "amharic" : "መግዛት",
-    "category" : "Common Verbs",
-    "english" : "to buy",
-    "transliteration" : "magzat"
+    "amharic": "መግዛት",
+    "category": "Common Verbs",
+    "english": "to buy",
+    "transliteration": "magzat"
   },
   {
-    "amharic" : "መሸጥ",
-    "category" : "Common Verbs",
-    "english" : "to sell",
-    "transliteration" : "mashat"
+    "amharic": "መሸጥ",
+    "category": "Common Verbs",
+    "english": "to sell",
+    "transliteration": "mashat"
   },
   {
-    "amharic" : "መኖር",
-    "category" : "Common Verbs",
-    "english" : "to live",
-    "transliteration" : "manor"
+    "amharic": "መኖር",
+    "category": "Common Verbs",
+    "english": "to live",
+    "transliteration": "manor"
   },
   {
-    "amharic" : "መተኛት",
-    "category" : "Common Verbs",
-    "english" : "to sleep",
-    "transliteration" : "matanyat"
+    "amharic": "መተኛት",
+    "category": "Common Verbs",
+    "english": "to sleep",
+    "transliteration": "matanyat"
   },
   {
-    "amharic" : "መነሳት",
-    "category" : "Common Verbs",
-    "english" : "to wake up\/stand",
-    "transliteration" : "manasat"
+    "amharic": "መነሳት",
+    "category": "Common Verbs",
+    "english": "to wake up/stand",
+    "transliteration": "manasat"
   },
   {
-    "amharic" : "ሰላም",
-    "category" : "Greetings",
-    "english" : "peace\/hello",
-    "transliteration" : "selam"
+    "amharic": "ሰላም",
+    "category": "Greetings",
+    "english": "peace/hello",
+    "transliteration": "selam"
   },
   {
-    "amharic" : "እንኳን",
-    "category" : "Greetings",
-    "english" : "congratulations",
-    "transliteration" : "inkuan"
+    "amharic": "እንኳን",
+    "category": "Greetings",
+    "english": "congratulations",
+    "transliteration": "inkuan"
   },
   {
-    "amharic" : "ልደት",
-    "category" : "Greetings",
-    "english" : "birthday",
-    "transliteration" : "lidat"
+    "amharic": "ልደት",
+    "category": "Greetings",
+    "english": "birthday",
+    "transliteration": "lidat"
   },
   {
-    "amharic" : "በዓል",
-    "category" : "Greetings",
-    "english" : "holiday\/festival",
-    "transliteration" : "ba'al"
+    "amharic": "በዓል",
+    "category": "Greetings",
+    "english": "holiday/festival",
+    "transliteration": "ba'al"
   },
   {
-    "amharic" : "ቁጥር",
-    "category" : "Numbers",
-    "english" : "number",
-    "transliteration" : "kutir"
+    "amharic": "ቁጥር",
+    "category": "Numbers",
+    "english": "number",
+    "transliteration": "kutir"
   },
   {
-    "amharic" : "ብር",
-    "category" : "Numbers",
-    "english" : "birr (currency)",
-    "transliteration" : "birr"
+    "amharic": "ብር",
+    "category": "Numbers",
+    "english": "birr (currency)",
+    "transliteration": "birr"
   },
   {
-    "amharic" : "ዋጋ",
-    "category" : "Numbers",
-    "english" : "price",
-    "transliteration" : "waga"
+    "amharic": "ዋጋ",
+    "category": "Numbers",
+    "english": "price",
+    "transliteration": "waga"
   },
   {
-    "amharic" : "ብዙ",
-    "category" : "Numbers",
-    "english" : "many\/much",
-    "transliteration" : "bizu"
+    "amharic": "ብዙ",
+    "category": "Numbers",
+    "english": "many/much",
+    "transliteration": "bizu"
   },
   {
-    "amharic" : "ጥቂት",
-    "category" : "Numbers",
-    "english" : "few\/little",
-    "transliteration" : "tikit"
+    "amharic": "ጥቂት",
+    "category": "Numbers",
+    "english": "few/little",
+    "transliteration": "tikit"
   },
   {
-    "amharic" : "ኢትዮጵያ",
-    "category" : "Countries",
-    "english" : "Ethiopia",
-    "transliteration" : "Ityoppya"
+    "amharic": "ኢትዮጵያ",
+    "category": "Countries",
+    "english": "Ethiopia",
+    "transliteration": "Ityoppya"
   },
   {
-    "amharic" : "አሜሪካ",
-    "category" : "Countries",
-    "english" : "America",
-    "transliteration" : "Amerika"
+    "amharic": "አሜሪካ",
+    "category": "Countries",
+    "english": "America",
+    "transliteration": "Amerika"
   },
   {
-    "amharic" : "ኬንያ",
-    "category" : "Countries",
-    "english" : "Kenya",
-    "transliteration" : "Kenya"
+    "amharic": "ኬንያ",
+    "category": "Countries",
+    "english": "Kenya",
+    "transliteration": "Kenya"
   },
   {
-    "amharic" : "ኤርትራ",
-    "category" : "Countries",
-    "english" : "Eritrea",
-    "transliteration" : "Eritrea"
+    "amharic": "ኤርትራ",
+    "category": "Countries",
+    "english": "Eritrea",
+    "transliteration": "Eritrea"
   },
   {
-    "amharic" : "ሱዳን",
-    "category" : "Countries",
-    "english" : "Sudan",
-    "transliteration" : "Sudan"
+    "amharic": "ሱዳን",
+    "category": "Countries",
+    "english": "Sudan",
+    "transliteration": "Sudan"
   },
   {
-    "amharic" : "እንግሊዝ",
-    "category" : "Countries",
-    "english" : "England",
-    "transliteration" : "Ingiliz"
+    "amharic": "እንግሊዝ",
+    "category": "Countries",
+    "english": "England",
+    "transliteration": "Ingiliz"
   },
   {
-    "amharic" : "ሰው",
-    "category" : "Common Nouns",
-    "english" : "person",
-    "transliteration" : "saw"
+    "amharic": "ሰው",
+    "category": "Common Nouns",
+    "english": "person",
+    "transliteration": "saw"
   },
   {
-    "amharic" : "ወንድ",
-    "category" : "Common Nouns",
-    "english" : "man",
-    "transliteration" : "wand"
+    "amharic": "ወንድ",
+    "category": "Common Nouns",
+    "english": "man",
+    "transliteration": "wand"
   },
   {
-    "amharic" : "ሴት",
-    "category" : "Common Nouns",
-    "english" : "woman",
-    "transliteration" : "set"
+    "amharic": "ሴት",
+    "category": "Common Nouns",
+    "english": "woman",
+    "transliteration": "set"
   },
   {
-    "amharic" : "ጓደኛ",
-    "category" : "Common Nouns",
-    "english" : "friend",
-    "transliteration" : "gwadanya"
+    "amharic": "ጓደኛ",
+    "category": "Common Nouns",
+    "english": "friend",
+    "transliteration": "gwadanya"
   },
   {
-    "amharic" : "ስም",
-    "category" : "Common Nouns",
-    "english" : "name",
-    "transliteration" : "sim"
+    "amharic": "ስም",
+    "category": "Common Nouns",
+    "english": "name",
+    "transliteration": "sim"
   },
   {
-    "amharic" : "ሀገር",
-    "category" : "Common Nouns",
-    "english" : "country",
-    "transliteration" : "hagar"
+    "amharic": "ሀገር",
+    "category": "Common Nouns",
+    "english": "country",
+    "transliteration": "hagar"
   },
   {
-    "amharic" : "ከተማ",
-    "category" : "Common Nouns",
-    "english" : "city",
-    "transliteration" : "katama"
+    "amharic": "ከተማ",
+    "category": "Common Nouns",
+    "english": "city",
+    "transliteration": "katama"
   },
   {
-    "amharic" : "መንገድ",
-    "category" : "Common Nouns",
-    "english" : "road\/street",
-    "transliteration" : "mangad"
+    "amharic": "መንገድ",
+    "category": "Common Nouns",
+    "english": "road/street",
+    "transliteration": "mangad"
   },
   {
-    "amharic" : "ገንዘብ",
-    "category" : "Common Nouns",
-    "english" : "money",
-    "transliteration" : "ganzab"
+    "amharic": "ገንዘብ",
+    "category": "Common Nouns",
+    "english": "money",
+    "transliteration": "ganzab"
   },
   {
-    "amharic" : "ሥራ",
-    "category" : "Common Nouns",
-    "english" : "work\/job",
-    "transliteration" : "sira"
+    "amharic": "ሥራ",
+    "category": "Common Nouns",
+    "english": "work/job",
+    "transliteration": "sira"
   },
   {
-    "amharic" : "መጽሐፍ",
-    "category" : "Common Nouns",
-    "english" : "book",
-    "transliteration" : "mashaf"
+    "amharic": "መጽሐፍ",
+    "category": "Common Nouns",
+    "english": "book",
+    "transliteration": "mashaf"
   },
   {
-    "amharic" : "ወንድ ልጅ",
-    "category" : "Family",
-    "english" : "son",
-    "transliteration" : "wand lij"
+    "amharic": "ወንድ ልጅ",
+    "category": "Family",
+    "english": "son",
+    "transliteration": "wand lij"
   },
   {
-    "amharic" : "ሴት ልጅ",
-    "category" : "Family",
-    "english" : "daughter",
-    "transliteration" : "set lij"
+    "amharic": "ሴት ልጅ",
+    "category": "Family",
+    "english": "daughter",
+    "transliteration": "set lij"
   },
   {
-    "amharic" : "ህፃን",
-    "category" : "Family",
-    "english" : "child\/infant",
-    "transliteration" : "hitsan"
+    "amharic": "ህፃን",
+    "category": "Family",
+    "english": "child/infant",
+    "transliteration": "hitsan"
   },
   {
-    "amharic" : "ወንድ አያት",
-    "category" : "Family",
-    "english" : "grandfather",
-    "transliteration" : "wand ayat"
+    "amharic": "ወንድ አያት",
+    "category": "Family",
+    "english": "grandfather",
+    "transliteration": "wand ayat"
   },
   {
-    "amharic" : "ሴት አያት",
-    "category" : "Family",
-    "english" : "grandmother",
-    "transliteration" : "set ayat"
+    "amharic": "ሴት አያት",
+    "category": "Family",
+    "english": "grandmother",
+    "transliteration": "set ayat"
   },
   {
-    "amharic" : "ቁርስ",
-    "category" : "Food & Drink",
-    "english" : "breakfast",
-    "transliteration" : "kurs"
+    "amharic": "ቁርስ",
+    "category": "Food & Drink",
+    "english": "breakfast",
+    "transliteration": "kurs"
   },
   {
-    "amharic" : "ወይን",
-    "category" : "Food & Drink",
-    "english" : "wine",
-    "transliteration" : "wayn"
+    "amharic": "ወይን",
+    "category": "Food & Drink",
+    "english": "wine",
+    "transliteration": "wayn"
   },
   {
-    "amharic" : "ቢራ",
-    "category" : "Food & Drink",
-    "english" : "beer",
-    "transliteration" : "bira"
+    "amharic": "ቢራ",
+    "category": "Food & Drink",
+    "english": "beer",
+    "transliteration": "bira"
   },
   {
-    "amharic" : "አረቄ",
-    "category" : "Food & Drink",
-    "english" : "araki",
-    "transliteration" : "arake"
+    "amharic": "አረቄ",
+    "category": "Food & Drink",
+    "english": "araki",
+    "transliteration": "arake"
   },
   {
-    "amharic" : "ጭማቂ",
-    "category" : "Food & Drink",
-    "english" : "juice",
-    "transliteration" : "chimaki"
+    "amharic": "ጭማቂ",
+    "category": "Food & Drink",
+    "english": "juice",
+    "transliteration": "chimaki"
   },
   {
-    "amharic" : "እንቁላል",
-    "category" : "Food & Drink",
-    "english" : "egg",
-    "transliteration" : "inkulal"
+    "amharic": "እንቁላል",
+    "category": "Food & Drink",
+    "english": "egg",
+    "transliteration": "inkulal"
   },
   {
-    "amharic" : "አይብ",
-    "category" : "Food & Drink",
-    "english" : "cheese",
-    "transliteration" : "ayib"
+    "amharic": "አይብ",
+    "category": "Food & Drink",
+    "english": "cheese",
+    "transliteration": "ayib"
   },
   {
-    "amharic" : "ሾርባ",
-    "category" : "Food & Drink",
-    "english" : "soup",
-    "transliteration" : "shorba"
+    "amharic": "ሾርባ",
+    "category": "Food & Drink",
+    "english": "soup",
+    "transliteration": "shorba"
   },
   {
-    "amharic" : "ኬክ",
-    "category" : "Food & Drink",
-    "english" : "cake",
-    "transliteration" : "kek"
+    "amharic": "ኬክ",
+    "category": "Food & Drink",
+    "english": "cake",
+    "transliteration": "kek"
   },
   {
-    "amharic" : "የበሬ ስጋ",
-    "category" : "Food & Drink",
-    "english" : "beef",
-    "transliteration" : "yabare siga"
+    "amharic": "የበሬ ስጋ",
+    "category": "Food & Drink",
+    "english": "beef",
+    "transliteration": "yabare siga"
   },
   {
-    "amharic" : "ሙዝ",
-    "category" : "Food & Drink",
-    "english" : "banana",
-    "transliteration" : "muz"
+    "amharic": "ሙዝ",
+    "category": "Food & Drink",
+    "english": "banana",
+    "transliteration": "muz"
   },
   {
-    "amharic" : "ሎሚ",
-    "category" : "Food & Drink",
-    "english" : "lemon",
-    "transliteration" : "lomi"
+    "amharic": "ሎሚ",
+    "category": "Food & Drink",
+    "english": "lemon",
+    "transliteration": "lomi"
   },
   {
-    "amharic" : "በቆሎ",
-    "category" : "Food & Drink",
-    "english" : "corn",
-    "transliteration" : "bakolo"
+    "amharic": "በቆሎ",
+    "category": "Food & Drink",
+    "english": "corn",
+    "transliteration": "bakolo"
   },
   {
-    "amharic" : "ሩዝ",
-    "category" : "Food & Drink",
-    "english" : "rice",
-    "transliteration" : "ruz"
+    "amharic": "ሩዝ",
+    "category": "Food & Drink",
+    "english": "rice",
+    "transliteration": "ruz"
   },
   {
-    "amharic" : "ዘይት",
-    "category" : "Food & Drink",
-    "english" : "oil",
-    "transliteration" : "zayt"
+    "amharic": "ዘይት",
+    "category": "Food & Drink",
+    "english": "oil",
+    "transliteration": "zayt"
   },
   {
-    "amharic" : "ዘር",
-    "category" : "Food & Drink",
-    "english" : "seed",
-    "transliteration" : "zar"
+    "amharic": "ዘር",
+    "category": "Food & Drink",
+    "english": "seed",
+    "transliteration": "zar"
   },
   {
-    "amharic" : "ቢላ",
-    "category" : "Food & Drink",
-    "english" : "knife",
-    "transliteration" : "bila"
+    "amharic": "ቢላ",
+    "category": "Food & Drink",
+    "english": "knife",
+    "transliteration": "bila"
   },
   {
-    "amharic" : "ሹኪያ",
-    "category" : "Food & Drink",
-    "english" : "fork",
-    "transliteration" : "shukiya"
+    "amharic": "ሹኪያ",
+    "category": "Food & Drink",
+    "english": "fork",
+    "transliteration": "shukiya"
   },
   {
-    "amharic" : "ምሳ",
-    "category" : "Food & Drink",
-    "english" : "lunch",
-    "transliteration" : "misa"
+    "amharic": "ምሳ",
+    "category": "Food & Drink",
+    "english": "lunch",
+    "transliteration": "misa"
   },
   {
-    "amharic" : "እራት",
-    "category" : "Food & Drink",
-    "english" : "dinner",
-    "transliteration" : "irat"
+    "amharic": "እራት",
+    "category": "Food & Drink",
+    "english": "dinner",
+    "transliteration": "irat"
   },
   {
-    "amharic" : "ጠርሙስ",
-    "category" : "Food & Drink",
-    "english" : "bottle",
-    "transliteration" : "tarmus"
+    "amharic": "ጠርሙስ",
+    "category": "Food & Drink",
+    "english": "bottle",
+    "transliteration": "tarmus"
   },
   {
-    "amharic" : "ጎመን",
-    "category" : "Food & Drink",
-    "english" : "cabbage",
-    "transliteration" : "goman"
+    "amharic": "ጎመን",
+    "category": "Food & Drink",
+    "english": "cabbage",
+    "transliteration": "goman"
   },
   {
-    "amharic" : "ፓፓያ",
-    "category" : "Food & Drink",
-    "english" : "papaya",
-    "transliteration" : "papaya"
+    "amharic": "ፓፓያ",
+    "category": "Food & Drink",
+    "english": "papaya",
+    "transliteration": "papaya"
   },
   {
-    "amharic" : "የአሳማ ስጋ",
-    "category" : "Food & Drink",
-    "english" : "pork",
-    "transliteration" : "yaasama siga"
+    "amharic": "የአሳማ ስጋ",
+    "category": "Food & Drink",
+    "english": "pork",
+    "transliteration": "yaasama siga"
   },
   {
-    "amharic" : "ማር",
-    "category" : "Food & Drink",
-    "english" : "honey",
-    "transliteration" : "mar"
+    "amharic": "ማር",
+    "category": "Food & Drink",
+    "english": "honey",
+    "transliteration": "mar"
   },
   {
-    "amharic" : "እርጎ",
-    "category" : "Food & Drink",
-    "english" : "yogurt",
-    "transliteration" : "irgo"
+    "amharic": "እርጎ",
+    "category": "Food & Drink",
+    "english": "yogurt",
+    "transliteration": "irgo"
   },
   {
-    "amharic" : "ምስር",
-    "category" : "Food & Drink",
-    "english" : "lentil",
-    "transliteration" : "misir"
+    "amharic": "ምስር",
+    "category": "Food & Drink",
+    "english": "lentil",
+    "transliteration": "misir"
   },
   {
-    "amharic" : "ሽንኩርት",
-    "category" : "Food & Drink",
-    "english" : "onion",
-    "transliteration" : "shinkurt"
+    "amharic": "ሽንኩርት",
+    "category": "Food & Drink",
+    "english": "onion",
+    "transliteration": "shinkurt"
   },
   {
-    "amharic" : "ድንች",
-    "category" : "Food & Drink",
-    "english" : "potato",
-    "transliteration" : "dinch"
+    "amharic": "ድንች",
+    "category": "Food & Drink",
+    "english": "potato",
+    "transliteration": "dinch"
   },
   {
-    "amharic" : "ቲማቲም",
-    "category" : "Food & Drink",
-    "english" : "tomato",
-    "transliteration" : "timatim"
+    "amharic": "ቲማቲም",
+    "category": "Food & Drink",
+    "english": "tomato",
+    "transliteration": "timatim"
   },
   {
-    "amharic" : "ድልድይ",
-    "category" : "Places",
-    "english" : "bridge",
-    "transliteration" : "dildiy"
+    "amharic": "ድልድይ",
+    "category": "Places",
+    "english": "bridge",
+    "transliteration": "dildiy"
   },
   {
-    "amharic" : "ሬስቶራንት",
-    "category" : "Places",
-    "english" : "restaurant",
-    "transliteration" : "restorant"
+    "amharic": "ሬስቶራንት",
+    "category": "Places",
+    "english": "restaurant",
+    "transliteration": "restorant"
   },
   {
-    "amharic" : "እርሻ",
-    "category" : "Places",
-    "english" : "farm",
-    "transliteration" : "irsha"
+    "amharic": "እርሻ",
+    "category": "Places",
+    "english": "farm",
+    "transliteration": "irsha"
   },
   {
-    "amharic" : "ፍርድ ቤት",
-    "category" : "Places",
-    "english" : "court",
-    "transliteration" : "fird bet"
+    "amharic": "ፍርድ ቤት",
+    "category": "Places",
+    "english": "court",
+    "transliteration": "fird bet"
   },
   {
-    "amharic" : "ቢሮ",
-    "category" : "Places",
-    "english" : "office",
-    "transliteration" : "biro"
+    "amharic": "ቢሮ",
+    "category": "Places",
+    "english": "office",
+    "transliteration": "biro"
   },
   {
-    "amharic" : "ባር",
-    "category" : "Places",
-    "english" : "bar",
-    "transliteration" : "bar"
+    "amharic": "ባር",
+    "category": "Places",
+    "english": "bar",
+    "transliteration": "bar"
   },
   {
-    "amharic" : "ትያትር ቤት",
-    "category" : "Places",
-    "english" : "theater",
-    "transliteration" : "tiyatir bet"
+    "amharic": "ትያትር ቤት",
+    "category": "Places",
+    "english": "theater",
+    "transliteration": "tiyatir bet"
   },
   {
-    "amharic" : "ህንፃ",
-    "category" : "Places",
-    "english" : "building",
-    "transliteration" : "hintsa"
+    "amharic": "ህንፃ",
+    "category": "Places",
+    "english": "building",
+    "transliteration": "hintsa"
   },
   {
-    "amharic" : "ቦታ",
-    "category" : "Places",
-    "english" : "place",
-    "transliteration" : "bota"
+    "amharic": "ቦታ",
+    "category": "Places",
+    "english": "place",
+    "transliteration": "bota"
   },
   {
-    "amharic" : "ዳቦ ቤት",
-    "category" : "Places",
-    "english" : "bakery",
-    "transliteration" : "dabo bet"
+    "amharic": "ዳቦ ቤት",
+    "category": "Places",
+    "english": "bakery",
+    "transliteration": "dabo bet"
   },
   {
-    "amharic" : "ፌርማታ",
-    "category" : "Places",
-    "english" : "bus stop",
-    "transliteration" : "fermata"
+    "amharic": "ፌርማታ",
+    "category": "Places",
+    "english": "bus stop",
+    "transliteration": "fermata"
   },
   {
-    "amharic" : "ሲኒማ",
-    "category" : "Places",
-    "english" : "cinema",
-    "transliteration" : "sinima"
+    "amharic": "ሲኒማ",
+    "category": "Places",
+    "english": "cinema",
+    "transliteration": "sinima"
   },
   {
-    "amharic" : "መዘጋጃ ቤት",
-    "category" : "Places",
-    "english" : "city hall",
-    "transliteration" : "mazagaja bet"
+    "amharic": "መዘጋጃ ቤት",
+    "category": "Places",
+    "english": "city hall",
+    "transliteration": "mazagaja bet"
   },
   {
-    "amharic" : "እሳት አደጋ",
-    "category" : "Places",
-    "english" : "fire station",
-    "transliteration" : "isat adaga"
+    "amharic": "እሳት አደጋ",
+    "category": "Places",
+    "english": "fire station",
+    "transliteration": "isat adaga"
   },
   {
-    "amharic" : "ቤተ መንግስት",
-    "category" : "Places",
-    "english" : "palace",
-    "transliteration" : "beta mangist"
+    "amharic": "ቤተ መንግስት",
+    "category": "Places",
+    "english": "palace",
+    "transliteration": "beta mangist"
   },
   {
-    "amharic" : "አንገት",
-    "category" : "Body Parts",
-    "english" : "neck",
-    "transliteration" : "angat"
+    "amharic": "አንገት",
+    "category": "Body Parts",
+    "english": "neck",
+    "transliteration": "angat"
   },
   {
-    "amharic" : "ፊት",
-    "category" : "Body Parts",
-    "english" : "face",
-    "transliteration" : "fit"
+    "amharic": "ፊት",
+    "category": "Body Parts",
+    "english": "face",
+    "transliteration": "fit"
   },
   {
-    "amharic" : "እምባ",
-    "category" : "Body Parts",
-    "english" : "tear",
-    "transliteration" : "imba"
+    "amharic": "እምባ",
+    "category": "Body Parts",
+    "english": "tear",
+    "transliteration": "imba"
   },
   {
-    "amharic" : "ምላስ",
-    "category" : "Body Parts",
-    "english" : "tongue",
-    "transliteration" : "milas"
+    "amharic": "ምላስ",
+    "category": "Body Parts",
+    "english": "tongue",
+    "transliteration": "milas"
   },
   {
-    "amharic" : "የእግር ጣት",
-    "category" : "Body Parts",
-    "english" : "toe",
-    "transliteration" : "yaigir tat"
+    "amharic": "የእግር ጣት",
+    "category": "Body Parts",
+    "english": "toe",
+    "transliteration": "yaigir tat"
   },
   {
-    "amharic" : "ቅልጥም",
-    "category" : "Body Parts",
-    "english" : "leg",
-    "transliteration" : "kiltim"
+    "amharic": "ቅልጥም",
+    "category": "Body Parts",
+    "english": "leg",
+    "transliteration": "kiltim"
   },
   {
-    "amharic" : "ክንድ",
-    "category" : "Body Parts",
-    "english" : "arm",
-    "transliteration" : "kind"
+    "amharic": "ክንድ",
+    "category": "Body Parts",
+    "english": "arm",
+    "transliteration": "kind"
   },
   {
-    "amharic" : "ትከሻ",
-    "category" : "Body Parts",
-    "english" : "shoulder",
-    "transliteration" : "tikasha"
+    "amharic": "ትከሻ",
+    "category": "Body Parts",
+    "english": "shoulder",
+    "transliteration": "tikasha"
   },
   {
-    "amharic" : "ደም",
-    "category" : "Body Parts",
-    "english" : "blood",
-    "transliteration" : "dam"
+    "amharic": "ደም",
+    "category": "Body Parts",
+    "english": "blood",
+    "transliteration": "dam"
   },
   {
-    "amharic" : "አእምሮ",
-    "category" : "Body Parts",
-    "english" : "brain",
-    "transliteration" : "aimro"
+    "amharic": "አእምሮ",
+    "category": "Body Parts",
+    "english": "brain",
+    "transliteration": "aimro"
   },
   {
-    "amharic" : "ቆዳ",
-    "category" : "Body Parts",
-    "english" : "skin",
-    "transliteration" : "koda"
+    "amharic": "ቆዳ",
+    "category": "Body Parts",
+    "english": "skin",
+    "transliteration": "koda"
   },
   {
-    "amharic" : "ሰውነት",
-    "category" : "Body Parts",
-    "english" : "body",
-    "transliteration" : "sawinat"
+    "amharic": "ሰውነት",
+    "category": "Body Parts",
+    "english": "body",
+    "transliteration": "sawinat"
   },
   {
-    "amharic" : "ፂም",
-    "category" : "Body Parts",
-    "english" : "beard",
-    "transliteration" : "tsim"
+    "amharic": "ፂም",
+    "category": "Body Parts",
+    "english": "beard",
+    "transliteration": "tsim"
   },
   {
-    "amharic" : "ፀጉር",
-    "category" : "Body Parts",
-    "english" : "hair",
-    "transliteration" : "tsagur"
+    "amharic": "ፀጉር",
+    "category": "Body Parts",
+    "english": "hair",
+    "transliteration": "tsagur"
   },
   {
-    "amharic" : "ከንፈር",
-    "category" : "Body Parts",
-    "english" : "lip",
-    "transliteration" : "kanfar"
+    "amharic": "ከንፈር",
+    "category": "Body Parts",
+    "english": "lip",
+    "transliteration": "kanfar"
   },
   {
-    "amharic" : "ጥርስ",
-    "category" : "Body Parts",
-    "english" : "tooth",
-    "transliteration" : "tiris"
+    "amharic": "ጥርስ",
+    "category": "Body Parts",
+    "english": "tooth",
+    "transliteration": "tiris"
   },
   {
-    "amharic" : "ልብ",
-    "category" : "Body Parts",
-    "english" : "heart",
-    "transliteration" : "lib"
+    "amharic": "ልብ",
+    "category": "Body Parts",
+    "english": "heart",
+    "transliteration": "lib"
   },
   {
-    "amharic" : "ላብ",
-    "category" : "Body Parts",
-    "english" : "sweat",
-    "transliteration" : "lab"
+    "amharic": "ላብ",
+    "category": "Body Parts",
+    "english": "sweat",
+    "transliteration": "lab"
   },
   {
-    "amharic" : "አጥንት",
-    "category" : "Body Parts",
-    "english" : "bone",
-    "transliteration" : "atint"
+    "amharic": "አጥንት",
+    "category": "Body Parts",
+    "english": "bone",
+    "transliteration": "atint"
   },
   {
-    "amharic" : "ድምፅ",
-    "category" : "Body Parts",
-    "english" : "voice",
-    "transliteration" : "dimts"
+    "amharic": "ድምፅ",
+    "category": "Body Parts",
+    "english": "voice",
+    "transliteration": "dimts"
   },
   {
-    "amharic" : "ቡኒ",
-    "category" : "Colors",
-    "english" : "brown",
-    "transliteration" : "buni"
+    "amharic": "ቡኒ",
+    "category": "Colors",
+    "english": "brown",
+    "transliteration": "buni"
   },
   {
-    "amharic" : "ሮዛ",
-    "category" : "Colors",
-    "english" : "pink",
-    "transliteration" : "roza"
+    "amharic": "ሮዛ",
+    "category": "Colors",
+    "english": "pink",
+    "transliteration": "roza"
   },
   {
-    "amharic" : "ብርቱኳናማ",
-    "category" : "Colors",
-    "english" : "orange (color)",
-    "transliteration" : "birtukuanama"
+    "amharic": "ብርቱኳናማ",
+    "category": "Colors",
+    "english": "orange (color)",
+    "transliteration": "birtukuanama"
   },
   {
-    "amharic" : "ግራጫ",
-    "category" : "Colors",
-    "english" : "grey",
-    "transliteration" : "gracha"
+    "amharic": "ግራጫ",
+    "category": "Colors",
+    "english": "grey",
+    "transliteration": "gracha"
   },
   {
-    "amharic" : "ጠዋት",
-    "category" : "Time",
-    "english" : "morning",
-    "transliteration" : "tawat"
+    "amharic": "ጠዋት",
+    "category": "Time",
+    "english": "morning",
+    "transliteration": "tawat"
   },
   {
-    "amharic" : "ማታ",
-    "category" : "Time",
-    "english" : "evening",
-    "transliteration" : "mata"
+    "amharic": "ማታ",
+    "category": "Time",
+    "english": "evening",
+    "transliteration": "mata"
   },
   {
-    "amharic" : "ለሊት",
-    "category" : "Time",
-    "english" : "night",
-    "transliteration" : "lalit"
+    "amharic": "ለሊት",
+    "category": "Time",
+    "english": "night",
+    "transliteration": "lalit"
   },
   {
-    "amharic" : "ግዜ",
-    "category" : "Time",
-    "english" : "time",
-    "transliteration" : "gize"
+    "amharic": "ግዜ",
+    "category": "Time",
+    "english": "time",
+    "transliteration": "gize"
   },
   {
-    "amharic" : "ደቂቃ",
-    "category" : "Time",
-    "english" : "minute",
-    "transliteration" : "dakika"
+    "amharic": "ደቂቃ",
+    "category": "Time",
+    "english": "minute",
+    "transliteration": "dakika"
   },
   {
-    "amharic" : "ሰኮንድ",
-    "category" : "Time",
-    "english" : "second",
-    "transliteration" : "sakond"
+    "amharic": "ሰኮንድ",
+    "category": "Time",
+    "english": "second",
+    "transliteration": "sakond"
   },
   {
-    "amharic" : "ከሰዓት",
-    "category" : "Time",
-    "english" : "afternoon",
-    "transliteration" : "kasaat"
+    "amharic": "ከሰዓት",
+    "category": "Time",
+    "english": "afternoon",
+    "transliteration": "kasaat"
   },
   {
-    "amharic" : "ከፊት",
-    "category" : "Directions",
-    "english" : "front",
-    "transliteration" : "kafit"
+    "amharic": "ከፊት",
+    "category": "Directions",
+    "english": "front",
+    "transliteration": "kafit"
   },
   {
-    "amharic" : "ውስጥ",
-    "category" : "Directions",
-    "english" : "inside",
-    "transliteration" : "wist"
+    "amharic": "ውስጥ",
+    "category": "Directions",
+    "english": "inside",
+    "transliteration": "wist"
   },
   {
-    "amharic" : "ወደ ላይ",
-    "category" : "Directions",
-    "english" : "up",
-    "transliteration" : "wada lay"
+    "amharic": "ወደ ላይ",
+    "category": "Directions",
+    "english": "up",
+    "transliteration": "wada lay"
   },
   {
-    "amharic" : "ወደ ታች",
-    "category" : "Directions",
-    "english" : "down",
-    "transliteration" : "wada tach"
+    "amharic": "ወደ ታች",
+    "category": "Directions",
+    "english": "down",
+    "transliteration": "wada tach"
   },
   {
-    "amharic" : "ደቡብ",
-    "category" : "Directions",
-    "english" : "south",
-    "transliteration" : "dabub"
+    "amharic": "ደቡብ",
+    "category": "Directions",
+    "english": "south",
+    "transliteration": "dabub"
   },
   {
-    "amharic" : "ምስራቅ",
-    "category" : "Directions",
-    "english" : "east",
-    "transliteration" : "misrak"
+    "amharic": "ምስራቅ",
+    "category": "Directions",
+    "english": "east",
+    "transliteration": "misrak"
   },
   {
-    "amharic" : "ምእራብ",
-    "category" : "Directions",
-    "english" : "west",
-    "transliteration" : "mi'rab"
+    "amharic": "ምእራብ",
+    "category": "Directions",
+    "english": "west",
+    "transliteration": "mi'rab"
   },
   {
-    "amharic" : "አቅጣጫ",
-    "category" : "Directions",
-    "english" : "direction",
-    "transliteration" : "akitacha"
+    "amharic": "አቅጣጫ",
+    "category": "Directions",
+    "english": "direction",
+    "transliteration": "akitacha"
   },
   {
-    "amharic" : "ጫፍ",
-    "category" : "Directions",
-    "english" : "corner",
-    "transliteration" : "chaf"
+    "amharic": "ጫፍ",
+    "category": "Directions",
+    "english": "corner",
+    "transliteration": "chaf"
   },
   {
-    "amharic" : "ውጭ",
-    "category" : "Directions",
-    "english" : "outside",
-    "transliteration" : "wich"
+    "amharic": "ውጭ",
+    "category": "Directions",
+    "english": "outside",
+    "transliteration": "wich"
   },
   {
-    "amharic" : "ሰሜን",
-    "category" : "Directions",
-    "english" : "north",
-    "transliteration" : "samen"
+    "amharic": "ሰሜን",
+    "category": "Directions",
+    "english": "north",
+    "transliteration": "samen"
   },
   {
-    "amharic" : "እሮብ",
-    "category" : "Days",
-    "english" : "Wednesday",
-    "transliteration" : "irob"
+    "amharic": "እሮብ",
+    "category": "Days",
+    "english": "Wednesday",
+    "transliteration": "irob"
   },
   {
-    "amharic" : "ሀሙስ",
-    "category" : "Days",
-    "english" : "Thursday",
-    "transliteration" : "hamus"
+    "amharic": "ሀሙስ",
+    "category": "Days",
+    "english": "Thursday",
+    "transliteration": "hamus"
   },
   {
-    "amharic" : "ባህር",
-    "category" : "Weather & Nature",
-    "english" : "sea",
-    "transliteration" : "bahir"
+    "amharic": "ባህር",
+    "category": "Weather & Nature",
+    "english": "sea",
+    "transliteration": "bahir"
   },
   {
-    "amharic" : "ውቅያኖስ",
-    "category" : "Weather & Nature",
-    "english" : "ocean",
-    "transliteration" : "wikiyanos"
+    "amharic": "ውቅያኖስ",
+    "category": "Weather & Nature",
+    "english": "ocean",
+    "transliteration": "wikiyanos"
   },
   {
-    "amharic" : "ወንዝ",
-    "category" : "Weather & Nature",
-    "english" : "river",
-    "transliteration" : "wanz"
+    "amharic": "ወንዝ",
+    "category": "Weather & Nature",
+    "english": "river",
+    "transliteration": "wanz"
   },
   {
-    "amharic" : "ተራራ",
-    "category" : "Weather & Nature",
-    "english" : "mountain",
-    "transliteration" : "tarara"
+    "amharic": "ተራራ",
+    "category": "Weather & Nature",
+    "english": "mountain",
+    "transliteration": "tarara"
   },
   {
-    "amharic" : "ዛፍ",
-    "category" : "Weather & Nature",
-    "english" : "tree",
-    "transliteration" : "zaf"
+    "amharic": "ዛፍ",
+    "category": "Weather & Nature",
+    "english": "tree",
+    "transliteration": "zaf"
   },
   {
-    "amharic" : "ፀሃይ",
-    "category" : "Weather & Nature",
-    "english" : "sun",
-    "transliteration" : "tsahay"
+    "amharic": "ፀሃይ",
+    "category": "Weather & Nature",
+    "english": "sun",
+    "transliteration": "tsahay"
   },
   {
-    "amharic" : "ጨረቃ",
-    "category" : "Weather & Nature",
-    "english" : "moon",
-    "transliteration" : "charaka"
+    "amharic": "ጨረቃ",
+    "category": "Weather & Nature",
+    "english": "moon",
+    "transliteration": "charaka"
   },
   {
-    "amharic" : "ዓለም",
-    "category" : "Weather & Nature",
-    "english" : "world",
-    "transliteration" : "alam"
+    "amharic": "ዓለም",
+    "category": "Weather & Nature",
+    "english": "world",
+    "transliteration": "alam"
   },
   {
-    "amharic" : "ጫካ",
-    "category" : "Weather & Nature",
-    "english" : "forest",
-    "transliteration" : "chaka"
+    "amharic": "ጫካ",
+    "category": "Weather & Nature",
+    "english": "forest",
+    "transliteration": "chaka"
   },
   {
-    "amharic" : "ተክል",
-    "category" : "Weather & Nature",
-    "english" : "plant",
-    "transliteration" : "takil"
+    "amharic": "ተክል",
+    "category": "Weather & Nature",
+    "english": "plant",
+    "transliteration": "takil"
   },
   {
-    "amharic" : "አፈር",
-    "category" : "Weather & Nature",
-    "english" : "soil",
-    "transliteration" : "afar"
+    "amharic": "አፈር",
+    "category": "Weather & Nature",
+    "english": "soil",
+    "transliteration": "afar"
   },
   {
-    "amharic" : "ሸለቆ",
-    "category" : "Weather & Nature",
-    "english" : "valley",
-    "transliteration" : "shalako"
+    "amharic": "ሸለቆ",
+    "category": "Weather & Nature",
+    "english": "valley",
+    "transliteration": "shalako"
   },
   {
-    "amharic" : "ስር",
-    "category" : "Weather & Nature",
-    "english" : "root",
-    "transliteration" : "sir"
+    "amharic": "ስር",
+    "category": "Weather & Nature",
+    "english": "root",
+    "transliteration": "sir"
   },
   {
-    "amharic" : "ሀይቅ",
-    "category" : "Weather & Nature",
-    "english" : "lake",
-    "transliteration" : "hayk"
+    "amharic": "ሀይቅ",
+    "category": "Weather & Nature",
+    "english": "lake",
+    "transliteration": "hayk"
   },
   {
-    "amharic" : "ኮከብ",
-    "category" : "Weather & Nature",
-    "english" : "star",
-    "transliteration" : "kokab"
+    "amharic": "ኮከብ",
+    "category": "Weather & Nature",
+    "english": "star",
+    "transliteration": "kokab"
   },
   {
-    "amharic" : "ሳር",
-    "category" : "Weather & Nature",
-    "english" : "grass",
-    "transliteration" : "sar"
+    "amharic": "ሳር",
+    "category": "Weather & Nature",
+    "english": "grass",
+    "transliteration": "sar"
   },
   {
-    "amharic" : "ቅጠል",
-    "category" : "Weather & Nature",
-    "english" : "leaf",
-    "transliteration" : "kital"
+    "amharic": "ቅጠል",
+    "category": "Weather & Nature",
+    "english": "leaf",
+    "transliteration": "kital"
   },
   {
-    "amharic" : "አየር",
-    "category" : "Weather & Nature",
-    "english" : "air",
-    "transliteration" : "ayer"
+    "amharic": "አየር",
+    "category": "Weather & Nature",
+    "english": "air",
+    "transliteration": "ayer"
   },
   {
-    "amharic" : "አሸዋ",
-    "category" : "Weather & Nature",
-    "english" : "sand",
-    "transliteration" : "ashawa"
+    "amharic": "አሸዋ",
+    "category": "Weather & Nature",
+    "english": "sand",
+    "transliteration": "ashawa"
   },
   {
-    "amharic" : "የባህር ዳርቻ",
-    "category" : "Weather & Nature",
-    "english" : "beach",
-    "transliteration" : "yabahir darcha"
+    "amharic": "የባህር ዳርቻ",
+    "category": "Weather & Nature",
+    "english": "beach",
+    "transliteration": "yabahir darcha"
   },
   {
-    "amharic" : "ማእበል",
-    "category" : "Weather & Nature",
-    "english" : "wave",
-    "transliteration" : "maabal"
+    "amharic": "ማእበል",
+    "category": "Weather & Nature",
+    "english": "wave",
+    "transliteration": "maabal"
   },
   {
-    "amharic" : "እሳት",
-    "category" : "Weather & Nature",
-    "english" : "fire",
-    "transliteration" : "isat"
+    "amharic": "እሳት",
+    "category": "Weather & Nature",
+    "english": "fire",
+    "transliteration": "isat"
   },
   {
-    "amharic" : "ደሴት",
-    "category" : "Weather & Nature",
-    "english" : "island",
-    "transliteration" : "daset"
+    "amharic": "ደሴት",
+    "category": "Weather & Nature",
+    "english": "island",
+    "transliteration": "daset"
   },
   {
-    "amharic" : "ኮረብታ",
-    "category" : "Weather & Nature",
-    "english" : "hill",
-    "transliteration" : "korabta"
+    "amharic": "ኮረብታ",
+    "category": "Weather & Nature",
+    "english": "hill",
+    "transliteration": "korabta"
   },
   {
-    "amharic" : "ሰማይ",
-    "category" : "Weather & Nature",
-    "english" : "sky",
-    "transliteration" : "samay"
+    "amharic": "ሰማይ",
+    "category": "Weather & Nature",
+    "english": "sky",
+    "transliteration": "samay"
   },
   {
-    "amharic" : "ግንድ",
-    "category" : "Weather & Nature",
-    "english" : "stem",
-    "transliteration" : "gind"
+    "amharic": "ግንድ",
+    "category": "Weather & Nature",
+    "english": "stem",
+    "transliteration": "gind"
   },
   {
-    "amharic" : "መጓጓዣ",
-    "category" : "Transportation",
-    "english" : "transportation",
-    "transliteration" : "magwagwazha"
+    "amharic": "መጓጓዣ",
+    "category": "Transportation",
+    "english": "transportation",
+    "transliteration": "magwagwazha"
   },
   {
-    "amharic" : "የጭነት መኪና",
-    "category" : "Transportation",
-    "english" : "truck",
-    "transliteration" : "yachnat makina"
+    "amharic": "የጭነት መኪና",
+    "category": "Transportation",
+    "english": "truck",
+    "transliteration": "yachnat makina"
   },
   {
-    "amharic" : "መርከብ",
-    "category" : "Transportation",
-    "english" : "ship",
-    "transliteration" : "markab"
+    "amharic": "መርከብ",
+    "category": "Transportation",
+    "english": "ship",
+    "transliteration": "markab"
   },
   {
-    "amharic" : "ጎማ",
-    "category" : "Transportation",
-    "english" : "tire",
-    "transliteration" : "goma"
+    "amharic": "ጎማ",
+    "category": "Transportation",
+    "english": "tire",
+    "transliteration": "goma"
   },
   {
-    "amharic" : "ነዳጅ",
-    "category" : "Transportation",
-    "english" : "gasoline",
-    "transliteration" : "nadaj"
+    "amharic": "ነዳጅ",
+    "category": "Transportation",
+    "english": "gasoline",
+    "transliteration": "nadaj"
   },
   {
-    "amharic" : "ሞተር",
-    "category" : "Transportation",
-    "english" : "motor",
-    "transliteration" : "motar"
+    "amharic": "ሞተር",
+    "category": "Transportation",
+    "english": "motor",
+    "transliteration": "motar"
   },
   {
-    "amharic" : "ትኬት",
-    "category" : "Transportation",
-    "english" : "ticket",
-    "transliteration" : "tiket"
+    "amharic": "ትኬት",
+    "category": "Transportation",
+    "english": "ticket",
+    "transliteration": "tiket"
   },
   {
-    "amharic" : "ሞተር ሳይክል",
-    "category" : "Transportation",
-    "english" : "motorcycle",
-    "transliteration" : "motar saykil"
+    "amharic": "ሞተር ሳይክል",
+    "category": "Transportation",
+    "english": "motorcycle",
+    "transliteration": "motar saykil"
   },
   {
-    "amharic" : "ባቡር ጣብያ",
-    "category" : "Transportation",
-    "english" : "train station",
-    "transliteration" : "babur tabiya"
+    "amharic": "ባቡር ጣብያ",
+    "category": "Transportation",
+    "english": "train station",
+    "transliteration": "babur tabiya"
   },
   {
-    "amharic" : "ባስ",
-    "category" : "Transportation",
-    "english" : "bus",
-    "transliteration" : "bas"
+    "amharic": "ባስ",
+    "category": "Transportation",
+    "english": "bus",
+    "transliteration": "bas"
   },
   {
-    "amharic" : "ሀኪም",
-    "category" : "Occupations",
-    "english" : "doctor",
-    "transliteration" : "hakim"
+    "amharic": "ሀኪም",
+    "category": "Occupations",
+    "english": "doctor",
+    "transliteration": "hakim"
   },
   {
-    "amharic" : "አስተናጋጅ",
-    "category" : "Occupations",
-    "english" : "waiter",
-    "transliteration" : "astanagaj"
+    "amharic": "አስተናጋጅ",
+    "category": "Occupations",
+    "english": "waiter",
+    "transliteration": "astanagaj"
   },
   {
-    "amharic" : "ደራሲ",
-    "category" : "Occupations",
-    "english" : "author",
-    "transliteration" : "darasi"
+    "amharic": "ደራሲ",
+    "category": "Occupations",
+    "english": "author",
+    "transliteration": "darasi"
   },
   {
-    "amharic" : "ፀሃፊ",
-    "category" : "Occupations",
-    "english" : "secretary",
-    "transliteration" : "tsahafi"
+    "amharic": "ፀሃፊ",
+    "category": "Occupations",
+    "english": "secretary",
+    "transliteration": "tsahafi"
   },
   {
-    "amharic" : "ቄስ",
-    "category" : "Occupations",
-    "english" : "priest",
-    "transliteration" : "kes"
+    "amharic": "ቄስ",
+    "category": "Occupations",
+    "english": "priest",
+    "transliteration": "kes"
   },
   {
-    "amharic" : "አርቲስት",
-    "category" : "Occupations",
-    "english" : "artist",
-    "transliteration" : "artist"
+    "amharic": "አርቲስት",
+    "category": "Occupations",
+    "english": "artist",
+    "transliteration": "artist"
   },
   {
-    "amharic" : "ዘጋቢ",
-    "category" : "Occupations",
-    "english" : "reporter",
-    "transliteration" : "zagabi"
+    "amharic": "ዘጋቢ",
+    "category": "Occupations",
+    "english": "reporter",
+    "transliteration": "zagabi"
   },
   {
-    "amharic" : "ሹፌር",
-    "category" : "Occupations",
-    "english" : "driver",
-    "transliteration" : "shufer"
+    "amharic": "ሹፌር",
+    "category": "Occupations",
+    "english": "driver",
+    "transliteration": "shufer"
   },
   {
-    "amharic" : "መሃንዲስ",
-    "category" : "Occupations",
-    "english" : "engineer",
-    "transliteration" : "mahandis"
+    "amharic": "መሃንዲስ",
+    "category": "Occupations",
+    "english": "engineer",
+    "transliteration": "mahandis"
   },
   {
-    "amharic" : "ዳኛ",
-    "category" : "Occupations",
-    "english" : "judge",
-    "transliteration" : "danya"
+    "amharic": "ዳኛ",
+    "category": "Occupations",
+    "english": "judge",
+    "transliteration": "danya"
   },
   {
-    "amharic" : "መካኒክ",
-    "category" : "Occupations",
-    "english" : "mechanic",
-    "transliteration" : "makanik"
+    "amharic": "መካኒክ",
+    "category": "Occupations",
+    "english": "mechanic",
+    "transliteration": "makanik"
   },
   {
-    "amharic" : "ፖለቲከኛ",
-    "category" : "Occupations",
-    "english" : "politician",
-    "transliteration" : "polatikanya"
+    "amharic": "ፖለቲከኛ",
+    "category": "Occupations",
+    "english": "politician",
+    "transliteration": "polatikanya"
   },
   {
-    "amharic" : "አስተዳዳሪ",
-    "category" : "Occupations",
-    "english" : "manager",
-    "transliteration" : "astadadari"
+    "amharic": "አስተዳዳሪ",
+    "category": "Occupations",
+    "english": "manager",
+    "transliteration": "astadadari"
   },
   {
-    "amharic" : "ሶፋ",
-    "category" : "Household",
-    "english" : "sofa",
-    "transliteration" : "sofa"
+    "amharic": "ሶፋ",
+    "category": "Household",
+    "english": "sofa",
+    "transliteration": "sofa"
   },
   {
-    "amharic" : "ፎቶ",
-    "category" : "Household",
-    "english" : "photo",
-    "transliteration" : "foto"
+    "amharic": "ፎቶ",
+    "category": "Household",
+    "english": "photo",
+    "transliteration": "foto"
   },
   {
-    "amharic" : "ሳሙና",
-    "category" : "Household",
-    "english" : "soap",
-    "transliteration" : "samuna"
+    "amharic": "ሳሙና",
+    "category": "Household",
+    "english": "soap",
+    "transliteration": "samuna"
   },
   {
-    "amharic" : "ቁልፍ",
-    "category" : "Household",
-    "english" : "key",
-    "transliteration" : "kulif"
+    "amharic": "ቁልፍ",
+    "category": "Household",
+    "english": "key",
+    "transliteration": "kulif"
   },
   {
-    "amharic" : "ግድግዳ",
-    "category" : "Household",
-    "english" : "wall",
-    "transliteration" : "gidgida"
+    "amharic": "ግድግዳ",
+    "category": "Household",
+    "english": "wall",
+    "transliteration": "gidgida"
   },
   {
-    "amharic" : "ወረቀት",
-    "category" : "Household",
-    "english" : "paper",
-    "transliteration" : "warakat"
+    "amharic": "ወረቀት",
+    "category": "Household",
+    "english": "paper",
+    "transliteration": "warakat"
   },
   {
-    "amharic" : "ወለል",
-    "category" : "Household",
-    "english" : "floor",
-    "transliteration" : "walal"
+    "amharic": "ወለል",
+    "category": "Household",
+    "english": "floor",
+    "transliteration": "walal"
   },
   {
-    "amharic" : "ጣርያ",
-    "category" : "Household",
-    "english" : "roof",
-    "transliteration" : "tarya"
+    "amharic": "ጣርያ",
+    "category": "Household",
+    "english": "roof",
+    "transliteration": "tarya"
   },
   {
-    "amharic" : "መርፌ",
-    "category" : "Household",
-    "english" : "needle",
-    "transliteration" : "marfe"
+    "amharic": "መርፌ",
+    "category": "Household",
+    "english": "needle",
+    "transliteration": "marfe"
   },
   {
-    "amharic" : "ስጦታ",
-    "category" : "Household",
-    "english" : "gift",
-    "transliteration" : "sitota"
+    "amharic": "ስጦታ",
+    "category": "Household",
+    "english": "gift",
+    "transliteration": "sitota"
   },
   {
-    "amharic" : "ቀለበት",
-    "category" : "Household",
-    "english" : "ring",
-    "transliteration" : "kalabat"
+    "amharic": "ቀለበት",
+    "category": "Household",
+    "english": "ring",
+    "transliteration": "kalabat"
   },
   {
-    "amharic" : "ባልኮኒ",
-    "category" : "Household",
-    "english" : "balcony",
-    "transliteration" : "balkoni"
+    "amharic": "ባልኮኒ",
+    "category": "Household",
+    "english": "balcony",
+    "transliteration": "balkoni"
   },
   {
-    "amharic" : "ኮሪደር",
-    "category" : "Household",
-    "english" : "corridor",
-    "transliteration" : "koridar"
+    "amharic": "ኮሪደር",
+    "category": "Household",
+    "english": "corridor",
+    "transliteration": "koridar"
   },
   {
-    "amharic" : "ሳጥን",
-    "category" : "Household",
-    "english" : "box",
-    "transliteration" : "satin"
+    "amharic": "ሳጥን",
+    "category": "Household",
+    "english": "box",
+    "transliteration": "satin"
   },
   {
-    "amharic" : "መጋረጃ",
-    "category" : "Household",
-    "english" : "curtain",
-    "transliteration" : "magaraja"
+    "amharic": "መጋረጃ",
+    "category": "Household",
+    "english": "curtain",
+    "transliteration": "magaraja"
   },
   {
-    "amharic" : "ፍሪጅ",
-    "category" : "Household",
-    "english" : "fridge",
-    "transliteration" : "frij"
+    "amharic": "ፍሪጅ",
+    "category": "Household",
+    "english": "fridge",
+    "transliteration": "frij"
   },
   {
-    "amharic" : "ሻወር",
-    "category" : "Household",
-    "english" : "shower",
-    "transliteration" : "shawer"
+    "amharic": "ሻወር",
+    "category": "Household",
+    "english": "shower",
+    "transliteration": "shawer"
   },
   {
-    "amharic" : "ደብተር",
-    "category" : "Household",
-    "english" : "notebook",
-    "transliteration" : "dabtar"
+    "amharic": "ደብተር",
+    "category": "Household",
+    "english": "notebook",
+    "transliteration": "dabtar"
   },
   {
-    "amharic" : "ወታደር",
-    "category" : "Common Nouns",
-    "english" : "soldier",
-    "transliteration" : "watadar"
+    "amharic": "ወታደር",
+    "category": "Common Nouns",
+    "english": "soldier",
+    "transliteration": "watadar"
   },
   {
-    "amharic" : "ወርቅ",
-    "category" : "Common Nouns",
-    "english" : "gold",
-    "transliteration" : "wark"
+    "amharic": "ወርቅ",
+    "category": "Common Nouns",
+    "english": "gold",
+    "transliteration": "wark"
   },
   {
-    "amharic" : "ጋዜጣ",
-    "category" : "Common Nouns",
-    "english" : "newspaper",
-    "transliteration" : "gazeta"
+    "amharic": "ጋዜጣ",
+    "category": "Common Nouns",
+    "english": "newspaper",
+    "transliteration": "gazeta"
   },
   {
-    "amharic" : "በሽታ",
-    "category" : "Common Nouns",
-    "english" : "disease",
-    "transliteration" : "bashta"
+    "amharic": "በሽታ",
+    "category": "Common Nouns",
+    "english": "disease",
+    "transliteration": "bashta"
   },
   {
-    "amharic" : "ህልም",
-    "category" : "Common Nouns",
-    "english" : "dream",
-    "transliteration" : "hilm"
+    "amharic": "ህልም",
+    "category": "Common Nouns",
+    "english": "dream",
+    "transliteration": "hilm"
   },
   {
-    "amharic" : "ስራ",
-    "category" : "Common Nouns",
-    "english" : "work",
-    "transliteration" : "sira"
+    "amharic": "ስራ",
+    "category": "Common Nouns",
+    "english": "work",
+    "transliteration": "sira"
   },
   {
-    "amharic" : "ብረት",
-    "category" : "Common Nouns",
-    "english" : "metal",
-    "transliteration" : "birat"
+    "amharic": "ብረት",
+    "category": "Common Nouns",
+    "english": "metal",
+    "transliteration": "birat"
   },
   {
-    "amharic" : "እንጨት",
-    "category" : "Common Nouns",
-    "english" : "wood",
-    "transliteration" : "inchat"
+    "amharic": "እንጨት",
+    "category": "Common Nouns",
+    "english": "wood",
+    "transliteration": "inchat"
   },
   {
-    "amharic" : "ድንጋይ",
-    "category" : "Common Nouns",
-    "english" : "stone",
-    "transliteration" : "dingay"
+    "amharic": "ድንጋይ",
+    "category": "Common Nouns",
+    "english": "stone",
+    "transliteration": "dingay"
   },
   {
-    "amharic" : "አቧራ",
-    "category" : "Common Nouns",
-    "english" : "dust",
-    "transliteration" : "abwara"
+    "amharic": "አቧራ",
+    "category": "Common Nouns",
+    "english": "dust",
+    "transliteration": "abwara"
   },
   {
-    "amharic" : "ቁስ",
-    "category" : "Common Nouns",
-    "english" : "material",
-    "transliteration" : "kus"
+    "amharic": "ቁስ",
+    "category": "Common Nouns",
+    "english": "material",
+    "transliteration": "kus"
   },
   {
-    "amharic" : "ግማሽ",
-    "category" : "Common Nouns",
-    "english" : "half",
-    "transliteration" : "gimash"
+    "amharic": "ግማሽ",
+    "category": "Common Nouns",
+    "english": "half",
+    "transliteration": "gimash"
   },
   {
-    "amharic" : "ክብ",
-    "category" : "Common Nouns",
-    "english" : "circle",
-    "transliteration" : "kib"
+    "amharic": "ክብ",
+    "category": "Common Nouns",
+    "english": "circle",
+    "transliteration": "kib"
   },
   {
-    "amharic" : "ካሬ",
-    "category" : "Common Nouns",
-    "english" : "square",
-    "transliteration" : "kare"
+    "amharic": "ካሬ",
+    "category": "Common Nouns",
+    "english": "square",
+    "transliteration": "kare"
   },
   {
-    "amharic" : "ክብደት",
-    "category" : "Common Nouns",
-    "english" : "weight",
-    "transliteration" : "kibdat"
+    "amharic": "ክብደት",
+    "category": "Common Nouns",
+    "english": "weight",
+    "transliteration": "kibdat"
   },
   {
-    "amharic" : "ካርታ",
-    "category" : "Common Nouns",
-    "english" : "map",
-    "transliteration" : "karta"
+    "amharic": "ካርታ",
+    "category": "Common Nouns",
+    "english": "map",
+    "transliteration": "karta"
   },
   {
-    "amharic" : "ህመም",
-    "category" : "Common Nouns",
-    "english" : "pain",
-    "transliteration" : "himam"
+    "amharic": "ህመም",
+    "category": "Common Nouns",
+    "english": "pain",
+    "transliteration": "himam"
   },
   {
-    "amharic" : "ጉዳት",
-    "category" : "Common Nouns",
-    "english" : "injury",
-    "transliteration" : "gudat"
+    "amharic": "ጉዳት",
+    "category": "Common Nouns",
+    "english": "injury",
+    "transliteration": "gudat"
   },
   {
-    "amharic" : "ጉድጓድ",
-    "category" : "Common Nouns",
-    "english" : "hole",
-    "transliteration" : "gudguad"
+    "amharic": "ጉድጓድ",
+    "category": "Common Nouns",
+    "english": "hole",
+    "transliteration": "gudguad"
   },
   {
-    "amharic" : "ንጉስ",
-    "category" : "Common Nouns",
-    "english" : "king",
-    "transliteration" : "nigus"
+    "amharic": "ንጉስ",
+    "category": "Common Nouns",
+    "english": "king",
+    "transliteration": "nigus"
   },
   {
-    "amharic" : "ንግስት",
-    "category" : "Common Nouns",
-    "english" : "queen",
-    "transliteration" : "nigist"
+    "amharic": "ንግስት",
+    "category": "Common Nouns",
+    "english": "queen",
+    "transliteration": "nigist"
   },
   {
-    "amharic" : "ጎረቤት",
-    "category" : "Common Nouns",
-    "english" : "neighbour",
-    "transliteration" : "gorabet"
+    "amharic": "ጎረቤት",
+    "category": "Common Nouns",
+    "english": "neighbour",
+    "transliteration": "gorabet"
   },
   {
-    "amharic" : "ደጋፊ",
-    "category" : "Common Nouns",
-    "english" : "fan",
-    "transliteration" : "dagafi"
+    "amharic": "ደጋፊ",
+    "category": "Common Nouns",
+    "english": "fan",
+    "transliteration": "dagafi"
   },
   {
-    "amharic" : "ገነት",
-    "category" : "Common Nouns",
-    "english" : "heaven",
-    "transliteration" : "ganat"
+    "amharic": "ገነት",
+    "category": "Common Nouns",
+    "english": "heaven",
+    "transliteration": "ganat"
   },
   {
-    "amharic" : "ገሃነም",
-    "category" : "Common Nouns",
-    "english" : "hell",
-    "transliteration" : "gahanam"
+    "amharic": "ገሃነም",
+    "category": "Common Nouns",
+    "english": "hell",
+    "transliteration": "gahanam"
   },
   {
-    "amharic" : "ሞት",
-    "category" : "Common Nouns",
-    "english" : "death",
-    "transliteration" : "mot"
+    "amharic": "ሞት",
+    "category": "Common Nouns",
+    "english": "death",
+    "transliteration": "mot"
   },
   {
-    "amharic" : "መድሃኒት",
-    "category" : "Common Nouns",
-    "english" : "medicine",
-    "transliteration" : "madhanit"
+    "amharic": "መድሃኒት",
+    "category": "Common Nouns",
+    "english": "medicine",
+    "transliteration": "madhanit"
   },
   {
-    "amharic" : "ጋብቻ",
-    "category" : "Common Nouns",
-    "english" : "marriage",
-    "transliteration" : "gabcha"
+    "amharic": "ጋብቻ",
+    "category": "Common Nouns",
+    "english": "marriage",
+    "transliteration": "gabcha"
   },
   {
-    "amharic" : "ሰርግ",
-    "category" : "Common Nouns",
-    "english" : "wedding",
-    "transliteration" : "sarg"
+    "amharic": "ሰርግ",
+    "category": "Common Nouns",
+    "english": "wedding",
+    "transliteration": "sarg"
   },
   {
-    "amharic" : "ቡድን",
-    "category" : "Common Nouns",
-    "english" : "team",
-    "transliteration" : "budin"
+    "amharic": "ቡድን",
+    "category": "Common Nouns",
+    "english": "team",
+    "transliteration": "budin"
   },
   {
-    "amharic" : "ግድያ",
-    "category" : "Common Nouns",
-    "english" : "murder",
-    "transliteration" : "gidya"
+    "amharic": "ግድያ",
+    "category": "Common Nouns",
+    "english": "murder",
+    "transliteration": "gidya"
   },
   {
-    "amharic" : "ጦርነት",
-    "category" : "Common Nouns",
-    "english" : "war",
-    "transliteration" : "tornat"
+    "amharic": "ጦርነት",
+    "category": "Common Nouns",
+    "english": "war",
+    "transliteration": "tornat"
   },
   {
-    "amharic" : "ምርጫ",
-    "category" : "Common Nouns",
-    "english" : "election",
-    "transliteration" : "mircha"
+    "amharic": "ምርጫ",
+    "category": "Common Nouns",
+    "english": "election",
+    "transliteration": "mircha"
   },
   {
-    "amharic" : "ሽጉጥ",
-    "category" : "Common Nouns",
-    "english" : "gun",
-    "transliteration" : "shigut"
+    "amharic": "ሽጉጥ",
+    "category": "Common Nouns",
+    "english": "gun",
+    "transliteration": "shigut"
   },
   {
-    "amharic" : "እፅ",
-    "category" : "Common Nouns",
-    "english" : "drug",
-    "transliteration" : "its"
+    "amharic": "እፅ",
+    "category": "Common Nouns",
+    "english": "drug",
+    "transliteration": "its"
   },
   {
-    "amharic" : "ምልክት",
-    "category" : "Common Nouns",
-    "english" : "sign",
-    "transliteration" : "milkit"
+    "amharic": "ምልክት",
+    "category": "Common Nouns",
+    "english": "sign",
+    "transliteration": "milkit"
   },
   {
-    "amharic" : "እግዚአብሔር",
-    "category" : "Common Nouns",
-    "english" : "god",
-    "transliteration" : "igziabher"
+    "amharic": "እግዚአብሔር",
+    "category": "Common Nouns",
+    "english": "god",
+    "transliteration": "igziabher"
   },
   {
-    "amharic" : "ወጣት",
-    "category" : "Common Nouns",
-    "english" : "young",
-    "transliteration" : "watat"
+    "amharic": "ወጣት",
+    "category": "Common Nouns",
+    "english": "young",
+    "transliteration": "watat"
   },
   {
-    "amharic" : "ሰውዬ",
-    "category" : "Common Nouns",
-    "english" : "man",
-    "transliteration" : "sawye"
+    "amharic": "ሰውዬ",
+    "category": "Common Nouns",
+    "english": "man",
+    "transliteration": "sawye"
   },
   {
-    "amharic" : "ሴትዮ",
-    "category" : "Common Nouns",
-    "english" : "woman",
-    "transliteration" : "setyo"
+    "amharic": "ሴትዮ",
+    "category": "Common Nouns",
+    "english": "woman",
+    "transliteration": "setyo"
   },
   {
-    "amharic" : "ሽማግሌ",
-    "category" : "Common Nouns",
-    "english" : "old man",
-    "transliteration" : "shimagle"
+    "amharic": "ሽማግሌ",
+    "category": "Common Nouns",
+    "english": "old man",
+    "transliteration": "shimagle"
   },
   {
-    "amharic" : "አሮጊት",
-    "category" : "Common Nouns",
-    "english" : "old woman",
-    "transliteration" : "arogit"
+    "amharic": "አሮጊት",
+    "category": "Common Nouns",
+    "english": "old woman",
+    "transliteration": "arogit"
   },
   {
-    "amharic" : "ካሜራ",
-    "category" : "Technology",
-    "english" : "camera",
-    "transliteration" : "kamera"
+    "amharic": "ካሜራ",
+    "category": "Technology",
+    "english": "camera",
+    "transliteration": "kamera"
   },
   {
-    "amharic" : "ቲቪ",
-    "category" : "Technology",
-    "english" : "tv",
-    "transliteration" : "tivi"
+    "amharic": "ቲቪ",
+    "category": "Technology",
+    "english": "tv",
+    "transliteration": "tivi"
   },
   {
-    "amharic" : "ራዲዮ",
-    "category" : "Technology",
-    "english" : "radio",
-    "transliteration" : "radiyo"
+    "amharic": "ራዲዮ",
+    "category": "Technology",
+    "english": "radio",
+    "transliteration": "radiyo"
   },
   {
-    "amharic" : "ስልክ",
-    "category" : "Technology",
-    "english" : "phone",
-    "transliteration" : "silk"
+    "amharic": "ስልክ",
+    "category": "Technology",
+    "english": "phone",
+    "transliteration": "silk"
   },
   {
-    "amharic" : "ኮምፒተር",
-    "category" : "Technology",
-    "english" : "computer",
-    "transliteration" : "komputer"
+    "amharic": "ኮምፒተር",
+    "category": "Technology",
+    "english": "computer",
+    "transliteration": "komputer"
   },
   {
-    "amharic" : "ፕሮግራም",
-    "category" : "Technology",
-    "english" : "program",
-    "transliteration" : "program"
+    "amharic": "ፕሮግራም",
+    "category": "Technology",
+    "english": "program",
+    "transliteration": "program"
   },
   {
-    "amharic" : "ላፕቶፕ",
-    "category" : "Technology",
-    "english" : "laptop",
-    "transliteration" : "laptop"
+    "amharic": "ላፕቶፕ",
+    "category": "Technology",
+    "english": "laptop",
+    "transliteration": "laptop"
   },
   {
-    "amharic" : "ተንቀሳቃሽ ስልክ",
-    "category" : "Technology",
-    "english" : "mobile phone",
-    "transliteration" : "tankisakash silk"
+    "amharic": "ተንቀሳቃሽ ስልክ",
+    "category": "Technology",
+    "english": "mobile phone",
+    "transliteration": "tankisakash silk"
   },
   {
-    "amharic" : "ዘፈን",
-    "category" : "Entertainment",
-    "english" : "song",
-    "transliteration" : "zafan"
+    "amharic": "ዘፈን",
+    "category": "Entertainment",
+    "english": "song",
+    "transliteration": "zafan"
   },
   {
-    "amharic" : "ሙዚቃ",
-    "category" : "Entertainment",
-    "english" : "music",
-    "transliteration" : "muzika"
+    "amharic": "ሙዚቃ",
+    "category": "Entertainment",
+    "english": "music",
+    "transliteration": "muzika"
   },
   {
-    "amharic" : "ፊልም",
-    "category" : "Entertainment",
-    "english" : "movie",
-    "transliteration" : "film"
+    "amharic": "ፊልም",
+    "category": "Entertainment",
+    "english": "movie",
+    "transliteration": "film"
   },
   {
-    "amharic" : "ስፖርት",
-    "category" : "Entertainment",
-    "english" : "sport",
-    "transliteration" : "sport"
+    "amharic": "ስፖርት",
+    "category": "Entertainment",
+    "english": "sport",
+    "transliteration": "sport"
   },
   {
-    "amharic" : "ውድድር",
-    "category" : "Entertainment",
-    "english" : "race",
-    "transliteration" : "wididir"
+    "amharic": "ውድድር",
+    "category": "Entertainment",
+    "english": "race",
+    "transliteration": "wididir"
   },
   {
-    "amharic" : "ጨዋታ",
-    "category" : "Entertainment",
-    "english" : "game",
-    "transliteration" : "chawata"
+    "amharic": "ጨዋታ",
+    "category": "Entertainment",
+    "english": "game",
+    "transliteration": "chawata"
   },
   {
-    "amharic" : "ዓመት",
-    "category" : "Time",
-    "english" : "year",
-    "transliteration" : "amet"
+    "amharic": "ዓመት",
+    "category": "Time",
+    "english": "year",
+    "transliteration": "amet"
   },
   {
-    "amharic" : "እኩለ ቀን",
-    "category" : "Time",
-    "english" : "noon\/midday",
-    "transliteration" : "ikula kan"
+    "amharic": "እኩለ ቀን",
+    "category": "Time",
+    "english": "noon/midday",
+    "transliteration": "ikula kan"
   },
   {
-    "amharic" : "እኩለ ሌሊት",
-    "category" : "Time",
-    "english" : "midnight",
-    "transliteration" : "ikula lelit"
+    "amharic": "እኩለ ሌሊት",
+    "category": "Time",
+    "english": "midnight",
+    "transliteration": "ikula lelit"
   },
   {
-    "amharic" : "የፀሃይ መዉጣት",
-    "category" : "Time",
-    "english" : "sunrise",
-    "transliteration" : "ya-tsahay mawtat"
+    "amharic": "የፀሃይ መዉጣት",
+    "category": "Time",
+    "english": "sunrise",
+    "transliteration": "ya-tsahay mawtat"
   },
   {
-    "amharic" : "የፀሃይ መግባት",
-    "category" : "Time",
-    "english" : "sunset",
-    "transliteration" : "ya-tsahay magbat"
+    "amharic": "የፀሃይ መግባት",
+    "category": "Time",
+    "english": "sunset",
+    "transliteration": "ya-tsahay magbat"
   },
   {
-    "amharic" : "መቼ",
-    "category" : "Time",
-    "english" : "when",
-    "transliteration" : "macha"
+    "amharic": "መቼ",
+    "category": "Time",
+    "english": "when",
+    "transliteration": "macha"
   },
   {
-    "amharic" : "ከኋላ",
-    "category" : "Directions",
-    "english" : "at the back",
-    "transliteration" : "kahuala"
+    "amharic": "ከኋላ",
+    "category": "Directions",
+    "english": "at the back",
+    "transliteration": "kahuala"
   },
   {
-    "amharic" : "ጓሮ",
-    "category" : "Places",
-    "english" : "backyard",
-    "transliteration" : "guaro"
+    "amharic": "ጓሮ",
+    "category": "Places",
+    "english": "backyard",
+    "transliteration": "guaro"
   },
   {
-    "amharic" : "ጦር",
-    "category" : "Common Nouns",
-    "english" : "army",
-    "transliteration" : "tor"
+    "amharic": "ጦር",
+    "category": "Common Nouns",
+    "english": "army",
+    "transliteration": "tor"
   },
   {
-    "amharic" : "የሰውነት አካል",
-    "category" : "Body Parts",
-    "english" : "body parts",
-    "transliteration" : "yasawinat akal"
+    "amharic": "የሰውነት አካል",
+    "category": "Body Parts",
+    "english": "body parts",
+    "transliteration": "yasawinat akal"
   },
   {
-    "amharic" : "ስኒ",
-    "category" : "Food & Drink",
-    "english" : "coffee cup",
-    "transliteration" : "sini"
+    "amharic": "ስኒ",
+    "category": "Food & Drink",
+    "english": "coffee cup",
+    "transliteration": "sini"
   },
   {
-    "amharic" : "በመጽሃፎቹ መሃል",
-    "category" : "Directions",
-    "english" : "between the books",
-    "transliteration" : "bamets'hafochu mahal"
+    "amharic": "በመጽሃፎቹ መሃል",
+    "category": "Directions",
+    "english": "between the books",
+    "transliteration": "bamets'hafochu mahal"
   },
   {
-    "amharic" : "አምቦ ውሃ",
-    "category" : "Food & Drink",
-    "english" : "sparkling water",
-    "transliteration" : "ambo wuha"
+    "amharic": "አምቦ ውሃ",
+    "category": "Food & Drink",
+    "english": "sparkling water",
+    "transliteration": "ambo wuha"
   },
   {
-    "amharic" : "መርዝ",
-    "category" : "Common Nouns",
-    "english" : "poison",
-    "transliteration" : "mariz"
+    "amharic": "መርዝ",
+    "category": "Common Nouns",
+    "english": "poison",
+    "transliteration": "mariz"
   },
   {
-    "amharic" : "የቤት እመቤት",
-    "category" : "Occupations",
-    "english" : "homemaker",
-    "transliteration" : "yabet imebet"
+    "amharic": "የቤት እመቤት",
+    "category": "Occupations",
+    "english": "homemaker",
+    "transliteration": "yabet imebet"
   },
   {
-    "amharic" : "በር ጋር",
-    "category" : "Directions",
-    "english" : "at the door",
-    "transliteration" : "bar gar"
+    "amharic": "በር ጋር",
+    "category": "Directions",
+    "english": "at the door",
+    "transliteration": "bar gar"
   },
   {
-    "amharic" : "ከሶፋው ኋላ",
-    "category" : "Directions",
-    "english" : "behind the sofa",
-    "transliteration" : "kasofaw huala"
+    "amharic": "ከሶፋው ኋላ",
+    "category": "Directions",
+    "english": "behind the sofa",
+    "transliteration": "kasofaw huala"
   },
   {
-    "amharic" : "ጠረጴዛ ላይ",
-    "category" : "Directions",
-    "english" : "on the table",
-    "transliteration" : "tarapeza lay"
+    "amharic": "ጠረጴዛ ላይ",
+    "category": "Directions",
+    "english": "on the table",
+    "transliteration": "tarapeza lay"
   },
   {
-    "amharic" : "ጠረጴዛ ስር",
-    "category" : "Directions",
-    "english" : "under the table",
-    "transliteration" : "tarapeza sir"
+    "amharic": "ጠረጴዛ ስር",
+    "category": "Directions",
+    "english": "under the table",
+    "transliteration": "tarapeza sir"
   },
   {
-    "amharic" : "አዋቂ",
-    "category" : "Common Nouns",
-    "english" : "adult",
-    "transliteration" : "awaki"
+    "amharic": "አዋቂ",
+    "category": "Common Nouns",
+    "english": "adult",
+    "transliteration": "awaki"
   },
   {
-    "amharic" : "የተጨናነቀ",
-    "category" : "Common Adjectives",
-    "english" : "crowded",
-    "transliteration" : "yatachananaka"
+    "amharic": "የተጨናነቀ",
+    "category": "Common Adjectives",
+    "english": "crowded",
+    "transliteration": "yatachananaka"
   },
   {
-    "amharic" : "ኔትዎርክ",
-    "category" : "Technology",
-    "english" : "network\/service area",
-    "transliteration" : "network"
+    "amharic": "ኔትዎርክ",
+    "category": "Technology",
+    "english": "network/service area",
+    "transliteration": "network"
+  },
+  {
+    "category": "Work",
+    "amharic": "አለቃ",
+    "transliteration": "aleka",
+    "english": "boss, chief"
+  },
+  {
+    "category": "Work",
+    "amharic": "ደሞዝ",
+    "transliteration": "damoz",
+    "english": "salary, wages"
+  },
+  {
+    "category": "Work",
+    "amharic": "ባልደረባ",
+    "transliteration": "baldareba",
+    "english": "colleague, associate"
+  },
+  {
+    "category": "Work",
+    "amharic": "ስብሰባ",
+    "transliteration": "sibsaba",
+    "english": "meeting"
+  },
+  {
+    "category": "Work",
+    "amharic": "ድርጅት",
+    "transliteration": "dirijit",
+    "english": "organization, firm"
+  },
+  {
+    "category": "Work",
+    "amharic": "ኩባንያ",
+    "transliteration": "kubanya",
+    "english": "company"
+  },
+  {
+    "category": "Work",
+    "amharic": "ሙያ",
+    "transliteration": "muya",
+    "english": "profession, trade"
+  },
+  {
+    "category": "Work",
+    "amharic": "ባለሙያ",
+    "transliteration": "balamuya",
+    "english": "professional, expert"
+  },
+  {
+    "category": "Work",
+    "amharic": "ልምድ",
+    "transliteration": "limd",
+    "english": "experience"
+  },
+  {
+    "category": "Work",
+    "amharic": "ቃለ መጠይቅ",
+    "transliteration": "kale mateyik",
+    "english": "interview"
+  },
+  {
+    "category": "Work",
+    "amharic": "ውል",
+    "transliteration": "wul",
+    "english": "contract, agreement"
+  },
+  {
+    "category": "Work",
+    "amharic": "የጊዜ ገደብ",
+    "transliteration": "yagize gadab",
+    "english": "deadline"
+  },
+  {
+    "category": "Work",
+    "amharic": "ተቀጣሪ",
+    "transliteration": "takatari",
+    "english": "employee"
+  },
+  {
+    "category": "Work",
+    "amharic": "አሠሪ",
+    "transliteration": "asari",
+    "english": "employer"
+  },
+  {
+    "category": "Work",
+    "amharic": "ስራ አጥ",
+    "transliteration": "sira at",
+    "english": "unemployed"
+  },
+  {
+    "category": "Work",
+    "amharic": "ኃላፊ",
+    "transliteration": "halafi",
+    "english": "head, supervisor, official"
+  },
+  {
+    "category": "Work",
+    "amharic": "ኃላፊነት",
+    "transliteration": "halafinat",
+    "english": "responsibility, duty"
+  },
+  {
+    "category": "Work",
+    "amharic": "ፈቃድ",
+    "transliteration": "fakad",
+    "english": "permission; leave; license"
+  },
+  {
+    "category": "Work",
+    "amharic": "ደንበኛ",
+    "transliteration": "danbanya",
+    "english": "customer, client"
+  },
+  {
+    "category": "Work",
+    "amharic": "ስልጠና",
+    "transliteration": "siltana",
+    "english": "training"
+  },
+  {
+    "category": "Work",
+    "amharic": "ቀጠሮ",
+    "transliteration": "kataro",
+    "english": "appointment"
+  },
+  {
+    "category": "Work",
+    "amharic": "መቅጠር",
+    "transliteration": "maktar",
+    "english": "to hire, to employ"
+  },
+  {
+    "category": "Work",
+    "amharic": "ማመልከቻ",
+    "transliteration": "mamalkacha",
+    "english": "application (form/letter)"
+  },
+  {
+    "category": "Work",
+    "amharic": "ውሳኔ",
+    "transliteration": "wusane",
+    "english": "decision"
+  },
+  {
+    "category": "Work",
+    "amharic": "ትርፍ ሰዓት",
+    "transliteration": "tirf saat",
+    "english": "overtime"
+  },
+  {
+    "category": "Work",
+    "amharic": "መባረር",
+    "transliteration": "mabarar",
+    "english": "to dismiss, expel (fire from a job)"
+  },
+  {
+    "category": "Health",
+    "amharic": "ክሊኒክ",
+    "transliteration": "klinik",
+    "english": "clinic"
+  },
+  {
+    "category": "Health",
+    "amharic": "ጤና ጣቢያ",
+    "transliteration": "tena tabiya",
+    "english": "health center / health post"
+  },
+  {
+    "category": "Health",
+    "amharic": "መሳል",
+    "transliteration": "masal",
+    "english": "to cough"
+  },
+  {
+    "category": "Health",
+    "amharic": "ራስ ምታት",
+    "transliteration": "ras mitat",
+    "english": "headache"
+  },
+  {
+    "category": "Health",
+    "amharic": "ማዘዣ",
+    "transliteration": "mazezha",
+    "english": "prescription"
+  },
+  {
+    "category": "Health",
+    "amharic": "ኪኒን",
+    "transliteration": "kinin",
+    "english": "pill / tablet"
+  },
+  {
+    "category": "Health",
+    "amharic": "ህክምና",
+    "transliteration": "hikimna",
+    "english": "medical treatment / care"
+  },
+  {
+    "category": "Health",
+    "amharic": "ታካሚ",
+    "transliteration": "takami",
+    "english": "patient"
+  },
+  {
+    "category": "Health",
+    "amharic": "ህመምተኛ",
+    "transliteration": "himamtanya",
+    "english": "sick person / patient"
+  },
+  {
+    "category": "Health",
+    "amharic": "ቁስል",
+    "transliteration": "kusil",
+    "english": "wound / sore"
+  },
+  {
+    "category": "Health",
+    "amharic": "መታመም",
+    "transliteration": "matamam",
+    "english": "to get sick / be ill"
+  },
+  {
+    "category": "Health",
+    "amharic": "መዳን",
+    "transliteration": "madan",
+    "english": "to recover / be cured"
+  },
+  {
+    "category": "Health",
+    "amharic": "ማስታወክ",
+    "transliteration": "mastawak",
+    "english": "to vomit"
+  },
+  {
+    "category": "Health",
+    "amharic": "ተቅማጥ",
+    "transliteration": "takmat",
+    "english": "diarrhea"
+  },
+  {
+    "category": "Health",
+    "amharic": "ወባ",
+    "transliteration": "waba",
+    "english": "malaria"
+  },
+  {
+    "category": "Health",
+    "amharic": "ምርመራ",
+    "transliteration": "mirmera",
+    "english": "examination / checkup"
+  },
+  {
+    "category": "Health",
+    "amharic": "የደም ግፊት",
+    "transliteration": "yadam gifit",
+    "english": "blood pressure"
+  },
+  {
+    "category": "Health",
+    "amharic": "ራስ ማዞር",
+    "transliteration": "ras mazor",
+    "english": "dizziness"
+  },
+  {
+    "category": "Health",
+    "amharic": "መተንፈስ",
+    "transliteration": "matanfes",
+    "english": "to breathe"
+  },
+  {
+    "category": "Health",
+    "amharic": "ክትባት",
+    "transliteration": "kitbat",
+    "english": "vaccine / vaccination"
+  },
+  {
+    "category": "Health",
+    "amharic": "ቀዶ ጥገና",
+    "transliteration": "kado tigena",
+    "english": "surgery / operation"
+  },
+  {
+    "category": "Health",
+    "amharic": "ፋሻ",
+    "transliteration": "fasha",
+    "english": "bandage / dressing"
+  },
+  {
+    "category": "Health",
+    "amharic": "እብጠት",
+    "transliteration": "ibtet",
+    "english": "swelling"
+  },
+  {
+    "category": "Health",
+    "amharic": "ማቅለሽለሽ",
+    "transliteration": "makleshlesh",
+    "english": "nausea"
+  },
+  {
+    "category": "Money",
+    "amharic": "ሳንቲም",
+    "transliteration": "santim",
+    "english": "cent / santim (coin)"
+  },
+  {
+    "category": "Money",
+    "amharic": "የባንክ ሂሳብ",
+    "transliteration": "yabank hisab",
+    "english": "bank account"
+  },
+  {
+    "category": "Money",
+    "amharic": "ጥሬ ገንዘብ",
+    "transliteration": "tire ganzab",
+    "english": "cash"
+  },
+  {
+    "category": "Money",
+    "amharic": "መልስ",
+    "transliteration": "mals",
+    "english": "change (money returned)"
+  },
+  {
+    "category": "Money",
+    "amharic": "ደረሰኝ",
+    "transliteration": "darasany",
+    "english": "receipt"
+  },
+  {
+    "category": "Money",
+    "amharic": "ቅናሽ",
+    "transliteration": "kinash",
+    "english": "discount"
+  },
+  {
+    "category": "Money",
+    "amharic": "መበደር",
+    "transliteration": "mabadar",
+    "english": "to borrow"
+  },
+  {
+    "category": "Money",
+    "amharic": "ማበደር",
+    "transliteration": "mabadar",
+    "english": "to lend"
+  },
+  {
+    "category": "Money",
+    "amharic": "ብድር",
+    "transliteration": "bidir",
+    "english": "loan"
+  },
+  {
+    "category": "Money",
+    "amharic": "ዕዳ",
+    "transliteration": "eda",
+    "english": "debt"
+  },
+  {
+    "category": "Money",
+    "amharic": "መክፈል",
+    "transliteration": "makfal",
+    "english": "to pay"
+  },
+  {
+    "category": "Money",
+    "amharic": "ክፍያ",
+    "transliteration": "kifya",
+    "english": "payment / fee"
+  },
+  {
+    "category": "Money",
+    "amharic": "ሀብታም",
+    "transliteration": "habtam",
+    "english": "rich / wealthy"
+  },
+  {
+    "category": "Money",
+    "amharic": "ድሃ",
+    "transliteration": "diha",
+    "english": "poor"
+  },
+  {
+    "category": "Money",
+    "amharic": "ኪስ ቦርሳ",
+    "transliteration": "kis borsa",
+    "english": "wallet"
+  },
+  {
+    "category": "Money",
+    "amharic": "ግብር",
+    "transliteration": "gibir",
+    "english": "tax"
+  },
+  {
+    "category": "Money",
+    "amharic": "ትርፍ",
+    "transliteration": "tirf",
+    "english": "profit"
+  },
+  {
+    "category": "Money",
+    "amharic": "መቆጠብ",
+    "transliteration": "makotab",
+    "english": "to save (money)"
+  },
+  {
+    "category": "Money",
+    "amharic": "ገንዘብ ተቀባይ",
+    "transliteration": "ganzab takabay",
+    "english": "cashier / teller"
+  },
+  {
+    "category": "Money",
+    "amharic": "መቁጠር",
+    "transliteration": "makutar",
+    "english": "to count"
+  },
+  {
+    "category": "Money",
+    "amharic": "ምንዛሪ ተመን",
+    "transliteration": "minzari taman",
+    "english": "exchange rate"
+  },
+  {
+    "category": "Money",
+    "amharic": "መመንዘር",
+    "transliteration": "mamanzar",
+    "english": "to exchange (money)"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መክፈት",
+    "transliteration": "makfat",
+    "english": "to open"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መዝጋት",
+    "transliteration": "mazgat",
+    "english": "to close"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መጠበቅ",
+    "transliteration": "matabak",
+    "english": "to wait / to guard"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መርዳት",
+    "transliteration": "mardat",
+    "english": "to help"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ማምጣት",
+    "transliteration": "maamtat",
+    "english": "to bring"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መውሰድ",
+    "transliteration": "mawsad",
+    "english": "to take / take away"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መስጠት",
+    "transliteration": "mastat",
+    "english": "to give"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ማብሰል",
+    "transliteration": "mabsal",
+    "english": "to cook"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ማጠብ",
+    "transliteration": "matab",
+    "english": "to wash (clothes/dishes)"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መታጠብ",
+    "transliteration": "matatab",
+    "english": "to wash oneself / bathe"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ማጽዳት",
+    "transliteration": "matsdat",
+    "english": "to clean"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ማረፍ",
+    "transliteration": "maraf",
+    "english": "to rest"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መቀመጥ",
+    "transliteration": "makamat",
+    "english": "to sit down"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መቆም",
+    "transliteration": "makom",
+    "english": "to stand / to stop"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መልበስ",
+    "transliteration": "malbas",
+    "english": "to wear / put on (clothes)"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መዘጋጀት",
+    "transliteration": "mazagajat",
+    "english": "to get ready / prepare (oneself)"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መጀመር",
+    "transliteration": "majamar",
+    "english": "to start / begin"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መጨረስ",
+    "transliteration": "macharas",
+    "english": "to finish"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መግባት",
+    "transliteration": "magbat",
+    "english": "to enter / go in"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መውጣት",
+    "transliteration": "mawtat",
+    "english": "to go out / leave / exit"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መመለስ",
+    "transliteration": "mamalas",
+    "english": "to return / come back"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መፈለግ",
+    "transliteration": "mafalag",
+    "english": "to want / need / look for"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ማወቅ",
+    "transliteration": "mawak",
+    "english": "to know"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "መደወል",
+    "transliteration": "madawal",
+    "english": "to call / phone"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ማሰብ",
+    "transliteration": "masab",
+    "english": "to think"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ማመን",
+    "transliteration": "mamen",
+    "english": "to believe / trust"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "መስማማት",
+    "transliteration": "masmamat",
+    "english": "to agree"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "አልስማማም",
+    "transliteration": "alismamam",
+    "english": "I disagree / I don't agree"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "መምረጥ",
+    "transliteration": "mamrat",
+    "english": "to choose / prefer"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "መጥላት",
+    "transliteration": "matlat",
+    "english": "to dislike / hate"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "መገመት",
+    "transliteration": "magamat",
+    "english": "to guess / suppose / estimate"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "መጠራጠር",
+    "transliteration": "mataratar",
+    "english": "to doubt / be unsure"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "መጨነቅ",
+    "transliteration": "machanak",
+    "english": "to worry / be anxious"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "አስፈላጊ",
+    "transliteration": "asfelagi",
+    "english": "important / necessary"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ከባድ",
+    "transliteration": "kabad",
+    "english": "difficult / hard / heavy"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ቀላል",
+    "transliteration": "kalal",
+    "english": "easy / simple / light"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "አስደሳች",
+    "transliteration": "asdesach",
+    "english": "enjoyable / pleasant"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "አሰልቺ",
+    "transliteration": "asalchi",
+    "english": "boring / tedious"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ጠቃሚ",
+    "transliteration": "tekami",
+    "english": "useful / beneficial"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "አስቸጋሪ",
+    "transliteration": "aschegari",
+    "english": "difficult / troublesome"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ግልጽ",
+    "transliteration": "gilts",
+    "english": "clear / obvious"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "እርግጠኛ",
+    "transliteration": "irgitenya",
+    "english": "sure / certain"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ስህተት",
+    "transliteration": "sihtet",
+    "english": "wrong / mistake / error"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "አስተያየት",
+    "transliteration": "astayayet",
+    "english": "opinion / view / comment"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "እውነት",
+    "transliteration": "iwnet",
+    "english": "truth / true"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ውሸት",
+    "transliteration": "wushet",
+    "english": "lie / falsehood"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ምናልባት",
+    "transliteration": "minalbat",
+    "english": "maybe / perhaps"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ደስታ",
+    "transliteration": "desta",
+    "english": "happiness / joy"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ሀዘን",
+    "transliteration": "hazen",
+    "english": "sadness / grief"
+  },
+  {
+    "category": "Opinions",
+    "amharic": "ጭንቀት",
+    "transliteration": "chinket",
+    "english": "worry / anxiety / stress"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "አድራሻ",
+    "transliteration": "adrasha",
+    "english": "address"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ሰፈር",
+    "transliteration": "safar",
+    "english": "neighborhood, area"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "መታወቂያ",
+    "transliteration": "matawakiya",
+    "english": "ID card, identification"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ትራፊክ",
+    "transliteration": "trafik",
+    "english": "traffic"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ሰልፍ",
+    "transliteration": "salf",
+    "english": "queue, line"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ተራ",
+    "transliteration": "tara",
+    "english": "turn (in line)"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ቅጽ",
+    "transliteration": "kits",
+    "english": "form (document)"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ፊርማ",
+    "transliteration": "firma",
+    "english": "signature"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ፍቃድ",
+    "transliteration": "fikad",
+    "english": "permit, permission"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ደብዳቤ",
+    "transliteration": "dabdabbe",
+    "english": "letter (mail)"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ጥቅል",
+    "transliteration": "tikil",
+    "english": "parcel, bundle"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ማህተም",
+    "transliteration": "mahtam",
+    "english": "official stamp, seal"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ቴምብር",
+    "transliteration": "tembir",
+    "english": "postage stamp"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ሰነድ",
+    "transliteration": "sanad",
+    "english": "document"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ዜጋ",
+    "transliteration": "zega",
+    "english": "citizen"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ቪዛ",
+    "transliteration": "viza",
+    "english": "visa"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ደህንነት",
+    "transliteration": "dehninet",
+    "english": "safety, security"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ዘበኛ",
+    "transliteration": "zabanya",
+    "english": "guard, watchman"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "አደጋ",
+    "transliteration": "adaga",
+    "english": "accident, danger"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ደንብ",
+    "transliteration": "danb",
+    "english": "rule, regulation"
+  },
+  {
+    "category": "Around Town",
+    "amharic": "ማስረጃ",
+    "transliteration": "masraja",
+    "english": "proof, evidence"
+  },
+  {
+    "category": "Education",
+    "amharic": "ትምህርት",
+    "transliteration": "timhirt",
+    "english": "education / lesson / subject"
+  },
+  {
+    "category": "Education",
+    "amharic": "ዩኒቨርሲቲ",
+    "transliteration": "yuniversiti",
+    "english": "university"
+  },
+  {
+    "category": "Education",
+    "amharic": "ኮሌጅ",
+    "transliteration": "kolej",
+    "english": "college"
+  },
+  {
+    "category": "Education",
+    "amharic": "ፈተና",
+    "transliteration": "fatana",
+    "english": "exam / test"
+  },
+  {
+    "category": "Education",
+    "amharic": "የቤት ስራ",
+    "transliteration": "yabet sira",
+    "english": "homework"
+  },
+  {
+    "category": "Education",
+    "amharic": "ብዕር",
+    "transliteration": "bi'ir",
+    "english": "pen"
+  },
+  {
+    "category": "Education",
+    "amharic": "እስክሪብቶ",
+    "transliteration": "iskribto",
+    "english": "ballpoint pen"
+  },
+  {
+    "category": "Education",
+    "amharic": "እርሳስ",
+    "transliteration": "irsas",
+    "english": "pencil"
+  },
+  {
+    "category": "Education",
+    "amharic": "ጥያቄ",
+    "transliteration": "tiyake",
+    "english": "question"
+  },
+  {
+    "category": "Education",
+    "amharic": "ውጤት",
+    "transliteration": "witet",
+    "english": "result / grade (score)"
+  },
+  {
+    "category": "Education",
+    "amharic": "ደረጃ",
+    "transliteration": "daraja",
+    "english": "level / grade / rank"
+  },
+  {
+    "category": "Education",
+    "amharic": "ፊደል",
+    "transliteration": "fidel",
+    "english": "letter / alphabet (script)"
+  },
+  {
+    "category": "Education",
+    "amharic": "ቃል",
+    "transliteration": "kal",
+    "english": "word"
+  },
+  {
+    "category": "Education",
+    "amharic": "ገጽ",
+    "transliteration": "gats",
+    "english": "page"
+  },
+  {
+    "category": "Education",
+    "amharic": "ምዕራፍ",
+    "transliteration": "miraf",
+    "english": "chapter"
+  },
+  {
+    "category": "Education",
+    "amharic": "ማስተማር",
+    "transliteration": "mastamar",
+    "english": "to teach"
+  },
+  {
+    "category": "Education",
+    "amharic": "ማጥናት",
+    "transliteration": "matnat",
+    "english": "to study / revise (for an exam)"
+  },
+  {
+    "category": "Education",
+    "amharic": "ጥናት",
+    "transliteration": "tinat",
+    "english": "study / research"
+  },
+  {
+    "category": "Education",
+    "amharic": "እውቀት",
+    "transliteration": "iwkat",
+    "english": "knowledge"
+  },
+  {
+    "category": "Education",
+    "amharic": "ትርጉም",
+    "transliteration": "tirgum",
+    "english": "meaning / translation"
+  },
+  {
+    "category": "Education",
+    "amharic": "ችሎታ",
+    "transliteration": "chilota",
+    "english": "skill / ability"
+  },
+  {
+    "category": "Education",
+    "amharic": "መዝገበ ቃላት",
+    "transliteration": "mazgaba kalat",
+    "english": "dictionary"
+  },
+  {
+    "category": "Education",
+    "amharic": "ዲግሪ",
+    "transliteration": "digri",
+    "english": "degree (academic)"
+  },
+  {
+    "category": "Education",
+    "amharic": "ምረቃ",
+    "transliteration": "miraka",
+    "english": "graduation"
+  },
+  {
+    "category": "Education",
+    "amharic": "ሰሌዳ",
+    "transliteration": "saleda",
+    "english": "board / blackboard"
+  },
+  {
+    "category": "Education",
+    "amharic": "ጠመኔ",
+    "transliteration": "tamane",
+    "english": "chalk"
+  },
+  {
+    "category": "Education",
+    "amharic": "አረፍተ ነገር",
+    "transliteration": "arafta nagar",
+    "english": "sentence (grammar)"
+  },
+  {
+    "category": "Time",
+    "amharic": "በፊት",
+    "transliteration": "bafit",
+    "english": "before / previously / ago"
+  },
+  {
+    "category": "Time",
+    "amharic": "በኋላ",
+    "transliteration": "bahuwala",
+    "english": "after / afterwards / later"
+  },
+  {
+    "category": "Time",
+    "amharic": "ከዚያ",
+    "transliteration": "kaziya",
+    "english": "then / after that"
+  },
+  {
+    "category": "Time",
+    "amharic": "መጀመሪያ",
+    "transliteration": "majamariya",
+    "english": "first / at first / the beginning"
+  },
+  {
+    "category": "Time",
+    "amharic": "መጨረሻ",
+    "transliteration": "macharasha",
+    "english": "end / last / finally"
+  },
+  {
+    "category": "Time",
+    "amharic": "ወደፊት",
+    "transliteration": "wadafit",
+    "english": "in the future / from now on"
+  },
+  {
+    "category": "Time",
+    "amharic": "ቶሎ",
+    "transliteration": "tolo",
+    "english": "quickly / soon"
+  },
+  {
+    "category": "Time",
+    "amharic": "በቅርቡ",
+    "transliteration": "bakirbu",
+    "english": "soon / in the near future"
+  },
+  {
+    "category": "Time",
+    "amharic": "ሁልጊዜ",
+    "transliteration": "hulgize",
+    "english": "always"
+  },
+  {
+    "category": "Time",
+    "amharic": "አንዳንዴ",
+    "transliteration": "andande",
+    "english": "sometimes"
+  },
+  {
+    "category": "Time",
+    "amharic": "ብዙ ጊዜ",
+    "transliteration": "bizu gize",
+    "english": "often / many times"
+  },
+  {
+    "category": "Time",
+    "amharic": "እንደገና",
+    "transliteration": "indagena",
+    "english": "again"
+  },
+  {
+    "category": "Time",
+    "amharic": "በየቀኑ",
+    "transliteration": "bayakanu",
+    "english": "every day / daily"
+  },
+  {
+    "category": "Time",
+    "amharic": "ከትናንት ወዲያ",
+    "transliteration": "katinant wadiya",
+    "english": "the day before yesterday"
+  },
+  {
+    "category": "Time",
+    "amharic": "ከነገ ወዲያ",
+    "transliteration": "kanaga wadiya",
+    "english": "the day after tomorrow"
+  },
+  {
+    "category": "Time",
+    "amharic": "ቀጥሎ",
+    "transliteration": "katilo",
+    "english": "next / following"
+  },
+  {
+    "category": "Time",
+    "amharic": "አምና",
+    "transliteration": "amna",
+    "english": "last year"
+  },
+  {
+    "category": "Time",
+    "amharic": "ዘንድሮ",
+    "transliteration": "zandro",
+    "english": "this year / nowadays"
+  },
+  {
+    "category": "Time",
+    "amharic": "ድሮ",
+    "transliteration": "diro",
+    "english": "long ago / formerly / in the past"
+  },
+  {
+    "category": "Time",
+    "amharic": "ማልዶ",
+    "transliteration": "maldo",
+    "english": "early (in the morning)"
+  },
+  {
+    "category": "Time",
+    "amharic": "ዘግይቶ",
+    "transliteration": "zagyito",
+    "english": "late / behind schedule"
+  },
+  {
+    "category": "Time",
+    "amharic": "በሰዓቱ",
+    "transliteration": "basaatu",
+    "english": "on time / punctually"
+  },
+  {
+    "category": "Time",
+    "amharic": "በጭራሽ",
+    "transliteration": "bacharash",
+    "english": "never / not at all"
+  },
+  {
+    "category": "Time",
+    "amharic": "አልፎ አልፎ",
+    "transliteration": "alfo alfo",
+    "english": "occasionally / now and then"
+  },
+  {
+    "category": "Time",
+    "amharic": "ደግሞ",
+    "transliteration": "dagmo",
+    "english": "again / also / moreover"
+  },
+  {
+    "category": "Time",
+    "amharic": "ገና",
+    "transliteration": "gena",
+    "english": "yet / still / not yet"
+  },
+  {
+    "category": "Time",
+    "amharic": "ያኔ",
+    "transliteration": "yane",
+    "english": "then / back then / at that time"
+  },
+  {
+    "category": "Time",
+    "amharic": "አስቀድሞ",
+    "transliteration": "askadmo",
+    "english": "beforehand / in advance"
+  },
+  {
+    "category": "Directions",
+    "amharic": "ወደ ቀኝ",
+    "transliteration": "wada kany",
+    "english": "to the right"
+  },
+  {
+    "category": "Directions",
+    "amharic": "ወደ ግራ",
+    "transliteration": "wada gira",
+    "english": "to the left"
+  },
+  {
+    "category": "Body Parts",
+    "amharic": "ክርን",
+    "transliteration": "kirn",
+    "english": "elbow"
+  },
+  {
+    "category": "Colors",
+    "amharic": "ሐምራዊ",
+    "transliteration": "hamrawi",
+    "english": "purple"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ብርቱካን",
+    "transliteration": "birtukan",
+    "english": "orange (fruit)"
+  },
+  {
+    "category": "Animals",
+    "amharic": "ዓሣ",
+    "transliteration": "asa",
+    "english": "fish"
+  },
+  {
+    "category": "Animals",
+    "amharic": "እንቁራሪት",
+    "transliteration": "inkurarit",
+    "english": "frog"
+  },
+  {
+    "category": "Animals",
+    "amharic": "ኤሊ",
+    "transliteration": "eli",
+    "english": "turtle"
+  },
+  {
+    "category": "Animals",
+    "amharic": "ነብር",
+    "transliteration": "nebir",
+    "english": "tiger/leopard"
+  },
+  {
+    "category": "Animals",
+    "amharic": "ጥንቸል",
+    "transliteration": "tinchel",
+    "english": "rabbit"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ነጭ ሽንኩርት",
+    "transliteration": "nech shinkurt",
+    "english": "garlic"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "አናናስ",
+    "transliteration": "ananas",
+    "english": "pineapple"
+  },
+  {
+    "category": "Places",
+    "amharic": "ሽንት ቤት",
+    "transliteration": "shint bet",
+    "english": "bathroom"
+  },
+  {
+    "category": "Household",
+    "amharic": "ሳሎን",
+    "transliteration": "salon",
+    "english": "living room"
+  },
+  {
+    "category": "Places",
+    "amharic": "ወጥ ቤት",
+    "transliteration": "wat bet",
+    "english": "kitchen"
+  },
+  {
+    "category": "Places",
+    "amharic": "መኝታ ቤት",
+    "transliteration": "menyta bet",
+    "english": "bedroom"
+  },
+  {
+    "category": "Household",
+    "amharic": "ፎጣ",
+    "transliteration": "fota",
+    "english": "towel"
+  },
+  {
+    "category": "Household",
+    "amharic": "ብርድ ልብስ",
+    "transliteration": "berd libs",
+    "english": "blanket"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ፒጃማ",
+    "transliteration": "pijama",
+    "english": "pajamas"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ሞላላ",
+    "transliteration": "molala",
+    "english": "oval"
+  },
+  {
+    "category": "Weather & Nature",
+    "amharic": "ጸደይ",
+    "transliteration": "tsedey",
+    "english": "spring (season)"
+  },
+  {
+    "category": "Household",
+    "amharic": "ኳስ",
+    "transliteration": "kuas",
+    "english": "ball"
+  },
+  {
+    "category": "Entertainment",
+    "amharic": "ከበሮ",
+    "transliteration": "kebero",
+    "english": "drum"
+  },
+  {
+    "category": "Household",
+    "amharic": "አሻንጉሊት",
+    "transliteration": "ashangulit",
+    "english": "doll"
+  },
+  {
+    "category": "Places",
+    "amharic": "ጎዳና",
+    "transliteration": "godana",
+    "english": "street"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አስር",
+    "transliteration": "asir",
+    "english": "ten (10)"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "አዉቶብስ ጣቢያ",
+    "transliteration": "awtobus tabiya",
+    "english": "bus station"
+  },
+  {
+    "category": "Places",
+    "amharic": "መሃል ከተማ",
+    "transliteration": "mahal katama",
+    "english": "city centre"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "አዉራ ጎዳና",
+    "transliteration": "awra godana",
+    "english": "highway"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ዋና መንገድ",
+    "transliteration": "wanna mangad",
+    "english": "main road"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ታክሲ ማቆሚያ",
+    "transliteration": "taksi makomiya",
+    "english": "taxi stand"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ትኬት መሽጫ",
+    "transliteration": "tiket mashacha",
+    "english": "ticket office"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ፒክ አፕ",
+    "transliteration": "pikap",
+    "english": "pick-up (vehicle)"
+  },
+  {
+    "category": "Directions",
+    "amharic": "አካባቢ",
+    "transliteration": "akababi",
+    "english": "area / vicinity"
+  },
+  {
+    "category": "Directions",
+    "amharic": "አጠገብ",
+    "transliteration": "atagab",
+    "english": "next to"
+  },
+  {
+    "category": "Directions",
+    "amharic": "መታጠፊያ",
+    "transliteration": "matatafiya",
+    "english": "turning / junction"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "መሄጃ ብቻ ትኬት",
+    "transliteration": "maheja bicha tiket",
+    "english": "one-way ticket"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ደርሶ መልስ ትኬት",
+    "transliteration": "darso mals tiket",
+    "english": "return ticket"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ሻንጣ",
+    "transliteration": "shanta",
+    "english": "bag / luggage"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "በረራ",
+    "transliteration": "barara",
+    "english": "flight"
+  },
+  {
+    "category": "Places",
+    "amharic": "ድንበር",
+    "transliteration": "dinbar",
+    "english": "border"
+  },
+  {
+    "category": "Places",
+    "amharic": "ግምሩክ",
+    "transliteration": "gimruk",
+    "english": "customs"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ነዳጅ ማደያ",
+    "transliteration": "nadaj madaya",
+    "english": "petrol station"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "ፍሬን",
+    "transliteration": "fren",
+    "english": "brakes"
+  },
+  {
+    "category": "Transportation",
+    "amharic": "መንጃ ፈቃድ",
+    "transliteration": "minja fakad",
+    "english": "driver's licence"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "ክልክል",
+    "transliteration": "kilkil",
+    "english": "forbidden / prohibited"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ቱሪስት",
+    "transliteration": "turist",
+    "english": "tourist"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "ታሪካዊ",
+    "transliteration": "tarikawi",
+    "english": "historical"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "ትራስ",
+    "transliteration": "tiras",
+    "english": "pillow"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "አንሶላ",
+    "transliteration": "ansola",
+    "english": "sheet / bed sheet"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "ፍራሽ",
+    "transliteration": "firash",
+    "english": "mattress"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "መታጠቢያ ቤት",
+    "transliteration": "matatabiya bet",
+    "english": "bathroom"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "ሻማ",
+    "transliteration": "shama",
+    "english": "candle"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "ክብሪት",
+    "transliteration": "kibrit",
+    "english": "matches"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "ሶኬት",
+    "transliteration": "soket",
+    "english": "power socket"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "የቢምቢ መረብ",
+    "transliteration": "yebimbi mereb",
+    "english": "mosquito net"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "ቁም ሳጥን",
+    "transliteration": "kum satin",
+    "english": "cupboard"
+  },
+  {
+    "category": "Accommodation",
+    "amharic": "ካዉያ",
+    "transliteration": "kawya",
+    "english": "iron (for clothes)"
+  },
+  {
+    "category": "Occupations",
+    "amharic": "ተሸካሚ",
+    "transliteration": "teshekami",
+    "english": "porter"
+  },
+  {
+    "category": "Places",
+    "amharic": "የጉዞ ወኪል",
+    "transliteration": "ya-guzo wakil",
+    "english": "travel agency"
+  },
+  {
+    "category": "Places",
+    "amharic": "ኤምባሲ",
+    "transliteration": "embasi",
+    "english": "embassy"
+  },
+  {
+    "category": "Places",
+    "amharic": "የቱሪስት ቢሮ",
+    "transliteration": "ya-turist biro",
+    "english": "tourist office"
+  },
+  {
+    "category": "Places",
+    "amharic": "ዩኒቨርስቲ",
+    "transliteration": "yuniversti",
+    "english": "university"
+  },
+  {
+    "category": "Money",
+    "amharic": "የገንዘብ ዓይነት",
+    "transliteration": "ya-ganzab aynet",
+    "english": "currency"
+  },
+  {
+    "category": "Money",
+    "amharic": "የገንዘብ መቀየሪያ ቢሮ",
+    "transliteration": "ya-ganzab makayariya biro",
+    "english": "exchange bureau"
+  },
+  {
+    "category": "Post Office",
+    "amharic": "ፖስታ",
+    "transliteration": "posta",
+    "english": "envelope"
+  },
+  {
+    "category": "Post Office",
+    "amharic": "የአየር መልእክት",
+    "transliteration": "ya-ayer mal'ikt",
+    "english": "airmail"
+  },
+  {
+    "category": "Post Office",
+    "amharic": "ያደራ ደብዳቤ",
+    "transliteration": "yadera dabdabe",
+    "english": "registered post"
+  },
+  {
+    "category": "Telephone",
+    "amharic": "ስልክ ቤት",
+    "transliteration": "silk bet",
+    "english": "telephone office"
+  },
+  {
+    "category": "Telephone",
+    "amharic": "የሕዝብ ስልክ",
+    "transliteration": "ya-hizb silk",
+    "english": "public telephone"
+  },
+  {
+    "category": "Telephone",
+    "amharic": "የስልክ ማዉጫ",
+    "transliteration": "ya-silk mawcha",
+    "english": "phone book/directory"
+  },
+  {
+    "category": "Telephone",
+    "amharic": "የፋክስ አገልግሎት",
+    "transliteration": "ya-faks agelglot",
+    "english": "fax service"
+  },
+  {
+    "category": "Telephone",
+    "amharic": "አስቸኳይ",
+    "transliteration": "aschekway",
+    "english": "urgent"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "ቤተ መዘክር",
+    "transliteration": "beta mazakir",
+    "english": "museum"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "ዙ",
+    "transliteration": "zu",
+    "english": "zoo"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "መናፈሻ",
+    "transliteration": "manafesha",
+    "english": "park/gardens"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "መዋኛ ቦታ",
+    "transliteration": "mawanya bota",
+    "english": "swimming pool"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "አደባባይ",
+    "transliteration": "adababay",
+    "english": "public square (plaza)"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "ስታዲየም",
+    "transliteration": "stadiyem",
+    "english": "stadium"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "ሐዉልት",
+    "transliteration": "hawilt",
+    "english": "statue/monument"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "ደብር",
+    "transliteration": "dabir",
+    "english": "monastery"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "አዳራሽ",
+    "transliteration": "adarash",
+    "english": "hall"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "ፍል ዉሃ",
+    "transliteration": "fil wiha",
+    "english": "hot spring baths"
+  },
+  {
+    "category": "Sightseeing",
+    "amharic": "መርካቶ",
+    "transliteration": "merkato",
+    "english": "market district (Mercato)"
+  },
+  {
+    "category": "History",
+    "amharic": "ታሪክ",
+    "transliteration": "tarik",
+    "english": "history"
+  },
+  {
+    "category": "History",
+    "amharic": "ግምብ",
+    "transliteration": "gimb",
+    "english": "castle"
+  },
+  {
+    "category": "History",
+    "amharic": "ንጉሰ ነገስት",
+    "transliteration": "niguse negest",
+    "english": "emperor"
+  },
+  {
+    "category": "History",
+    "amharic": "ከአለት የተሰሩ ቤተ ክርስቲያኖች",
+    "transliteration": "ka-alet yatasaru beta kristiyanoch",
+    "english": "rock-hewn churches"
+  },
+  {
+    "category": "Street",
+    "amharic": "ሊስትሮ",
+    "transliteration": "listro",
+    "english": "shoe shiner"
+  },
+  {
+    "category": "Street",
+    "amharic": "የትራፊክ መብራት",
+    "transliteration": "ya-trafik mabrat",
+    "english": "traffic lights"
+  },
+  {
+    "category": "Street",
+    "amharic": "ሱቅ በደረቴ",
+    "transliteration": "suk badarete",
+    "english": "street hawkers"
+  },
+  {
+    "category": "Paperwork",
+    "amharic": "ቅፅ",
+    "transliteration": "kits",
+    "english": "form"
+  },
+  {
+    "category": "Paperwork",
+    "amharic": "ዜግነት",
+    "transliteration": "zegnet",
+    "english": "nationality"
+  },
+  {
+    "category": "Paperwork",
+    "amharic": "ሃይማኖት",
+    "transliteration": "haymanot",
+    "english": "religion"
+  },
+  {
+    "category": "Paperwork",
+    "amharic": "እድሜ",
+    "transliteration": "idme",
+    "english": "age"
+  },
+  {
+    "category": "Hair Styles",
+    "amharic": "ሹሩባ",
+    "transliteration": "shuruba",
+    "english": "braids"
+  },
+  {
+    "category": "Hair Styles",
+    "amharic": "ቁንዳላ",
+    "transliteration": "kundalla",
+    "english": "traditional afro"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ሸሚዝ",
+    "transliteration": "shemiz",
+    "english": "shirt"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ጃኬት",
+    "transliteration": "jaket",
+    "english": "jacket"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ጅንስ",
+    "transliteration": "jins",
+    "english": "jeans"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ሹራብ",
+    "transliteration": "shurab",
+    "english": "jumper/sweater"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ካልሲ",
+    "transliteration": "kalsi",
+    "english": "socks"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ቁምጣ ሱሪ",
+    "transliteration": "kumta suri",
+    "english": "shorts"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ጡት ማስያዣ",
+    "transliteration": "tut masiyazha",
+    "english": "bra"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ጨርቅ",
+    "transliteration": "chark",
+    "english": "fabric/cloth"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ኩታ",
+    "transliteration": "kuta",
+    "english": "kuta (white cotton toga, thicker than netela)"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ሻሽ",
+    "transliteration": "shash",
+    "english": "shash (female head cloth)"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "በርኖስ",
+    "transliteration": "burnos",
+    "english": "woollen cape"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "የባህል ልብስ",
+    "transliteration": "yabahil libs",
+    "english": "traditional dress/clothing"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ጥጥ",
+    "transliteration": "tit",
+    "english": "cotton"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ሐር",
+    "transliteration": "har",
+    "english": "silk"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ሱፍ",
+    "transliteration": "suf",
+    "english": "wool"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "መስቀል",
+    "transliteration": "meskel",
+    "english": "cross"
+  },
+  {
+    "category": "Household",
+    "amharic": "ምንጣፍ",
+    "transliteration": "mintaf",
+    "english": "carpet"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ቅርጻ ቅርጽ",
+    "transliteration": "kirtsa kirts",
+    "english": "carving"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ስዕል",
+    "transliteration": "si'il",
+    "english": "painting"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ብራና",
+    "transliteration": "birana",
+    "english": "parchment (of animal hide)"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ጃንጥላ",
+    "transliteration": "jantila",
+    "english": "umbrella"
+  },
+  {
+    "category": "Household",
+    "amharic": "ቅርጫት",
+    "transliteration": "kirchat",
+    "english": "basket"
+  },
+  {
+    "category": "Household",
+    "amharic": "መሶብ",
+    "transliteration": "mesob",
+    "english": "mesob (woven basket-table for injera)"
+  },
+  {
+    "category": "Household",
+    "amharic": "ዘንቢል",
+    "transliteration": "zenbil",
+    "english": "basket for carrying goods/shopping"
+  },
+  {
+    "category": "Clothing",
+    "amharic": "ቀበቶ",
+    "transliteration": "kabato",
+    "english": "belt"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "አምባር",
+    "transliteration": "ambar",
+    "english": "bracelet"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ጉትቻ",
+    "transliteration": "guticha",
+    "english": "earrings"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "የፀሃይ መነፅር",
+    "transliteration": "yatsahay menetsir",
+    "english": "sunglasses"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ፖርሳ",
+    "transliteration": "porsa",
+    "english": "purse/wallet"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ዱቄት",
+    "transliteration": "duket",
+    "english": "flour"
+  },
+  {
+    "category": "Household",
+    "amharic": "ሽቶ",
+    "transliteration": "shito",
+    "english": "perfume"
+  },
+  {
+    "category": "Household",
+    "amharic": "መስታወት",
+    "transliteration": "mestawet",
+    "english": "mirror"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "አዲስ",
+    "transliteration": "addis",
+    "english": "new"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "አሮጌ",
+    "transliteration": "aroge",
+    "english": "old (used)"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ድንኳን",
+    "transliteration": "dinkwan",
+    "english": "tent"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ከሰል",
+    "transliteration": "kasal",
+    "english": "charcoal"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ፋኖስ",
+    "transliteration": "fanos",
+    "english": "oil lamp"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ገመድ",
+    "transliteration": "gamad",
+    "english": "rope"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ዱላ",
+    "transliteration": "dula",
+    "english": "stick"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ኮርቻ",
+    "transliteration": "korcha",
+    "english": "saddle"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ከፍታ",
+    "transliteration": "kafta",
+    "english": "altitude"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "አቀበት",
+    "transliteration": "akabet",
+    "english": "uphill"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "ቁልቁለት",
+    "transliteration": "kulkulet",
+    "english": "downhill"
+  },
+  {
+    "category": "Camping & Outdoors",
+    "amharic": "የግር ጉዞ",
+    "transliteration": "yagir guzo",
+    "english": "hike/trek"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "ግብርና",
+    "transliteration": "gibrina",
+    "english": "agriculture"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "እህል",
+    "transliteration": "ihil",
+    "english": "crops/grain"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "አጥር",
+    "transliteration": "atir",
+    "english": "fence"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "ሜዳ",
+    "transliteration": "meda",
+    "english": "field/meadow"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "መኸር",
+    "transliteration": "mahar",
+    "english": "harvest"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "ጎጆ ቤት",
+    "transliteration": "gojo bet",
+    "english": "hut"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "ከብት",
+    "transliteration": "kabt",
+    "english": "livestock"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "ማረሻ",
+    "transliteration": "maresha",
+    "english": "plough"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "እረኛ",
+    "transliteration": "iranya",
+    "english": "shepherd"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "መንደር",
+    "transliteration": "mandar",
+    "english": "village"
+  },
+  {
+    "category": "Farm & Countryside",
+    "amharic": "ባላገር",
+    "transliteration": "balagar",
+    "english": "country person"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ያየር ሁኔታ",
+    "transliteration": "yayer huneta",
+    "english": "weather"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ደመናማ",
+    "transliteration": "damanama",
+    "english": "cloudy"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ዝናባማ",
+    "transliteration": "zinabama",
+    "english": "rainy"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ፀሃያማ",
+    "transliteration": "tsahayama",
+    "english": "sunny"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ነፋሻማ",
+    "transliteration": "nafashama",
+    "english": "windy"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ነጎድጓዳማ",
+    "transliteration": "negodgwadama",
+    "english": "stormy"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ብሩህ",
+    "transliteration": "biruh",
+    "english": "bright"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ጨለማ",
+    "transliteration": "chelama",
+    "english": "dark"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ድርቅ",
+    "transliteration": "dirk",
+    "english": "drought"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ጉም",
+    "transliteration": "gum",
+    "english": "fog"
+  },
+  {
+    "category": "Weather",
+    "amharic": "መብረቅ",
+    "transliteration": "mabrek",
+    "english": "lightning"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ነጎድጓድ",
+    "transliteration": "negodgwad",
+    "english": "thunder"
+  },
+  {
+    "category": "Weather",
+    "amharic": "ቀስተ ደመና",
+    "transliteration": "kaste damana",
+    "english": "rainbow"
+  },
+  {
+    "category": "Weather",
+    "amharic": "መጠለያ",
+    "transliteration": "mataleya",
+    "english": "shelter"
+  },
+  {
+    "category": "Seasons & Zones",
+    "amharic": "ፀደይ",
+    "transliteration": "tsaday",
+    "english": "spring (season)"
+  },
+  {
+    "category": "Seasons & Zones",
+    "amharic": "በልግ",
+    "transliteration": "balg",
+    "english": "belg (short rains)"
+  },
+  {
+    "category": "Seasons & Zones",
+    "amharic": "ደጋ",
+    "transliteration": "dega",
+    "english": "highland (cool) zone"
+  },
+  {
+    "category": "Seasons & Zones",
+    "amharic": "ቆላ",
+    "transliteration": "kola",
+    "english": "hot lowland zone"
+  },
+  {
+    "category": "Seasons & Zones",
+    "amharic": "ወይና ደጋ",
+    "transliteration": "wayna dega",
+    "english": "temperate zone"
+  },
+  {
+    "category": "Geography",
+    "amharic": "መሬት",
+    "transliteration": "maret",
+    "english": "ground/earth"
+  },
+  {
+    "category": "Geography",
+    "amharic": "ዋሻ",
+    "transliteration": "washa",
+    "english": "cave"
+  },
+  {
+    "category": "Geography",
+    "amharic": "ገደል",
+    "transliteration": "gedel",
+    "english": "cliff/gorge"
+  },
+  {
+    "category": "Geography",
+    "amharic": "አገር ቤት",
+    "transliteration": "ager bet",
+    "english": "countryside"
+  },
+  {
+    "category": "Geography",
+    "amharic": "ጅረት",
+    "transliteration": "jiret",
+    "english": "creek/stream"
+  },
+  {
+    "category": "Geography",
+    "amharic": "ግድብ",
+    "transliteration": "gidib",
+    "english": "dam"
+  },
+  {
+    "category": "Geography",
+    "amharic": "በረሃ",
+    "transliteration": "bereha",
+    "english": "desert"
+  },
+  {
+    "category": "Geography",
+    "amharic": "አምባ",
+    "transliteration": "amba",
+    "english": "plateau/flat-top mountain"
+  },
+  {
+    "category": "Geography",
+    "amharic": "ኩሬ",
+    "transliteration": "kure",
+    "english": "pond"
+  },
+  {
+    "category": "Geography",
+    "amharic": "ክልል",
+    "transliteration": "kilil",
+    "english": "region"
+  },
+  {
+    "category": "Animals — Domestic",
+    "amharic": "ግመል",
+    "transliteration": "gimal",
+    "english": "camel"
+  },
+  {
+    "category": "Animals — Domestic",
+    "amharic": "ፍየል",
+    "transliteration": "fiyel",
+    "english": "goat"
+  },
+  {
+    "category": "Animals — Domestic",
+    "amharic": "በሬ",
+    "transliteration": "bare",
+    "english": "ox"
+  },
+  {
+    "category": "Animals — Domestic",
+    "amharic": "አዉራ ዶሮ",
+    "transliteration": "awra doro",
+    "english": "rooster"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ዝሆን",
+    "transliteration": "zihon",
+    "english": "elephant"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ጅብ",
+    "transliteration": "jib",
+    "english": "hyena"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "አዞ",
+    "transliteration": "azo",
+    "english": "crocodile"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ጉማሬ",
+    "transliteration": "gumare",
+    "english": "hippopotamus"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ቀጭኔ",
+    "transliteration": "kachine",
+    "english": "giraffe"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "አሳ",
+    "transliteration": "asa",
+    "english": "fish"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "እባብ",
+    "transliteration": "ibab",
+    "english": "snake"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ቀበሮ",
+    "transliteration": "kabaro",
+    "english": "jackal/fox"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ጎሽ",
+    "transliteration": "gosh",
+    "english": "buffalo"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ጭላዳ",
+    "transliteration": "chilada",
+    "english": "Gelada baboon"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ጉሬዛ",
+    "transliteration": "gureza",
+    "english": "Colobus monkey"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "ዋሊያ አይቤክስ",
+    "transliteration": "waliya aybeks",
+    "english": "Walia ibex (Ethiopian mountain goat)"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "የሜዳ አህያ",
+    "transliteration": "yameda ahiya",
+    "english": "zebra"
+  },
+  {
+    "category": "Animals — Wild",
+    "amharic": "የዱር አራዊት",
+    "transliteration": "yadur arawit",
+    "english": "wildlife"
+  },
+  {
+    "category": "Birds",
+    "amharic": "ንስር",
+    "transliteration": "nisir",
+    "english": "eagle"
+  },
+  {
+    "category": "Birds",
+    "amharic": "ጉጉት",
+    "transliteration": "gugut",
+    "english": "owl"
+  },
+  {
+    "category": "Birds",
+    "amharic": "ቁራ",
+    "transliteration": "kura",
+    "english": "crow/raven"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ጉንዳን",
+    "transliteration": "gundan",
+    "english": "ant"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ንብ",
+    "transliteration": "nib",
+    "english": "bee"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ቢራቢሮ",
+    "transliteration": "birabiro",
+    "english": "butterfly"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ዝምብ",
+    "transliteration": "zimb",
+    "english": "fly"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ቢምቢ",
+    "transliteration": "bimbi",
+    "english": "mosquito"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ጊንጥ",
+    "transliteration": "gint",
+    "english": "scorpion"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ሸረሪት",
+    "transliteration": "shererit",
+    "english": "spider"
+  },
+  {
+    "category": "Insects",
+    "amharic": "ተባይ",
+    "transliteration": "tebay",
+    "english": "insect/pest"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ግራር",
+    "transliteration": "girar",
+    "english": "acacia tree"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ገብስ",
+    "transliteration": "gebs",
+    "english": "barley"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ጫት",
+    "transliteration": "chat",
+    "english": "chat/khat"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ባህር ዛፍ",
+    "transliteration": "bahir zaf",
+    "english": "eucalyptus tree"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ኮባ",
+    "transliteration": "koba",
+    "english": "false banana (enset)"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "አበባ",
+    "transliteration": "abeba",
+    "english": "flower"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "እንጉዳይ",
+    "transliteration": "ingudai",
+    "english": "mushroom"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "መልቀም",
+    "transliteration": "malkam",
+    "english": "to pick (coffee/fruit)"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ማሽላ",
+    "transliteration": "mashila",
+    "english": "sorghum"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ጤፍ",
+    "transliteration": "tef",
+    "english": "teff"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "እሾህ",
+    "transliteration": "ishoh",
+    "english": "thorn"
+  },
+  {
+    "category": "Plants & Crops",
+    "amharic": "ስንዴ",
+    "transliteration": "sinde",
+    "english": "wheat"
+  },
+  {
+    "category": "Disabilities",
+    "amharic": "አካሉ የተጎዳ ሰዉ",
+    "transliteration": "akalu yatagoda saw",
+    "english": "disabled person"
+  },
+  {
+    "category": "Disabilities",
+    "amharic": "አይነ ስዉርን የሚመራ ውሻ",
+    "transliteration": "ayne siwiren yamimera wisha",
+    "english": "guide dog"
+  },
+  {
+    "category": "Disabilities",
+    "amharic": "ምርኩዝ",
+    "transliteration": "mirkuz",
+    "english": "walking stick"
+  },
+  {
+    "category": "Disabilities",
+    "amharic": "ተሽከርካሪ ወንበር",
+    "transliteration": "teshkerkari wenber",
+    "english": "wheelchair"
+  },
+  {
+    "category": "Children & Family",
+    "amharic": "ሞግዚት",
+    "transliteration": "mogzit",
+    "english": "babysitter"
+  },
+  {
+    "category": "Children & Family",
+    "amharic": "የሕፃን አልጋ",
+    "transliteration": "ya hitsan alga",
+    "english": "cradle / cot"
+  },
+  {
+    "category": "Children & Family",
+    "amharic": "መዋለ ህፃናት",
+    "transliteration": "mewale hitsanat",
+    "english": "nursery"
+  },
+  {
+    "category": "Work",
+    "amharic": "ጊዜአዊ",
+    "transliteration": "gizeawi",
+    "english": "casual / temporary"
+  },
+  {
+    "category": "Work",
+    "amharic": "ቀጣሪ",
+    "transliteration": "ketari",
+    "english": "employer"
+  },
+  {
+    "category": "Work",
+    "amharic": "የስራ ማስታወቂያ",
+    "transliteration": "ya sira mastawekiya",
+    "english": "job advertisement"
+  },
+  {
+    "category": "Work",
+    "amharic": "ፈቃደኛ",
+    "transliteration": "fekadenya",
+    "english": "voluntary"
+  },
+  {
+    "category": "Business",
+    "amharic": "ጉባኤ",
+    "transliteration": "gubae",
+    "english": "conference"
+  },
+  {
+    "category": "Business",
+    "amharic": "ንግድ ባዛር",
+    "transliteration": "nigd bazar",
+    "english": "trade fair"
+  },
+  {
+    "category": "Business",
+    "amharic": "እርዳታ ድርጅት",
+    "transliteration": "irdata dirijit",
+    "english": "aid organisation"
+  },
+  {
+    "category": "Business",
+    "amharic": "የስራ ባልደረባ",
+    "transliteration": "ya sira baldereba",
+    "english": "colleague"
+  },
+  {
+    "category": "Business",
+    "amharic": "ኤግዚቢሽን",
+    "transliteration": "egzibishin",
+    "english": "exhibition"
+  },
+  {
+    "category": "Business",
+    "amharic": "ናሙና",
+    "transliteration": "namuna",
+    "english": "sample"
+  },
+  {
+    "category": "Media & Journalism",
+    "amharic": "ትምህርታዊ ፊልም",
+    "transliteration": "timhirtawi film",
+    "english": "documentary"
+  },
+  {
+    "category": "Adoption & Roots",
+    "amharic": "ጉድፈቻ",
+    "transliteration": "gudfecha",
+    "english": "adoption"
+  },
+  {
+    "category": "Adoption & Roots",
+    "amharic": "ዉል",
+    "transliteration": "wul",
+    "english": "contract"
+  },
+  {
+    "category": "Adoption & Roots",
+    "amharic": "የትዉልድ ቀን",
+    "transliteration": "ya tiwlid kan",
+    "english": "date of birth"
+  },
+  {
+    "category": "Adoption & Roots",
+    "amharic": "አሳዳጊ የሌለዉ ልጅ",
+    "transliteration": "asadagi yelelew lij",
+    "english": "orphan"
+  },
+  {
+    "category": "Adoption & Roots",
+    "amharic": "ተወካይ",
+    "transliteration": "tewekay",
+    "english": "representative"
+  },
+  {
+    "category": "Adoption & Roots",
+    "amharic": "ምስክር",
+    "transliteration": "misikir",
+    "english": "witness"
+  },
+  {
+    "category": "Months",
+    "amharic": "መስከረም",
+    "transliteration": "maskaram",
+    "english": "Meskerem (1st Ethiopian month, ~September/October)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ጥቅምት",
+    "transliteration": "tikimt",
+    "english": "Tikimt (~October/November)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ኅዳር",
+    "transliteration": "hidar",
+    "english": "Hidar (~November/December)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ታህሳስ",
+    "transliteration": "tahsas",
+    "english": "Tahsas (~December/January)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ጥር",
+    "transliteration": "tir",
+    "english": "Tir (~January/February)"
+  },
+  {
+    "category": "Months",
+    "amharic": "የካቲት",
+    "transliteration": "yakatit",
+    "english": "Yekatit (~February/March)"
+  },
+  {
+    "category": "Months",
+    "amharic": "መጋቢት",
+    "transliteration": "magabit",
+    "english": "Megabit (~March/April)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ሚያዚያ",
+    "transliteration": "miyaziya",
+    "english": "Miyazya (~April/May)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ግንቦት",
+    "transliteration": "ginbot",
+    "english": "Ginbot (~May/June)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ሰኔ",
+    "transliteration": "sene",
+    "english": "Sene (~June/July)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ሐምሌ",
+    "transliteration": "hamle",
+    "english": "Hamle (~July/August)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ነሐሴ",
+    "transliteration": "nehase",
+    "english": "Nehase (~August/September)"
+  },
+  {
+    "category": "Months",
+    "amharic": "ጳጉሜ",
+    "transliteration": "pagume",
+    "english": "Pagume (13th month, 5-6 days)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አንድ",
+    "transliteration": "and",
+    "english": "one (1)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሁለት",
+    "transliteration": "hulet",
+    "english": "two (2)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሶስት",
+    "transliteration": "sost",
+    "english": "three (3)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አራት",
+    "transliteration": "arat",
+    "english": "four (4)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አምስት",
+    "transliteration": "amist",
+    "english": "five (5)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ስድስት",
+    "transliteration": "sidist",
+    "english": "six (6)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሰባት",
+    "transliteration": "sabat",
+    "english": "seven (7)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ስምንት",
+    "transliteration": "simint",
+    "english": "eight (8)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ዘጠኝ",
+    "transliteration": "zatany",
+    "english": "nine (9)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አስራ አንድ",
+    "transliteration": "asra and",
+    "english": "eleven (11)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሃያ",
+    "transliteration": "haya",
+    "english": "twenty (20)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሰላሳ",
+    "transliteration": "salasa",
+    "english": "thirty (30)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አርባ",
+    "transliteration": "arba",
+    "english": "forty (40)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አምሳ",
+    "transliteration": "hamsa",
+    "english": "fifty (50)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ስልሳ",
+    "transliteration": "silsa",
+    "english": "sixty (60)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሰባ",
+    "transliteration": "saba",
+    "english": "seventy (70)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሰማንያ",
+    "transliteration": "samanya",
+    "english": "eighty (80)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ዘጠና",
+    "transliteration": "zatana",
+    "english": "ninety (90)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "መቶ",
+    "transliteration": "mato",
+    "english": "one hundred (100)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አንድ ሺ",
+    "transliteration": "and shi",
+    "english": "one thousand (1,000)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አንድ ሚሊዮን",
+    "transliteration": "and miliyon",
+    "english": "one million (1,000,000)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አንደኛ",
+    "transliteration": "andanya",
+    "english": "first (1st)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሁለተኛ",
+    "transliteration": "huletanya",
+    "english": "second (2nd)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሶስተኛ",
+    "transliteration": "sostanya",
+    "english": "third (3rd)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አራተኛ",
+    "transliteration": "aratanya",
+    "english": "fourth (4th)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አምስተኛ",
+    "transliteration": "amistanya",
+    "english": "fifth (5th)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ስድስተኛ",
+    "transliteration": "sidistanya",
+    "english": "sixth (6th)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሰባተኛ",
+    "transliteration": "sabatanya",
+    "english": "seventh (7th)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ስምንተኛ",
+    "transliteration": "simintanya",
+    "english": "eighth (8th)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ዘጠነኛ",
+    "transliteration": "zatananya",
+    "english": "ninth (9th)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "አስረኛ",
+    "transliteration": "asiranya",
+    "english": "tenth (10th)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ሩብ",
+    "transliteration": "rub",
+    "english": "a quarter (1/4)"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ደርዘን",
+    "transliteration": "derzen",
+    "english": "a dozen"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "በቂ",
+    "transliteration": "beki",
+    "english": "enough"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "ተጨማሪ",
+    "transliteration": "tachemari",
+    "english": "more / extra"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "ያነሰ",
+    "transliteration": "yanase",
+    "english": "less"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "መቶኛ",
+    "transliteration": "matonya",
+    "english": "percent"
+  },
+  {
+    "category": "Numbers",
+    "amharic": "ጠቅላላ",
+    "transliteration": "teklala",
+    "english": "total"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ይጀምራል",
+    "transliteration": "yijamral",
+    "english": "it starts / does it start"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ያልቃል",
+    "transliteration": "yalkal",
+    "english": "it ends / finishes"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ይከፈታል",
+    "transliteration": "yikafatal",
+    "english": "it opens / does it open"
+  },
+  {
+    "category": "Common Verbs",
+    "amharic": "ይዘጋል",
+    "transliteration": "yizzagal",
+    "english": "it closes / does it close"
+  },
+  {
+    "category": "Forms of Address",
+    "amharic": "አቶ",
+    "transliteration": "ato",
+    "english": "Mr"
+  },
+  {
+    "category": "Forms of Address",
+    "amharic": "ወይዘሮ",
+    "transliteration": "wayzaro",
+    "english": "Mrs"
+  },
+  {
+    "category": "Forms of Address",
+    "amharic": "ወይዘሪት",
+    "transliteration": "wayzarit",
+    "english": "Miss"
+  },
+  {
+    "category": "Forms of Address",
+    "amharic": "ጋሼ",
+    "transliteration": "gashe",
+    "english": "elder brother / 'my shield' (respectful address for a slightly older man)"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ፈረንሳይ",
+    "transliteration": "faransay",
+    "english": "France"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ጀርመን",
+    "transliteration": "jarman",
+    "english": "Germany"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ጣሊያን",
+    "transliteration": "taliyan",
+    "english": "Italy"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ጃፓን",
+    "transliteration": "japan",
+    "english": "Japan"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ካናዳ",
+    "transliteration": "kanada",
+    "english": "Canada"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "አውስትራሊያ",
+    "transliteration": "awstraliya",
+    "english": "Australia"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ግብጽ",
+    "transliteration": "gibts",
+    "english": "Egypt"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ሕንድ",
+    "transliteration": "hind",
+    "english": "India"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "እስራኤል",
+    "transliteration": "israel",
+    "english": "Israel"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "አፍሪካ",
+    "transliteration": "afrika",
+    "english": "Africa"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "እስያ",
+    "transliteration": "isya",
+    "english": "Asia"
+  },
+  {
+    "category": "Nationalities",
+    "amharic": "ግሪክ",
+    "transliteration": "girik",
+    "english": "Greece"
+  },
+  {
+    "category": "Languages",
+    "amharic": "አማርኛ",
+    "transliteration": "amaranya",
+    "english": "Amharic (language)"
+  },
+  {
+    "category": "Languages",
+    "amharic": "እንግሊዝኛ",
+    "transliteration": "inglizinya",
+    "english": "English (language)"
+  },
+  {
+    "category": "Languages",
+    "amharic": "ኦሮምኛ",
+    "transliteration": "orominya",
+    "english": "Oromo (language)"
+  },
+  {
+    "category": "Languages",
+    "amharic": "ትግርኛ",
+    "transliteration": "tigrinya",
+    "english": "Tigrinya (language)"
+  },
+  {
+    "category": "Culture & Beliefs",
+    "amharic": "ባህል",
+    "transliteration": "bahil",
+    "english": "culture"
+  },
+  {
+    "category": "Culture & Beliefs",
+    "amharic": "እምነት",
+    "transliteration": "imnet",
+    "english": "belief / faith"
+  },
+  {
+    "category": "Occupations",
+    "amharic": "ጋዜጠኛ",
+    "transliteration": "gazetenya",
+    "english": "journalist"
+  },
+  {
+    "category": "Occupations",
+    "amharic": "ተመራማሪ",
+    "transliteration": "tamaramari",
+    "english": "scientist / researcher"
+  },
+  {
+    "category": "Occupations",
+    "amharic": "አስጎብኚ",
+    "transliteration": "asgobnyi",
+    "english": "tour guide"
+  },
+  {
+    "category": "Studies",
+    "amharic": "ሕግ",
+    "transliteration": "hig",
+    "english": "law (field of study)"
+  },
+  {
+    "category": "Studies",
+    "amharic": "ሕክምና",
+    "transliteration": "hikimna",
+    "english": "medicine (field of study)"
+  },
+  {
+    "category": "Studies",
+    "amharic": "ንግድ",
+    "transliteration": "nigd",
+    "english": "business / trade"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ገጠር",
+    "transliteration": "gatar",
+    "english": "countryside"
+  },
+  {
+    "category": "Common Nouns",
+    "amharic": "ዕድሜ",
+    "transliteration": "idme",
+    "english": "age"
+  },
+  {
+    "category": "Family",
+    "amharic": "አክስት",
+    "transliteration": "akist",
+    "english": "aunt"
+  },
+  {
+    "category": "Family",
+    "amharic": "አጎት",
+    "transliteration": "agot",
+    "english": "uncle"
+  },
+  {
+    "category": "Family",
+    "amharic": "ያጎት ልጅ",
+    "transliteration": "yagot lij",
+    "english": "cousin (m)"
+  },
+  {
+    "category": "Family",
+    "amharic": "ያክስት ልጅ",
+    "transliteration": "yakist lij",
+    "english": "cousin (f)"
+  },
+  {
+    "category": "Family",
+    "amharic": "እጮኛ",
+    "transliteration": "ichonya",
+    "english": "fiance / fiancee"
+  },
+  {
+    "category": "Family",
+    "amharic": "የማደጎ ልጅ",
+    "transliteration": "ya madego lij",
+    "english": "foster child"
+  },
+  {
+    "category": "Family",
+    "amharic": "የክርስትና ልጅ",
+    "transliteration": "ya kiristinna lij",
+    "english": "godchild"
+  },
+  {
+    "category": "Family",
+    "amharic": "የልጅ ልጆች",
+    "transliteration": "ya lij lijoch",
+    "english": "grandchildren"
+  },
+  {
+    "category": "Family",
+    "amharic": "ትንሽ ወንድም",
+    "transliteration": "tinish wandim",
+    "english": "younger brother"
+  },
+  {
+    "category": "Family",
+    "amharic": "ትልቅ እህት",
+    "transliteration": "tilik ihit",
+    "english": "older sister"
+  },
+  {
+    "category": "Family",
+    "amharic": "እንጀራ እናት",
+    "transliteration": "injera innat",
+    "english": "stepmother"
+  },
+  {
+    "category": "Family",
+    "amharic": "ዘመድ",
+    "transliteration": "zemed",
+    "english": "relative(s)"
+  },
+  {
+    "category": "Family",
+    "amharic": "ልጆች",
+    "transliteration": "lijoch",
+    "english": "children"
+  },
+  {
+    "category": "Life Stages",
+    "amharic": "ጎልማሳ",
+    "transliteration": "golmasa",
+    "english": "middle age"
+  },
+  {
+    "category": "Sports",
+    "amharic": "እግር ኳስ",
+    "transliteration": "igir kwas",
+    "english": "soccer / football"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ቅርጫት ኳስ",
+    "transliteration": "kirchat kwas",
+    "english": "basketball"
+  },
+  {
+    "category": "Sports",
+    "amharic": "መረብ ኳስ",
+    "transliteration": "marab kwas",
+    "english": "volleyball"
+  },
+  {
+    "category": "Sports",
+    "amharic": "አትሌቲክስ",
+    "transliteration": "atletiks",
+    "english": "athletics"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ቦክስ",
+    "transliteration": "boks",
+    "english": "boxing"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ሩጫ",
+    "transliteration": "rucha",
+    "english": "running / jogging"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ዋና",
+    "transliteration": "wana",
+    "english": "swimming"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ተጫዋች",
+    "transliteration": "tachawach",
+    "english": "player"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ራኬት",
+    "transliteration": "raket",
+    "english": "racquet"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ማራቶን",
+    "transliteration": "maraton",
+    "english": "marathon"
+  },
+  {
+    "category": "Sports",
+    "amharic": "ሳይክለኛ",
+    "transliteration": "sayklenya",
+    "english": "cyclist"
+  },
+  {
+    "category": "Sports",
+    "amharic": "አሸናፊ",
+    "transliteration": "ashenafi",
+    "english": "winner"
+  },
+  {
+    "category": "Sports",
+    "amharic": "መዳሊያ",
+    "transliteration": "medaliya",
+    "english": "medal"
+  },
+  {
+    "category": "Games",
+    "amharic": "ዳማ",
+    "transliteration": "dama",
+    "english": "checkers"
+  },
+  {
+    "category": "Games",
+    "amharic": "ቼዝ",
+    "transliteration": "chez",
+    "english": "chess"
+  },
+  {
+    "category": "Outdoor & Nature",
+    "amharic": "ታንኳ",
+    "transliteration": "tankwa",
+    "english": "canoe"
+  },
+  {
+    "category": "TV & Media",
+    "amharic": "ዜና",
+    "transliteration": "zena",
+    "english": "the news"
+  },
+  {
+    "category": "Health",
+    "amharic": "ስሪንጅ",
+    "transliteration": "sirinj",
+    "english": "syringe"
+  },
+  {
+    "category": "Health",
+    "amharic": "ኮንዶም",
+    "transliteration": "kondom",
+    "english": "condoms"
+  },
+  {
+    "category": "Health",
+    "amharic": "በሽተኛ",
+    "transliteration": "bashtanya",
+    "english": "patient"
+  },
+  {
+    "category": "Police & Legal",
+    "amharic": "እስር ቤት",
+    "transliteration": "isir bet",
+    "english": "prison"
+  },
+  {
+    "category": "Police & Legal",
+    "amharic": "ጥፋተኛ",
+    "transliteration": "tifatanya",
+    "english": "guilty"
+  },
+  {
+    "category": "Police & Legal",
+    "amharic": "መቀጫ",
+    "transliteration": "makacha",
+    "english": "fine (payment)"
+  },
+  {
+    "category": "Police & Legal",
+    "amharic": "ቆንስላ",
+    "transliteration": "konsila",
+    "english": "consulate"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ወጥ",
+    "transliteration": "wat",
+    "english": "sauce / stew (spicy)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "አልጫ",
+    "transliteration": "alicha",
+    "english": "mild dish (not spicy)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ክትፎ",
+    "transliteration": "kitfo",
+    "english": "kitfo (spicy minced beef)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ጥሬ ስጋ",
+    "transliteration": "tire siga",
+    "english": "raw beef (with butter and spices)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ቀይ ወጥ",
+    "transliteration": "kay wat",
+    "english": "red spicy meat stew"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ሰላጣ",
+    "transliteration": "selata",
+    "english": "salad"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "የበግ ስጋ",
+    "transliteration": "yabag siga",
+    "english": "lamb (mutton)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "የፍየል ስጋ",
+    "transliteration": "yafiyal siga",
+    "english": "goat meat"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "አዋዜ",
+    "transliteration": "awaze",
+    "english": "awaze (chilli-and-butter paste/sauce)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ሚጥሚጣ",
+    "transliteration": "mitmita",
+    "english": "mitmita (hot red-pepper powder)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ፍትፍት",
+    "transliteration": "fitfit",
+    "english": "fitfit (torn injera with chilli/butter)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ገንፎ",
+    "transliteration": "genfo",
+    "english": "genfo (barley/wheat porridge)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ሳምቦሳ",
+    "transliteration": "sambosa",
+    "english": "samosa (lentil)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ኦቾሎኒ",
+    "transliteration": "ocholoni",
+    "english": "peanuts"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ፆም",
+    "transliteration": "tsom",
+    "english": "fasting"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "የፈላ ዉሃ",
+    "transliteration": "yafela wuha",
+    "english": "boiled water"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ስፕሬስ",
+    "transliteration": "spres",
+    "english": "spris (layered mixed-fruit juice)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ለስላሳ",
+    "transliteration": "leslasa",
+    "english": "soda / soft drink"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ጥቁር ቡና",
+    "transliteration": "tikur buna",
+    "english": "black coffee"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "የቡና ጀበና",
+    "transliteration": "yabuna jabana",
+    "english": "coffee pot (jebena)"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "የቡና አፈላል",
+    "transliteration": "yabuna afelal",
+    "english": "coffee ceremony"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ፖም",
+    "transliteration": "pom",
+    "english": "apple"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ማንጎ",
+    "transliteration": "mango",
+    "english": "mango"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "አቮካዶ",
+    "transliteration": "avokado",
+    "english": "avocado"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ካሮት",
+    "transliteration": "karot",
+    "english": "carrot"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ዝንጅብል",
+    "transliteration": "zinjibil",
+    "english": "ginger"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "ቸኮሌት",
+    "transliteration": "chekolet",
+    "english": "chocolate"
+  },
+  {
+    "category": "Food & Drink",
+    "amharic": "አይስ ክሬም",
+    "transliteration": "ays krem",
+    "english": "ice cream"
+  },
+  {
+    "category": "Common Adjectives",
+    "amharic": "መራራ",
+    "transliteration": "marara",
+    "english": "bitter"
+  },
+  {
+    "category": "Question words",
+    "amharic": "ማን",
+    "transliteration": "man",
+    "english": "who"
+  },
+  {
+    "category": "Conjunctions",
+    "amharic": "እና",
+    "transliteration": "ina",
+    "english": "and"
+  },
+  {
+    "category": "Conjunctions",
+    "amharic": "ወይም",
+    "transliteration": "waym",
+    "english": "or"
+  },
+  {
+    "category": "Conjunctions",
+    "amharic": "ግን",
+    "transliteration": "gin",
+    "english": "but"
+  },
+  {
+    "category": "Comparatives",
+    "amharic": "ይልቅ",
+    "transliteration": "yilik",
+    "english": "more"
+  },
+  {
+    "category": "People",
+    "amharic": "ጎብኚ",
+    "transliteration": "gobiny",
+    "english": "tourist, visitor"
   }
 ]

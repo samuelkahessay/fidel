@@ -38,6 +38,7 @@ private final class StubLessonRepository: LessonRepositoryProtocol {
     func getCulturalNotes() -> [CulturalNote] { [] }
     func getCulturalNotes(forLesson lessonId: Int) -> [CulturalNote] { [] }
     func getCulturalNotes(forConversation conversationId: Int) -> [CulturalNote] { [] }
+    func getReadingPassages() -> [ReadingPassage] { [] }
 }
 
 // MARK: - Fixtures

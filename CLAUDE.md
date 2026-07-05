@@ -6,8 +6,10 @@ Fidel is an **Amharic language learning iOS app** built with **SwiftUI + SwiftDa
 
 ### What it teaches
 - **Fidel (ፊደል)**: The Ethiopic/Ge'ez script — 34 consonant rows × 7 vowel forms = 238 characters
-- **5 structured lessons**: Greetings, Possessives & Family, Questions & Directions, Food & Shopping, Making Plans & Time
-- **14 grammar patterns**, **69 vocabulary words**, **50 phrases**, **10 conversation dialogues**
+- **8 structured lessons**: Greetings & Introductions, Possessives & Family, Questions & Directions, Food & Shopping, Making Plans & Time, Health & Body, Travel & Transportation, Ethiopian Culture & Celebrations
+- **94 grammar patterns** (incl. 12 verb-conjugation tables), **1038 vocabulary words**, **706 phrases**, **30 conversation dialogues**, **90 cultural notes**, **24 word-bank sentence exercises**, **5 reading passages** — all banks grew via a POC promotion of the generated + extracted candidate corpus (`Fidel_Resources/amharic/{generated,extracted}_review/`)
+
+> Counts above are ground truth from `Fidel/Data/*.json` (authoritative). `CURRICULUM.md` and `LEVEL_SYSTEM.md` still cite older/aspirational figures — see `docs/superpowers/specs/2026-07-04-content-and-lesson-type-expansion-design.md` for the reconciled state and the 0→proficiency expansion plan.
 
 ### Architecture
 ```
@@ -41,7 +43,7 @@ There is **no stage gate**. All lessons and conversations are always available; 
 - Streaks have **slack**: auto-granted weekly freezes absorb a single missed day (`UserProgress.checkStreak`).
 
 ### Practice modes
-Flashcards (SM-2 spaced repetition), Quiz (5 question types), Pronunciation, Sentence Builder, Speed Drill
+Flashcards (FSRS/SM-2 spaced repetition), Quiz (multiple choice / typed translation / typed pronunciation), Sentence Builder, Word Order, **Fill the Blank (cloze)**, **Grammar** (teach-first reference over patterns), **Reading** (graded passages + comprehension), Match Pairs, Speed Drill, Pronunciation, Character Tracing
 
 ### Design system
 iOS 26 "Liquid Glass" style. Ethiopian color palette: Green (#00722C), Yellow (#FFD500), Red (#CF1D28). Spring-based animations throughout.

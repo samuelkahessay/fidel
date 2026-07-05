@@ -549,6 +549,12 @@ private struct PracticeModeDestination: View {
             SentenceBuilderView()
         case .wordOrder:
             WordOrderView()
+        case .cloze:
+            ClozeView()
+        case .grammar:
+            GrammarExplainerView()
+        case .reading:
+            ReadingView()
         case .matchPairs:
             MatchPairsView()
         case .speedDrill:

@@ -1,1591 +1,2039 @@
 [
   {
-    "difficulty" : 1,
-    "id" : 1,
-    "lines" : [
+    "difficulty": 1,
+    "id": 1,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ ሂሩት። እንደምን ነሽ? ደህና ነሽ?",
-        "english" : "Hello, Hirut. How are you? Are you well?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "t'ena yist'illiany Hirut. indamin nash? dahna nash?"
+        "amharic": "ጤና ይስጥልኝ ሂሩት። እንደምን ነሽ? ደህና ነሽ?",
+        "english": "Hello, Hirut. How are you? Are you well?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "t'ena yist'illiany Hirut. indamin nash? dahna nash?"
       },
       {
-        "amharic" : "ጤና ይስጥልኝ ከበደ። አዎ፣ ደህና ነኝ። አንተስ እንደምን ነህ?",
-        "english" : "Hello, Kebbede. Yes, I'm well. And you, how are you?",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "t'ena yist'illiany Kabada. awo, dahna nany. antass indamin nah?"
+        "amharic": "ጤና ይስጥልኝ ከበደ። አዎ፣ ደህና ነኝ። አንተስ እንደምን ነህ?",
+        "english": "Hello, Kebbede. Yes, I'm well. And you, how are you?",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "t'ena yist'illiany Kabada. awo, dahna nany. antass indamin nah?"
       },
       {
-        "amharic" : "እኔም ደህና ነኝ። እግዚአብሔር ይመስገን።",
-        "english" : "I'm fine too, thank you.",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "inemm dahna nany. igziabher yimmesgan."
+        "amharic": "እኔም ደህና ነኝ። እግዚአብሔር ይመስገን።",
+        "english": "I'm fine too, thank you.",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "inemm dahna nany. igziabher yimmesgan."
       },
       {
-        "amharic" : "ሃይሉ ደህና ነው?",
-        "english" : "Is Haylu well?",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "Haylu dahna naw?"
+        "amharic": "ሃይሉ ደህና ነው?",
+        "english": "Is Haylu well?",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "Haylu dahna naw?"
       },
       {
-        "amharic" : "አዎ፣ እሱም ደህና ነው።",
-        "english" : "Yes, he's fine too.",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "awo, issumm dahna naw."
+        "amharic": "አዎ፣ እሱም ደህና ነው።",
+        "english": "Yes, he's fine too.",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "awo, issumm dahna naw."
       },
       {
-        "amharic" : "አባትና እናትህ ደህና ናቸው?",
-        "english" : "Are your father and mother well?",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "abbat-inna innatih dahna nachaw?"
+        "amharic": "አባትና እናትህ ደህና ናቸው?",
+        "english": "Are your father and mother well?",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "abbat-inna innatih dahna nachaw?"
       },
       {
-        "amharic" : "አዎ፣ ደህና ናቸው።",
-        "english" : "Yes, they're well.",
-        "lineNum" : 7,
-        "speaker" : "PERSON A",
-        "transliteration" : "awo, dahna nachaw."
+        "amharic": "አዎ፣ ደህና ናቸው።",
+        "english": "Yes, they're well.",
+        "lineNum": 7,
+        "speaker": "PERSON A",
+        "transliteration": "awo, dahna nachaw."
       },
       {
-        "amharic" : "በል አሁን መሄድ አለብኝ። ደህና ሁን።",
-        "english" : "Well, I have to go now. Goodbye.",
-        "lineNum" : 8,
-        "speaker" : "PERSON B",
-        "transliteration" : "bal ahun mahed allabiny. dahna hun."
+        "amharic": "በል አሁን መሄድ አለብኝ። ደህና ሁን።",
+        "english": "Well, I have to go now. Goodbye.",
+        "lineNum": 8,
+        "speaker": "PERSON B",
+        "transliteration": "bal ahun mahed allabiny. dahna hun."
       },
       {
-        "amharic" : "ደህና ሁኝ ሂሩት።",
-        "english" : "Goodbye, Hirut.",
-        "lineNum" : 9,
-        "speaker" : "PERSON A",
-        "transliteration" : "dahna hunyi, Hirut."
+        "amharic": "ደህና ሁኝ ሂሩት።",
+        "english": "Goodbye, Hirut.",
+        "lineNum": 9,
+        "speaker": "PERSON A",
+        "transliteration": "dahna hunyi, Hirut."
       }
     ],
-    "title" : "INFORMAL GREETING (Meeting a Friend)"
+    "title": "INFORMAL GREETING (Meeting a Friend)"
   },
   {
-    "difficulty" : 2,
-    "id" : 2,
-    "lines" : [
+    "difficulty": 2,
+    "id": 2,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ አቶ ሙሉጌታ። እንደምን አደሩ? ደህና ነዎት?",
-        "english" : "Hello, Mr. Mulugeta. Good morning. Are you well?",
-        "lineNum" : 1,
-        "speaker" : "MRS. HIYWET",
-        "transliteration" : "t'ena yist'illiany Ato Mulugeta. indamin addaru? dahna nawot?"
+        "amharic": "ጤና ይስጥልኝ አቶ ሙሉጌታ። እንደምን አደሩ? ደህና ነዎት?",
+        "english": "Hello, Mr. Mulugeta. Good morning. Are you well?",
+        "lineNum": 1,
+        "speaker": "MRS. HIYWET",
+        "transliteration": "t'ena yist'illiany Ato Mulugeta. indamin addaru? dahna nawot?"
       },
       {
-        "amharic" : "ደህና ነኝ፣ ወይዘሮ ሕይወት። እግዚአብሔር ይመስገን። እርስዎስ እንደምን ነዎት?",
-        "english" : "I am well, Mrs. Hiywet, thank you. And you, how are you?",
-        "lineNum" : 2,
-        "speaker" : "MR. MULUGETA",
-        "transliteration" : "dahna nany, Wayzaro Hiywat. igziabher yimmesgan. irswoss indamin nawot?"
+        "amharic": "ደህና ነኝ፣ ወይዘሮ ሕይወት። እግዚአብሔር ይመስገን። እርስዎስ እንደምን ነዎት?",
+        "english": "I am well, Mrs. Hiywet, thank you. And you, how are you?",
+        "lineNum": 2,
+        "speaker": "MR. MULUGETA",
+        "transliteration": "dahna nany, Wayzaro Hiywat. igziabher yimmesgan. irswoss indamin nawot?"
       },
       {
-        "amharic" : "አዎ፣ ደህና ነኝ። የርስዎ ሚስት እንደምን ናቸው?",
-        "english" : "Yes, I am well. How is your wife?",
-        "lineNum" : 3,
-        "speaker" : "MRS. HIYWET",
-        "transliteration" : "awo, dahna nany. yarswo mist indamin nachaw?"
+        "amharic": "አዎ፣ ደህና ነኝ። የርስዎ ሚስት እንደምን ናቸው?",
+        "english": "Yes, I am well. How is your wife?",
+        "lineNum": 3,
+        "speaker": "MRS. HIYWET",
+        "transliteration": "awo, dahna nany. yarswo mist indamin nachaw?"
       },
       {
-        "amharic" : "የኔ ሚስት ደህና ነች። እግዚአብሔር ይመስገን። እኛ ሁለታችንም ደህና ነን።",
-        "english" : "My wife is well, thank you. We are both well.",
-        "lineNum" : 4,
-        "speaker" : "MR. MULUGETA",
-        "transliteration" : "yane mist dahna nach. igziabher yimmesgan. inya hulattachinim dahna nan."
+        "amharic": "የኔ ሚስት ደህና ነች። እግዚአብሔር ይመስገን። እኛ ሁለታችንም ደህና ነን።",
+        "english": "My wife is well, thank you. We are both well.",
+        "lineNum": 4,
+        "speaker": "MR. MULUGETA",
+        "transliteration": "yane mist dahna nach. igziabher yimmesgan. inya hulattachinim dahna nan."
       },
       {
-        "amharic" : "እሺ፣ ደህና ይዋሉ።",
-        "english" : "OK, goodbye.",
-        "lineNum" : 5,
-        "speaker" : "MRS. HIYWET",
-        "transliteration" : "ishi, dahna yiwalu."
+        "amharic": "እሺ፣ ደህና ይዋሉ።",
+        "english": "OK, goodbye.",
+        "lineNum": 5,
+        "speaker": "MRS. HIYWET",
+        "transliteration": "ishi, dahna yiwalu."
       },
       {
-        "amharic" : "ደህና ይዋሉ።",
-        "english" : "Goodbye.",
-        "lineNum" : 6,
-        "speaker" : "MR. MULUGETA",
-        "transliteration" : "dahna yiwalu."
+        "amharic": "ደህና ይዋሉ።",
+        "english": "Goodbye.",
+        "lineNum": 6,
+        "speaker": "MR. MULUGETA",
+        "transliteration": "dahna yiwalu."
       }
     ],
-    "title" : "FORMAL GREETING (Meeting an Acquaintance)"
+    "title": "FORMAL GREETING (Meeting an Acquaintance)"
   },
   {
-    "difficulty" : 2,
-    "id" : 3,
-    "lines" : [
+    "difficulty": 2,
+    "id": 3,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ።",
-        "english" : "Hello.",
-        "lineNum" : 1,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "t'ena yist'illiany."
+        "amharic": "ጤና ይስጥልኝ።",
+        "english": "Hello.",
+        "lineNum": 1,
+        "speaker": "CUSTOMER",
+        "transliteration": "t'ena yist'illiany."
       },
       {
-        "amharic" : "ጤና ይስጥልህ። እንኳን ደህና መጣህ።",
-        "english" : "Hello. Welcome.",
-        "lineNum" : 2,
-        "speaker" : "WAITER",
-        "transliteration" : "t'ena yist'illih. inkuan dahna mattah."
+        "amharic": "ጤና ይስጥልህ። እንኳን ደህና መጣህ።",
+        "english": "Hello. Welcome.",
+        "lineNum": 2,
+        "speaker": "WAITER",
+        "transliteration": "t'ena yist'illih. inkuan dahna mattah."
       },
       {
-        "amharic" : "አንድ ቡና እፈልጋለሁ።",
-        "english" : "I want one coffee.",
-        "lineNum" : 3,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "and buna ifaligalahu."
+        "amharic": "አንድ ቡና እፈልጋለሁ።",
+        "english": "I want one coffee.",
+        "lineNum": 3,
+        "speaker": "CUSTOMER",
+        "transliteration": "and buna ifaligalahu."
       },
       {
-        "amharic" : "ከስኳር ይሆን?",
-        "english" : "With sugar?",
-        "lineNum" : 4,
-        "speaker" : "WAITER",
-        "transliteration" : "ka-sukuar yihon?"
+        "amharic": "ከስኳር ይሆን?",
+        "english": "With sugar?",
+        "lineNum": 4,
+        "speaker": "WAITER",
+        "transliteration": "ka-sukuar yihon?"
       },
       {
-        "amharic" : "አዎ፣ ከስኳር። አመሰግናለሁ።",
-        "english" : "Yes, with sugar. Thank you.",
-        "lineNum" : 5,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "awo, ka-sukuar. ameseginalehu."
+        "amharic": "አዎ፣ ከስኳር። አመሰግናለሁ።",
+        "english": "Yes, with sugar. Thank you.",
+        "lineNum": 5,
+        "speaker": "CUSTOMER",
+        "transliteration": "awo, ka-sukuar. ameseginalehu."
       },
       {
-        "amharic" : "በጣም ደህና። አሁን አምጣለሁ።",
-        "english" : "Very good. I'll bring it now.",
-        "lineNum" : 6,
-        "speaker" : "WAITER",
-        "transliteration" : "batam dahna. ahun amtalehu."
+        "amharic": "በጣም ደህና። አሁን አምጣለሁ።",
+        "english": "Very good. I'll bring it now.",
+        "lineNum": 6,
+        "speaker": "WAITER",
+        "transliteration": "batam dahna. ahun amtalehu."
       },
       {
-        "amharic" : "ጣፋጭ ነው። ሂሳቡን አምጣልኝ።",
-        "english" : "It's delicious. Bring me the bill.",
-        "lineNum" : 7,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "tafach naw. hisabun amtaliny."
+        "amharic": "ጣፋጭ ነው። ሂሳቡን አምጣልኝ።",
+        "english": "It's delicious. Bring me the bill.",
+        "lineNum": 7,
+        "speaker": "CUSTOMER",
+        "transliteration": "tafach naw. hisabun amtaliny."
       },
       {
-        "amharic" : "እሺ። ሃያ ብር ነው።",
-        "english" : "OK. It's 20 birr.",
-        "lineNum" : 8,
-        "speaker" : "WAITER",
-        "transliteration" : "ishi. haya birr naw."
+        "amharic": "እሺ። ሃያ ብር ነው።",
+        "english": "OK. It's 20 birr.",
+        "lineNum": 8,
+        "speaker": "WAITER",
+        "transliteration": "ishi. haya birr naw."
       },
       {
-        "amharic" : "እነሆ። አመሰግናለሁ።",
-        "english" : "Here you are. Thank you.",
-        "lineNum" : 9,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "inaho. ameseginalehu."
+        "amharic": "እነሆ። አመሰግናለሁ።",
+        "english": "Here you are. Thank you.",
+        "lineNum": 9,
+        "speaker": "CUSTOMER",
+        "transliteration": "inaho. ameseginalehu."
       },
       {
-        "amharic" : "ደህና ይሁኑ።",
-        "english" : "Goodbye.",
-        "lineNum" : 10,
-        "speaker" : "WAITER",
-        "transliteration" : "dahna yihunu."
+        "amharic": "ደህና ይሁኑ።",
+        "english": "Goodbye.",
+        "lineNum": 10,
+        "speaker": "WAITER",
+        "transliteration": "dahna yihunu."
       }
     ],
-    "title" : "ORDERING COFFEE (At a Cafe)"
+    "title": "ORDERING COFFEE (At a Cafe)"
   },
   {
-    "difficulty" : 2,
-    "id" : 4,
-    "lines" : [
+    "difficulty": 2,
+    "id": 4,
+    "lines": [
       {
-        "amharic" : "ይቅርታ፣ እንደምን ነዎት?",
-        "english" : "Excuse me, how are you?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "yikirta, indamin nawot?"
+        "amharic": "ይቅርታ፣ እንደምን ነዎት?",
+        "english": "Excuse me, how are you?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "yikirta, indamin nawot?"
       },
       {
-        "amharic" : "ደህና ነኝ። እርስዎስ?",
-        "english" : "I'm well. And you?",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "dahna nany. irswoss?"
+        "amharic": "ደህና ነኝ። እርስዎስ?",
+        "english": "I'm well. And you?",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "dahna nany. irswoss?"
       },
       {
-        "amharic" : "ደህና። ቦሌ የት ነው?",
-        "english" : "Fine. Where is Bole?",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "dahna. Bole yat naw?"
+        "amharic": "ደህና። ቦሌ የት ነው?",
+        "english": "Fine. Where is Bole?",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "dahna. Bole yat naw?"
       },
       {
-        "amharic" : "ቦሌ እዚህ ከፊት ነው። ቀጥታ ይሂዱ።",
-        "english" : "Bole is straight ahead. Go straight.",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "Bole izzih kafit naw. qattita yihidu."
+        "amharic": "ቦሌ እዚህ ከፊት ነው። ቀጥታ ይሂዱ።",
+        "english": "Bole is straight ahead. Go straight.",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "Bole izzih kafit naw. qattita yihidu."
       },
       {
-        "amharic" : "ምን ያህል ርቀት ነው?",
-        "english" : "How far is it?",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "min yahil riket naw?"
+        "amharic": "ምን ያህል ርቀት ነው?",
+        "english": "How far is it?",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "min yahil riket naw?"
       },
       {
-        "amharic" : "አንድ ኪሎ ሜትር ያህል። በእግር ከአስር ደቂቃ።",
-        "english" : "About one kilometer. About ten minutes on foot.",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "and kilo meter yahil. ba-igir ka-asir dakika."
+        "amharic": "አንድ ኪሎ ሜትር ያህል። በእግር ከአስር ደቂቃ።",
+        "english": "About one kilometer. About ten minutes on foot.",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "and kilo meter yahil. ba-igir ka-asir dakika."
       },
       {
-        "amharic" : "በጣም አመሰግናለሁ።",
-        "english" : "Thank you very much.",
-        "lineNum" : 7,
-        "speaker" : "PERSON A",
-        "transliteration" : "batam ameseginalehu."
+        "amharic": "በጣም አመሰግናለሁ።",
+        "english": "Thank you very much.",
+        "lineNum": 7,
+        "speaker": "PERSON A",
+        "transliteration": "batam ameseginalehu."
       },
       {
-        "amharic" : "ምንም አይደለም። ደህና ይሁኑ።",
-        "english" : "You're welcome. Goodbye.",
-        "lineNum" : 8,
-        "speaker" : "PERSON B",
-        "transliteration" : "minim aydallam. dahna yihunu."
+        "amharic": "ምንም አይደለም። ደህና ይሁኑ።",
+        "english": "You're welcome. Goodbye.",
+        "lineNum": 8,
+        "speaker": "PERSON B",
+        "transliteration": "minim aydallam. dahna yihunu."
       }
     ],
-    "title" : "ASKING FOR DIRECTIONS"
+    "title": "ASKING FOR DIRECTIONS"
   },
   {
-    "difficulty" : 1,
-    "id" : 5,
-    "lines" : [
+    "difficulty": 1,
+    "id": 5,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ። ስሜ ዳዊት ነው። የእርስዎስ ስም ማነው?",
-        "english" : "Hello. My name is Dawit. What's your name?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "t'ena yist'illiany. sime Dawit naw. ya-irswoss sim man naw?"
+        "amharic": "ጤና ይስጥልኝ። ስሜ ዳዊት ነው። የእርስዎስ ስም ማነው?",
+        "english": "Hello. My name is Dawit. What's your name?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "t'ena yist'illiany. sime Dawit naw. ya-irswoss sim man naw?"
       },
       {
-        "amharic" : "ስሜ ሳራ ነው። ደስ ብሎኛል።",
-        "english" : "My name is Sara. Nice to meet you.",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "sime Sara naw. das bilonyal."
+        "amharic": "ስሜ ሳራ ነው። ደስ ብሎኛል።",
+        "english": "My name is Sara. Nice to meet you.",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "sime Sara naw. das bilonyal."
       },
       {
-        "amharic" : "እኔም ደስ ብሎኛል። ከየት ነሽ?",
-        "english" : "Nice to meet you too. Where are you from?",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "inemm das bilonyal. kayat nash?"
+        "amharic": "እኔም ደስ ብሎኛል። ከየት ነሽ?",
+        "english": "Nice to meet you too. Where are you from?",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "inemm das bilonyal. kayat nash?"
       },
       {
-        "amharic" : "እኔ ከአሜሪካ ነኝ። አንተስ ከየት ነህ?",
-        "english" : "I'm from America. And you, where are you from?",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "ine ka-Amerika nany. antass kayat nah?"
+        "amharic": "እኔ ከአሜሪካ ነኝ። አንተስ ከየት ነህ?",
+        "english": "I'm from America. And you, where are you from?",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "ine ka-Amerika nany. antass kayat nah?"
       },
       {
-        "amharic" : "እኔ ከኢትዮጵያ ነኝ። ከአዲስ አበባ ነኝ።",
-        "english" : "I'm from Ethiopia. I'm from Addis Ababa.",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "ine ka-Ityoppya nany. ka-Addis Ababa nany."
+        "amharic": "እኔ ከኢትዮጵያ ነኝ። ከአዲስ አበባ ነኝ።",
+        "english": "I'm from Ethiopia. I'm from Addis Ababa.",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "ine ka-Ityoppya nany. ka-Addis Ababa nany."
       },
       {
-        "amharic" : "በጣም ጥሩ። አማርኛ ትችያለሽ?",
-        "english" : "Very good. Do you speak Amharic?",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "batam tiru. amaranya tichiyalash?"
+        "amharic": "በጣም ጥሩ። አማርኛ ትችያለሽ?",
+        "english": "Very good. Do you speak Amharic?",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "batam tiru. amaranya tichiyalash?"
       },
       {
-        "amharic" : "አዎ፣ ትንሽ። አንቺስ አማርኛ ትማሪያለሽ?",
-        "english" : "Yes, a little. Are you learning Amharic?",
-        "lineNum" : 7,
-        "speaker" : "PERSON A",
-        "transliteration" : "awo, tinish. anchiss amaranya timariyalash?"
+        "amharic": "አዎ፣ ትንሽ። አንቺስ አማርኛ ትማሪያለሽ?",
+        "english": "Yes, a little. Are you learning Amharic?",
+        "lineNum": 7,
+        "speaker": "PERSON A",
+        "transliteration": "awo, tinish. anchiss amaranya timariyalash?"
       },
       {
-        "amharic" : "አዎ፣ ተማሪ ነኝ። አሁን አማርኛ እማራለሁ።",
-        "english" : "Yes, I'm a student. I'm learning Amharic now.",
-        "lineNum" : 8,
-        "speaker" : "PERSON B",
-        "transliteration" : "awo, tamari nany. ahun amaranya imaralahu."
+        "amharic": "አዎ፣ ተማሪ ነኝ። አሁን አማርኛ እማራለሁ።",
+        "english": "Yes, I'm a student. I'm learning Amharic now.",
+        "lineNum": 8,
+        "speaker": "PERSON B",
+        "transliteration": "awo, tamari nany. ahun amaranya imaralahu."
       }
     ],
-    "title" : "INTRODUCING YOURSELF"
+    "title": "INTRODUCING YOURSELF"
   },
   {
-    "difficulty" : 3,
-    "id" : 6,
-    "lines" : [
+    "difficulty": 3,
+    "id": 6,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ። ይህ ምን ያህል ነው?",
-        "english" : "Hello. How much is this?",
-        "lineNum" : 1,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "t'ena yist'illiany. yih min yahil naw?"
+        "amharic": "ጤና ይስጥልኝ። ይህ ምን ያህል ነው?",
+        "english": "Hello. How much is this?",
+        "lineNum": 1,
+        "speaker": "CUSTOMER",
+        "transliteration": "t'ena yist'illiany. yih min yahil naw?"
       },
       {
-        "amharic" : "ጤና ይስጥልህ። አምሳ ብር ነው።",
-        "english" : "Hello. It's fifty birr.",
-        "lineNum" : 2,
-        "speaker" : "SELLER",
-        "transliteration" : "t'ena yist'illih. amsa birr naw."
+        "amharic": "ጤና ይስጥልህ። አምሳ ብር ነው።",
+        "english": "Hello. It's fifty birr.",
+        "lineNum": 2,
+        "speaker": "SELLER",
+        "transliteration": "t'ena yist'illih. amsa birr naw."
       },
       {
-        "amharic" : "ውድ ነው። ሃያ ብር እሰጣለሁ።",
-        "english" : "It's expensive. I'll give you twenty birr.",
-        "lineNum" : 3,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "wid naw. haya birr isatalahu."
+        "amharic": "ውድ ነው። ሃያ ብር እሰጣለሁ።",
+        "english": "It's expensive. I'll give you twenty birr.",
+        "lineNum": 3,
+        "speaker": "CUSTOMER",
+        "transliteration": "wid naw. haya birr isatalahu."
       },
       {
-        "amharic" : "አይ፣ በጣም ትንሽ ነው። አርባ ብር።",
-        "english" : "No, that's too little. Forty birr.",
-        "lineNum" : 4,
-        "speaker" : "SELLER",
-        "transliteration" : "ay, batam tinish naw. arba birr."
+        "amharic": "አይ፣ በጣም ትንሽ ነው። አርባ ብር።",
+        "english": "No, that's too little. Forty birr.",
+        "lineNum": 4,
+        "speaker": "SELLER",
+        "transliteration": "ay, batam tinish naw. arba birr."
       },
       {
-        "amharic" : "እሺ፣ ሰላሳ ብር።",
-        "english" : "OK, thirty birr.",
-        "lineNum" : 5,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "ishi, salasa birr."
+        "amharic": "እሺ፣ ሰላሳ ብር።",
+        "english": "OK, thirty birr.",
+        "lineNum": 5,
+        "speaker": "CUSTOMER",
+        "transliteration": "ishi, salasa birr."
       },
       {
-        "amharic" : "እሺ፣ ሰላሳ ብር። ትክክል ነው።",
-        "english" : "OK, thirty birr. That's fair.",
-        "lineNum" : 6,
-        "speaker" : "SELLER",
-        "transliteration" : "ishi, salasa birr. tikil naw."
+        "amharic": "እሺ፣ ሰላሳ ብር። ትክክል ነው።",
+        "english": "OK, thirty birr. That's fair.",
+        "lineNum": 6,
+        "speaker": "SELLER",
+        "transliteration": "ishi, salasa birr. tikil naw."
       },
       {
-        "amharic" : "እነሆ። አመሰግናለሁ።",
-        "english" : "Here you are. Thank you.",
-        "lineNum" : 7,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "inaho. ameseginalehu."
+        "amharic": "እነሆ። አመሰግናለሁ።",
+        "english": "Here you are. Thank you.",
+        "lineNum": 7,
+        "speaker": "CUSTOMER",
+        "transliteration": "inaho. ameseginalehu."
       },
       {
-        "amharic" : "አመሰግናለሁ። ደህና ይሁኑ።",
-        "english" : "Thank you. Goodbye.",
-        "lineNum" : 8,
-        "speaker" : "SELLER",
-        "transliteration" : "ameseginalehu. dahna yihunu."
+        "amharic": "አመሰግናለሁ። ደህና ይሁኑ።",
+        "english": "Thank you. Goodbye.",
+        "lineNum": 8,
+        "speaker": "SELLER",
+        "transliteration": "ameseginalehu. dahna yihunu."
       }
     ],
-    "title" : "SHOPPING AT THE MARKET"
+    "title": "SHOPPING AT THE MARKET"
   },
   {
-    "difficulty" : 2,
-    "id" : 7,
-    "lines" : [
+    "difficulty": 2,
+    "id": 7,
+    "lines": [
       {
-        "amharic" : "የቤተሰብህ ስንት ናቸው?",
-        "english" : "How many are in your family?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "ya-betesabih sint nachaw?"
+        "amharic": "የቤተሰብህ ስንት ናቸው?",
+        "english": "How many are in your family?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "ya-betesabih sint nachaw?"
       },
       {
-        "amharic" : "አባት፣ እናት፣ ሁለት እህቶች እና አንድ ወንድም።",
-        "english" : "Father, mother, two sisters, and one brother.",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "abbat, innat, hulat ihitoch inna and wandim."
+        "amharic": "አባት፣ እናት፣ ሁለት እህቶች እና አንድ ወንድም።",
+        "english": "Father, mother, two sisters, and one brother.",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "abbat, innat, hulat ihitoch inna and wandim."
       },
       {
-        "amharic" : "ጥሩ። ትልቅ ቤተሰብ ነው። የአባትህ ስም ማነው?",
-        "english" : "Good. It's a big family. What's your father's name?",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "tiru. tilik betasab naw. ya-abbatih sim man naw?"
+        "amharic": "ጥሩ። ትልቅ ቤተሰብ ነው። የአባትህ ስም ማነው?",
+        "english": "Good. It's a big family. What's your father's name?",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "tiru. tilik betasab naw. ya-abbatih sim man naw?"
       },
       {
-        "amharic" : "የአባቴ ስም ተስፋዬ ነው። የእናቴ ስም አልማዝ ነው።",
-        "english" : "My father's name is Tesfaye. My mother's name is Almaz.",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "ya-abbate sim Tasfaye naw. ya-innate sim Almaz naw."
+        "amharic": "የአባቴ ስም ተስፋዬ ነው። የእናቴ ስም አልማዝ ነው።",
+        "english": "My father's name is Tesfaye. My mother's name is Almaz.",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "ya-abbate sim Tasfaye naw. ya-innate sim Almaz naw."
       },
       {
-        "amharic" : "የእህቶችህስ ስሞች ምንድናቸው?",
-        "english" : "What are your sisters' names?",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "ya-ihitochihss simoch mindnachaw?"
+        "amharic": "የእህቶችህስ ስሞች ምንድናቸው?",
+        "english": "What are your sisters' names?",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "ya-ihitochihss simoch mindnachaw?"
       },
       {
-        "amharic" : "ሳራ እና ሄለን። የወንድሜ ስም ዳዊት ነው።",
-        "english" : "Sara and Helen. My brother's name is Dawit.",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "Sara inna Helen. ya-wandime sim Dawit naw."
+        "amharic": "ሳራ እና ሄለን። የወንድሜ ስም ዳዊት ነው።",
+        "english": "Sara and Helen. My brother's name is Dawit.",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "Sara inna Helen. ya-wandime sim Dawit naw."
       },
       {
-        "amharic" : "ቆንጆ ስሞች ናቸው።",
-        "english" : "They're beautiful names.",
-        "lineNum" : 7,
-        "speaker" : "PERSON A",
-        "transliteration" : "konjo simoch nachaw."
+        "amharic": "ቆንጆ ስሞች ናቸው።",
+        "english": "They're beautiful names.",
+        "lineNum": 7,
+        "speaker": "PERSON A",
+        "transliteration": "konjo simoch nachaw."
       }
     ],
-    "title" : "TALKING ABOUT FAMILY"
+    "title": "TALKING ABOUT FAMILY"
   },
   {
-    "difficulty" : 2,
-    "id" : 8,
-    "lines" : [
+    "difficulty": 2,
+    "id": 8,
+    "lines": [
       {
-        "amharic" : "ነገ ምን ታደርጋለህ?",
-        "english" : "What are you doing tomorrow?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "naga min tadargalah?"
+        "amharic": "ነገ ምን ታደርጋለህ?",
+        "english": "What are you doing tomorrow?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "naga min tadargalah?"
       },
       {
-        "amharic" : "ወደ ገበያ እሄዳለሁ። አንተስ?",
-        "english" : "I'm going to the market. And you?",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "wada gabaya ihedalahu. antass?"
+        "amharic": "ወደ ገበያ እሄዳለሁ። አንተስ?",
+        "english": "I'm going to the market. And you?",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "wada gabaya ihedalahu. antass?"
       },
       {
-        "amharic" : "እኔም ነፃ ነኝ። በአንድነት እንሄድ።",
-        "english" : "I'm also free. Let's go together.",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "inemm natsa nany. ba-andinnat inhid."
+        "amharic": "እኔም ነፃ ነኝ። በአንድነት እንሄድ።",
+        "english": "I'm also free. Let's go together.",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "inemm natsa nany. ba-andinnat inhid."
       },
       {
-        "amharic" : "ጥሩ ሀሳብ ነው። መቼ እንገናኝ?",
-        "english" : "Good idea. When shall we meet?",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "tiru hasab naw. macha inganany?"
+        "amharic": "ጥሩ ሀሳብ ነው። መቼ እንገናኝ?",
+        "english": "Good idea. When shall we meet?",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "tiru hasab naw. macha inganany?"
       },
       {
-        "amharic" : "በአስር ሰዓት። በቦሌ እንገናኝ።",
-        "english" : "At ten o'clock. Let's meet at Bole.",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "ba-asir saat. ba-Bole inganany."
+        "amharic": "በአስር ሰዓት። በቦሌ እንገናኝ።",
+        "english": "At ten o'clock. Let's meet at Bole.",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "ba-asir saat. ba-Bole inganany."
       },
       {
-        "amharic" : "እሺ። ነገ እንገናኛለን።",
-        "english" : "OK. We'll see each other tomorrow.",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "ishi. naga ingananyalan."
+        "amharic": "እሺ። ነገ እንገናኛለን።",
+        "english": "OK. We'll see each other tomorrow.",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "ishi. naga ingananyalan."
       }
     ],
-    "title" : "MAKING PLANS"
+    "title": "MAKING PLANS"
   },
   {
-    "difficulty" : 2,
-    "id" : 9,
-    "lines" : [
+    "difficulty": 2,
+    "id": 9,
+    "lines": [
       {
-        "amharic" : "አሎ? ከሃይሉ ጋር መናገር እችላለሁ?",
-        "english" : "Hello? Can I speak with Haylu?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "alo? ka-Haylu gar managar ichilalahu?"
+        "amharic": "አሎ? ከሃይሉ ጋር መናገር እችላለሁ?",
+        "english": "Hello? Can I speak with Haylu?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "alo? ka-Haylu gar managar ichilalahu?"
       },
       {
-        "amharic" : "አዎ፣ እሱ ነው። ማነው?",
-        "english" : "Yes, this is he. Who is this?",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "awo, issu naw. man naw?"
+        "amharic": "አዎ፣ እሱ ነው። ማነው?",
+        "english": "Yes, this is he. Who is this?",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "awo, issu naw. man naw?"
       },
       {
-        "amharic" : "እኔ ከበደ ነኝ። እንደምን ነህ?",
-        "english" : "It's Kebbede. How are you?",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "ine Kabada nany. indamin nah?"
+        "amharic": "እኔ ከበደ ነኝ። እንደምን ነህ?",
+        "english": "It's Kebbede. How are you?",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "ine Kabada nany. indamin nah?"
       },
       {
-        "amharic" : "ደህና ነኝ፣ አመሰግናለሁ። አንተስ?",
-        "english" : "I'm well, thank you. And you?",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "dahna nany, ameseginalehu. antass?"
+        "amharic": "ደህና ነኝ፣ አመሰግናለሁ። አንተስ?",
+        "english": "I'm well, thank you. And you?",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "dahna nany, ameseginalehu. antass?"
       },
       {
-        "amharic" : "ደህና። ነገ ነፃ ነህ?",
-        "english" : "Fine. Are you free tomorrow?",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "dahna. naga natsa nah?"
+        "amharic": "ደህና። ነገ ነፃ ነህ?",
+        "english": "Fine. Are you free tomorrow?",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "dahna. naga natsa nah?"
       },
       {
-        "amharic" : "አዎ፣ ነፃ ነኝ። ለምን?",
-        "english" : "Yes, I'm free. Why?",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "awo, natsa nany. lamin?"
+        "amharic": "አዎ፣ ነፃ ነኝ። ለምን?",
+        "english": "Yes, I'm free. Why?",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "awo, natsa nany. lamin?"
       },
       {
-        "amharic" : "እንገናኝ። ቡና እንጠጣ።",
-        "english" : "Let's meet. Let's have coffee.",
-        "lineNum" : 7,
-        "speaker" : "PERSON A",
-        "transliteration" : "inganany. buna intat'at'a."
+        "amharic": "እንገናኝ። ቡና እንጠጣ።",
+        "english": "Let's meet. Let's have coffee.",
+        "lineNum": 7,
+        "speaker": "PERSON A",
+        "transliteration": "inganany. buna intat'at'a."
       },
       {
-        "amharic" : "ጥሩ ሀሳብ ነው። በስንት ሰዓት?",
-        "english" : "Good idea. At what time?",
-        "lineNum" : 8,
-        "speaker" : "PERSON B",
-        "transliteration" : "tiru hasab naw. ba-sint saat?"
+        "amharic": "ጥሩ ሀሳብ ነው። በስንት ሰዓት?",
+        "english": "Good idea. At what time?",
+        "lineNum": 8,
+        "speaker": "PERSON B",
+        "transliteration": "tiru hasab naw. ba-sint saat?"
       },
       {
-        "amharic" : "በአራት ሰዓት። በፒያሳ።",
-        "english" : "At four o'clock. At Piazza.",
-        "lineNum" : 9,
-        "speaker" : "PERSON A",
-        "transliteration" : "ba-arat saat. ba-Piyasa."
+        "amharic": "በአራት ሰዓት። በፒያሳ።",
+        "english": "At four o'clock. At Piazza.",
+        "lineNum": 9,
+        "speaker": "PERSON A",
+        "transliteration": "ba-arat saat. ba-Piyasa."
       },
       {
-        "amharic" : "እሺ። ነገ እንገናኛለን።",
-        "english" : "OK. We'll see each other tomorrow.",
-        "lineNum" : 10,
-        "speaker" : "PERSON B",
-        "transliteration" : "ishi. naga ingananyalan."
+        "amharic": "እሺ። ነገ እንገናኛለን።",
+        "english": "OK. We'll see each other tomorrow.",
+        "lineNum": 10,
+        "speaker": "PERSON B",
+        "transliteration": "ishi. naga ingananyalan."
       }
     ],
-    "title" : "PHONE CONVERSATION"
+    "title": "PHONE CONVERSATION"
   },
   {
-    "difficulty" : 2,
-    "id" : 10,
-    "lines" : [
+    "difficulty": 2,
+    "id": 10,
+    "lines": [
       {
-        "amharic" : "የአየር ሁኔታው እንዴት ነው?",
-        "english" : "How's the weather?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "ya-ayar hunetaw indet naw?"
+        "amharic": "የአየር ሁኔታው እንዴት ነው?",
+        "english": "How's the weather?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "ya-ayar hunetaw indet naw?"
       },
       {
-        "amharic" : "ዛሬ ቆንጆ ነው። ፀሐይ አለ።",
-        "english" : "Today it's nice. It's sunny.",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "zare konjo naw. tsahay alla."
+        "amharic": "ዛሬ ቆንጆ ነው። ፀሐይ አለ።",
+        "english": "Today it's nice. It's sunny.",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "zare konjo naw. tsahay alla."
       },
       {
-        "amharic" : "ትናንት ዝናብ ነበረ።",
-        "english" : "Yesterday it rained.",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "tinant zinab nabara."
+        "amharic": "ትናንት ዝናብ ነበረ።",
+        "english": "Yesterday it rained.",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "tinant zinab nabara."
       },
       {
-        "amharic" : "አዎ፣ ብዙ ዝናብ ነበረ። አሁን ምን እየሰራህ ነው?",
-        "english" : "Yes, it rained a lot. What are you doing now?",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "awo, bizu zinab nabara. ahun min iyasarah naw?"
+        "amharic": "አዎ፣ ብዙ ዝናብ ነበረ። አሁን ምን እየሰራህ ነው?",
+        "english": "Yes, it rained a lot. What are you doing now?",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "awo, bizu zinab nabara. ahun min iyasarah naw?"
       },
       {
-        "amharic" : "መጽሐፍ እያነበብኩ ነው። አንተስ?",
-        "english" : "I'm reading a book. And you?",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "mashaf iyanababku naw. antass?"
+        "amharic": "መጽሐፍ እያነበብኩ ነው። አንተስ?",
+        "english": "I'm reading a book. And you?",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "mashaf iyanababku naw. antass?"
       },
       {
-        "amharic" : "እኔ ቡና እጠጣለሁ።",
-        "english" : "I'm drinking coffee.",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "ine buna itat'alahu."
+        "amharic": "እኔ ቡና እጠጣለሁ።",
+        "english": "I'm drinking coffee.",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "ine buna itat'alahu."
       }
     ],
-    "title" : "SMALL TALK (Weather & Daily Life)"
+    "title": "SMALL TALK (Weather & Daily Life)"
   },
   {
-    "difficulty" : 2,
-    "id" : 11,
-    "lines" : [
+    "difficulty": 2,
+    "id": 11,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ ዶክተር።",
-        "english" : "Hello, Doctor.",
-        "lineNum" : 1,
-        "speaker" : "PATIENT",
-        "transliteration" : "t'ena yist'illiany doktar."
+        "amharic": "ጤና ይስጥልኝ ዶክተር።",
+        "english": "Hello, Doctor.",
+        "lineNum": 1,
+        "speaker": "PATIENT",
+        "transliteration": "t'ena yist'illiany doktar."
       },
       {
-        "amharic" : "ጤና ይስጥልኝ። ምን ችግር አለ?",
-        "english" : "Hello. What's the problem?",
-        "lineNum" : 2,
-        "speaker" : "DOCTOR",
-        "transliteration" : "t'ena yist'illiany. min chigir alla?"
+        "amharic": "ጤና ይስጥልኝ። ምን ችግር አለ?",
+        "english": "Hello. What's the problem?",
+        "lineNum": 2,
+        "speaker": "DOCTOR",
+        "transliteration": "t'ena yist'illiany. min chigir alla?"
       },
       {
-        "amharic" : "ጭንቅላቴ ያመኛል። ትኩሳትም አለብኝ።",
-        "english" : "My head hurts. I also have a fever.",
-        "lineNum" : 3,
-        "speaker" : "PATIENT",
-        "transliteration" : "chinkilate yamanynal. tikusatim allabiny."
+        "amharic": "ጭንቅላቴ ያመኛል። ትኩሳትም አለብኝ።",
+        "english": "My head hurts. I also have a fever.",
+        "lineNum": 3,
+        "speaker": "PATIENT",
+        "transliteration": "chinkilate yamanynal. tikusatim allabiny."
       },
       {
-        "amharic" : "መቼ ጀመረ?",
-        "english" : "When did it start?",
-        "lineNum" : 4,
-        "speaker" : "DOCTOR",
-        "transliteration" : "macha jamara?"
+        "amharic": "መቼ ጀመረ?",
+        "english": "When did it start?",
+        "lineNum": 4,
+        "speaker": "DOCTOR",
+        "transliteration": "macha jamara?"
       },
       {
-        "amharic" : "ትናንት ጀመረ። ሆዴም ያመኛል።",
-        "english" : "It started yesterday. My stomach also hurts.",
-        "lineNum" : 5,
-        "speaker" : "PATIENT",
-        "transliteration" : "tinant jamara. hodeim yamanynal."
+        "amharic": "ትናንት ጀመረ። ሆዴም ያመኛል።",
+        "english": "It started yesterday. My stomach also hurts.",
+        "lineNum": 5,
+        "speaker": "PATIENT",
+        "transliteration": "tinant jamara. hodeim yamanynal."
       },
       {
-        "amharic" : "እሺ፣ ልመርምርህ። መድሐኒት እሰጥሃለሁ።",
-        "english" : "OK, let me examine you. I'll give you medicine.",
-        "lineNum" : 6,
-        "speaker" : "DOCTOR",
-        "transliteration" : "ishi, limarmirah. madhanit isatihalahu."
+        "amharic": "እሺ፣ ልመርምርህ። መድሐኒት እሰጥሃለሁ።",
+        "english": "OK, let me examine you. I'll give you medicine.",
+        "lineNum": 6,
+        "speaker": "DOCTOR",
+        "transliteration": "ishi, limarmirah. madhanit isatihalahu."
       },
       {
-        "amharic" : "አመሰግናለሁ ዶክተር። ምን ያህል ነው?",
-        "english" : "Thank you, Doctor. How much is it?",
-        "lineNum" : 7,
-        "speaker" : "PATIENT",
-        "transliteration" : "ameseginalehu doktar. min yahil naw?"
+        "amharic": "አመሰግናለሁ ዶክተር። ምን ያህል ነው?",
+        "english": "Thank you, Doctor. How much is it?",
+        "lineNum": 7,
+        "speaker": "PATIENT",
+        "transliteration": "ameseginalehu doktar. min yahil naw?"
       },
       {
-        "amharic" : "ሁለት መቶ ብር ነው። ደህና ይሁኑ።",
-        "english" : "It's two hundred birr. Get well.",
-        "lineNum" : 8,
-        "speaker" : "DOCTOR",
-        "transliteration" : "hulat mato birr naw. dahna yihunu."
+        "amharic": "ሁለት መቶ ብር ነው። ደህና ይሁኑ።",
+        "english": "It's two hundred birr. Get well.",
+        "lineNum": 8,
+        "speaker": "DOCTOR",
+        "transliteration": "hulat mato birr naw. dahna yihunu."
       }
     ],
-    "title" : "AT THE DOCTOR'S OFFICE"
+    "title": "AT THE DOCTOR'S OFFICE"
   },
   {
-    "difficulty" : 2,
-    "id" : 12,
-    "lines" : [
+    "difficulty": 2,
+    "id": 12,
+    "lines": [
       {
-        "amharic" : "ቡና ጠጡ! ቡና ዝግጁ ነው።",
-        "english" : "Have coffee! The coffee is ready.",
-        "lineNum" : 1,
-        "speaker" : "HOST",
-        "transliteration" : "buna tat'u! buna zigiju naw."
+        "amharic": "ቡና ጠጡ! ቡና ዝግጁ ነው።",
+        "english": "Have coffee! The coffee is ready.",
+        "lineNum": 1,
+        "speaker": "HOST",
+        "transliteration": "buna tat'u! buna zigiju naw."
       },
       {
-        "amharic" : "አመሰግናለሁ። መልካም ሽታ ነው።",
-        "english" : "Thank you. It smells wonderful.",
-        "lineNum" : 2,
-        "speaker" : "GUEST",
-        "transliteration" : "ameseginalehu. melkam shita naw."
+        "amharic": "አመሰግናለሁ። መልካም ሽታ ነው።",
+        "english": "Thank you. It smells wonderful.",
+        "lineNum": 2,
+        "speaker": "GUEST",
+        "transliteration": "ameseginalehu. melkam shita naw."
       },
       {
-        "amharic" : "ይህ አቦል ነው — የመጀመሪያ ዙር።",
-        "english" : "This is abol — the first round.",
-        "lineNum" : 3,
-        "speaker" : "HOST",
-        "transliteration" : "yih abol naw — yamajamiriya zur."
+        "amharic": "ይህ አቦል ነው — የመጀመሪያ ዙር።",
+        "english": "This is abol — the first round.",
+        "lineNum": 3,
+        "speaker": "HOST",
+        "transliteration": "yih abol naw — yamajamiriya zur."
       },
       {
-        "amharic" : "በጣም ጣፋጭ ነው! ስኳር ከጥቂት።",
-        "english" : "It's very delicious! Just a little sugar.",
-        "lineNum" : 4,
-        "speaker" : "GUEST",
-        "transliteration" : "batam tafach naw! sukuar ka-tikit."
+        "amharic": "በጣም ጣፋጭ ነው! ስኳር ከጥቂት።",
+        "english": "It's very delicious! Just a little sugar.",
+        "lineNum": 4,
+        "speaker": "GUEST",
+        "transliteration": "batam tafach naw! sukuar ka-tikit."
       },
       {
-        "amharic" : "ቆሎ ይዞ ይብሉ። ከቡና ጋር ጥሩ ነው።",
-        "english" : "Have some kolo (roasted barley). It goes well with coffee.",
-        "lineNum" : 5,
-        "speaker" : "HOST",
-        "transliteration" : "kolo yizo yiblu. ka-buna gar tiru naw."
+        "amharic": "ቆሎ ይዞ ይብሉ። ከቡና ጋር ጥሩ ነው።",
+        "english": "Have some kolo (roasted barley). It goes well with coffee.",
+        "lineNum": 5,
+        "speaker": "HOST",
+        "transliteration": "kolo yizo yiblu. ka-buna gar tiru naw."
       },
       {
-        "amharic" : "ቶና ስንቱ ነው? ሁለተኛ ዙር?",
-        "english" : "Tona is the second round, right?",
-        "lineNum" : 6,
-        "speaker" : "GUEST",
-        "transliteration" : "tona sintu naw? hulatanya zur?"
+        "amharic": "ቶና ስንቱ ነው? ሁለተኛ ዙር?",
+        "english": "Tona is the second round, right?",
+        "lineNum": 6,
+        "speaker": "GUEST",
+        "transliteration": "tona sintu naw? hulatanya zur?"
       },
       {
-        "amharic" : "አዎ! አቦል፣ ቶና፣ በረካ። ሦስት ዙር ነው።",
-        "english" : "Yes! Abol, tona, baraka. Three rounds.",
-        "lineNum" : 7,
-        "speaker" : "HOST",
-        "transliteration" : "awo! abol, tona, baraka. sost zur naw."
+        "amharic": "አዎ! አቦል፣ ቶና፣ በረካ። ሦስት ዙር ነው።",
+        "english": "Yes! Abol, tona, baraka. Three rounds.",
+        "lineNum": 7,
+        "speaker": "HOST",
+        "transliteration": "awo! abol, tona, baraka. sost zur naw."
       },
       {
-        "amharic" : "በረካ — ብርካት ማለት ነው?",
-        "english" : "Baraka — it means blessing?",
-        "lineNum" : 8,
-        "speaker" : "GUEST",
-        "transliteration" : "baraka — birkat malat naw?"
+        "amharic": "በረካ — ብርካት ማለት ነው?",
+        "english": "Baraka — it means blessing?",
+        "lineNum": 8,
+        "speaker": "GUEST",
+        "transliteration": "baraka — birkat malat naw?"
       },
       {
-        "amharic" : "ትክክል! ሦስቱንም መጠጣት አለብህ።",
-        "english" : "Correct! You must drink all three.",
-        "lineNum" : 9,
-        "speaker" : "HOST",
-        "transliteration" : "tikil! sostu-nim matat'at allabih."
+        "amharic": "ትክክል! ሦስቱንም መጠጣት አለብህ።",
+        "english": "Correct! You must drink all three.",
+        "lineNum": 9,
+        "speaker": "HOST",
+        "transliteration": "tikil! sostu-nim matat'at allabih."
       }
     ],
-    "title" : "ETHIOPIAN COFFEE CEREMONY"
+    "title": "ETHIOPIAN COFFEE CEREMONY"
   },
   {
-    "difficulty" : 2,
-    "id" : 13,
-    "lines" : [
+    "difficulty": 2,
+    "id": 13,
+    "lines": [
       {
-        "amharic" : "ይቅርታ፣ ቼክ-ኢን የት ነው?",
-        "english" : "Excuse me, where is check-in?",
-        "lineNum" : 1,
-        "speaker" : "TRAVELER",
-        "transliteration" : "yikirta, chek-in yat naw?"
+        "amharic": "ይቅርታ፣ ቼክ-ኢን የት ነው?",
+        "english": "Excuse me, where is check-in?",
+        "lineNum": 1,
+        "speaker": "TRAVELER",
+        "transliteration": "yikirta, chek-in yat naw?"
       },
       {
-        "amharic" : "ቀጥታ ይሂዱ፣ ከዚያ ግራ ይታጠፉ።",
-        "english" : "Go straight, then turn left.",
-        "lineNum" : 2,
-        "speaker" : "STAFF",
-        "transliteration" : "kattita yihidu, kaziya gira yitat'afu."
+        "amharic": "ቀጥታ ይሂዱ፣ ከዚያ ግራ ይታጠፉ።",
+        "english": "Go straight, then turn left.",
+        "lineNum": 2,
+        "speaker": "STAFF",
+        "transliteration": "kattita yihidu, kaziya gira yitat'afu."
       },
       {
-        "amharic" : "አመሰግናለሁ። ፓስፖርቴን ያዝኩት?",
-        "english" : "Thank you. Do I have my passport?",
-        "lineNum" : 3,
-        "speaker" : "TRAVELER",
-        "transliteration" : "ameseginalehu. pasporteny yazkut?"
+        "amharic": "አመሰግናለሁ። ፓስፖርቴን ያዝኩት?",
+        "english": "Thank you. Do I have my passport?",
+        "lineNum": 3,
+        "speaker": "TRAVELER",
+        "transliteration": "ameseginalehu. pasporteny yazkut?"
       },
       {
-        "amharic" : "ፓስፖርትዎን እና ትኬትዎን ያሳዩኝ።",
-        "english" : "Show me your passport and ticket.",
-        "lineNum" : 4,
-        "speaker" : "STAFF",
-        "transliteration" : "pasportwon inna tiketwon yasayuny."
+        "amharic": "ፓስፖርትዎን እና ትኬትዎን ያሳዩኝ።",
+        "english": "Show me your passport and ticket.",
+        "lineNum": 4,
+        "speaker": "STAFF",
+        "transliteration": "pasportwon inna tiketwon yasayuny."
       },
       {
-        "amharic" : "እነሆ። ወደ አዲስ አበባ ነው።",
-        "english" : "Here you go. It's to Addis Ababa.",
-        "lineNum" : 5,
-        "speaker" : "TRAVELER",
-        "transliteration" : "inaho. wada Addis Ababa naw."
+        "amharic": "እነሆ። ወደ አዲስ አበባ ነው።",
+        "english": "Here you go. It's to Addis Ababa.",
+        "lineNum": 5,
+        "speaker": "TRAVELER",
+        "transliteration": "inaho. wada Addis Ababa naw."
       },
       {
-        "amharic" : "ሻንጣዎ ምን ያህል ኪሎ ነው?",
-        "english" : "How many kilos is your luggage?",
-        "lineNum" : 6,
-        "speaker" : "STAFF",
-        "transliteration" : "shantawo min yahil kilo naw?"
+        "amharic": "ሻንጣዎ ምን ያህል ኪሎ ነው?",
+        "english": "How many kilos is your luggage?",
+        "lineNum": 6,
+        "speaker": "STAFF",
+        "transliteration": "shantawo min yahil kilo naw?"
       },
       {
-        "amharic" : "ሃያ ኪሎ ይመስለኛል።",
-        "english" : "I think it's twenty kilos.",
-        "lineNum" : 7,
-        "speaker" : "TRAVELER",
-        "transliteration" : "haya kilo yimeslanynal."
+        "amharic": "ሃያ ኪሎ ይመስለኛል።",
+        "english": "I think it's twenty kilos.",
+        "lineNum": 7,
+        "speaker": "TRAVELER",
+        "transliteration": "haya kilo yimeslanynal."
       },
       {
-        "amharic" : "ጥሩ ነው። በር ሰባት። መልካም ጉዞ!",
-        "english" : "That's fine. Gate seven. Have a good trip!",
-        "lineNum" : 8,
-        "speaker" : "STAFF",
-        "transliteration" : "tiru naw. bar sabat. melkam guzo!"
+        "amharic": "ጥሩ ነው። በር ሰባት። መልካም ጉዞ!",
+        "english": "That's fine. Gate seven. Have a good trip!",
+        "lineNum": 8,
+        "speaker": "STAFF",
+        "transliteration": "tiru naw. bar sabat. melkam guzo!"
       }
     ],
-    "title" : "AT THE AIRPORT"
+    "title": "AT THE AIRPORT"
   },
   {
-    "difficulty" : 2,
-    "id" : 14,
-    "lines" : [
+    "difficulty": 2,
+    "id": 14,
+    "lines": [
       {
-        "amharic" : "ቦሌ! ቦሌ!",
-        "english" : "Bole! Bole! (calling the minibus route)",
-        "lineNum" : 1,
-        "speaker" : "PASSENGER",
-        "transliteration" : "Bole! Bole!"
+        "amharic": "ቦሌ! ቦሌ!",
+        "english": "Bole! Bole! (calling the minibus route)",
+        "lineNum": 1,
+        "speaker": "PASSENGER",
+        "transliteration": "Bole! Bole!"
       },
       {
-        "amharic" : "ቦሌ ቦሌ ቦሌ! ግባ! ግባ!",
-        "english" : "Bole Bole! Get in! Get in!",
-        "lineNum" : 2,
-        "speaker" : "CONDUCTOR",
-        "transliteration" : "Bole Bole Bole! giba! giba!"
+        "amharic": "ቦሌ ቦሌ ቦሌ! ግባ! ግባ!",
+        "english": "Bole Bole! Get in! Get in!",
+        "lineNum": 2,
+        "speaker": "CONDUCTOR",
+        "transliteration": "Bole Bole Bole! giba! giba!"
       },
       {
-        "amharic" : "ምን ያህል ነው?",
-        "english" : "How much is it?",
-        "lineNum" : 3,
-        "speaker" : "PASSENGER",
-        "transliteration" : "min yahil naw?"
+        "amharic": "ምን ያህል ነው?",
+        "english": "How much is it?",
+        "lineNum": 3,
+        "speaker": "PASSENGER",
+        "transliteration": "min yahil naw?"
       },
       {
-        "amharic" : "አስራ ሁለት ብር።",
-        "english" : "Twelve birr.",
-        "lineNum" : 4,
-        "speaker" : "CONDUCTOR",
-        "transliteration" : "asra hulat birr."
+        "amharic": "አስራ ሁለት ብር።",
+        "english": "Twelve birr.",
+        "lineNum": 4,
+        "speaker": "CONDUCTOR",
+        "transliteration": "asra hulat birr."
       },
       {
-        "amharic" : "ወረድ! ወረድ! እዚህ ቆም በል።",
-        "english" : "Stop! Stop! Stop here.",
-        "lineNum" : 5,
-        "speaker" : "PASSENGER",
-        "transliteration" : "warad! warad! izzih kom bal."
+        "amharic": "ወረድ! ወረድ! እዚህ ቆም በል።",
+        "english": "Stop! Stop! Stop here.",
+        "lineNum": 5,
+        "speaker": "PASSENGER",
+        "transliteration": "warad! warad! izzih kom bal."
       },
       {
-        "amharic" : "እሺ።",
-        "english" : "OK.",
-        "lineNum" : 6,
-        "speaker" : "CONDUCTOR",
-        "transliteration" : "ishi."
+        "amharic": "እሺ።",
+        "english": "OK.",
+        "lineNum": 6,
+        "speaker": "CONDUCTOR",
+        "transliteration": "ishi."
       },
       {
-        "amharic" : "እነሆ ገንዘቡ። አመሰግናለሁ።",
-        "english" : "Here's the money. Thank you.",
-        "lineNum" : 7,
-        "speaker" : "PASSENGER",
-        "transliteration" : "inaho ganzabu. ameseginalehu."
+        "amharic": "እነሆ ገንዘቡ። አመሰግናለሁ።",
+        "english": "Here's the money. Thank you.",
+        "lineNum": 7,
+        "speaker": "PASSENGER",
+        "transliteration": "inaho ganzabu. ameseginalehu."
       },
       {
-        "amharic" : "ደህና ይሁኑ።",
-        "english" : "Goodbye.",
-        "lineNum" : 8,
-        "speaker" : "CONDUCTOR",
-        "transliteration" : "dahna yihunu."
+        "amharic": "ደህና ይሁኑ።",
+        "english": "Goodbye.",
+        "lineNum": 8,
+        "speaker": "CONDUCTOR",
+        "transliteration": "dahna yihunu."
       }
     ],
-    "title" : "TAKING A TAXI \/ MINIBUS"
+    "title": "TAKING A TAXI / MINIBUS"
   },
   {
-    "difficulty" : 3,
-    "id" : 15,
-    "lines" : [
+    "difficulty": 3,
+    "id": 15,
+    "lines": [
       {
-        "amharic" : "እንኳን አደረሰህ! ምን ያህል ቆንጆ ሰርግ!",
-        "english" : "Congratulations! What a beautiful wedding!",
-        "lineNum" : 1,
-        "speaker" : "GUEST A",
-        "transliteration" : "inkuan adarasah! min yahil konjo sarg!"
+        "amharic": "እንኳን አደረሰህ! ምን ያህል ቆንጆ ሰርግ!",
+        "english": "Congratulations! What a beautiful wedding!",
+        "lineNum": 1,
+        "speaker": "GUEST A",
+        "transliteration": "inkuan adarasah! min yahil konjo sarg!"
       },
       {
-        "amharic" : "አዎ! ሙሽራው እና ሙሽሪቱ በጣም ቆንጆ ናቸው።",
-        "english" : "Yes! The bride and groom are very beautiful.",
-        "lineNum" : 2,
-        "speaker" : "GUEST B",
-        "transliteration" : "awo! mushraw inna mushrittu batam konjo nachaw."
+        "amharic": "አዎ! ሙሽራው እና ሙሽሪቱ በጣም ቆንጆ ናቸው።",
+        "english": "Yes! The bride and groom are very beautiful.",
+        "lineNum": 2,
+        "speaker": "GUEST B",
+        "transliteration": "awo! mushraw inna mushrittu batam konjo nachaw."
       },
       {
-        "amharic" : "ዕልልታው ሰማህ? በጣም ደስ ይላል!",
-        "english" : "Did you hear the ululation? So joyful!",
-        "lineNum" : 3,
-        "speaker" : "GUEST A",
-        "transliteration" : "ililltaw samah? batam das yilal!"
+        "amharic": "ዕልልታው ሰማህ? በጣም ደስ ይላል!",
+        "english": "Did you hear the ululation? So joyful!",
+        "lineNum": 3,
+        "speaker": "GUEST A",
+        "transliteration": "ililltaw samah? batam das yilal!"
       },
       {
-        "amharic" : "ይህ ባህላዊ ጭፈራ ነው?",
-        "english" : "Is this a traditional dance?",
-        "lineNum" : 4,
-        "speaker" : "GUEST B",
-        "transliteration" : "yih bahilawi chifara naw?"
+        "amharic": "ይህ ባህላዊ ጭፈራ ነው?",
+        "english": "Is this a traditional dance?",
+        "lineNum": 4,
+        "speaker": "GUEST B",
+        "transliteration": "yih bahilawi chifara naw?"
       },
       {
-        "amharic" : "አዎ! ይህ እስክስታ ነው። ትከተፍ ነው — በትከሻ።",
-        "english" : "Yes! This is eskista. It's a shoulder dance.",
-        "lineNum" : 5,
-        "speaker" : "GUEST A",
-        "transliteration" : "awo! yih iskista naw. tikattaf naw — ba-tikasha."
+        "amharic": "አዎ! ይህ እስክስታ ነው። ትከተፍ ነው — በትከሻ።",
+        "english": "Yes! This is eskista. It's a shoulder dance.",
+        "lineNum": 5,
+        "speaker": "GUEST A",
+        "transliteration": "awo! yih iskista naw. tikattaf naw — ba-tikasha."
       },
       {
-        "amharic" : "ምግቡ ምን ነው? ዶሮ ወጥ ይመስላል!",
-        "english" : "What's the food? It looks like doro wat!",
-        "lineNum" : 6,
-        "speaker" : "GUEST B",
-        "transliteration" : "migibu min naw? doro wat yimeslal!"
+        "amharic": "ምግቡ ምን ነው? ዶሮ ወጥ ይመስላል!",
+        "english": "What's the food? It looks like doro wat!",
+        "lineNum": 6,
+        "speaker": "GUEST B",
+        "transliteration": "migibu min naw? doro wat yimeslal!"
       },
       {
-        "amharic" : "ዶሮ ወጥ፣ ጥብስ፣ እና ብዙ ምግብ! ጉርሻ ይሰጥሃል!!",
-        "english" : "Doro wat, tibs, and lots of food! Someone will feed you gursha!",
-        "lineNum" : 7,
-        "speaker" : "GUEST A",
-        "transliteration" : "doro wat, tibs, inna bizu migib! gursha yisat'hal!"
+        "amharic": "ዶሮ ወጥ፣ ጥብስ፣ እና ብዙ ምግብ! ጉርሻ ይሰጥሃል!!",
+        "english": "Doro wat, tibs, and lots of food! Someone will feed you gursha!",
+        "lineNum": 7,
+        "speaker": "GUEST A",
+        "transliteration": "doro wat, tibs, inna bizu migib! gursha yisat'hal!"
       },
       {
-        "amharic" : "ጉርሻ? ምንድን ነው?",
-        "english" : "Gursha? What is that?",
-        "lineNum" : 8,
-        "speaker" : "GUEST B",
-        "transliteration" : "gursha? mindin naw?"
+        "amharic": "ጉርሻ? ምንድን ነው?",
+        "english": "Gursha? What is that?",
+        "lineNum": 8,
+        "speaker": "GUEST B",
+        "transliteration": "gursha? mindin naw?"
       },
       {
-        "amharic" : "በእጅህ ምግብ ወስደህ ለጓደኛ ታበላለህ። ፍቅር ማለት ነው!",
-        "english" : "You take food with your hand and feed a friend. It means love!",
-        "lineNum" : 9,
-        "speaker" : "GUEST A",
-        "transliteration" : "ba-ijih migib wasdah la-gwadanya tabalalah. fikir malat naw!"
+        "amharic": "በእጅህ ምግብ ወስደህ ለጓደኛ ታበላለህ። ፍቅር ማለት ነው!",
+        "english": "You take food with your hand and feed a friend. It means love!",
+        "lineNum": 9,
+        "speaker": "GUEST A",
+        "transliteration": "ba-ijih migib wasdah la-gwadanya tabalalah. fikir malat naw!"
       },
       {
-        "amharic" : "በጣም ቆንጆ ባህል! ፈጣሪ ይባርካቸው!",
-        "english" : "What a beautiful tradition! God bless them!",
-        "lineNum" : 10,
-        "speaker" : "GUEST B",
-        "transliteration" : "batam konjo bahil! fatari yibarikachaw!"
+        "amharic": "በጣም ቆንጆ ባህል! ፈጣሪ ይባርካቸው!",
+        "english": "What a beautiful tradition! God bless them!",
+        "lineNum": 10,
+        "speaker": "GUEST B",
+        "transliteration": "batam konjo bahil! fatari yibarikachaw!"
       }
     ],
-    "title" : "ETHIOPIAN WEDDING"
+    "title": "ETHIOPIAN WEDDING"
   },
   {
-    "difficulty" : 2,
-    "id" : 16,
-    "lines" : [
+    "difficulty": 2,
+    "id": 16,
+    "lines": [
       {
-        "amharic" : "እንኳን ለመስቀል በዓል አደረሰህ!",
-        "english" : "Happy Meskel holiday!",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "inkuan la-maskal ba'al adarasah!"
+        "amharic": "እንኳን ለመስቀል በዓል አደረሰህ!",
+        "english": "Happy Meskel holiday!",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "inkuan la-maskal ba'al adarasah!"
       },
       {
-        "amharic" : "እንኳን አደረሰህ! ዛሬ ደመራ ነው?",
-        "english" : "Happy holiday! Is the bonfire today?",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "inkuan adarasah! zare damara naw?"
+        "amharic": "እንኳን አደረሰህ! ዛሬ ደመራ ነው?",
+        "english": "Happy holiday! Is the bonfire today?",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "inkuan adarasah! zare damara naw?"
       },
       {
-        "amharic" : "አዎ! ደመራ ማታ ይለኮሳል። በመስቀል አደባባይ።",
-        "english" : "Yes! The bonfire is lit tonight. At Meskel Square.",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "awo! damara mata yilakkosal. ba-Maskal Adababay."
+        "amharic": "አዎ! ደመራ ማታ ይለኮሳል። በመስቀል አደባባይ።",
+        "english": "Yes! The bonfire is lit tonight. At Meskel Square.",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "awo! damara mata yilakkosal. ba-Maskal Adababay."
       },
       {
-        "amharic" : "ሰዎች ዱላ ይዘው ዙሪያውን ይዞራሉ?",
-        "english" : "People walk around it carrying sticks?",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "sawooch dula yizaw zuriyawun yizorallu?"
+        "amharic": "ሰዎች ዱላ ይዘው ዙሪያውን ይዞራሉ?",
+        "english": "People walk around it carrying sticks?",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "sawooch dula yizaw zuriyawun yizorallu?"
       },
       {
-        "amharic" : "አዎ! ደመራ ክበብ ያደርጋሉ። ቆንጆ ነው።",
-        "english" : "Yes! They circle the bonfire. It's beautiful.",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "awo! damara kibab yadarggallu. konjo naw."
+        "amharic": "አዎ! ደመራ ክበብ ያደርጋሉ። ቆንጆ ነው።",
+        "english": "Yes! They circle the bonfire. It's beautiful.",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "awo! damara kibab yadarggallu. konjo naw."
       },
       {
-        "amharic" : "ደመራ ወድቆ ያለው አቅጣጫ ምን ያሳያል?",
-        "english" : "What does the direction the bonfire falls show?",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "damara wadko yallaw akit'acha min yasayal?"
+        "amharic": "ደመራ ወድቆ ያለው አቅጣጫ ምን ያሳያል?",
+        "english": "What does the direction the bonfire falls show?",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "damara wadko yallaw akit'acha min yasayal?"
       },
       {
-        "amharic" : "የመስቀል ቅርስ ያለበትን አቅጣጫ ያሳያል!!",
-        "english" : "It shows the direction of the True Cross!",
-        "lineNum" : 7,
-        "speaker" : "PERSON A",
-        "transliteration" : "ya-maskal kirs yalabattin akit'acha yasayal!"
+        "amharic": "የመስቀል ቅርስ ያለበትን አቅጣጫ ያሳያል!!",
+        "english": "It shows the direction of the True Cross!",
+        "lineNum": 7,
+        "speaker": "PERSON A",
+        "transliteration": "ya-maskal kirs yalabattin akit'acha yasayal!"
       },
       {
-        "amharic" : "በጣም ቆንጆ ባህል ነው። እንሂድ!",
-        "english" : "It's a beautiful tradition. Let's go!",
-        "lineNum" : 8,
-        "speaker" : "PERSON B",
-        "transliteration" : "batam konjo bahil naw. inhid!"
+        "amharic": "በጣም ቆንጆ ባህል ነው። እንሂድ!",
+        "english": "It's a beautiful tradition. Let's go!",
+        "lineNum": 8,
+        "speaker": "PERSON B",
+        "transliteration": "batam konjo bahil naw. inhid!"
       }
     ],
-    "title" : "MESKEL CELEBRATION"
+    "title": "MESKEL CELEBRATION"
   },
   {
-    "difficulty" : 2,
-    "id" : 17,
-    "lines" : [
+    "difficulty": 2,
+    "id": 17,
+    "lines": [
       {
-        "amharic" : "እንኳን ደህና መጣህ! ግባ! ግባ!",
-        "english" : "Welcome! Come in! Come in!",
-        "lineNum" : 1,
-        "speaker" : "HOST",
-        "transliteration" : "inkuan dahna mattah! giba! giba!"
+        "amharic": "እንኳን ደህና መጣህ! ግባ! ግባ!",
+        "english": "Welcome! Come in! Come in!",
+        "lineNum": 1,
+        "speaker": "HOST",
+        "transliteration": "inkuan dahna mattah! giba! giba!"
       },
       {
-        "amharic" : "አመሰግናለሁ። ጫማዬን ላውልቅ?",
-        "english" : "Thank you. Should I take off my shoes?",
-        "lineNum" : 2,
-        "speaker" : "GUEST",
-        "transliteration" : "ameseginalehu. chamayen la-wilik?"
+        "amharic": "አመሰግናለሁ። ጫማዬን ላውልቅ?",
+        "english": "Thank you. Should I take off my shoes?",
+        "lineNum": 2,
+        "speaker": "GUEST",
+        "transliteration": "ameseginalehu. chamayen la-wilik?"
       },
       {
-        "amharic" : "አዎ፣ እባክህ። ቡና ልሥራ?",
-        "english" : "Yes, please. Shall I make coffee?",
-        "lineNum" : 3,
-        "speaker" : "HOST",
-        "transliteration" : "awo, ibakkih. buna lisra?"
+        "amharic": "አዎ፣ እባክህ። ቡና ልሥራ?",
+        "english": "Yes, please. Shall I make coffee?",
+        "lineNum": 3,
+        "speaker": "HOST",
+        "transliteration": "awo, ibakkih. buna lisra?"
       },
       {
-        "amharic" : "አዎ! ቡናሽ በጣም ጣፋጭ ነው!",
-        "english" : "Yes! Your coffee is so delicious!",
-        "lineNum" : 4,
-        "speaker" : "GUEST",
-        "transliteration" : "awo! bunash batam tafach naw!"
+        "amharic": "አዎ! ቡናሽ በጣም ጣፋጭ ነው!",
+        "english": "Yes! Your coffee is so delicious!",
+        "lineNum": 4,
+        "speaker": "GUEST",
+        "transliteration": "awo! bunash batam tafach naw!"
       },
       {
-        "amharic" : "ምግብ በልተሃል? እንጀራ አዘጋጅቻለሁ።",
-        "english" : "Have you eaten? I've prepared injera.",
-        "lineNum" : 5,
-        "speaker" : "HOST",
-        "transliteration" : "migib baltahal? injara azagajicha-lahu."
+        "amharic": "ምግብ በልተሃል? እንጀራ አዘጋጅቻለሁ።",
+        "english": "Have you eaten? I've prepared injera.",
+        "lineNum": 5,
+        "speaker": "HOST",
+        "transliteration": "migib baltahal? injara azagajicha-lahu."
       },
       {
-        "amharic" : "አይ፣ ገና አልበላሁም። በጣም ጥሩ!",
-        "english" : "No, I haven't eaten yet. Wonderful!",
-        "lineNum" : 6,
-        "speaker" : "GUEST",
-        "transliteration" : "ay, gena albalahum. batam tiru!"
+        "amharic": "አይ፣ ገና አልበላሁም። በጣም ጥሩ!",
+        "english": "No, I haven't eaten yet. Wonderful!",
+        "lineNum": 6,
+        "speaker": "GUEST",
+        "transliteration": "ay, gena albalahum. batam tiru!"
       },
       {
-        "amharic" : "ና! ጉርሻ ልስጥህ!",
-        "english" : "Come! Let me give you gursha!",
-        "lineNum" : 7,
-        "speaker" : "HOST",
-        "transliteration" : "na! gursha lisit'ih!"
+        "amharic": "ና! ጉርሻ ልስጥህ!",
+        "english": "Come! Let me give you gursha!",
+        "lineNum": 7,
+        "speaker": "HOST",
+        "transliteration": "na! gursha lisit'ih!"
       },
       {
-        "amharic" : "በጣም ጣፋጭ! አመሰግናለሁ ለእንግዳ ተቀባበል!",
-        "english" : "So delicious! Thank you for the hospitality!",
-        "lineNum" : 8,
-        "speaker" : "GUEST",
-        "transliteration" : "batam tafach! ameseginalehu la-ingida takababal!"
+        "amharic": "በጣም ጣፋጭ! አመሰግናለሁ ለእንግዳ ተቀባበል!",
+        "english": "So delicious! Thank you for the hospitality!",
+        "lineNum": 8,
+        "speaker": "GUEST",
+        "transliteration": "batam tafach! ameseginalehu la-ingida takababal!"
       }
     ],
-    "title" : "VISITING A FRIEND'S HOME"
+    "title": "VISITING A FRIEND'S HOME"
   },
   {
-    "difficulty" : 1,
-    "id" : 18,
-    "lines" : [
+    "difficulty": 1,
+    "id": 18,
+    "lines": [
       {
-        "amharic" : "ጠዋት ምን ሰዓት ትነሳለህ?",
-        "english" : "What time do you wake up in the morning?",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "tawat min saat tinasalah?"
+        "amharic": "ጠዋት ምን ሰዓት ትነሳለህ?",
+        "english": "What time do you wake up in the morning?",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "tawat min saat tinasalah?"
       },
       {
-        "amharic" : "በአንድ ሰዓት እነሳለሁ። አንተስ?",
-        "english" : "I wake up at seven (1 o'clock Ethiopian). And you?",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "ba-and saat inasalahu. antass?"
+        "amharic": "በአንድ ሰዓት እነሳለሁ። አንተስ?",
+        "english": "I wake up at seven (1 o'clock Ethiopian). And you?",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "ba-and saat inasalahu. antass?"
       },
       {
-        "amharic" : "በሁለት ሰዓት። ሥራ በሦስት ሰዓት ይጀምራል።",
-        "english" : "At eight (2 o'clock Ethiopian). Work starts at nine.",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "ba-hulat saat. sira ba-sost saat yijamral."
+        "amharic": "በሁለት ሰዓት። ሥራ በሦስት ሰዓት ይጀምራል።",
+        "english": "At eight (2 o'clock Ethiopian). Work starts at nine.",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "ba-hulat saat. sira ba-sost saat yijamral."
       },
       {
-        "amharic" : "ሥራ ምን ታደርጋለህ?",
-        "english" : "What do you do for work?",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "sira min tadargalah?"
+        "amharic": "ሥራ ምን ታደርጋለህ?",
+        "english": "What do you do for work?",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "sira min tadargalah?"
       },
       {
-        "amharic" : "መምህር ነኝ። ትምህርት ቤት እሰራለሁ።",
-        "english" : "I'm a teacher. I work at a school.",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "mamhir nany. timhirt bet isaralahu."
+        "amharic": "መምህር ነኝ። ትምህርት ቤት እሰራለሁ።",
+        "english": "I'm a teacher. I work at a school.",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "mamhir nany. timhirt bet isaralahu."
       },
       {
-        "amharic" : "ጥሩ ሥራ ነው! እኔ ዶክተር ነኝ።",
-        "english" : "That's a good job! I'm a doctor.",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "tiru sira naw! ine doktar nany."
+        "amharic": "ጥሩ ሥራ ነው! እኔ ዶክተር ነኝ።",
+        "english": "That's a good job! I'm a doctor.",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "tiru sira naw! ine doktar nany."
       }
     ],
-    "title" : "DAILY ROUTINE & WORK"
+    "title": "DAILY ROUTINE & WORK"
   },
   {
-    "difficulty" : 2,
-    "id" : 19,
-    "lines" : [
+    "difficulty": 2,
+    "id": 19,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ። አልጋ አለ?",
-        "english" : "Hello. Do you have a room available?",
-        "lineNum" : 1,
-        "speaker" : "GUEST",
-        "transliteration" : "t'ena yist'illiany. alga alla?"
+        "amharic": "ጤና ይስጥልኝ። አልጋ አለ?",
+        "english": "Hello. Do you have a room available?",
+        "lineNum": 1,
+        "speaker": "GUEST",
+        "transliteration": "t'ena yist'illiany. alga alla?"
       },
       {
-        "amharic" : "ጤና ይስጥልኝ። አዎ፣ አለ። ለስንት ቀን?",
-        "english" : "Hello. Yes, we do. For how many days?",
-        "lineNum" : 2,
-        "speaker" : "RECEPTIONIST",
-        "transliteration" : "t'ena yist'illiany. awo, alla. la-sint kan?"
+        "amharic": "ጤና ይስጥልኝ። አዎ፣ አለ። ለስንት ቀን?",
+        "english": "Hello. Yes, we do. For how many days?",
+        "lineNum": 2,
+        "speaker": "RECEPTIONIST",
+        "transliteration": "t'ena yist'illiany. awo, alla. la-sint kan?"
       },
       {
-        "amharic" : "ለሦስት ቀን። ለአንድ ማታ ስንት ነው?",
-        "english" : "For three days. How much is it per night?",
-        "lineNum" : 3,
-        "speaker" : "GUEST",
-        "transliteration" : "la-sost kan. la-and mata sint naw?"
+        "amharic": "ለሦስት ቀን። ለአንድ ማታ ስንት ነው?",
+        "english": "For three days. How much is it per night?",
+        "lineNum": 3,
+        "speaker": "GUEST",
+        "transliteration": "la-sost kan. la-and mata sint naw?"
       },
       {
-        "amharic" : "ለአንድ ማታ ሁለት ሺህ ብር ነው። ቁርስ ይጨምራል።",
-        "english" : "It's two thousand birr per night. Breakfast is included.",
-        "lineNum" : 4,
-        "speaker" : "RECEPTIONIST",
-        "transliteration" : "la-and mata hulat shih birr naw. kuris yichimiral."
+        "amharic": "ለአንድ ማታ ሁለት ሺህ ብር ነው። ቁርስ ይጨምራል።",
+        "english": "It's two thousand birr per night. Breakfast is included.",
+        "lineNum": 4,
+        "speaker": "RECEPTIONIST",
+        "transliteration": "la-and mata hulat shih birr naw. kuris yichimiral."
       },
       {
-        "amharic" : "ክፍሉን ማየት እችላለሁ?",
-        "english" : "Can I see the room?",
-        "lineNum" : 5,
-        "speaker" : "GUEST",
-        "transliteration" : "kiflun mayat ichilalahu?"
+        "amharic": "ክፍሉን ማየት እችላለሁ?",
+        "english": "Can I see the room?",
+        "lineNum": 5,
+        "speaker": "GUEST",
+        "transliteration": "kiflun mayat ichilalahu?"
       },
       {
-        "amharic" : "በእርግጥ! ይህ ክፍል መታጠቢያ ቤት እና ቲቪ አለው።",
-        "english" : "Of course! This room has a bathroom and a TV.",
-        "lineNum" : 6,
-        "speaker" : "RECEPTIONIST",
-        "transliteration" : "ba-irigit! yih kifil matatabiya bet inna tivi allaw."
+        "amharic": "በእርግጥ! ይህ ክፍል መታጠቢያ ቤት እና ቲቪ አለው።",
+        "english": "Of course! This room has a bathroom and a TV.",
+        "lineNum": 6,
+        "speaker": "RECEPTIONIST",
+        "transliteration": "ba-irigit! yih kifil matatabiya bet inna tivi allaw."
       },
       {
-        "amharic" : "ጥሩ ነው። ይህንን ክፍል እፈልጋለሁ።",
-        "english" : "It's nice. I want this room.",
-        "lineNum" : 7,
-        "speaker" : "GUEST",
-        "transliteration" : "tiru naw. yihinan kifil ifaligalahu."
+        "amharic": "ጥሩ ነው። ይህንን ክፍል እፈልጋለሁ።",
+        "english": "It's nice. I want this room.",
+        "lineNum": 7,
+        "speaker": "GUEST",
+        "transliteration": "tiru naw. yihinan kifil ifaligalahu."
       },
       {
-        "amharic" : "ፓስፖርትዎን ያሳዩኝ። ቁልፍዎ እነሆ።",
-        "english" : "Show me your passport. Here is your key.",
-        "lineNum" : 8,
-        "speaker" : "RECEPTIONIST",
-        "transliteration" : "pasportwon yasayuny. kulifwo inaho."
+        "amharic": "ፓስፖርትዎን ያሳዩኝ። ቁልፍዎ እነሆ።",
+        "english": "Show me your passport. Here is your key.",
+        "lineNum": 8,
+        "speaker": "RECEPTIONIST",
+        "transliteration": "pasportwon yasayuny. kulifwo inaho."
       },
       {
-        "amharic" : "አመሰግናለሁ። ሙቅ ውሃ ቀኑን ሙሉ አለ?",
-        "english" : "Thank you. Is there hot water all day?",
-        "lineNum" : 9,
-        "speaker" : "GUEST",
-        "transliteration" : "ameseginalehu. muk wiha kanun mulu alla?"
+        "amharic": "አመሰግናለሁ። ሙቅ ውሃ ቀኑን ሙሉ አለ?",
+        "english": "Thank you. Is there hot water all day?",
+        "lineNum": 9,
+        "speaker": "GUEST",
+        "transliteration": "ameseginalehu. muk wiha kanun mulu alla?"
       },
       {
-        "amharic" : "አዎ፣ ሃያ አራት ሰዓት። መልካም ቆይታ!",
-        "english" : "Yes, twenty-four hours. Enjoy your stay!",
-        "lineNum" : 10,
-        "speaker" : "RECEPTIONIST",
-        "transliteration" : "awo, haya arat saat. melkam koyita!"
+        "amharic": "አዎ፣ ሃያ አራት ሰዓት። መልካም ቆይታ!",
+        "english": "Yes, twenty-four hours. Enjoy your stay!",
+        "lineNum": 10,
+        "speaker": "RECEPTIONIST",
+        "transliteration": "awo, haya arat saat. melkam koyita!"
       }
     ],
-    "title" : "HOTEL CHECK-IN"
+    "title": "HOTEL CHECK-IN"
   },
   {
-    "difficulty" : 2,
-    "id" : 20,
-    "lines" : [
+    "difficulty": 2,
+    "id": 20,
+    "lines": [
       {
-        "amharic" : "እንኳን ደህና መጡ! ለስንት ሰው ቦታ?",
-        "english" : "Welcome! A table for how many?",
-        "lineNum" : 1,
-        "speaker" : "WAITER",
-        "transliteration" : "inkuan dahna mattu! la-sint saw bota?"
+        "amharic": "እንኳን ደህና መጡ! ለስንት ሰው ቦታ?",
+        "english": "Welcome! A table for how many?",
+        "lineNum": 1,
+        "speaker": "WAITER",
+        "transliteration": "inkuan dahna mattu! la-sint saw bota?"
       },
       {
-        "amharic" : "ለሁለት ሰው። ሜኑ በእንግሊዝኛ አለ?",
-        "english" : "For two people. Do you have a menu in English?",
-        "lineNum" : 2,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "la-hulat saw. menu ba-ingilizinya alla?"
+        "amharic": "ለሁለት ሰው። ሜኑ በእንግሊዝኛ አለ?",
+        "english": "For two people. Do you have a menu in English?",
+        "lineNum": 2,
+        "speaker": "CUSTOMER",
+        "transliteration": "la-hulat saw. menu ba-ingilizinya alla?"
       },
       {
-        "amharic" : "ይቅርታ፣ በእንግሊዝኛ የለንም። ዛሬ ምን አለን ልበልዎ።",
-        "english" : "Sorry, not in English. Let me tell you what we have today.",
-        "lineNum" : 3,
-        "speaker" : "WAITER",
-        "transliteration" : "yikirta, ba-ingilizinya yallanim. zare min allan libalwo."
+        "amharic": "ይቅርታ፣ በእንግሊዝኛ የለንም። ዛሬ ምን አለን ልበልዎ።",
+        "english": "Sorry, not in English. Let me tell you what we have today.",
+        "lineNum": 3,
+        "speaker": "WAITER",
+        "transliteration": "yikirta, ba-ingilizinya yallanim. zare min allan libalwo."
       },
       {
-        "amharic" : "እሺ። ዶሮ ወጥ አለ?",
-        "english" : "OK. Do you have doro wat?",
-        "lineNum" : 4,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "ishi. doro wat alla?"
+        "amharic": "እሺ። ዶሮ ወጥ አለ?",
+        "english": "OK. Do you have doro wat?",
+        "lineNum": 4,
+        "speaker": "CUSTOMER",
+        "transliteration": "ishi. doro wat alla?"
       },
       {
-        "amharic" : "አዎ! ዶሮ ወጥ፣ ጥብስ፣ ሽሮ፣ እና በያይነቱ አለ።",
-        "english" : "Yes! We have doro wat, tibs, shiro, and the mixed platter.",
-        "lineNum" : 5,
-        "speaker" : "WAITER",
-        "transliteration" : "awo! doro wat, tibs, shiro, inna bayayinatu alla."
+        "amharic": "አዎ! ዶሮ ወጥ፣ ጥብስ፣ ሽሮ፣ እና በያይነቱ አለ።",
+        "english": "Yes! We have doro wat, tibs, shiro, and the mixed platter.",
+        "lineNum": 5,
+        "speaker": "WAITER",
+        "transliteration": "awo! doro wat, tibs, shiro, inna bayayinatu alla."
       },
       {
-        "amharic" : "በያይነቱ እፈልጋለሁ። ስጋ አልበላም — የጾም ምግብ አለ?",
-        "english" : "I want the mixed platter. I don't eat meat — do you have fasting food?",
-        "lineNum" : 6,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "bayayinatu ifaligalahu. siga alballam — ya-tsom migib alla?"
+        "amharic": "በያይነቱ እፈልጋለሁ። ስጋ አልበላም — የጾም ምግብ አለ?",
+        "english": "I want the mixed platter. I don't eat meat — do you have fasting food?",
+        "lineNum": 6,
+        "speaker": "CUSTOMER",
+        "transliteration": "bayayinatu ifaligalahu. siga alballam — ya-tsom migib alla?"
       },
       {
-        "amharic" : "አዎ! የጾም በያይነቱ ጥሩ ነው። ሽሮ፣ ምስር ወጥ፣ አትክልት።",
-        "english" : "Yes! The fasting platter is great. Shiro, lentil stew, vegetables.",
-        "lineNum" : 7,
-        "speaker" : "WAITER",
-        "transliteration" : "awo! ya-tsom bayayinatu tiru naw. shiro, misir wat, atikilt."
+        "amharic": "አዎ! የጾም በያይነቱ ጥሩ ነው። ሽሮ፣ ምስር ወጥ፣ አትክልት።",
+        "english": "Yes! The fasting platter is great. Shiro, lentil stew, vegetables.",
+        "lineNum": 7,
+        "speaker": "WAITER",
+        "transliteration": "awo! ya-tsom bayayinatu tiru naw. shiro, misir wat, atikilt."
       },
       {
-        "amharic" : "ጥሩ! እሱን ይምጣ። ለመጠጥ ሁለት አምቦ ውሃ።",
-        "english" : "Great! Bring that. For drinks, two Ambo waters.",
-        "lineNum" : 8,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "tiru! issun yimta. la-matat hulat Ambo wiha."
+        "amharic": "ጥሩ! እሱን ይምጣ። ለመጠጥ ሁለት አምቦ ውሃ።",
+        "english": "Great! Bring that. For drinks, two Ambo waters.",
+        "lineNum": 8,
+        "speaker": "CUSTOMER",
+        "transliteration": "tiru! issun yimta. la-matat hulat Ambo wiha."
       },
       {
-        "amharic" : "ጠግባችኋል?",
-        "english" : "Are you satisfied?",
-        "lineNum" : 9,
-        "speaker" : "WAITER",
-        "transliteration" : "tagbachihuwal?"
+        "amharic": "ጠግባችኋል?",
+        "english": "Are you satisfied?",
+        "lineNum": 9,
+        "speaker": "WAITER",
+        "transliteration": "tagbachihuwal?"
       },
       {
-        "amharic" : "አዎ፣ በጣም ጣፋጭ! ሂሳብ እባክህ።",
-        "english" : "Yes, very delicious! The bill, please.",
-        "lineNum" : 10,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "awo, batam tafach! hisab ibakkih."
+        "amharic": "አዎ፣ በጣም ጣፋጭ! ሂሳብ እባክህ።",
+        "english": "Yes, very delicious! The bill, please.",
+        "lineNum": 10,
+        "speaker": "CUSTOMER",
+        "transliteration": "awo, batam tafach! hisab ibakkih."
       }
     ],
-    "title" : "ORDERING AT A RESTAURANT"
+    "title": "ORDERING AT A RESTAURANT"
   },
   {
-    "difficulty" : 2,
-    "id" : 21,
-    "lines" : [
+    "difficulty": 2,
+    "id": 21,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ። መድሐኒት እፈልጋለሁ።",
-        "english" : "Hello. I need medicine.",
-        "lineNum" : 1,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "t'ena yist'illiany. madhanit ifaligalahu."
+        "amharic": "ጤና ይስጥልኝ። መድሐኒት እፈልጋለሁ።",
+        "english": "Hello. I need medicine.",
+        "lineNum": 1,
+        "speaker": "CUSTOMER",
+        "transliteration": "t'ena yist'illiany. madhanit ifaligalahu."
       },
       {
-        "amharic" : "ጤና ይስጥልኝ። ምን ችግር አለ?",
-        "english" : "Hello. What's the problem?",
-        "lineNum" : 2,
-        "speaker" : "PHARMACIST",
-        "transliteration" : "t'ena yist'illiany. min chigir alla?"
+        "amharic": "ጤና ይስጥልኝ። ምን ችግር አለ?",
+        "english": "Hello. What's the problem?",
+        "lineNum": 2,
+        "speaker": "PHARMACIST",
+        "transliteration": "t'ena yist'illiany. min chigir alla?"
       },
       {
-        "amharic" : "ጉንፋን ይዞኛል። ሳል አለብኝ።",
-        "english" : "I have a cold. I have a cough.",
-        "lineNum" : 3,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "gunfan yizonyal. sal allabiny."
+        "amharic": "ጉንፋን ይዞኛል። ሳል አለብኝ።",
+        "english": "I have a cold. I have a cough.",
+        "lineNum": 3,
+        "speaker": "CUSTOMER",
+        "transliteration": "gunfan yizonyal. sal allabiny."
       },
       {
-        "amharic" : "ትኩሳት አለ?",
-        "english" : "Do you have a fever?",
-        "lineNum" : 4,
-        "speaker" : "PHARMACIST",
-        "transliteration" : "tikusat alla?"
+        "amharic": "ትኩሳት አለ?",
+        "english": "Do you have a fever?",
+        "lineNum": 4,
+        "speaker": "PHARMACIST",
+        "transliteration": "tikusat alla?"
       },
       {
-        "amharic" : "አዎ፣ ትንሽ ትኩሳት አለ። ራሴንም ያመኛል።",
-        "english" : "Yes, a slight fever. My head also hurts.",
-        "lineNum" : 5,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "awo, tinish tikusat alla. rasenim yamanynal."
+        "amharic": "አዎ፣ ትንሽ ትኩሳት አለ። ራሴንም ያመኛል።",
+        "english": "Yes, a slight fever. My head also hurts.",
+        "lineNum": 5,
+        "speaker": "CUSTOMER",
+        "transliteration": "awo, tinish tikusat alla. rasenim yamanynal."
       },
       {
-        "amharic" : "እሺ። የሳል መድሐኒት እና አስፕሪን እሰጥሃለሁ።",
-        "english" : "OK. I'll give you cough medicine and aspirin.",
-        "lineNum" : 6,
-        "speaker" : "PHARMACIST",
-        "transliteration" : "ishi. ya-sal madhanit inna asprin isatihalahu."
+        "amharic": "እሺ። የሳል መድሐኒት እና አስፕሪን እሰጥሃለሁ።",
+        "english": "OK. I'll give you cough medicine and aspirin.",
+        "lineNum": 6,
+        "speaker": "PHARMACIST",
+        "transliteration": "ishi. ya-sal madhanit inna asprin isatihalahu."
       },
       {
-        "amharic" : "በቀን ስንት ጊዜ?",
-        "english" : "How many times a day?",
-        "lineNum" : 7,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "ba-kan sint gize?"
+        "amharic": "በቀን ስንት ጊዜ?",
+        "english": "How many times a day?",
+        "lineNum": 7,
+        "speaker": "CUSTOMER",
+        "transliteration": "ba-kan sint gize?"
       },
       {
-        "amharic" : "ሦስት ጊዜ በቀን ከምግብ በኋላ። ብዙ ውሃ ጠጡ።",
-        "english" : "Three times a day after meals. Drink lots of water.",
-        "lineNum" : 8,
-        "speaker" : "PHARMACIST",
-        "transliteration" : "sost gize ba-kan ka-migib bahuwala. bizu wiha tat'u."
+        "amharic": "ሦስት ጊዜ በቀን ከምግብ በኋላ። ብዙ ውሃ ጠጡ።",
+        "english": "Three times a day after meals. Drink lots of water.",
+        "lineNum": 8,
+        "speaker": "PHARMACIST",
+        "transliteration": "sost gize ba-kan ka-migib bahuwala. bizu wiha tat'u."
       },
       {
-        "amharic" : "ምን ያህል ነው?",
-        "english" : "How much is it?",
-        "lineNum" : 9,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "min yahil naw?"
+        "amharic": "ምን ያህል ነው?",
+        "english": "How much is it?",
+        "lineNum": 9,
+        "speaker": "CUSTOMER",
+        "transliteration": "min yahil naw?"
       },
       {
-        "amharic" : "መቶ ሃምሳ ብር ነው። ብዙ እረፍ። ደህና ይሁኑ።",
-        "english" : "It's 150 birr. Rest a lot. Get well.",
-        "lineNum" : 10,
-        "speaker" : "PHARMACIST",
-        "transliteration" : "mato hamsa birr naw. bizu iraf. dahna yihunu."
+        "amharic": "መቶ ሃምሳ ብር ነው። ብዙ እረፍ። ደህና ይሁኑ።",
+        "english": "It's 150 birr. Rest a lot. Get well.",
+        "lineNum": 10,
+        "speaker": "PHARMACIST",
+        "transliteration": "mato hamsa birr naw. bizu iraf. dahna yihunu."
       }
     ],
-    "title" : "AT THE PHARMACY"
+    "title": "AT THE PHARMACY"
   },
   {
-    "difficulty" : 2,
-    "id" : 22,
-    "lines" : [
+    "difficulty": 2,
+    "id": 22,
+    "lines": [
       {
-        "amharic" : "ጤና ይስጥልኝ። ገንዘብ መቀየር እፈልጋለሁ።",
-        "english" : "Hello. I want to change money.",
-        "lineNum" : 1,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "t'ena yist'illiany. ganzab makayar ifaligalahu."
+        "amharic": "ጤና ይስጥልኝ። ገንዘብ መቀየር እፈልጋለሁ።",
+        "english": "Hello. I want to change money.",
+        "lineNum": 1,
+        "speaker": "CUSTOMER",
+        "transliteration": "t'ena yist'illiany. ganzab makayar ifaligalahu."
       },
       {
-        "amharic" : "ጤና ይስጥልኝ። ምን ዓይነት ገንዘብ?",
-        "english" : "Hello. What kind of currency?",
-        "lineNum" : 2,
-        "speaker" : "TELLER",
-        "transliteration" : "t'ena yist'illiany. min aynat ganzab?"
+        "amharic": "ጤና ይስጥልኝ። ምን ዓይነት ገንዘብ?",
+        "english": "Hello. What kind of currency?",
+        "lineNum": 2,
+        "speaker": "TELLER",
+        "transliteration": "t'ena yist'illiany. min aynat ganzab?"
       },
       {
-        "amharic" : "ዶላር አለኝ። በስንት ዋጋ?",
-        "english" : "I have dollars. What's the exchange rate?",
-        "lineNum" : 3,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "dolar allany. ba-sint waga?"
+        "amharic": "ዶላር አለኝ። በስንት ዋጋ?",
+        "english": "I have dollars. What's the exchange rate?",
+        "lineNum": 3,
+        "speaker": "CUSTOMER",
+        "transliteration": "dolar allany. ba-sint waga?"
       },
       {
-        "amharic" : "ዛሬ አንድ ዶላር ሃምሳ ስድስት ብር ነው።",
-        "english" : "Today one dollar is fifty-six birr.",
-        "lineNum" : 4,
-        "speaker" : "TELLER",
-        "transliteration" : "zare and dolar hamsa sidist birr naw."
+        "amharic": "ዛሬ አንድ ዶላር ሃምሳ ስድስት ብር ነው።",
+        "english": "Today one dollar is fifty-six birr.",
+        "lineNum": 4,
+        "speaker": "TELLER",
+        "transliteration": "zare and dolar hamsa sidist birr naw."
       },
       {
-        "amharic" : "እሺ። ሁለት መቶ ዶላር ልቀይር።",
-        "english" : "OK. I'd like to change two hundred dollars.",
-        "lineNum" : 5,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "ishi. hulat mato dolar likayir."
+        "amharic": "እሺ። ሁለት መቶ ዶላር ልቀይር።",
+        "english": "OK. I'd like to change two hundred dollars.",
+        "lineNum": 5,
+        "speaker": "CUSTOMER",
+        "transliteration": "ishi. hulat mato dolar likayir."
       },
       {
-        "amharic" : "ፓስፖርት ያስፈልጋል። ፓስፖርትዎን ያሳዩኝ።",
-        "english" : "A passport is needed. Show me your passport.",
-        "lineNum" : 6,
-        "speaker" : "TELLER",
-        "transliteration" : "pasport yasfalgal. pasportwon yasayuny."
+        "amharic": "ፓስፖርት ያስፈልጋል። ፓስፖርትዎን ያሳዩኝ።",
+        "english": "A passport is needed. Show me your passport.",
+        "lineNum": 6,
+        "speaker": "TELLER",
+        "transliteration": "pasport yasfalgal. pasportwon yasayuny."
       },
       {
-        "amharic" : "እነሆ ፓስፖርቴ። ደረሰኝ ይሰጡኛል?",
-        "english" : "Here's my passport. Will you give me a receipt?",
-        "lineNum" : 7,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "inaho pasporte. darasany yisat'unyal?"
+        "amharic": "እነሆ ፓስፖርቴ። ደረሰኝ ይሰጡኛል?",
+        "english": "Here's my passport. Will you give me a receipt?",
+        "lineNum": 7,
+        "speaker": "CUSTOMER",
+        "transliteration": "inaho pasporte. darasany yisat'unyal?"
       },
       {
-        "amharic" : "አዎ፣ ደረሰኝ እሰጥዎታለሁ። ይጠብቁ — ገንዘብዎ እነሆ።",
-        "english" : "Yes, I'll give you a receipt. Please wait — here is your money.",
-        "lineNum" : 8,
-        "speaker" : "TELLER",
-        "transliteration" : "awo, darasany isatiwotalahu. yitabiku — ganzabwo inaho."
+        "amharic": "አዎ፣ ደረሰኝ እሰጥዎታለሁ። ይጠብቁ — ገንዘብዎ እነሆ።",
+        "english": "Yes, I'll give you a receipt. Please wait — here is your money.",
+        "lineNum": 8,
+        "speaker": "TELLER",
+        "transliteration": "awo, darasany isatiwotalahu. yitabiku — ganzabwo inaho."
       },
       {
-        "amharic" : "አመሰግናለሁ።",
-        "english" : "Thank you.",
-        "lineNum" : 9,
-        "speaker" : "CUSTOMER",
-        "transliteration" : "ameseginalehu."
+        "amharic": "አመሰግናለሁ።",
+        "english": "Thank you.",
+        "lineNum": 9,
+        "speaker": "CUSTOMER",
+        "transliteration": "ameseginalehu."
       },
       {
-        "amharic" : "ደረሰኙን ጠብቀው ያስቀምጡ። ደህና ይሁኑ።",
-        "english" : "Keep the receipt safe. Goodbye.",
-        "lineNum" : 10,
-        "speaker" : "TELLER",
-        "transliteration" : "darasanyun tabikaw yaskamit'u. dahna yihunu."
+        "amharic": "ደረሰኙን ጠብቀው ያስቀምጡ። ደህና ይሁኑ።",
+        "english": "Keep the receipt safe. Goodbye.",
+        "lineNum": 10,
+        "speaker": "TELLER",
+        "transliteration": "darasanyun tabikaw yaskamit'u. dahna yihunu."
       }
     ],
-    "title" : "AT THE BANK (Changing Money)"
+    "title": "AT THE BANK (Changing Money)"
   },
   {
-    "difficulty" : 2,
-    "id" : 23,
-    "lines" : [
+    "difficulty": 2,
+    "id": 23,
+    "lines": [
       {
-        "amharic" : "ዛሬ ማታ የት እንሂድ? መዝናኛ እፈልጋለሁ!",
-        "english" : "Where shall we go tonight? I want entertainment!",
-        "lineNum" : 1,
-        "speaker" : "PERSON A",
-        "transliteration" : "zare mata yat inhid? maznanya ifaligalahu!"
+        "amharic": "ዛሬ ማታ የት እንሂድ? መዝናኛ እፈልጋለሁ!",
+        "english": "Where shall we go tonight? I want entertainment!",
+        "lineNum": 1,
+        "speaker": "PERSON A",
+        "transliteration": "zare mata yat inhid? maznanya ifaligalahu!"
       },
       {
-        "amharic" : "ጥሩ አዝማሪ ቤት አውቃለሁ። የባህል ጨዋታ አለ።",
-        "english" : "I know a good azmari bet. There's traditional entertainment.",
-        "lineNum" : 2,
-        "speaker" : "PERSON B",
-        "transliteration" : "tiru azmari bet awikalahu. ya-bahil chawata alla."
+        "amharic": "ጥሩ አዝማሪ ቤት አውቃለሁ። የባህል ጨዋታ አለ።",
+        "english": "I know a good azmari bet. There's traditional entertainment.",
+        "lineNum": 2,
+        "speaker": "PERSON B",
+        "transliteration": "tiru azmari bet awikalahu. ya-bahil chawata alla."
       },
       {
-        "amharic" : "አዝማሪ ቤት ምንድን ነው?",
-        "english" : "What is an azmari bet?",
-        "lineNum" : 3,
-        "speaker" : "PERSON A",
-        "transliteration" : "azmari bet mindin naw?"
+        "amharic": "አዝማሪ ቤት ምንድን ነው?",
+        "english": "What is an azmari bet?",
+        "lineNum": 3,
+        "speaker": "PERSON A",
+        "transliteration": "azmari bet mindin naw?"
       },
       {
-        "amharic" : "ባህላዊ ሙዚቃ ቤት ነው። ማሲንቆ እና ክራር ይጫወታሉ።",
-        "english" : "It's a traditional music house. They play masinko and krar.",
-        "lineNum" : 4,
-        "speaker" : "PERSON B",
-        "transliteration" : "bahilawi muzika bet naw. masinko inna kirar yichawatalu."
+        "amharic": "ባህላዊ ሙዚቃ ቤት ነው። ማሲንቆ እና ክራር ይጫወታሉ።",
+        "english": "It's a traditional music house. They play masinko and krar.",
+        "lineNum": 4,
+        "speaker": "PERSON B",
+        "transliteration": "bahilawi muzika bet naw. masinko inna kirar yichawatalu."
       },
       {
-        "amharic" : "ቆንጆ! መግቢያ ስንት ነው?",
-        "english" : "Great! What's the entry fee?",
-        "lineNum" : 5,
-        "speaker" : "PERSON A",
-        "transliteration" : "konjo! magbiya sint naw?"
+        "amharic": "ቆንጆ! መግቢያ ስንት ነው?",
+        "english": "Great! What's the entry fee?",
+        "lineNum": 5,
+        "speaker": "PERSON A",
+        "transliteration": "konjo! magbiya sint naw?"
       },
       {
-        "amharic" : "መግቢያ ነጻ ነው። መጠጥ ብቻ ታዛዝ።",
-        "english" : "Entry is free. You just order drinks.",
-        "lineNum" : 6,
-        "speaker" : "PERSON B",
-        "transliteration" : "magbiya natsa naw. matat bicha tazaz."
+        "amharic": "መግቢያ ነጻ ነው። መጠጥ ብቻ ታዛዝ።",
+        "english": "Entry is free. You just order drinks.",
+        "lineNum": 6,
+        "speaker": "PERSON B",
+        "transliteration": "magbiya natsa naw. matat bicha tazaz."
       },
       {
-        "amharic" : "ይህ ዳንስ ከየት ነው? በጣም ጎበዝ ዳንሰኛ!",
-        "english" : "Where is this dance from? What a talented dancer!",
-        "lineNum" : 7,
-        "speaker" : "PERSON A",
-        "transliteration" : "yih dans kayat naw? batam gobaz dansanya!"
+        "amharic": "ይህ ዳንስ ከየት ነው? በጣም ጎበዝ ዳንሰኛ!",
+        "english": "Where is this dance from? What a talented dancer!",
+        "lineNum": 7,
+        "speaker": "PERSON A",
+        "transliteration": "yih dans kayat naw? batam gobaz dansanya!"
       },
       {
-        "amharic" : "ይህ እስክስታ ነው — የአማራ ባህል ነው። በትከሻ ይደንሳሉ።",
-        "english" : "This is eskista — it's Amhara culture. They dance with their shoulders.",
-        "lineNum" : 8,
-        "speaker" : "PERSON B",
-        "transliteration" : "yih iskista naw — ya-Amara bahil naw. ba-tikasha yidinsalu."
+        "amharic": "ይህ እስክስታ ነው — የአማራ ባህል ነው። በትከሻ ይደንሳሉ።",
+        "english": "This is eskista — it's Amhara culture. They dance with their shoulders.",
+        "lineNum": 8,
+        "speaker": "PERSON B",
+        "transliteration": "yih iskista naw — ya-Amara bahil naw. ba-tikasha yidinsalu."
       },
       {
-        "amharic" : "እኔም ልሞክር! ከባድ ነው?",
-        "english" : "Let me try too! Is it hard?",
-        "lineNum" : 9,
-        "speaker" : "PERSON A",
-        "transliteration" : "inemm limokir! kabbad naw?"
+        "amharic": "እኔም ልሞክር! ከባድ ነው?",
+        "english": "Let me try too! Is it hard?",
+        "lineNum": 9,
+        "speaker": "PERSON A",
+        "transliteration": "inemm limokir! kabbad naw?"
       },
       {
-        "amharic" : "ቀላል ነው! ና! በጣም ቆንጆ ጨዋታ ነው ዛሬ!",
-        "english" : "It's easy! Come on! It's such a great show tonight!",
-        "lineNum" : 10,
-        "speaker" : "PERSON B",
-        "transliteration" : "kalal naw! na! batam konjo chawata naw zare!"
+        "amharic": "ቀላል ነው! ና! በጣም ቆንጆ ጨዋታ ነው ዛሬ!",
+        "english": "It's easy! Come on! It's such a great show tonight!",
+        "lineNum": 10,
+        "speaker": "PERSON B",
+        "transliteration": "kalal naw! na! batam konjo chawata naw zare!"
       }
     ],
-    "title" : "A NIGHT OUT (Traditional Music)"
+    "title": "A NIGHT OUT (Traditional Music)"
   },
   {
-    "difficulty" : 3,
-    "id" : 24,
-    "lines" : [
+    "difficulty": 3,
+    "id": 24,
+    "lines": [
       {
-        "amharic" : "ይቅርታ! እርዱኝ! ሻንጣዬ ጠፍቶብኛል።",
-        "english" : "Excuse me! Help me! I've lost my bag.",
-        "lineNum" : 1,
-        "speaker" : "TOURIST",
-        "transliteration" : "yikirta! irduny! shantaye taftobinyal."
+        "amharic": "ይቅርታ! እርዱኝ! ሻንጣዬ ጠፍቶብኛል።",
+        "english": "Excuse me! Help me! I've lost my bag.",
+        "lineNum": 1,
+        "speaker": "TOURIST",
+        "transliteration": "yikirta! irduny! shantaye taftobinyal."
       },
       {
-        "amharic" : "ይረጋጉ። ምን ሆነ? የት ጠፋ?",
-        "english" : "Calm down. What happened? Where did you lose it?",
-        "lineNum" : 2,
-        "speaker" : "OFFICER",
-        "transliteration" : "yiragagu. min hona? yat tafa?"
+        "amharic": "ይረጋጉ። ምን ሆነ? የት ጠፋ?",
+        "english": "Calm down. What happened? Where did you lose it?",
+        "lineNum": 2,
+        "speaker": "OFFICER",
+        "transliteration": "yiragagu. min hona? yat tafa?"
       },
       {
-        "amharic" : "ታክሲ ውስጥ ረሳሁት ይመስለኛል። ፓስፖርቴ ውስጡ ነው።",
-        "english" : "I think I left it in a taxi. My passport is inside.",
-        "lineNum" : 3,
-        "speaker" : "TOURIST",
-        "transliteration" : "taksi wist rasahut yimeslanynal. pasporte wistu naw."
+        "amharic": "ታክሲ ውስጥ ረሳሁት ይመስለኛል። ፓስፖርቴ ውስጡ ነው።",
+        "english": "I think I left it in a taxi. My passport is inside.",
+        "lineNum": 3,
+        "speaker": "TOURIST",
+        "transliteration": "taksi wist rasahut yimeslanynal. pasporte wistu naw."
       },
       {
-        "amharic" : "ሻንጣው ምን ዓይነት ነው? ቀለሙስ?",
-        "english" : "What kind of bag is it? What color?",
-        "lineNum" : 4,
-        "speaker" : "OFFICER",
-        "transliteration" : "shantaw min aynat naw? kalamuss?"
+        "amharic": "ሻንጣው ምን ዓይነት ነው? ቀለሙስ?",
+        "english": "What kind of bag is it? What color?",
+        "lineNum": 4,
+        "speaker": "OFFICER",
+        "transliteration": "shantaw min aynat naw? kalamuss?"
       },
       {
-        "amharic" : "ጥቁር ሻንጣ ነው። ትንሽ ነው።",
-        "english" : "It's a black bag. It's small.",
-        "lineNum" : 5,
-        "speaker" : "TOURIST",
-        "transliteration" : "tikur shanta naw. tinish naw."
+        "amharic": "ጥቁር ሻንጣ ነው። ትንሽ ነው።",
+        "english": "It's a black bag. It's small.",
+        "lineNum": 5,
+        "speaker": "TOURIST",
+        "transliteration": "tikur shanta naw. tinish naw."
       },
       {
-        "amharic" : "ውስጡ ምን ምን አለ?",
-        "english" : "What's inside it?",
-        "lineNum" : 6,
-        "speaker" : "OFFICER",
-        "transliteration" : "wistu min min alla?"
+        "amharic": "ውስጡ ምን ምን አለ?",
+        "english": "What's inside it?",
+        "lineNum": 6,
+        "speaker": "OFFICER",
+        "transliteration": "wistu min min alla?"
       },
       {
-        "amharic" : "ፓስፖርት፣ ገንዘብ፣ እና ስልክ ነው።",
-        "english" : "A passport, money, and a phone.",
-        "lineNum" : 7,
-        "speaker" : "TOURIST",
-        "transliteration" : "pasport, ganzab, inna silik naw."
+        "amharic": "ፓስፖርት፣ ገንዘብ፣ እና ስልክ ነው።",
+        "english": "A passport, money, and a phone.",
+        "lineNum": 7,
+        "speaker": "TOURIST",
+        "transliteration": "pasport, ganzab, inna silik naw."
       },
       {
-        "amharic" : "የፖሊስ ሪፖርት እንሞላለን። ኤምባሲዎንም ማነጋገር አለብዎት።",
-        "english" : "We'll fill out a police report. You should also contact your embassy.",
-        "lineNum" : 8,
-        "speaker" : "OFFICER",
-        "transliteration" : "ya-polis riport inimolalan. embasiwonm managagar allabwot."
+        "amharic": "የፖሊስ ሪፖርት እንሞላለን። ኤምባሲዎንም ማነጋገር አለብዎት።",
+        "english": "We'll fill out a police report. You should also contact your embassy.",
+        "lineNum": 8,
+        "speaker": "OFFICER",
+        "transliteration": "ya-polis riport inimolalan. embasiwonm managagar allabwot."
       },
       {
-        "amharic" : "ኤምባሲዬ የት ነው? ስልክ መደወል እችላለሁ?",
-        "english" : "Where is my embassy? Can I make a phone call?",
-        "lineNum" : 9,
-        "speaker" : "TOURIST",
-        "transliteration" : "embasiye yat naw? silik madawal ichilalahu?"
+        "amharic": "ኤምባሲዬ የት ነው? ስልክ መደወል እችላለሁ?",
+        "english": "Where is my embassy? Can I make a phone call?",
+        "lineNum": 9,
+        "speaker": "TOURIST",
+        "transliteration": "embasiye yat naw? silik madawal ichilalahu?"
       },
       {
-        "amharic" : "አዎ፣ እዚህ ስልክ አለ። ደረሰኝ እሰጥዎታለሁ። ተስፋ አታቋርጡ።",
-        "english" : "Yes, there's a phone here. I'll give you a receipt. Don't lose hope.",
-        "lineNum" : 10,
-        "speaker" : "OFFICER",
-        "transliteration" : "awo, izzih silik alla. darasany isatiwotalahu. tasfa atakwarit'u."
+        "amharic": "አዎ፣ እዚህ ስልክ አለ። ደረሰኝ እሰጥዎታለሁ። ተስፋ አታቋርጡ።",
+        "english": "Yes, there's a phone here. I'll give you a receipt. Don't lose hope.",
+        "lineNum": 10,
+        "speaker": "OFFICER",
+        "transliteration": "awo, izzih silik alla. darasany isatiwotalahu. tasfa atakwarit'u."
       }
     ],
-    "title" : "REPORTING A LOST BAG (Police Station)"
+    "title": "REPORTING A LOST BAG (Police Station)"
+  },
+  {
+    "id": 25,
+    "title": "A Job Interview",
+    "difficulty": 3,
+    "lines": [
+      {
+        "lineNum": 1,
+        "speaker": "Marta",
+        "amharic": "እንኳን ደህና መጡ፣ እባክዎ ይቀመጡ። ስለ ራስዎ ትንሽ ይንገሩኝ።",
+        "transliteration": "enkuan dehna metu, ebakwo yiqemetu. sile raswo tinish yingeruny.",
+        "english": "Welcome, please have a seat. Tell me a little about yourself."
+      },
+      {
+        "lineNum": 2,
+        "speaker": "Samuel",
+        "amharic": "አመሰግናለሁ። ስሜ ሳሙኤል ነው። ለአምስት ዓመት እንደ አካውንታንት ሠርቻለሁ።",
+        "transliteration": "amesegnalehu. sime samuel new. le'amist amet ende akauntant serchalehu.",
+        "english": "Thank you. My name is Samuel. I have worked as an accountant for five years."
+      },
+      {
+        "lineNum": 3,
+        "speaker": "Marta",
+        "amharic": "በጣም ጥሩ። በእኛ ድርጅት መሥራት ለምን ይፈልጋሉ?",
+        "transliteration": "betam tiru. be'inya dirijit mesrat lemin yifeligalu?",
+        "english": "Very good. Why do you want to work at our company?"
+      },
+      {
+        "lineNum": 4,
+        "speaker": "Samuel",
+        "amharic": "እኔ እንደማስበው ድርጅትዎ በፍጥነት እያደገ ነው፣ አዲስ ነገር መማር እፈልጋለሁ።",
+        "transliteration": "ine endemasbew dirijitwo befitnet iyadege new, adis neger memar efeligalehu.",
+        "english": "In my opinion your company is growing fast, and I want to learn new things."
+      },
+      {
+        "lineNum": 5,
+        "speaker": "Marta",
+        "amharic": "አሁን ባለዎት ሥራ ኃላፊነትዎ ምንድን ነው?",
+        "transliteration": "ahun balewot sira halafinetwo mindin new?",
+        "english": "What are your responsibilities in your current job?"
+      },
+      {
+        "lineNum": 6,
+        "speaker": "Samuel",
+        "amharic": "ወርሃዊ ሪፖርት አዘጋጃለሁ፣ በጀቱንም አስተዳድራለሁ። ቀላል አይደለም፣ ግን እወደዋለሁ።",
+        "transliteration": "werhawi riport azegajalehu, bejetunim astedadralehu. qelal aydelem, gin ewedewalehu.",
+        "english": "I prepare monthly reports and manage the budget. It isn't easy, but I like it."
+      },
+      {
+        "lineNum": 7,
+        "speaker": "Marta",
+        "amharic": "ጥሩ። ይህ ሥራ አንዳንዴ ጉዞ ይጠይቃል። ለእርስዎ ችግር ይሆናል?",
+        "transliteration": "tiru. yih sira andande guzo yiteyiqal. le'erswo chigir yihonal?",
+        "english": "Good. This role will sometimes require travel. Would that be a problem for you?"
+      },
+      {
+        "lineNum": 8,
+        "speaker": "Samuel",
+        "amharic": "አይ፣ ችግር አይሆንም። መጓዝ እችላለሁ።",
+        "transliteration": "ay, chigir ayhonim. megwaz echilalehu.",
+        "english": "No, it won't be a problem. I can travel."
+      },
+      {
+        "lineNum": 9,
+        "speaker": "Marta",
+        "amharic": "ስንት ደመወዝ ይጠብቃሉ?",
+        "transliteration": "sint demewez yitebiqalu?",
+        "english": "How much salary do you expect?"
+      },
+      {
+        "lineNum": 10,
+        "speaker": "Samuel",
+        "amharic": "በወር ሃያ ሺህ ብር ገደማ እጠብቃለሁ፣ ግን መደራደር እችላለሁ።",
+        "transliteration": "bewer haya shih bir gedema etebiqalehu, gin medarader echilalehu.",
+        "english": "I expect about twenty thousand birr a month, but I can negotiate."
+      },
+      {
+        "lineNum": 11,
+        "speaker": "Marta",
+        "amharic": "እሺ። በሚቀጥለው ሳምንት መልስ እንሰጥዎታለን።",
+        "transliteration": "eshi. bemiqetlew samint mels ensetiwotalen.",
+        "english": "Okay. We will give you an answer next week."
+      },
+      {
+        "lineNum": 12,
+        "speaker": "Samuel",
+        "amharic": "በጣም አመሰግናለሁ። መልስዎን በጉጉት እጠብቃለሁ።",
+        "transliteration": "betam amesegnalehu. melswon beguggut etebiqalehu.",
+        "english": "Thank you very much. I look forward to your reply."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "title": "A VISIT TO THE DOCTOR (Describing Symptoms)",
+    "difficulty": 3,
+    "lines": [
+      {
+        "lineNum": 1,
+        "speaker": "DR. TESFAYE",
+        "amharic": "ጤና ይስጥልኝ። እባክዎ ይቀመጡ። ዛሬ ምን ሆነዎት?",
+        "transliteration": "t'ena yist'iliny. ibakwo yiqemet'u. zare min honewot?",
+        "english": "Hello. Please have a seat. What's the matter with you today?"
+      },
+      {
+        "lineNum": 2,
+        "speaker": "MARTA",
+        "amharic": "ከትናንት ጀምሮ ራሴን በጣም ያመኛል፣ ትኩሳትም አለብኝ።",
+        "transliteration": "katinant jemiro rasen bet'am yamenyal, tikusatim alabiny.",
+        "english": "Since yesterday my head has been hurting a lot, and I also have a fever."
+      },
+      {
+        "lineNum": 3,
+        "speaker": "DR. TESFAYE",
+        "amharic": "እሺ። ሳል ወይም ጉንፋን አለዎት?",
+        "transliteration": "ishi. sal weyim gunfan alewot?",
+        "english": "OK. Do you have a cough or a cold?"
+      },
+      {
+        "lineNum": 4,
+        "speaker": "MARTA",
+        "amharic": "ትንሽ ሳል አለኝ፣ ግን ጉንፋን አይመስለኝም። ጉሮሮዬንም ያመኛል።",
+        "transliteration": "tinish sal alany, gin gunfan ayimeslenyim. gororoyenim yamenyal.",
+        "english": "I have a slight cough, but I don't think it's a cold. My throat hurts too."
+      },
+      {
+        "lineNum": 5,
+        "speaker": "DR. TESFAYE",
+        "amharic": "ትኩሳትዎን ልለካ። ምንም መድሃኒት ወስደዋል?",
+        "transliteration": "tikusatiwon lleka. minim medhanit wesdewal?",
+        "english": "Let me check your temperature. Have you taken any medicine?"
+      },
+      {
+        "lineNum": 6,
+        "speaker": "MARTA",
+        "amharic": "ገና ምንም አልወሰድኩም። መጀመሪያ እርስዎን ማማከር ፈለግኩ።",
+        "transliteration": "gena minim alwesedkum. mejemeriya irswon mamaker felegku.",
+        "english": "I haven't taken anything yet. I wanted to consult you first."
+      },
+      {
+        "lineNum": 7,
+        "speaker": "DR. TESFAYE",
+        "amharic": "ጉንፋን ብቻ ነው የሚመስለኝ። ብዙ ውሃ ይጠጡ፣ በደንብም ያርፉ።",
+        "transliteration": "gunfan bicha naw yemimesleny. bizu wiha yit'et'u, bedenbim yarfu.",
+        "english": "It seems to me it's just a cold. Drink plenty of water, and rest well."
+      },
+      {
+        "lineNum": 8,
+        "speaker": "MARTA",
+        "amharic": "እሺ። መድሃኒት ያስፈልገኛል? ወደ ሥራስ መቼ መመለስ እችላለሁ?",
+        "transliteration": "ishi. medhanit yasfelgenyal? wede siras meche memeles ichlalehu?",
+        "english": "OK. Do I need medicine? And when can I go back to work?"
+      },
+      {
+        "lineNum": 9,
+        "speaker": "DR. TESFAYE",
+        "amharic": "አሁን ጠንካራ መድሃኒት አያስፈልግዎትም። ትኩሳት ካለ ፓራሲታሞል ይውሰዱ። ከሁለት ወይም ሦስት ቀን በኋላ ይሻልዎታል።",
+        "transliteration": "ahun t'enkara medhanit ayasfelgiwotim. tikusat kale parasitamol yiwsedu. kehulet weyim sost qen behwala yishaliwotal.",
+        "english": "You don't need strong medicine now. If you have a fever, take paracetamol. After two or three days you'll feel better."
+      },
+      {
+        "lineNum": 10,
+        "speaker": "MARTA",
+        "amharic": "በጣም አመሰግናለሁ ዶክተር። ካልተሻለኝ እመለሳለሁ።",
+        "transliteration": "bet'am ameseginalehu doktar. kalteshaleny imelesalehu.",
+        "english": "Thank you very much, doctor. If I don't feel better, I'll come back."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "title": "At the Bank: Opening an Account and Changing Money",
+    "difficulty": 3,
+    "lines": [
+      {
+        "lineNum": 1,
+        "speaker": "Marta",
+        "amharic": "ሰላም፣ አዲስ ሂሳብ መክፈት እፈልጋለሁ።",
+        "transliteration": "selam, adis hisab mekfet efeligalehu.",
+        "english": "Hello, I would like to open a new account."
+      },
+      {
+        "lineNum": 2,
+        "speaker": "Solomon",
+        "amharic": "እንኳን ደህና መጡ። መታወቂያ አለዎት?",
+        "transliteration": "enkuan dehna metu. metaweqiya alewot?",
+        "english": "Welcome. Do you have an ID?"
+      },
+      {
+        "lineNum": 3,
+        "speaker": "Marta",
+        "amharic": "አዎ፣ መታወቂያዬን አምጥቻለሁ።",
+        "transliteration": "awo, metaweqiyayen amtichalehu.",
+        "english": "Yes, I have brought my ID."
+      },
+      {
+        "lineNum": 4,
+        "speaker": "Solomon",
+        "amharic": "ጥሩ። ሂሳብ ለመክፈት ቢያንስ መቶ ብር ያስፈልጋል።",
+        "transliteration": "tiru. hisab lemekfet biyans meto birr yasfeligal.",
+        "english": "Good. To open an account you need at least one hundred birr."
+      },
+      {
+        "lineNum": 5,
+        "speaker": "Marta",
+        "amharic": "እሺ። ወርሃዊ ክፍያ አለ?",
+        "transliteration": "eshi. werhawi kifya ale?",
+        "english": "Okay. Is there a monthly fee?"
+      },
+      {
+        "lineNum": 6,
+        "speaker": "Solomon",
+        "amharic": "የለም፣ ወርሃዊ ክፍያ የለም። አገልግሎቱ ነጻ ነው።",
+        "transliteration": "yelem, werhawi kifya yelem. agelgilotu netsa new.",
+        "english": "No, there is no monthly fee. The service is free."
+      },
+      {
+        "lineNum": 7,
+        "speaker": "Marta",
+        "amharic": "ጥሩ። ዶላር መመንዘርም እፈልጋለሁ። የዛሬ ምንዛሬ ስንት ነው?",
+        "transliteration": "tiru. dolar memenzerim efeligalehu. yezare minzare sint new?",
+        "english": "Great. I also want to change dollars. What is today's exchange rate?"
+      },
+      {
+        "lineNum": 8,
+        "speaker": "Solomon",
+        "amharic": "ዛሬ አንድ ዶላር ሃምሳ ሰባት ብር ነው። ስንት ይመነዝራሉ?",
+        "transliteration": "zare and dolar hamsa sebat birr new. sint yimenezralu?",
+        "english": "Today one dollar is fifty-seven birr. How much will you change?"
+      },
+      {
+        "lineNum": 9,
+        "speaker": "Marta",
+        "amharic": "ሁለት መቶ ዶላር እመነዝራለሁ። ምንዛሬው ጥሩ ይመስለኛል።",
+        "transliteration": "hulet meto dolar emenezralehu. minzarew tiru yimeslegnal.",
+        "english": "I will change two hundred dollars. The rate seems good to me."
+      },
+      {
+        "lineNum": 10,
+        "speaker": "Solomon",
+        "amharic": "እሺ። እባክዎ ትንሽ ይጠብቁ፣ ገንዘቡን አዘጋጃለሁ።",
+        "transliteration": "eshi. ebakwo tinish yitebbequ, genzebun azegajalehu.",
+        "english": "Alright. Please wait a moment; I will prepare the money."
+      },
+      {
+        "lineNum": 11,
+        "speaker": "Marta",
+        "amharic": "አመሰግናለሁ። ትናንት በሌላ ባንክ ብዙ ጊዜ ጠበቅሁ።",
+        "transliteration": "amesegnalehu. tinant belela bank bizu gize tebbeqhu.",
+        "english": "Thank you. Yesterday I waited a long time at another bank."
+      },
+      {
+        "lineNum": 12,
+        "speaker": "Solomon",
+        "amharic": "አዝናለሁ። እዚህ ብዙ ጊዜ አይወስድም።",
+        "transliteration": "aznalehu. ezih bizu gize ayiwesdim.",
+        "english": "I'm sorry about that. Here it won't take long."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Renting an Apartment",
+    "difficulty": 3,
+    "lines": [
+      {
+        "lineNum": 1,
+        "speaker": "Aster",
+        "amharic": "ሰላም፣ ቤቱ ለኪራይ ነው ብዬ ሰማሁ። ማየት እችላለሁ?",
+        "transliteration": "selam, betu lekiray new bye semahu. mayet ichlalehu?",
+        "english": "Hello, I heard this house is for rent. Can I see it?"
+      },
+      {
+        "lineNum": 2,
+        "speaker": "Dawit",
+        "amharic": "አዎ፣ ክፍት ነው። ሁለት መኝታ ቤትና አንድ ሳሎን አለው።",
+        "transliteration": "awo, kift new. hulet megnta betina and salon alew.",
+        "english": "Yes, it's available. It has two bedrooms and one living room."
+      },
+      {
+        "lineNum": 3,
+        "speaker": "Aster",
+        "amharic": "ጥሩ ነው። ኪራዩ ስንት ነው?",
+        "transliteration": "tiru new. kirayu sint new?",
+        "english": "That's good. How much is the rent?"
+      },
+      {
+        "lineNum": 4,
+        "speaker": "Dawit",
+        "amharic": "በወር አስራ አምስት ሺህ ብር ነው። ውሃና መብራት አልተካተቱም።",
+        "transliteration": "bewer asra amist shih bir new. wuhana mebrat altekatetum.",
+        "english": "It's 15,000 birr a month. Water and electricity are not included."
+      },
+      {
+        "lineNum": 5,
+        "speaker": "Aster",
+        "amharic": "ትንሽ ውድ ነው። ዋጋውን መቀነስ ይቻላል?",
+        "transliteration": "tinish wud new. wagawun meqenes yichalal?",
+        "english": "That's a bit expensive. Can the price be lowered?"
+      },
+      {
+        "lineNum": 6,
+        "speaker": "Dawit",
+        "amharic": "ይቅርታ፣ ዋጋው አይቀነስም። ግን ቤቱ ንጹህና ሰፊ ነው።",
+        "transliteration": "yiqirta, wagaw ayiqenesim. gin betu nitsuhina sefi new.",
+        "english": "Sorry, the price can't be lowered. But the house is clean and spacious."
+      },
+      {
+        "lineNum": 7,
+        "speaker": "Aster",
+        "amharic": "መቼ መግባት እችላለሁ?",
+        "transliteration": "meche megbat ichlalehu?",
+        "english": "When can I move in?"
+      },
+      {
+        "lineNum": 8,
+        "speaker": "Dawit",
+        "amharic": "ከሚቀጥለው ወር ጀምሮ ክፍት ይሆናል።",
+        "transliteration": "kemiqetilew wer jemiro kift yihonal.",
+        "english": "It will be available starting next month."
+      },
+      {
+        "lineNum": 9,
+        "speaker": "Aster",
+        "amharic": "እሺ። የሦስት ወር ኪራይ አስቀድሜ መክፈል አለብኝ?",
+        "transliteration": "eshi. yesost wer kiray asqedime mekfel alebign?",
+        "english": "Okay. Do I have to pay three months' rent in advance?"
+      },
+      {
+        "lineNum": 10,
+        "speaker": "Dawit",
+        "amharic": "አዎ፣ እንዲሁም ውል እንፈራረማለን።",
+        "transliteration": "awo, endihum wul eneferaremalen.",
+        "english": "Yes, and we'll also sign a contract."
+      },
+      {
+        "lineNum": 11,
+        "speaker": "Aster",
+        "amharic": "በጣም ጥሩ። ነገ መጥቼ ውሉን እፈርማለሁ።",
+        "transliteration": "betam tiru. nege metiche wulun eferemalehu.",
+        "english": "Very good. I'll come tomorrow and sign the contract."
+      },
+      {
+        "lineNum": 12,
+        "speaker": "Dawit",
+        "amharic": "እሺ፣ ነገ እጠብቅዎታለሁ። ደህና ሂዱ።",
+        "transliteration": "eshi, nege etebqiwotalehu. dehna hidu.",
+        "english": "Okay, I'll wait for you tomorrow. Goodbye."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "title": "City or Countryside?",
+    "difficulty": 3,
+    "lines": [
+      {
+        "lineNum": 1,
+        "speaker": "Yonas",
+        "amharic": "ሃና፣ በእኔ አስteyayet no",
+        "transliteration": "placeholder",
+        "english": "placeholder"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title": "የሳምንት መጨረሻ ወግ — Sara & Dawit",
+    "difficulty": 3,
+    "lines": [
+      {
+        "lineNum": 1,
+        "speaker": "Dawit",
+        "amharic": "ሰላም ሳራ፣ ያለፈውን ቅዳሜና እሁድ እንዴት አሳለፍሽ?",
+        "transliteration": "selam Sara, yalefewn qidamena ihud endet asalefsh?",
+        "english": "Hi Sara, how did you spend last weekend?"
+      },
+      {
+        "lineNum": 2,
+        "speaker": "Sara",
+        "amharic": "በጣም አስደሳች ነበር። ቅዳሜ ጠዋት ከጓደኞቼ ጋር ወደ ገበያ ሄድኩ።",
+        "transliteration": "betam asdesach neber. qidame tewat kegwadegnoche gar wede gebeya hedku.",
+        "english": "It was very enjoyable. Saturday morning I went to the market with my friends."
+      },
+      {
+        "lineNum": 3,
+        "speaker": "Dawit",
+        "amharic": "ጎበዝ! ምን ገዛሽ?",
+        "transliteration": "gobez! min gezash?",
+        "english": "Nice! What did you buy?"
+      },
+      {
+        "lineNum": 4,
+        "speaker": "Sara",
+        "amharic": "አዲስ ልብስና ጫማ ገዛሁ። ከዚያ ምሳ በአንድ ምግብ ቤት በላን።",
+        "transliteration": "addis lbsna chama gezahu. kezia msa be'and migb bet belan.",
+        "english": "I bought new clothes and shoes. Then we ate lunch at a restaurant."
+      },
+      {
+        "lineNum": 5,
+        "speaker": "Dawit",
+        "amharic": "እሁድስ ምን አደረግሽ?",
+        "transliteration": "ihuds min aderegsh?",
+        "english": "And what did you do on Sunday?"
+      },
+      {
+        "lineNum": 6,
+        "speaker": "Sara",
+        "amharic": "እሁድ ብዙ አልወጣሁም። ቤት ውስጥ አረፍኩ እና ፊልም አየሁ።",
+        "transliteration": "ihud bzu alwetahum. bet wst arefku ena film ayehu.",
+        "english": "On Sunday I didn't go out much. I rested at home and watched a movie."
+      },
+      {
+        "lineNum": 7,
+        "speaker": "Dawit",
+        "amharic": "ጥሩ ነው። እኔ ደግሞ ቅዳሜ እግር ኳስ ተጫወትኩ።",
+        "transliteration": "tru new. ine degmo qidame egr kwas techawetku.",
+        "english": "That's good. I, for my part, played football on Saturday."
+      },
+      {
+        "lineNum": 8,
+        "speaker": "Sara",
+        "amharic": "አሸነፋችሁ?",
+        "transliteration": "ashenefachihu?",
+        "english": "Did you (all) win?"
+      },
+      {
+        "lineNum": 9,
+        "speaker": "Dawit",
+        "amharic": "አዎ አሸነፍን! ግን በጣም ደከመኝ።",
+        "transliteration": "awo ashenefn! gn betam dekemegn.",
+        "english": "Yes, we won! But I got very tired."
+      },
+      {
+        "lineNum": 10,
+        "speaker": "Sara",
+        "amharic": "የሚቀጥለው ሳምንት አብረን የሆነ ቦታ ብንሄድ ጥሩ ነው ብዬ አስባለሁ።",
+        "transliteration": "yemiqetlew samint abren yehone bota bnhed tru new bye asbalehu.",
+        "english": "I think it would be nice if we went somewhere together next week."
+      },
+      {
+        "lineNum": 11,
+        "speaker": "Dawit",
+        "amharic": "ጥሩ ሀሳብ ነው! የሚቀጥለው ቅዳሜ ወደ ፓርክ እንሄዳለን።",
+        "transliteration": "tru hasab new! yemiqetlew qidame wede park enhedalen.",
+        "english": "Good idea! Next Saturday we'll go to the park."
+      }
+    ]
   }
 ]

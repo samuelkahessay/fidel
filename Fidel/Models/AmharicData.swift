@@ -13,6 +13,7 @@ struct AmharicData {
     static let phrases: [Phrase] = AmharicDataLoader.phrases
     static let vocabulary: [VocabularyWord] = AmharicDataLoader.vocabulary
     static let culturalNotes: [CulturalNote] = AmharicDataLoader.culturalNotes
+    static let readingPassages: [ReadingPassage] = AmharicDataLoader.readingPassages
     static let numbers: [AmharicNumber] = AmharicDataLoader.numbers
     static let ethiopianMonths: [EthiopianMonth] = AmharicDataLoader.ethiopianMonths
     static let ordinalNumbers: [OrdinalNumber] = AmharicDataLoader.ordinalNumbers

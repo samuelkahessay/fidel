@@ -1,0 +1,542 @@
+[
+  {
+    "id": "rp-1",
+    "title": "My Daily Routine (የቀኔ ተግባር)",
+    "cefr": "A2",
+    "sentences": [
+      {
+        "amharic": "እኔ በጠዋት እነሳለሁ።",
+        "transliteration": "ine bet'ewat inesalehu.",
+        "english": "I get up in the morning."
+      },
+      {
+        "amharic": "ፊቴን እታጠባለሁ።",
+        "transliteration": "fiten itat'ebalehu.",
+        "english": "I wash my face."
+      },
+      {
+        "amharic": "ቁርስ እበላለሁ።",
+        "transliteration": "k'urs ibelalehu.",
+        "english": "I eat breakfast."
+      },
+      {
+        "amharic": "ወደ ስራ እሄዳለሁ።",
+        "transliteration": "wede sira ihedalehu.",
+        "english": "I go to work."
+      },
+      {
+        "amharic": "ከሰዓት በኋላ ወደ ቤት እመለሳለሁ።",
+        "transliteration": "kese'at behwala wede bet imelesalehu.",
+        "english": "In the afternoon I return home."
+      },
+      {
+        "amharic": "ማታ እራት እበላለሁ።",
+        "transliteration": "mata irat ibelalehu.",
+        "english": "In the evening I eat dinner."
+      },
+      {
+        "amharic": "ከዚያ በኋላ መጽሐፍ አነባለሁ።",
+        "transliteration": "keziya behwala mets'haf anebalehu.",
+        "english": "After that I read a book."
+      },
+      {
+        "amharic": "በሌሊት እተኛለሁ።",
+        "transliteration": "belelit iten'yalehu.",
+        "english": "At night I sleep."
+      }
+    ],
+    "glossary": [
+      {
+        "amharic": "ጠዋት",
+        "english": "morning"
+      },
+      {
+        "amharic": "ቁርስ",
+        "english": "breakfast"
+      },
+      {
+        "amharic": "ስራ",
+        "english": "work"
+      },
+      {
+        "amharic": "ቤት",
+        "english": "house / home"
+      },
+      {
+        "amharic": "ማታ",
+        "english": "evening"
+      },
+      {
+        "amharic": "እራት",
+        "english": "dinner"
+      },
+      {
+        "amharic": "መጽሐፍ",
+        "english": "book"
+      },
+      {
+        "amharic": "ሌሊት",
+        "english": "night"
+      }
+    ],
+    "questions": [
+      {
+        "question": "When does the speaker get up?",
+        "options": [
+          "In the morning",
+          "In the afternoon",
+          "At night"
+        ],
+        "answerIndex": 0
+      },
+      {
+        "question": "Where does the speaker go during the day?",
+        "options": [
+          "To work",
+          "To school",
+          "To the market"
+        ],
+        "answerIndex": 0
+      },
+      {
+        "question": "What does the speaker do before going to sleep?",
+        "options": [
+          "Eats breakfast",
+          "Reads a book",
+          "Goes to work"
+        ],
+        "answerIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "rp-2",
+    "title": "A Trip to the Market (ወደ ገበያ ጉዞ)",
+    "cefr": "A2",
+    "sentences": [
+      {
+        "amharic": "ዛሬ ወደ ገበያ እሄዳለሁ።",
+        "transliteration": "zare wede gebeya ihedalehu.",
+        "english": "Today I go to the market."
+      },
+      {
+        "amharic": "ገበያው በጣም ትልቅ ነው።",
+        "transliteration": "gebeyaw bet'am tiliq new.",
+        "english": "The market is very big."
+      },
+      {
+        "amharic": "በገበያው ብዙ ሰዎች አሉ።",
+        "transliteration": "be-gebeyaw bizu sewoch alu.",
+        "english": "There are many people in the market."
+      },
+      {
+        "amharic": "ዳቦ፣ ወተትና ፍራፍሬ እፈልጋለሁ።",
+        "transliteration": "dabo, wetetna firafre ifeligalehu.",
+        "english": "I want bread, milk, and fruit."
+      },
+      {
+        "amharic": "\"ሙዝ ስንት ነው?\" እጠይቃለሁ።",
+        "transliteration": "\"muz sint new?\" it'eyiqalehu.",
+        "english": "\"How much is a banana?\" I ask."
+      },
+      {
+        "amharic": "ነጋዴው \"ሃያ ብር ነው\" ይላል።",
+        "transliteration": "negadew \"haya bir new\" yilal.",
+        "english": "The merchant says, \"It is twenty birr.\""
+      },
+      {
+        "amharic": "ገንዘቡን እከፍላለሁ።",
+        "transliteration": "genzebun ikeflalehu.",
+        "english": "I pay the money."
+      },
+      {
+        "amharic": "ገበያው በጣም ደስ ይለኛል።",
+        "transliteration": "gebeyaw bet'am des yilenyal.",
+        "english": "I really like the market."
+      }
+    ],
+    "glossary": [
+      {
+        "amharic": "ገበያ",
+        "english": "market"
+      },
+      {
+        "amharic": "ዳቦ",
+        "english": "bread"
+      },
+      {
+        "amharic": "ወተት",
+        "english": "milk"
+      },
+      {
+        "amharic": "ፍራፍሬ",
+        "english": "fruit"
+      },
+      {
+        "amharic": "ሙዝ",
+        "english": "banana"
+      },
+      {
+        "amharic": "ስንት",
+        "english": "how much / how many"
+      },
+      {
+        "amharic": "ብር",
+        "english": "birr (money)"
+      },
+      {
+        "amharic": "ነጋዴ",
+        "english": "merchant / trader"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Where does the person go?",
+        "options": [
+          "To the market",
+          "To school",
+          "To the hospital"
+        ],
+        "answerIndex": 0
+      },
+      {
+        "question": "What does the person want to buy?",
+        "options": [
+          "Bread, milk, and fruit",
+          "Coffee and tea",
+          "Meat and salt"
+        ],
+        "answerIndex": 0
+      },
+      {
+        "question": "How much does the merchant say the banana costs?",
+        "options": [
+          "Ten birr",
+          "Twenty birr",
+          "Thirty birr"
+        ],
+        "answerIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "rp-3",
+    "title": "A Visit to Addis Ababa",
+    "cefr": "B1",
+    "sentences": [
+      {
+        "amharic": "ባለፈው ሳምንት ወደ አዲስ አበባ ሄድኩ።",
+        "transliteration": "balefew samint wede addis abeba hedku.",
+        "english": "Last week I went to Addis Ababa."
+      },
+      {
+        "amharic": "አዲስ አበባ የኢትዮጵያ ዋና ከተማ ናት።",
+        "transliteration": "addis abeba ye-ityop'ya wana ketema nat.",
+        "english": "Addis Ababa is the capital city of Ethiopia."
+      },
+      {
+        "amharic": "በመጀመሪያ ቀን ብዙ ሰዎችን አየሁ።",
+        "transliteration": "bemejemeriya qen bizu sewochin ayehu.",
+        "english": "On the first day I saw many people."
+      },
+      {
+        "amharic": "ከተማዋ በጣም ትልቅ እና ውብ ናት።",
+        "transliteration": "ketemawa bet'am tiliq ina wib nat.",
+        "english": "The city is very big and beautiful."
+      },
+      {
+        "amharic": "እኔ እና ጓደኛዬ ወደ ገበያ ሄድን እና ስጦታ ገዛን።",
+        "transliteration": "ine ina gwadenyaye wede gebeya hedin ina sit'ota gezan.",
+        "english": "My friend and I went to the market and bought a gift."
+      },
+      {
+        "amharic": "ምሽት ላይ በአንድ ምግብ ቤት ጣፋጭ እንጀራ በላን።",
+        "transliteration": "mishit lay be-and migib bet t'afach' injera belan.",
+        "english": "In the evening we ate delicious injera at a restaurant."
+      },
+      {
+        "amharic": "ጉዞዬ በጣም ጥሩ ነበር።",
+        "transliteration": "guzoye bet'am t'iru neber.",
+        "english": "My trip was very good."
+      },
+      {
+        "amharic": "በሚቀጥለው ዓመት እንደገና መሄድ እፈልጋለሁ።",
+        "transliteration": "bemiqet'ilew amet indegena mehed ifeligalehu.",
+        "english": "Next year I want to go again."
+      }
+    ],
+    "glossary": [
+      {
+        "amharic": "ወደ",
+        "english": "to, toward"
+      },
+      {
+        "amharic": "ከተማ",
+        "english": "city"
+      },
+      {
+        "amharic": "ዋና ከተማ",
+        "english": "capital city"
+      },
+      {
+        "amharic": "ብዙ",
+        "english": "many, a lot"
+      },
+      {
+        "amharic": "ውብ",
+        "english": "beautiful"
+      },
+      {
+        "amharic": "ገበያ",
+        "english": "market"
+      },
+      {
+        "amharic": "ስጦታ",
+        "english": "gift"
+      },
+      {
+        "amharic": "ጉዞ",
+        "english": "trip, journey"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Where did the writer travel?",
+        "options": [
+          "Addis Ababa",
+          "Bahir Dar",
+          "Gondar"
+        ],
+        "answerIndex": 0
+      },
+      {
+        "question": "What did the writer and their friend buy at the market?",
+        "options": [
+          "Food",
+          "A gift",
+          "Clothes"
+        ],
+        "answerIndex": 1
+      },
+      {
+        "question": "What did they eat in the evening?",
+        "options": [
+          "Bread",
+          "Coffee",
+          "Injera"
+        ],
+        "answerIndex": 2
+      }
+    ]
+  },
+  {
+    "id": "rp-4",
+    "title": "የቡና ሥነ ሥርዓት",
+    "cefr": "B1",
+    "sentences": [
+      {
+        "amharic": "እኔ የኢትዮጵያ ቡና በጣም እወዳለሁ።",
+        "transliteration": "ine yeityop'ya buna bet'am iwedalehu.",
+        "english": "I love Ethiopian coffee very much."
+      },
+      {
+        "amharic": "ባለፈው እሑድ እናቴ ቡና አፈላች።",
+        "transliteration": "balefew ihud inate buna afelach.",
+        "english": "Last Sunday my mother made coffee."
+      },
+      {
+        "amharic": "በመጀመሪያ ቡናውን በደንብ ቆላች።",
+        "transliteration": "bemejemeriya bunawin bedenb k'olach.",
+        "english": "First, she roasted the coffee well."
+      },
+      {
+        "amharic": "በቤቱ ውስጥ ጥሩ ሽታ ነበር።",
+        "transliteration": "bebetu wist' t'iru shita neber.",
+        "english": "There was a nice smell in the house."
+      },
+      {
+        "amharic": "ከዚያም ከቤተሰቤ ጋር ቡና ጠጣን።",
+        "transliteration": "keziyam kebetesebe gar buna t'et'an.",
+        "english": "Then we drank coffee with my family."
+      },
+      {
+        "amharic": "ቡናው ትኩስና ጣፋጭ ነበር።",
+        "transliteration": "bunaw tikusna t'afach' neber.",
+        "english": "The coffee was hot and sweet."
+      },
+      {
+        "amharic": "ያ ቀን ለእኔ በጣም ደስ የሚል ነበር።",
+        "transliteration": "ya k'en leine bet'am des yemil neber.",
+        "english": "That day was very pleasant for me."
+      }
+    ],
+    "glossary": [
+      {
+        "amharic": "ቡና",
+        "english": "coffee"
+      },
+      {
+        "amharic": "እናት",
+        "english": "mother"
+      },
+      {
+        "amharic": "ማፍላት",
+        "english": "to brew / boil (coffee)"
+      },
+      {
+        "amharic": "መቁላት",
+        "english": "to roast"
+      },
+      {
+        "amharic": "ሽታ",
+        "english": "smell / aroma"
+      },
+      {
+        "amharic": "ቤተሰብ",
+        "english": "family"
+      },
+      {
+        "amharic": "ትኩስ",
+        "english": "hot"
+      },
+      {
+        "amharic": "ጣፋጭ",
+        "english": "sweet / tasty"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Who made the coffee?",
+        "options": [
+          "The narrator's neighbor",
+          "The narrator's mother",
+          "The narrator's friend"
+        ],
+        "answerIndex": 1
+      },
+      {
+        "question": "What did she do first?",
+        "options": [
+          "She brewed the coffee",
+          "She roasted the coffee",
+          "She poured the coffee"
+        ],
+        "answerIndex": 1
+      },
+      {
+        "question": "How was the coffee described?",
+        "options": [
+          "Cold and bitter",
+          "Sour and weak",
+          "Hot and sweet"
+        ],
+        "answerIndex": 2
+      }
+    ]
+  },
+  {
+    "id": "rp-5",
+    "title": "የሥራ ቀን (A Day at Work)",
+    "cefr": "B1",
+    "sentences": [
+      {
+        "amharic": "እኔ በአንድ ኩባንያ ውስጥ እሰራለሁ።",
+        "transliteration": "ine beand kubaniya wist' iseralehu.",
+        "english": "I work at a company."
+      },
+      {
+        "amharic": "በየቀኑ ጠዋት ወደ ሥራ በአውቶቡስ እሄዳለሁ።",
+        "transliteration": "beyeqenu t'ewat wede sira beawtobus ihedalehu.",
+        "english": "Every morning I go to work by bus."
+      },
+      {
+        "amharic": "ቢሮ ስደርስ መጀመሪያ ኢሜል አነባለሁ።",
+        "transliteration": "biro siders mejemeriya imel anebalehu.",
+        "english": "When I arrive at the office, first I read email."
+      },
+      {
+        "amharic": "ከባልደረቦቼ ጋር በስብሰባ ላይ እወያያለሁ።",
+        "transliteration": "kebaldereboche gar besibseba lay iweyayalehu.",
+        "english": "I discuss things with my colleagues in a meeting."
+      },
+      {
+        "amharic": "ቀትር ላይ ከጓደኞቼ ጋር ምሳ እበላለሁ።",
+        "transliteration": "qetir lay kegwadegnoche gar misa ibelalehu.",
+        "english": "At noon I eat lunch with my friends."
+      },
+      {
+        "amharic": "ከሰዓት በኋላ ብዙ ሥራ አለ፣ ስለዚህ በጣም እደክማለሁ።",
+        "transliteration": "kesat behuala bizu sira ale, silezih bet'am idekmalehu.",
+        "english": "In the afternoon there is a lot of work, so I get very tired."
+      },
+      {
+        "amharic": "ሥራ ሲያልቅ ወደ ቤት ተመልሼ አርፋለሁ።",
+        "transliteration": "sira siyalq wede bet temelshe arfalehu.",
+        "english": "When work ends, I return home and rest."
+      }
+    ],
+    "glossary": [
+      {
+        "amharic": "ሥራ",
+        "english": "work; job"
+      },
+      {
+        "amharic": "ቢሮ",
+        "english": "office"
+      },
+      {
+        "amharic": "ኩባንያ",
+        "english": "company"
+      },
+      {
+        "amharic": "ስብሰባ",
+        "english": "meeting"
+      },
+      {
+        "amharic": "ባልደረባ",
+        "english": "colleague"
+      },
+      {
+        "amharic": "ምሳ",
+        "english": "lunch"
+      },
+      {
+        "amharic": "ጠዋት",
+        "english": "morning"
+      },
+      {
+        "amharic": "ከሰዓት በኋላ",
+        "english": "afternoon"
+      }
+    ],
+    "questions": [
+      {
+        "question": "How does the person travel to work?",
+        "options": [
+          "By bus",
+          "By car",
+          "On foot"
+        ],
+        "answerIndex": 0
+      },
+      {
+        "question": "What does the person do first at the office?",
+        "options": [
+          "Drinks coffee",
+          "Reads email",
+          "Eats lunch"
+        ],
+        "answerIndex": 1
+      },
+      {
+        "question": "What does the person do when work ends?",
+        "options": [
+          "Returns home and rests",
+          "Goes to a meeting",
+          "Starts more work"
+        ],
+        "answerIndex": 0
+      }
+    ]
+  }
+]

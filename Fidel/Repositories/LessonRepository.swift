@@ -40,6 +40,9 @@ protocol LessonRepositoryProtocol {
     func getCulturalNotes() -> [CulturalNote]
     func getCulturalNotes(forLesson lessonId: Int) -> [CulturalNote]
     func getCulturalNotes(forConversation conversationId: Int) -> [CulturalNote]
+
+    // Reading passages
+    func getReadingPassages() -> [ReadingPassage]
 }
 
 // MARK: - LessonRepository Implementation
@@ -139,5 +142,11 @@ final class LessonRepository: LessonRepositoryProtocol {
 
     func getCulturalNotes(forConversation conversationId: Int) -> [CulturalNote] {
         AmharicData.culturalNotes.filter { $0.conversationIds.contains(conversationId) }
+    }
+
+    // MARK: - Reading passages
+
+    func getReadingPassages() -> [ReadingPassage] {
+        AmharicData.readingPassages
     }
 }

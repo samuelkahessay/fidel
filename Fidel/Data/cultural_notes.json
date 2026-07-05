@@ -1,271 +1,885 @@
 [
   {
-    "amharicTitle" : "የሰላምታ ባህል",
-    "content" : "Ethiopians take greetings very seriously — rushing through them is considered rude. A proper greeting involves asking about the person's health, their family's health, and even their livestock in rural areas. The exchange can last several minutes. Handshakes often include a light shoulder bump between close friends. It's common to greet everyone in a room individually. Skipping someone is a notable offense.",
-    "conversationIds" : [
+    "amharicTitle": "የሰላምታ ባህል",
+    "content": "Ethiopians take greetings very seriously — rushing through them is considered rude. A proper greeting involves asking about the person's health, their family's health, and even their livestock in rural areas. The exchange can last several minutes. Handshakes often include a light shoulder bump between close friends. It's common to greet everyone in a room individually. Skipping someone is a notable offense.",
+    "conversationIds": [
       1,
       2
     ],
-    "icon" : "hand.wave.fill",
-    "id" : "greeting_customs",
-    "lessonIds" : [
+    "icon": "hand.wave.fill",
+    "id": "greeting_customs",
+    "lessonIds": [
       1
     ],
-    "title" : "Greeting Culture"
+    "title": "Greeting Culture"
   },
   {
-    "amharicTitle" : "እግዚአብሔር ይመስገን",
-    "content" : "\"Igziabher yimmesgan\" (Thank God) is the most common way to say \"I'm fine\" — not just a religious statement but a cultural reflex. Ethiopia has deep roots in both Christianity (Ethiopian Orthodox Church, one of the oldest in the world) and Islam. Religious language permeates everyday speech regardless of personal belief. You'll hear \"inshallah\" (God willing) from Muslim Ethiopians and \"Egziabher yawkal\" (God knows) across communities.",
-    "conversationIds" : [
+    "amharicTitle": "እግዚአብሔር ይመስገን",
+    "content": "\"Igziabher yimmesgan\" (Thank God) is the most common way to say \"I'm fine\" — not just a religious statement but a cultural reflex. Ethiopia has deep roots in both Christianity (Ethiopian Orthodox Church, one of the oldest in the world) and Islam. Religious language permeates everyday speech regardless of personal belief. You'll hear \"inshallah\" (God willing) from Muslim Ethiopians and \"Egziabher yawkal\" (God knows) across communities.",
+    "conversationIds": [
       1,
       2
     ],
-    "icon" : "hands.sparkles.fill",
-    "id" : "igziabher",
-    "lessonIds" : [
+    "icon": "hands.sparkles.fill",
+    "id": "igziabher",
+    "lessonIds": [
       1
     ],
-    "title" : "\"Thank God\" — Religious Expressions"
+    "title": "\"Thank God\" — Religious Expressions"
   },
   {
-    "amharicTitle" : "ጾታ በአማርኛ",
-    "content" : "Amharic is a gendered language — verbs, pronouns, and even \"you\" change based on whether you're speaking to a man or woman. \"Indamin nah?\" is for men, \"indamin nash?\" for women, and \"indamin nawot?\" is the formal\/polite form used regardless of gender. The formal form is your safest bet when unsure — it's always respectful. Unlike some languages, Amharic gender distinction is primarily about the person you're addressing, not the subject.",
-    "conversationIds" : [
-
-    ],
-    "icon" : "person.2.fill",
-    "id" : "gender_language",
-    "lessonIds" : [
+    "amharicTitle": "ጾታ በአማርኛ",
+    "content": "Amharic is a gendered language — verbs, pronouns, and even \"you\" change based on whether you're speaking to a man or woman. \"Indamin nah?\" is for men, \"indamin nash?\" for women, and \"indamin nawot?\" is the formal/polite form used regardless of gender. The formal form is your safest bet when unsure — it's always respectful. Unlike some languages, Amharic gender distinction is primarily about the person you're addressing, not the subject.",
+    "conversationIds": [],
+    "icon": "person.2.fill",
+    "id": "gender_language",
+    "lessonIds": [
       1
     ],
-    "title" : "Gender in Amharic"
+    "title": "Gender in Amharic"
   },
   {
-    "amharicTitle" : "የኢትዮጵያ ቤተሰብ",
-    "content" : "Ethiopians don't have family surnames in the Western sense. Instead, your \"last name\" is your father's first name, and your father's \"last name\" is his father's first name. So Dawit Tesfaye is Dawit, son of Tesfaye. This means siblings share the same \"last name\" (their father's name), but cousins don't. Extended family is central — the word \"betesab\" (family) often includes uncles, aunts, and cousins living nearby. Elders are deeply respected and addressed with formal language.",
-    "conversationIds" : [
+    "amharicTitle": "የኢትዮጵያ ቤተሰብ",
+    "content": "Ethiopians don't have family surnames in the Western sense. Instead, your \"last name\" is your father's first name, and your father's \"last name\" is his father's first name. So Dawit Tesfaye is Dawit, son of Tesfaye. This means siblings share the same \"last name\" (their father's name), but cousins don't. Extended family is central — the word \"betesab\" (family) often includes uncles, aunts, and cousins living nearby. Elders are deeply respected and addressed with formal language.",
+    "conversationIds": [
       7
     ],
-    "icon" : "figure.2.and.child.holdinghands",
-    "id" : "family_structure",
-    "lessonIds" : [
+    "icon": "figure.2.and.child.holdinghands",
+    "id": "family_structure",
+    "lessonIds": [
       2
     ],
-    "title" : "Ethiopian Family & Names"
+    "title": "Ethiopian Family & Names"
   },
   {
-    "amharicTitle" : "የቡና ሥነ ሥርዓት",
-    "content" : "Ethiopia is the birthplace of coffee, and the coffee ceremony (buna sne sir'at) is sacred. Green beans are roasted in front of guests, ground by hand, and brewed in a clay pot called a jebena. The ceremony has three rounds: Abol (first, strongest), Tona (second), and Baraka (third, meaning \"blessing\"). Leaving before the third round is considered impolite. Popcorn or kolo (roasted barley) is served alongside. The ceremony can take 1-2 hours — it's a social ritual, not just a caffeine break.",
-    "conversationIds" : [
+    "amharicTitle": "የቡና ሥነ ሥርዓት",
+    "content": "Ethiopia is the birthplace of coffee, and the coffee ceremony (buna sne sir'at) is sacred. Green beans are roasted in front of guests, ground by hand, and brewed in a clay pot called a jebena. The ceremony has three rounds: Abol (first, strongest), Tona (second), and Baraka (third, meaning \"blessing\"). Leaving before the third round is considered impolite. Popcorn or kolo (roasted barley) is served alongside. The ceremony can take 1-2 hours — it's a social ritual, not just a caffeine break.",
+    "conversationIds": [
       3,
       12
     ],
-    "icon" : "cup.and.saucer.fill",
-    "id" : "coffee_ceremony",
-    "lessonIds" : [
+    "icon": "cup.and.saucer.fill",
+    "id": "coffee_ceremony",
+    "lessonIds": [
       4,
       8
     ],
-    "title" : "The Coffee Ceremony"
+    "title": "The Coffee Ceremony"
   },
   {
-    "amharicTitle" : "እንጀራ",
-    "content" : "Injera is a spongy, sour flatbread made from teff flour — the foundation of Ethiopian cuisine. Meals are served on a large shared platter: injera laid flat with various stews (wat) on top. Everyone eats from the same plate using their right hand (never the left!), tearing off pieces of injera to scoop up food. This communal eating style reflects Ethiopian values of togetherness and sharing. Eating alone is considered unfortunate.",
-    "conversationIds" : [
-
-    ],
-    "icon" : "fork.knife",
-    "id" : "injera_culture",
-    "lessonIds" : [
+    "amharicTitle": "እንጀራ",
+    "content": "Injera is a spongy, sour flatbread made from teff flour — the foundation of Ethiopian cuisine. Meals are served on a large shared platter: injera laid flat with various stews (wat) on top. Everyone eats from the same plate using their right hand (never the left!), tearing off pieces of injera to scoop up food. This communal eating style reflects Ethiopian values of togetherness and sharing. Eating alone is considered unfortunate.",
+    "conversationIds": [],
+    "icon": "fork.knife",
+    "id": "injera_culture",
+    "lessonIds": [
       4
     ],
-    "title" : "Injera & Communal Eating"
+    "title": "Injera & Communal Eating"
   },
   {
-    "amharicTitle" : "የገበያ ድርድር",
-    "content" : "Haggling at Ethiopian markets (gabaya) is expected and enjoyed. The seller's first price is always inflated — starting at 50-70% of the asking price is normal. Stay friendly and smile throughout. Walking away is a legitimate negotiation tactic — the seller will often call you back. However, once you agree on a price, you're committed. In some markets like Merkato (Africa's largest open-air market), having a local friend helps navigate both prices and the maze-like layout.",
-    "conversationIds" : [
+    "amharicTitle": "የገበያ ድርድር",
+    "content": "Haggling at Ethiopian markets (gabaya) is expected and enjoyed. The seller's first price is always inflated — starting at 50-70% of the asking price is normal. Stay friendly and smile throughout. Walking away is a legitimate negotiation tactic — the seller will often call you back. However, once you agree on a price, you're committed. In some markets like Merkato (Africa's largest open-air market), having a local friend helps navigate both prices and the maze-like layout.",
+    "conversationIds": [
       6
     ],
-    "icon" : "banknote.fill",
-    "id" : "market_haggling",
-    "lessonIds" : [
+    "icon": "banknote.fill",
+    "id": "market_haggling",
+    "lessonIds": [
       4
     ],
-    "title" : "Market Haggling Etiquette"
+    "title": "Market Haggling Etiquette"
   },
   {
-    "amharicTitle" : "የኢትዮጵያ ቀን መቁጠሪያ",
-    "content" : "Ethiopia uses its own calendar with 13 months — twelve months of 30 days each, plus a 13th month (Pagume) of 5-6 days. The Ethiopian calendar is roughly 7-8 years behind the Gregorian calendar. Ethiopian New Year (Enkutatash) falls on September 11 (or 12 in leap years). So when it's 2026 in the West, it might be 2018-2019 in Ethiopia! This often causes confusion for travelers and business interactions.",
-    "conversationIds" : [
-
-    ],
-    "icon" : "calendar",
-    "id" : "ethiopian_calendar",
-    "lessonIds" : [
+    "amharicTitle": "የኢትዮጵያ ቀን መቁጠሪያ",
+    "content": "Ethiopia uses its own calendar with 13 months — twelve months of 30 days each, plus a 13th month (Pagume) of 5-6 days. The Ethiopian calendar is roughly 7-8 years behind the Gregorian calendar. Ethiopian New Year (Enkutatash) falls on September 11 (or 12 in leap years). So when it's 2026 in the West, it might be 2018-2019 in Ethiopia! This often causes confusion for travelers and business interactions.",
+    "conversationIds": [],
+    "icon": "calendar",
+    "id": "ethiopian_calendar",
+    "lessonIds": [
       5
     ],
-    "title" : "The Ethiopian Calendar (13 Months!)"
+    "title": "The Ethiopian Calendar (13 Months!)"
   },
   {
-    "amharicTitle" : "የኢትዮጵያ ሰዓት",
-    "content" : "Ethiopia uses a 12-hour clock that starts at dawn (6:00 AM = 12 o'clock Ethiopian, or \"noon of the morning\"). So when an Ethiopian says \"2 o'clock\" they mean 8:00 AM! The logic: the day starts at sunrise (roughly 6 AM near the equator), so the first hour of daylight is 1 o'clock. \"Ba-and saat\" (at one o'clock) = 7 AM. Always clarify \"ya-habesha saat\" (Ethiopian time) or \"ya-faranji saat\" (foreign\/Western time).",
-    "conversationIds" : [
+    "amharicTitle": "የኢትዮጵያ ሰዓት",
+    "content": "Ethiopia uses a 12-hour clock that starts at dawn (6:00 AM = 12 o'clock Ethiopian, or \"noon of the morning\"). So when an Ethiopian says \"2 o'clock\" they mean 8:00 AM! The logic: the day starts at sunrise (roughly 6 AM near the equator), so the first hour of daylight is 1 o'clock. \"Ba-and saat\" (at one o'clock) = 7 AM. Always clarify \"ya-habesha saat\" (Ethiopian time) or \"ya-faranji saat\" (foreign/Western time).",
+    "conversationIds": [
       8,
       9
     ],
-    "icon" : "clock.fill",
-    "id" : "ethiopian_time",
-    "lessonIds" : [
+    "icon": "clock.fill",
+    "id": "ethiopian_time",
+    "lessonIds": [
       5
     ],
-    "title" : "Ethiopian Time (6 Hours Offset)"
+    "title": "Ethiopian Time (6 Hours Offset)"
   },
   {
-    "amharicTitle" : "ይፋዊ እና ግላዊ",
-    "content" : "Amharic has distinct formal and informal registers. Use formal address (\"irswo\" = you formal, with \"-ot\" verb endings) with: elders, strangers, authority figures, and anyone you want to show respect. Use informal (\"anta\/anchi\" = you m\/f) with: friends, children, and people your age you know well. Titles matter: \"Ato\" (Mr.), \"Wayzaro\" (Mrs.), \"Wayzarit\" (Miss) are used frequently. Switching from formal to informal signals growing friendship.",
-    "conversationIds" : [
+    "amharicTitle": "ይፋዊ እና ግላዊ",
+    "content": "Amharic has distinct formal and informal registers. Use formal address (\"irswo\" = you formal, with \"-ot\" verb endings) with: elders, strangers, authority figures, and anyone you want to show respect. Use informal (\"anta/anchi\" = you m/f) with: friends, children, and people your age you know well. Titles matter: \"Ato\" (Mr.), \"Wayzaro\" (Mrs.), \"Wayzarit\" (Miss) are used frequently. Switching from formal to informal signals growing friendship.",
+    "conversationIds": [
       2
     ],
-    "icon" : "person.fill.questionmark",
-    "id" : "formal_informal",
-    "lessonIds" : [
+    "icon": "person.fill.questionmark",
+    "id": "formal_informal",
+    "lessonIds": [
       1,
       2
     ],
-    "title" : "Formal vs. Informal Address"
+    "title": "Formal vs. Informal Address"
   },
   {
-    "amharicTitle" : "የግዕዝ ፊደል",
-    "content" : "The Ge'ez (Ethiopic) script is one of the oldest alphabets still in use, dating back over 2,000 years. Unlike most scripts that are alphabets (consonants + separate vowels) or abjads (consonants only), Ge'ez is an abugida — each character represents a consonant-vowel combination. The 7 vowel forms create a systematic pattern: once you learn the first form of each consonant, the other 6 follow a predictable pattern. This makes the script surprisingly learnable despite having 238 characters!",
-    "conversationIds" : [
-
-    ],
-    "icon" : "character.textbox",
-    "id" : "geez_script",
-    "lessonIds" : [
-
-    ],
-    "title" : "Origins of the Ge'ez Script"
+    "amharicTitle": "የግዕዝ ፊደል",
+    "content": "The Ge'ez (Ethiopic) script is one of the oldest alphabets still in use, dating back over 2,000 years. Unlike most scripts that are alphabets (consonants + separate vowels) or abjads (consonants only), Ge'ez is an abugida — each character represents a consonant-vowel combination. The 7 vowel forms create a systematic pattern: once you learn the first form of each consonant, the other 6 follow a predictable pattern. This makes the script surprisingly learnable despite having 238 characters!",
+    "conversationIds": [],
+    "icon": "character.textbox",
+    "id": "geez_script",
+    "lessonIds": [],
+    "title": "Origins of the Ge'ez Script"
   },
   {
-    "amharicTitle" : "ሃይማኖታዊ ሰላምታ",
-    "content" : "Ethiopia has both large Christian (mainly Orthodox) and Muslim populations who have coexisted for centuries. Greetings often reflect this: Christians may say \"Igziabher yimmesgan\" (Thank God) while Muslims use \"Alhamdulillah\" or \"Selam Aleikum.\" During holidays, it's common for neighbors of different faiths to greet each other warmly. The universal greeting \"T'ena yist'illiany\" works across all religions and is your safest choice.",
-    "conversationIds" : [
-
-    ],
-    "icon" : "building.columns.fill",
-    "id" : "religious_greetings",
-    "lessonIds" : [
+    "amharicTitle": "ሃይማኖታዊ ሰላምታ",
+    "content": "Ethiopia has both large Christian (mainly Orthodox) and Muslim populations who have coexisted for centuries. Greetings often reflect this: Christians may say \"Igziabher yimmesgan\" (Thank God) while Muslims use \"Alhamdulillah\" or \"Selam Aleikum.\" During holidays, it's common for neighbors of different faiths to greet each other warmly. The universal greeting \"T'ena yist'illiany\" works across all religions and is your safest choice.",
+    "conversationIds": [],
+    "icon": "building.columns.fill",
+    "id": "religious_greetings",
+    "lessonIds": [
       1
     ],
-    "title" : "Muslim & Christian Greetings"
+    "title": "Muslim & Christian Greetings"
   },
   {
-    "amharicTitle" : "ባህላዊ ሕክምና",
-    "content" : "Ethiopia has a rich tradition of herbal medicine alongside modern healthcare. \"Dabo kolo\" (roasted grain) is given for stomach ailments, honey and lemon for colds, and \"kosso\" for parasites. Many Ethiopians visit both modern doctors and traditional healers. When someone is sick, visitors are expected — staying away is considered cold. Visitors bring food and offer prayers. \"Igziabher yifah\" (May God heal you) is the standard well-wish.",
-    "conversationIds" : [
+    "amharicTitle": "ባህላዊ ሕክምና",
+    "content": "Ethiopia has a rich tradition of herbal medicine alongside modern healthcare. \"Dabo kolo\" (roasted grain) is given for stomach ailments, honey and lemon for colds, and \"kosso\" for parasites. Many Ethiopians visit both modern doctors and traditional healers. When someone is sick, visitors are expected — staying away is considered cold. Visitors bring food and offer prayers. \"Igziabher yifah\" (May God heal you) is the standard well-wish.",
+    "conversationIds": [
       11
     ],
-    "icon" : "leaf.fill",
-    "id" : "body_health",
-    "lessonIds" : [
+    "icon": "leaf.fill",
+    "id": "body_health",
+    "lessonIds": [
       6
     ],
-    "title" : "Traditional Medicine & Health"
+    "title": "Traditional Medicine & Health"
   },
   {
-    "amharicTitle" : "በኢትዮጵያ ጉዞ",
-    "content" : "Blue and white minibuses are the backbone of Ethiopian public transport. A \"weyala\" (conductor) hangs out the door shouting destinations. You pay on board. In Addis Ababa, the new light rail (\"ye-Addis Ababa babur\") connects major areas. Long-distance buses leave early morning. The ride-hailing app RIDE is Ethiopia's Uber equivalent. Tipping taxi drivers isn't mandatory but rounding up is appreciated. Always agree on the fare before getting in a regular taxi.",
-    "conversationIds" : [
+    "amharicTitle": "በኢትዮጵያ ጉዞ",
+    "content": "Blue and white minibuses are the backbone of Ethiopian public transport. A \"weyala\" (conductor) hangs out the door shouting destinations. You pay on board. In Addis Ababa, the new light rail (\"ye-Addis Ababa babur\") connects major areas. Long-distance buses leave early morning. The ride-hailing app RIDE is Ethiopia's Uber equivalent. Tipping taxi drivers isn't mandatory but rounding up is appreciated. Always agree on the fare before getting in a regular taxi.",
+    "conversationIds": [
       13,
       14
     ],
-    "icon" : "bus.fill",
-    "id" : "travel_ethiopia",
-    "lessonIds" : [
+    "icon": "bus.fill",
+    "id": "travel_ethiopia",
+    "lessonIds": [
       7
     ],
-    "title" : "Getting Around Ethiopia"
+    "title": "Getting Around Ethiopia"
   },
   {
-    "amharicTitle" : "መስቀል",
-    "content" : "Meskel (September 27) celebrates the finding of the True Cross by Empress Helena. The highlight is the Demera — a massive bonfire in Meskel Square, Addis Ababa. Thousands gather in white traditional clothing carrying torches and flowers. The direction the bonfire falls is believed to be prophetic. Meskel also marks the end of the rainy season and the beginning of spring. Families feast on doro wat and special holiday bread. It's a UNESCO Intangible Cultural Heritage.",
-    "conversationIds" : [
+    "amharicTitle": "መስቀል",
+    "content": "Meskel (September 27) celebrates the finding of the True Cross by Empress Helena. The highlight is the Demera — a massive bonfire in Meskel Square, Addis Ababa. Thousands gather in white traditional clothing carrying torches and flowers. The direction the bonfire falls is believed to be prophetic. Meskel also marks the end of the rainy season and the beginning of spring. Families feast on doro wat and special holiday bread. It's a UNESCO Intangible Cultural Heritage.",
+    "conversationIds": [
       16
     ],
-    "icon" : "flame.fill",
-    "id" : "meskel",
-    "lessonIds" : [
+    "icon": "flame.fill",
+    "id": "meskel",
+    "lessonIds": [
       8
     ],
-    "title" : "Meskel — Finding of the True Cross"
+    "title": "Meskel — Finding of the True Cross"
   },
   {
-    "amharicTitle" : "ጥምቀት",
-    "content" : "Timkat (January 19-20) is Ethiopia's most spectacular festival, celebrating the baptism of Jesus. Replicas of the Ark of the Covenant (Tabot) are paraded through streets under colorful umbrellas. Priests in elaborate vestments lead processions to water sources where mass baptisms occur. The celebration lasts three days with music, dancing, and feasting. Lalibela and Gondar host the most famous celebrations, drawing pilgrims from across Ethiopia.",
-    "conversationIds" : [
-
-    ],
-    "icon" : "drop.fill",
-    "id" : "timkat",
-    "lessonIds" : [
+    "amharicTitle": "ጥምቀት",
+    "content": "Timkat (January 19-20) is Ethiopia's most spectacular festival, celebrating the baptism of Jesus. Replicas of the Ark of the Covenant (Tabot) are paraded through streets under colorful umbrellas. Priests in elaborate vestments lead processions to water sources where mass baptisms occur. The celebration lasts three days with music, dancing, and feasting. Lalibela and Gondar host the most famous celebrations, drawing pilgrims from across Ethiopia.",
+    "conversationIds": [],
+    "icon": "drop.fill",
+    "id": "timkat",
+    "lessonIds": [
       8
     ],
-    "title" : "Timkat — Ethiopian Epiphany"
+    "title": "Timkat — Ethiopian Epiphany"
   },
   {
-    "amharicTitle" : "እንቁጣጣሽ",
-    "content" : "Ethiopian New Year falls on September 11 (Meskerem 1 in the Ethiopian calendar). The name means \"gift of jewels\" — legend says the Queen of Sheba received jewels upon returning from visiting King Solomon. Children go door to door singing and giving bunches of wild flowers (adey abeba). Families prepare special food, and everyone wears new clothes. Since Ethiopia follows its own calendar, the year number is 7-8 years behind the Gregorian calendar!",
-    "conversationIds" : [
-
-    ],
-    "icon" : "gift.fill",
-    "id" : "enkutatash",
-    "lessonIds" : [
+    "amharicTitle": "እንቁጣጣሽ",
+    "content": "Ethiopian New Year falls on September 11 (Meskerem 1 in the Ethiopian calendar). The name means \"gift of jewels\" — legend says the Queen of Sheba received jewels upon returning from visiting King Solomon. Children go door to door singing and giving bunches of wild flowers (adey abeba). Families prepare special food, and everyone wears new clothes. Since Ethiopia follows its own calendar, the year number is 7-8 years behind the Gregorian calendar!",
+    "conversationIds": [],
+    "icon": "gift.fill",
+    "id": "enkutatash",
+    "lessonIds": [
       8
     ],
-    "title" : "Enkutatash — Ethiopian New Year"
+    "title": "Enkutatash — Ethiopian New Year"
   },
   {
-    "amharicTitle" : "የሰርግ ባህል",
-    "content" : "Ethiopian weddings are multi-day celebrations. The \"telosh\" (engagement) involves elders negotiating between families. On the wedding day, the groom's family processes to the bride's home with singing and dancing. \"Ililta\" (ululation) — a high-pitched vocal sound — expresses joy throughout. Eskista shoulder dancing is a must. The couple is fed gursha by guests as a sign of love. Weddings can host hundreds of guests, with neighbors contributing food and labor.",
-    "conversationIds" : [
+    "amharicTitle": "የሰርግ ባህል",
+    "content": "Ethiopian weddings are multi-day celebrations. The \"telosh\" (engagement) involves elders negotiating between families. On the wedding day, the groom's family processes to the bride's home with singing and dancing. \"Ililta\" (ululation) — a high-pitched vocal sound — expresses joy throughout. Eskista shoulder dancing is a must. The couple is fed gursha by guests as a sign of love. Weddings can host hundreds of guests, with neighbors contributing food and labor.",
+    "conversationIds": [
       15
     ],
-    "icon" : "heart.fill",
-    "id" : "wedding_traditions",
-    "lessonIds" : [
+    "icon": "heart.fill",
+    "id": "wedding_traditions",
+    "lessonIds": [
       8
     ],
-    "title" : "Ethiopian Wedding Customs"
+    "title": "Ethiopian Wedding Customs"
   },
   {
-    "amharicTitle" : "ጉርሻ",
-    "content" : "Gursha is the Ethiopian tradition of hand-feeding someone else — taking a morsel of food (injera wrapped around wat) and placing it in another person's mouth. The bigger the gursha, the greater the affection! It's common between spouses, close friends, and hosts feeding guests. Refusing a gursha is considered impolite. At weddings, the bride and groom feed each other, and guests take turns feeding the couple. It's one of the most intimate everyday expressions of love in Ethiopian culture.",
-    "conversationIds" : [
+    "amharicTitle": "ጉርሻ",
+    "content": "Gursha is the Ethiopian tradition of hand-feeding someone else — taking a morsel of food (injera wrapped around wat) and placing it in another person's mouth. The bigger the gursha, the greater the affection! It's common between spouses, close friends, and hosts feeding guests. Refusing a gursha is considered impolite. At weddings, the bride and groom feed each other, and guests take turns feeding the couple. It's one of the most intimate everyday expressions of love in Ethiopian culture.",
+    "conversationIds": [
       15,
       17
     ],
-    "icon" : "hand.raised.fill",
-    "id" : "gursha",
-    "lessonIds" : [
+    "icon": "hand.raised.fill",
+    "id": "gursha",
+    "lessonIds": [
       4,
       8
     ],
-    "title" : "Gursha — Feeding with Love"
+    "title": "Gursha — Feeding with Love"
   },
   {
-    "amharicTitle" : "የኢትዮጵያ ብር",
-    "content" : "The Ethiopian Birr (ETB) is the national currency. \"Birr\" literally means \"silver\" in Amharic. Coins are called \"santim\" (cents). Cash is king — many places outside major hotels don't accept cards. ATMs are available in cities but can run out of cash on weekends. When shopping, always have small bills — change can be scarce. Tipping (\"tip\") is appreciated but not mandatory: 10-15% at restaurants, rounding up for services.",
-    "conversationIds" : [
+    "amharicTitle": "የኢትዮጵያ ብር",
+    "content": "The Ethiopian Birr (ETB) is the national currency. \"Birr\" literally means \"silver\" in Amharic. Coins are called \"santim\" (cents). Cash is king — many places outside major hotels don't accept cards. ATMs are available in cities but can run out of cash on weekends. When shopping, always have small bills — change can be scarce. Tipping (\"tip\") is appreciated but not mandatory: 10-15% at restaurants, rounding up for services.",
+    "conversationIds": [
       6
     ],
-    "icon" : "coloncurrencysign.circle.fill",
-    "id" : "birr_currency",
-    "lessonIds" : [
+    "icon": "coloncurrencysign.circle.fill",
+    "id": "birr_currency",
+    "lessonIds": [
       4
     ],
-    "title" : "Ethiopian Birr & Money"
+    "title": "Ethiopian Birr & Money"
+  },
+  {
+    "id": "gen-users-skah-1",
+    "title": "Time-of-Day Greetings (\"How did you spend the...\")",
+    "amharicTitle": "",
+    "content": "In polite/formal Amharic the greeting changes with the time of day, all built on the verb \"to spend.\" እንደምን አደሩ (indamin adaru) literally asks \"how did you spend the night?\" and is the morning greeting used after being apart overnight, while እንደምን ዋሉ (indamin walu) asks \"how did you spend the day?\" and is used later in the day. The same logic drives the farewells: ደህና ይዋሉ (dahna yiwalu) = \"spend the day well\" (daytime goodbye). Choosing the correct time-based form, rather than a generic greeting, signals fluency and respect.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1x",
+    "title": "Formal vs informal \"you\" (politeness registers)",
+    "amharicTitle": "",
+    "content": "Amharic marks politeness on the verb 'to be' and on pronouns. Informal 'you are' is ነህ (nah) to a man and ነሽ (nash) to a woman; the polite/formal form is ነዎት (nawot), paired with the respectful pronoun እርስዎ (irswo). Possessives split the same way: informal የአንተ (yanta, m) / የአንቺ (yanchi, f) \"your\" vs formal የርስዎ (yarswo). Use the formal register with elders, strangers, and officials; use informal with peers, children, and close friends. Choosing the wrong register can sound either rude or oddly distant.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2",
+    "title": "Ethiopian greetings invoke God and the time of day",
+    "amharicTitle": "",
+    "content": "Everyday Amharic greetings are religious and time-bound. The all-purpose greeting ጤና ይስጥልኝ (tena yistilliny) literally means \"May He (God) give health for my sake,\" and the common thanks እግዚአብሔር ይመስገን (igziabher yimmesgan) means \"May God be praised.\" Daytime greetings encode the time: እንደምን አደሩ? (indamin addaru?) literally asks \"How did you spend the night?\" and is used in the morning, while its evening counterpart እንደምን ዋሉ? (indamin walu?) asks \"How did you spend the day?\" Replying in kind, often with a thanks to God, is expected.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xx",
+    "title": "Taxis and garis (horse carts)",
+    "amharicTitle": "",
+    "content": "In many towns you can choose between a gari (horse and cart) or a taksi. Shared taxis often carry up to five passengers. If the taxi isn't going your way, the driver will say 'aihedim' (I'm not going there). If you want a cab to yourself, ask for it 'on contract' (kontrat) — and always negotiate the price before setting off.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2x",
+    "title": "Buses, minibuses and pick-ups",
+    "amharicTitle": "",
+    "content": "Inter-town buses are cheap, fairly comfortable and a great way to meet people — often packed with chickens, pots and household goods. wiyiyit minibuses and pick-up vehicles serve urban and inter-town routes. Listen for the conductor calling the destination, e.g. 'Merkato, Merkato, and so!' ('one more!').",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3",
+    "title": "Security searches (fetesha)",
+    "amharicTitle": "",
+    "content": "A fetesha (search) can happen on buses, trains, or as you enter buildings — a check for dangerous or contraband goods. The searches are usually short, painless and routine, so there's nothing to worry about.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4",
+    "title": "Reading Ethiopian traffic signs",
+    "amharicTitle": "",
+    "content": "Common road signs: መንገድ ልቀቅ (mangad likak) = GIVE WAY; መግባት ክልክል ነዉ (magbat kilkil naw) = NO ENTRY; ማቆም ክልክል ነዉ (makom kilkil naw) = NO PARKING; ዝግታ (zigita) = SLOW; ቁም (kum) = STOP. Note 'kilkil' means forbidden/prohibited.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-5",
+    "title": "Hitchhiking safely",
+    "amharicTitle": "",
+    "content": "Hitchhiking is risky but sometimes the only way to reach places off the beaten track. Always hitch in pairs. To signal for a lift, wave your hand or hold it out in a thumbs-up gesture. Remember that pick-ups often function as buses or taxis, so you may have to pay for the ride.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxx",
+    "title": "'Single' vs 'double' rooms — and alga vs kifil",
+    "amharicTitle": "",
+    "content": "In Ethiopian hotels a 'single' (አንድ, and) often means a room with a double bed, while a 'double' (ሁለት, hulet) means a room with two beds — so confirm the bed setup when you book. The word አልጋ (alga), literally 'bed', is commonly used in place of ክፍል (kifil), 'room'. That is why the standard way to ask about vacancy is አልጋ አለ? (alga alla?), literally 'Is there a bed?', meaning 'Are there any rooms available?'",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xx",
+    "title": "Bathroom basics",
+    "amharicTitle": "",
+    "content": "Bathrooms may not have water on tap. Ask for a ባልዲ (baldi), 'bucket', or check whether there is የቧንቧ ውሃ (yebwanbwa wuha), 'running water'. Buy 'soft' (soft), the local word for 'toilet paper', from neighbourhood kiosks. There is usually a waste basket beside the toilet — put used paper in the basket rather than down the drain, since it easily blocks the plumbing.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3x",
+    "title": "Locked out after dark",
+    "amharicTitle": "",
+    "content": "Some hotels lock their gates and grounds before midnight. If you plan to be out late — for example drinking አረቄ (areki), a strong local spirit, with friends — check the lock-up time at reception and let the ዘበኛ (zebenya), 'security guard', know, so you can get back in. Useful lines: በስንት ሰዓት በር ትዘጋላችሁ? 'What time do you lock the grounds?' and እዚህ ሆቴል ነዉ ያረፍኩት 'I'm a guest at this hotel.'",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4x",
+    "title": "Staying with a family",
+    "amharicTitle": "",
+    "content": "Staying with an Ethiopian family is a great way to experience daily life. Households typically have a steady flow of ጎረቤት (gorebet), 'neighbours', and relatives (ተቀራራይ ዘመድ, tekerarai zemed) dropping by, along with የሰፈር ልጆች (ye-sefer lijoch), 'neighbourhood children', and የቤት ሰራተኛ (ye-bet saratenya), 'domestic helpers'. When you leave, thank your hosts with አመሰግናለሁ ስለ መስተንግዶዉ, 'Thank you for your hospitality.'",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxxx",
+    "title": "Arada — streetwise Amharic",
+    "amharicTitle": "",
+    "content": "The chapter opens by promising 'arada' Amharic — the savvy, streetwise register of Ethiopian city life. Being arada means being clever, worldly and quick on your feet on the street, and a little of it goes a long way when navigating banks, post offices, shops and vendors.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xxx",
+    "title": "Ethiopian addresses: woreda & kebele",
+    "amharicTitle": "",
+    "content": "Most Ethiopian postal addresses are PO boxes, and you should write them in Roman (Latin) script. Written addresses often include a woreda and a kebele — administrative subdivisions — plus a suburb name, e.g. 'PO Box 6122, Woreda 17, Kebele 25, Gerj, Addis Ababa'.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3xx",
+    "title": "Polite address: Ato and Wayzero",
+    "amharicTitle": "",
+    "content": "When using the polite/formal form, put 'ato' ('Mr') or 'wayzero' ('Mrs') before a person's FIRST name — Ethiopians are addressed and known by their first name rather than a surname.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4xx",
+    "title": "At the bank: keep your currency forms",
+    "amharicTitle": "",
+    "content": "Banks and international exchange facilities exist in major town centres, but credit-card services are limited. Hold on to your currency declaration / exchange forms and receipts — you may need to show them when you depart the country.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-5x",
+    "title": "Sightseeing etiquette & photography",
+    "amharicTitle": "",
+    "content": "Castles, historical ruins and island monasteries are among Ethiopia's key attractions, and people are proud to share their heritage. Always ask before photographing someone or before wandering into areas that may be off-limits — photography is restricted at certain sights.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-6",
+    "title": "'May God give you' — declining beggars gently",
+    "amharicTitle": "",
+    "content": "Ethiopian streets draw vendors, beggars, shoe-shiners and roaming orators, many of whom have migrated from the countryside for work. If you don't want to give money, the gentle refusal is 'igzer yistih / yistish / yistiliny' ('May God give you'). It is considered rude to refuse this blessing when it is offered to you.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-7",
+    "title": "Unwanted attention: 'Ferenj! Ferenj!'",
+    "amharicTitle": "",
+    "content": "Travelers frequently hear 'ferenj! ferenj!' ('foreigner / white person!') or 'You! You!', often from groups of giggling children. It signals curiosity or excitement, not malice. Shouting 'zimbel!' ('shut up!') only makes things worse — a friendly reply like 'simachu man naw?' ('What are your names?') works far better.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-8",
+    "title": "Traditional hairstyles",
+    "amharicTitle": "",
+    "content": "Elaborate ornaments and manicuring objects support traditional hair designs. In some southern areas, wooden headrests are used instead of pillows to protect clay caps, feathers or jewellery, and butter or fat is applied to moisturise dry hair. Named styles include shuruba (braids), kundalla (traditional afro), kuncho (Tigre style) and mido (a child's tuft).",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-9",
+    "title": "Name dropping: historical figures",
+    "amharicTitle": "",
+    "content": "Ethiopians often reference their history and heroes. Useful names include Emperor Menelik (Atse Minilik), the Lion of Judah (ye-Yihuda anbessa), Lucy the hominid (Dinknesh, 'you are wonderful'), Ahmad Gragn the Left-Handed (Grany Mehammed), Ras Tafari (Prince Taferi, later Haile Selassie) and the Queen of Sheba (Nigist Saba).",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxxxx",
+    "title": "Ethiopian Markets (Gebeya) & Street Stalls",
+    "amharicTitle": "",
+    "content": "The gebeya (ገቢያ) is the hub of Ethiopian commerce — markets run daily in major towns and once a week in rural areas, where people travel from miles around to buy and sell wares and catch up on news. Expect a colourful maze of clothing, spices, grains, pottery and household goods, with sections (tera) grouped by product. For vegetables, eggs and small household items, look for gulet (ጉልት), the informal street stalls.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xxxx",
+    "title": "Bargaining Is Expected — But Not Everywhere",
+    "amharicTitle": "",
+    "content": "Bargaining (mekeraker) is normal and expected for souvenirs, clothes and similar items, though many established shops have fixed prices (yeteweseneu waga). Openers include asking the price (sint naw?), calling it expensive (wid naw), asking for anything cheaper (rikash alla?) and requesting a discount (waga kanis/kanish). Closing lines: 'Is that your last price?' and 'OK, I'll take it.'",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3xxx",
+    "title": "Regional Craft Specialities",
+    "amharicTitle": "",
+    "content": "Each region has a distinctive style and speciality: Dorze is known for colourful cotton clothes, Harar for quality basketry, Debre Birhan for carpets, and Gonder for crosses. To shop for a regional item, name the place plus the item — e.g. 'cloth from Dorze' (ye Dorze libs) or 'a cross from Gonder' (ye Gonder meskel).",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4xxx",
+    "title": "Traditional Baskets Each Have a Name",
+    "amharicTitle": "",
+    "content": "Ethiopian baskets are named by design and purpose, not generically. Key types: mesob (መሶብ), the decorated leather-tied round basket that doubles as an injera serving table; agelgil (አገልግል), a round leather food-storage/serving basket; mudai (ሙዳይ), a large multi-coloured injera basket; sefed (ሰፌድ), a flat basket for winnowing grain; and zenbil (ዘንቢል), the everyday basket for carrying shopping.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-5xx",
+    "title": "Body Decoration & Markings",
+    "amharicTitle": "",
+    "content": "Facial and body markings vary by group. In the north, delicate neck and facial tattoos (nikisat) set off white traditional clothing and elaborate hairstyles. Among some south-western groups, people pattern themselves with intricate scarification and body painting. Henna and other plant extracts are widely used to enhance beauty; kohl (kul) and eyeliner (ansosila) are common cosmetics.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-6x",
+    "title": "Exporting Cultural Souvenirs",
+    "amharicTitle": "",
+    "content": "Souvenirs range from authentic carvings and paintings to items still used in Ethiopian homes. Be aware that you may need an official permit to export cultural items such as parchments (birana) and antiques — worth checking before you buy heritage pieces.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-7x",
+    "title": "Reading Shop Signs",
+    "amharicTitle": "",
+    "content": "Two signs you'll see on shop doors: OPEN is ክፍት ነዉ (kift naw) and CLOSED is ተዘግተዋል (tazagitwal).",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-1",
+    "title": "Camping etiquette in Ethiopia",
+    "amharicTitle": "",
+    "content": "There are few designated campsites in Ethiopia. Always ask permission from landowners or local authorities before pitching a tent, and bury, burn, or carry out your rubbish.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-2",
+    "title": "Rural life and its rhythms",
+    "amharicTitle": "",
+    "content": "Most Ethiopians live and work in the countryside, their lives shaped by the seasons, harvests, and local religious life. Traditionally men and boys tend the animals and work the fields, while women collect water and firewood and run the household. Bow and greet people before starting a conversation, and respect farmers' land, privacy, and customs.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-3",
+    "title": "Trekking is everyday travel",
+    "amharicTitle": "",
+    "content": "Walking long distances is normal for country people; the Amharic term for trekking is 'yagir guzo' (የግር ጉዞ), literally 'a journey on foot.' For serious hikes, ask local authorities whether you need a trekking permit and whether the area is safe.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-4",
+    "title": "Telling time by the sun",
+    "amharicTitle": "",
+    "content": "In rural areas people often mark time by natural events rather than the clock — for example 'at daybreak' (goh sikad) or 'at sunset' (tsahay satgeba) — instead of giving a specific hour.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-5",
+    "title": "Two main seasons",
+    "amharicTitle": "",
+    "content": "Ethiopia's year is broadly divided into the dry season, 'baga' (በጋ, roughly October–May), and the wet season, 'kiramt' (ክረምት, June–September). Rural people also recognize shorter seasonal shifts such as the 'belg' (በልግ) short rains.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-6",
+    "title": "Climate by altitude zone",
+    "amharicTitle": "",
+    "content": "Ethiopians describe climate by altitude zone: 'dega' (ደጋ) is the cool highlands, 'kola' (ቆላ) the hot lowlands, and 'wayna dega' (ወይና ደጋ) the temperate middle zone where much of the country's coffee is grown.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-7",
+    "title": "Livestock everywhere",
+    "amharicTitle": "",
+    "content": "Ethiopia has more livestock than almost any other African country, so farm animals are a normal sight everywhere — on city streets, in backyards, and out in the fields. As the book jokes, a rooster is more likely to step out of someone's front door than a dog.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-8",
+    "title": "Eucalyptus: the 'tree from the sea'",
+    "amharicTitle": "",
+    "content": "Alongside its rich native flora, Ethiopia has notable imports. The eucalyptus, called 'bahir zaf' (ባህር ዛፍ, 'tree from the sea'), was brought from Australia by Emperor Menelik II in the late 19th century and is now widespread, especially around Addis Ababa.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxxxxx",
+    "title": "Ordering mild food for children",
+    "amharicTitle": "",
+    "content": "At restaurants you can ask for alicha migib (አልጫ ምግብ) — food that is not hot or spicy — which suits children better than the fiery berbere-based stews. (Compare the app phrase 'alicha yihunliny' = 'make it mild'.)",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xxxxx",
+    "title": "Work permits for foreigners",
+    "amharicTitle": "",
+    "content": "Foreigners on tourist visas are generally not allowed to seek or accept work in Ethiopia. Work and residence permits must be arranged in advance through the appropriate consulates and government ministries.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxxxxxx",
+    "title": "Ethiopian Time: The Clock Starts at Sunrise",
+    "amharicTitle": "",
+    "content": "Ethiopia keeps its own clock and is 3 hours ahead of GMT/UTC. Crucially, the Ethiopian day is counted from sunrise (about 6:00 AM), so the first hour of daylight — roughly 7:00 AM by the Western clock — is 'one o'clock' (አንድ ሰዓት) in Ethiopian reckoning. This is why an invitation to 'breakfast at 2 o'clock' actually means about 8:00 AM. To avoid confusion, always ask whether a stated time is Ethiopian (በሃበሻ) or foreign/'ferenj' (በፈረንጅ): በሃበሻ በፈረንጅ አቆጣጠር ነዉ?",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xxxxxx",
+    "title": "The Ethiopian Calendar",
+    "amharicTitle": "",
+    "content": "The Ethiopian calendar has 12 months of 30 days each, plus a short 13th month, ጳጉሜ (pagume), of just 5 days (6 in a leap year). The Ethiopian New Year falls on 11 September in the Gregorian calendar. Most Ethiopian calendars and public facilities display both Ethiopian and Gregorian dates, but Ethiopian dates remain in everyday use, so it is worth learning them.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3xxxx",
+    "title": "Months Don't Map One-to-One with Western Months",
+    "amharicTitle": "",
+    "content": "Ethiopian months do not line up exactly with Gregorian months — each one straddles parts of two Western months (for example, መስከረም ≈ September/October). When you need to refer to a Western date, Ethiopians will generally understand the English name of the month.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4xxxx",
+    "title": "Ethiopic Numerals Are Rarely Written",
+    "amharicTitle": "",
+    "content": "The Ge'ez/Ethiopic script has its own numerals (፩ ፪ ፫ … ፲ for 1-10), but they are seldom used in everyday writing — partly because the system has no symbol for zero. In practice, Ethiopians write numbers with the same Arabic numerals (1, 2, 3 …) used in the West.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxxxxxxx",
+    "title": "Greetings involve the whole hand — and the whole family",
+    "amharicTitle": "",
+    "content": "Ethiopian greetings range from a passing bow or 'hello' to several minutes of polite inquiries about your and your family's health. When you meet, bow and offer your right hand (or your wrist if your hand isn't free) for a handshake. Once you know someone, you typically shake hands, embrace lightly, and touch cheeks — right, left, then right again. ጤና ይስጥልኝ (t'ena yist'illiany, 'may health be given to you') works at any time of day.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xxxxxxx",
+    "title": "Why greetings have m / f / pol / pl forms",
+    "amharicTitle": "",
+    "content": "Many Amharic words — especially greetings — change form depending on whom you address: a male (m), a female (f), an elder or authority figure (pol, polite), or a group (pl). That is why phrases appear with slashes, e.g. ደህና አደርክ / ደህና አደርሽ ('good morning' to a man / to a woman). Amharic also has no plain word for 'no'; it uses negative verbs such as የለም (yallam, 'there isn't') and አይደለም (aydallam, 'it isn't').",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3xxxxx",
+    "title": "Names, titles, and how to address people",
+    "amharicTitle": "",
+    "content": "Address people by their first name; in formal settings add a title, e.g. አቶ ዳዊት (Ato Dawit, 'Mr Dawit'). Ethiopians use their father's first name where Westerners use a surname, and women keep their maiden names after marriage, changing only their title. Informally you can call a man your own age ወንድም (wendim, 'brother'), a woman your age እህት (ehet, 'sister'), a slightly older man ጋሼ (gashe, 'my shield'), an old man አባባ (ababa, 'papa'), and an old woman እማማ (emama, 'mama'). Names carry meanings — ጸሐይ (Tsehai) means 'sun' and አበባ (Abeba) means 'flower'.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4xxxxx",
+    "title": "Politeness (yiluñta) and everyday etiquette",
+    "amharicTitle": "",
+    "content": "Social etiquette carries great weight; the ideal of ይሉኝታ (yiluñta, 'politeness') is important, and ነውር ነው (newr new) means 'it's impolite!'. Public displays of affection between men and women are unacceptable, though moderate affection between people of the same sex is fine. Dress conservatively, especially in rural and Muslim areas. Good guest gifts are fruit or raw coffee beans; tip informal guides or porters with 'tea money', or — if money might offend — invite them for coffee or a meal. Respect for elders and authority is highly valued, and belching or breaking wind is considered totally unacceptable.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-5xxx",
+    "title": "Hospitality, coffee, and keeping the conversation going",
+    "amharicTitle": "",
+    "content": "Hospitality is central to Ethiopian social life, and you will often be invited for a coffee, drink, or meal; if you visit a home, leave your shoes at the entrance when your host does. Ethiopians love to chat — a small gasp-like sound means 'please continue / I'm listening', and ተጫወት (te'hawet, lit. 'play!') is a friendly 'let's have a chat!'. The all-purpose word ቆንጆ (konjo, 'beautiful') can describe almost anything, from a delicious meal to a panoramic mountain view.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxxxxxxxx",
+    "title": "Family is a favourite topic",
+    "amharicTitle": "",
+    "content": "Ethiopians love chatting about lijoch ('children') and zemed ('relatives'). Even if you've never met an acquaintance's family, asking betasab dehna naw? ('Is your family well?') is a common courtesy and a warm conversation opener.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xxxxxxxx",
+    "title": "Family terms are used loosely",
+    "amharicTitle": "",
+    "content": "Amharic family terms are applied with great flexibility. For example, ihit ('sister') can refer not just to a biological sister but also to female nieces, cousins, and even female friends. Don't assume a literal blood relationship when someone uses a family word.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3xxxxxx",
+    "title": "Chaining possessives with የ (ya)",
+    "amharicTitle": "",
+    "content": "To build a possessive like 'my friend's brother', stack the possessive marker ya (የ): ya gwadanyaye wandim, literally 'of friend-my brother'. The 'my' attaches to the first noun and ya links it to the second.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4xxxxxx",
+    "title": "Talking with children",
+    "amharicTitle": "",
+    "content": "Ethiopian children are a mixed bunch: some work, some go to school, and some do both. Most love sport and games, are proud of their religion and cultural heritage, and have a terrific sense of humour. Chatting with kids can take the heat out of 'foreigner frenzy'.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-5xxxx",
+    "title": "Birthdays are for kids",
+    "amharicTitle": "",
+    "content": "In Ethiopia, birthdays are generally only celebrated during childhood, so wishing an adult melkam lidet ('Happy birthday!') is less common than in many Western cultures.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-1x",
+    "title": "Traditional Ethiopian Sports",
+    "amharicTitle": "",
+    "content": "Many regions have their own traditional sport. Gena (ገና) is a hockey-like game played in some areas at Christmas — two teams with curved sticks compete to whack a wooden ball (irur); the holiday itself is even named after the game. Gugs (ጉግስ) is a mock cavalry battle: riders in traditional costume chase each other with wooden clubs and round hide shields. Donga (ዶንጋ) is the ceremonial stick-fighting of the Surma/Mursi peoples.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-2x",
+    "title": "Eskista and the Music of Movement",
+    "amharicTitle": "",
+    "content": "Eskista (እስክስታ) is Ethiopia's signature shoulder dance — rapid, rhythmic rolling of the shoulders and chest (shibsheba, ሽብሸባ). Celebrations are punctuated by ululation (elilta, እልልታ) — a high trilling cry of joy — and rhythmic clapping (machebcheb, ማጨብጨብ).",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-3x",
+    "title": "Ethiopia's Distance-Running Legacy",
+    "amharicTitle": "",
+    "content": "Ethiopians are among the world's greatest distance runners, and champions like Derartu Tulu are national heroes. Casual conversation often turns to marathons, Olympic gold medals (werk medaliya), 5,000m and 10,000m races, and legends of athletes training at high altitude — even running barefoot (bado igir). Endurance (tigist, ትግስት) is a point of deep pride.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-4x",
+    "title": "Games at the Coffee House",
+    "amharicTitle": "",
+    "content": "Billiards and dominoes are popular pastimes at Ethiopian coffee houses. Gebeta (ገበጣ) is a traditional African board game played on a carved board with small stones or seeds. Checkers (dama, ዳማ) and cards (karta, ካርታ) are common casual games; for words like 'bridge' and 'poker,' Ethiopians simply use the English terms.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-5x",
+    "title": "Called 'Deffar' (Daring)",
+    "amharicTitle": "",
+    "content": "Adventure activities like rafting and rock climbing are usually run by English-speaking guides for visitors. Ethiopians may affectionately call you deffar (ደፋር) — 'brave' or 'daring' — for attempting them.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-1xx",
+    "title": "Doctors in cities often speak English",
+    "amharicTitle": "",
+    "content": "Most urban medical professionals in Ethiopia speak fluent English, so you can usually describe symptoms in English at city clinics and hospitals. In more isolated rural areas medical services are limited, so it is best to carry your own first-aid kit.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-2xx",
+    "title": "Use English names for medicines",
+    "amharicTitle": "",
+    "content": "At a pharmacy (medhanit bet / ፋርማሲ) it is better to use the English name when asking for a specific medicine, since drug and brand names are widely recognized in English. You can still use Amharic for buying general pharmaceutical items like bandages, gauze, or soap.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-3xx",
+    "title": "Traditional medicine is popular",
+    "amharicTitle": "",
+    "content": "Traditional and herbal medicine is widely used across Ethiopia alongside modern clinics. Travelers may encounter traditional healers (yebahil medhanitenya), herbs (kitela kitel), and other folk remedies.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-4xx",
+    "title": "When stuck, use the English word",
+    "amharicTitle": "",
+    "content": "For medical and technical vocabulary you cannot recall in Amharic, just use the English word. Many health, drug, and equipment terms are borrowed directly into Amharic and will be understood.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-1xxxxxxxxxx",
+    "title": "Where Ethiopians eat and drink",
+    "amharicTitle": "",
+    "content": "Ethiopians eat and drink at a range of venues. A ምግብ ቤት (migib bet) is a restaurant serving full meals, while a ቡና ቤት (buna bet) is a coffee house that also serves tea, soft drinks, alcohol and light snacks and doubles as the main neighbourhood bar. An አዝማሪ ቤት (azmari bet) offers traditional music and entertainment with drinks and snacks, a ጁስ ቤት (jus bet) specialises in fresh fruit juices, and ጠላ ቤት / ጠጅ ቤት (tella bet / tej bet) are traditional bars serving home-brewed barley beer and honey wine. Menus aren't always available, so it's normal to ask the waiter what's on offer.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-2xxxxxxxxx",
+    "title": "Fasting and food (the feast of fasts)",
+    "amharicTitle": "",
+    "content": "Religion strongly shapes Ethiopian eating. Devout Orthodox Christians fast (ፆም, tsom) around 165-250 days a year, including the long fast before Easter, abstaining from all animal products — meat, dairy and eggs. Because of this, delicious vegetarian 'fasting food' (የፆም ምግብ, ya-tsom migib) is widely available, especially on Wednesdays and Fridays. The main Muslim fast is Ramadan, when followers eat nothing between sunrise and sunset. Both Orthodox Christians and Muslims eat only meat slaughtered according to their own tradition.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-3xxxxxxx",
+    "title": "The coffee ceremony",
+    "amharicTitle": "",
+    "content": "The coffee ceremony (የቡና አፈላል, ya-buna afelal) is central to Ethiopian hospitality and is held frequently in people's homes. Green beans are roasted over a small charcoal stove and passed around so guests can wave the fragrant smoke toward the nose; incense (ዕጣን, itan) is often burned. Coffee is brewed in a clay pot called a ጀበና (jabana) and served in small handleless cups (ስኒ, sini). Guests drink three rounds — አቦል (abol), ቶና/ሁለተኛ (tona) and በረካ (baraka, 'blessing') — and staying for all three shows respect. The ceremony is a cherished time for conversation and can last for hours.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-4xxxxxxx",
+    "title": "Eating etiquette and gursha",
+    "amharicTitle": "",
+    "content": "Ethiopian meals are usually communal: several people eat with their hands from a shared plate of እንጀራ (injera), tearing off pieces to scoop up the stews. Use your right hand and avoid eating with the left; never lick your fingers, pick at food, or reach across to someone else's side of the plate. A warm gesture called ጉርሻ (gursha) has a host placing a rolled parcel of food directly into your mouth as a sign of affection — hosts may keep offering until you reassure them with ጠግቤአለሁ (tegbyalehu, 'I'm full'). Begin a shared meal with እንብላ (inibla, 'let's eat!').",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-users-skah-5xxxxx",
+    "title": "Reading an Ethiopian menu",
+    "amharicTitle": "",
+    "content": "Ethiopian dishes are usually named by pairing a meat or vegetable with a preparation style. The key dish types are ወጥ (wat, a spicy sauce or stew), ጥብስ (tibs, pieces pan-fried in spices), አልጫ (alicha, a mild non-spicy version), ጥሬ (tire, served raw and dipped in spices) and ሾርባ (shorba, soup). Ask for በያይነቱ (beyaynetu, 'of each kind') to get a mixed platter of common toppings on injera, or የፆም በያይነቱ (ya-tsom beyaynetu) for an all-vegetarian mix. If you like milder food, request አልጫ (alicha).",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-1xxx",
+    "title": "Proverb: Slowly, slowly, an egg learns to walk",
+    "amharicTitle": "",
+    "content": "ቀስ በቀስ እንቁላል በእግሩ ይሄዳል — kas ba-kas inkulal ba-igru yihedal (lit: 'slowly, slowly an egg walks on its legs'). A classic Amharic saying urging patience: take things bit by bit and, slowly but surely, it will come together. The grammar chapter cites it as encouragement for learners of Amharic itself.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-2xxx",
+    "title": "Proverb: A cow in the sky",
+    "amharicTitle": "",
+    "content": "ላም አለኝ በሰማይ ወተቷንም አላይ — lam allany ba-samay watetwanim alay (lit: 'I have a cow in the sky and I haven't seen its milk'). Meaning: nothing has come of it — used for empty promises or plans that never materialize.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-3xxx",
+    "title": "Proverb: Too much leads to useless things",
+    "amharicTitle": "",
+    "content": "የደለው ሙክ ያኝካል — yadalaw muk yanyikal (lit: 'a person who has too much will start chewing porridge/gruel'). Meaning: someone with more than enough ends up doing pointless things — a gentle caution against excess.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
+  },
+  {
+    "id": "gen-fidel-reso-4xxx",
+    "title": "Proverb: Spider webs can catch a lion",
+    "amharicTitle": "",
+    "content": "ድር ቢያብር አንበሳ ያስር — dir biyabir anbessa yassir (lit: 'when spider webs are joined together, they can tie up a lion'). Meaning: much can be accomplished by joining together — a celebration of unity and cooperation.",
+    "icon": "info.circle.fill",
+    "lessonIds": [],
+    "conversationIds": []
   }
 ]

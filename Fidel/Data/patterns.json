@@ -1,893 +1,3170 @@
 [
   {
-    "category" : "BASIC PRESENT TENSE (Subject + Verb)",
-    "description" : "I am + [adjective\/state]",
-    "examples" : [
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "description": "I am + [adjective/state]",
+    "examples": [
       {
-        "amharic" : "እኔ ደህና ነኝ",
-        "english" : "I am well\/fine",
-        "transliteration" : "ine dahna nany"
+        "amharic": "እኔ ደህና ነኝ",
+        "english": "I am well/fine",
+        "transliteration": "ine dahna nany"
       },
       {
-        "amharic" : "እኔ ታማሚ ነኝ",
-        "english" : "I am sick",
-        "transliteration" : "ine tamami nany"
+        "amharic": "እኔ ታማሚ ነኝ",
+        "english": "I am sick",
+        "transliteration": "ine tamami nany"
       },
       {
-        "amharic" : "እኔ ተማሪ ነኝ",
-        "english" : "I am a student",
-        "transliteration" : "ine tamari nany"
+        "amharic": "እኔ ተማሪ ነኝ",
+        "english": "I am a student",
+        "transliteration": "ine tamari nany"
       },
       {
-        "amharic" : "እኔ ደክሞኛል ነኝ",
-        "english" : "I am tired",
-        "transliteration" : "ine dakmonynal nany"
+        "amharic": "እኔ ደክሞኛል ነኝ",
+        "english": "I am tired",
+        "transliteration": "ine dakmonynal nany"
       }
     ],
-    "id" : "1.1",
-    "structure" : "እኔ + [adjective] + ነኝ",
-    "substitutions" : [
+    "id": "1.1",
+    "structure": "እኔ + [adjective] + ነኝ",
+    "substitutions": [
       {
-        "amharic" : "ደህና",
-        "english" : "well, fine",
-        "transliteration" : "dahna"
+        "amharic": "ደህና",
+        "english": "well, fine",
+        "transliteration": "dahna"
       },
       {
-        "amharic" : "ታማሚ",
-        "english" : "sick",
-        "transliteration" : "tamami"
+        "amharic": "ታማሚ",
+        "english": "sick",
+        "transliteration": "tamami"
       },
       {
-        "amharic" : "ተማሪ",
-        "english" : "student",
-        "transliteration" : "tamari"
+        "amharic": "ተማሪ",
+        "english": "student",
+        "transliteration": "tamari"
       },
       {
-        "amharic" : "ሠራተኛ",
-        "english" : "worker",
-        "transliteration" : "saratanya"
+        "amharic": "ሠራተኛ",
+        "english": "worker",
+        "transliteration": "saratanya"
       },
       {
-        "amharic" : "ደስተኛ",
-        "english" : "happy",
-        "transliteration" : "dastanya"
+        "amharic": "ደስተኛ",
+        "english": "happy",
+        "transliteration": "dastanya"
       }
     ],
-    "template" : "ine + [adjective] + nany",
-    "unit" : 1
+    "template": "ine + [adjective] + nany",
+    "unit": 1
   },
   {
-    "category" : "BASIC PRESENT TENSE (Subject + Verb)",
-    "description" : "You are + [adjective] (masculine informal)",
-    "examples" : [
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "description": "You are + [adjective] (masculine informal)",
+    "examples": [
       {
-        "amharic" : "አንተ ደህና ነህ?",
-        "english" : "Are you well? (m)",
-        "transliteration" : "anta dahna nah?"
+        "amharic": "አንተ ደህና ነህ?",
+        "english": "Are you well? (m)",
+        "transliteration": "anta dahna nah?"
       },
       {
-        "amharic" : "አንተ ተማሪ ነህ",
-        "english" : "You are a student",
-        "transliteration" : "anta tamari nah"
+        "amharic": "አንተ ተማሪ ነህ",
+        "english": "You are a student",
+        "transliteration": "anta tamari nah"
       }
     ],
-    "id" : "1.2",
-    "structure" : "አንተ + [adjective] + ነህ",
-    "substitutions" : [
-
-    ],
-    "template" : "anta + [adjective] + nah",
-    "unit" : 1
+    "id": "1.2",
+    "structure": "አንተ + [adjective] + ነህ",
+    "substitutions": [],
+    "template": "anta + [adjective] + nah",
+    "unit": 1
   },
   {
-    "category" : "BASIC PRESENT TENSE (Subject + Verb)",
-    "description" : "You are + [adjective] (feminine informal)",
-    "examples" : [
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "description": "You are + [adjective] (feminine informal)",
+    "examples": [
       {
-        "amharic" : "አንቺ ደህና ነሽ?",
-        "english" : "Are you well? (f)",
-        "transliteration" : "anchi dahna nash?"
+        "amharic": "አንቺ ደህና ነሽ?",
+        "english": "Are you well? (f)",
+        "transliteration": "anchi dahna nash?"
       }
     ],
-    "id" : "1.3",
-    "structure" : "አንቺ + [adjective] + ነሽ",
-    "substitutions" : [
-
-    ],
-    "template" : "anchi + [adjective] + nash",
-    "unit" : 1
+    "id": "1.3",
+    "structure": "አንቺ + [adjective] + ነሽ",
+    "substitutions": [],
+    "template": "anchi + [adjective] + nash",
+    "unit": 1
   },
   {
-    "category" : "BASIC PRESENT TENSE (Subject + Verb)",
-    "description" : "He\/She is + [adjective]",
-    "examples" : [
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "description": "He/She is + [adjective]",
+    "examples": [
       {
-        "amharic" : "እሱ ደህና ነው",
-        "english" : "He is well",
-        "transliteration" : "issu dahna naw"
+        "amharic": "እሱ ደህና ነው",
+        "english": "He is well",
+        "transliteration": "issu dahna naw"
       },
       {
-        "amharic" : "እሷ ደህና ነች",
-        "english" : "She is well",
-        "transliteration" : "isswa dahna nach"
+        "amharic": "እሷ ደህና ነች",
+        "english": "She is well",
+        "transliteration": "isswa dahna nach"
       }
     ],
-    "id" : "1.4",
-    "structure" : "እሱ\/እሷ + [adjective] + ነው\/ነች",
-    "substitutions" : [
-
-    ],
-    "template" : "issu\/isswa + [adjective] + naw\/nach",
-    "unit" : 1
+    "id": "1.4",
+    "structure": "እሱ/እሷ + [adjective] + ነው/ነች",
+    "substitutions": [],
+    "template": "issu/isswa + [adjective] + naw/nach",
+    "unit": 1
   },
   {
-    "category" : "BASIC PRESENT TENSE (Subject + Verb)",
-    "description" : "We are + [adjective]",
-    "examples" : [
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "description": "We are + [adjective]",
+    "examples": [
       {
-        "amharic" : "እኛ ደህና ነን",
-        "english" : "We are well",
-        "transliteration" : "inya dahna nan"
+        "amharic": "እኛ ደህና ነን",
+        "english": "We are well",
+        "transliteration": "inya dahna nan"
       },
       {
-        "amharic" : "እኛ ሁለታችንም ደህና ነን",
-        "english" : "We both are well",
-        "transliteration" : "inya hulattachinim dahna nan"
+        "amharic": "እኛ ሁለታችንም ደህና ነን",
+        "english": "We both are well",
+        "transliteration": "inya hulattachinim dahna nan"
       }
     ],
-    "id" : "1.5",
-    "structure" : "እኛ + [adjective] + ነን",
-    "substitutions" : [
-
-    ],
-    "template" : "inya + [adjective] + nan",
-    "unit" : 1
+    "id": "1.5",
+    "structure": "እኛ + [adjective] + ነን",
+    "substitutions": [],
+    "template": "inya + [adjective] + nan",
+    "unit": 1
   },
   {
-    "category" : "BASIC PRESENT TENSE (Subject + Verb)",
-    "description" : "They are + [adjective]",
-    "examples" : [
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "description": "They are + [adjective]",
+    "examples": [
       {
-        "amharic" : "እነሱ ደህና ናቸው",
-        "english" : "They are well",
-        "transliteration" : "inassu dahna nachaw"
+        "amharic": "እነሱ ደህና ናቸው",
+        "english": "They are well",
+        "transliteration": "inassu dahna nachaw"
       },
       {
-        "amharic" : "አባትና እናት ደህና ናቸው",
-        "english" : "Father and mother are well",
-        "transliteration" : "abbat inna innat dahna nachaw"
+        "amharic": "አባትና እናት ደህና ናቸው",
+        "english": "Father and mother are well",
+        "transliteration": "abbat inna innat dahna nachaw"
       }
     ],
-    "id" : "1.6",
-    "structure" : "እነሱ + [adjective] + ናቸው",
-    "substitutions" : [
-
-    ],
-    "template" : "inassu + [adjective] + nachaw",
-    "unit" : 1
+    "id": "1.6",
+    "structure": "እነሱ + [adjective] + ናቸው",
+    "substitutions": [],
+    "template": "inassu + [adjective] + nachaw",
+    "unit": 1
   },
   {
-    "category" : "BASIC PRESENT TENSE (Subject + Verb)",
-    "description" : "You are + [adjective] (formal\/polite)",
-    "examples" : [
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "description": "You are + [adjective] (formal/polite)",
+    "examples": [
       {
-        "amharic" : "እርስዎ ደህና ነዎት?",
-        "english" : "Are you well? (formal)",
-        "transliteration" : "irswo dahna nawot?"
+        "amharic": "እርስዎ ደህና ነዎት?",
+        "english": "Are you well? (formal)",
+        "transliteration": "irswo dahna nawot?"
       }
     ],
-    "id" : "1.7",
-    "structure" : "እርስዎ + [adjective] + ነዎት",
-    "substitutions" : [
-
-    ],
-    "template" : "irswo + [adjective] + nawot",
-    "unit" : 1
+    "id": "1.7",
+    "structure": "እርስዎ + [adjective] + ነዎት",
+    "substitutions": [],
+    "template": "irswo + [adjective] + nawot",
+    "unit": 1
   },
   {
-    "category" : "POSSESSIVE PHRASES",
-    "description" : "My + [noun]",
-    "examples" : [
+    "category": "POSSESSIVE PHRASES",
+    "description": "My + [noun]",
+    "examples": [
       {
-        "amharic" : "የኔ ሚስት",
-        "english" : "my wife",
-        "transliteration" : "yane mist"
+        "amharic": "የኔ ሚስት",
+        "english": "my wife",
+        "transliteration": "yane mist"
       },
       {
-        "amharic" : "የኔ አባት",
-        "english" : "my father",
-        "transliteration" : "yane abbat"
+        "amharic": "የኔ አባት",
+        "english": "my father",
+        "transliteration": "yane abbat"
       },
       {
-        "amharic" : "የኔ እናት",
-        "english" : "my mother",
-        "transliteration" : "yane innat"
+        "amharic": "የኔ እናት",
+        "english": "my mother",
+        "transliteration": "yane innat"
       },
       {
-        "amharic" : "የኔ መጽሐፍ",
-        "english" : "my book",
-        "transliteration" : "yane mashaf"
+        "amharic": "የኔ መጽሐፍ",
+        "english": "my book",
+        "transliteration": "yane mashaf"
       },
       {
-        "amharic" : "የኔ ልጅ",
-        "english" : "my child",
-        "transliteration" : "yane lij"
+        "amharic": "የኔ ልጅ",
+        "english": "my child",
+        "transliteration": "yane lij"
       }
     ],
-    "id" : "2.1",
-    "structure" : "የኔ + [noun]",
-    "substitutions" : [
+    "id": "2.1",
+    "structure": "የኔ + [noun]",
+    "substitutions": [
       {
-        "amharic" : "ሚስት",
-        "english" : "wife",
-        "transliteration" : "mist"
+        "amharic": "ሚስት",
+        "english": "wife",
+        "transliteration": "mist"
       },
       {
-        "amharic" : "አባት",
-        "english" : "father",
-        "transliteration" : "abbat"
+        "amharic": "አባት",
+        "english": "father",
+        "transliteration": "abbat"
       },
       {
-        "amharic" : "እናት",
-        "english" : "mother",
-        "transliteration" : "innat"
+        "amharic": "እናት",
+        "english": "mother",
+        "transliteration": "innat"
       },
       {
-        "amharic" : "ልጅ",
-        "english" : "child",
-        "transliteration" : "lij"
+        "amharic": "ልጅ",
+        "english": "child",
+        "transliteration": "lij"
       },
       {
-        "amharic" : "መጽሐፍ",
-        "english" : "book",
-        "transliteration" : "mashaf"
+        "amharic": "መጽሐፍ",
+        "english": "book",
+        "transliteration": "mashaf"
       },
       {
-        "amharic" : "ቤት",
-        "english" : "house",
-        "transliteration" : "bet"
+        "amharic": "ቤት",
+        "english": "house",
+        "transliteration": "bet"
       },
       {
-        "amharic" : "ስም",
-        "english" : "name",
-        "transliteration" : "sim"
+        "amharic": "ስም",
+        "english": "name",
+        "transliteration": "sim"
       }
     ],
-    "template" : "yane + [noun]",
-    "unit" : 2
+    "template": "yane + [noun]",
+    "unit": 2
   },
   {
-    "category" : "POSSESSIVE PHRASES",
-    "description" : "Your + [noun] (formal)",
-    "examples" : [
+    "category": "POSSESSIVE PHRASES",
+    "description": "Your + [noun] (formal)",
+    "examples": [
       {
-        "amharic" : "የርስዎ ሚስት",
-        "english" : "your wife (formal)",
-        "transliteration" : "yarswo mist"
+        "amharic": "የርስዎ ሚስት",
+        "english": "your wife (formal)",
+        "transliteration": "yarswo mist"
       },
       {
-        "amharic" : "የርስዎ አባት",
-        "english" : "your father",
-        "transliteration" : "yarswo abbat"
+        "amharic": "የርስዎ አባት",
+        "english": "your father",
+        "transliteration": "yarswo abbat"
       }
     ],
-    "id" : "2.2",
-    "structure" : "የርስዎ + [noun]",
-    "substitutions" : [
-
-    ],
-    "template" : "yarswo + [noun]",
-    "unit" : 2
+    "id": "2.2",
+    "structure": "የርስዎ + [noun]",
+    "substitutions": [],
+    "template": "yarswo + [noun]",
+    "unit": 2
   },
   {
-    "category" : "BASIC QUESTIONS",
-    "description" : "How are you?",
-    "examples" : [
+    "category": "BASIC QUESTIONS",
+    "description": "How are you?",
+    "examples": [
       {
-        "amharic" : "እንደምን ነህ?",
-        "english" : "How are you? (m)",
-        "transliteration" : "indamin nah?"
+        "amharic": "እንደምን ነህ?",
+        "english": "How are you? (m)",
+        "transliteration": "indamin nah?"
       },
       {
-        "amharic" : "እንደምን ነሽ?",
-        "english" : "How are you? (f)",
-        "transliteration" : "indamin nash?"
+        "amharic": "እንደምን ነሽ?",
+        "english": "How are you? (f)",
+        "transliteration": "indamin nash?"
       },
       {
-        "amharic" : "እንደምን ነዎት?",
-        "english" : "How are you? (formal)",
-        "transliteration" : "indamin nawot?"
+        "amharic": "እንደምን ነዎት?",
+        "english": "How are you? (formal)",
+        "transliteration": "indamin nawot?"
       }
     ],
-    "id" : "3.1",
-    "structure" : "እንደምን + [verb form]",
-    "substitutions" : [
-
-    ],
-    "template" : "indamin + [verb form]",
-    "unit" : 3
+    "id": "3.1",
+    "structure": "እንደምን + [verb form]",
+    "substitutions": [],
+    "template": "indamin + [verb form]",
+    "unit": 3
   },
   {
-    "category" : "BASIC RESPONSES",
-    "description" : "Yes, I am [adjective]",
-    "examples" : [
+    "category": "BASIC RESPONSES",
+    "description": "Yes, I am [adjective]",
+    "examples": [
       {
-        "amharic" : "አዎ፣ ደህና ነኝ",
-        "english" : "Yes, I am well",
-        "transliteration" : "awo, dahna nany"
+        "amharic": "አዎ፣ ደህና ነኝ",
+        "english": "Yes, I am well",
+        "transliteration": "awo, dahna nany"
       },
       {
-        "amharic" : "አዎ፣ ደህና ናቸው",
-        "english" : "Yes, they are well",
-        "transliteration" : "awo, dahna nachaw"
+        "amharic": "አዎ፣ ደህና ናቸው",
+        "english": "Yes, they are well",
+        "transliteration": "awo, dahna nachaw"
       }
     ],
-    "id" : "4.1",
-    "structure" : "አዎ፣ + [statement]",
-    "substitutions" : [
-
-    ],
-    "template" : "awo, + [statement]",
-    "unit" : 4
+    "id": "4.1",
+    "structure": "አዎ፣ + [statement]",
+    "substitutions": [],
+    "template": "awo, + [statement]",
+    "unit": 4
   },
   {
-    "category" : "COMMON EXPRESSIONS",
-    "description" : "I want + [noun]",
-    "examples" : [
+    "category": "COMMON EXPRESSIONS",
+    "description": "I want + [noun]",
+    "examples": [
       {
-        "amharic" : "ቡና እፈልጋለሁ",
-        "english" : "I want coffee",
-        "transliteration" : "buna ifaligalahu"
+        "amharic": "ቡና እፈልጋለሁ",
+        "english": "I want coffee",
+        "transliteration": "buna ifaligalahu"
       },
       {
-        "amharic" : "ውሃ እፈልጋለሁ",
-        "english" : "I want water",
-        "transliteration" : "wuha ifaligalahu"
+        "amharic": "ውሃ እፈልጋለሁ",
+        "english": "I want water",
+        "transliteration": "wuha ifaligalahu"
       },
       {
-        "amharic" : "ሻይ እፈልጋለሁ",
-        "english" : "I want tea",
-        "transliteration" : "shay ifaligalahu"
+        "amharic": "ሻይ እፈልጋለሁ",
+        "english": "I want tea",
+        "transliteration": "shay ifaligalahu"
       }
     ],
-    "id" : "5.1",
-    "structure" : "[noun] + እፈልጋለሁ",
-    "substitutions" : [
+    "id": "5.1",
+    "structure": "[noun] + እፈልጋለሁ",
+    "substitutions": [
       {
-        "amharic" : "ቡና",
-        "english" : "coffee",
-        "transliteration" : "buna"
+        "amharic": "ቡና",
+        "english": "coffee",
+        "transliteration": "buna"
       },
       {
-        "amharic" : "ውሃ",
-        "english" : "water",
-        "transliteration" : "wuha"
+        "amharic": "ውሃ",
+        "english": "water",
+        "transliteration": "wuha"
       },
       {
-        "amharic" : "ሻይ",
-        "english" : "tea",
-        "transliteration" : "shay"
+        "amharic": "ሻይ",
+        "english": "tea",
+        "transliteration": "shay"
       },
       {
-        "amharic" : "ምግብ",
-        "english" : "food",
-        "transliteration" : "migib"
+        "amharic": "ምግብ",
+        "english": "food",
+        "transliteration": "migib"
       }
     ],
-    "template" : "[noun] + ifaligalahu",
-    "unit" : 5
+    "template": "[noun] + ifaligalahu",
+    "unit": 5
   },
   {
-    "category" : "COMMON EXPRESSIONS",
-    "description" : "Where is [place]?",
-    "examples" : [
+    "category": "COMMON EXPRESSIONS",
+    "description": "Where is [place]?",
+    "examples": [
       {
-        "amharic" : "ሆቴል የት ነው?",
-        "english" : "Where is the hotel?",
-        "transliteration" : "hotel yat naw?"
+        "amharic": "ሆቴል የት ነው?",
+        "english": "Where is the hotel?",
+        "transliteration": "hotel yat naw?"
       },
       {
-        "amharic" : "ቦሌ የት ነው?",
-        "english" : "Where is Bole?",
-        "transliteration" : "Bole yat naw?"
+        "amharic": "ቦሌ የት ነው?",
+        "english": "Where is Bole?",
+        "transliteration": "Bole yat naw?"
       },
       {
-        "amharic" : "ሆስፒታል የት ነው?",
-        "english" : "Where is the hospital?",
-        "transliteration" : "hospital yat naw?"
+        "amharic": "ሆስፒታል የት ነው?",
+        "english": "Where is the hospital?",
+        "transliteration": "hospital yat naw?"
       }
     ],
-    "id" : "5.2",
-    "structure" : "[place] + የት ነው?",
-    "substitutions" : [
-
-    ],
-    "template" : "[place] + yat naw?",
-    "unit" : 5
+    "id": "5.2",
+    "structure": "[place] + የት ነው?",
+    "substitutions": [],
+    "template": "[place] + yat naw?",
+    "unit": 5
   },
   {
-    "category" : "COMMON EXPRESSIONS",
-    "description" : "How much is it?",
-    "examples" : [
+    "category": "COMMON EXPRESSIONS",
+    "description": "How much is it?",
+    "examples": [
       {
-        "amharic" : "ይህ ምን ያህል ነው?",
-        "english" : "How much is this?",
-        "transliteration" : "yih min yahil naw?"
+        "amharic": "ይህ ምን ያህል ነው?",
+        "english": "How much is this?",
+        "transliteration": "yih min yahil naw?"
       },
       {
-        "amharic" : "ሃያ ብር ነው",
-        "english" : "It's 20 birr",
-        "transliteration" : "haya birr naw"
+        "amharic": "ሃያ ብር ነው",
+        "english": "It's 20 birr",
+        "transliteration": "haya birr naw"
       }
     ],
-    "id" : "5.3",
-    "structure" : "ምን ያህል ነው?",
-    "substitutions" : [
-
-    ],
-    "template" : "min yahil naw?",
-    "unit" : 5
+    "id": "5.3",
+    "structure": "ምን ያህል ነው?",
+    "substitutions": [],
+    "template": "min yahil naw?",
+    "unit": 5
   },
   {
-    "category" : "PAST TENSE",
-    "description" : "I was + [state]",
-    "examples" : [
+    "category": "PAST TENSE",
+    "description": "I was + [state]",
+    "examples": [
       {
-        "amharic" : "ታማሚ ነበርኩ",
-        "english" : "I was sick",
-        "transliteration" : "tamami nabarku"
+        "amharic": "ታማሚ ነበርኩ",
+        "english": "I was sick",
+        "transliteration": "tamami nabarku"
       },
       {
-        "amharic" : "ደህና ነበርኩ",
-        "english" : "I was well",
-        "transliteration" : "dahna nabarku"
+        "amharic": "ደህና ነበርኩ",
+        "english": "I was well",
+        "transliteration": "dahna nabarku"
       },
       {
-        "amharic" : "ተማሪ ነበርኩ",
-        "english" : "I was a student",
-        "transliteration" : "tamari nabarku"
+        "amharic": "ተማሪ ነበርኩ",
+        "english": "I was a student",
+        "transliteration": "tamari nabarku"
       }
     ],
-    "id" : "6.1",
-    "structure" : "[state] + ነበርኩ",
-    "substitutions" : [
+    "id": "6.1",
+    "structure": "[state] + ነበርኩ",
+    "substitutions": [
       {
-        "amharic" : "ነበርኩ",
-        "english" : "I was",
-        "transliteration" : "nabarku"
+        "amharic": "ነበርኩ",
+        "english": "I was",
+        "transliteration": "nabarku"
       },
       {
-        "amharic" : "ነበርክ",
-        "english" : "you were (m)",
-        "transliteration" : "nabark"
+        "amharic": "ነበርክ",
+        "english": "you were (m)",
+        "transliteration": "nabark"
       },
       {
-        "amharic" : "ነበርሽ",
-        "english" : "you were (f)",
-        "transliteration" : "nabarsh"
+        "amharic": "ነበርሽ",
+        "english": "you were (f)",
+        "transliteration": "nabarsh"
       },
       {
-        "amharic" : "ነበረ",
-        "english" : "he was",
-        "transliteration" : "nabara"
+        "amharic": "ነበረ",
+        "english": "he was",
+        "transliteration": "nabara"
       },
       {
-        "amharic" : "ነበረች",
-        "english" : "she was",
-        "transliteration" : "nabarach"
+        "amharic": "ነበረች",
+        "english": "she was",
+        "transliteration": "nabarach"
       }
     ],
-    "template" : "[state] + nabarku",
-    "unit" : 6
+    "template": "[state] + nabarku",
+    "unit": 6
   },
   {
-    "category" : "PAST TENSE",
-    "description" : "I went to + [place]",
-    "examples" : [
+    "category": "PAST TENSE",
+    "description": "I went to + [place]",
+    "examples": [
       {
-        "amharic" : "ወደ ገበያ ሄድኩ",
-        "english" : "I went to the market",
-        "transliteration" : "wada gabaya hedku"
+        "amharic": "ወደ ገበያ ሄድኩ",
+        "english": "I went to the market",
+        "transliteration": "wada gabaya hedku"
       },
       {
-        "amharic" : "ወደ ቤት ሄድኩ",
-        "english" : "I went home",
-        "transliteration" : "wada bet hedku"
+        "amharic": "ወደ ቤት ሄድኩ",
+        "english": "I went home",
+        "transliteration": "wada bet hedku"
       },
       {
-        "amharic" : "ወደ ሆስፒታል ሄድኩ",
-        "english" : "I went to the hospital",
-        "transliteration" : "wada hospital hedku"
+        "amharic": "ወደ ሆስፒታል ሄድኩ",
+        "english": "I went to the hospital",
+        "transliteration": "wada hospital hedku"
       }
     ],
-    "id" : "6.2",
-    "structure" : "ወደ + [place] + ሄድኩ",
-    "substitutions" : [
-
-    ],
-    "template" : "wada + [place] + hedku",
-    "unit" : 6
+    "id": "6.2",
+    "structure": "ወደ + [place] + ሄድኩ",
+    "substitutions": [],
+    "template": "wada + [place] + hedku",
+    "unit": 6
   },
   {
-    "category" : "PAST TENSE",
-    "description" : "I ate \/ I drank",
-    "examples" : [
+    "category": "PAST TENSE",
+    "description": "I ate / I drank",
+    "examples": [
       {
-        "amharic" : "እንጀራ በላሁ",
-        "english" : "I ate injera",
-        "transliteration" : "injara balahu"
+        "amharic": "እንጀራ በላሁ",
+        "english": "I ate injera",
+        "transliteration": "injara balahu"
       },
       {
-        "amharic" : "ቡና ጠጣሁ",
-        "english" : "I drank coffee",
-        "transliteration" : "buna tat'ahu"
+        "amharic": "ቡና ጠጣሁ",
+        "english": "I drank coffee",
+        "transliteration": "buna tat'ahu"
       },
       {
-        "amharic" : "ውሃ ጠጣሁ",
-        "english" : "I drank water",
-        "transliteration" : "wuha tat'ahu"
+        "amharic": "ውሃ ጠጣሁ",
+        "english": "I drank water",
+        "transliteration": "wuha tat'ahu"
       }
     ],
-    "id" : "6.3",
-    "structure" : "[food\/drink] + በላሁ \/ ጠጣሁ",
-    "substitutions" : [
-
-    ],
-    "template" : "[food\/drink] + balahu \/ tat'ahu",
-    "unit" : 6
+    "id": "6.3",
+    "structure": "[food/drink] + በላሁ / ጠጣሁ",
+    "substitutions": [],
+    "template": "[food/drink] + balahu / tat'ahu",
+    "unit": 6
   },
   {
-    "category" : "FUTURE TENSE",
-    "description" : "I will go to + [place]",
-    "examples" : [
+    "category": "FUTURE TENSE",
+    "description": "I will go to + [place]",
+    "examples": [
       {
-        "amharic" : "ወደ ገበያ እሄዳለሁ",
-        "english" : "I will go to the market",
-        "transliteration" : "wada gabaya ihedalahu"
+        "amharic": "ወደ ገበያ እሄዳለሁ",
+        "english": "I will go to the market",
+        "transliteration": "wada gabaya ihedalahu"
       },
       {
-        "amharic" : "ወደ ሆስፒታል እሄዳለሁ",
-        "english" : "I will go to the hospital",
-        "transliteration" : "wada hospital ihedalahu"
+        "amharic": "ወደ ሆስፒታል እሄዳለሁ",
+        "english": "I will go to the hospital",
+        "transliteration": "wada hospital ihedalahu"
       },
       {
-        "amharic" : "ወደ ቤት እሄዳለሁ",
-        "english" : "I will go home",
-        "transliteration" : "wada bet ihedalahu"
+        "amharic": "ወደ ቤት እሄዳለሁ",
+        "english": "I will go home",
+        "transliteration": "wada bet ihedalahu"
       }
     ],
-    "id" : "7.1",
-    "structure" : "ወደ + [place] + እሄዳለሁ",
-    "substitutions" : [
-
-    ],
-    "template" : "wada + [place] + ihedalahu",
-    "unit" : 7
+    "id": "7.1",
+    "structure": "ወደ + [place] + እሄዳለሁ",
+    "substitutions": [],
+    "template": "wada + [place] + ihedalahu",
+    "unit": 7
   },
   {
-    "category" : "FUTURE TENSE",
-    "description" : "I will eat \/ I will drink",
-    "examples" : [
+    "category": "FUTURE TENSE",
+    "description": "I will eat / I will drink",
+    "examples": [
       {
-        "amharic" : "ዶሮ ወጥ እበላለሁ",
-        "english" : "I will eat chicken stew",
-        "transliteration" : "doro wat ibalalahu"
+        "amharic": "ዶሮ ወጥ እበላለሁ",
+        "english": "I will eat chicken stew",
+        "transliteration": "doro wat ibalalahu"
       },
       {
-        "amharic" : "ሻይ እጠጣለሁ",
-        "english" : "I will drink tea",
-        "transliteration" : "shay itat'alahu"
+        "amharic": "ሻይ እጠጣለሁ",
+        "english": "I will drink tea",
+        "transliteration": "shay itat'alahu"
       }
     ],
-    "id" : "7.2",
-    "structure" : "[food] + እበላለሁ \/ እጠጣለሁ",
-    "substitutions" : [
-
-    ],
-    "template" : "[food] + ibalalahu \/ itat'alahu",
-    "unit" : 7
+    "id": "7.2",
+    "structure": "[food] + እበላለሁ / እጠጣለሁ",
+    "substitutions": [],
+    "template": "[food] + ibalalahu / itat'alahu",
+    "unit": 7
   },
   {
-    "category" : "FUTURE TENSE",
-    "description" : "We will meet",
-    "examples" : [
+    "category": "FUTURE TENSE",
+    "description": "We will meet",
+    "examples": [
       {
-        "amharic" : "ነገ እንገናኛለን",
-        "english" : "We will meet tomorrow",
-        "transliteration" : "naga ingananyalan"
+        "amharic": "ነገ እንገናኛለን",
+        "english": "We will meet tomorrow",
+        "transliteration": "naga ingananyalan"
       },
       {
-        "amharic" : "በአስር ሰዓት እንገናኛለን",
-        "english" : "We will meet at ten o'clock",
-        "transliteration" : "ba-asir saat ingananyalan"
+        "amharic": "በአስር ሰዓት እንገናኛለን",
+        "english": "We will meet at ten o'clock",
+        "transliteration": "ba-asir saat ingananyalan"
       }
     ],
-    "id" : "7.3",
-    "structure" : "እንገናኛለን",
-    "substitutions" : [
-
-    ],
-    "template" : "ingananyalan",
-    "unit" : 7
+    "id": "7.3",
+    "structure": "እንገናኛለን",
+    "substitutions": [],
+    "template": "ingananyalan",
+    "unit": 7
   },
   {
-    "category" : "NEGATION",
-    "description" : "I don't want + [noun]",
-    "examples" : [
+    "category": "NEGATION",
+    "description": "I don't want + [noun]",
+    "examples": [
       {
-        "amharic" : "ቡና አልፈልግም",
-        "english" : "I don't want coffee",
-        "transliteration" : "buna alfaligim"
+        "amharic": "ቡና አልፈልግም",
+        "english": "I don't want coffee",
+        "transliteration": "buna alfaligim"
       },
       {
-        "amharic" : "ስኳር አልፈልግም",
-        "english" : "I don't want sugar",
-        "transliteration" : "sukuar alfaligim"
+        "amharic": "ስኳር አልፈልግም",
+        "english": "I don't want sugar",
+        "transliteration": "sukuar alfaligim"
       },
       {
-        "amharic" : "ምግብ አልፈልግም",
-        "english" : "I don't want food",
-        "transliteration" : "migib alfaligim"
+        "amharic": "ምግብ አልፈልግም",
+        "english": "I don't want food",
+        "transliteration": "migib alfaligim"
       }
     ],
-    "id" : "8.1",
-    "structure" : "[noun] + አልፈልግም",
-    "substitutions" : [
-
-    ],
-    "template" : "[noun] + alfaligim",
-    "unit" : 8
+    "id": "8.1",
+    "structure": "[noun] + አልፈልግም",
+    "substitutions": [],
+    "template": "[noun] + alfaligim",
+    "unit": 8
   },
   {
-    "category" : "NEGATION",
-    "description" : "There isn't \/ It doesn't exist",
-    "examples" : [
+    "category": "NEGATION",
+    "description": "There isn't / It doesn't exist",
+    "examples": [
       {
-        "amharic" : "ውሃ የለም",
-        "english" : "There is no water",
-        "transliteration" : "wuha yallam"
+        "amharic": "ውሃ የለም",
+        "english": "There is no water",
+        "transliteration": "wuha yallam"
       },
       {
-        "amharic" : "ታክሲ የለም",
-        "english" : "There is no taxi",
-        "transliteration" : "taksi yallam"
+        "amharic": "ታክሲ የለም",
+        "english": "There is no taxi",
+        "transliteration": "taksi yallam"
       },
       {
-        "amharic" : "ችግር የለም",
-        "english" : "No problem",
-        "transliteration" : "chigir yallam"
+        "amharic": "ችግር የለም",
+        "english": "No problem",
+        "transliteration": "chigir yallam"
       }
     ],
-    "id" : "8.2",
-    "structure" : "የለም",
-    "substitutions" : [
-
-    ],
-    "template" : "yallam",
-    "unit" : 8
+    "id": "8.2",
+    "structure": "የለም",
+    "substitutions": [],
+    "template": "yallam",
+    "unit": 8
   },
   {
-    "category" : "COMMANDS & REQUESTS",
-    "description" : "Come! (imperative)",
-    "examples" : [
+    "category": "COMMANDS & REQUESTS",
+    "description": "Come! (imperative)",
+    "examples": [
       {
-        "amharic" : "ና!",
-        "english" : "Come! (singular)",
-        "transliteration" : "na!"
+        "amharic": "ና!",
+        "english": "Come! (singular)",
+        "transliteration": "na!"
       },
       {
-        "amharic" : "ኑ!",
-        "english" : "Come! (plural)",
-        "transliteration" : "nu!"
+        "amharic": "ኑ!",
+        "english": "Come! (plural)",
+        "transliteration": "nu!"
       },
       {
-        "amharic" : "እዚህ ና!",
-        "english" : "Come here!",
-        "transliteration" : "izzih na!"
+        "amharic": "እዚህ ና!",
+        "english": "Come here!",
+        "transliteration": "izzih na!"
       }
     ],
-    "id" : "9.1",
-    "structure" : "ና! \/ ኑ!",
-    "substitutions" : [
-
-    ],
-    "template" : "na! \/ nu!",
-    "unit" : 9
+    "id": "9.1",
+    "structure": "ና! / ኑ!",
+    "substitutions": [],
+    "template": "na! / nu!",
+    "unit": 9
   },
   {
-    "category" : "COMMANDS & REQUESTS",
-    "description" : "Please give me + [noun]",
-    "examples" : [
+    "category": "COMMANDS & REQUESTS",
+    "description": "Please give me + [noun]",
+    "examples": [
       {
-        "amharic" : "ውሃ ስጠኝ",
-        "english" : "Give me water",
-        "transliteration" : "wuha sit'any"
+        "amharic": "ውሃ ስጠኝ",
+        "english": "Give me water",
+        "transliteration": "wuha sit'any"
       },
       {
-        "amharic" : "ሂሳቡን ስጠኝ",
-        "english" : "Give me the bill",
-        "transliteration" : "hisabun sit'any"
+        "amharic": "ሂሳቡን ስጠኝ",
+        "english": "Give me the bill",
+        "transliteration": "hisabun sit'any"
       },
       {
-        "amharic" : "እባክህ ቡና ስጠኝ",
-        "english" : "Please give me coffee",
-        "transliteration" : "ibakkih buna sit'any"
+        "amharic": "እባክህ ቡና ስጠኝ",
+        "english": "Please give me coffee",
+        "transliteration": "ibakkih buna sit'any"
       }
     ],
-    "id" : "9.2",
-    "structure" : "[noun] + ስጠኝ \/ ስጡኝ",
-    "substitutions" : [
-
-    ],
-    "template" : "[noun] + sit'any \/ sit'uny",
-    "unit" : 9
+    "id": "9.2",
+    "structure": "[noun] + ስጠኝ / ስጡኝ",
+    "substitutions": [],
+    "template": "[noun] + sit'any / sit'uny",
+    "unit": 9
   },
   {
-    "category" : "COMMANDS & REQUESTS",
-    "description" : "Let's go!",
-    "examples" : [
+    "category": "COMMANDS & REQUESTS",
+    "description": "Let's go!",
+    "examples": [
       {
-        "amharic" : "እንሂድ!",
-        "english" : "Let's go!",
-        "transliteration" : "inhid!"
+        "amharic": "እንሂድ!",
+        "english": "Let's go!",
+        "transliteration": "inhid!"
       },
       {
-        "amharic" : "ወደ ገበያ እንሂድ",
-        "english" : "Let's go to the market",
-        "transliteration" : "wada gabaya inhid"
+        "amharic": "ወደ ገበያ እንሂድ",
+        "english": "Let's go to the market",
+        "transliteration": "wada gabaya inhid"
       },
       {
-        "amharic" : "አሁን እንሂድ",
-        "english" : "Let's go now",
-        "transliteration" : "ahun inhid"
+        "amharic": "አሁን እንሂድ",
+        "english": "Let's go now",
+        "transliteration": "ahun inhid"
       }
     ],
-    "id" : "9.3",
-    "structure" : "እንሂድ!",
-    "substitutions" : [
-
-    ],
-    "template" : "inhid!",
-    "unit" : 9
+    "id": "9.3",
+    "structure": "እንሂድ!",
+    "substitutions": [],
+    "template": "inhid!",
+    "unit": 9
   },
   {
-    "category" : "ABILITY & PREFERENCE",
-    "description" : "I can + [verb]",
-    "examples" : [
+    "category": "ABILITY & PREFERENCE",
+    "description": "I can + [verb]",
+    "examples": [
       {
-        "amharic" : "አማርኛ መናገር እችላለሁ",
-        "english" : "I can speak Amharic",
-        "transliteration" : "amaranya managar ichilalahu"
+        "amharic": "አማርኛ መናገር እችላለሁ",
+        "english": "I can speak Amharic",
+        "transliteration": "amaranya managar ichilalahu"
       },
       {
-        "amharic" : "መሄድ እችላለሁ",
-        "english" : "I can go",
-        "transliteration" : "mahed ichilalahu"
+        "amharic": "መሄድ እችላለሁ",
+        "english": "I can go",
+        "transliteration": "mahed ichilalahu"
       },
       {
-        "amharic" : "ማየት እችላለሁ",
-        "english" : "I can see",
-        "transliteration" : "mayet ichilalahu"
+        "amharic": "ማየት እችላለሁ",
+        "english": "I can see",
+        "transliteration": "mayet ichilalahu"
       }
     ],
-    "id" : "10.1",
-    "structure" : "[verb] + እችላለሁ",
-    "substitutions" : [
-
-    ],
-    "template" : "[verb] + ichilalahu",
-    "unit" : 10
+    "id": "10.1",
+    "structure": "[verb] + እችላለሁ",
+    "substitutions": [],
+    "template": "[verb] + ichilalahu",
+    "unit": 10
   },
   {
-    "category" : "ABILITY & PREFERENCE",
-    "description" : "I must \/ I have to",
-    "examples" : [
+    "category": "ABILITY & PREFERENCE",
+    "description": "I must / I have to",
+    "examples": [
       {
-        "amharic" : "መሄድ አለብኝ",
-        "english" : "I must go",
-        "transliteration" : "mahed allabiny"
+        "amharic": "መሄድ አለብኝ",
+        "english": "I must go",
+        "transliteration": "mahed allabiny"
       },
       {
-        "amharic" : "መብላት አለብኝ",
-        "english" : "I must eat",
-        "transliteration" : "mablat allabiny"
+        "amharic": "መብላት አለብኝ",
+        "english": "I must eat",
+        "transliteration": "mablat allabiny"
       },
       {
-        "amharic" : "መማር አለብኝ",
-        "english" : "I must study",
-        "transliteration" : "mamar allabiny"
+        "amharic": "መማር አለብኝ",
+        "english": "I must study",
+        "transliteration": "mamar allabiny"
       }
     ],
-    "id" : "10.2",
-    "structure" : "[verb] + አለብኝ",
-    "substitutions" : [
-
-    ],
-    "template" : "[verb] + allabiny",
-    "unit" : 10
+    "id": "10.2",
+    "structure": "[verb] + አለብኝ",
+    "substitutions": [],
+    "template": "[verb] + allabiny",
+    "unit": 10
   },
   {
-    "category" : "ABILITY & PREFERENCE",
-    "description" : "I like + [noun]",
-    "examples" : [
+    "category": "ABILITY & PREFERENCE",
+    "description": "I like + [noun]",
+    "examples": [
       {
-        "amharic" : "ቡና እወዳለሁ",
-        "english" : "I like coffee",
-        "transliteration" : "buna iwadalahu"
+        "amharic": "ቡና እወዳለሁ",
+        "english": "I like coffee",
+        "transliteration": "buna iwadalahu"
       },
       {
-        "amharic" : "እንጀራ እወዳለሁ",
-        "english" : "I like injera",
-        "transliteration" : "injara iwadalahu"
+        "amharic": "እንጀራ እወዳለሁ",
+        "english": "I like injera",
+        "transliteration": "injara iwadalahu"
       },
       {
-        "amharic" : "ኢትዮጵያ እወዳለሁ",
-        "english" : "I like Ethiopia",
-        "transliteration" : "Ityoppya iwadalahu"
+        "amharic": "ኢትዮጵያ እወዳለሁ",
+        "english": "I like Ethiopia",
+        "transliteration": "Ityoppya iwadalahu"
       }
     ],
-    "id" : "10.3",
-    "structure" : "[noun] + እወዳለሁ",
-    "substitutions" : [
-
-    ],
-    "template" : "[noun] + iwadalahu",
-    "unit" : 10
+    "id": "10.3",
+    "structure": "[noun] + እወዳለሁ",
+    "substitutions": [],
+    "template": "[noun] + iwadalahu",
+    "unit": 10
   },
   {
-    "category" : "ABILITY & PREFERENCE",
-    "description" : "There is + [noun]",
-    "examples" : [
+    "category": "ABILITY & PREFERENCE",
+    "description": "There is + [noun]",
+    "examples": [
       {
-        "amharic" : "ቡና አለ",
-        "english" : "There is coffee",
-        "transliteration" : "buna alla"
+        "amharic": "ቡና አለ",
+        "english": "There is coffee",
+        "transliteration": "buna alla"
       },
       {
-        "amharic" : "ፀሐይ አለ",
-        "english" : "It's sunny (there is sun)",
-        "transliteration" : "tsahay alla"
+        "amharic": "ፀሐይ አለ",
+        "english": "It's sunny (there is sun)",
+        "transliteration": "tsahay alla"
       },
       {
-        "amharic" : "ጊዜ አለ",
-        "english" : "There is time",
-        "transliteration" : "gize alla"
+        "amharic": "ጊዜ አለ",
+        "english": "There is time",
+        "transliteration": "gize alla"
       }
     ],
-    "id" : "10.4",
-    "structure" : "[noun] + አለ",
-    "substitutions" : [
-
-    ],
-    "template" : "[noun] + alla",
-    "unit" : 10
+    "id": "10.4",
+    "structure": "[noun] + አለ",
+    "substitutions": [],
+    "template": "[noun] + alla",
+    "unit": 10
   },
   {
-    "category" : "ABILITY & PREFERENCE",
-    "description" : "I know \/ I don't know",
-    "examples" : [
+    "category": "ABILITY & PREFERENCE",
+    "description": "I know / I don't know",
+    "examples": [
       {
-        "amharic" : "አውቃለሁ",
-        "english" : "I know",
-        "transliteration" : "awkalahu"
+        "amharic": "አውቃለሁ",
+        "english": "I know",
+        "transliteration": "awkalahu"
       },
       {
-        "amharic" : "አላውቅም",
-        "english" : "I don't know",
-        "transliteration" : "alawkim"
+        "amharic": "አላውቅም",
+        "english": "I don't know",
+        "transliteration": "alawkim"
       },
       {
-        "amharic" : "መንገዱን አውቃለሁ",
-        "english" : "I know the road",
-        "transliteration" : "mangadun awkalahu"
+        "amharic": "መንገዱን አውቃለሁ",
+        "english": "I know the road",
+        "transliteration": "mangadun awkalahu"
       }
     ],
-    "id" : "10.5",
-    "structure" : "አውቃለሁ \/ አላውቅም",
-    "substitutions" : [
-
+    "id": "10.5",
+    "structure": "አውቃለሁ / አላውቅም",
+    "substitutions": [],
+    "template": "awkalahu / alawkim",
+    "unit": 10
+  },
+  {
+    "id": "xg1-possessive-suffixes",
+    "category": "POSSESSIVE SUFFIXES",
+    "unit": 11,
+    "description": "my / your / his + [noun] (suffix attached to the end of the noun)",
+    "structure": "[noun] + [-ኤ / -ህ / -ሽ / -ኡ]",
+    "template": "[noun] + [-e / -ih / -ish / -u]",
+    "examples": [
+      {
+        "amharic": "ቤቴ",
+        "transliteration": "bete",
+        "english": "my house"
+      },
+      {
+        "amharic": "ቤትህ",
+        "transliteration": "betih",
+        "english": "your house (m)"
+      },
+      {
+        "amharic": "ቤትሽ",
+        "transliteration": "betish",
+        "english": "your house (f)"
+      },
+      {
+        "amharic": "ቤቱ",
+        "transliteration": "betu",
+        "english": "his house"
+      }
     ],
-    "template" : "awkalahu \/ alawkim",
-    "unit" : 10
+    "substitutions": []
+  },
+  {
+    "id": "xg2-possessive-suffixes",
+    "category": "POSSESSIVE SUFFIXES",
+    "unit": 11,
+    "description": "her / our / your (pl) / their + [noun] (suffix attached to the noun)",
+    "structure": "[noun] + [-ዋ / -ኣችን / -ኣችሁ / -ኣቸው]",
+    "template": "[noun] + [-wa / -achin / -achihu / -achew]",
+    "examples": [
+      {
+        "amharic": "ቤቷ",
+        "transliteration": "betwa",
+        "english": "her house"
+      },
+      {
+        "amharic": "ቤታችን",
+        "transliteration": "betachin",
+        "english": "our house"
+      },
+      {
+        "amharic": "ቤታችሁ",
+        "transliteration": "betachihu",
+        "english": "your house (pl)"
+      },
+      {
+        "amharic": "ቤታቸው",
+        "transliteration": "betachew",
+        "english": "their house"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg3-object-suffixes",
+    "category": "OBJECT SUFFIXES",
+    "unit": 11,
+    "description": "[verb] + me / you / him (object pronoun suffix on the conjugated verb)",
+    "structure": "[verb] + [-ኝ / -ህ / -ሽ / -ው]",
+    "template": "[verb] + [-ny / -h / -sh / -w]",
+    "examples": [
+      {
+        "amharic": "አየኝ",
+        "transliteration": "ayeny",
+        "english": "he saw me"
+      },
+      {
+        "amharic": "አየህ",
+        "transliteration": "ayeh",
+        "english": "he saw you (m)"
+      },
+      {
+        "amharic": "አየሽ",
+        "transliteration": "ayesh",
+        "english": "he saw you (f)"
+      },
+      {
+        "amharic": "አየው",
+        "transliteration": "ayew",
+        "english": "he saw him/it"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg4-genitive-possession-with",
+    "category": "GENITIVE (POSSESSION with የ)",
+    "unit": 11,
+    "description": "\"X's Y\" / \"the Y of X\": attach the genitive prefix የ (ya-) to the owner, then name the thing owned. The owner always comes first.",
+    "structure": "የ[owner] + [thing]",
+    "template": "ya[owner] + [thing]",
+    "examples": [
+      {
+        "amharic": "የተማሪው መጽሐፍ",
+        "transliteration": "yatamariw mashaf",
+        "english": "the student's book"
+      },
+      {
+        "amharic": "የልጁ ስም",
+        "transliteration": "yaliju sim",
+        "english": "the child's name"
+      },
+      {
+        "amharic": "የቤቱ በር",
+        "transliteration": "yabetu bar",
+        "english": "the door of the house"
+      },
+      {
+        "amharic": "የአማርኛ መጽሐፍ",
+        "transliteration": "yamaranya mashaf",
+        "english": "an Amharic book (a book of Amharic)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg5-relative-clauses-past-with",
+    "category": "RELATIVE CLAUSES (PAST with የ)",
+    "unit": 11,
+    "description": "\"the [noun] who/that [did something]\": build a past-tense relative clause by adding የ (ya-) to the perfective (past) verb; the definite ending -ው (-w) links it to the noun that follows.",
+    "structure": "የ[past verb]ው + [noun]",
+    "template": "ya[past-verb]w + [noun]",
+    "examples": [
+      {
+        "amharic": "የመጣው ሰው",
+        "transliteration": "yamattaw saw",
+        "english": "the person who came"
+      },
+      {
+        "amharic": "የሄደው ተማሪ",
+        "transliteration": "yahedaw tamari",
+        "english": "the student who left"
+      },
+      {
+        "amharic": "የመጣው ባቡር",
+        "transliteration": "yamattaw babur",
+        "english": "the train that came"
+      },
+      {
+        "amharic": "የጠፋው ልጅ",
+        "transliteration": "yat'affaw lij",
+        "english": "the child who got lost"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg6-relative-clauses-present-with",
+    "category": "RELATIVE CLAUSES (PRESENT with የሚ)",
+    "unit": 11,
+    "description": "\"the [noun] who/that [does something]\": build a present/habitual relative clause with the prefix የሚ (yammi-) on the imperfect verb, placed before the noun it describes.",
+    "structure": "የሚ[present verb] + [noun]",
+    "template": "yami[present-verb] + [noun]",
+    "examples": [
+      {
+        "amharic": "የሚሠራ ሰው",
+        "transliteration": "yamisara saw",
+        "english": "a person who works"
+      },
+      {
+        "amharic": "የሚበላ ልጅ",
+        "transliteration": "yamibala lij",
+        "english": "a child who eats"
+      },
+      {
+        "amharic": "የሚመጣ ባቡር",
+        "transliteration": "yamimatta babur",
+        "english": "a train that is coming"
+      },
+      {
+        "amharic": "የሚናገር ሰው",
+        "transliteration": "yaminagar saw",
+        "english": "a person who speaks"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg7-negation",
+    "category": "NEGATION",
+    "unit": 11,
+    "description": "Make a PAST-tense (perfect) verb negative — 'I didn't ...'. Take the affirmative perfect verb and wrap it: add the prefix አል (al-) and the suffix ም (-m). Turns hedku 'I went' into alhedkum 'I didn't go'.",
+    "structure": "አል + [past verb] + ም",
+    "template": "al + [past verb] + m",
+    "examples": [
+      {
+        "amharic": "ወደ ገበያ አልሄድኩም",
+        "transliteration": "wada gabaya alhedkum",
+        "english": "I didn't go to the market"
+      },
+      {
+        "amharic": "እንጀራ አልበላሁም",
+        "transliteration": "injara albalahum",
+        "english": "I didn't eat injera"
+      },
+      {
+        "amharic": "ቡና አልጠጣሁም",
+        "transliteration": "buna altat'ahum",
+        "english": "I didn't drink coffee"
+      },
+      {
+        "amharic": "እሱ አልመጣም",
+        "transliteration": "issu almat'am",
+        "english": "He didn't come"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg8-negation",
+    "category": "NEGATION",
+    "unit": 11,
+    "description": "Make a PRESENT/FUTURE (imperfect) verb negative — 'I don't / won't ...'. Drop the affirmative ending (-alahu 'I', -al 'he'), then wrap the verb with negative a- fused to the person marker (I = አል al-, he = አይ ay-, she/you = አት at-) plus the suffix ም (-m). Turns ifaligalahu 'I want' into alfaligim 'I don't want'.",
+    "structure": "አል + [imperfect verb] + ም",
+    "template": "al + [imperfect verb] + m",
+    "examples": [
+      {
+        "amharic": "ቡና አልፈልግም",
+        "transliteration": "buna alfaligim",
+        "english": "I don't want coffee"
+      },
+      {
+        "amharic": "እንጀራ አልወድም",
+        "transliteration": "injara alwadim",
+        "english": "I don't like injera"
+      },
+      {
+        "amharic": "መንገዱን አላውቅም",
+        "transliteration": "mangadun alawkim",
+        "english": "I don't know the road"
+      },
+      {
+        "amharic": "እሱ ቡና አይጠጣም",
+        "transliteration": "issu buna aytat'am",
+        "english": "He doesn't drink coffee"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg9-negation",
+    "category": "NEGATION",
+    "unit": 11,
+    "description": "Say something is NOT so with the negative copula አይደለም (aydallam) — the opposite of ነው (naw, 'is'). It agrees with the subject: I am not = አይደለሁም, he/it is not = አይደለም, she is not = አይደለችም, they are not = አይደሉም.",
+    "structure": "[subject] + [noun/adjective] + አይደለም",
+    "template": "[subject] + [noun/adj] + aydallam",
+    "examples": [
+      {
+        "amharic": "እኔ ተማሪ አይደለሁም",
+        "transliteration": "ine tamari aydallahum",
+        "english": "I am not a student"
+      },
+      {
+        "amharic": "እሱ ኢትዮጵያዊ አይደለም",
+        "transliteration": "issu Ityoppyawi aydallam",
+        "english": "He is not Ethiopian"
+      },
+      {
+        "amharic": "ይህ ቡና አይደለም",
+        "transliteration": "yih buna aydallam",
+        "english": "This is not coffee"
+      },
+      {
+        "amharic": "እሷ ደስተኛ አይደለችም",
+        "transliteration": "isswa dastanya aydallachim",
+        "english": "She is not happy"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg10-compound-imperfect-present-future",
+    "category": "COMPOUND IMPERFECT (Present & Future)",
+    "unit": 11,
+    "description": "Present habitual / future: the imperfect verb takes the '-allä' auxiliary (from 'to exist'). One form covers both 'I go' and 'I will go'. The ending agrees with the subject: -alahu (I), -alah (you m), -al (he), -alan (we), -alu (they).",
+    "structure": "እ + [verb] + ኣለሁ  (→ -ኣለህ / -ኣል / -ኣለን ...)",
+    "template": "i + [verb] + alahu  (→ -alah / -al / -alan ...)",
+    "examples": [
+      {
+        "amharic": "እሄዳለሁ",
+        "transliteration": "ihedalahu",
+        "english": "I go / I will go"
+      },
+      {
+        "amharic": "ትሄዳለህ",
+        "transliteration": "tihedalah",
+        "english": "you go / you will go (m)"
+      },
+      {
+        "amharic": "ይሄዳል",
+        "transliteration": "yihedal",
+        "english": "he goes / he will go"
+      },
+      {
+        "amharic": "እንሄዳለን",
+        "transliteration": "inhedalan",
+        "english": "we go / we will go"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg11-present-perfect",
+    "category": "PRESENT PERFECT",
+    "unit": 11,
+    "description": "'I have [done]' — present perfect. Built on the verb's gerund (converb) stem plus the '-allä' auxiliary. Result state of a completed action. Examples are all 1st-person singular ('I have ...').",
+    "structure": "[verb, converb stem] + ኣለሁ",
+    "template": "[verb-converb] + alahu",
+    "examples": [
+      {
+        "amharic": "በልቻለሁ",
+        "transliteration": "balchalahu",
+        "english": "I have eaten"
+      },
+      {
+        "amharic": "ሄጃለሁ",
+        "transliteration": "hejalahu",
+        "english": "I have gone"
+      },
+      {
+        "amharic": "መጥቻለሁ",
+        "transliteration": "mat'chalahu",
+        "english": "I have come"
+      },
+      {
+        "amharic": "ጨርሻለሁ",
+        "transliteration": "charshalahu",
+        "english": "I have finished"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xg12-past-continuous-habitual-with",
+    "category": "PAST CONTINUOUS / HABITUAL (with ነበር)",
+    "unit": 11,
+    "description": "'I was [doing]' / 'I used to [do]' — the simple (bare) imperfect verb followed by ነበር näbbär ('was'). Expresses an ongoing or repeated action in the past. Here näbbär stays invariant for all persons.",
+    "structure": "[imperfect verb] + ነበር",
+    "template": "[imperfect verb] + nabar",
+    "examples": [
+      {
+        "amharic": "እሄድ ነበር",
+        "transliteration": "ihed nabar",
+        "english": "I used to go / I was going"
+      },
+      {
+        "amharic": "ትሄድ ነበር",
+        "transliteration": "tihed nabar",
+        "english": "you used to go / you were going (m)"
+      },
+      {
+        "amharic": "ይሄድ ነበር",
+        "transliteration": "yihed nabar",
+        "english": "he used to go / he was going"
+      },
+      {
+        "amharic": "እንሄድ ነበር",
+        "transliteration": "inhed nabar",
+        "english": "we used to go / we were going"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1",
+    "category": "PRESENT TENSE (VERB CONJUGATION)",
+    "unit": 11,
+    "description": "Present/habitual (imperfective) conjugation of common verbs: 'I ___' takes the እ- prefix with the -አለሁ ending; 'you (m.) ___' takes the ት- prefix with the -አለህ ending. Renders the ESSENTIAL VERBS conjugation table from the source (infinitives already ship as vocab; these conjugated forms do not).",
+    "structure": "እ[verb stem]…ለሁ (I) / ት[verb stem]…ለህ (you m.)",
+    "template": "i[stem]alahu (I) / ti[stem]alah (you m.)",
+    "examples": [
+      {
+        "amharic": "እሄዳለሁ",
+        "transliteration": "ihedalahu",
+        "english": "I go"
+      },
+      {
+        "amharic": "ትሄዳለህ",
+        "transliteration": "tihedalah",
+        "english": "you go (m.)"
+      },
+      {
+        "amharic": "እመጣለሁ",
+        "transliteration": "imatalahu",
+        "english": "I come"
+      },
+      {
+        "amharic": "ትመጣለህ",
+        "transliteration": "timatalah",
+        "english": "you come (m.)"
+      },
+      {
+        "amharic": "እበላለሁ",
+        "transliteration": "ibalalahu",
+        "english": "I eat"
+      },
+      {
+        "amharic": "ትበላለህ",
+        "transliteration": "tibalalah",
+        "english": "you eat (m.)"
+      },
+      {
+        "amharic": "እጠጣለሁ",
+        "transliteration": "itatalahu",
+        "english": "I drink"
+      },
+      {
+        "amharic": "ትጠጣለህ",
+        "transliteration": "titatalah",
+        "english": "you drink (m.)"
+      },
+      {
+        "amharic": "እናገራለሁ",
+        "transliteration": "inageralahu",
+        "english": "I speak"
+      },
+      {
+        "amharic": "ትናገራለህ",
+        "transliteration": "tinageralah",
+        "english": "you speak (m.)"
+      },
+      {
+        "amharic": "እማራለሁ",
+        "transliteration": "imaralahu",
+        "english": "I learn"
+      },
+      {
+        "amharic": "ትማራለህ",
+        "transliteration": "timaralah",
+        "english": "you learn (m.)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-2",
+    "category": "POSSESSIVE PHRASES",
+    "unit": 11,
+    "description": "Your (m.) / his / her + [noun]. Completes the possessive-pronoun set beyond the app's existing 'my' (የኔ) and 'your (formal)' (የርስዎ) patterns.",
+    "structure": "የአንተ / የእሱ / የእሷ + [noun]",
+    "template": "ya anta / ya issu / ya isswa + [noun]",
+    "examples": [
+      {
+        "amharic": "የአንተ ስም",
+        "transliteration": "ya anta sim",
+        "english": "your name (m.)"
+      },
+      {
+        "amharic": "የእሱ ስም",
+        "transliteration": "ya issu sim",
+        "english": "his name"
+      },
+      {
+        "amharic": "የእሷ ስም",
+        "transliteration": "ya isswa sim",
+        "english": "her name"
+      },
+      {
+        "amharic": "የእሱ ቤት",
+        "transliteration": "ya issu bet",
+        "english": "his house"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-3",
+    "category": "BASIC PRESENT TENSE (Subject + Verb)",
+    "unit": 11,
+    "description": "You are + [adjective] (plural informal). Fills the one 'to be' person missing from the app's 1.x patterns (I/you-m/you-f/he/she/we/they/you-formal).",
+    "structure": "እናንተ + [adjective] + ናችሁ",
+    "template": "innanta + [adjective] + nachihu",
+    "examples": [
+      {
+        "amharic": "እናንተ ደህና ናችሁ",
+        "transliteration": "innanta dahna nachihu",
+        "english": "You are well (plural)"
+      },
+      {
+        "amharic": "እናንተ ተማሪ ናችሁ",
+        "transliteration": "innanta tamari nachihu",
+        "english": "You are students"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1-2",
+    "category": "POSSESSIVE PHRASES",
+    "unit": 11,
+    "description": "Your + [noun] (masculine informal)",
+    "structure": "የአንተ + [noun]",
+    "template": "yaanta + [noun]",
+    "examples": [
+      {
+        "amharic": "የአንተ አባት",
+        "transliteration": "yaanta abbat",
+        "english": "your father (m. informal)"
+      },
+      {
+        "amharic": "የአንተ ስም",
+        "transliteration": "yaanta sim",
+        "english": "your name (m. informal)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-2-2",
+    "category": "POSSESSIVE PHRASES",
+    "unit": 11,
+    "description": "His / Her + [noun] (genitive prefix የ on name or pronoun)",
+    "structure": "የ + [name/pronoun] + [noun]",
+    "template": "ya + [name/pronoun] + [noun]",
+    "examples": [
+      {
+        "amharic": "የሃይሉ ሚስት",
+        "transliteration": "yaHaylu mist",
+        "english": "Haylu's wife"
+      },
+      {
+        "amharic": "የእሱ አባት",
+        "transliteration": "yaissu abbat",
+        "english": "his father"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-3-2",
+    "category": "POSSESSIVE PHRASES",
+    "unit": 11,
+    "description": "[Noun] and [Noun] — the conjunction ና ('and') attaches to the first word",
+    "structure": "[noun]ና + [noun]",
+    "template": "[noun] + inna + [noun]",
+    "examples": [
+      {
+        "amharic": "አባትና እናት",
+        "transliteration": "abbat inna innat",
+        "english": "father and mother"
+      },
+      {
+        "amharic": "አባትና እናትህ",
+        "transliteration": "abbat inna innatih",
+        "english": "your father and mother"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-4",
+    "category": "BASIC QUESTIONS",
+    "unit": 11,
+    "description": "Is [person] well? (asking about a named third party)",
+    "structure": "[name] + ደህና + ነው/ነች?",
+    "template": "[name] + dahna + naw/nach?",
+    "examples": [
+      {
+        "amharic": "ሃይሉ ደህና ነው?",
+        "transliteration": "Haylu dahna naw?",
+        "english": "Is Haylu well?"
+      },
+      {
+        "amharic": "እሱ ደህና ነው?",
+        "transliteration": "issu dahna naw?",
+        "english": "Is he well?"
+      },
+      {
+        "amharic": "እሷ ደህና ነች?",
+        "transliteration": "isswa dahna nach?",
+        "english": "Is she well?"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-5",
+    "category": "BASIC QUESTIONS",
+    "unit": 11,
+    "description": "Are [people] well? (plural / compound-subject well-being question)",
+    "structure": "[people] + ደህና + ናቸው?",
+    "template": "[people] + dahna + nachaw?",
+    "examples": [
+      {
+        "amharic": "አባትና እናትህ ደህና ናቸው?",
+        "transliteration": "abbat inna innatih dahna nachaw?",
+        "english": "Are your father and mother well?"
+      },
+      {
+        "amharic": "እነሱ ደህና ናቸው?",
+        "transliteration": "inassu dahna nachaw?",
+        "english": "Are they well?"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-6",
+    "category": "BASIC RESPONSES",
+    "unit": 11,
+    "description": "I am [adjective] too — the suffix -ም ('also/too') attaches to the pronoun",
+    "structure": "እኔም + [adjective] + ነኝ",
+    "template": "inem + [adjective] + nany",
+    "examples": [
+      {
+        "amharic": "እኔም ደህና ነኝ",
+        "transliteration": "inem dahna nany",
+        "english": "I am fine too"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-7",
+    "category": "BASIC RESPONSES",
+    "unit": 11,
+    "description": "He / She is [adjective] too (-ም 'also/too' on the third person)",
+    "structure": "እሱም/እሷም + [adjective] + ነው/ነች",
+    "template": "issum/isswam + [adjective] + naw/nach",
+    "examples": [
+      {
+        "amharic": "እሱም ደህና ነው",
+        "transliteration": "issum dahna naw",
+        "english": "He is fine too"
+      },
+      {
+        "amharic": "እሷም ደህና ነች",
+        "transliteration": "isswam dahna nach",
+        "english": "She is fine too"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-8",
+    "category": "COMMON EXPRESSIONS",
+    "unit": 11,
+    "description": "Good morning (morning greeting, lit. 'How did you spend the night?') by register",
+    "structure": "እንደምን + አደሩ/አደርከ/አደርሽ?",
+    "template": "indamin + addaru/addark/addarsh?",
+    "examples": [
+      {
+        "amharic": "እንደምን አደርከ?",
+        "transliteration": "indamin addark?",
+        "english": "Good morning (m. informal)"
+      },
+      {
+        "amharic": "እንደምን አደርሽ?",
+        "transliteration": "indamin addarsh?",
+        "english": "Good morning (f. informal)"
+      },
+      {
+        "amharic": "እንደምን አደሩ?",
+        "transliteration": "indamin addaru?",
+        "english": "Good morning (formal)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-9",
+    "category": "COMMON EXPRESSIONS",
+    "unit": 11,
+    "description": "Good evening (evening greeting, lit. 'How did you spend the day?') by register",
+    "structure": "እንደምን + ዋሉ/ዋልከ/ዋልሽ?",
+    "template": "indamin + walu/walk/walsh?",
+    "examples": [
+      {
+        "amharic": "እንደምን ዋልከ?",
+        "transliteration": "indamin walk?",
+        "english": "Good evening (m. informal)"
+      },
+      {
+        "amharic": "እንደምን ዋልሽ?",
+        "transliteration": "indamin walsh?",
+        "english": "Good evening (f. informal)"
+      },
+      {
+        "amharic": "እንደምን ዋሉ?",
+        "transliteration": "indamin walu?",
+        "english": "Good evening (formal)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-10",
+    "category": "COMMON EXPRESSIONS",
+    "unit": 11,
+    "description": "Well now / Well then (fixed conversational expression)",
+    "structure": "በል አሁን (fixed expression)",
+    "template": "bal ahun",
+    "examples": [
+      {
+        "amharic": "በል አሁን",
+        "transliteration": "bal ahun",
+        "english": "Well now / Well then"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-11",
+    "category": "ADDRESSING PEOPLE",
+    "unit": 11,
+    "description": "Formal title + Name (Mr. / Mrs. / Miss)",
+    "structure": "[Title] + [Name]",
+    "template": "[Title] + [Name]",
+    "examples": [
+      {
+        "amharic": "አቶ ሙሉጌታ",
+        "transliteration": "Ato Mulugeta",
+        "english": "Mr. Mulugeta"
+      },
+      {
+        "amharic": "ወይዘሮ ሕይወት",
+        "transliteration": "Wayzaro Hiywet",
+        "english": "Mrs. Hiywet"
+      },
+      {
+        "amharic": "ወይዘሪት",
+        "transliteration": "Wayzarit",
+        "english": "Miss"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1-3",
+    "category": "CONJUNCTIONS",
+    "unit": 11,
+    "description": "And (joining two nouns). The conjunction ና (-na / -inna) is a suffix that attaches to the END of the FIRST noun rather than sitting as a separate word between the two nouns.",
+    "structure": "[noun]ና + [noun]",
+    "template": "[noun]na + [noun]",
+    "examples": [
+      {
+        "amharic": "አባትና እናት",
+        "transliteration": "abbat-inna innat",
+        "english": "father and mother"
+      },
+      {
+        "amharic": "ቡናና ሻይ",
+        "transliteration": "bunanna shay",
+        "english": "coffee and tea"
+      },
+      {
+        "amharic": "እኔና አንተ",
+        "transliteration": "ine-nna anta",
+        "english": "me and you"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-2-3",
+    "category": "PARTICLES & SUFFIXES",
+    "unit": 11,
+    "description": "Also / too. The suffix -ም (-m) attaches to a pronoun (or noun) to add the meaning 'also/too'. The rest of the sentence stays unchanged.",
+    "structure": "[pronoun]ም + [statement]",
+    "template": "[pronoun]m + [statement]",
+    "examples": [
+      {
+        "amharic": "እኔም ደህና ነኝ",
+        "transliteration": "inemm dahna nany",
+        "english": "I'm fine too"
+      },
+      {
+        "amharic": "እሱም ደህና ነው",
+        "transliteration": "issumm dahna naw",
+        "english": "He's fine too"
+      },
+      {
+        "amharic": "አንተም",
+        "transliteration": "antamm",
+        "english": "you too (m)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1-4",
+    "category": "Directions",
+    "unit": 11,
+    "description": "Ask where the nearest place/facility is",
+    "structure": "የሚቀርበዉ [place] የት ነዉ?",
+    "template": "yamikarbaw [place] yat naw?",
+    "examples": [
+      {
+        "amharic": "የሚቀርበዉ አዉቶብስ ማቆሚያ የት ነዉ?",
+        "transliteration": "yamikarbaw awtobus makomiya yat naw?",
+        "english": "Where's the nearest bus stop?"
+      },
+      {
+        "amharic": "የሚቀርበዉ ትኬት መሽጫ የት ነዉ?",
+        "transliteration": "yamikarbaw tiket mashacha yat naw?",
+        "english": "Where's the nearest ticket office?"
+      },
+      {
+        "amharic": "የሚቀርበዉ ታክሲ ማቆሚያ የት ነዉ?",
+        "transliteration": "yamikarbaw taksi makomiya yat naw?",
+        "english": "Where's the nearest taxi stand?"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-2-4",
+    "category": "Transportation",
+    "unit": 11,
+    "description": "Ask whether a form of transport goes to a destination",
+    "structure": "ወደ [place] [transport] አለ?",
+    "template": "wada [place] [transport] alla?",
+    "examples": [
+      {
+        "amharic": "ወደ ጅማ አዉቶብስ አለ?",
+        "transliteration": "wada jimma awtobus alla?",
+        "english": "Is there a bus to Jimma?"
+      },
+      {
+        "amharic": "ወደ ጅማ አይሮፕላን አለ?",
+        "transliteration": "wada jimma airoplan alla?",
+        "english": "Is there a plane to Jimma?"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-3-3",
+    "category": "Transportation",
+    "unit": 11,
+    "description": "Ask the fare / price to a destination",
+    "structure": "ወደ [place] ስንት ነዉ?",
+    "template": "wada [place] sint naw?",
+    "examples": [
+      {
+        "amharic": "ወደ ጎባ ስንት ነዉ?",
+        "transliteration": "wada goba sint naw?",
+        "english": "How much to Goba?"
+      },
+      {
+        "amharic": "ወደ ... ትኬት ስንት ነዉ?",
+        "transliteration": "wada ... tiket sint naw?",
+        "english": "How much is a ticket to ...?"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-4-2",
+    "category": "Transportation",
+    "unit": 11,
+    "description": "Ask where you can rent/hire a vehicle",
+    "structure": "[vehicle] የት መከራየት እችላለሁ?",
+    "template": "[vehicle] yat makarayat ichilalahu?",
+    "examples": [
+      {
+        "amharic": "መኪና የት መከራየት እችላለሁ?",
+        "transliteration": "makina yat makarayat ichilalahu?",
+        "english": "Where can I rent a car?"
+      },
+      {
+        "amharic": "ብስክሌት የት መከራየት እችላለሁ?",
+        "transliteration": "bisiklet yat makarayat ichilalahu?",
+        "english": "Where can I hire a bicycle?"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-5-2",
+    "category": "Tickets",
+    "unit": 11,
+    "description": "Request a number of tickets to a destination",
+    "structure": "ወደ [place] [number] ትኬት",
+    "template": "wada [place] [number] tiket",
+    "examples": [
+      {
+        "amharic": "ወደ ... ሶስት ትኬት",
+        "transliteration": "wada ... sost tiket",
+        "english": "Three tickets to ..."
+      },
+      {
+        "amharic": "ወደ ... ሁለት ትኬት",
+        "transliteration": "wada ... hulat tiket",
+        "english": "Two tickets to ..."
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1-5",
+    "category": "Business & Events",
+    "unit": 11,
+    "description": "Say which event you are attending; swap in the event noun.",
+    "structure": "የ + [event] + ተሳታፊዎች ነን",
+    "template": "ya + [event] + tesatafiwoch nan",
+    "examples": [
+      {
+        "amharic": "የጉባኤ ተሳታፊዎች ነን",
+        "transliteration": "ya gubae tesatafiwoch nan",
+        "english": "We're attending a conference."
+      },
+      {
+        "amharic": "የስብሰባ ተሳታፊዎች ነን",
+        "transliteration": "ya sibseba tesatafiwoch nan",
+        "english": "We're attending a meeting."
+      },
+      {
+        "amharic": "የንግድ ባዛር ተሳታፊዎች ነን",
+        "transliteration": "ya nigd bazar tesatafiwoch nan",
+        "english": "We're attending a trade fair."
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1-6",
+    "category": "Telling Time",
+    "unit": 11,
+    "description": "State the hour by placing the number before ሰዓት (saat, 'o'clock/hour'). Add ከሩብ for quarter past, ተኩል for half past, ከ + minutes for minutes past, or ለ … [minutes] ጉዳይ for minutes to the hour. Note that Ethiopian hours are counted from sunrise, so add ~6 hours to convert to Western clock time.",
+    "structure": "[number] + ሰዓት (+ ከሩብ / ተኩል / ከ [minutes] / ለ … [minutes] ጉዳይ)",
+    "template": "[number] + saat (+ karub / takul / ka [minutes] / la … [minutes] guday)",
+    "examples": [
+      {
+        "amharic": "አንድ ሰዓት",
+        "transliteration": "and saat",
+        "english": "(one) o'clock"
+      },
+      {
+        "amharic": "አንድ ሰዓት ተኩል",
+        "transliteration": "and saat takul",
+        "english": "half past (one)"
+      },
+      {
+        "amharic": "ለ አንድ ሰዓት ሩብ ጉዳይ",
+        "transliteration": "la and saat rub guday",
+        "english": "quarter to (one)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-2-5",
+    "category": "Ordinal Numbers",
+    "unit": 11,
+    "description": "Form ordinal numbers ('first', 'second', 'third' …) by adding the suffix -ኛ (-nya) to the cardinal number.",
+    "structure": "[cardinal number] + ኛ",
+    "template": "[number] + nya",
+    "examples": [
+      {
+        "amharic": "አንደኛ",
+        "transliteration": "andanya",
+        "english": "first"
+      },
+      {
+        "amharic": "ሶስተኛ",
+        "transliteration": "sostanya",
+        "english": "third"
+      },
+      {
+        "amharic": "አስረኛ",
+        "transliteration": "asiranya",
+        "english": "tenth"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1-7",
+    "category": "Word Formation",
+    "unit": 11,
+    "description": "Amharic forms the name of a language by adding the suffix -ኛ (-nya) to the name of the people or region who speak it.",
+    "structure": "[people/region] + ኛ",
+    "template": "[people/region] + nya",
+    "examples": [
+      {
+        "amharic": "አማርኛ",
+        "transliteration": "amaranya",
+        "english": "Amharic (the language of the Amhara)"
+      },
+      {
+        "amharic": "ኦሮምኛ",
+        "transliteration": "orominya",
+        "english": "Oromo (language)"
+      },
+      {
+        "amharic": "ትግርኛ",
+        "transliteration": "tigrinya",
+        "english": "Tigrinya (language)"
+      },
+      {
+        "amharic": "ፈረንሳይኛ",
+        "transliteration": "faransaynya",
+        "english": "French (language)"
+      },
+      {
+        "amharic": "ዐረብኛ",
+        "transliteration": "arabinya",
+        "english": "Arabic (language)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-2-6",
+    "category": "Feelings (Impersonal Verbs)",
+    "unit": 11,
+    "description": "Many physical feelings are expressed as a single verb with the person marked as an object suffix (-ኝ, '...me'), so 'I'm hungry' is literally 'it hungered me'. You only need one word.",
+    "structure": "[sensation verb] + ኝ",
+    "template": "[sensation] + any",
+    "examples": [
+      {
+        "amharic": "ራበኝ",
+        "transliteration": "rabany",
+        "english": "I'm hungry (lit. it hungered me)"
+      },
+      {
+        "amharic": "ውሃ ጠማኝ",
+        "transliteration": "wuha tamany",
+        "english": "I'm thirsty"
+      },
+      {
+        "amharic": "ደከመኝ",
+        "transliteration": "dakamany",
+        "english": "I'm tired"
+      },
+      {
+        "amharic": "በረደኝ",
+        "transliteration": "baradany",
+        "english": "I'm cold"
+      },
+      {
+        "amharic": "ሞቀኝ",
+        "transliteration": "mokany",
+        "english": "I'm hot"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-1",
+    "category": "Verb Conjugation (m/f questions)",
+    "unit": 11,
+    "description": "Second-person present-tense verb questions change their ending by the gender of the person addressed: -alah (ኧህ) when speaking to a man, -alesh/-iyalesh (ኧሽ) when speaking to a woman. The verb stem and the object stay the same. This m/f contrast recurs throughout the chapter.",
+    "structure": "[object] + ti[verb]alah? (to a man)  |  [object] + ti[verb](i)yalesh? (to a woman)",
+    "template": "[object] ti[VERB-STEM]alah? (m) / ti[VERB-STEM](i)yalesh? (f)",
+    "examples": [
+      {
+        "amharic": "ትጫወታለህ? / ትጫወቻለሽ?",
+        "transliteration": "tichawatalah? / tichawachalesh?",
+        "english": "do you play? (m/f)"
+      },
+      {
+        "amharic": "ትችላለህ? / ትችያለሽ?",
+        "transliteration": "tichilalah? / tichiyalesh?",
+        "english": "can you? (m/f)"
+      },
+      {
+        "amharic": "ትፈልጋለህ? / ትፈልጊያለሽ?",
+        "transliteration": "tifelgalah? / tifelgiyalesh?",
+        "english": "do you want? (m/f)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-1-8",
+    "category": "DIETARY / NEGATION",
+    "unit": 11,
+    "description": "I don't eat [food] — for stating dietary restrictions when ordering",
+    "structure": "[food] + አልበላም",
+    "template": "[food] + alballam",
+    "examples": [
+      {
+        "amharic": "አሳ አልበላም",
+        "transliteration": "asa alballam",
+        "english": "I don't eat fish"
+      },
+      {
+        "amharic": "ወተት ነክ ምግቦችን አልበላም",
+        "transliteration": "watat nek migibochin alballam",
+        "english": "I can't eat dairy products"
+      },
+      {
+        "amharic": "ኦቾሎኒ አልበላም",
+        "transliteration": "ocholoni alballam",
+        "english": "I don't eat peanuts"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-users-skahes-2-7",
+    "category": "COMMANDS & REQUESTS",
+    "unit": 11,
+    "description": "Please bring me [item] — polite request to a waiter (m/f addressee)",
+    "structure": "እባክህ/እባክሽ + [item] + አምጣ/አምጭ",
+    "template": "ibakkih/ibakkish + [item] + amta/amchi",
+    "examples": [
+      {
+        "amharic": "እባክህ ውሃ አምጣ",
+        "transliteration": "ibakkih wuha amta",
+        "english": "Please bring water (to a man)"
+      },
+      {
+        "amharic": "እባክሽ ሜኑ አምጭ",
+        "transliteration": "ibakkish menu amchi",
+        "english": "Please bring the menu (to a woman)"
+      },
+      {
+        "amharic": "እባክህ ቡና አምጣ",
+        "transliteration": "ibakkih buna amta",
+        "english": "Please bring coffee (to a man)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-1-2",
+    "category": "COMPARATIVES",
+    "unit": 11,
+    "description": "X is more [adjective] than Y — place ከ (ka, 'from/than') between the two things being compared, then the adjective + ነው.",
+    "structure": "[A] + ከ + [B] + [adjective] + ነው",
+    "template": "[A] + ka + [B] + [adjective] + naw",
+    "examples": [
+      {
+        "amharic": "እሱ ከእኔ ረጅም ነው",
+        "transliteration": "issu ka-ine rajim naw",
+        "english": "He is taller than me"
+      },
+      {
+        "amharic": "ሱሪ ከቀሚስ ይሻላል",
+        "transliteration": "suri ka-kamis yishalal",
+        "english": "Trousers are better than a dress"
+      },
+      {
+        "amharic": "ወይን ከቢራ ይልቅ ጥሩ ነው",
+        "transliteration": "wayn ka-bira yilik tiru naw",
+        "english": "Wine is better than beer"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-2",
+    "category": "SUPERLATIVES",
+    "unit": 11,
+    "description": "the -est / most [adjective] — use በጣም (batam, 'very') before the adjective and attach the definite article (-ው/-ዋ) to the adjective.",
+    "structure": "በጣም + [adjective]+ው/ዋ + [noun]",
+    "template": "batam + [adjective]-u/-wa + [noun]",
+    "examples": [
+      {
+        "amharic": "በጣም ርካሹ ሆቴል",
+        "transliteration": "batam rikashu hotel",
+        "english": "the cheapest hotel"
+      },
+      {
+        "amharic": "በጣም ትልቁ ቤት",
+        "transliteration": "batam tiliku bet",
+        "english": "the biggest house"
+      },
+      {
+        "amharic": "በጣም ቅርቧ ደብር",
+        "transliteration": "batam kirbwa dabir",
+        "english": "the nearest monastery"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-3",
+    "category": "NOUN PLURALS",
+    "unit": 11,
+    "description": "Mark a noun plural (only when the count isn't clear from context) by adding -ኦች (-och) after a consonant or -ዎች (-woch) after a vowel.",
+    "structure": "[noun ending in consonant] + ኦች  /  [noun ending in vowel] + ዎች",
+    "template": "[noun] + -och (after consonant) / -woch (after vowel)",
+    "examples": [
+      {
+        "amharic": "አንበሳ → አንበሳዎች",
+        "transliteration": "anbessa → anbessawoch",
+        "english": "lion → lions"
+      },
+      {
+        "amharic": "ቤት → ቤቶች",
+        "transliteration": "bet → betoch",
+        "english": "house → houses"
+      },
+      {
+        "amharic": "ተማሪ → ተማሪዎች",
+        "transliteration": "tamari → tamariwoch",
+        "english": "student → students"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-4",
+    "category": "POSSESSIVE SUFFIXES",
+    "unit": 11,
+    "description": "Show possession by attaching a suffix directly to the noun (an alternative to the analytic የኔ/yane form): -ኤ my, -ህ your(m), -ሽ your(f), -ው his, -ዋ her, -ችን our.",
+    "structure": "[noun] + possessive suffix",
+    "template": "[noun] + -e (my) / -ih (your m) / -ish (your f) / -achin (our)",
+    "examples": [
+      {
+        "amharic": "ስሜ",
+        "transliteration": "sime",
+        "english": "my name"
+      },
+      {
+        "amharic": "ስምህ",
+        "transliteration": "simih",
+        "english": "your name (m)"
+      },
+      {
+        "amharic": "ሻንጣዬ",
+        "transliteration": "shantaye",
+        "english": "my bag"
+      },
+      {
+        "amharic": "እራታችን",
+        "transliteration": "iratachin",
+        "english": "our dinner"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-5",
+    "category": "MODALS (WANT TO + VERB)",
+    "unit": 11,
+    "description": "I want to [do something] — use the infinitive (መ-/ማ- form) followed by እፈልጋለሁ. Contrast the app's noun pattern '[noun] + ifaligalahu' (I want [a thing]).",
+    "structure": "[infinitive verb] + እፈልጋለሁ",
+    "template": "[infinitive] + ifaligalahu",
+    "examples": [
+      {
+        "amharic": "መሄድ እፈልጋለሁ",
+        "transliteration": "mahed ifaligalahu",
+        "english": "I want to go"
+      },
+      {
+        "amharic": "መብላት እፈልጋለሁ",
+        "transliteration": "mablat ifaligalahu",
+        "english": "I want to eat"
+      },
+      {
+        "amharic": "ማየት እፈልጋለሁ",
+        "transliteration": "mayet ifaligalahu",
+        "english": "I want to see"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-6",
+    "category": "CONJUNCTIONS",
+    "unit": 11,
+    "description": "Join words or clauses: እና (ina) 'and', ወይም (waym) 'or', ግን (gin) 'but'. እና may attach as the suffix -ና after a word ending in a vowel.",
+    "structure": "[X] + እና/ወይም + [Y]   ;   [clause] + ግን + [clause]",
+    "template": "[X] + ina (and) / waym (or) + [Y] ; [clause] + gin (but) + [clause]",
+    "examples": [
+      {
+        "amharic": "ቡና እና ሻይ",
+        "transliteration": "buna ina shay",
+        "english": "coffee and tea"
+      },
+      {
+        "amharic": "ሻይ ወይም ቡና",
+        "transliteration": "shay waym buna",
+        "english": "tea or coffee"
+      },
+      {
+        "amharic": "ጥሩ ነው ግን በጣም ውድ ነው",
+        "transliteration": "tiru naw gin batam wid naw",
+        "english": "It's good but very expensive"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-7",
+    "category": "NEGATION (IT'S NOT)",
+    "unit": 11,
+    "description": "State that something is NOT the case with አይደለም (aydallam, 'it isn't'). Distinct from የለም (yallam, 'there isn't') already in the app.",
+    "structure": "[noun / phrase] + አይደለም",
+    "template": "[noun] + aydallam",
+    "examples": [
+      {
+        "amharic": "ይህ ቡና አይደለም",
+        "transliteration": "yih buna aydallam",
+        "english": "This is not coffee"
+      },
+      {
+        "amharic": "ውሃ አይደለም",
+        "transliteration": "wuha aydallam",
+        "english": "It's not water"
+      },
+      {
+        "amharic": "አማርኛ አይደለም",
+        "transliteration": "amaranya aydallam",
+        "english": "It's not Amharic"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-8",
+    "category": "DESCRIPTIVE (STATIVE) VERBS",
+    "unit": 11,
+    "description": "Physical sensations are expressed as a verb acting on 'me' (object suffix -ኝ = me), not as 'to be' + adjective. So 'I'm hot' is literally 'it-heats-me'.",
+    "structure": "[sensation verb stem] + ኝ",
+    "template": "[stative verb] + -any (it ___s me / I'm ___)",
+    "examples": [
+      {
+        "amharic": "ሞቀኝ",
+        "transliteration": "mokany",
+        "english": "I'm hot"
+      },
+      {
+        "amharic": "በረደኝ",
+        "transliteration": "baradany",
+        "english": "I'm cold"
+      },
+      {
+        "amharic": "ጠማኝ",
+        "transliteration": "t'amany",
+        "english": "I'm thirsty"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-9",
+    "category": "OBJECT PRONOUNS IN VERBS",
+    "unit": 11,
+    "description": "Amharic often builds the object into the verb with a suffix instead of a separate word: -ው/-ዋ 'it/him', -ኣት 'her/it'. 'I want' + it collapses into one word.",
+    "structure": "[verb] + object suffix (ው = it/him, ኣት = her)",
+    "template": "[verb] + -w (it/him) / -at (her)",
+    "examples": [
+      {
+        "amharic": "እፈልጋለሁ → እፈልገዋለሁ",
+        "transliteration": "ifaligalahu → ifaligewalahu",
+        "english": "I want → I want it"
+      },
+      {
+        "amharic": "ያመጣል → ያመጣዋል",
+        "transliteration": "yamet'al → yamet'awal",
+        "english": "he'll bring → he'll bring it"
+      },
+      {
+        "amharic": "እንጠይቅ → እንጠይቃት",
+        "transliteration": "int'ayik → int'ayikat",
+        "english": "let's ask → let's ask her"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-10",
+    "category": "QUESTION WORDS + ነው",
+    "unit": 11,
+    "description": "Form quick 'Who/What/Why … is it?' questions by placing the question word before ነው? (naw?). A raised tone marks the question — there's no word reordering as in English. (Adds the interrogative ማን 'who', which the app lacks.)",
+    "structure": "[question word] + ነው?",
+    "template": "[question word] + naw?",
+    "examples": [
+      {
+        "amharic": "ማን ነው?",
+        "transliteration": "man naw?",
+        "english": "Who is it?"
+      },
+      {
+        "amharic": "ምንድን ነው?",
+        "transliteration": "mindin naw?",
+        "english": "What is it?"
+      },
+      {
+        "amharic": "ለምን ነው?",
+        "transliteration": "lamin naw?",
+        "english": "Why is it?"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xe-fidel-resour-11",
+    "category": "PREPOSITION PREFIXES",
+    "unit": 11,
+    "description": "Prepositions attach to the front of the noun: በ (ba) 'in/by/with', ለ (la) 'for/to', ከ (ka) 'from', ወደ (wada) 'to(ward)'.",
+    "structure": "[preposition prefix] + [noun]",
+    "template": "ba- / la- / ka- + [noun] ; wada + [noun]",
+    "examples": [
+      {
+        "amharic": "በአውቶቡስ",
+        "transliteration": "ba-awtobis",
+        "english": "by bus"
+      },
+      {
+        "amharic": "ለእኔ",
+        "transliteration": "la-ine",
+        "english": "for me"
+      },
+      {
+        "amharic": "ከአዲስ አበባ",
+        "transliteration": "ka-addis abeba",
+        "english": "from Addis Ababa"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-eat",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to eat' (to eat (consume food)) across persons and tenses",
+    "structure": "በላሁ",
+    "template": "belahu",
+    "examples": [
+      {
+        "amharic": "በላሁ",
+        "transliteration": "belahu",
+        "english": "I (perfect): I ate"
+      },
+      {
+        "amharic": "በላህ",
+        "transliteration": "belah",
+        "english": "you-m (perfect): you (m) ate"
+      },
+      {
+        "amharic": "በላሽ",
+        "transliteration": "belash",
+        "english": "you-f (perfect): you (f) ate"
+      },
+      {
+        "amharic": "በላ",
+        "transliteration": "bela",
+        "english": "he (perfect): he ate"
+      },
+      {
+        "amharic": "በላች",
+        "transliteration": "belach",
+        "english": "she (perfect): she ate"
+      },
+      {
+        "amharic": "በላን",
+        "transliteration": "belan",
+        "english": "we (perfect): we ate"
+      },
+      {
+        "amharic": "በሉ",
+        "transliteration": "belu",
+        "english": "they (perfect): they ate"
+      },
+      {
+        "amharic": "እበላለሁ",
+        "transliteration": "ibelalehu",
+        "english": "I (imperfect): I eat"
+      },
+      {
+        "amharic": "ይበላል",
+        "transliteration": "yibelal",
+        "english": "he (imperfect): he eats"
+      },
+      {
+        "amharic": "ብላ",
+        "transliteration": "bila",
+        "english": "you-m (imperative): eat! (m)"
+      },
+      {
+        "amharic": "ብዪ",
+        "transliteration": "biyi",
+        "english": "you-f (imperative): eat! (f)"
+      },
+      {
+        "amharic": "ብሉ",
+        "transliteration": "bilu",
+        "english": "you-pl (imperative): eat! (pl)"
+      },
+      {
+        "amharic": "በልቶ",
+        "transliteration": "belto",
+        "english": "gerundive: having eaten"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-drink",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to drink' (to drink) across persons and tenses",
+    "structure": "ጠጣሁ",
+    "template": "t'et'ahu",
+    "examples": [
+      {
+        "amharic": "ጠጣሁ",
+        "transliteration": "t'et'ahu",
+        "english": "I (perfect): I drank"
+      },
+      {
+        "amharic": "ጠጣህ",
+        "transliteration": "t'et'ah",
+        "english": "you-m (perfect): you (m) drank"
+      },
+      {
+        "amharic": "ጠጣሽ",
+        "transliteration": "t'et'ash",
+        "english": "you-f (perfect): you (f) drank"
+      },
+      {
+        "amharic": "ጠጣ",
+        "transliteration": "t'et'a",
+        "english": "he (perfect): he drank"
+      },
+      {
+        "amharic": "ጠጣች",
+        "transliteration": "t'et'ach",
+        "english": "she (perfect): she drank"
+      },
+      {
+        "amharic": "ጠጣን",
+        "transliteration": "t'et'an",
+        "english": "we (perfect): we drank"
+      },
+      {
+        "amharic": "ጠጡ",
+        "transliteration": "t'et'u",
+        "english": "they (perfect): they drank"
+      },
+      {
+        "amharic": "እጠጣለሁ",
+        "transliteration": "it'et'alehu",
+        "english": "I (imperfect): I drink"
+      },
+      {
+        "amharic": "ይጠጣል",
+        "transliteration": "yit'et'al",
+        "english": "he (imperfect): he drinks"
+      },
+      {
+        "amharic": "ጠጣ",
+        "transliteration": "t'et'a",
+        "english": "you-m (imperative): drink! (m)"
+      },
+      {
+        "amharic": "ጠጪ",
+        "transliteration": "t'ech'i",
+        "english": "you-f (imperative): drink! (f)"
+      },
+      {
+        "amharic": "ጠጡ",
+        "transliteration": "t'et'u",
+        "english": "you-pl (imperative): drink! (pl)"
+      },
+      {
+        "amharic": "ጠጥቶ",
+        "transliteration": "t'et'to",
+        "english": "gerundive: having drunk"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-go",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to go' (to go, to leave) across persons and tenses",
+    "structure": "ሄድኩ",
+    "template": "hedku",
+    "examples": [
+      {
+        "amharic": "ሄድኩ",
+        "transliteration": "hedku",
+        "english": "I (perfect): I went"
+      },
+      {
+        "amharic": "ሄድክ",
+        "transliteration": "hedik",
+        "english": "you-m (perfect): you (m) went"
+      },
+      {
+        "amharic": "ሄድሽ",
+        "transliteration": "hedish",
+        "english": "you-f (perfect): you (f) went"
+      },
+      {
+        "amharic": "ሄደ",
+        "transliteration": "hede",
+        "english": "he (perfect): he went"
+      },
+      {
+        "amharic": "ሄደች",
+        "transliteration": "hedech",
+        "english": "she (perfect): she went"
+      },
+      {
+        "amharic": "ሄድን",
+        "transliteration": "hedin",
+        "english": "we (perfect): we went"
+      },
+      {
+        "amharic": "ሄዱ",
+        "transliteration": "hedu",
+        "english": "they (perfect): they went"
+      },
+      {
+        "amharic": "እሄዳለሁ",
+        "transliteration": "ihedalehu",
+        "english": "I (imperfect): I go"
+      },
+      {
+        "amharic": "ይሄዳል",
+        "transliteration": "yihedal",
+        "english": "he (imperfect): he goes"
+      },
+      {
+        "amharic": "ሂድ",
+        "transliteration": "hid",
+        "english": "you-m (imperative): go! (m)"
+      },
+      {
+        "amharic": "ሂጂ",
+        "transliteration": "hiji",
+        "english": "you-f (imperative): go! (f)"
+      },
+      {
+        "amharic": "ሂዱ",
+        "transliteration": "hidu",
+        "english": "you-pl (imperative): go! (pl)"
+      },
+      {
+        "amharic": "ሄዶ",
+        "transliteration": "hedo",
+        "english": "gerundive: having gone"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-come",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to come' (to come, to arrive) across persons and tenses",
+    "structure": "መጣሁ",
+    "template": "met'ahu",
+    "examples": [
+      {
+        "amharic": "መጣሁ",
+        "transliteration": "met'ahu",
+        "english": "I (perfect): I came"
+      },
+      {
+        "amharic": "መጣህ",
+        "transliteration": "met'ah",
+        "english": "you-m (perfect): you (m) came"
+      },
+      {
+        "amharic": "መጣሽ",
+        "transliteration": "met'ash",
+        "english": "you-f (perfect): you (f) came"
+      },
+      {
+        "amharic": "መጣ",
+        "transliteration": "met'a",
+        "english": "he (perfect): he came"
+      },
+      {
+        "amharic": "መጣች",
+        "transliteration": "met'ach",
+        "english": "she (perfect): she came"
+      },
+      {
+        "amharic": "መጣን",
+        "transliteration": "met'an",
+        "english": "we (perfect): we came"
+      },
+      {
+        "amharic": "መጡ",
+        "transliteration": "met'u",
+        "english": "they (perfect): they came"
+      },
+      {
+        "amharic": "እመጣለሁ",
+        "transliteration": "imet'alehu",
+        "english": "I (imperfect): I come"
+      },
+      {
+        "amharic": "ይመጣል",
+        "transliteration": "yimet'al",
+        "english": "he (imperfect): he comes"
+      },
+      {
+        "amharic": "ና",
+        "transliteration": "na",
+        "english": "you-m (imperative): come! (m)"
+      },
+      {
+        "amharic": "ነይ",
+        "transliteration": "ney",
+        "english": "you-f (imperative): come! (f)"
+      },
+      {
+        "amharic": "ኑ",
+        "transliteration": "nu",
+        "english": "you-pl (imperative): come! (pl)"
+      },
+      {
+        "amharic": "መጥቶ",
+        "transliteration": "met'to",
+        "english": "gerundive: having come"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-say",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to say' (to say, to tell, to utter) across persons and tenses",
+    "structure": "አልኩ",
+    "template": "alku",
+    "examples": [
+      {
+        "amharic": "አልኩ",
+        "transliteration": "alku",
+        "english": "I (perfect): I said"
+      },
+      {
+        "amharic": "አልክ",
+        "transliteration": "alik",
+        "english": "you-m (perfect): you (m) said"
+      },
+      {
+        "amharic": "አልሽ",
+        "transliteration": "alish",
+        "english": "you-f (perfect): you (f) said"
+      },
+      {
+        "amharic": "አለ",
+        "transliteration": "ale",
+        "english": "he (perfect): he said"
+      },
+      {
+        "amharic": "አለች",
+        "transliteration": "alech",
+        "english": "she (perfect): she said"
+      },
+      {
+        "amharic": "አልን",
+        "transliteration": "alin",
+        "english": "we (perfect): we said"
+      },
+      {
+        "amharic": "አሉ",
+        "transliteration": "alu",
+        "english": "they (perfect): they said"
+      },
+      {
+        "amharic": "እላለሁ",
+        "transliteration": "ilalehu",
+        "english": "I (imperfect): I say"
+      },
+      {
+        "amharic": "ይላል",
+        "transliteration": "yilal",
+        "english": "he (imperfect): he says"
+      },
+      {
+        "amharic": "በል",
+        "transliteration": "bel",
+        "english": "you-m (imperative): say! (m)"
+      },
+      {
+        "amharic": "በዪ",
+        "transliteration": "beyi",
+        "english": "you-f (imperative): say! (f)"
+      },
+      {
+        "amharic": "በሉ",
+        "transliteration": "belu",
+        "english": "you-pl (imperative): say! (pl)"
+      },
+      {
+        "amharic": "ብሎ",
+        "transliteration": "bilo",
+        "english": "gerundive: having said"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-see",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to see' (to see, to look at) across persons and tenses",
+    "structure": "አየሁ",
+    "template": "ayehu",
+    "examples": [
+      {
+        "amharic": "አየሁ",
+        "transliteration": "ayehu",
+        "english": "I (perfect): I saw"
+      },
+      {
+        "amharic": "አየህ",
+        "transliteration": "ayeh",
+        "english": "you-m (perfect): you (m) saw"
+      },
+      {
+        "amharic": "አየሽ",
+        "transliteration": "ayesh",
+        "english": "you-f (perfect): you (f) saw"
+      },
+      {
+        "amharic": "አየ",
+        "transliteration": "aye",
+        "english": "he (perfect): he saw"
+      },
+      {
+        "amharic": "አየች",
+        "transliteration": "ayech",
+        "english": "she (perfect): she saw"
+      },
+      {
+        "amharic": "አየን",
+        "transliteration": "ayen",
+        "english": "we (perfect): we saw"
+      },
+      {
+        "amharic": "አዩ",
+        "transliteration": "ayu",
+        "english": "they (perfect): they saw"
+      },
+      {
+        "amharic": "አያለሁ",
+        "transliteration": "ayalehu",
+        "english": "I (imperfect): I see"
+      },
+      {
+        "amharic": "ያያል",
+        "transliteration": "yayal",
+        "english": "he (imperfect): he sees"
+      },
+      {
+        "amharic": "እይ",
+        "transliteration": "iy",
+        "english": "you-m (imperative): see! (m)"
+      },
+      {
+        "amharic": "እዪ",
+        "transliteration": "iyi",
+        "english": "you-f (imperative): see! (f)"
+      },
+      {
+        "amharic": "እዩ",
+        "transliteration": "iyu",
+        "english": "you-pl (imperative): see! (pl)"
+      },
+      {
+        "amharic": "አይቶ",
+        "transliteration": "ayto",
+        "english": "gerundive: having seen"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-want",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to want' (to want; also to seek / look for) across persons and tenses",
+    "structure": "ፈለግኩ",
+    "template": "felegku",
+    "examples": [
+      {
+        "amharic": "ፈለግኩ",
+        "transliteration": "felegku",
+        "english": "I (perfect): I wanted"
+      },
+      {
+        "amharic": "ፈለግህ",
+        "transliteration": "felegh",
+        "english": "you-m (perfect): you (m) wanted"
+      },
+      {
+        "amharic": "ፈለግሽ",
+        "transliteration": "felegsh",
+        "english": "you-f (perfect): you (f) wanted"
+      },
+      {
+        "amharic": "ፈለገ",
+        "transliteration": "felege",
+        "english": "he (perfect): he wanted"
+      },
+      {
+        "amharic": "ፈለገች",
+        "transliteration": "felegech",
+        "english": "she (perfect): she wanted"
+      },
+      {
+        "amharic": "ፈለግን",
+        "transliteration": "felegn",
+        "english": "we (perfect): we wanted"
+      },
+      {
+        "amharic": "ፈለጉ",
+        "transliteration": "felegu",
+        "english": "they (perfect): they wanted"
+      },
+      {
+        "amharic": "እፈልጋለሁ",
+        "transliteration": "ifelgalehu",
+        "english": "I (imperfect): I want / I will want"
+      },
+      {
+        "amharic": "ይፈልጋል",
+        "transliteration": "yifelgal",
+        "english": "he (imperfect): he wants"
+      },
+      {
+        "amharic": "ፍለግ",
+        "transliteration": "fileg",
+        "english": "you-m (imperative): want! / seek! (to a man)"
+      },
+      {
+        "amharic": "ፍለጊ",
+        "transliteration": "filegi",
+        "english": "you-f (imperative): want! / seek! (to a woman)"
+      },
+      {
+        "amharic": "ፍለጉ",
+        "transliteration": "filegu",
+        "english": "you-pl (imperative): want! / seek! (to a group)"
+      },
+      {
+        "amharic": "ፈልጎ",
+        "transliteration": "felgo",
+        "english": "gerundive (he): having wanted (he)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-do-make",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to do / make' (to do; to make) across persons and tenses",
+    "structure": "አደረግኩ",
+    "template": "aderegku",
+    "examples": [
+      {
+        "amharic": "አደረግኩ",
+        "transliteration": "aderegku",
+        "english": "I (perfect): I did / made"
+      },
+      {
+        "amharic": "አደረግህ",
+        "transliteration": "aderegh",
+        "english": "you-m (perfect): you (m) did / made"
+      },
+      {
+        "amharic": "አደረግሽ",
+        "transliteration": "aderegsh",
+        "english": "you-f (perfect): you (f) did / made"
+      },
+      {
+        "amharic": "አደረገ",
+        "transliteration": "aderege",
+        "english": "he (perfect): he did / made"
+      },
+      {
+        "amharic": "አደረገች",
+        "transliteration": "aderegech",
+        "english": "she (perfect): she did / made"
+      },
+      {
+        "amharic": "አደረግን",
+        "transliteration": "aderegn",
+        "english": "we (perfect): we did / made"
+      },
+      {
+        "amharic": "አደረጉ",
+        "transliteration": "aderegu",
+        "english": "they (perfect): they did / made"
+      },
+      {
+        "amharic": "አደርጋለሁ",
+        "transliteration": "adergalehu",
+        "english": "I (imperfect): I do / I will do"
+      },
+      {
+        "amharic": "ያደርጋል",
+        "transliteration": "yadergal",
+        "english": "he (imperfect): he does"
+      },
+      {
+        "amharic": "አድርግ",
+        "transliteration": "adrig",
+        "english": "you-m (imperative): do! (to a man)"
+      },
+      {
+        "amharic": "አድርጊ",
+        "transliteration": "adrigi",
+        "english": "you-f (imperative): do! (to a woman)"
+      },
+      {
+        "amharic": "አድርጉ",
+        "transliteration": "adrigu",
+        "english": "you-pl (imperative): do! (to a group)"
+      },
+      {
+        "amharic": "አድርጎ",
+        "transliteration": "adrigo",
+        "english": "gerundive (he): having done (he)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-give",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to give' (to give (hand over)) across persons and tenses",
+    "structure": "ሰጠሁ",
+    "template": "set'ehu",
+    "examples": [
+      {
+        "amharic": "ሰጠሁ",
+        "transliteration": "set'ehu",
+        "english": "I (perfect): I gave"
+      },
+      {
+        "amharic": "ሰጠህ",
+        "transliteration": "set'eh",
+        "english": "you-m (perfect): you (m) gave"
+      },
+      {
+        "amharic": "ሰጠሽ",
+        "transliteration": "set'esh",
+        "english": "you-f (perfect): you (f) gave"
+      },
+      {
+        "amharic": "ሰጠ",
+        "transliteration": "set'e",
+        "english": "he (perfect): he gave"
+      },
+      {
+        "amharic": "ሰጠች",
+        "transliteration": "set'ech",
+        "english": "she (perfect): she gave"
+      },
+      {
+        "amharic": "ሰጠን",
+        "transliteration": "set'en",
+        "english": "we (perfect): we gave"
+      },
+      {
+        "amharic": "ሰጡ",
+        "transliteration": "set'u",
+        "english": "they (perfect): they gave"
+      },
+      {
+        "amharic": "እሰጣለሁ",
+        "transliteration": "iset'alehu",
+        "english": "I (imperfect): I give / I will give"
+      },
+      {
+        "amharic": "ይሰጣል",
+        "transliteration": "yiset'al",
+        "english": "he (imperfect): he gives"
+      },
+      {
+        "amharic": "ስጥ",
+        "transliteration": "sit'",
+        "english": "you-m (imperative): give! (to a man)"
+      },
+      {
+        "amharic": "ስጪ",
+        "transliteration": "sich'i",
+        "english": "you-f (imperative): give! (to a woman)"
+      },
+      {
+        "amharic": "ስጡ",
+        "transliteration": "sit'u",
+        "english": "you-pl (imperative): give! (to a group)"
+      },
+      {
+        "amharic": "ሰጥቶ",
+        "transliteration": "set'to",
+        "english": "gerundive (he): having given (he)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-know",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to know' (to know (a fact); to be aware of) across persons and tenses",
+    "structure": "አወቅሁ",
+    "template": "aweqhu",
+    "examples": [
+      {
+        "amharic": "አወቅሁ",
+        "transliteration": "aweqhu",
+        "english": "I (perfect): I knew (literary; colloq. አወኩ aweku)"
+      },
+      {
+        "amharic": "አወቅህ",
+        "transliteration": "aweqh",
+        "english": "you-m (perfect): you (m) knew"
+      },
+      {
+        "amharic": "አወቅሽ",
+        "transliteration": "aweqsh",
+        "english": "you-f (perfect): you (f) knew"
+      },
+      {
+        "amharic": "አወቀ",
+        "transliteration": "aweqe",
+        "english": "he (perfect): he knew"
+      },
+      {
+        "amharic": "አወቀች",
+        "transliteration": "aweqech",
+        "english": "she (perfect): she knew"
+      },
+      {
+        "amharic": "አወቅን",
+        "transliteration": "aweqn",
+        "english": "we (perfect): we knew"
+      },
+      {
+        "amharic": "አወቁ",
+        "transliteration": "awequ",
+        "english": "they (perfect): they knew"
+      },
+      {
+        "amharic": "አውቃለሁ",
+        "transliteration": "awqalehu",
+        "english": "I (imperfect): I know / I will know"
+      },
+      {
+        "amharic": "ያውቃል",
+        "transliteration": "yawqal",
+        "english": "he (imperfect): he knows"
+      },
+      {
+        "amharic": "እወቅ",
+        "transliteration": "iweq",
+        "english": "you-m (imperative): know! (to a man) — rare in speech"
+      },
+      {
+        "amharic": "እወቂ",
+        "transliteration": "iweqi",
+        "english": "you-f (imperative): know! (to a woman)"
+      },
+      {
+        "amharic": "እወቁ",
+        "transliteration": "iwequ",
+        "english": "you-pl (imperative): know! (to a group)"
+      },
+      {
+        "amharic": "አውቆ",
+        "transliteration": "awqo",
+        "english": "gerundive (he): having known (he)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-buy",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to buy' (to buy; to purchase) across persons and tenses",
+    "structure": "ገዛሁ",
+    "template": "gezahu",
+    "examples": [
+      {
+        "amharic": "ገዛሁ",
+        "transliteration": "gezahu",
+        "english": "I (perfect): I bought"
+      },
+      {
+        "amharic": "ገዛህ",
+        "transliteration": "gezah",
+        "english": "you-m (perfect): you (m) bought"
+      },
+      {
+        "amharic": "ገዛሽ",
+        "transliteration": "gezash",
+        "english": "you-f (perfect): you (f) bought"
+      },
+      {
+        "amharic": "ገዛ",
+        "transliteration": "geza",
+        "english": "he (perfect): he bought"
+      },
+      {
+        "amharic": "ገዛች",
+        "transliteration": "gezach",
+        "english": "she (perfect): she bought"
+      },
+      {
+        "amharic": "ገዛን",
+        "transliteration": "gezan",
+        "english": "we (perfect): we bought"
+      },
+      {
+        "amharic": "ገዙ",
+        "transliteration": "gezu",
+        "english": "they (perfect): they bought"
+      },
+      {
+        "amharic": "እገዛለሁ",
+        "transliteration": "igezalehu",
+        "english": "I (imperfect): I buy / I will buy"
+      },
+      {
+        "amharic": "ይገዛል",
+        "transliteration": "yigezal",
+        "english": "he (imperfect): he buys"
+      },
+      {
+        "amharic": "ግዛ",
+        "transliteration": "giza",
+        "english": "you-m (imperative): buy! (to a man)"
+      },
+      {
+        "amharic": "ግዢ",
+        "transliteration": "gizhi",
+        "english": "you-f (imperative): buy! (to a woman)"
+      },
+      {
+        "amharic": "ግዙ",
+        "transliteration": "gizu",
+        "english": "you-pl (imperative): buy! (to a group)"
+      },
+      {
+        "amharic": "ገዝቶ",
+        "transliteration": "gezto",
+        "english": "gerundive (he): having bought (he)"
+      }
+    ],
+    "substitutions": []
+  },
+  {
+    "id": "xc-to-sleep",
+    "category": "VERB CONJUGATION",
+    "unit": 11,
+    "description": "Conjugation of 'to sleep' (to sleep; to lie down) across persons and tenses",
+    "structure": "ተኛሁ",
+    "template": "tegnahu",
+    "examples": [
+      {
+        "amharic": "ተኛሁ",
+        "transliteration": "tegnahu",
+        "english": "I (perfect): I slept"
+      },
+      {
+        "amharic": "ተኛህ",
+        "transliteration": "tegnah",
+        "english": "you-m (perfect): you (m) slept"
+      },
+      {
+        "amharic": "ተኛሽ",
+        "transliteration": "tegnash",
+        "english": "you-f (perfect): you (f) slept"
+      },
+      {
+        "amharic": "ተኛ",
+        "transliteration": "tegna",
+        "english": "he (perfect): he slept"
+      },
+      {
+        "amharic": "ተኛች",
+        "transliteration": "tegnach",
+        "english": "she (perfect): she slept"
+      },
+      {
+        "amharic": "ተኛን",
+        "transliteration": "tegnan",
+        "english": "we (perfect): we slept"
+      },
+      {
+        "amharic": "ተኙ",
+        "transliteration": "tegnu",
+        "english": "they (perfect): they slept"
+      },
+      {
+        "amharic": "እተኛለሁ",
+        "transliteration": "itegnalehu",
+        "english": "I (imperfect): I sleep / I will sleep"
+      },
+      {
+        "amharic": "ይተኛል",
+        "transliteration": "yitegnal",
+        "english": "he (imperfect): he sleeps"
+      },
+      {
+        "amharic": "ትኛ",
+        "transliteration": "tigna",
+        "english": "you-m (imperative): sleep! (to a man)"
+      },
+      {
+        "amharic": "ትኚ",
+        "transliteration": "tigni",
+        "english": "you-f (imperative): sleep! (to a woman)"
+      },
+      {
+        "amharic": "ትኙ",
+        "transliteration": "tignu",
+        "english": "you-pl (imperative): sleep! (to a group)"
+      },
+      {
+        "amharic": "ተኝቶ",
+        "transliteration": "tegnito",
+        "english": "gerundive (he): having slept (he)"
+      }
+    ],
+    "substitutions": []
   }
 ]
