@@ -28,8 +28,8 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **Line-by-Line Translation**: See Amharic, transliteration, and English for each line
 
 ### Reference
-- **Quick Phrases**: 174 phrases for travel and daily use, including generated offline pronunciation for the 171 non-placeholder phrases
-- **Vocabulary Browser**: 436 words organized by category
+- **Quick Phrases**: 706 phrases for travel and daily use (171 with generated offline pronunciation; the rest are POC-promoted candidate content pending audio)
+- **Vocabulary Browser**: 1038 words organized by category
 - **Number System**: Ethiopian numbers, months, ordinals, and fractions
 - **Culture Notes**: 20 cultural notes connected to lessons and conversations
 - **Search**: Find any word or phrase instantly
@@ -106,7 +106,7 @@ The bottom tab bar is:
 
 1. **Today**: Daily focus, phrase preview, and quick paths.
 2. **Learn**: Open learning path — a recommended next step plus fully-tappable lessons with mastery rings (no locked stages).
-3. **Practice**: Flashcards, quiz, pronunciation, sentence builder, speed drill, and tracing.
+3. **Practice**: Flashcards, quiz, sentence builder, word order, fill the blank (cloze), grammar reference, reading passages, match pairs, speed drill, pronunciation, and tracing.
 4. **Selam**: Tutor chat.
 5. **You**: Progress, achievements, statistics, and backup/restore.
 
@@ -116,11 +116,12 @@ Reference is not a bottom tab. Open it from **Today > Quick paths > Reference**.
 
 Learner-facing content is bundled in `Fidel/Data/*.json`, including:
 - Complete Fidel alphabet with 238 characters
-- 30 sentence patterns with grammar explanations
-- 24 conversation scripts with full dialogues
-- 174 phrases
-- 436 vocabulary words across multiple categories
-- 20 cultural notes
+- 94 grammar patterns (including 12 verb-conjugation tables)
+- 30 conversation scripts with full dialogues
+- 706 phrases
+- 1038 vocabulary words across multiple categories
+- 90 cultural notes
+- 5 graded reading passages with comprehension questions
 - 171 active Azure-generated phrase pronunciation clips in `audio_manifest.json`
 
 The full generated audio catalog also records alternate reviewed/generated clips. See `docs/audio-asset-library.md` before changing audio files, manifests, or voice selection.
