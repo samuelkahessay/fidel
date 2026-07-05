@@ -90,8 +90,6 @@ struct Lesson: Identifiable, Hashable {
     let patterns: [Pattern]
     let vocabulary: [VocabularyWord]
     let phrases: [Phrase]
-    var isCompleted: Bool = false
-    var progressPercent: Double = 0
 }
 
 /// A word-bank translation exercise (Duolingo-style "arrange the tiles").

@@ -151,4 +151,35 @@ final class ProgressExportRoundTripTests: XCTestCase {
         XCTAssertEqual(restored?.lastFreezeGrantWeek, 0, "missing lastFreezeGrantWeek must default to 0")
         XCTAssertEqual(AppSettingsStore().dailyGoalTier, .regular, "missing dailyGoalTier must default to .regular")
     }
+
+    // MARK: - Merge hygiene
+
+    /// A divergent backup can list a lesson as in-progress that the local
+    /// device has since completed. The import merge must not leave a completed
+    /// lesson sitting in `lessonsInProgress`.
+    func testCompletedLessonIsDroppedFromInProgressOnImport() throws {
+        // Source backup: lessons 1 and 2 in progress (set directly to simulate
+        // a divergent device; the normal guards would prevent this state).
+        let sourceContainer = try makeContainer()
+        let source = UserProgress(ownerUserId: LocalLearner.userId)
+        source.lessonsInProgress = [1, 2]
+        sourceContainer.mainContext.insert(source)
+        let exportService = ProgressExportService(
+            modelContext: sourceContainer.mainContext, settingsStore: AppSettingsStore())
+        let data = try exportService.exportData()
+
+        // Local device has already completed lesson 1.
+        let targetContainer = try makeContainer()
+        let local = UserProgress(ownerUserId: LocalLearner.userId)
+        local.completeLesson(1)
+        targetContainer.mainContext.insert(local)
+        let importService = ProgressExportService(
+            modelContext: targetContainer.mainContext, settingsStore: AppSettingsStore())
+        try importService.importData(data)
+
+        let restored = try fetchProgress(from: targetContainer)
+        XCTAssertEqual(restored?.lessonsInProgress, [2], "completed lesson 1 must be filtered out; 2 remains")
+        XCTAssertEqual(restored?.lessonsInProgress.contains(1), false)
+        XCTAssertEqual(restored?.lessonsCompleted.contains(1), true)
+    }
 }
