@@ -175,6 +175,16 @@ final class UserProgress {
     var fidelCharactersRecognized: [String] = []
     var charactersTraced: [String] = []
     var currentStage: Int = 0
+    /// Streak "slack": freezes auto-granted weekly that absorb a single missed day
+    /// without resetting `currentStreak`. Research shows unprotected streaks cause
+    /// learners to quit entirely after the first miss.
+    var streakFreezesAvailable: Int = 0
+    /// Count of ISO weeks in which a streak freeze has been granted. Not reset by
+    /// a missed day — tracks longer-term engagement independent of daily gaps.
+    var weeklyStreakCount: Int = 0
+    /// ISO week key (`year*100 + weekOfYear`) of the last freeze grant, used to cap
+    /// grants at once per week.
+    var lastFreezeGrantWeek: Int = 0
 
     init(ownerUserId: String = "") {
         self.ownerUserId = ownerUserId
@@ -213,24 +223,50 @@ final class UserProgress {
     func checkStreak() {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date.now)
-        
+
+        grantWeeklyStreakFreezeIfNeeded(calendar: calendar, today: today)
+
         if let lastDate = lastPracticeDate {
             let lastDay = calendar.startOfDay(for: lastDate)
             let daysDiff = calendar.dateComponents([.day], from: lastDay, to: today).day ?? 0
-            
+
             if daysDiff == 1 {
                 currentStreak += 1
                 if currentStreak > longestStreak {
                     longestStreak = currentStreak
                 }
-            } else if daysDiff > 1 {
+            } else if daysDiff == 2 {
+                // Exactly one missed day: spend a freeze if we have one so a single
+                // slip doesn't reset the streak (the whole point of the slack).
+                if streakFreezesAvailable > 0 {
+                    streakFreezesAvailable -= 1
+                } else {
+                    currentStreak = 1
+                }
+            } else if daysDiff > 2 {
                 currentStreak = 1
             }
         } else {
             currentStreak = 1
         }
-        
+
         lastPracticeDate = .now
+    }
+
+    /// Grants up to 2 streak freezes once per ISO week so learners always have
+    /// slack for an accidental missed day. Idempotent within a week: repeated
+    /// calls (e.g. from every `addXP`) only grant on the first call of a new
+    /// ISO week. `weeklyStreakCount` tracks how many weeks have granted a freeze
+    /// and is intentionally untouched by streak resets or freeze consumption.
+    private func grantWeeklyStreakFreezeIfNeeded(calendar: Calendar, today: Date) {
+        let weekComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)
+        let weekKey = (weekComponents.yearForWeekOfYear ?? 0) * 100 + (weekComponents.weekOfYear ?? 0)
+
+        guard weekKey != lastFreezeGrantWeek else { return }
+
+        streakFreezesAvailable = min(streakFreezesAvailable + 1, 2)
+        lastFreezeGrantWeek = weekKey
+        weeklyStreakCount += 1
     }
     
     func completeLesson(_ lessonId: Int) {

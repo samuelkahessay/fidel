@@ -154,6 +154,11 @@ private struct TodayView: View {
 
     @State private var progress: UserProgress?
     @State private var dailyGoalXP = 20
+    /// The single "do this now" recommendation, built from the SAME
+    /// `NextStepPlanner` that drives the Learn tab. Today no longer reads the
+    /// now-frozen `UserProgress.currentStage`, so its hero stays a live
+    /// recommendation instead of getting stuck on "Practice your Fidel".
+    @State private var recommendedSession: RecommendedSession?
 
     private let lessonRepository = LessonRepository.shared
     private let settingsStore = AppSettingsStore()
@@ -389,53 +394,30 @@ private struct TodayView: View {
         }
     }
 
+    /// The CTA route for the current recommendation. Mirrors the Learn tab's
+    /// `HeroAction` handling so Today and Learn always agree on "do this now".
     private var nextRoute: FidelRoute {
-        guard let progress else { return .practice(.tracing) }
-        let stage = currentLearningStage
+        guard let session = recommendedSession else { return .practice(.tracing) }
+        return route(for: session.heroAction)
+    }
 
-        if stage == .scriptAndSounds {
-            return .practice(.tracing)
+    private func route(for action: HeroAction) -> FidelRoute {
+        switch action {
+        case .lesson(let id): return .lesson(id)
+        case .conversation(let id): return .conversation(id)
+        case .flashcards: return .practice(.flashcards)
+        case .matchPairs: return .practice(.matchPairs)
+        case .practiceTracing: return .practice(.tracing)
+        case .browseChart: return .fidelGrid
         }
-
-        if let lesson = nextLesson(for: progress, stage: stage) {
-            return .lesson(lesson.id)
-        }
-
-        return .practice(.flashcards)
     }
 
     private var nextActionTitle: String {
-        guard let progress else { return "Start with Fidel" }
-        let stage = currentLearningStage
-
-        if stage == .scriptAndSounds {
-            return "Practice your Fidel"
-        }
-
-        if let lesson = nextLesson(for: progress, stage: stage) {
-            return lesson.title
-        }
-
-        return "Review what you know"
+        recommendedSession?.title ?? "Practice your Fidel"
     }
 
     private var nextActionSubtitle: String {
-        guard let progress else {
-            return "Trace the letter shapes to recognize them and unlock the rest of the app."
-        }
-        let stage = currentLearningStage
-
-        if stage == .scriptAndSounds {
-            let recognized = progress.fidelCharactersRecognized.count
-            let target = LearningStage.fidelRecognitionTarget
-            return "Trace characters to recognize them — \(recognized) of \(target) recognized to unlock the next stage."
-        }
-
-        if let lesson = nextLesson(for: progress, stage: stage) {
-            return "\(stage.displayName) · \(lesson.description)"
-        }
-
-        return "You are caught up on available lessons. Keep memory fresh with a short practice round."
+        recommendedSession?.detail ?? "Trace characters to learn them — go at your own pace."
     }
 
     private var nextActionIcon: String {
@@ -460,21 +442,32 @@ private struct TodayView: View {
         return phrases[(day - 1) % phrases.count]
     }
 
-    private var currentLearningStage: LearningStage {
-        guard let progress else { return .scriptAndSounds }
-        return LearningStage(rawValue: progress.currentStage) ?? .scriptAndSounds
-    }
-
-    private func nextLesson(for progress: UserProgress, stage: LearningStage) -> Lesson? {
-        lessonRepository.getLessons()
-            .filter { stage.availableLessonIds.contains($0.id) }
-            .first { !progress.lessonsCompleted.contains($0.id) }
-    }
-
     private func refreshProgress() {
         let repository = ProgressRepository(modelContext: modelContext)
-        progress = repository.ensureUserProgress()
+        let current = repository.ensureUserProgress()
+        progress = current
         dailyGoalXP = max(settingsStore.dailyXPGoal, 1)
+        recommendedSession = buildRecommendedSession(for: current)
+    }
+
+    /// Builds the recommendation from the SAME inputs the Learn tab feeds
+    /// `NextStepPlanner` (completed lessons, pace tier, due-review count, ordered
+    /// lesson ids) — never from the now-frozen `UserProgress.currentStage`.
+    private func buildRecommendedSession(for progress: UserProgress) -> RecommendedSession {
+        let completedLessonIds = Set(progress.lessonsCompleted)
+        let lessons = lessonRepository.getLessons()
+        let orderedLessonIds = lessons.map(\.id).sorted()
+        let inProgressLessonId = lessons.first {
+            $0.progressPercent > 0 && !completedLessonIds.contains($0.id)
+        }?.id
+        let dueReviewCount = FlashcardManager(modelContext: modelContext).getDueItems().count
+        return NextStepPlanner().plan(
+            completedLessonIds: completedLessonIds,
+            inProgressLessonId: inProgressLessonId,
+            tier: settingsStore.dailyGoalTier,
+            dueReviewCount: dueReviewCount,
+            orderedLessonIds: orderedLessonIds
+        )
     }
 }
 

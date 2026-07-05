@@ -16,87 +16,29 @@ final class StageManager {
         self.currentStage = LearningStage(rawValue: progressRepository.getCurrentStage()) ?? .scriptAndSounds
     }
 
-    // MARK: - Content Filtering
+    // MARK: - Content
+
+    // The learning path is fully open: every lesson, conversation, practice
+    // mode, word, and phrase is available at all times. These accessors return
+    // all content unconditionally — nothing is stage-gated anymore.
 
     func availableLessons() -> [Lesson] {
-        let ids = currentStage.availableLessonIds
-        return lessonRepository.getLessons().filter { ids.contains($0.id) }
+        lessonRepository.getLessons()
     }
 
     func availableConversations() -> [Conversation] {
-        let ids = currentStage.availableConversationIds
-        return lessonRepository.getConversations().filter { ids.contains($0.id) }
+        lessonRepository.getConversations()
     }
 
     func availablePracticeModes() -> [PracticeMode] {
-        PracticeMode.allCases.filter { currentStage.availablePracticeModes.contains($0) }
+        PracticeMode.allCases
     }
 
     func availableVocabulary() -> [VocabularyWord] {
-        let lessonIds = currentStage.availableLessonIds
-        if lessonIds.isEmpty {
-            // Stage 0: return Fidel-related vocab only (empty for now — flashcards use Fidel chars)
-            return []
-        }
-        return lessonRepository.getLessons()
-            .filter { lessonIds.contains($0.id) }
-            .flatMap { $0.vocabulary }
+        lessonRepository.getLessons().flatMap { $0.vocabulary }
     }
 
     func availablePhrases() -> [Phrase] {
-        let lessonIds = currentStage.availableLessonIds
-        if lessonIds.isEmpty {
-            return []
-        }
-        return lessonRepository.getLessons()
-            .filter { lessonIds.contains($0.id) }
-            .flatMap { $0.phrases }
-    }
-
-    // MARK: - Stage Progress
-
-    func criteriaForNextStage() -> [StageCriterion]? {
-        guard let next = nextStage() else { return nil }
-        return LearningStage.criteria(for: next)
-    }
-
-    func progressToNextStage() -> Double {
-        guard let criteria = criteriaForNextStage(),
-              !criteria.isEmpty,
-              let progress = progressRepository.getUserProgress() else {
-            return currentStage == .fluency ? 1.0 : 0.0
-        }
-        let total = criteria.reduce(0.0) { $0 + $1.progressFraction(progress) }
-        return total / Double(criteria.count)
-    }
-
-    func isStageUnlocked(_ stage: LearningStage) -> Bool {
-        stage <= currentStage
-    }
-
-    /// Checks if the user meets criteria for the next stage and advances if so.
-    /// Returns `true` if the stage was advanced.
-    @discardableResult
-    func checkAndAdvanceStage() -> Bool {
-        guard let next = nextStage(),
-              let progress = progressRepository.getUserProgress() else {
-            return false
-        }
-
-        let criteria = LearningStage.criteria(for: next)
-        let allMet = criteria.allSatisfy { $0.evaluate(progress) }
-
-        if allMet {
-            currentStage = next
-            progressRepository.setCurrentStage(next.rawValue)
-            return true
-        }
-        return false
-    }
-
-    // MARK: - Helpers
-
-    private func nextStage() -> LearningStage? {
-        LearningStage(rawValue: currentStage.rawValue + 1)
+        lessonRepository.getLessons().flatMap { $0.phrases }
     }
 }

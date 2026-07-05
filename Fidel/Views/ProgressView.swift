@@ -9,6 +9,7 @@ struct ProgressDashboardView: View {
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     private let settingsStore = AppSettingsStore()
     @State private var dailyGoal = AppSettingsStore.defaultDailyXPGoal
+    @State private var dailyGoalTier: DailyGoalTier = .default
     @State private var progress: UserProgress?
     @State private var exportDocument: ProgressBackupDocument?
     @State private var isImportingBackup = false
@@ -25,6 +26,7 @@ struct ProgressDashboardView: View {
                     )
                     youHeroSection
                     metricGrid
+                    paceSection
                     dailyGoalSection
                     achievementsSection
                     localSaveStatusSection
@@ -194,6 +196,24 @@ struct ProgressDashboardView: View {
         .fidelDesignCard()
     }
 
+    private var paceSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            FidelSectionLabel(title: "Pace")
+
+            Picker("Pace", selection: dailyGoalTierBinding) {
+                ForEach(DailyGoalTier.allCases) { tier in
+                    Text(tier.displayName).tag(tier)
+                }
+            }
+            .pickerStyle(.segmented)
+
+            Text(dailyGoalTier.subtitle)
+                .font(AppTheme.Typography.caption)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
+        }
+        .fidelDesignCard()
+    }
+
     private var dailyGoalSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
@@ -264,6 +284,7 @@ struct ProgressDashboardView: View {
         let repo = ProgressRepository(modelContext: modelContext)
         progress = repo.ensureUserProgress()
         dailyGoal = settingsStore.dailyXPGoal
+        dailyGoalTier = settingsStore.dailyGoalTier
         progress?.dailyGoal = dailyGoal
     }
 
@@ -274,6 +295,20 @@ struct ProgressDashboardView: View {
                 dailyGoal = newValue
                 settingsStore.dailyXPGoal = newValue
                 progress?.dailyGoal = newValue
+                progress?.updatedAt = Date.now
+            }
+        )
+    }
+
+    private var dailyGoalTierBinding: Binding<DailyGoalTier> {
+        Binding(
+            get: { dailyGoalTier },
+            set: { newValue in
+                dailyGoalTier = newValue
+                settingsStore.dailyGoalTier = newValue
+                dailyGoal = newValue.suggestedDailyXP
+                settingsStore.dailyXPGoal = newValue.suggestedDailyXP
+                progress?.dailyGoal = newValue.suggestedDailyXP
                 progress?.updatedAt = Date.now
             }
         )

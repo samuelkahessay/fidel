@@ -61,9 +61,6 @@ final class TracingSessionViewModel {
     /// The glyph occupied 58% of the canvas during admin stroke recording.
     static let recordingGlyphScale: Double = 0.58
 
-    static let standardSessionSize = 8
-    static let maxPromotionItems = 3
-
     // MARK: - Published state
 
     var items: [SessionItem] = []
@@ -131,8 +128,12 @@ final class TracingSessionViewModel {
     func startSession(plan: TraceSessionPlan = .standard) {
         switch plan {
         case .standard:
+            let size = AppSettingsStore().dailyGoalTier.tracingSessionSize
+            let maxPromotionItems = max(1, Int(Double(size) * 0.4))
             items = Self.composeStandardSession(
-                mastery: progressRepository?.allTraceMastery() ?? []
+                mastery: progressRepository?.allTraceMastery() ?? [],
+                sessionSize: size,
+                maxPromotionItems: maxPromotionItems
             )
         case .single(let character):
             let level = progressRepository?.getTraceMastery(for: character.id)?.level ?? 0
@@ -148,10 +149,16 @@ final class TracingSessionViewModel {
         prepareCurrentItem()
     }
 
-    /// Up to 3 characters due for promotion (oldest practice first, served at
-    /// their next level) interleaved with new characters in curriculum order:
-    /// first-order forms across all rows, then remaining vowel orders row-major.
-    static func composeStandardSession(mastery: [CharacterTraceMastery]) -> [SessionItem] {
+    /// Up to `maxPromotionItems` characters due for promotion (oldest practice
+    /// first, served at their next level) interleaved with new characters in
+    /// curriculum order: first-order forms across all rows, then remaining
+    /// vowel orders row-major. `sessionSize` is the learner's pace tier
+    /// (`DailyGoalTier.tracingSessionSize`).
+    static func composeStandardSession(
+        mastery: [CharacterTraceMastery],
+        sessionSize: Int,
+        maxPromotionItems: Int
+    ) -> [SessionItem] {
         let masteryById = Dictionary(uniqueKeysWithValues: mastery.map { ($0.characterId, $0) })
 
         let dueItems = mastery
@@ -165,18 +172,18 @@ final class TracingSessionViewModel {
 
         let newItems = curriculumOrderedCharacters()
             .filter { (masteryById[$0.id]?.level ?? 0) == 0 }
-            .prefix(max(0, standardSessionSize - dueItems.count))
+            .prefix(max(0, sessionSize - dueItems.count))
             .map { SessionItem(character: $0, level: 1) }
 
         // Interleave: lead with a fresh character, then alternate due reviews in.
         var result: [SessionItem] = []
         var newQueue = Array(newItems)
         var dueQueue = Array(dueItems)
-        while result.count < standardSessionSize, !newQueue.isEmpty || !dueQueue.isEmpty {
+        while result.count < sessionSize, !newQueue.isEmpty || !dueQueue.isEmpty {
             if !newQueue.isEmpty {
                 result.append(newQueue.removeFirst())
             }
-            if result.count < standardSessionSize, !dueQueue.isEmpty {
+            if result.count < sessionSize, !dueQueue.isEmpty {
                 result.append(dueQueue.removeFirst())
             }
         }

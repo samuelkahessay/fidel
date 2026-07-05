@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF000801 /* ProgressExportRoundTripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000800 /* ProgressExportRoundTripTests.swift */; };
+		BAAFF000701 /* StreakSlackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000700 /* StreakSlackTests.swift */; };
+		BAAFF000601 /* TracingSessionSizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000600 /* TracingSessionSizeTests.swift */; };
+		BAAFF000501 /* JourneyViewModelOpenPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000500 /* JourneyViewModelOpenPathTests.swift */; };
+		BAAFF000401 /* NextStepPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000400 /* NextStepPlannerTests.swift */; };
+		AAAFF000301 /* NextStepPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000300 /* NextStepPlanner.swift */; };
+		BAAFF000301 /* LessonCreditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000300 /* LessonCreditTests.swift */; };
+		BAAFF000201 /* CurriculumServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000200 /* CurriculumServiceTests.swift */; };
+		AAAFF000201 /* CurriculumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000200 /* CurriculumService.swift */; };
+		BAAFF000101 /* DailyGoalTierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000100 /* DailyGoalTierTests.swift */; };
+		AAAFF000101 /* DailyGoalTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000100 /* DailyGoalTier.swift */; };
 		AAA00001001 /* FidelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00001000 /* FidelApp.swift */; };
 		AAA00002001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00002000 /* ContentView.swift */; };
 		AAA00003001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA00003000 /* Assets.xcassets */; };
@@ -83,7 +94,6 @@
 		BAA00010001 /* TraceEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00010000 /* TraceEngineTests.swift */; };
 		BAA00011001 /* TraceMasteryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00011000 /* TraceMasteryTests.swift */; };
 		BAA00012001 /* DuolingoExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00012000 /* DuolingoExerciseTests.swift */; };
-		BAA00013001 /* LearnHeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00013000 /* LearnHeroTests.swift */; };
 		AAA00120001 /* WordAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00120000 /* WordAudioPlayer.swift */; };
 		AAA00121001 /* WordOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00121000 /* WordOrderViewModel.swift */; };
 		AAA00122001 /* WordOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00122000 /* WordOrderView.swift */; };
@@ -103,6 +113,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF000800 /* ProgressExportRoundTripTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressExportRoundTripTests.swift; sourceTree = "<group>"; };
+		BAAFF000700 /* StreakSlackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakSlackTests.swift; sourceTree = "<group>"; };
+		BAAFF000600 /* TracingSessionSizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionSizeTests.swift; sourceTree = "<group>"; };
+		BAAFF000500 /* JourneyViewModelOpenPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewModelOpenPathTests.swift; sourceTree = "<group>"; };
+		BAAFF000400 /* NextStepPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepPlannerTests.swift; sourceTree = "<group>"; };
+		AAAFF000300 /* NextStepPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepPlanner.swift; sourceTree = "<group>"; };
+		BAAFF000300 /* LessonCreditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCreditTests.swift; sourceTree = "<group>"; };
+		BAAFF000200 /* CurriculumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumServiceTests.swift; sourceTree = "<group>"; };
+		AAAFF000200 /* CurriculumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumService.swift; sourceTree = "<group>"; };
+		BAAFF000100 /* DailyGoalTierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalTierTests.swift; sourceTree = "<group>"; };
+		AAAFF000100 /* DailyGoalTier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalTier.swift; sourceTree = "<group>"; };
 		AAA00000000 /* Fidel - Learn Amharic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidel - Learn Amharic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA00001000 /* FidelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FidelApp.swift; sourceTree = "<group>"; };
 		AAA00002000 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -182,7 +203,6 @@
 		BAA00010000 /* TraceEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceEngineTests.swift; sourceTree = "<group>"; };
 		BAA00011000 /* TraceMasteryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceMasteryTests.swift; sourceTree = "<group>"; };
 		BAA00012000 /* DuolingoExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuolingoExerciseTests.swift; sourceTree = "<group>"; };
-		BAA00013000 /* LearnHeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnHeroTests.swift; sourceTree = "<group>"; };
 		AAA00120000 /* WordAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAudioPlayer.swift; sourceTree = "<group>"; };
 		AAA00121000 /* WordOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderViewModel.swift; sourceTree = "<group>"; };
 		AAA00122000 /* WordOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderView.swift; sourceTree = "<group>"; };
@@ -235,11 +255,18 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF000800 /* ProgressExportRoundTripTests.swift */,
+				BAAFF000700 /* StreakSlackTests.swift */,
+				BAAFF000600 /* TracingSessionSizeTests.swift */,
+				BAAFF000500 /* JourneyViewModelOpenPathTests.swift */,
+				BAAFF000400 /* NextStepPlannerTests.swift */,
+				BAAFF000300 /* LessonCreditTests.swift */,
+				BAAFF000200 /* CurriculumServiceTests.swift */,
+				BAAFF000100 /* DailyGoalTierTests.swift */,
 				BAA00002000 /* LocalFirstTests.swift */,
 				BAA00010000 /* TraceEngineTests.swift */,
 				BAA00011000 /* TraceMasteryTests.swift */,
 				BAA00012000 /* DuolingoExerciseTests.swift */,
-				BAA00013000 /* LearnHeroTests.swift */,
 			);
 			path = FidelTests;
 			sourceTree = "<group>";
@@ -247,6 +274,7 @@
 		AAA00400000 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF000100 /* DailyGoalTier.swift */,
 				AAA00004000 /* Models.swift */,
 				AAA00005000 /* AmharicData.swift */,
 				AAA00101000 /* AudioAsset.swift */,
@@ -333,6 +361,8 @@
 		AAA00700000 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF000300 /* NextStepPlanner.swift */,
+				AAAFF000200 /* CurriculumService.swift */,
 				AAA00018000 /* SpacedRepetition.swift */,
 				AAA00021000 /* AudioService.swift */,
 				AAA00026000 /* SelamAIService.swift */,
@@ -492,6 +522,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFF000301 /* NextStepPlanner.swift in Sources */,
+				AAAFF000201 /* CurriculumService.swift in Sources */,
+				AAAFF000101 /* DailyGoalTier.swift in Sources */,
 				AAA00001001 /* FidelApp.swift in Sources */,
 				AAA00002001 /* ContentView.swift in Sources */,
 				AAA00004001 /* Models.swift in Sources */,
@@ -562,11 +595,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF000801 /* ProgressExportRoundTripTests.swift in Sources */,
+				BAAFF000701 /* StreakSlackTests.swift in Sources */,
+				BAAFF000601 /* TracingSessionSizeTests.swift in Sources */,
+				BAAFF000501 /* JourneyViewModelOpenPathTests.swift in Sources */,
+				BAAFF000401 /* NextStepPlannerTests.swift in Sources */,
+				BAAFF000301 /* LessonCreditTests.swift in Sources */,
+				BAAFF000201 /* CurriculumServiceTests.swift in Sources */,
+				BAAFF000101 /* DailyGoalTierTests.swift in Sources */,
 				BAA00002001 /* LocalFirstTests.swift in Sources */,
 				BAA00010001 /* TraceEngineTests.swift in Sources */,
 				BAA00011001 /* TraceMasteryTests.swift in Sources */,
 				BAA00012001 /* DuolingoExerciseTests.swift in Sources */,
-				BAA00013001 /* LearnHeroTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
