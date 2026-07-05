@@ -45,6 +45,11 @@ struct UserProgressSnapshot: Codable {
     let fidelCharactersRecognized: [String]
     let charactersTraced: [String]
     let currentStage: Int
+    // Optional so old backups (pre-streak-slack) decode without these keys —
+    // a missing key on a non-optional Codable property throws on decode.
+    let streakFreezesAvailable: Int?
+    let weeklyStreakCount: Int?
+    let lastFreezeGrantWeek: Int?
 
     init(progress: UserProgress) {
         totalXP = progress.totalXP
@@ -61,6 +66,9 @@ struct UserProgressSnapshot: Codable {
         fidelCharactersRecognized = progress.fidelCharactersRecognized
         charactersTraced = progress.charactersTraced
         currentStage = progress.currentStage
+        streakFreezesAvailable = progress.streakFreezesAvailable
+        weeklyStreakCount = progress.weeklyStreakCount
+        lastFreezeGrantWeek = progress.lastFreezeGrantWeek
     }
 }
 
@@ -100,6 +108,10 @@ struct AppSettingsSnapshot: Codable {
     let showsAITools: Bool
     let onboardingComplete: Bool
     let lastOpenedActivity: String?
+    // Optional so old backups (pre-pace-tier) decode without this key — stored
+    // as a raw String (not `DailyGoalTier`) so an unrecognized/renamed case in
+    // a future backup still decodes instead of throwing.
+    let dailyGoalTier: String?
 
     init(settingsStore: AppSettingsStore) {
         dailyXPGoal = settingsStore.dailyXPGoal
@@ -111,6 +123,7 @@ struct AppSettingsSnapshot: Codable {
         showsAITools = settingsStore.showsAITools
         onboardingComplete = settingsStore.onboardingComplete
         lastOpenedActivity = settingsStore.lastOpenedActivity
+        dailyGoalTier = settingsStore.dailyGoalTier.rawValue
     }
 }
 
@@ -187,6 +200,9 @@ struct ProgressExportService {
         progress.fidelCharactersRecognized = merged(progress.fidelCharactersRecognized, snapshot.fidelCharactersRecognized)
         progress.charactersTraced = merged(progress.charactersTraced, snapshot.charactersTraced)
         progress.currentStage = max(progress.currentStage, snapshot.currentStage)
+        progress.streakFreezesAvailable = max(progress.streakFreezesAvailable, snapshot.streakFreezesAvailable ?? 0)
+        progress.weeklyStreakCount = max(progress.weeklyStreakCount, snapshot.weeklyStreakCount ?? 0)
+        progress.lastFreezeGrantWeek = max(progress.lastFreezeGrantWeek, snapshot.lastFreezeGrantWeek ?? 0)
         progress.updatedAt = Date.now
     }
 
@@ -230,6 +246,7 @@ struct ProgressExportService {
         settingsStore.showsAITools = snapshot.showsAITools
         settingsStore.onboardingComplete = snapshot.onboardingComplete
         settingsStore.lastOpenedActivity = snapshot.lastOpenedActivity
+        settingsStore.dailyGoalTier = DailyGoalTier(rawValue: snapshot.dailyGoalTier ?? DailyGoalTier.default.rawValue) ?? DailyGoalTier.default
     }
 
     private func maxDate(_ lhs: Date?, _ rhs: Date?) -> Date? {
