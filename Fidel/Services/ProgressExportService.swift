@@ -195,7 +195,11 @@ struct ProgressExportService {
         progress.longestStreak = max(progress.longestStreak, snapshot.longestStreak)
         progress.lastPracticeDate = maxDate(progress.lastPracticeDate, snapshot.lastPracticeDate)
         progress.lessonsCompleted = merged(progress.lessonsCompleted, snapshot.lessonsCompleted)
+        // A merged-in backup may list a lesson as in-progress that the local
+        // device has since completed; never let a completed lesson linger here.
+        let completedAfterMerge = Set(progress.lessonsCompleted)
         progress.lessonsInProgress = merged(progress.lessonsInProgress, snapshot.lessonsInProgress ?? [])
+            .filter { !completedAfterMerge.contains($0) }
         progress.patternsLearned = merged(progress.patternsLearned, snapshot.patternsLearned)
         progress.vocabularyMastered = merged(progress.vocabularyMastered, snapshot.vocabularyMastered)
         progress.conversationsPracticed = merged(progress.conversationsPracticed, snapshot.conversationsPracticed)
