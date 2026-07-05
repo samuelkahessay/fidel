@@ -269,7 +269,7 @@ final class LocalFirstTests: XCTestCase {
             ("Technology", "ኔትዎርክ", "network", "network/service area")
         ]
 
-        XCTAssertEqual(AmharicData.vocabulary.count, 436)
+        XCTAssertEqual(AmharicData.vocabulary.count, 1038)
 
         for expectedWord in expectedWords {
             let word = AmharicData.vocabulary.first { $0.amharic == expectedWord.amharic }
