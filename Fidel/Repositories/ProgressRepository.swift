@@ -26,7 +26,6 @@ protocol ProgressRepositoryProtocol {
     func traceCharacter(_ charId: String)
     func getFidelCharactersRecognizedCount() -> Int
     func getCurrentStage() -> Int
-    func setCurrentStage(_ stage: Int)
 
     // Trace Mastery
     func getTraceMastery(for characterId: String) -> CharacterTraceMastery?
@@ -220,12 +219,6 @@ final class ProgressRepository: ProgressRepositoryProtocol {
 
     func getCurrentStage() -> Int {
         getUserProgress()?.currentStage ?? 0
-    }
-
-    func setCurrentStage(_ stage: Int) {
-        let progress = getOrCreateUserProgress()
-        progress.currentStage = stage
-        progress.updatedAt = Date.now
     }
 
     // MARK: - Trace Mastery

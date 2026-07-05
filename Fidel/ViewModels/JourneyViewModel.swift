@@ -42,7 +42,6 @@ struct JourneyLessonItem: Identifiable {
 @Observable
 final class JourneyViewModel {
     var stageManager: StageManager?
-    var currentStage: LearningStage = .scriptAndSounds
     /// The single "do this now" recommendation over the open path, from
     /// `NextStepPlanner`. Rebuilt on every `refresh()`.
     var recommendedSession: RecommendedSession?
@@ -84,8 +83,9 @@ final class JourneyViewModel {
     }
 
     func refresh() {
+        // `stageManager` is retained only as a "configured" sentinel — the path
+        // is fully open, so nothing here reads a stage.
         guard stageManager != nil else { return }
-        currentStage = stageManager?.currentStage ?? currentStage
         recommendedSession = buildRecommendedSession()
         pathSections = buildPathSections()
     }

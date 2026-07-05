@@ -59,28 +59,4 @@ enum LearningStage: Int, CaseIterable, Comparable, Identifiable {
         case .fluency: return AppTheme.secondaryColor
         }
     }
-
-    // MARK: - Content Mappings
-
-    var availableLessonIds: Set<Int> {
-        switch self {
-        case .scriptAndSounds: return []
-        case .survivalPhrases: return [1, 2]
-        case .buildingSentences: return [1, 2, 3, 4, 5]
-        case .fluency: return [1, 2, 3, 4, 5, 6, 7, 8]
-        }
-    }
-
-    var availablePracticeModes: Set<PracticeMode> {
-        switch self {
-        case .scriptAndSounds: return [.flashcards, .quiz, .tracing]
-        case .survivalPhrases: return [.flashcards, .quiz, .pronunciation, .wordOrder, .matchPairs]
-        case .buildingSentences: return Set(PracticeMode.allCases)
-        case .fluency: return Set(PracticeMode.allCases)
-        }
-    }
-
-    var showsFidel: Bool {
-        true // Fidel chart is always available
-    }
 }
