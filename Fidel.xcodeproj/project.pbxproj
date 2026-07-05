@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAAFE000101 /* reading_passages.json in Resources */ = {isa = PBXBuildFile; fileRef = AAAFE000100 /* reading_passages.json */; };
+		BAAFF001101 /* ReadingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF001100 /* ReadingViewModelTests.swift */; };
+		AAAFF000901 /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000900 /* ReadingView.swift */; };
+		AAAFF000801 /* ReadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000800 /* ReadingViewModel.swift */; };
+		BAAFF001001 /* GrammarExplainerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF001000 /* GrammarExplainerViewModelTests.swift */; };
+		AAAFF000701 /* GrammarExplainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000700 /* GrammarExplainerView.swift */; };
+		AAAFF000601 /* GrammarExplainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000600 /* GrammarExplainerViewModel.swift */; };
+		BAAFF000901 /* ClozeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000900 /* ClozeViewModelTests.swift */; };
+		AAAFF000501 /* ClozeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000500 /* ClozeView.swift */; };
+		AAAFF000401 /* ClozeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000400 /* ClozeViewModel.swift */; };
 		BAAFF000801 /* ProgressExportRoundTripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000800 /* ProgressExportRoundTripTests.swift */; };
 		BAAFF000701 /* StreakSlackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000700 /* StreakSlackTests.swift */; };
 		BAAFF000601 /* TracingSessionSizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF000600 /* TracingSessionSizeTests.swift */; };
@@ -113,6 +123,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AAAFE000100 /* reading_passages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = reading_passages.json; sourceTree = "<group>"; };
+		BAAFF001100 /* ReadingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingViewModelTests.swift; sourceTree = "<group>"; };
+		AAAFF000900 /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
+		AAAFF000800 /* ReadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingViewModel.swift; sourceTree = "<group>"; };
+		BAAFF001000 /* GrammarExplainerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarExplainerViewModelTests.swift; sourceTree = "<group>"; };
+		AAAFF000700 /* GrammarExplainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarExplainerView.swift; sourceTree = "<group>"; };
+		AAAFF000600 /* GrammarExplainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrammarExplainerViewModel.swift; sourceTree = "<group>"; };
+		BAAFF000900 /* ClozeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClozeViewModelTests.swift; sourceTree = "<group>"; };
+		AAAFF000500 /* ClozeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClozeView.swift; sourceTree = "<group>"; };
+		AAAFF000400 /* ClozeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClozeViewModel.swift; sourceTree = "<group>"; };
 		BAAFF000800 /* ProgressExportRoundTripTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressExportRoundTripTests.swift; sourceTree = "<group>"; };
 		BAAFF000700 /* StreakSlackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakSlackTests.swift; sourceTree = "<group>"; };
 		BAAFF000600 /* TracingSessionSizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingSessionSizeTests.swift; sourceTree = "<group>"; };
@@ -255,6 +275,9 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF001100 /* ReadingViewModelTests.swift */,
+				BAAFF001000 /* GrammarExplainerViewModelTests.swift */,
+				BAAFF000900 /* ClozeViewModelTests.swift */,
 				BAAFF000800 /* ProgressExportRoundTripTests.swift */,
 				BAAFF000700 /* StreakSlackTests.swift */,
 				BAAFF000600 /* TracingSessionSizeTests.swift */,
@@ -289,6 +312,9 @@
 		AAA00500000 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF000900 /* ReadingView.swift */,
+				AAAFF000700 /* GrammarExplainerView.swift */,
+				AAAFF000500 /* ClozeView.swift */,
 				AAA00007000 /* PracticeView.swift */,
 				AAA00009000 /* ReferenceView.swift */,
 				AAA00010000 /* ProgressView.swift */,
@@ -346,6 +372,9 @@
 		AAA00600000 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF000800 /* ReadingViewModel.swift */,
+				AAAFF000600 /* GrammarExplainerViewModel.swift */,
+				AAAFF000400 /* ClozeViewModel.swift */,
 				AAA00044000 /* FlashcardViewModel.swift */,
 				AAA00046000 /* ReferenceViewModel.swift */,
 				AAA00028000 /* SelamViewModel.swift */,
@@ -396,6 +425,7 @@
 		AAA00540000 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFE000100 /* reading_passages.json */,
 				AAA00090000 /* conversations.json */,
 				AAA00091000 /* cultural_notes.json */,
 				AAA00092000 /* fidel_chart.json */,
@@ -489,6 +519,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFE000101 /* reading_passages.json in Resources */,
 				AAA00003001 /* Assets.xcassets in Resources */,
 				AAA00070001 /* NotoSansEthiopic-Regular.ttf in Resources */,
 				AAA00099901 /* PrivacyInfo.xcprivacy in Resources */,
@@ -522,6 +553,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFF000901 /* ReadingView.swift in Sources */,
+				AAAFF000801 /* ReadingViewModel.swift in Sources */,
+				AAAFF000701 /* GrammarExplainerView.swift in Sources */,
+				AAAFF000601 /* GrammarExplainerViewModel.swift in Sources */,
+				AAAFF000501 /* ClozeView.swift in Sources */,
+				AAAFF000401 /* ClozeViewModel.swift in Sources */,
 				AAAFF000301 /* NextStepPlanner.swift in Sources */,
 				AAAFF000201 /* CurriculumService.swift in Sources */,
 				AAAFF000101 /* DailyGoalTier.swift in Sources */,
@@ -595,6 +632,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF001101 /* ReadingViewModelTests.swift in Sources */,
+				BAAFF001001 /* GrammarExplainerViewModelTests.swift in Sources */,
+				BAAFF000901 /* ClozeViewModelTests.swift in Sources */,
 				BAAFF000801 /* ProgressExportRoundTripTests.swift in Sources */,
 				BAAFF000701 /* StreakSlackTests.swift in Sources */,
 				BAAFF000601 /* TracingSessionSizeTests.swift in Sources */,

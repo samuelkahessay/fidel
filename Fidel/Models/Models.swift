@@ -118,6 +118,34 @@ struct SentenceExercise: Identifiable, Codable, Hashable {
     }
 }
 
+/// A graded reading passage: comprehensible-input text with per-sentence
+/// transliteration + gloss, a mini glossary, and comprehension questions.
+struct ReadingPassage: Identifiable, Codable, Hashable {
+    let id: String
+    let title: String
+    let cefr: String
+    let sentences: [Line]
+    let glossary: [Gloss]
+    let questions: [Question]
+
+    struct Line: Codable, Hashable {
+        let amharic: String
+        let transliteration: String
+        let english: String
+    }
+
+    struct Gloss: Codable, Hashable {
+        let amharic: String
+        let english: String
+    }
+
+    struct Question: Codable, Hashable {
+        let question: String
+        let options: [String]
+        let answerIndex: Int
+    }
+}
+
 // MARK: - Numeric Reference Types
 
 struct AmharicNumber: Codable, Hashable {
@@ -413,7 +441,7 @@ let allAchievements: [Achievement] = [
     Achievement(id: "streak_7", title: "Week Warrior", description: "Maintain a 7-day streak", icon: "flame.fill", requirement: 7, category: .streak),
     Achievement(id: "streak_30", title: "Dedicated Learner", description: "Maintain a 30-day streak", icon: "star.fill", requirement: 30, category: .streak),
     Achievement(id: "conversationalist", title: "Conversationalist", description: "Practice 5 conversations", icon: "bubble.left.and.bubble.right", requirement: 5, category: .conversations),
-    Achievement(id: "social_butterfly", title: "Social Butterfly", description: "Practice all 18 conversations", icon: "person.3.fill", requirement: 18, category: .conversations),
+    Achievement(id: "social_butterfly", title: "Social Butterfly", description: "Practice all 30 conversations", icon: "person.3.fill", requirement: 30, category: .conversations),
     Achievement(id: "xp_100", title: "Rising Star", description: "Earn 100 XP", icon: "star", requirement: 100, category: .xp),
     Achievement(id: "xp_500", title: "Shining Star", description: "Earn 500 XP", icon: "star.circle", requirement: 500, category: .xp),
     Achievement(id: "xp_1000", title: "Superstar", description: "Earn 1000 XP", icon: "star.circle.fill", requirement: 1000, category: .xp),
@@ -429,6 +457,9 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
     case pronunciation = "Pronunciation"
     case sentenceBuilder = "Sentence Builder"
     case wordOrder = "Word Order"
+    case cloze = "Fill the Blank"
+    case grammar = "Grammar"
+    case reading = "Reading"
     case matchPairs = "Match Pairs"
     case speedDrill = "Speed Drill"
     case tracing = "Character Tracing"
@@ -442,6 +473,9 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .pronunciation: return "waveform.and.mic"
         case .sentenceBuilder: return "text.word.spacing"
         case .wordOrder: return "arrow.left.arrow.right"
+        case .cloze: return "character.textbox"
+        case .grammar: return "text.book.closed.fill"
+        case .reading: return "book.pages.fill"
         case .matchPairs: return "square.on.square"
         case .speedDrill: return "timer"
         case .tracing: return "scribble.variable"
@@ -455,6 +489,9 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .pronunciation: return "Listen and practice speaking"
         case .sentenceBuilder: return "Build sentences using patterns"
         case .wordOrder: return "Tap word tiles into the right order to translate"
+        case .cloze: return "Fill in the missing word in a sentence"
+        case .grammar: return "Learn the rules behind the sentences"
+        case .reading: return "Read short passages and check comprehension"
         case .matchPairs: return "Match Amharic words to their English meaning"
         case .speedDrill: return "Rapid-fire translation practice"
         case .tracing: return "Practice writing Fidel characters"
@@ -468,6 +505,9 @@ enum PracticeMode: String, CaseIterable, Identifiable, Hashable {
         case .pronunciation: return AppTheme.primaryColor
         case .sentenceBuilder: return AppTheme.warningColor
         case .wordOrder: return AppTheme.successColor
+        case .cloze: return AppTheme.plumColor
+        case .grammar: return AppTheme.terracottaColor
+        case .reading: return AppTheme.infoColor
         case .matchPairs: return AppTheme.secondaryColor
         case .speedDrill: return AppTheme.accentRed
         case .tracing: return AppTheme.practiceColor
