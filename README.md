@@ -78,7 +78,7 @@ Fidel/
 │   ├── Views/
 │   │   ├── Theme.swift           # Ethiopian-inspired design system
 │   │   ├── Components.swift      # Reusable UI components
-│   │   ├── JourneyView.swift     # Stage-gated learning path
+│   │   ├── JourneyView.swift     # Open learning path (recommendation-driven, no gate)
 │   │   ├── FidelView.swift       # Fidel alphabet chart
 │   │   ├── PracticeView.swift    # Practice hub
 │   │   ├── FlashcardView.swift   # Swipeable flashcards
@@ -105,7 +105,7 @@ Fidel/
 The bottom tab bar is:
 
 1. **Today**: Daily focus, phrase preview, and quick paths.
-2. **Learn**: Stage-gated learning path and unit activities.
+2. **Learn**: Open learning path — a recommended next step plus fully-tappable lessons with mastery rings (no locked stages).
 3. **Practice**: Flashcards, quiz, pronunciation, sentence builder, speed drill, and tracing.
 4. **Selam**: Tutor chat.
 5. **You**: Progress, achievements, statistics, and backup/restore.
