@@ -86,6 +86,9 @@ struct LessonDetailView: View {
             .padding(AppTheme.Spacing.md)
         }
         .background(AppTheme.groupedBackground)
+        .onAppear {
+            ProgressRepository(modelContext: modelContext).markLessonStarted(lesson.id)
+        }
         .navigationTitle(lesson.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

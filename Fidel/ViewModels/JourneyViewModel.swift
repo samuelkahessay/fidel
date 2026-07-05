@@ -107,24 +107,22 @@ final class JourneyViewModel {
     /// reviews, then an in-progress lesson, then the next new lesson.
     private func buildRecommendedSession() -> RecommendedSession {
         let progress = progressRepository?.getUserProgress()
-        let completedLessonIds = Set(progress?.lessonsCompleted ?? [])
         let lessons = lessonRepository.getLessons()
-        let orderedLessonIds = lessons.map(\.id).sorted()
-        // `progressPercent` is not persisted by the repo today, so this is
-        // usually nil — the planner then falls through to the next new lesson.
-        let inProgressLessonId = lessons.first {
-            $0.progressPercent > 0 && !completedLessonIds.contains($0.id)
-        }?.id
         let dueReviewCount = flashcardManager?.getDueItems().count ?? 0
 
-        return NextStepPlanner().plan(
-            completedLessonIds: completedLessonIds,
-            inProgressLessonId: inProgressLessonId,
+        return NextStepPlanner().recommend(
+            progress: progress,
+            lessons: lessons,
             tier: AppSettingsStore().dailyGoalTier,
-            dueReviewCount: dueReviewCount,
-            orderedLessonIds: orderedLessonIds
+            dueReviewCount: dueReviewCount
         )
     }
+
+    /// Minimum FSRS stability (in days) for an item to count as "learned" for
+    /// mastery display, independent of `vocabularyMastered`. Tunable: roughly
+    /// "retained for about a week" is a reasonable bar for "learned" without
+    /// requiring the stricter, XP-awarding `masterVocabulary` threshold.
+    static let masteryMinStability: Double = 7
 
     /// The always-open path, grouped into themed sections with display-only
     /// mastery per lesson. Empty sections are dropped, except the lesson-less
@@ -133,6 +131,7 @@ final class JourneyViewModel {
         let progress = progressRepository?.getUserProgress()
         let completedLessonIds = Set(progress?.lessonsCompleted ?? [])
         let learnedItemIds = Set(progress?.vocabularyMastered ?? [])
+            .union(flashcardManager?.learnedItemIds(minStability: Self.masteryMinStability) ?? [])
         let recognizedCharIds = Set(progress?.fidelCharactersRecognized ?? [])
         let lessonsById = Dictionary(
             lessonRepository.getLessons().map { ($0.id, $0) },

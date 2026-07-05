@@ -454,19 +454,13 @@ private struct TodayView: View {
     /// `NextStepPlanner` (completed lessons, pace tier, due-review count, ordered
     /// lesson ids) — never from the now-frozen `UserProgress.currentStage`.
     private func buildRecommendedSession(for progress: UserProgress) -> RecommendedSession {
-        let completedLessonIds = Set(progress.lessonsCompleted)
         let lessons = lessonRepository.getLessons()
-        let orderedLessonIds = lessons.map(\.id).sorted()
-        let inProgressLessonId = lessons.first {
-            $0.progressPercent > 0 && !completedLessonIds.contains($0.id)
-        }?.id
         let dueReviewCount = FlashcardManager(modelContext: modelContext).getDueItems().count
-        return NextStepPlanner().plan(
-            completedLessonIds: completedLessonIds,
-            inProgressLessonId: inProgressLessonId,
+        return NextStepPlanner().recommend(
+            progress: progress,
+            lessons: lessons,
             tier: settingsStore.dailyGoalTier,
-            dueReviewCount: dueReviewCount,
-            orderedLessonIds: orderedLessonIds
+            dueReviewCount: dueReviewCount
         )
     }
 }

@@ -9,6 +9,7 @@ protocol ProgressRepositoryProtocol {
     func ensureUserProgress() -> UserProgress
     func getUserProgress() -> UserProgress?
     func addXP(_ amount: Int)
+    func markLessonStarted(_ id: Int)
     func completeLesson(_ lessonId: Int)
     func learnPattern(_ patternId: String)
     func masterVocabulary(_ wordId: String)
@@ -107,6 +108,11 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         progress.addXP(amount)
     }
     
+    func markLessonStarted(_ id: Int) {
+        let progress = getOrCreateUserProgress()
+        progress.markLessonStarted(id)
+    }
+
     func completeLesson(_ lessonId: Int) {
         let progress = getOrCreateUserProgress()
         progress.completeLesson(lessonId)

@@ -36,6 +36,9 @@ struct UserProgressSnapshot: Codable {
     let longestStreak: Int
     let lastPracticeDate: Date?
     let lessonsCompleted: [Int]
+    // Optional so old backups (pre-in-progress-tracking) decode without this
+    // key — a missing key on a non-optional Codable property throws on decode.
+    let lessonsInProgress: [Int]?
     let patternsLearned: [String]
     let vocabularyMastered: [String]
     let conversationsPracticed: [Int]
@@ -57,6 +60,7 @@ struct UserProgressSnapshot: Codable {
         longestStreak = progress.longestStreak
         lastPracticeDate = progress.lastPracticeDate
         lessonsCompleted = progress.lessonsCompleted
+        lessonsInProgress = progress.lessonsInProgress
         patternsLearned = progress.patternsLearned
         vocabularyMastered = progress.vocabularyMastered
         conversationsPracticed = progress.conversationsPracticed
@@ -191,6 +195,7 @@ struct ProgressExportService {
         progress.longestStreak = max(progress.longestStreak, snapshot.longestStreak)
         progress.lastPracticeDate = maxDate(progress.lastPracticeDate, snapshot.lastPracticeDate)
         progress.lessonsCompleted = merged(progress.lessonsCompleted, snapshot.lessonsCompleted)
+        progress.lessonsInProgress = merged(progress.lessonsInProgress, snapshot.lessonsInProgress ?? [])
         progress.patternsLearned = merged(progress.patternsLearned, snapshot.patternsLearned)
         progress.vocabularyMastered = merged(progress.vocabularyMastered, snapshot.vocabularyMastered)
         progress.conversationsPracticed = merged(progress.conversationsPracticed, snapshot.conversationsPracticed)

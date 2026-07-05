@@ -166,6 +166,10 @@ final class UserProgress {
     var longestStreak: Int = 0
     var lastPracticeDate: Date?
     var lessonsCompleted: [Int] = []
+    /// Lessons the learner has opened but not yet completed, in the order
+    /// started. Drives `NextStepPlanner`'s "resume" recommendation — the most
+    /// recent entry not in `lessonsCompleted` is the in-progress lesson.
+    var lessonsInProgress: [Int] = []
     var patternsLearned: [String] = []
     var vocabularyMastered: [String] = []
     var conversationsPracticed: [Int] = []
@@ -269,12 +273,23 @@ final class UserProgress {
         weeklyStreakCount += 1
     }
     
+    /// Records that the learner opened a lesson without completing it, so
+    /// `NextStepPlanner` can offer to resume it. No-op if already completed or
+    /// already tracked as in-progress.
+    func markLessonStarted(_ id: Int) {
+        if !lessonsCompleted.contains(id) && !lessonsInProgress.contains(id) {
+            lessonsInProgress.append(id)
+            updatedAt = .now
+        }
+    }
+
     func completeLesson(_ lessonId: Int) {
         if !lessonsCompleted.contains(lessonId) {
             lessonsCompleted.append(lessonId)
             addXP(25)
             updatedAt = .now
         }
+        lessonsInProgress.removeAll { $0 == lessonId }
     }
     
     func learnPattern(_ patternId: String) {
