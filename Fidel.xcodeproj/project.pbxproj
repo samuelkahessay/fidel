@@ -106,6 +106,9 @@
 		BAA00011001 /* TraceMasteryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00011000 /* TraceMasteryTests.swift */; };
 		BAA00012001 /* DuolingoExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00012000 /* DuolingoExerciseTests.swift */; };
 		BAA00013001 /* SyncFieldsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00013000 /* SyncFieldsTests.swift */; };
+		BAA00014001 /* FidelSyncStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA00014000 /* FidelSyncStoreTests.swift */; };
+		AAA00760001 /* SyncMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00760000 /* SyncMapping.swift */; };
+		AAA00761001 /* FidelSyncStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00761000 /* FidelSyncStore.swift */; };
 		AAA00120001 /* WordAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00120000 /* WordAudioPlayer.swift */; };
 		AAA00121001 /* WordOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00121000 /* WordOrderViewModel.swift */; };
 		AAA00122001 /* WordOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00122000 /* WordOrderView.swift */; };
@@ -226,6 +229,9 @@
 		BAA00011000 /* TraceMasteryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceMasteryTests.swift; sourceTree = "<group>"; };
 		BAA00012000 /* DuolingoExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuolingoExerciseTests.swift; sourceTree = "<group>"; };
 		BAA00013000 /* SyncFieldsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncFieldsTests.swift; sourceTree = "<group>"; };
+		BAA00014000 /* FidelSyncStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FidelSyncStoreTests.swift; sourceTree = "<group>"; };
+		AAA00760000 /* SyncMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncMapping.swift; sourceTree = "<group>"; };
+		AAA00761000 /* FidelSyncStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FidelSyncStore.swift; sourceTree = "<group>"; };
 		AAA00120000 /* WordAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAudioPlayer.swift; sourceTree = "<group>"; };
 		AAA00121000 /* WordOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderViewModel.swift; sourceTree = "<group>"; };
 		AAA00122000 /* WordOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOrderView.swift; sourceTree = "<group>"; };
@@ -265,6 +271,7 @@
 				AAA00600000 /* ViewModels */,
 				AAA00700000 /* Services */,
 				AAA00750000 /* Repositories */,
+				AAA00762000 /* Sync */,
 				AAA00540000 /* Data */,
 				AAA00105000 /* Audio */,
 				AAA00003000 /* Assets.xcassets */,
@@ -305,6 +312,7 @@
 				BAA00011000 /* TraceMasteryTests.swift */,
 				BAA00012000 /* DuolingoExerciseTests.swift */,
 				BAA00013000 /* SyncFieldsTests.swift */,
+				BAA00014000 /* FidelSyncStoreTests.swift */,
 			);
 			path = FidelTests;
 			sourceTree = "<group>";
@@ -435,6 +443,15 @@
 				AAA00102000 /* AudioAssetRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AAA00762000 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				AAA00760000 /* SyncMapping.swift */,
+				AAA00761000 /* FidelSyncStore.swift */,
+			);
+			path = Sync;
 			sourceTree = "<group>";
 		};
 		AAA00540000 /* Data */ = {
@@ -605,6 +622,8 @@
 				AAA00022001 /* PronunciationPracticeView.swift in Sources */,
 				AAA00023001 /* LessonRepository.swift in Sources */,
 				AAA00024001 /* ProgressRepository.swift in Sources */,
+				AAA00760001 /* SyncMapping.swift in Sources */,
+				AAA00761001 /* FidelSyncStore.swift in Sources */,
 				AAA00025001 /* SelamModels.swift in Sources */,
 				AAA00026001 /* SelamAIService.swift in Sources */,
 				AAA00027001 /* SelamRepository.swift in Sources */,
@@ -670,6 +689,7 @@
 				BAA00011001 /* TraceMasteryTests.swift in Sources */,
 				BAA00012001 /* DuolingoExerciseTests.swift in Sources */,
 				BAA00013001 /* SyncFieldsTests.swift in Sources */,
+				BAA00014001 /* FidelSyncStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
