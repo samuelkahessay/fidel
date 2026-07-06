@@ -126,7 +126,8 @@ struct FSRSAlgorithm {
         ) ?? Date.now
         progress.repetitions += 1
         progress.updatedAt = Date.now
-        
+        progress.syncModifiedAt = Date.now
+
         if rating == .again {
             progress.lapses += 1
         }

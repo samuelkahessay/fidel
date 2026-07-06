@@ -1,8 +1,10 @@
 import SwiftData
 import SwiftUI
+import SyncKit
 
 struct FidelView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.dismiss) private var dismiss
     @State private var selectedCharacter: FidelCharacter?
     @State private var searchText = ""
@@ -136,7 +138,7 @@ struct FidelView: View {
     }
 
     private func refreshRecognition() {
-        let repository = ProgressRepository(modelContext: modelContext)
+        let repository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         let progress = repository.ensureUserProgress()
         recognizedCharacterIds = Set(progress.fidelCharactersRecognized)
     }

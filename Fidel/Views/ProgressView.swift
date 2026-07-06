@@ -1,9 +1,11 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 import UniformTypeIdentifiers
 
 struct ProgressDashboardView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
@@ -281,7 +283,7 @@ struct ProgressDashboardView: View {
     }
 
     private func loadProgress() {
-        let repo = ProgressRepository(modelContext: modelContext)
+        let repo = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         progress = repo.ensureUserProgress()
         dailyGoal = settingsStore.dailyXPGoal
         dailyGoalTier = settingsStore.dailyGoalTier
@@ -296,6 +298,8 @@ struct ProgressDashboardView: View {
                 settingsStore.dailyXPGoal = newValue
                 progress?.dailyGoal = newValue
                 progress?.updatedAt = Date.now
+                progress?.syncModifiedAt = Date.now
+                if let progress { sync.markPending(progress.syncID) }
             }
         )
     }
@@ -310,6 +314,8 @@ struct ProgressDashboardView: View {
                 settingsStore.dailyXPGoal = newValue.suggestedDailyXP
                 progress?.dailyGoal = newValue.suggestedDailyXP
                 progress?.updatedAt = Date.now
+                progress?.syncModifiedAt = Date.now
+                if let progress { sync.markPending(progress.syncID) }
             }
         )
     }

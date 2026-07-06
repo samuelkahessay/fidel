@@ -1,9 +1,11 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 struct ConversationDetailView: View {
     let conversation: Conversation
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     
     @State private var currentLineIndex = 0
     @State private var isPlaying = false
@@ -432,7 +434,7 @@ struct ConversationDetailView: View {
     }
     
     private func completeConversation() {
-        let progressRepository = ProgressRepository(modelContext: modelContext)
+        let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         progressRepository.practiceConversation(conversation.id)
         showCompletion = true
     }

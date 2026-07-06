@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 /// Duolingo-style "tap the pairs": match five Amharic words to their English
 /// meanings. Tapping an Amharic tile plays its pronunciation. Correct pairs
@@ -7,6 +8,7 @@ import SwiftData
 struct MatchPairsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var viewModel = MatchPairsViewModel()
@@ -36,7 +38,7 @@ struct MatchPairsView: View {
     private func setup() {
         guard !didSetup else { return }
         didSetup = true
-        viewModel.configure(progressRepository: ProgressRepository(modelContext: modelContext))
+        viewModel.configure(progressRepository: ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) }))
         viewModel.startSession()
     }
 

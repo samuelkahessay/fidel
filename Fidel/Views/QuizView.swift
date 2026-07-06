@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 enum QuizMode: String, CaseIterable {
     case mixed = "Mixed"
@@ -11,6 +12,7 @@ enum QuizMode: String, CaseIterable {
 struct QuizView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     
@@ -469,7 +471,7 @@ struct QuizView: View {
             }
         } else {
             showResult = true
-            let progressRepository = ProgressRepository(modelContext: modelContext)
+            let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
             progressRepository.addXP(score * 10)
         }
     }

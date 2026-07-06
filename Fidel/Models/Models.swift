@@ -251,6 +251,12 @@ final class UserProgress {
         totalXP += amount
         todayXP += amount
         updatedAt = .now
+        // Every other genuine-edit method in this class (recognizeFidelCharacter,
+        // traceCharacter, completeLesson, learnPattern, masterVocabulary,
+        // practiceConversation) awards XP through this call, so stamping here
+        // covers them all in one place; markLessonStarted is the one mutator
+        // that doesn't award XP and stamps for itself below.
+        syncModifiedAt = .now
         checkStreak()
     }
     
@@ -310,6 +316,7 @@ final class UserProgress {
         if !lessonsCompleted.contains(id) && !lessonsInProgress.contains(id) {
             lessonsInProgress.append(id)
             updatedAt = .now
+            syncModifiedAt = .now
         }
     }
 

@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import SyncKit
 
 // MARK: - ProgressRepository Protocol
 
@@ -53,13 +54,20 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     
     private let modelContext: ModelContext
     private let explicitUserId: String?
+    /// Fired with the affected model's `syncID` after every genuine mutation
+    /// so the caller can forward it to `SyncEngine.markPending`. Centralizing
+    /// here (rather than at each of the ~17 ad-hoc construction sites) is what
+    /// guarantees every mutation path publishes to CloudKit — see FidelApp /
+    /// Throughline's HealthSync `onLocalMutations` for the reference pattern.
+    private let onMutation: ((SyncID) -> Void)?
     private var activeUserId: String {
         explicitUserId ?? LocalLearner.userId
     }
-    
-    init(modelContext: ModelContext, userId: String? = nil) {
+
+    init(modelContext: ModelContext, userId: String? = nil, onMutation: ((SyncID) -> Void)? = nil) {
         self.modelContext = modelContext
         self.explicitUserId = userId
+        self.onMutation = onMutation
     }
     
     // MARK: - User Progress
@@ -106,36 +114,45 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func addXP(_ amount: Int) {
         let progress = getOrCreateUserProgress()
         progress.addXP(amount)
+        onMutation?(progress.syncID)
     }
-    
+
     func markLessonStarted(_ id: Int) {
         let progress = getOrCreateUserProgress()
         progress.markLessonStarted(id)
+        onMutation?(progress.syncID)
     }
 
     func completeLesson(_ lessonId: Int) {
         let progress = getOrCreateUserProgress()
         progress.completeLesson(lessonId)
+        // completeLesson calls recognizeFidelCharacter internally; both share
+        // the one UserProgress record, so mark it pending once here rather
+        // than per recognizeFidelCharacter call below.
         if let lesson = LessonRepository.shared.getLesson(by: lessonId) {
             for charId in CurriculumService.shared.characterIds(in: lesson) {
                 progress.recognizeFidelCharacter(charId)
             }
         }
+        onMutation?(progress.syncID)
     }
-    
+
     func learnPattern(_ patternId: String) {
         let progress = getOrCreateUserProgress()
         progress.learnPattern(patternId)
+        onMutation?(progress.syncID)
     }
-    
+
     func masterVocabulary(_ wordId: String) {
         let progress = getOrCreateUserProgress()
         progress.masterVocabulary(wordId)
+        onMutation?(progress.syncID)
     }
-    
+
     func practiceConversation(_ conversationId: Int) {
         let progress = getOrCreateUserProgress()
         progress.practiceConversation(conversationId)
+        onMutation?(progress.syncID)
     }
     
     // MARK: - Flashcard Progress
@@ -160,6 +177,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func recordFlashcardReview(for itemId: String, type: String, rating: ReviewRating) {
         let progress = getOrCreateFlashcardProgress(for: itemId, type: type)
         FSRSAlgorithm.updateFlashcardProgress(progress: progress, rating: rating)
+        onMutation?(progress.syncID)
     }
     
     func getDueFlashcards(type: String?) -> [FlashcardProgress] {
@@ -212,11 +230,13 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func recognizeFidelCharacter(_ charId: String) {
         let progress = getOrCreateUserProgress()
         progress.recognizeFidelCharacter(charId)
+        onMutation?(progress.syncID)
     }
 
     func traceCharacter(_ charId: String) {
         let progress = getOrCreateUserProgress()
         progress.traceCharacter(charId)
+        onMutation?(progress.syncID)
     }
 
     func getFidelCharactersRecognizedCount() -> Int {
@@ -272,6 +292,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         mastery.bestScore = max(mastery.bestScore, score)
         mastery.lastPracticedAt = Date.now
         mastery.updatedAt = Date.now
+        mastery.syncModifiedAt = Date.now
 
         let didPromote = completedLevel == mastery.level + 1 && score >= Self.tracePromotionScore
         let xpAwarded: Int
@@ -280,7 +301,9 @@ final class ProgressRepository: ProgressRepositoryProtocol {
             switch completedLevel {
             case 1:
                 // First-ever completion: existing path awards +5 XP and feeds
-                // the stage-0 "characters recognized" criterion.
+                // the stage-0 "characters recognized" criterion. traceCharacter
+                // marks the UserProgress record pending itself; mastery (a
+                // distinct syncID) is marked separately below.
                 traceCharacter(characterId)
                 xpAwarded = 5
             case 2:
@@ -294,6 +317,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
             addXP(1)
             xpAwarded = 1
         }
+        onMutation?(mastery.syncID)
 
         return TraceCompletionOutcome(
             xpAwarded: xpAwarded,
@@ -321,6 +345,11 @@ final class ProgressRepository: ProgressRepositoryProtocol {
             primary.totalMisses = max(primary.totalMisses, record.totalMisses)
             primary.lastPracticedAt = maxDate(primary.lastPracticedAt, record.lastPracticedAt)
             didMutate = true
+            // Deletes a LOCAL duplicate only — post-adoption, `primary` and
+            // `record` converge on the same syncID, so `record` is never the
+            // cloud-record survivor. Do NOT markPendingDeletion(record.syncID)
+            // here: that would delete the shared cloud record out from under
+            // `primary`, which keeps that identity.
             modelContext.delete(record)
         }
 
@@ -403,6 +432,11 @@ final class ProgressRepository: ProgressRepositoryProtocol {
             primary.charactersTraced = mergedUnique(primary.charactersTraced, record.charactersTraced)
             primary.updatedAt = maxDate(primary.updatedAt, record.updatedAt) ?? Date.now
             didMutate = true
+            // Deletes a LOCAL duplicate only — post-adoption, `primary` and
+            // `record` converge on the same syncID, so `record` is never the
+            // cloud-record survivor. Do NOT markPendingDeletion(record.syncID)
+            // here: that would delete the shared cloud record out from under
+            // `primary`, which keeps that identity.
             modelContext.delete(record)
         }
 
@@ -467,6 +501,11 @@ final class ProgressRepository: ProgressRepositoryProtocol {
                 primary.lapses = record.lapses
             }
             didMutate = true
+            // Deletes a LOCAL duplicate only — post-adoption, `primary` and
+            // `record` converge on the same syncID, so `record` is never the
+            // cloud-record survivor. Do NOT markPendingDeletion(record.syncID)
+            // here: that would delete the shared cloud record out from under
+            // `primary`, which keeps that identity.
             modelContext.delete(record)
         }
 

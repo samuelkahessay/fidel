@@ -1,12 +1,14 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 struct JourneyView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @State private var viewModel = JourneyViewModel()
 
     private var progressRepository: ProgressRepository {
-        ProgressRepository(modelContext: modelContext)
+        ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
     }
 
     var body: some View {

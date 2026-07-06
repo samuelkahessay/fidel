@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 /// Cloze ("fill in the blank") exercise. An Amharic sentence is shown with one
 /// word removed and the English translation for context; the learner picks the
@@ -8,6 +9,7 @@ import SwiftData
 struct ClozeView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var viewModel = ClozeViewModel()
@@ -37,7 +39,7 @@ struct ClozeView: View {
     private func setup() {
         guard !didSetup else { return }
         didSetup = true
-        viewModel.configure(progressRepository: ProgressRepository(modelContext: modelContext))
+        viewModel.configure(progressRepository: ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) }))
         viewModel.startSession()
     }
 

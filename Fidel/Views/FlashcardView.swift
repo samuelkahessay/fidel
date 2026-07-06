@@ -1,8 +1,10 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 struct FlashcardView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var viewModel = FlashcardViewModel()
@@ -30,7 +32,7 @@ struct FlashcardView: View {
         .toolbar(.hidden, for: .tabBar)
         .fidelTabBarHidden()
         .onAppear {
-            let progressRepo = ProgressRepository(modelContext: modelContext)
+            let progressRepo = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
             viewModel.configure(progressRepository: progressRepo)
             viewModel.startSession(cardCount: 20)
         }

@@ -1,8 +1,10 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 struct PracticeHubView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
 
     @State private var selectedMode: PracticeMode?
     @State private var progress: UserProgress?
@@ -145,7 +147,7 @@ struct PracticeHubView: View {
     }
 
     private func refreshProgress() {
-        let repository = ProgressRepository(modelContext: modelContext)
+        let repository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         progress = repository.ensureUserProgress()
     }
 }

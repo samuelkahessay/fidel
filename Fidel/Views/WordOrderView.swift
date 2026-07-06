@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 /// Duolingo-style "translate this sentence" exercise. The learner taps shuffled
 /// word tiles into the correct order — building the Amharic sentence from an
@@ -8,6 +9,7 @@ import SwiftData
 struct WordOrderView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var viewModel = WordOrderViewModel()
@@ -37,7 +39,7 @@ struct WordOrderView: View {
     private func setup() {
         guard !didSetup else { return }
         didSetup = true
-        viewModel.configure(progressRepository: ProgressRepository(modelContext: modelContext))
+        viewModel.configure(progressRepository: ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) }))
         viewModel.startSession()
     }
 

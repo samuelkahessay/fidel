@@ -1,13 +1,15 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 struct LessonCard: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     let lesson: Lesson
 
     var isCompleted: Bool {
-        let progressRepository = ProgressRepository(modelContext: modelContext)
+        let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         return progressRepository.getUserProgress()?.lessonsCompleted.contains(lesson.id) ?? false
     }
 
@@ -59,6 +61,7 @@ struct LessonCard: View {
 struct LessonDetailView: View {
     let lesson: Lesson
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @State private var currentSection = 0
     @State private var showCompletion = false
     @State private var showSelam = false
@@ -87,7 +90,8 @@ struct LessonDetailView: View {
         }
         .background(AppTheme.groupedBackground)
         .onAppear {
-            ProgressRepository(modelContext: modelContext).markLessonStarted(lesson.id)
+            ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
+                .markLessonStarted(lesson.id)
         }
         .navigationTitle(lesson.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -170,7 +174,7 @@ struct LessonDetailView: View {
     }
 
     private func completeLesson() {
-        let progressRepository = ProgressRepository(modelContext: modelContext)
+        let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         progressRepository.completeLesson(lesson.id)
         showCompletion = true
     }

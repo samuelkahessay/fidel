@@ -1,10 +1,12 @@
 import SwiftUI
+import SyncKit
 
 /// Guided character writing practice: watch the stroke order once, then trace
 /// the character stroke by stroke with live ink, gentle misses, and an
 /// auto-advancing celebration. Replaces the old watch/draw/review flow.
 struct TracingSessionView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel = TracingSessionViewModel()
@@ -37,7 +39,7 @@ struct TracingSessionView: View {
         .navigationTitle("Character Tracing")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            let progressRepo = ProgressRepository(modelContext: modelContext)
+            let progressRepo = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
             viewModel.configure(progressRepository: progressRepo)
             viewModel.startSession(plan: plan)
         }

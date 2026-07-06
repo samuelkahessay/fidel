@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import SyncKit
 
 private enum AppTab: String, CaseIterable, Identifiable {
     case today
@@ -149,6 +150,7 @@ struct ContentView: View {
 
 private struct TodayView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
 
     let actions: AppNavigationActions
 
@@ -443,7 +445,7 @@ private struct TodayView: View {
     }
 
     private func refreshProgress() {
-        let repository = ProgressRepository(modelContext: modelContext)
+        let repository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         let current = repository.ensureUserProgress()
         progress = current
         dailyGoalXP = max(settingsStore.dailyXPGoal, 1)

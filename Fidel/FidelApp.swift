@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 @main
 struct FidelApp: App {
@@ -24,9 +25,24 @@ struct FidelApp: App {
         }
     }()
 
+    // Synced models key on natural ids (ownerUserId, or ownerUserId + itemId /
+    // characterId) rather than a generated syncUUID, so there is no migration
+    // trap and no backfill pass needed here: every existing local record
+    // already carries the identity CloudKit will use.
+    @State private var syncEngine: SyncEngine
+
+    init() {
+        _syncEngine = State(initialValue: SyncEngine(
+            configuration: SyncConfiguration(
+                containerIdentifier: "iCloud.dev.skahessay.learnamharic",
+                zoneName: "FidelData"),
+            store: FidelSyncStore(context: sharedModelContainer.mainContext)))
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(syncEngine)
                 .task(priority: .utility) {
                     // Warm the 9.7MB stroke database off the main thread so the
                     // first tracing screen doesn't pay the JSON decode.

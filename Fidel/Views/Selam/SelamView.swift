@@ -1,8 +1,10 @@
 import SwiftUI
 import SwiftData
+import SyncKit
 
 struct SelamView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
 
     @State private var viewModel = SelamViewModel()
     @State private var scrollPosition: String?
@@ -127,7 +129,7 @@ struct SelamView: View {
     
     private func configureViewModel() {
         let selamRepository = SelamRepository(modelContext: modelContext)
-        let progressRepository = ProgressRepository(modelContext: modelContext)
+        let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         viewModel.configure(
             repository: selamRepository,
             progressRepository: progressRepository
@@ -350,6 +352,7 @@ struct SelamHistoryView: View {
 
 struct SelamContextSheet: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncEngine.self) private var sync
     @Environment(\.dismiss) private var dismiss
     
     let entryContext: SelamEntryContext
@@ -427,7 +430,7 @@ struct SelamContextSheet: View {
     
     private func configureViewModel() {
         let selamRepository = SelamRepository(modelContext: modelContext)
-        let progressRepository = ProgressRepository(modelContext: modelContext)
+        let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         viewModel.configure(
             repository: selamRepository,
             progressRepository: progressRepository,
