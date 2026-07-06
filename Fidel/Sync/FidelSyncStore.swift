@@ -104,13 +104,25 @@ final class FidelSyncStore: SyncStore {
     // MARK: - UserProgress field-wise merge
 
     /// Mirrors `ProgressRepository.consolidateUserProgress`:
-    /// - array fields: union preserving local order, then appending new-from-remote elements.
-    /// - counters (totalXP, longestStreak, currentStage): max(local, remote).
-    /// - currentStreak / lastPracticeDate / todayXP / dailyGoal: taken from whichever side
-    ///   has the newer `syncModifiedAt` (whole-value, not maxed).
-    /// - streakFreezesAvailable / weeklyStreakCount / lastFreezeGrantWeek: not touched by
-    ///   `consolidateUserProgress` in ProgressRepository, so treated the same as the other
-    ///   counters here (max) — see final report for this extrapolation.
+    /// - genuinely additive array fields (lessonsCompleted, patternsLearned,
+    ///   vocabularyMastered, conversationsPracticed, achievements,
+    ///   fidelCharactersRecognized, charactersTraced): union preserving local
+    ///   order, then appending new-from-remote elements. The convergence
+    ///   check below compares these order-insensitively (as `Set`), since
+    ///   `mergedUnion` starts from each side's own local order and two
+    ///   devices holding the same set in different orders would otherwise
+    ///   never compare equal via `Array ==` and re-upload forever.
+    /// - monotonic counters (totalXP, longestStreak, currentStage,
+    ///   lastFreezeGrantWeek): max(local, remote) — these only grow.
+    /// - non-monotonic / consumable / reset fields (currentStreak,
+    ///   lastPracticeDate, todayXP, dailyGoal, lessonsInProgress,
+    ///   streakFreezesAvailable, weeklyStreakCount): taken wholesale from
+    ///   whichever side has the newer `syncModifiedAt`, NOT maxed and NOT
+    ///   unioned — `lessonsInProgress` has removal semantics (a lesson
+    ///   leaves the set on completion, so union could never shrink it), and
+    ///   `streakFreezesAvailable`/`weeklyStreakCount` are consumable/resetting
+    ///   counters where `max` would wrongly refund a spent freeze or pin a
+    ///   stale weekly count high.
     /// - updatedAt / syncModifiedAt: max of the two.
     private func mergeUserProgress(_ local: UserProgress, remoteRecord: CKRecord) -> RemoteApplyResult {
         let remoteModifiedAt = remoteRecord[SyncKeys.modifiedAt] as? Date ?? .distantPast
@@ -140,7 +152,6 @@ final class FidelSyncStore: SyncStore {
         let remoteUpdatedAt = remoteRecord["updatedAt"] as? Date ?? .distantPast
 
         local.lessonsCompleted = Self.mergedUnion(local.lessonsCompleted, remoteLessonsCompleted)
-        local.lessonsInProgress = Self.mergedUnion(local.lessonsInProgress, remoteLessonsInProgress)
         local.patternsLearned = Self.mergedUnion(local.patternsLearned, remotePatternsLearned)
         local.vocabularyMastered = Self.mergedUnion(local.vocabularyMastered, remoteVocabularyMastered)
         local.conversationsPracticed = Self.mergedUnion(local.conversationsPracticed, remoteConversationsPracticed)
@@ -151,8 +162,6 @@ final class FidelSyncStore: SyncStore {
         local.totalXP = max(local.totalXP, remoteTotalXP)
         local.longestStreak = max(local.longestStreak, remoteLongestStreak)
         local.currentStage = max(local.currentStage, remoteCurrentStage)
-        local.streakFreezesAvailable = max(local.streakFreezesAvailable, remoteStreakFreezesAvailable)
-        local.weeklyStreakCount = max(local.weeklyStreakCount, remoteWeeklyStreakCount)
         local.lastFreezeGrantWeek = max(local.lastFreezeGrantWeek, remoteLastFreezeGrantWeek)
 
         if remoteIsNewer {
@@ -160,20 +169,23 @@ final class FidelSyncStore: SyncStore {
             local.lastPracticeDate = remoteLastPracticeDate
             local.todayXP = remoteTodayXP
             local.dailyGoal = remoteDailyGoal
+            local.lessonsInProgress = remoteLessonsInProgress
+            local.streakFreezesAvailable = remoteStreakFreezesAvailable
+            local.weeklyStreakCount = remoteWeeklyStreakCount
         }
 
         local.updatedAt = max(local.updatedAt, remoteUpdatedAt)
         local.syncModifiedAt = max(local.syncModifiedAt, remoteModifiedAt)
 
         let mergedMatchesRemote =
-            local.lessonsCompleted == remoteLessonsCompleted &&
+            Set(local.lessonsCompleted) == Set(remoteLessonsCompleted) &&
+            Set(local.patternsLearned) == Set(remotePatternsLearned) &&
+            Set(local.vocabularyMastered) == Set(remoteVocabularyMastered) &&
+            Set(local.conversationsPracticed) == Set(remoteConversationsPracticed) &&
+            Set(local.achievements) == Set(remoteAchievements) &&
+            Set(local.fidelCharactersRecognized) == Set(remoteFidelCharactersRecognized) &&
+            Set(local.charactersTraced) == Set(remoteCharactersTraced) &&
             local.lessonsInProgress == remoteLessonsInProgress &&
-            local.patternsLearned == remotePatternsLearned &&
-            local.vocabularyMastered == remoteVocabularyMastered &&
-            local.conversationsPracticed == remoteConversationsPracticed &&
-            local.achievements == remoteAchievements &&
-            local.fidelCharactersRecognized == remoteFidelCharactersRecognized &&
-            local.charactersTraced == remoteCharactersTraced &&
             local.totalXP == remoteTotalXP &&
             local.longestStreak == remoteLongestStreak &&
             local.dailyGoal == remoteDailyGoal &&
@@ -223,7 +235,7 @@ final class FidelSyncStore: SyncStore {
     // MARK: - FlashcardProgress plain LWW
 
     private func applyFlashcardLWW(_ local: FlashcardProgress, remoteRecord: CKRecord) -> RemoteApplyResult {
-        let remoteModifiedAt = remoteRecord[SyncKeys.modifiedAt] as? Date ?? .distantFuture
+        let remoteModifiedAt = remoteRecord[SyncKeys.modifiedAt] as? Date ?? .distantPast
         if ConflictResolution.winner(localModifiedAt: local.syncModifiedAt, serverModifiedAt: remoteModifiedAt) == .local {
             return .localNewer
         }
@@ -335,6 +347,13 @@ final class FidelSyncStore: SyncStore {
     /// Returns false for an unrecognized record type so the caller can log it
     /// (additive-only schema policy: unknown types only come from newer
     /// clients; they're skipped here and reappear on any full refetch).
+    ///
+    /// Each branch constructs the model from the natural-key fields already
+    /// parsed out of `id`, then calls `apply(record:)`, which overwrites
+    /// those same natural-key fields again from the record body. This is
+    /// harmless only because record identity is trusted: `encode` always
+    /// writes matching natural-key values, so the record body and the
+    /// recordName-derived id never disagree in practice.
     @discardableResult
     private func insertNew(from record: CKRecord, id: SyncID) throws -> Bool {
         switch id.recordType {

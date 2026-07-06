@@ -34,6 +34,7 @@ extension UserProgress {
         record["lastFreezeGrantWeek"] = lastFreezeGrantWeek
         record["updatedAt"] = updatedAt
         record[SyncKeys.modifiedAt] = syncModifiedAt
+        record[SyncKeys.schemaVersion] = 1
     }
 
     /// Whole-record overwrite: used for insert-on-first-fetch. Field-wise merge
@@ -91,6 +92,7 @@ extension FlashcardProgress {
         record["lapses"] = lapses
         record["updatedAt"] = updatedAt
         record[SyncKeys.modifiedAt] = syncModifiedAt
+        record[SyncKeys.schemaVersion] = 1
     }
 
     /// Whole-record overwrite — FlashcardProgress uses plain last-write-wins,
@@ -132,6 +134,7 @@ extension CharacterTraceMastery {
         record["lastPracticedAt"] = lastPracticedAt
         record["updatedAt"] = updatedAt
         record[SyncKeys.modifiedAt] = syncModifiedAt
+        record[SyncKeys.schemaVersion] = 1
     }
 
     /// Whole-record overwrite: used for insert-on-first-fetch. Field-wise merge

@@ -114,6 +114,7 @@ final class FidelSyncStoreTests: XCTestCase {
         XCTAssertEqual(destination.lastFreezeGrantWeek, 202601)
         XCTAssertEqual(destination.updatedAt, source.updatedAt)
         XCTAssertEqual(destination.syncModifiedAt, source.syncModifiedAt)
+        XCTAssertEqual(record[SyncKeys.schemaVersion] as? Int, 1)
     }
 
     // MARK: - Round-trip: FlashcardProgress
@@ -155,6 +156,7 @@ final class FidelSyncStoreTests: XCTestCase {
         XCTAssertEqual(destination.lapses, 2)
         XCTAssertEqual(destination.updatedAt, source.updatedAt)
         XCTAssertEqual(destination.syncModifiedAt, source.syncModifiedAt)
+        XCTAssertEqual(record[SyncKeys.schemaVersion] as? Int, 1)
     }
 
     // MARK: - Round-trip: CharacterTraceMastery
@@ -189,6 +191,7 @@ final class FidelSyncStoreTests: XCTestCase {
         XCTAssertEqual(destination.lastPracticedAt, source.lastPracticedAt)
         XCTAssertEqual(destination.updatedAt, source.updatedAt)
         XCTAssertEqual(destination.syncModifiedAt, source.syncModifiedAt)
+        XCTAssertEqual(record[SyncKeys.schemaVersion] as? Int, 1)
     }
 
     // MARK: - UserProgress field-wise merge
@@ -253,6 +256,132 @@ final class FidelSyncStoreTests: XCTestCase {
         XCTAssertEqual(result, .applied)
     }
 
+    /// Regression for the array-merge livelock: two independent stores hold
+    /// the same *set* of additive elements in different orders. Because
+    /// `mergedUnion` starts from each side's own local order, an
+    /// order-sensitive `Array ==` convergence check would never see the
+    /// merged result as equal to the remote's array, so both sides would
+    /// return `.localNewer` forever and re-upload without end. The
+    /// convergence check must compare these fields as `Set`s.
+    func test_userProgressMergeConvergesWhenAdditiveArraysDifferOnlyInOrder() throws {
+        let contextA = try makeContext()
+        let storeA = FidelSyncStore(context: contextA)
+
+        let local = UserProgress(ownerUserId: "user-1")
+        local.lessonsCompleted = [1, 2, 3]
+        local.achievements = ["ach-a", "ach-b", "ach-c"]
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000)
+        contextA.insert(local)
+        try contextA.save()
+
+        // Remote independently holds the exact same sets, but in a different
+        // element order (as if merged/reconciled on another device).
+        let remote = UserProgress(ownerUserId: "user-1")
+        remote.lessonsCompleted = [2, 3, 1]
+        remote.achievements = ["ach-b", "ach-c", "ach-a"]
+        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000)
+        let record = CKRecord(recordType: UserProgress.recordType, recordID: local.syncID.recordID(in: zoneID))
+        remote.encode(onto: record)
+
+        let firstApply = try storeA.applyRemoteRecord(record)
+
+        XCTAssertEqual(Set(local.lessonsCompleted), Set([1, 2, 3]))
+        XCTAssertEqual(Set(local.achievements), Set(["ach-a", "ach-b", "ach-c"]))
+        XCTAssertEqual(firstApply, .applied, "same set in different order must converge, not livelock")
+
+        // Idempotency: applying the identical remote record again must still
+        // converge (no flapping between .applied and .localNewer).
+        let secondApply = try storeA.applyRemoteRecord(record)
+        XCTAssertEqual(secondApply, .applied)
+    }
+
+    /// `lessonsInProgress` has removal semantics (a lesson leaves the set once
+    /// completed elsewhere), so it must NOT be unioned — union can never
+    /// remove, which would make a completed-elsewhere lesson stay "in
+    /// progress" forever. It is newest-side-wins like currentStreak/todayXP.
+    func test_userProgressMergeLessonsInProgressIsNewestSideWinsNotUnion() throws {
+        let context = try makeContext()
+        let store = FidelSyncStore(context: context)
+
+        let local = UserProgress(ownerUserId: "user-1")
+        local.lessonsInProgress = [5]
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000) // local is newer
+
+        let remote = UserProgress(ownerUserId: "user-1")
+        remote.lessonsInProgress = [9]
+        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000) // remote is older
+        context.insert(local)
+        try context.save()
+
+        let record = CKRecord(recordType: UserProgress.recordType, recordID: local.syncID.recordID(in: zoneID))
+        remote.encode(onto: record)
+
+        let result = try store.applyRemoteRecord(record)
+
+        // Local is newer, so local's set wins wholesale — not unioned with
+        // remote's [9].
+        XCTAssertEqual(local.lessonsInProgress, [5])
+        XCTAssertEqual(result, .localNewer)
+    }
+
+    /// Remote-newer case: the remote's set replaces local's wholesale, again
+    /// proving this is whole-value newest-side-wins, not a union.
+    func test_userProgressMergeLessonsInProgressTakesRemoteWholesaleWhenRemoteIsNewer() throws {
+        let context = try makeContext()
+        let store = FidelSyncStore(context: context)
+
+        let local = UserProgress(ownerUserId: "user-1")
+        local.lessonsInProgress = [5]
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000) // local is older
+        context.insert(local)
+        try context.save()
+
+        let remote = UserProgress(ownerUserId: "user-1")
+        remote.lessonsInProgress = [9]
+        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000) // remote is newer
+        let record = CKRecord(recordType: UserProgress.recordType, recordID: local.syncID.recordID(in: zoneID))
+        remote.encode(onto: record)
+
+        let result = try store.applyRemoteRecord(record)
+
+        // Remote is newer, so remote's set replaces local's wholesale — not
+        // unioned to [5, 9].
+        XCTAssertEqual(local.lessonsInProgress, [9])
+        XCTAssertEqual(result, .applied)
+    }
+
+    /// `streakFreezesAvailable` and `weeklyStreakCount` are non-monotonic
+    /// (freezes are consumable; the weekly count resets), so `max` would
+    /// refund a freeze spent locally as soon as a stale, freeze-rich remote
+    /// record merges in. They must be newest-side-wins like the other
+    /// per-period counters.
+    func test_userProgressMergeStreakFreezesAvailableIsNewestSideWinsNotMax() throws {
+        let context = try makeContext()
+        let store = FidelSyncStore(context: context)
+
+        let local = UserProgress(ownerUserId: "user-1")
+        local.streakFreezesAvailable = 1 // a freeze was just spent locally
+        local.weeklyStreakCount = 2
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000) // local is newer
+        context.insert(local)
+        try context.save()
+
+        let remote = UserProgress(ownerUserId: "user-1")
+        remote.streakFreezesAvailable = 3 // stale, higher remote value
+        remote.weeklyStreakCount = 5
+        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000) // remote is older
+        let record = CKRecord(recordType: UserProgress.recordType, recordID: local.syncID.recordID(in: zoneID))
+        remote.encode(onto: record)
+
+        let result = try store.applyRemoteRecord(record)
+
+        // Local is newer: its lower freeze count and weekly count win — the
+        // spent freeze must NOT be refunded by max().
+        XCTAssertEqual(local.streakFreezesAvailable, 1)
+        XCTAssertEqual(local.weeklyStreakCount, 2)
+        XCTAssertEqual(result, .localNewer)
+    }
+
     // MARK: - FlashcardProgress plain LWW
 
     func test_flashcardLWWKeepsNewerWholeRecord() throws {
@@ -307,6 +436,51 @@ final class FidelSyncStoreTests: XCTestCase {
         XCTAssertEqual(local.repetitions, 5)
         XCTAssertEqual(local.interval, 12)
         XCTAssertEqual(result, .localNewer)
+    }
+
+    /// A malformed remote record with NO `modifiedAt` key set must lose to a
+    /// local record that has a real timestamp — an absent timestamp must
+    /// default to `.distantPast`, not `.distantFuture` (which would make a
+    /// broken remote record look infinitely new and clobber real local FSRS
+    /// scheduling state).
+    func test_flashcardLWWAbsentRemoteTimestampLosesToRealLocalTimestamp() throws {
+        let context = try makeContext()
+        let store = FidelSyncStore(context: context)
+
+        let local = FlashcardProgress(itemId: "word-1", itemType: "vocabulary", ownerUserId: "user-1")
+        local.repetitions = 5
+        local.interval = 12
+        local.easeFactor = 2.8
+        local.stability = 20.0
+        local.difficulty = 4.0
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000)
+        context.insert(local)
+        try context.save()
+
+        // Build a remote record without ever setting SyncKeys.modifiedAt.
+        let remote = FlashcardProgress(itemId: "word-1", itemType: "vocabulary", ownerUserId: "user-1")
+        remote.repetitions = 1
+        remote.interval = 1
+        remote.easeFactor = 2.5
+        let record = CKRecord(recordType: FlashcardProgress.recordType, recordID: local.syncID.recordID(in: zoneID))
+        record["ownerUserId"] = remote.ownerUserId
+        record["itemId"] = remote.itemId
+        record["itemType"] = remote.itemType
+        record["easeFactor"] = remote.easeFactor
+        record["interval"] = remote.interval
+        record["repetitions"] = remote.repetitions
+        record["updatedAt"] = remote.updatedAt
+        // Deliberately NOT setting record[SyncKeys.modifiedAt].
+        XCTAssertNil(record[SyncKeys.modifiedAt], "test setup must not set modifiedAt")
+
+        let result = try store.applyRemoteRecord(record)
+
+        XCTAssertEqual(result, .localNewer)
+        XCTAssertEqual(local.repetitions, 5)
+        XCTAssertEqual(local.interval, 12)
+        XCTAssertEqual(local.easeFactor, 2.8)
+        XCTAssertEqual(local.stability, 20.0)
+        XCTAssertEqual(local.difficulty, 4.0)
     }
 
     // MARK: - CharacterTraceMastery field-wise merge (mirrors consolidateTraceMastery: max, not sum)
