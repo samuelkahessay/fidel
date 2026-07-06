@@ -215,6 +215,10 @@ final class UserProgress {
     /// ISO week key (`year*100 + weekOfYear`) of the last freeze grant, used to cap
     /// grants at once per week.
     var lastFreezeGrantWeek: Int = 0
+    /// Last-write-wins timestamp for SyncKit conflict resolution.
+    var syncModifiedAt: Date = Date()
+    /// Opaque CloudKit system fields (record metadata) persisted by SyncKit.
+    var cloudSystemFields: Data?
 
     init(ownerUserId: String = "") {
         self.ownerUserId = ownerUserId
@@ -358,6 +362,10 @@ final class FlashcardProgress {
     var stability: Double = 0
     var difficulty: Double = 0
     var lapses: Int = 0
+    /// Last-write-wins timestamp for SyncKit conflict resolution.
+    var syncModifiedAt: Date = Date()
+    /// Opaque CloudKit system fields (record metadata) persisted by SyncKit.
+    var cloudSystemFields: Data?
 
     init(itemId: String, itemType: String, ownerUserId: String = "") {
         self.itemId = itemId

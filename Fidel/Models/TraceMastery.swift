@@ -18,6 +18,10 @@ final class CharacterTraceMastery {
     var totalMisses: Int = 0
     var lastPracticedAt: Date?
     var updatedAt: Date = Date()
+    /// Last-write-wins timestamp for SyncKit conflict resolution.
+    var syncModifiedAt: Date = Date()
+    /// Opaque CloudKit system fields (record metadata) persisted by SyncKit.
+    var cloudSystemFields: Data?
 
     init(characterId: String, ownerUserId: String = "") {
         self.characterId = characterId

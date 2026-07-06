@@ -13,7 +13,8 @@ struct FidelApp: App {
         ])
         let modelConfiguration = ModelConfiguration(
             schema: schema,
-            isStoredInMemoryOnly: false
+            isStoredInMemoryOnly: false,
+            cloudKitDatabase: .none  // entitlement flips the default to .automatic mirroring; SyncKit owns sync
         )
 
         do {

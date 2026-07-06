@@ -28,7 +28,7 @@ final class TracingSessionSizeTests: XCTestCase {
             SelamMessage.self,
             CharacterTraceMastery.self
         ])
-        let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+        let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         let container = try ModelContainer(for: schema, configurations: [configuration])
         retainedContainers.append(container)
         return ProgressRepository(modelContext: container.mainContext)
