@@ -28,7 +28,7 @@ Before starting consolidation, import, release, or large refactor work, read:
 
 ## Product Boundaries
 
-- Keep Fidel local-first. Do not reintroduce sign-in, CloudKit, remote notification, or account-gated launch behavior unless the user explicitly reopens that product decision.
+- Fidel is iCloud-first: learning progress syncs invisibly via CloudKit (SyncKit; container `iCloud.dev.skahessay.learnamharic`, zone `FidelData`) under the portfolio sync policy (`standards/icloud-sync.md` in the ios-app-ops repo). Sync is silent and default-on with an account-change fallback sheet — but still NO sign-in and NO account-gated launch. Do not reintroduce sign-in or account-gated launch behavior, and keep Selam AI chats device-local, unless the user explicitly reopens those product decisions.
 - Azure is a content-production dependency only. The app must not ship Azure keys, call Azure at runtime, or require network access for pronunciation playback.
 - The app-facing audio source is `Fidel/Data/audio_manifest.json`. It must contain at most one active row per `contentType` and `contentId`; use `audio_catalog.json` for alternate/generated clips that are not the default learner-facing asset.
 - Do not bulk-import resource or phrasebook content directly into app JSON. Use the de-dupe reports, import schema, and rights notes first.
