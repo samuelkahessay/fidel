@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAA02000000 /* SyncKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAA02000002 /* SyncKit */; };
 		AAAFE000101 /* reading_passages.json in Resources */ = {isa = PBXBuildFile; fileRef = AAAFE000100 /* reading_passages.json */; };
 		BAAFF001101 /* ReadingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF001100 /* ReadingViewModelTests.swift */; };
 		AAAFF000901 /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF000900 /* ReadingView.swift */; };
@@ -231,6 +232,17 @@
 		AAA00125000 /* sentence_exercises.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sentence_exercises.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		AAA02000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA02000000 /* SyncKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		AAA00100000 = {
 			isa = PBXGroup;
@@ -449,12 +461,16 @@
 			buildPhases = (
 				AAA00800001 /* Sources */,
 				AAA00800002 /* Resources */,
+				AAA02000003 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Fidel;
+			packageProductDependencies = (
+				AAA02000002 /* SyncKit */,
+			);
 			productName = "Fidel - Learn Amharic";
 			productReference = AAA00000000 /* Fidel - Learn Amharic.app */;
 			productType = "com.apple.product-type.application";
@@ -504,6 +520,9 @@
 				Base,
 			);
 			mainGroup = AAA00100000;
+			packageReferences = (
+				AAA02000001 /* XCLocalSwiftPackageReference "../../SyncKit" */,
+			);
 			productRefGroup = AAA00300000 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -923,6 +942,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AAA02000001 /* XCLocalSwiftPackageReference "../../SyncKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../SyncKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AAA02000002 /* SyncKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SyncKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AAA01000000 /* Project object */;
 }
