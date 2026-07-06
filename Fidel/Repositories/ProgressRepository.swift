@@ -326,6 +326,10 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         )
     }
 
+    // Local-duplicate consolidation runs on a READ path (getTraceMastery). It merges duplicates
+    // into `primary` but deliberately does NOT fire onMutation / markPending: marking on a read
+    // would bump syncModifiedAt every read and poison last-writer-wins. The merged result
+    // self-heals on the next genuine edit (which does markPending).
     private func consolidateTraceMastery(_ records: [CharacterTraceMastery], ownerId: String) -> CharacterTraceMastery {
         precondition(!records.isEmpty, "Expected at least one CharacterTraceMastery record")
         var primary = records[0]
@@ -403,6 +407,10 @@ final class ProgressRepository: ProgressRepositoryProtocol {
 
     // MARK: - Cloud Merge Helpers
 
+    // Local-duplicate consolidation runs on the READ path (getUserProgress). It merges duplicates
+    // into `primary` but deliberately does NOT fire onMutation / markPending: marking on a read
+    // would bump syncModifiedAt every read and poison last-writer-wins. The merged result
+    // self-heals on the next genuine edit (which does markPending).
     private func consolidateUserProgress(_ records: [UserProgress], ownerId: String) -> UserProgress {
         precondition(!records.isEmpty, "Expected at least one UserProgress record")
         var primary = records[0]
@@ -476,6 +484,10 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
     }
 
+    // Local-duplicate consolidation runs on a READ path (deduplicatedFlashcards). It merges
+    // duplicates into `primary` but deliberately does NOT fire onMutation / markPending: marking
+    // on a read would bump syncModifiedAt every read and poison last-writer-wins. The merged
+    // result self-heals on the next genuine edit (which does markPending).
     private func consolidateFlashcardProgress(_ records: [FlashcardProgress], ownerId: String) -> FlashcardProgress {
         precondition(!records.isEmpty, "Expected at least one FlashcardProgress record")
         var primary = records[0]

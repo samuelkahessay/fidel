@@ -11,6 +11,11 @@ import SyncKit
 /// `CharacterTraceMastery` — mirroring the consolidation logic in
 /// `ProgressRepository` — instead of plain last-write-wins. `FlashcardProgress`
 /// uses plain whole-record LWW, same as the Throughline reference.
+/// NOTE: the merge deliberately DIVERGES from `ProgressRepository.consolidate*` on the
+/// non-monotonic `UserProgress` fields (`currentStreak`, `todayXP`, `dailyGoal`,
+/// `lessonsInProgress`, `streakFreezesAvailable`, `weeklyStreakCount`): those are
+/// newest-side-wins here, NOT `max` — `max` would refund a spent streak-freeze or pin a
+/// stale streak/goal across devices. See `mergeUserProgress` for the per-field rationale.
 @MainActor
 final class FidelSyncStore: SyncStore {
     private let context: ModelContext
@@ -235,6 +240,10 @@ final class FidelSyncStore: SyncStore {
     // MARK: - FlashcardProgress plain LWW
 
     private func applyFlashcardLWW(_ local: FlashcardProgress, remoteRecord: CKRecord) -> RemoteApplyResult {
+        // An absent remote modifiedAt defaults to `.distantPast` so it LOSES to any real local
+        // timestamp — intentionally the opposite of SyncKit's `ConflictResolution.winner(localRecord:serverRecord:)`
+        // convenience overload (which defaults the server side to `.distantFuture`). A malformed
+        // remote card with no timestamp must never clobber valid local FSRS scheduling state.
         let remoteModifiedAt = remoteRecord[SyncKeys.modifiedAt] as? Date ?? .distantPast
         if ConflictResolution.winner(localModifiedAt: local.syncModifiedAt, serverModifiedAt: remoteModifiedAt) == .local {
             return .localNewer
