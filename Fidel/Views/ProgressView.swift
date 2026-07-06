@@ -32,6 +32,7 @@ struct ProgressDashboardView: View {
                     dailyGoalSection
                     achievementsSection
                     localSaveStatusSection
+                    SyncSettingsSection(engine: sync)
                     backupSection
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)

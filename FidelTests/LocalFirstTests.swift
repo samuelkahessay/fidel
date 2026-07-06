@@ -309,6 +309,35 @@ final class LocalFirstTests: XCTestCase {
         )
     }
 
+    /// Mirrors `AccountChangeSheet.adoptRemote()`'s wipe step
+    /// (`Fidel/ContentView.swift`): deletes the three synced progress models
+    /// but must leave Selam chat records untouched, since those are
+    /// device-local AI tutor conversations unrelated to the account's synced
+    /// learning data.
+    func testAccountChangeWipeDeletesSyncedModelsButLeavesSelamIntact() throws {
+        let container = try makeContainer()
+        let context = container.mainContext
+
+        context.insert(UserProgress(ownerUserId: "user-1"))
+        context.insert(FlashcardProgress(itemId: "word-1", itemType: "vocabulary", ownerUserId: "user-1"))
+        context.insert(CharacterTraceMastery(characterId: "0-1", ownerUserId: "user-1"))
+        let conversation = SelamConversation(title: "Greetings")
+        context.insert(conversation)
+        context.insert(SelamMessage(content: "Selam!", role: .user))
+        try context.save()
+
+        try context.delete(model: UserProgress.self)
+        try context.delete(model: FlashcardProgress.self)
+        try context.delete(model: CharacterTraceMastery.self)
+        try context.save()
+
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<UserProgress>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<FlashcardProgress>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<CharacterTraceMastery>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<SelamConversation>()), 1)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<SelamMessage>()), 1)
+    }
+
     private func makeContainer() throws -> ModelContainer {
         let schema = Schema([
             UserProgress.self,

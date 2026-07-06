@@ -1,6 +1,7 @@
 import SwiftData
 import SwiftUI
 import SyncKit
+import os
 
 private enum AppTab: String, CaseIterable, Identifiable {
     case today
@@ -70,6 +71,7 @@ private struct AppNavigationActions {
 struct ContentView: View {
     @State private var selectedTab: AppTab = .today
     @State private var activeRoute: FidelRoute?
+    @Environment(SyncEngine.self) private var sync
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -83,6 +85,13 @@ struct ContentView: View {
         .tabBarMinimizeBehavior(.onScrollDown)
         .sheet(item: $activeRoute) { route in
             routeDestination(route)
+        }
+        .sheet(isPresented: Binding(
+            get: { sync.status.state == .needsAccountChoice },
+            set: { _ in }
+        )) {
+            AccountChangeSheet()
+                .interactiveDismissDisabled()
         }
     }
 
@@ -145,6 +154,94 @@ struct ContentView: View {
                 PracticeModeDestination(mode: mode)
             }
         }
+    }
+}
+
+/// Presented when `SyncEngine` detects the device's iCloud account changed
+/// out from under the sync engine (`SyncStatus.State.needsAccountChoice`).
+/// The user picks whether to upload this device's local data into the new
+/// account, or wipe local data and adopt the new account's data (keeping a
+/// local archive first). Adapted from Throughline's reviewed
+/// `AccountChangeSheet` (`Views/ContentView.swift`).
+private struct AccountChangeSheet: View {
+    @Environment(SyncEngine.self) private var sync
+    @Environment(\.modelContext) private var context
+    @State private var archiveFailed = false
+
+    private static let logger = Logger(subsystem: "dev.skahessay.learnamharic", category: "sync")
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Button {
+                        sync.mergeLocalDataIntoCurrentAccount()
+                    } label: {
+                        Label("Keep this device's data", systemImage: "arrow.up.doc.on.clipboard")
+                    }
+                    Button(role: .destructive) {
+                        adoptRemote()
+                    } label: {
+                        Label("Start fresh from iCloud", systemImage: "icloud.and.arrow.down")
+                    }
+                } footer: {
+                    if archiveFailed {
+                        Label("Couldn't create a local archive — nothing was changed. Free up space and try again, or choose Keep this device's data.", systemImage: "exclamationmark.triangle")
+                    } else {
+                        Text("The iCloud account on this device changed. Choose whether to upload this device's data into the new account, or replace it with the new account's data (a local archive is kept).")
+                    }
+                }
+            }
+            .navigationTitle("iCloud Account Changed")
+        }
+    }
+
+    private func adoptRemote() {
+        // Archive FIRST. If it fails, bail without touching any data — this
+        // is the data-loss guard for the destructive path.
+        guard archiveStoreFiles() else {
+            archiveFailed = true
+            return
+        }
+        try? context.delete(model: UserProgress.self)
+        try? context.delete(model: FlashcardProgress.self)
+        try? context.delete(model: CharacterTraceMastery.self)
+        // Deliberately NOT SelamConversation/SelamMessage: those are
+        // device-local AI tutor chats, unrelated to the account's synced
+        // learning data, so they survive an account switch untouched.
+        try? context.save()
+        sync.adoptCurrentAccountData()
+    }
+
+    /// Copies the SwiftData store files aside before wiping, honoring the
+    /// "keep a local archive" promise in the spec. Returns `false` if the
+    /// archive directory couldn't be created or an existing store file
+    /// failed to copy — callers must not proceed with the wipe in that case.
+    private func archiveStoreFiles() -> Bool {
+        let fm = FileManager.default
+        let support = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let stamp = ISO8601DateFormatter().string(from: .now)
+        let archive = support.appendingPathComponent("Archive-\(stamp)", isDirectory: true)
+        do {
+            try fm.createDirectory(at: archive, withIntermediateDirectories: true)
+        } catch {
+            Self.logger.error("Failed to create archive directory: \(error, privacy: .public)")
+            return false
+        }
+        // Fidel's ModelContainer uses the default ModelConfiguration (no
+        // explicit URL — see FidelApp.swift), so its SQLite store is
+        // `default.store` (+ WAL sidecar files) in Application Support.
+        for name in ["default.store", "default.store-shm", "default.store-wal"] {
+            let source = support.appendingPathComponent(name)
+            guard fm.fileExists(atPath: source.path) else { continue }
+            do {
+                try fm.copyItem(at: source, to: archive.appendingPathComponent(name))
+            } catch {
+                Self.logger.error("Failed to archive \(name, privacy: .public): \(error, privacy: .public)")
+                return false
+            }
+        }
+        return true
     }
 }
 
