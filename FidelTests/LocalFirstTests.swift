@@ -18,7 +18,7 @@ final class LocalFirstTests: XCTestCase {
 
     func testSettingsStorePersistsDailyGoal() {
         let defaults = makeDefaults()
-        var store = AppSettingsStore(defaults: defaults)
+        let store = AppSettingsStore(defaults: defaults)
 
         store.dailyXPGoal = 120
 
@@ -27,7 +27,7 @@ final class LocalFirstTests: XCTestCase {
 
     func testSettingsStoreClampsDailyGoal() {
         let defaults = makeDefaults()
-        var store = AppSettingsStore(defaults: defaults)
+        let store = AppSettingsStore(defaults: defaults)
 
         store.dailyXPGoal = -5
 

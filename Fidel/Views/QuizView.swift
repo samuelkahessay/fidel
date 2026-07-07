@@ -382,9 +382,6 @@ struct QuizView: View {
                     options: [],
                     transliterationHint: hint
                 )
-                
-            default:
-                continue
             }
             
             generatedQuestions.append(question)
