@@ -3,6 +3,11 @@ import SwiftData
 
 // MARK: - SelamRepository Protocol
 
+// `@MainActor`-isolated to match its only conformer (`SelamRepository`, a
+// `@MainActor @Observable` type wrapping a main-actor `ModelContext`) and its
+// consumer (`SelamViewModel` is `@MainActor`). Without this the conformance
+// crosses actor boundaries — a data-race warning today, an error in Swift 6.
+@MainActor
 protocol SelamRepositoryProtocol {
     func getConversations() -> [SelamConversation]
     func getConversation(by id: UUID) -> SelamConversation?

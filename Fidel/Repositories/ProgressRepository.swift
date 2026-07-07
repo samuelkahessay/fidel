@@ -4,6 +4,12 @@ import SyncKit
 
 // MARK: - ProgressRepository Protocol
 
+// `@MainActor`-isolated to match its only conformer (`ProgressRepository`, a
+// `@MainActor @Observable` type wrapping a main-actor `ModelContext`) and all
+// consumers (every ViewModel + StageManager are `@MainActor`). Without this the
+// conformance crosses actor boundaries — a data-race warning today, an error in
+// Swift 6.
+@MainActor
 protocol ProgressRepositoryProtocol {
     // User Progress
     @discardableResult
