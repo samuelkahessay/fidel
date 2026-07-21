@@ -4,6 +4,8 @@ import SyncKit
 
 @main
 struct FidelApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             UserProgress.self,
@@ -43,6 +45,11 @@ struct FidelApp: App {
         WindowGroup {
             ContentView()
                 .environment(syncEngine)
+                .onChange(of: scenePhase) { _, phase in
+                    if phase == .active {
+                        syncEngine.appDidBecomeActive()
+                    }
+                }
                 .task(priority: .utility) {
                     // Warm the 9.7MB stroke database off the main thread so the
                     // first tracing screen doesn't pay the JSON decode.

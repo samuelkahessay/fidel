@@ -1,6 +1,7 @@
 // ProgressExportRoundTripTests — implemented in Task 12 of the open-learning-path plan.
 import Foundation
 import SwiftData
+import SyncKit
 import XCTest
 @testable import Fidel___Learn_Amharic
 
@@ -181,5 +182,62 @@ final class ProgressExportRoundTripTests: XCTestCase {
         XCTAssertEqual(restored?.lessonsInProgress, [2], "completed lesson 1 must be filtered out; 2 remains")
         XCTAssertEqual(restored?.lessonsInProgress.contains(1), false)
         XCTAssertEqual(restored?.lessonsCompleted.contains(1), true)
+    }
+
+    func testImportMarksOnlyChangedCloudRecordsPending() throws {
+        let sourceContainer = try makeContainer()
+        let sourceProgress = UserProgress(ownerUserId: LocalLearner.userId)
+        sourceProgress.totalXP = 900
+        sourceContainer.mainContext.insert(sourceProgress)
+        let sourceCard = FlashcardProgress(
+            itemId: "vocab-1",
+            itemType: "vocabulary",
+            ownerUserId: LocalLearner.userId
+        )
+        sourceCard.repetitions = 4
+        sourceContainer.mainContext.insert(sourceCard)
+        let data = try ProgressExportService(modelContext: sourceContainer.mainContext).exportData()
+
+        let targetContainer = try makeContainer()
+        var markedIDs: [SyncID] = []
+        let importService = ProgressExportService(
+            modelContext: targetContainer.mainContext,
+            onMutation: { markedIDs.append($0) }
+        )
+        let importStartedAt = Date.now
+
+        let changedIDs = try importService.importData(data)
+
+        XCTAssertEqual(Set(changedIDs), Set(markedIDs))
+        XCTAssertEqual(Set(changedIDs), Set([sourceProgress.syncID, sourceCard.syncID]))
+        let restoredProgress = try fetchProgress(from: targetContainer)
+        XCTAssertGreaterThanOrEqual(restoredProgress?.syncModifiedAt ?? .distantPast, importStartedAt)
+        let restoredCards = try targetContainer.mainContext.fetch(FetchDescriptor<FlashcardProgress>())
+        XCTAssertGreaterThanOrEqual(restoredCards.first?.syncModifiedAt ?? .distantPast, importStartedAt)
+    }
+
+    func testRepeatingSameImportIsANoOp() throws {
+        let sourceContainer = try makeContainer()
+        let sourceProgress = UserProgress(ownerUserId: LocalLearner.userId)
+        sourceProgress.totalXP = 42
+        sourceProgress.lessonsCompleted = [1, 2]
+        sourceContainer.mainContext.insert(sourceProgress)
+        let data = try ProgressExportService(modelContext: sourceContainer.mainContext).exportData()
+
+        let targetContainer = try makeContainer()
+        var markedIDs: [SyncID] = []
+        let importService = ProgressExportService(
+            modelContext: targetContainer.mainContext,
+            onMutation: { markedIDs.append($0) }
+        )
+        _ = try importService.importData(data)
+        markedIDs.removeAll()
+        let firstModifiedAt = try fetchProgress(from: targetContainer)?.syncModifiedAt
+
+        let changedIDs = try importService.importData(data)
+
+        XCTAssertTrue(changedIDs.isEmpty)
+        XCTAssertTrue(markedIDs.isEmpty)
+        XCTAssertEqual(try fetchProgress(from: targetContainer)?.syncModifiedAt, firstModifiedAt)
     }
 }

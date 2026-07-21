@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import SyncKit
 
 enum ProgressExportError: LocalizedError {
     case invalidBackupVersion(Int)
@@ -30,7 +31,7 @@ struct ProgressBackupSnapshot: Codable {
     }
 }
 
-struct UserProgressSnapshot: Codable {
+struct UserProgressSnapshot: Codable, Equatable {
     let totalXP: Int
     let currentStreak: Int
     let longestStreak: Int
@@ -76,7 +77,7 @@ struct UserProgressSnapshot: Codable {
     }
 }
 
-struct FlashcardProgressSnapshot: Codable {
+struct FlashcardProgressSnapshot: Codable, Equatable {
     let itemId: String
     let itemType: String
     let easeFactor: Double
@@ -135,10 +136,16 @@ struct AppSettingsSnapshot: Codable {
 struct ProgressExportService {
     private let modelContext: ModelContext
     private let settingsStore: AppSettingsStore
+    private let onMutation: @MainActor (SyncID) -> Void
 
-    init(modelContext: ModelContext, settingsStore: AppSettingsStore = AppSettingsStore()) {
+    init(
+        modelContext: ModelContext,
+        settingsStore: AppSettingsStore = AppSettingsStore(),
+        onMutation: @escaping @MainActor (SyncID) -> Void = { _ in }
+    ) {
         self.modelContext = modelContext
         self.settingsStore = settingsStore
+        self.onMutation = onMutation
     }
 
     func exportData() throws -> Data {
@@ -153,16 +160,22 @@ struct ProgressExportService {
         return try encoder.encode(snapshot)
     }
 
-    func importData(_ data: Data) throws {
+    @discardableResult
+    func importData(_ data: Data) throws -> [SyncID] {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let snapshot = try decoder.decode(ProgressBackupSnapshot.self, from: data)
         guard snapshot.version == ProgressBackupSnapshot.currentVersion else {
             throw ProgressExportError.invalidBackupVersion(snapshot.version)
         }
-        importUserProgress(snapshot.userProgress)
-        importFlashcards(snapshot.flashcards)
+        var changedIDs: [SyncID] = []
+        if let userProgressID = importUserProgress(snapshot.userProgress) {
+            changedIDs.append(userProgressID)
+        }
+        changedIDs.append(contentsOf: importFlashcards(snapshot.flashcards))
         importSettings(snapshot.settings)
+        changedIDs.forEach(onMutation)
+        return changedIDs
     }
 
     private func fetchUserProgress() -> UserProgress? {
@@ -182,10 +195,12 @@ struct ProgressExportService {
         return (try? modelContext.fetch(descriptor)) ?? []
     }
 
-    private func importUserProgress(_ snapshot: UserProgressSnapshot?) {
-        guard let snapshot else { return }
+    private func importUserProgress(_ snapshot: UserProgressSnapshot?) -> SyncID? {
+        guard let snapshot else { return nil }
         let progress = fetchUserProgress() ?? UserProgress(ownerUserId: LocalLearner.userId)
-        if progress.modelContext == nil {
+        let isNew = progress.modelContext == nil
+        let before = UserProgressSnapshot(progress: progress)
+        if isNew {
             modelContext.insert(progress)
         }
 
@@ -212,12 +227,17 @@ struct ProgressExportService {
         progress.streakFreezesAvailable = max(progress.streakFreezesAvailable, snapshot.streakFreezesAvailable ?? 0)
         progress.weeklyStreakCount = max(progress.weeklyStreakCount, snapshot.weeklyStreakCount ?? 0)
         progress.lastFreezeGrantWeek = max(progress.lastFreezeGrantWeek, snapshot.lastFreezeGrantWeek ?? 0)
-        progress.updatedAt = Date.now
+        guard isNew || UserProgressSnapshot(progress: progress) != before else { return nil }
+        let mutationDate = Date.now
+        progress.updatedAt = mutationDate
+        progress.syncModifiedAt = mutationDate
+        return progress.syncID
     }
 
-    private func importFlashcards(_ snapshots: [FlashcardProgressSnapshot]) {
+    private func importFlashcards(_ snapshots: [FlashcardProgressSnapshot]) -> [SyncID] {
         let existing = fetchFlashcards()
         var existingByKey = Dictionary(uniqueKeysWithValues: existing.map { ("\($0.itemType)::\($0.itemId)", $0) })
+        var changedIDs: [SyncID] = []
 
         for snapshot in snapshots {
             let key = "\(snapshot.itemType)::\(snapshot.itemId)"
@@ -226,7 +246,9 @@ struct ProgressExportService {
                 itemType: snapshot.itemType,
                 ownerUserId: LocalLearner.userId
             )
-            if existingByKey[key] == nil {
+            let isNew = existingByKey[key] == nil
+            let before = FlashcardProgressSnapshot(progress: progress)
+            if isNew {
                 modelContext.insert(progress)
                 existingByKey[key] = progress
             }
@@ -240,9 +262,14 @@ struct ProgressExportService {
                 progress.difficulty = snapshot.difficulty
                 progress.lapses = snapshot.lapses
                 progress.ownerUserId = LocalLearner.userId
-                progress.updatedAt = Date.now
             }
+            guard isNew || FlashcardProgressSnapshot(progress: progress) != before else { continue }
+            let mutationDate = Date.now
+            progress.updatedAt = mutationDate
+            progress.syncModifiedAt = mutationDate
+            changedIDs.append(progress.syncID)
         }
+        return changedIDs
     }
 
     private func importSettings(_ snapshot: AppSettingsSnapshot) {
@@ -272,6 +299,7 @@ struct ProgressExportService {
     }
 
     private func merged<T: Hashable>(_ lhs: [T], _ rhs: [T]) -> [T] {
-        Array(Set(lhs).union(rhs))
+        var seen = Set(lhs)
+        return lhs + rhs.filter { seen.insert($0).inserted }
     }
 }

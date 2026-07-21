@@ -541,7 +541,7 @@
 			);
 			mainGroup = AAA00100000;
 			packageReferences = (
-				AAA02000001 /* XCLocalSwiftPackageReference "../../SyncKit" */,
+				AAA02000001 /* XCLocalSwiftPackageReference "Packages/SyncKit" */,
 			);
 			productRefGroup = AAA00300000 /* Products */;
 			projectDirPath = "";
@@ -863,7 +863,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Fidel/Fidel.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Fidel/FidelRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 9XWM5T8A87;
@@ -968,9 +968,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		AAA02000001 /* XCLocalSwiftPackageReference "../../SyncKit" */ = {
+		AAA02000001 /* XCLocalSwiftPackageReference "Packages/SyncKit" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../SyncKit;
+			relativePath = Packages/SyncKit;
 		};
 /* End XCLocalSwiftPackageReference section */
 

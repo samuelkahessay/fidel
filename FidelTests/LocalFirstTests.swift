@@ -153,7 +153,9 @@ final class LocalFirstTests: XCTestCase {
         let placeholderIds: Set<String> = ["17", "19", "55"]
         let phraseAssets = AmharicData.audioAssets.filter { $0.contentType == .phrase }
 
-        XCTAssertEqual(phraseAssets.count, 171)
+        let expectedPhraseIDs = Set(AmharicData.phrases.map { String($0.id) })
+            .subtracting(placeholderIds)
+        XCTAssertEqual(Set(phraseAssets.map(\.contentId)), expectedPhraseIDs)
         XCTAssertEqual(Set(AmharicData.audioAssets.map(\.voice)), ["am-ET-AmehaNeural"])
         XCTAssertTrue(AmharicData.audioAssets.allSatisfy { $0.assetRole == "active" })
         XCTAssertTrue(phraseAssets.allSatisfy { $0.assetSet == "all-phrases-v1" })

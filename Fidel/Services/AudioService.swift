@@ -54,7 +54,10 @@ actor AudioCache {
     private func stableHash(for text: String) -> String {
         let data = Data(text.utf8)
         let digest = SHA256.hash(data: data)
-        return digest.prefix(16).map { String(format: "%02x", $0) }.joined()
+        return digest.prefix(16).map { byte in
+            let hex = String(byte, radix: 16)
+            return hex.count == 1 ? "0\(hex)" : hex
+        }.joined()
     }
 
     func getCachedAudio(for text: String) -> URL? {
@@ -107,7 +110,7 @@ class AudioService {
     var playbackProgress: Double = 0
     var lastError: String?
     
-    private var progressTimer: Timer?
+    private var progressTask: Task<Void, Never>?
     private var currentTask: Task<Void, Never>?
     
     init() {
@@ -141,36 +144,28 @@ class AudioService {
         isLoading = true
         lastError = nil
         
-        currentTask = Task {
+        currentTask = Task { @MainActor in
             do {
                 if let cachedURL = await audioCache.getCachedAudio(for: text) {
-                    await MainActor.run {
-                        self.isLoading = false
-                        self.playAudio(from: cachedURL)
-                    }
+                    isLoading = false
+                    playAudio(from: cachedURL)
                     return
                 }
                 
                 let audioData = try await fetchElevenLabsAudio(text: text, voiceId: voiceId)
                 
                 if let cachedURL = await audioCache.cacheAudio(audioData, for: text) {
-                    await MainActor.run {
-                        self.isLoading = false
-                        self.playAudio(from: cachedURL)
-                    }
+                    isLoading = false
+                    playAudio(from: cachedURL)
                 } else {
-                    await MainActor.run {
-                        self.isLoading = false
-                        self.playAudioData(audioData)
-                    }
+                    isLoading = false
+                    playAudioData(audioData)
                 }
             } catch {
-                await MainActor.run {
-                    self.isLoading = false
-                    self.lastError = error.localizedDescription
-                    print("ElevenLabs TTS failed: \(error), falling back to system TTS")
-                    self.speakAmharicFallback(text)
-                }
+                isLoading = false
+                lastError = error.localizedDescription
+                print("ElevenLabs TTS failed: \(error), falling back to system TTS")
+                speakAmharicFallback(text)
             }
         }
     }
@@ -306,7 +301,8 @@ class AudioService {
         synthesizer.stopSpeaking(at: .immediate)
         audioPlayer?.stop()
         isPlaying = false
-        progressTimer?.invalidate()
+        progressTask?.cancel()
+        progressTask = nil
     }
     
     func playAudio(from url: URL) {
@@ -324,15 +320,18 @@ class AudioService {
     }
     
     private func startProgressTimer() {
-        progressTimer?.invalidate()
-        progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-            guard let self = self, let player = self.audioPlayer else { return }
-            
-            if player.isPlaying {
-                self.playbackProgress = player.currentTime / player.duration
-            } else {
-                self.isPlaying = false
-                self.progressTimer?.invalidate()
+        progressTask?.cancel()
+        progressTask = Task { @MainActor [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .milliseconds(100))
+                guard let self, let player = self.audioPlayer else { return }
+
+                if player.isPlaying {
+                    self.playbackProgress = player.currentTime / player.duration
+                } else {
+                    self.isPlaying = false
+                    return
+                }
             }
         }
     }

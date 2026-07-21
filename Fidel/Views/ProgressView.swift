@@ -341,7 +341,11 @@ struct ProgressDashboardView: View {
                 }
             }
             let data = try Data(contentsOf: url)
-            try ProgressExportService(modelContext: modelContext, settingsStore: settingsStore).importData(data)
+            try ProgressExportService(
+                modelContext: modelContext,
+                settingsStore: settingsStore,
+                onMutation: { sync.markPending($0) }
+            ).importData(data)
             loadProgress()
             backupMessage = "Backup imported on this device."
         } catch {
