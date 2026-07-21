@@ -14,7 +14,8 @@ fi
 EXPECTED_HASH="$(ruby -rjson -e 'puts JSON.parse(File.read(ARGV.fetch(0))).fetch("tree_sha256")' "$RECEIPT")"
 ACTUAL_HASH="$(
     cd "$VENDOR_DIR"
-    find Package.swift README.md Sources Tests -type f -print \
+    find . -type f ! -path './.build/*' ! -path './.swiftpm/*' -print \
+        | sed 's#^./##' \
         | LC_ALL=C sort \
         | xargs shasum -a 256 \
         | shasum -a 256 \
