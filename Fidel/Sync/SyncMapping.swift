@@ -18,16 +18,16 @@ extension UserProgress {
         record["currentStreak"] = currentStreak
         record["longestStreak"] = longestStreak
         record["lastPracticeDate"] = lastPracticeDate
-        record["lessonsCompleted"] = lessonsCompleted
-        record["lessonsInProgress"] = lessonsInProgress
-        record["patternsLearned"] = patternsLearned
-        record["vocabularyMastered"] = vocabularyMastered
-        record["conversationsPracticed"] = conversationsPracticed
+        if !lessonsCompleted.isEmpty || cloudSystemFields != nil { record["lessonsCompleted"] = lessonsCompleted }
+        if !lessonsInProgress.isEmpty || cloudSystemFields != nil { record["lessonsInProgress"] = lessonsInProgress }
+        if !patternsLearned.isEmpty || cloudSystemFields != nil { record["patternsLearned"] = patternsLearned }
+        if !vocabularyMastered.isEmpty || cloudSystemFields != nil { record["vocabularyMastered"] = vocabularyMastered }
+        if !conversationsPracticed.isEmpty || cloudSystemFields != nil { record["conversationsPracticed"] = conversationsPracticed }
         record["dailyGoal"] = dailyGoal
         record["todayXP"] = todayXP
-        record["achievements"] = achievements
-        record["fidelCharactersRecognized"] = fidelCharactersRecognized
-        record["charactersTraced"] = charactersTraced
+        if !achievements.isEmpty || cloudSystemFields != nil { record["achievements"] = achievements }
+        if !fidelCharactersRecognized.isEmpty || cloudSystemFields != nil { record["fidelCharactersRecognized"] = fidelCharactersRecognized }
+        if !charactersTraced.isEmpty || cloudSystemFields != nil { record["charactersTraced"] = charactersTraced }
         record["currentStage"] = currentStage
         record["streakFreezesAvailable"] = streakFreezesAvailable
         record["weeklyStreakCount"] = weeklyStreakCount

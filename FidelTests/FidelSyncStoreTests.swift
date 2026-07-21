@@ -117,6 +117,40 @@ final class FidelSyncStoreTests: XCTestCase {
         XCTAssertEqual(record[SyncKeys.schemaVersion] as? Int, 1)
     }
 
+    func test_userProgress_firstUpload_omitsEmptyArraysCloudKitCannotInfer() throws {
+        let progress = UserProgress(ownerUserId: "new-user")
+        let record = CKRecord(
+            recordType: UserProgress.recordType,
+            recordID: progress.syncID.recordID(in: zoneID)
+        )
+
+        progress.encode(onto: record)
+
+        XCTAssertNil(record["lessonsCompleted"])
+        XCTAssertNil(record["lessonsInProgress"])
+        XCTAssertNil(record["patternsLearned"])
+        XCTAssertNil(record["vocabularyMastered"])
+        XCTAssertNil(record["conversationsPracticed"])
+        XCTAssertNil(record["achievements"])
+        XCTAssertNil(record["fidelCharactersRecognized"])
+        XCTAssertNil(record["charactersTraced"])
+    }
+
+    func test_userProgress_existingRecord_encodesEmptyArraysToPropagateClears() throws {
+        let progress = UserProgress(ownerUserId: "existing-user")
+        progress.cloudSystemFields = Data([0x01])
+        let record = CKRecord(
+            recordType: UserProgress.recordType,
+            recordID: progress.syncID.recordID(in: zoneID)
+        )
+
+        progress.encode(onto: record)
+
+        XCTAssertEqual(record["lessonsCompleted"] as? [Int], [])
+        XCTAssertEqual(record["achievements"] as? [String], [])
+        XCTAssertEqual(record["charactersTraced"] as? [String], [])
+    }
+
     // MARK: - Round-trip: FlashcardProgress
 
     func test_flashcardProgress_encodeApply_roundTripsEveryField() throws {
