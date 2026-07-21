@@ -642,7 +642,7 @@ final class FidelSyncStoreTests: XCTestCase {
         context.insert(mastery)
         try context.save()
 
-        let ids = store.allSyncIDs()
+        let ids = try store.allSyncIDs()
 
         XCTAssertTrue(ids.contains(progress.syncID))
         XCTAssertTrue(ids.contains(card.syncID))
@@ -658,7 +658,7 @@ final class FidelSyncStoreTests: XCTestCase {
         context.insert(progress)
         try context.save()
 
-        store.resetAllSystemFields()
+        try store.resetAllSystemFields()
 
         XCTAssertNil(progress.cloudSystemFields)
     }

@@ -70,19 +70,19 @@ final class FidelSyncStore: SyncStore {
         }
     }
 
-    func allSyncIDs() -> [SyncID] {
+    func allSyncIDs() throws -> [SyncID] {
         var ids: [SyncID] = []
-        ids += (try? context.fetch(FetchDescriptor<UserProgress>()))?.map(\.syncID) ?? []
-        ids += (try? context.fetch(FetchDescriptor<FlashcardProgress>()))?.map(\.syncID) ?? []
-        ids += (try? context.fetch(FetchDescriptor<CharacterTraceMastery>()))?.map(\.syncID) ?? []
+        ids += try context.fetch(FetchDescriptor<UserProgress>()).map(\.syncID)
+        ids += try context.fetch(FetchDescriptor<FlashcardProgress>()).map(\.syncID)
+        ids += try context.fetch(FetchDescriptor<CharacterTraceMastery>()).map(\.syncID)
         return ids
     }
 
-    func resetAllSystemFields() {
-        (try? context.fetch(FetchDescriptor<UserProgress>()))?.forEach { $0.cloudSystemFields = nil }
-        (try? context.fetch(FetchDescriptor<FlashcardProgress>()))?.forEach { $0.cloudSystemFields = nil }
-        (try? context.fetch(FetchDescriptor<CharacterTraceMastery>()))?.forEach { $0.cloudSystemFields = nil }
-        try? context.save()
+    func resetAllSystemFields() throws {
+        try context.fetch(FetchDescriptor<UserProgress>()).forEach { $0.cloudSystemFields = nil }
+        try context.fetch(FetchDescriptor<FlashcardProgress>()).forEach { $0.cloudSystemFields = nil }
+        try context.fetch(FetchDescriptor<CharacterTraceMastery>()).forEach { $0.cloudSystemFields = nil }
+        try context.save()
     }
 
     // MARK: - Merge dispatch

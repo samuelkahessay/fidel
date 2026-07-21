@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import SyncKit
+import os
 
 @main
 struct FidelApp: App {
@@ -33,12 +34,35 @@ struct FidelApp: App {
     // already carries the identity CloudKit will use.
     @State private var syncEngine: SyncEngine
 
+    private static let logger = Logger(subsystem: "dev.skahessay.learnamharic", category: "sync")
+    private static let syncBootstrapVersionKey = "Fidel.syncBootstrapVersion"
+    private static let currentSyncBootstrapVersion = 1
+
     init() {
-        _syncEngine = State(initialValue: SyncEngine(
+        let syncStore = FidelSyncStore(context: sharedModelContainer.mainContext)
+        let engine = SyncEngine(
             configuration: SyncConfiguration(
                 containerIdentifier: "iCloud.dev.skahessay.learnamharic",
                 zoneName: "FidelData"),
-            store: FidelSyncStore(context: sharedModelContainer.mainContext)))
+            store: syncStore)
+        _syncEngine = State(initialValue: engine)
+
+        // Existing installs may already carry SyncKit's generic first-enable
+        // receipt from a staging build. Run a Fidel-owned migration once so
+        // every durable pre-upgrade record is enqueued for the new schema.
+        if UserDefaults.standard.integer(forKey: Self.syncBootstrapVersionKey)
+            < Self.currentSyncBootstrapVersion {
+            do {
+                engine.markPending(try syncStore.allSyncIDs())
+                UserDefaults.standard.set(
+                    Self.currentSyncBootstrapVersion,
+                    forKey: Self.syncBootstrapVersionKey
+                )
+                engine.syncNow()
+            } catch {
+                Self.logger.error("Fidel sync bootstrap failed: \(error, privacy: .public)")
+            }
+        }
     }
 
     var body: some Scene {
