@@ -136,3 +136,7 @@ The app features an Ethiopian-inspired color palette:
 ## Future Enhancements
 
 Future product and content work is tracked in `docs/backlog.md`.
+
+## License
+
+Fidel is released under the [MIT License](LICENSE).
