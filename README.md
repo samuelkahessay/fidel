@@ -1,6 +1,6 @@
 # Amharic Learning App for iOS
 
-A comprehensive iOS app for English speakers to learn Amharic (the official language of Ethiopia). Built with SwiftUI and SwiftData for iOS 17+.
+A comprehensive iOS app for English speakers to learn Amharic (the official language of Ethiopia). Built with SwiftUI and SwiftData for iOS 26+.
 
 ## Features
 
@@ -56,8 +56,8 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **User-controlled JSON backup** for progress export/import
 
 ### Requirements
-- iOS 17.0+
-- Xcode 15.0+
+- iOS 26.0+
+- Xcode 26+
 
 ### Project Structure
 ```
@@ -125,6 +125,23 @@ Learner-facing content is bundled in `Fidel/Data/*.json`, including:
 - 171 active Azure-generated phrase pronunciation clips in `audio_manifest.json`
 
 The full generated audio catalog also records alternate reviewed/generated clips. See `docs/audio-asset-library.md` before changing audio files, manifests, or voice selection.
+
+## Building Locally
+
+1. Clone the repo and open `Fidel.xcodeproj`.
+2. Select the **Fidel** target → **Signing & Capabilities**, pick your own team, and change the bundle identifier (e.g. `com.yourname.fidel`).
+3. Run on a simulator. The app works fully offline: lessons, practice, and bundled pronunciation audio need no accounts or keys.
+
+Optional pieces:
+
+- **iCloud sync** uses the CloudKit container `iCloud.dev.skahessay.learnamharic`. To use sync with your own build, create a container under your team and update `Fidel/Fidel.entitlements` and `Fidel/FidelRelease.entitlements`. Without it the app still runs on local storage.
+- **Selam AI tutor** reads `OPENROUTER_API_KEY` and **ElevenLabs TTS** reads `ELEVENLABS_API_KEY` from the process environment. Set them under *Edit Scheme → Run → Arguments → Environment Variables*, and keep personal schemes out of commits. Without a key, Selam is unavailable and speech falls back to system TTS.
+
+Never commit API keys.
+
+## Contributing
+
+Issues and pull requests are welcome, especially corrections to Amharic content (vocabulary, phrases, transliterations, grammar notes) from native and heritage speakers. Lesson content lives in `Fidel/Data/*.json`.
 
 ## Design
 
