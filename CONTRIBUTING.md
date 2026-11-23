@@ -49,6 +49,18 @@ Guidelines:
 - **No secrets.** The app must keep working offline with no API keys.
 - **Run `git config blame.ignoreRevsFile .git-blame-ignore-revs`** once so `git blame` skips the bulk reformat.
 
+## Changing the web version
+
+The browser version in `web/` mirrors the app's logic in TypeScript. If you change scheduling, recommendations, streaks, backups or tracing in Swift, regenerate the shared fixtures and make the web pass them too:
+
+```bash
+xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -only-testing:FidelTests/GoldenFixtureTests CODE_SIGNING_ALLOWED=NO TEST_RUNNER_FIDEL_WRITE_GOLDEN=1
+```
+
+```bash
+cd web && npm test && npm run e2e
+```
+
 ## Reporting bugs
 
 Use the [bug report template](../../issues/new?template=bug-report.yml). Include the iOS version, device, and steps to reproduce.

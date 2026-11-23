@@ -54,6 +54,16 @@ Optional pieces:
 - **iCloud sync** uses the CloudKit container `iCloud.dev.skahessay.learnamharic`. For sync in your own build, create a container under your team and update `Fidel/Fidel.entitlements` and `Fidel/FidelRelease.entitlements`. Without it the app runs on local storage.
 - **Selam** needs no key. It appears only where Apple Intelligence is available: an Apple Intelligence–capable device, or the simulator on a Mac with Apple Intelligence enabled.
 
+## Web version
+
+A browser version lives in [`web/`](web): the same content, lessons, practice modes and tracing, installable and usable offline. It reads `Fidel/Data` at build time and shares golden test fixtures with the iOS app, so the two stay in step. See [`web/PARITY.md`](web/PARITY.md) for what differs and why.
+
+```bash
+cd web && npm install && npm run dev
+```
+
+`npm test` runs the shared golden fixtures, and `npm run e2e` runs the Playwright suite against a production build. The site deploys to GitHub Pages from `.github/workflows/pages.yml`.
+
 ## Project layout
 
 ```
@@ -69,6 +79,7 @@ Fidel/
 └── Views/         SwiftUI screens and components
 FidelTests/        Unit tests
 Packages/SyncKit/  Vendored CloudKit sync engine
+web/               Browser version (Vite + Preact + TypeScript)
 ```
 
 ## Design
