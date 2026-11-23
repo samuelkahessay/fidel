@@ -96,9 +96,12 @@ struct LessonDetailView: View {
         .navigationTitle(lesson.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: { showSelam = true }) {
-                    Image(systemName: "sparkles")
+            if SelamAvailability.isEnabled {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: { showSelam = true }) {
+                        Image(systemName: "sparkles")
+                    }
+                    .accessibilityLabel("Ask Selam")
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {

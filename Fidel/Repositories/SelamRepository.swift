@@ -18,6 +18,7 @@ protocol SelamRepositoryProtocol {
     
     func addMessage(_ message: SelamMessage, to conversation: SelamConversation)
     func updateMessage(_ message: SelamMessage, content: String, isComplete: Bool)
+    func deleteMessage(_ message: SelamMessage)
     func getMessages(for conversation: SelamConversation, limit: Int?) -> [SelamMessage]
     
     func getCoachingSettings() -> SelamCoachingSettings
@@ -110,6 +111,10 @@ final class SelamRepository: SelamRepositoryProtocol {
     func updateMessage(_ message: SelamMessage, content: String, isComplete: Bool) {
         message.content = content
         message.isComplete = isComplete
+    }
+
+    func deleteMessage(_ message: SelamMessage) {
+        modelContext.delete(message)
     }
     
     func getMessages(for conversation: SelamConversation, limit: Int?) -> [SelamMessage] {

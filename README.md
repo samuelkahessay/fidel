@@ -36,7 +36,8 @@ A comprehensive iOS app for English speakers to learn Amharic (the official lang
 - **Navigation**: Open from Today > Quick paths > Reference
 
 ### Selam Tab
-- **Tutor Chat**: Local-progress-aware conversational tutor surface
+- **Tutor Chat**: A conversational tutor that runs on Apple's on-device model (Foundation Models). It explains in English and quotes Amharic only from Fidel's own curriculum, via tool calls into `Fidel/Data/*.json`.
+- **Availability**: Shown only on devices with Apple Intelligence turned on; elsewhere the tab, Today tile, and lesson ✨ button are hidden.
 
 ### You Tab
 - **XP & Levels**: Gamified progression system
@@ -107,7 +108,7 @@ The bottom tab bar is:
 1. **Today**: Daily focus, phrase preview, and quick paths.
 2. **Learn**: Open learning path — a recommended next step plus fully-tappable lessons with mastery rings (no locked stages).
 3. **Practice**: Flashcards, quiz, sentence builder, word order, fill the blank (cloze), grammar reference, reading passages, match pairs, speed drill, pronunciation, and tracing.
-4. **Selam**: Tutor chat.
+4. **Selam**: On-device tutor chat (Apple Intelligence devices only).
 5. **You**: Progress, achievements, statistics, and backup/restore.
 
 Reference is not a bottom tab. Open it from **Today > Quick paths > Reference**. Pronunciation audio is surfaced in **Practice > Pronunciation**, in eligible Learn/Journey activities, and as speaker buttons on **Reference > Quick Phrases** rows.
@@ -135,9 +136,7 @@ The full generated audio catalog also records alternate reviewed/generated clips
 Optional pieces:
 
 - **iCloud sync** uses the CloudKit container `iCloud.dev.skahessay.learnamharic`. To use sync with your own build, create a container under your team and update `Fidel/Fidel.entitlements` and `Fidel/FidelRelease.entitlements`. Without it the app still runs on local storage.
-- **Selam AI tutor** reads `OPENROUTER_API_KEY` and **ElevenLabs TTS** reads `ELEVENLABS_API_KEY` from the process environment. Set them under *Edit Scheme → Run → Arguments → Environment Variables*, and keep personal schemes out of commits. Without a key, Selam is unavailable and speech falls back to system TTS.
-
-Never commit API keys.
+- **Selam tutor** needs no key: it uses Apple's on-device model. It appears only where Apple Intelligence is available (an Apple Intelligence–capable device, or a Mac with it enabled when running in the simulator).
 
 ## Contributing
 

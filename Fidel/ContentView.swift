@@ -32,14 +32,10 @@ private enum AppTab: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Selam is DEBUG-only until it has a real backend; release builds hide
-    /// the tab and its Today quick action.
+    /// Selam runs on Apple's on-device model, so it only appears where Apple
+    /// Intelligence is available.
     static var visibleCases: [AppTab] {
-        #if DEBUG
-        return allCases
-        #else
-        return allCases.filter { $0 != .selam }
-        #endif
+        SelamAvailability.isEnabled ? allCases : allCases.filter { $0 != .selam }
     }
 }
 
@@ -388,19 +384,19 @@ private struct TodayView: View {
                     }
                     .frame(width: 154)
 
-                    #if DEBUG
-                    FidelQuickActionTile(
-                        title: "Selam",
-                        subtitle: "Tutor chat",
-                        icon: "sparkles",
-                        tint: AppTheme.goldColor,
-                        textColor: AppTheme.onGoldColor,
-                        subtitleColor: AppTheme.onGoldColor.opacity(0.72)
-                    ) {
-                        actions.selectTab(.selam)
+                    if SelamAvailability.isEnabled {
+                        FidelQuickActionTile(
+                            title: "Selam",
+                            subtitle: "Tutor chat",
+                            icon: "sparkles",
+                            tint: AppTheme.goldColor,
+                            textColor: AppTheme.onGoldColor,
+                            subtitleColor: AppTheme.onGoldColor.opacity(0.72)
+                        ) {
+                            actions.selectTab(.selam)
+                        }
+                        .frame(width: 154)
                     }
-                    .frame(width: 154)
-                    #endif
 
                     FidelQuickActionTile(
                         title: "Reference",

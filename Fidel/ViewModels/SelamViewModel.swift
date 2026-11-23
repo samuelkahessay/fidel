@@ -10,7 +10,7 @@ final class SelamViewModel {
     private(set) var currentConversation: SelamConversation?
     private(set) var isLoading = false
     private(set) var streamingContent = ""
-    private(set) var error: SelamAPIError?
+    private(set) var error: SelamError?
     var showError = false
     
     var inputText = ""
@@ -26,13 +26,7 @@ final class SelamViewModel {
     private var streamingTask: Task<Void, Never>?
     
     init(aiService: SelamAIServiceProtocol? = nil) {
-        if let service = aiService {
-            self.aiService = service
-        } else if !OpenRouterConfig.apiKey.isEmpty {
-            self.aiService = SelamAPIService()
-        } else {
-            self.aiService = MockSelamAIService()
-        }
+        self.aiService = aiService ?? OnDeviceSelamService()
     }
     
     func configure(
@@ -208,12 +202,13 @@ final class SelamViewModel {
                 }
             }
         } catch {
-            self.error = error as? SelamAPIError ?? .networkError(error)
+            self.error = error as? SelamError ?? SelamError(error)
             self.showError = true
             
             if let index = messages.firstIndex(where: { $0.id == placeholderMessage.id }) {
                 messages.remove(at: index)
             }
+            repository?.deleteMessage(placeholderMessage)
         }
         
         isLoading = false

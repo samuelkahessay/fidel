@@ -305,13 +305,6 @@ struct SelamHistoryMessage: Codable {
     }
 }
 
-/// Response from Selam AI chat endpoint
-struct SelamChatResponse: Codable {
-    let message: String
-    let suggestedActions: [String]?
-    let shouldShowConfetti: Bool?
-}
-
 /// Streaming response token
 struct SelamStreamToken: Codable {
     let content: String?

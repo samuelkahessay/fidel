@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAAFF001301 /* SelamViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF001300 /* SelamViewModelTests.swift */; };
+		BAAFF001201 /* SelamKnowledgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF001200 /* SelamKnowledgeTests.swift */; };
+		AAAFF001001 /* SelamKnowledge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF001000 /* SelamKnowledge.swift */; };
 		AAA02000000 /* SyncKit in Frameworks */ = {isa = PBXBuildFile; productRef = AAA02000002 /* SyncKit */; };
 		AAAFE000101 /* reading_passages.json in Resources */ = {isa = PBXBuildFile; fileRef = AAAFE000100 /* reading_passages.json */; };
 		BAAFF001101 /* ReadingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAFF001100 /* ReadingViewModelTests.swift */; };
@@ -61,7 +64,6 @@
 		AAA00051001 /* StageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00051000 /* StageManager.swift */; };
 		AAA00052001 /* JourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00052000 /* JourneyViewModel.swift */; };
 		AAA00053001 /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00053000 /* JourneyView.swift */; };
-		AAA00054001 /* ToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00054000 /* ToolsView.swift */; };
 		AAA00055001 /* LessonComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00055000 /* LessonComponents.swift */; };
 		AAA00060001 /* PathExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00060000 /* PathExtractor.swift */; };
 		AAA00061001 /* DrawingEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA00061000 /* DrawingEvaluator.swift */; };
@@ -128,6 +130,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BAAFF001300 /* SelamViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelamViewModelTests.swift; sourceTree = "<group>"; };
+		BAAFF001200 /* SelamKnowledgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelamKnowledgeTests.swift; sourceTree = "<group>"; };
+		AAAFF001000 /* SelamKnowledge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelamKnowledge.swift; sourceTree = "<group>"; };
 		AAAFE000100 /* reading_passages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = reading_passages.json; sourceTree = "<group>"; };
 		BAAFF001100 /* ReadingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingViewModelTests.swift; sourceTree = "<group>"; };
 		AAAFF000900 /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
@@ -183,7 +188,6 @@
 		AAA00051000 /* StageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManager.swift; sourceTree = "<group>"; };
 		AAA00052000 /* JourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyViewModel.swift; sourceTree = "<group>"; };
 		AAA00053000 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
-		AAA00054000 /* ToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsView.swift; sourceTree = "<group>"; };
 		AAA00055000 /* LessonComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonComponents.swift; sourceTree = "<group>"; };
 		AAA00060000 /* PathExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtractor.swift; sourceTree = "<group>"; };
 		AAA00061000 /* DrawingEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingEvaluator.swift; sourceTree = "<group>"; };
@@ -296,6 +300,8 @@
 		BAA00004000 /* FidelTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAAFF001300 /* SelamViewModelTests.swift */,
+				BAAFF001200 /* SelamKnowledgeTests.swift */,
 				BAAFF001100 /* ReadingViewModelTests.swift */,
 				BAAFF001000 /* GrammarExplainerViewModelTests.swift */,
 				BAAFF000900 /* ClozeViewModelTests.swift */,
@@ -353,7 +359,6 @@
 				AAA00520000 /* Components */,
 				AAA00530000 /* Admin */,
 				AAA00053000 /* JourneyView.swift */,
-				AAA00054000 /* ToolsView.swift */,
 				AAA00055000 /* LessonComponents.swift */,
 				AAA00113000 /* TracingSessionView.swift */,
 				AAA00122000 /* WordOrderView.swift */,
@@ -413,6 +418,7 @@
 		AAA00700000 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFF001000 /* SelamKnowledge.swift */,
 				AAAFF000300 /* NextStepPlanner.swift */,
 				AAAFF000200 /* CurriculumService.swift */,
 				AAA00018000 /* SpacedRepetition.swift */,
@@ -592,6 +598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFF001001 /* SelamKnowledge.swift in Sources */,
 				AAAFF000901 /* ReadingView.swift in Sources */,
 				AAAFF000801 /* ReadingViewModel.swift in Sources */,
 				AAAFF000701 /* GrammarExplainerView.swift in Sources */,
@@ -635,7 +642,6 @@
 				AAA00051001 /* StageManager.swift in Sources */,
 				AAA00052001 /* JourneyViewModel.swift in Sources */,
 				AAA00053001 /* JourneyView.swift in Sources */,
-				AAA00054001 /* ToolsView.swift in Sources */,
 				AAA00055001 /* LessonComponents.swift in Sources */,
 				AAA00060001 /* PathExtractor.swift in Sources */,
 				AAA00061001 /* DrawingEvaluator.swift in Sources */,
@@ -673,6 +679,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAFF001301 /* SelamViewModelTests.swift in Sources */,
+				BAAFF001201 /* SelamKnowledgeTests.swift in Sources */,
 				BAAFF001101 /* ReadingViewModelTests.swift in Sources */,
 				BAAFF001001 /* GrammarExplainerViewModelTests.swift in Sources */,
 				BAAFF000901 /* ClozeViewModelTests.swift in Sources */,
