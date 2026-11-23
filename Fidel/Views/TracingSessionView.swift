@@ -185,7 +185,7 @@ struct TracingSessionView: View {
             let pause: Duration = reduceMotion ? .seconds(1.6) : .milliseconds(900)
             try? await Task.sleep(for: pause)
             guard !Task.isCancelled, viewModel.itemPhase == .celebrating else { return }
-            if UIAccessibility.isVoiceOverRunning { return }   // VoiceOver advances via the button
+            if UIAccessibility.isVoiceOverRunning { return }  // VoiceOver advances via the button
             viewModel.advanceAfterCelebration()
         }
     }
@@ -209,9 +209,9 @@ struct TracingSessionView: View {
                 drawing: $viewModel.userDrawing,
                 inkColor: AppTheme.traceInkUIColor
             )
-                .frame(width: canvasSize.width, height: canvasSize.height)
-                .accessibilityLabel("Writing canvas for \(item.character.character)")
-                .accessibilityHint("Write the character from memory, then use Check")
+            .frame(width: canvasSize.width, height: canvasSize.height)
+            .accessibilityLabel("Writing canvas for \(item.character.character)")
+            .accessibilityHint("Write the character from memory, then use Check")
         }
     }
 
@@ -224,11 +224,13 @@ struct TracingSessionView: View {
             glyphPath.fill(AppTheme.successColor)
 
             if item.level >= 3, viewModel.hasMemoryDrawing {
-                Image(uiImage: TracingDrawingRenderer.thumbnail(
-                    from: viewModel.userDrawing,
-                    sourceCanvasSize: viewModel.canvasSize,
-                    outputSize: canvasSize
-                ))
+                Image(
+                    uiImage: TracingDrawingRenderer.thumbnail(
+                        from: viewModel.userDrawing,
+                        sourceCanvasSize: viewModel.canvasSize,
+                        outputSize: canvasSize
+                    )
+                )
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .opacity(0.4)
@@ -406,9 +408,10 @@ struct TracingSessionView: View {
     NavigationStack {
         TracingSessionView()
     }
-    .modelContainer(for: [
-        UserProgress.self,
-        FlashcardProgress.self,
-        CharacterTraceMastery.self
-    ], inMemory: true)
+    .modelContainer(
+        for: [
+            UserProgress.self,
+            FlashcardProgress.self,
+            CharacterTraceMastery.self,
+        ], inMemory: true)
 }

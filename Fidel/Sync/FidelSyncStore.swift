@@ -1,8 +1,8 @@
 import CloudKit
 import Foundation
-import os
 import SwiftData
 import SyncKit
+import os
 
 /// `SyncStore` conformance bridging SwiftData's three synced Fidel models to
 /// CloudKit: throwing lookup, a `Handle` bundle per record type,
@@ -31,7 +31,9 @@ final class FidelSyncStore: SyncStore {
 
     func applyRemoteRecord(_ record: CKRecord) throws -> RemoteApplyResult {
         guard let id = SyncID(recordName: record.recordID.recordName) else {
-            logger.error("applyRemoteRecord: unparseable recordName \(record.recordID.recordName, privacy: .public) for recordType \(record.recordType, privacy: .public)")
+            logger.error(
+                "applyRemoteRecord: unparseable recordName \(record.recordID.recordName, privacy: .public) for recordType \(record.recordType, privacy: .public)"
+            )
             return .applied
         }
 
@@ -43,7 +45,9 @@ final class FidelSyncStore: SyncStore {
             try context.save()
             return .applied
         } else {
-            logger.error("applyRemoteRecord: unknown record type \(id.recordType, privacy: .public) for recordName \(record.recordID.recordName, privacy: .public)")
+            logger.error(
+                "applyRemoteRecord: unknown record type \(id.recordType, privacy: .public) for recordName \(record.recordID.recordName, privacy: .public)"
+            )
             return .applied
         }
     }
@@ -57,11 +61,14 @@ final class FidelSyncStore: SyncStore {
     func didSaveRecord(_ record: CKRecord) {
         do {
             guard let id = SyncID(recordName: record.recordID.recordName),
-                  let found = try lookup(id) else { return }
+                let found = try lookup(id)
+            else { return }
             found.setSystemFields(CKRecordFactory.systemFieldsData(from: record))
             try? context.save()
         } catch {
-            logger.error("didSaveRecord lookup failed for \(record.recordID.recordName, privacy: .public): \(String(describing: error), privacy: .public)")
+            logger.error(
+                "didSaveRecord lookup failed for \(record.recordID.recordName, privacy: .public): \(String(describing: error), privacy: .public)"
+            )
         }
     }
 
@@ -149,11 +156,8 @@ final class FidelSyncStore: SyncStore {
         local.syncModifiedAt = max(local.syncModifiedAt, remoteModifiedAt)
 
         let mergedMatchesRemote =
-            local.level == remoteLevel &&
-            local.bestScore == remoteBestScore &&
-            local.attempts == remoteAttempts &&
-            local.totalMisses == remoteTotalMisses &&
-            local.lastPracticedAt == remoteLastPracticedAt
+            local.level == remoteLevel && local.bestScore == remoteBestScore && local.attempts == remoteAttempts
+            && local.totalMisses == remoteTotalMisses && local.lastPracticedAt == remoteLastPracticedAt
 
         return mergedMatchesRemote ? .applied : .localNewer
     }
@@ -177,7 +181,7 @@ final class FidelSyncStore: SyncStore {
 
     private static func maxDate(_ lhs: Date?, _ rhs: Date?) -> Date? {
         switch (lhs, rhs) {
-        case let (l?, r?): return max(l, r)
+        case (let l?, let r?): return max(l, r)
         case (let l?, nil): return l
         case (nil, let r?): return r
         case (nil, nil): return nil
@@ -221,17 +225,19 @@ final class FidelSyncStore: SyncStore {
                 logger.error("lookup: malformed FlashcardProgress natural key \(id.id, privacy: .public)")
                 return nil
             }
-            var d = FetchDescriptor<FlashcardProgress>(predicate: #Predicate {
-                $0.ownerUserId == ownerUserId && $0.itemType == itemType && $0.itemId == itemId
-            })
+            var d = FetchDescriptor<FlashcardProgress>(
+                predicate: #Predicate {
+                    $0.ownerUserId == ownerUserId && $0.itemType == itemType && $0.itemId == itemId
+                })
             d.fetchLimit = 1
             guard let m = try context.fetch(d).first else { return nil }
             return handle(m)
         case CharacterTraceMastery.recordType:
             let (ownerUserId, characterId) = Self.parseTraceMasteryNaturalKey(id.id)
-            var d = FetchDescriptor<CharacterTraceMastery>(predicate: #Predicate {
-                $0.ownerUserId == ownerUserId && $0.characterId == characterId
-            })
+            var d = FetchDescriptor<CharacterTraceMastery>(
+                predicate: #Predicate {
+                    $0.ownerUserId == ownerUserId && $0.characterId == characterId
+                })
             d.fetchLimit = 1
             guard let m = try context.fetch(d).first else { return nil }
             return handle(m)
@@ -241,25 +247,28 @@ final class FidelSyncStore: SyncStore {
     }
 
     private func handle(_ m: UserProgress) -> Handle {
-        Handle(modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
-               encode: m.encode(onto:), apply: m.apply(record:),
-               setSystemFields: { m.cloudSystemFields = $0 },
-               delete: { $0.delete(m) },
-               userProgress: m, flashcardProgress: nil, characterTraceMastery: nil)
+        Handle(
+            modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
+            encode: m.encode(onto:), apply: m.apply(record:),
+            setSystemFields: { m.cloudSystemFields = $0 },
+            delete: { $0.delete(m) },
+            userProgress: m, flashcardProgress: nil, characterTraceMastery: nil)
     }
     private func handle(_ m: FlashcardProgress) -> Handle {
-        Handle(modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
-               encode: m.encode(onto:), apply: m.apply(record:),
-               setSystemFields: { m.cloudSystemFields = $0 },
-               delete: { $0.delete(m) },
-               userProgress: nil, flashcardProgress: m, characterTraceMastery: nil)
+        Handle(
+            modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
+            encode: m.encode(onto:), apply: m.apply(record:),
+            setSystemFields: { m.cloudSystemFields = $0 },
+            delete: { $0.delete(m) },
+            userProgress: nil, flashcardProgress: m, characterTraceMastery: nil)
     }
     private func handle(_ m: CharacterTraceMastery) -> Handle {
-        Handle(modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
-               encode: m.encode(onto:), apply: m.apply(record:),
-               setSystemFields: { m.cloudSystemFields = $0 },
-               delete: { $0.delete(m) },
-               userProgress: nil, flashcardProgress: nil, characterTraceMastery: m)
+        Handle(
+            modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
+            encode: m.encode(onto:), apply: m.apply(record:),
+            setSystemFields: { m.cloudSystemFields = $0 },
+            delete: { $0.delete(m) },
+            userProgress: nil, flashcardProgress: nil, characterTraceMastery: m)
     }
 
     // MARK: - Insert-on-first-fetch
@@ -331,11 +340,11 @@ final class FidelSyncStore: SyncStore {
     }
 }
 
-private extension ProgressMergeState {
+extension ProgressMergeState {
     /// Reads a remote `UserProgress` record. Missing fields take the same
     /// defaults as a fresh local record, and a missing timestamp loses every
     /// newest-wins comparison.
-    init(record: CKRecord) {
+    fileprivate init(record: CKRecord) {
         self.init(
             lessonsCompleted: record["lessonsCompleted"] as? [Int] ?? [],
             patternsLearned: record["patternsLearned"] as? [String] ?? [],

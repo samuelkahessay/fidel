@@ -6,7 +6,7 @@ struct SelamAvatarView: View {
     var size: CGFloat = 40
     var showBadge: Bool = false
     var badgeCount: Int = 0
-    
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Circle()
@@ -23,7 +23,7 @@ struct SelamAvatarView: View {
                         .font(AppTheme.Typography.amharic(size: size * 0.5))
                         .foregroundStyle(AppTheme.onAccentColor)
                 )
-            
+
             if showBadge && badgeCount > 0 {
                 Text("\(min(badgeCount, 99))")
                     .font(.system(size: 10, weight: .bold))
@@ -41,11 +41,11 @@ struct SelamAvatarView: View {
 struct MessageBubbleView: View {
     let message: SelamMessage
     let isStreaming: Bool
-    
+
     @Environment(\.colorScheme) private var colorScheme
-    
+
     private var isUser: Bool { message.role == .user }
-    
+
     var body: some View {
         HStack(alignment: .top, spacing: AppTheme.Spacing.sm) {
             if !isUser {
@@ -53,20 +53,20 @@ struct MessageBubbleView: View {
             } else {
                 Spacer(minLength: 60)
             }
-            
+
             VStack(alignment: isUser ? .trailing : .leading, spacing: AppTheme.Spacing.xxs) {
                 bubbleContent
                     .padding(.horizontal, AppTheme.Spacing.md)
                     .padding(.vertical, AppTheme.Spacing.sm)
                     .background(bubbleBackground)
                     .clipShape(ChatBubbleShape(isUser: isUser))
-                
+
                 if !isUser && !message.isComplete && isStreaming {
                     TypingIndicatorView()
                         .padding(.leading, AppTheme.Spacing.xs)
                 }
             }
-            
+
             if isUser {
                 Spacer().frame(width: 8)
             } else {
@@ -79,7 +79,7 @@ struct MessageBubbleView: View {
         .accessibilityLabel(isUser ? "You" : "Selam")
         .accessibilityValue(message.content.isEmpty && isStreaming ? "Typing" : message.content)
     }
-    
+
     private var bubbleContent: some View {
         Text(message.content.isEmpty && isStreaming ? " " : message.content)
             .font(AppTheme.Typography.body)
@@ -87,7 +87,7 @@ struct MessageBubbleView: View {
             .multilineTextAlignment(.leading)
             .textSelection(.enabled)
     }
-    
+
     @ViewBuilder
     private var bubbleBackground: some View {
         if isUser {
@@ -112,49 +112,59 @@ struct MessageBubbleView: View {
 
 struct ChatBubbleShape: Shape {
     let isUser: Bool
-    
+
     func path(in rect: CGRect) -> Path {
         let radius: CGFloat = 16
         let tailSize: CGFloat = 6
-        
+
         var path = Path()
-        
+
         if isUser {
             path.move(to: CGPoint(x: rect.minX + radius, y: rect.minY))
             path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.minY))
-            path.addArc(center: CGPoint(x: rect.maxX - radius, y: rect.minY + radius),
-                       radius: radius, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.maxX - radius, y: rect.minY + radius),
+                radius: radius, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: false)
             path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - radius - tailSize))
-            path.addArc(center: CGPoint(x: rect.maxX - radius, y: rect.maxY - radius - tailSize),
-                       radius: radius, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.maxX - radius, y: rect.maxY - radius - tailSize),
+                radius: radius, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
             path.addLine(to: CGPoint(x: rect.maxX - radius + tailSize, y: rect.maxY - tailSize))
-            path.addQuadCurve(to: CGPoint(x: rect.maxX, y: rect.maxY),
-                             control: CGPoint(x: rect.maxX - tailSize/2, y: rect.maxY - tailSize/2))
+            path.addQuadCurve(
+                to: CGPoint(x: rect.maxX, y: rect.maxY),
+                control: CGPoint(x: rect.maxX - tailSize / 2, y: rect.maxY - tailSize / 2))
             path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.maxY))
-            path.addArc(center: CGPoint(x: rect.minX + radius, y: rect.maxY - radius),
-                       radius: radius, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.minX + radius, y: rect.maxY - radius),
+                radius: radius, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: false)
             path.addLine(to: CGPoint(x: rect.minX, y: rect.minY + radius))
-            path.addArc(center: CGPoint(x: rect.minX + radius, y: rect.minY + radius),
-                       radius: radius, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.minX + radius, y: rect.minY + radius),
+                radius: radius, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
         } else {
             path.move(to: CGPoint(x: rect.minX + radius, y: rect.minY))
             path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.minY))
-            path.addArc(center: CGPoint(x: rect.maxX - radius, y: rect.minY + radius),
-                       radius: radius, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.maxX - radius, y: rect.minY + radius),
+                radius: radius, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: false)
             path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - radius))
-            path.addArc(center: CGPoint(x: rect.maxX - radius, y: rect.maxY - radius),
-                       radius: radius, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.maxX - radius, y: rect.maxY - radius),
+                radius: radius, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
             path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.maxY))
-            path.addArc(center: CGPoint(x: rect.minX + radius, y: rect.maxY - radius - tailSize),
-                       radius: radius, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.minX + radius, y: rect.maxY - radius - tailSize),
+                radius: radius, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: false)
             path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - tailSize))
-            path.addQuadCurve(to: CGPoint(x: rect.minX - tailSize, y: rect.maxY),
-                             control: CGPoint(x: rect.minX - tailSize/2, y: rect.maxY - tailSize/2))
+            path.addQuadCurve(
+                to: CGPoint(x: rect.minX - tailSize, y: rect.maxY),
+                control: CGPoint(x: rect.minX - tailSize / 2, y: rect.maxY - tailSize / 2))
             path.addLine(to: CGPoint(x: rect.minX, y: rect.minY + radius))
-            path.addArc(center: CGPoint(x: rect.minX + radius, y: rect.minY + radius),
-                       radius: radius, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
+            path.addArc(
+                center: CGPoint(x: rect.minX + radius, y: rect.minY + radius),
+                radius: radius, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
         }
-        
+
         path.closeSubpath()
         return path
     }
@@ -165,7 +175,7 @@ struct ChatBubbleShape: Shape {
 struct TypingIndicatorView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var animationPhase = 0.0
-    
+
     var body: some View {
         HStack(spacing: 4) {
             ForEach(0..<3) { index in
@@ -174,10 +184,11 @@ struct TypingIndicatorView: View {
                     .frame(width: 8, height: 8)
                     .scaleEffect(reduceMotion ? 1.0 : scale(for: index))
                     .animation(
-                        reduceMotion ? nil :
-                            .easeInOut(duration: 0.6)
-                            .repeatForever()
-                            .delay(Double(index) * 0.2),
+                        reduceMotion
+                            ? nil
+                            : .easeInOut(duration: 0.6)
+                                .repeatForever()
+                                .delay(Double(index) * 0.2),
                         value: animationPhase
                     )
             }
@@ -187,7 +198,7 @@ struct TypingIndicatorView: View {
         .onAppear { animationPhase = 1.0 }
         .accessibilityLabel("Selam is typing")
     }
-    
+
     private func scale(for index: Int) -> CGFloat {
         animationPhase == 0 ? 0.5 : 1.0
     }
@@ -200,10 +211,10 @@ struct ChatInputView: View {
     let isLoading: Bool
     let onSend: () -> Void
     let onCancel: () -> Void
-    
+
     @Environment(\.colorScheme) private var colorScheme
     @FocusState private var isFocused: Bool
-    
+
     var body: some View {
         HStack(alignment: .bottom, spacing: AppTheme.Spacing.sm) {
             TextField("Message Selam...", text: $text, axis: .vertical)
@@ -230,7 +241,7 @@ struct ChatInputView: View {
                     }
                 }
                 .accessibilityLabel("Message Selam")
-            
+
             sendButton
         }
         .padding(.horizontal, AppTheme.Spacing.md)
@@ -238,7 +249,7 @@ struct ChatInputView: View {
         .glassEffect(.regular, in: .rect)
         .accessibilityElement(children: .contain)
     }
-    
+
     @ViewBuilder
     private var sendButton: some View {
         Button(action: isLoading ? onCancel : onSend) {
@@ -254,7 +265,7 @@ struct ChatInputView: View {
         .frame(minWidth: 44, minHeight: 44)
         .animation(AppTheme.Animation.quick, value: isLoading)
     }
-    
+
     private var canSend: Bool {
         !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
@@ -265,7 +276,7 @@ struct ChatInputView: View {
 struct SuggestedActionsView: View {
     let actions: [String]
     let onSelect: (String) -> Void
-    
+
     var body: some View {
         if !actions.isEmpty {
             ScrollView(.horizontal) {
@@ -318,7 +329,7 @@ struct SuggestedActionsView: View {
             }(),
             isStreaming: false
         )
-        
+
         MessageBubbleView(
             message: {
                 let m = SelamMessage(content: "How do I say thank you?", role: .user)

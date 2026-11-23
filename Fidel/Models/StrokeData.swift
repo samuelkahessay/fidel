@@ -14,8 +14,8 @@ struct RecordedStroke: Codable {
 
 /// All strokes for a single Fidel character.
 struct CharacterStrokeData: Codable {
-    let characterId: String    // FidelCharacter.id e.g. "h-1"
-    let character: String      // e.g. "ሀ" (human-readable in JSON)
+    let characterId: String  // FidelCharacter.id e.g. "h-1"
+    let character: String  // e.g. "ሀ" (human-readable in JSON)
     let strokes: [RecordedStroke]
 }
 

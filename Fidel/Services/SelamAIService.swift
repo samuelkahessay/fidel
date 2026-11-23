@@ -39,17 +39,17 @@ final class OnDeviceSelamService: SelamAIServiceProtocol {
     }
 
     static let baseInstructions = """
-    You are Selam, a patient and encouraging Amharic tutor inside the Fidel app. Explain in English.
+        You are Selam, a patient and encouraging Amharic tutor inside the Fidel app. Explain in English.
 
-    Rules for Amharic:
-    - NEVER write Amharic script or transliteration from memory.
-    - To show any Amharic word or phrase, call lookupWords with the English meaning and copy the result exactly, as: Amharic (transliteration) - English.
-    - For grammar, call lookupGrammar. For the vowel forms of a letter, call lookupFidelRow.
-    - If a lookup returns nothing, say the Fidel curriculum doesn't cover that yet. Do not guess.
+        Rules for Amharic:
+        - NEVER write Amharic script or transliteration from memory.
+        - To show any Amharic word or phrase, call lookupWords with the English meaning and copy the result exactly, as: Amharic (transliteration) - English.
+        - For grammar, call lookupGrammar. For the vowel forms of a letter, call lookupFidelRow.
+        - If a lookup returns nothing, say the Fidel curriculum doesn't cover that yet. Do not guess.
 
-    Keep answers short: at most two short paragraphs.
-    End with exactly three follow-up questions the learner could ask next, each on its own line starting with "- ".
-    """
+        Keep answers short: at most two short paragraphs.
+        End with exactly three follow-up questions the learner could ask next, each on its own line starting with "- ".
+        """
 
     func streamMessage(
         _ message: String,
@@ -81,11 +81,12 @@ final class OnDeviceSelamService: SelamAIServiceProtocol {
                         }
                         emitted = full
                     }
-                    continuation.yield(SelamStreamToken(
-                        content: nil,
-                        suggestedActions: SelamSuggestions.extract(from: emitted),
-                        done: true
-                    ))
+                    continuation.yield(
+                        SelamStreamToken(
+                            content: nil,
+                            suggestedActions: SelamSuggestions.extract(from: emitted),
+                            done: true
+                        ))
                     continuation.finish()
                 } catch {
                     continuation.finish(throwing: SelamError(error))

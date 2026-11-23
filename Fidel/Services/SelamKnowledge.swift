@@ -33,8 +33,9 @@ struct SelamKnowledge: Sendable {
             Entry(amharic: $0.amharic, transliteration: $0.transliteration, english: $0.english, note: nil)
         }
         let phrases = phrases.map {
-            Entry(amharic: $0.amharic, transliteration: $0.transliteration, english: $0.english,
-                  note: $0.notes.isEmpty ? nil : $0.notes)
+            Entry(
+                amharic: $0.amharic, transliteration: $0.transliteration, english: $0.english,
+                note: $0.notes.isEmpty ? nil : $0.notes)
         }
 
         var seen = Set<String>()
@@ -56,7 +57,8 @@ struct SelamKnowledge: Sendable {
     func lookupGrammar(_ query: String, limit: Int = 3) -> [Pattern] {
         let terms = Self.normalize(query).split(separator: " ").map(String.init)
         guard !terms.isEmpty else { return [] }
-        return patterns
+        return
+            patterns
             .filter { pattern in
                 let haystack = Self.normalize("\(pattern.category) \(pattern.description) \(pattern.structure)")
                 return terms.allSatisfy { haystack.contains($0) }
@@ -111,7 +113,8 @@ struct SelamKnowledge: Sendable {
 
     private static func score(_ entry: Entry, needle: String) -> Int {
         let english = normalize(entry.english)
-        let englishSenses = english
+        let englishSenses =
+            english
             .replacingOccurrences(of: #"^(to|the|a|an) "#, with: "", options: .regularExpression)
         let amharic = normalize(entry.amharic)
         let translit = normalize(entry.transliteration)

@@ -94,8 +94,9 @@ struct GuidedTracingCanvas: View {
 
             // Cue the next stroke by brightening its channel slightly, before
             // the learner starts tracing it.
-            if (engine.phase == .waitingForStart || engine.phase == .playingHint),
-               let region = activeRegion(in: regions) {
+            if engine.phase == .waitingForStart || engine.phase == .playingHint,
+                let region = activeRegion(in: regions)
+            {
                 glyphPath.fill(AppTheme.traceGuideColor.opacity(0.16))
                     .mask {
                         Canvas { context, canvasSize in
@@ -130,7 +131,8 @@ struct GuidedTracingCanvas: View {
                 // accessibility) shows it solid; the magnet snap fades it in as
                 // the raw ink settles onto it.
                 if let region = activeRegion(in: regions) {
-                    let cleanOpacity: Double = engine.phase == .strokeComplete
+                    let cleanOpacity: Double =
+                        engine.phase == .strokeComplete
                         ? 1
                         : (engine.phase == .snapping ? Double(snapT ?? 0) : 0)
                     if cleanOpacity > 0 {
@@ -286,13 +288,17 @@ struct GuidedTracingCanvas: View {
             let target = total * CGFloat(k) / CGFloat(count - 1)
             var i = 1
             while i < points.count && cumulative[i] < target { i += 1 }
-            if i >= points.count { result.append(points[points.count - 1]); continue }
+            if i >= points.count {
+                result.append(points[points.count - 1])
+                continue
+            }
             let segment = cumulative[i] - cumulative[i - 1]
             let f = segment > .ulpOfOne ? (target - cumulative[i - 1]) / segment : 0
-            result.append(CGPoint(
-                x: points[i - 1].x + (points[i].x - points[i - 1].x) * f,
-                y: points[i - 1].y + (points[i].y - points[i - 1].y) * f
-            ))
+            result.append(
+                CGPoint(
+                    x: points[i - 1].x + (points[i].x - points[i - 1].x) * f,
+                    y: points[i - 1].y + (points[i].y - points[i - 1].y) * f
+                ))
         }
         return result
     }
@@ -491,7 +497,7 @@ struct GuidedTracingCanvas: View {
             try? await Task.sleep(for: .seconds(interval))
             guard !Task.isCancelled else { return }
             let raw = CGFloat(step) / CGFloat(steps)
-            snapT = 1 - pow(1 - raw, 3) // ease-out cubic
+            snapT = 1 - pow(1 - raw, 3)  // ease-out cubic
         }
         snapT = 1
     }

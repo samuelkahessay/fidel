@@ -82,10 +82,12 @@ struct ContentView: View {
         .sheet(item: $activeRoute) { route in
             routeDestination(route)
         }
-        .sheet(isPresented: Binding(
-            get: { sync.status.state == .needsAccountChoice },
-            set: { _ in }
-        )) {
+        .sheet(
+            isPresented: Binding(
+                get: { sync.status.state == .needsAccountChoice },
+                set: { _ in }
+            )
+        ) {
             AccountChangeSheet()
                 .interactiveDismissDisabled()
         }
@@ -182,11 +184,17 @@ private struct AccountChangeSheet: View {
                     }
                 } footer: {
                     if archiveFailed {
-                        Label("Couldn't create a local archive — nothing was changed. Free up space and try again, or choose Keep this device's data.", systemImage: "exclamationmark.triangle")
+                        Label(
+                            "Couldn't create a local archive — nothing was changed. Free up space and try again, or choose Keep this device's data.",
+                            systemImage: "exclamationmark.triangle")
                     } else if wipeFailed {
-                        Label("Couldn't clear this device's data — nothing was changed. Try again, or choose Keep this device's data.", systemImage: "exclamationmark.triangle")
+                        Label(
+                            "Couldn't clear this device's data — nothing was changed. Try again, or choose Keep this device's data.",
+                            systemImage: "exclamationmark.triangle")
                     } else {
-                        Text("The iCloud account on this device changed. Choose whether to upload this device's data into the new account, or replace it with the new account's data (a local archive is kept).")
+                        Text(
+                            "The iCloud account on this device changed. Choose whether to upload this device's data into the new account, or replace it with the new account's data (a local archive is kept)."
+                        )
                     }
                 }
             }
@@ -422,7 +430,7 @@ private struct TodayView: View {
     private var todayPhraseCard: some View {
         VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
             HStack {
-            FidelSectionLabel(title: "Phrase of the day")
+                FidelSectionLabel(title: "Phrase of the day")
                 Spacer()
                 FidelChip(title: "local", color: AppTheme.eucalyptusColor)
             }
@@ -680,4 +688,3 @@ private struct MissingRouteView: View {
         }
     }
 }
-

@@ -1,5 +1,5 @@
-import UIKit
 import PencilKit
+import UIKit
 
 struct DrawingEvaluation: Equatable {
     let score: Double
@@ -99,15 +99,17 @@ final class DrawingEvaluator {
         let width = gridSize
         let height = gridSize
 
-        guard let context = CGContext(
-            data: nil,
-            width: width,
-            height: height,
-            bitsPerComponent: 8,
-            bytesPerRow: width,
-            space: CGColorSpaceCreateDeviceGray(),
-            bitmapInfo: CGImageAlphaInfo.none.rawValue
-        ) else {
+        guard
+            let context = CGContext(
+                data: nil,
+                width: width,
+                height: height,
+                bitsPerComponent: 8,
+                bytesPerRow: width,
+                space: CGColorSpaceCreateDeviceGray(),
+                bitmapInfo: CGImageAlphaInfo.none.rawValue
+            )
+        else {
             return Array(repeating: Array(repeating: false, count: width), count: height)
         }
 
@@ -145,15 +147,17 @@ final class DrawingEvaluator {
 
         // Use RGBA context to properly detect strokes on transparent background
         let bytesPerRow = width * 4
-        guard let context = CGContext(
-            data: nil,
-            width: width,
-            height: height,
-            bitsPerComponent: 8,
-            bytesPerRow: bytesPerRow,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-        ) else {
+        guard
+            let context = CGContext(
+                data: nil,
+                width: width,
+                height: height,
+                bitsPerComponent: 8,
+                bytesPerRow: bytesPerRow,
+                space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            )
+        else {
             return Array(repeating: Array(repeating: false, count: width), count: height)
         }
 

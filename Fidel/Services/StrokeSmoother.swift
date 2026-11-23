@@ -1,6 +1,6 @@
 import Foundation
-import SwiftUI
 import ImageIO
+import SwiftUI
 import UniformTypeIdentifiers
 import os
 
@@ -502,7 +502,8 @@ final class StrokeRegionBuilder {
                 unclaimedCount += 1
             }
         }
-        let unclaimedImage = unclaimedCount > 0
+        let unclaimedImage =
+            unclaimedCount > 0
             ? StrokeRevealRegion.makeAlphaImage(from: unclaimedMask, width: width, height: height)
             : nil
 
@@ -623,7 +624,7 @@ final class StrokeRegionBuilder {
         let kernel: [(dx: Int, dy: Int, weight: CGFloat)] = [
             (0, 0, 4),
             (-1, 0, 2), (1, 0, 2), (0, -1, 2), (0, 1, 2),
-            (-1, -1, 1), (1, -1, 1), (-1, 1, 1), (1, 1, 1)
+            (-1, -1, 1), (1, -1, 1), (-1, 1, 1), (1, 1, 1),
         ]
         var current = progressValues
 
@@ -762,7 +763,8 @@ final class StrokeRegionBuilder {
         }
 
         if let final = points.last, let lastKept = kept.last,
-           final.x != lastKept.x || final.y != lastKept.y {
+            final.x != lastKept.x || final.y != lastKept.y
+        {
             kept.append(final)
         }
 
@@ -1083,7 +1085,7 @@ final class StrokeRegionBuilder {
             (64, 182, 120),
             (233, 184, 34),
             (149, 77, 255),
-            (0, 170, 210)
+            (0, 170, 210),
         ]
         return colors[index % colors.count]
     }
@@ -1100,7 +1102,8 @@ final class StrokeRegionBuilder {
         unclaimedCount: Int
     ) {
         let tmpDir = FileManager.default.temporaryDirectory
-        let baseDir = tmpDir
+        let baseDir =
+            tmpDir
             .appendingPathComponent("stroke-debug", isDirectory: true)
             .appendingPathComponent(safePathComponent(characterKey), isDirectory: true)
 
@@ -1146,12 +1149,14 @@ final class StrokeRegionBuilder {
     }
 
     private func writePNG(_ image: CGImage, to url: URL) {
-        guard let destination = CGImageDestinationCreateWithURL(
-            url as CFURL,
-            UTType.png.identifier as CFString,
-            1,
-            nil
-        ) else {
+        guard
+            let destination = CGImageDestinationCreateWithURL(
+                url as CFURL,
+                UTType.png.identifier as CFString,
+                1,
+                nil
+            )
+        else {
             return
         }
 
@@ -1295,7 +1300,8 @@ final class StrokeRegionBuilder {
             maxArc = max(maxArc, candidate.arcLength)
         }
 
-        let blendedArc = totalWeight > .ulpOfOne
+        let blendedArc =
+            totalWeight > .ulpOfOne
             ? weightedArc / totalWeight
             : tieCandidates.reduce(0) { partialResult, candidate in
                 partialResult + candidate.arcLength

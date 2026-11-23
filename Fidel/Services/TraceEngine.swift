@@ -144,10 +144,12 @@ final class TraceEngine {
         lastTouchTime = time
 
         let lowerArc = currentArc - tuning.backwardSlackFraction * stroke.totalLength
-        let upperArc = currentArc + max(
-            tuning.forwardWindowFactor * stroke.corridorRadius,
-            tuning.forwardWindowLengthFraction * stroke.totalLength
-        )
+        let upperArc =
+            currentArc
+            + max(
+                tuning.forwardWindowFactor * stroke.corridorRadius,
+                tuning.forwardWindowLengthFraction * stroke.totalLength
+            )
 
         guard
             let projection = TraceGeometry.project(point, onto: stroke, lowerArc: lowerArc, upperArc: upperArc),
@@ -177,7 +179,8 @@ final class TraceEngine {
         guard phase == .tracing, let stroke = activeStroke else { return }
         lastTouchTime = time
 
-        let threshold = stroke.totalLength < tuning.shortStrokeLength
+        let threshold =
+            stroke.totalLength < tuning.shortStrokeLength
             ? tuning.shortStrokeCompletionProgress
             : tuning.magnetCompletionFraction
         let progress = stroke.totalLength > .ulpOfOne ? currentArc / stroke.totalLength : 1
@@ -226,12 +229,14 @@ final class TraceEngine {
         } else {
             phase = .characterComplete
             let duration = firstTouchTime.map { lastTouchTime - $0 } ?? 0
-            emit(.characterCompleted(TraceAttemptStats(
-                misses: totalMisses,
-                hintsAutoPlayed: totalHintsAutoPlayed,
-                duration: duration,
-                accessibilityCompletions: totalAccessibilityCompletions
-            )))
+            emit(
+                .characterCompleted(
+                    TraceAttemptStats(
+                        misses: totalMisses,
+                        hintsAutoPlayed: totalHintsAutoPlayed,
+                        duration: duration,
+                        accessibilityCompletions: totalAccessibilityCompletions
+                    )))
         }
     }
 

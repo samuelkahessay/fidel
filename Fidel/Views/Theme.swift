@@ -5,9 +5,9 @@ import UIKit
 
 /// App-wide design tokens following iOS 26 Liquid Glass design language
 struct AppTheme {
-    
+
     // MARK: - Colors (Ethiopian theme, modernized)
-    
+
     static let paperColor = adaptiveColor(
         light: (0.965, 0.941, 0.894),
         dark: (0.115, 0.081, 0.061)
@@ -90,7 +90,7 @@ struct AppTheme {
         light: (0.133, 0.110, 0.086),
         dark: (0.115, 0.081, 0.061)
     )
-    
+
     /// Legacy color aliases
     static let ethiopianGreen = eucalyptusColor
     static let ethiopianYellow = goldColor
@@ -135,7 +135,7 @@ struct AppTheme {
     static let traceInkUIColor = UIColor(red: 0.965, green: 0.945, blue: 0.890, alpha: 0.92)
 
     // MARK: - Spacing (4pt grid)
-    
+
     struct Spacing {
         static let xxs: CGFloat = 4
         static let xs: CGFloat = 8
@@ -145,9 +145,9 @@ struct AppTheme {
         static let xl: CGFloat = 24
         static let xxl: CGFloat = 32
     }
-    
+
     // MARK: - Corner Radii (Concentric shapes)
-    
+
     struct CornerRadius {
         static let small: CGFloat = 8
         static let medium: CGFloat = 12
@@ -155,9 +155,9 @@ struct AppTheme {
         static let xlarge: CGFloat = 20
         static let pill: CGFloat = 100
     }
-    
+
     // MARK: - Typography (SF Pro system)
-    
+
     struct Typography {
         static let largeTitle = Font.largeTitle.weight(.heavy)
         static let title = Font.title.weight(.bold)
@@ -170,7 +170,7 @@ struct AppTheme {
         static let footnote = Font.footnote
         static let caption = Font.caption
         static let caption2 = Font.caption2
-        
+
         // Amharic body — Noto Sans Ethiopic for consistent rendering
         static func amharic(size: CGFloat, relativeTo textStyle: Font.TextStyle = .body) -> Font {
             .custom("NotoSansEthiopic-Regular", size: size, relativeTo: textStyle)
@@ -184,9 +184,9 @@ struct AppTheme {
             .system(size: size, weight: .medium, design: .monospaced)
         }
     }
-    
+
     // MARK: - Animations (Spring-based)
-    
+
     struct Animation {
         static let springResponse: Double = 0.3
         static let springDamping: Double = 1.0
@@ -194,9 +194,9 @@ struct AppTheme {
         static let standard: SwiftUI.Animation = .spring(response: 0.35, dampingFraction: 1.0)
         static let gentle: SwiftUI.Animation = .spring(response: 0.5, dampingFraction: 1.0)
     }
-    
+
     // MARK: - Difficulty Colors
-    
+
     static func difficultyColor(_ level: Int) -> Color {
         switch level {
         case 1: return successColor
@@ -205,9 +205,9 @@ struct AppTheme {
         default: return disabledColor
         }
     }
-    
+
     // MARK: - Glass Tints
-    
+
     struct GlassTint {
         static let primary = primaryColor.opacity(0.08)
         static let secondary = secondaryColor.opacity(0.08)
@@ -225,15 +225,16 @@ struct AppTheme {
         dark: (Double, Double, Double),
         alpha: Double = 1
     ) -> Color {
-        Color(UIColor { traitCollection in
-            let values = traitCollection.userInterfaceStyle == .dark ? dark : light
-            return UIColor(
-                red: CGFloat(values.0),
-                green: CGFloat(values.1),
-                blue: CGFloat(values.2),
-                alpha: CGFloat(alpha)
-            )
-        })
+        Color(
+            UIColor { traitCollection in
+                let values = traitCollection.userInterfaceStyle == .dark ? dark : light
+                return UIColor(
+                    red: CGFloat(values.0),
+                    green: CGFloat(values.1),
+                    blue: CGFloat(values.2),
+                    alpha: CGFloat(alpha)
+                )
+            })
     }
 }
 
@@ -318,7 +319,7 @@ struct GlassCardStyle: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
     var padding: CGFloat = AppTheme.Spacing.md
     var cornerRadius: CGFloat = AppTheme.CornerRadius.large
-    
+
     func body(content: Content) -> some View {
         FidelSurface(prominence: .glass, padding: padding, cornerRadius: cornerRadius) {
             content
@@ -378,8 +379,7 @@ extension View {
     func glassCard(padding: CGFloat = AppTheme.Spacing.md, cornerRadius: CGFloat = AppTheme.CornerRadius.large) -> some View {
         modifier(GlassCardStyle(padding: padding, cornerRadius: cornerRadius))
     }
-    
-    
+
     /// Primary call-to-action as a native prominent Liquid Glass button.
     /// Tint is inherited from the app accent set on the root `TabView`.
     func primaryGlassButton(fullWidth: Bool = false) -> some View {
@@ -405,11 +405,11 @@ extension View {
 struct XPBadge: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let xp: Int
-    
+
     var body: some View {
         HStack(spacing: AppTheme.Spacing.xxs) {
             badgeIcon
-            
+
             Text("\(xp) XP")
                 .font(AppTheme.Typography.headline)
                 .foregroundStyle(AppTheme.secondaryColor)
@@ -441,7 +441,7 @@ struct XPBadge: View {
 
 struct DifficultyStars: View {
     let level: Int
-    
+
     var body: some View {
         HStack(spacing: 2) {
             ForEach(0..<3) { index in
@@ -461,7 +461,7 @@ struct DifficultyStars: View {
 struct AnimatedCheckmark: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isAnimated = false
-    
+
     var body: some View {
         Image(systemName: "checkmark.circle.fill")
             .font(.system(size: 64))
@@ -491,17 +491,17 @@ struct ProgressRing: View {
     var lineWidth: CGFloat = 8
     var size: CGFloat = 80
     var showPercentage: Bool = false
-    
+
     private var gradientColors: [Color] {
         [AppTheme.primaryColor, AppTheme.secondaryColor]
     }
-    
+
     var body: some View {
         ZStack {
             // Background track
             Circle()
                 .stroke(AppTheme.inkColor.opacity(0.08), lineWidth: lineWidth)
-            
+
             // Progress arc with gradient
             Circle()
                 .trim(from: 0, to: min(progress, 1.0))
@@ -516,7 +516,7 @@ struct ProgressRing: View {
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(reduceMotion ? nil : AppTheme.Animation.gentle, value: progress)
-            
+
             // Percentage text
             if showPercentage {
                 Text("\(Int(progress * 100))%")

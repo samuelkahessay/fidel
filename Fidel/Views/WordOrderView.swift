@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 /// Duolingo-style "translate this sentence" exercise. The learner taps shuffled

@@ -67,7 +67,7 @@ struct ReferenceView: View {
             settingsStore.selectedReferenceTab = newValue
         }
     }
-    
+
     private var phrasesView: some View {
         Group {
             if viewModel.phraseSections.isEmpty {
@@ -91,11 +91,11 @@ struct ReferenceView: View {
             }
         }
     }
-    
+
     private var vocabularyView: some View {
         VStack(spacing: 0) {
             categoryFilter
-            
+
             if viewModel.vocabulary.isEmpty {
                 referenceEmptyState
             } else {
@@ -108,7 +108,7 @@ struct ReferenceView: View {
             }
         }
     }
-    
+
     private var categoryFilter: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 8) {
@@ -128,7 +128,7 @@ struct ReferenceView: View {
         .padding(.vertical, 8)
         .background(AppTheme.elevatedSurfaceColor)
     }
-    
+
     private var numbersView: some View {
         List {
             Section("Numbers") {
@@ -201,18 +201,19 @@ struct PhraseReferenceRow: View {
     var audioService: BundledAudioService?
     var audioRepository: AudioAssetRepository = .shared
     @State private var isCopied = false
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(phrase.amharic)
                     .font(AppTheme.Typography.amharic(size: 20))
-                
+
                 Spacer()
 
                 if let audioAsset,
-                   let audioService,
-                   let url = playableAudioURL {
+                    let audioService,
+                    let url = playableAudioURL
+                {
                     Button {
                         audioService.play(asset: audioAsset, url: url)
                     } label: {
@@ -223,7 +224,7 @@ struct PhraseReferenceRow: View {
                     .accessibilityLabel("Generated pronunciation")
                     .accessibilityHint("Plays generated pronunciation for \(phrase.amharic)")
                 }
-                
+
                 Button(action: copyToClipboard) {
                     Image(systemName: isCopied ? "checkmark" : "doc.on.doc")
                         .foregroundStyle(isCopied ? AppTheme.successColor : .secondary)
@@ -238,16 +239,16 @@ struct PhraseReferenceRow: View {
                     .font(.caption2)
                     .foregroundStyle(AppTheme.mutedInkColor)
             }
-            
+
             Text(phrase.transliteration)
                 .font(.caption)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
-            
+
             HStack {
                 Text(phrase.english)
                     .font(.subheadline)
                     .fontWeight(.medium)
-                
+
                 if !phrase.notes.isEmpty {
                     Text("(\(phrase.notes))")
                         .font(.caption)
@@ -265,14 +266,14 @@ struct PhraseReferenceRow: View {
         guard let audioAsset else { return nil }
         return audioRepository.audioURL(for: audioAsset)
     }
-    
+
     private func copyToClipboard() {
         UIPasteboard.general.string = phrase.amharic
         isCopied = true
-        
+
         let feedback = UINotificationFeedbackGenerator()
         feedback.notificationOccurred(.success)
-        
+
         Task {
             try? await Task.sleep(for: .seconds(2))
             isCopied = false
@@ -298,7 +299,7 @@ struct VocabularyReferenceRow: View {
             PronunciationButton(content: .vocabulary(word), bundled: bundled, tts: tts)
 
             Spacer()
-            
+
             VStack(alignment: .trailing, spacing: 4) {
                 Text(word.english)
                     .font(.subheadline)
@@ -322,7 +323,7 @@ struct VocabularyReferenceRow: View {
 
 struct NumberRow: View {
     let number: AmharicNumber
-    
+
     var body: some View {
         HStack {
             Text("\(number.value)")
@@ -330,12 +331,12 @@ struct NumberRow: View {
                 .bold()
                 .foregroundStyle(AppTheme.primaryColor)
                 .frame(width: 50)
-            
+
             Text(number.amharic)
                 .font(AppTheme.Typography.amharic(size: 24))
-            
+
             Spacer()
-            
+
             Text(number.transliteration)
                 .font(.subheadline)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
@@ -406,7 +407,7 @@ struct CategoryChip: View {
     let title: String
     let isSelected: Bool
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             Text(title)

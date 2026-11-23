@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 struct FlashcardView: View {
@@ -15,7 +15,7 @@ struct FlashcardView: View {
     var body: some View {
         VStack(spacing: AppTheme.Spacing.xl) {
             progressHeader
-            
+
             if let word = viewModel.currentWord, !viewModel.showCompletion {
                 flashcardStack(word: word)
                 PronunciationButton(content: .vocabulary(word), bundled: bundledAudio, tts: ttsAudio)
@@ -37,7 +37,7 @@ struct FlashcardView: View {
             viewModel.startSession(cardCount: 20)
         }
     }
-    
+
     private var progressHeader: some View {
         HStack {
             HStack(spacing: AppTheme.Spacing.xxs) {
@@ -47,15 +47,15 @@ struct FlashcardView: View {
                     .font(AppTheme.Typography.headline)
                     .foregroundStyle(AppTheme.successColor)
             }
-            
+
             Spacer()
-            
+
             Text(viewModel.progress)
                 .font(AppTheme.Typography.headline)
                 .foregroundStyle(AppTheme.inkColor)
-            
+
             Spacer()
-            
+
             HStack(spacing: AppTheme.Spacing.xxs) {
                 Text("\(viewModel.incorrectCount)")
                     .font(AppTheme.Typography.headline)
@@ -66,7 +66,7 @@ struct FlashcardView: View {
         }
         .padding(.horizontal, AppTheme.Spacing.md)
     }
-    
+
     private func flashcardStack(word: VocabularyWord) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: AppTheme.CornerRadius.xlarge)
@@ -78,7 +78,7 @@ struct FlashcardView: View {
                             lineWidth: 0.5
                         )
                 )
-            
+
             VStack(spacing: AppTheme.Spacing.lg) {
                 if !viewModel.isFlipped {
                     frontContent(word: word)
@@ -114,21 +114,21 @@ struct FlashcardView: View {
             viewModel.flip()
         }
     }
-    
+
     private func frontContent(word: VocabularyWord) -> some View {
         VStack(spacing: AppTheme.Spacing.md) {
             Spacer()
-            
+
             Text(word.amharic)
                 .font(AppTheme.Typography.amharic(size: 64))
                 .foregroundStyle(AppTheme.primaryColor)
-            
+
             Text(word.transliteration)
                 .font(AppTheme.Typography.title3)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
-            
+
             Spacer()
-            
+
             HStack(spacing: AppTheme.Spacing.xxs) {
                 Image(systemName: "hand.tap")
                     .font(.caption)
@@ -138,16 +138,16 @@ struct FlashcardView: View {
             .foregroundStyle(AppTheme.mutedInkColor)
         }
     }
-    
+
     private func backContent(word: VocabularyWord) -> some View {
         VStack(spacing: AppTheme.Spacing.md) {
             Spacer()
-            
+
             Text(word.english)
                 .font(AppTheme.Typography.title)
                 .foregroundStyle(AppTheme.inkColor)
                 .rotation3DEffect(.degrees(reduceMotion ? 0 : 180), axis: (x: 0, y: 1, z: 0))
-            
+
             Text(word.category)
                 .font(AppTheme.Typography.caption)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
@@ -158,9 +158,9 @@ struct FlashcardView: View {
                         .fill(AppTheme.primaryColor.opacity(0.12))
                 )
                 .rotation3DEffect(.degrees(reduceMotion ? 0 : 180), axis: (x: 0, y: 1, z: 0))
-            
+
             Spacer()
-            
+
             HStack(spacing: AppTheme.Spacing.xxs) {
                 Image(systemName: "arrow.left.arrow.right")
                     .font(.caption)
@@ -207,7 +207,7 @@ struct FlashcardView: View {
             }
         }
     }
-    
+
     private var swipeOverlay: some View {
         ZStack {
             if offset.width > 50 {
@@ -229,7 +229,7 @@ struct FlashcardView: View {
             }
         }
     }
-    
+
     private var swipeHints: some View {
         HStack(spacing: AppTheme.Spacing.xxl) {
             VStack(spacing: AppTheme.Spacing.xs) {
@@ -240,7 +240,7 @@ struct FlashcardView: View {
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
             VStack(spacing: AppTheme.Spacing.xs) {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.title)
@@ -252,15 +252,15 @@ struct FlashcardView: View {
         }
         .padding(.top, AppTheme.Spacing.lg)
     }
-    
+
     private var completionView: some View {
         VStack(spacing: AppTheme.Spacing.xl) {
             AnimatedCheckmark()
-            
+
             Text("Session Complete!")
                 .font(AppTheme.Typography.title)
                 .foregroundStyle(AppTheme.inkColor)
-            
+
             HStack(spacing: AppTheme.Spacing.xxl) {
                 VStack(spacing: AppTheme.Spacing.xxs) {
                     Text("\(viewModel.correctCount)")
@@ -270,7 +270,7 @@ struct FlashcardView: View {
                         .font(AppTheme.Typography.caption)
                         .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
-                
+
                 VStack(spacing: AppTheme.Spacing.xxs) {
                     Text("\(viewModel.incorrectCount)")
                         .font(.system(size: 52, weight: .bold))
@@ -280,7 +280,7 @@ struct FlashcardView: View {
                         .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
             }
-            
+
             HStack(spacing: AppTheme.Spacing.xs) {
                 AccessibleProgressRing(
                     progress: Double(viewModel.correctCount) / Double(max(viewModel.vocabulary.count, 1)),
@@ -293,15 +293,15 @@ struct FlashcardView: View {
                     .font(AppTheme.Typography.headline)
                     .foregroundStyle(AppTheme.primaryColor)
             }
-            
+
             XPBadge(xp: viewModel.earnedXP())
         }
         .glassCard()
     }
-    
+
     private func handleSwipe(gesture: DragGesture.Value) {
         let threshold: CGFloat = 100
-        
+
         withAnimation(reduceMotion ? nil : AppTheme.Animation.standard) {
             if gesture.translation.width > threshold {
                 offset = CGSize(width: 500, height: 0)

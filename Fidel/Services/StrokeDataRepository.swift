@@ -20,14 +20,16 @@ final class StrokeDataRepository {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent(fileName)
         if let data = try? Data(contentsOf: documentsURL),
-           let decoded = try? JSONDecoder().decode(StrokeDataStore.self, from: data) {
+            let decoded = try? JSONDecoder().decode(StrokeDataStore.self, from: data)
+        {
             return decoded
         }
 
         // 2. Try bundle resource (shipped with app)
         if let bundleURL = Bundle.main.url(forResource: "fidel_stroke_data", withExtension: "json"),
-           let data = try? Data(contentsOf: bundleURL),
-           let decoded = try? JSONDecoder().decode(StrokeDataStore.self, from: data) {
+            let data = try? Data(contentsOf: bundleURL),
+            let decoded = try? JSONDecoder().decode(StrokeDataStore.self, from: data)
+        {
             return decoded
         }
 

@@ -8,7 +8,7 @@ protocol LessonRepositoryProtocol {
     // Lessons
     func getLessons() -> [Lesson]
     func getLesson(by id: Int) -> Lesson?
-    
+
     // Patterns
     func getPatterns() -> [Pattern]
 
@@ -18,15 +18,15 @@ protocol LessonRepositoryProtocol {
     // Conversations
     func getConversations() -> [Conversation]
     func getConversation(by id: Int) -> Conversation?
-    
+
     // Phrases
     func getPhrases() -> [Phrase]
-    
+
     // Vocabulary
     func getVocabulary() -> [VocabularyWord]
     func getVocabulary(for category: String) -> [VocabularyWord]
     func getVocabularyCategories() -> [String]
-    
+
     // Fidel
     func getFidelChart() -> [[FidelCharacter]]
 
@@ -49,27 +49,27 @@ protocol LessonRepositoryProtocol {
 
 /// Default implementation backed by static AmharicData
 final class LessonRepository: LessonRepositoryProtocol {
-    
+
     // MARK: - Singleton (for easy access, but can be injected)
-    
+
     static let shared = LessonRepository()
-    
+
     // MARK: - Lessons
-    
+
     func getLessons() -> [Lesson] {
         AmharicData.lessons
     }
-    
+
     func getLesson(by id: Int) -> Lesson? {
         AmharicData.lessons.first { $0.id == id }
     }
-    
+
     // MARK: - Patterns
-    
+
     func getPatterns() -> [Pattern] {
         AmharicData.patterns
     }
-    
+
     // MARK: - Sentence Exercises
 
     func getSentenceExercises() -> [SentenceExercise] {
@@ -77,41 +77,41 @@ final class LessonRepository: LessonRepositoryProtocol {
     }
 
     // MARK: - Conversations
-    
+
     func getConversations() -> [Conversation] {
         AmharicData.conversations
     }
-    
+
     func getConversation(by id: Int) -> Conversation? {
         AmharicData.conversations.first { $0.id == id }
     }
-    
+
     // MARK: - Phrases
-    
+
     func getPhrases() -> [Phrase] {
         AmharicData.phrases
     }
-    
+
     // MARK: - Vocabulary
-    
+
     func getVocabulary() -> [VocabularyWord] {
         AmharicData.vocabulary
     }
-    
+
     func getVocabulary(for category: String) -> [VocabularyWord] {
         AmharicData.vocabularyByCategory(category)
     }
-    
+
     func getVocabularyCategories() -> [String] {
         AmharicData.vocabularyCategories
     }
-    
+
     // MARK: - Fidel
-    
+
     func getFidelChart() -> [[FidelCharacter]] {
         AmharicData.fidelChart
     }
-    
+
     // MARK: - Numbers
 
     func getNumbers() -> [AmharicNumber] {

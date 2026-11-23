@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 struct SelamView: View {
@@ -83,12 +83,12 @@ struct SelamView: View {
         }
         .alert("Error", isPresented: $viewModel.showError) {
             Button("Retry") { viewModel.retryLastMessage() }
-            Button("Cancel", role: .cancel) { }
+            Button("Cancel", role: .cancel) {}
         } message: {
             Text(viewModel.error?.errorDescription ?? "An error occurred")
         }
     }
-    
+
     private var messagesView: some View {
         ScrollViewReader { proxy in
             ScrollView {
@@ -119,14 +119,14 @@ struct SelamView: View {
             }
         }
     }
-    
+
     private func scrollToBottom(proxy: ScrollViewProxy) {
         guard let lastMessage = viewModel.messages.last else { return }
         withAnimation(.easeOut(duration: 0.2)) {
             proxy.scrollTo(lastMessage.id.uuidString, anchor: .bottom)
         }
     }
-    
+
     private func configureViewModel() {
         let selamRepository = SelamRepository(modelContext: modelContext)
         let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
@@ -143,7 +143,7 @@ struct SelamWelcomeView: View {
     private let prompts = [
         "Teach me everyday greetings",
         "Quiz me on Fidel sounds",
-        "Practice ordering coffee"
+        "Practice ordering coffee",
     ]
 
     var body: some View {
@@ -192,10 +192,10 @@ struct SelamWelcomeView: View {
 struct SelamSettingsView: View {
     @Environment(\.dismiss) private var dismiss
     let viewModel: SelamViewModel
-    
+
     @State private var coachingFrequency: SelamCoachingSettings.CoachingFrequency = .medium
     @State private var languagePreference: SelamCoachingSettings.LanguagePreference = .mixed
-    
+
     var body: some View {
         NavigationStack {
             Form {
@@ -213,7 +213,7 @@ struct SelamSettingsView: View {
                     }
                     .pickerStyle(.inline)
                 }
-                
+
                 Section("Language") {
                     Picker("Response Language", selection: $languagePreference) {
                         ForEach(SelamCoachingSettings.LanguagePreference.allCases, id: \.self) { pref in
@@ -221,24 +221,24 @@ struct SelamSettingsView: View {
                         }
                     }
                     .pickerStyle(.segmented)
-                    
+
                     Text(languagePreference.description)
                         .font(.caption)
                         .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
-                
+
                 Section("Snooze") {
                     Button("Snooze for 1 hour") {
                         viewModel.snoozeCoaching(for: 1)
                         dismiss()
                     }
-                    
+
                     Button("Snooze for 24 hours") {
                         viewModel.snoozeCoaching(for: 24)
                         dismiss()
                     }
                 }
-                
+
                 Section {
                     HStack {
                         Text("Messages today")
@@ -246,7 +246,7 @@ struct SelamSettingsView: View {
                         Text("\(viewModel.messageCountToday) / 100")
                             .foregroundStyle(AppTheme.inkSecondaryColor)
                     }
-                    
+
                     HStack {
                         Text("Remaining")
                         Spacer()
@@ -274,7 +274,7 @@ struct SelamSettingsView: View {
             }
         }
     }
-    
+
     private func saveSettings() {
         let settings = SelamCoachingSettings(
             coachingFrequency: coachingFrequency,
@@ -289,10 +289,10 @@ struct SelamHistoryView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     let viewModel: SelamViewModel
-    
+
     @Query(sort: \SelamConversation.updatedAt, order: .reverse)
     private var conversations: [SelamConversation]
-    
+
     var body: some View {
         NavigationStack {
             List {
@@ -305,12 +305,12 @@ struct SelamHistoryView: View {
                             Text(conversation.title ?? "New Conversation")
                                 .font(AppTheme.Typography.headline)
                                 .foregroundStyle(AppTheme.inkColor)
-                            
+
                             Text(conversation.preview)
                                 .font(AppTheme.Typography.caption)
                                 .foregroundStyle(AppTheme.inkSecondaryColor)
                                 .lineLimit(2)
-                            
+
                             Text(conversation.updatedAt.formatted(.relative(presentation: .named)))
                                 .font(AppTheme.Typography.caption)
                                 .foregroundStyle(AppTheme.mutedInkColor.opacity(0.7))
@@ -326,7 +326,7 @@ struct SelamHistoryView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Done") { dismiss() }
                 }
-                
+
                 ToolbarItem(placement: .topBarTrailing) {
                     EditButton()
                 }
@@ -342,7 +342,7 @@ struct SelamHistoryView: View {
             }
         }
     }
-    
+
     private func deleteConversations(at offsets: IndexSet) {
         for index in offsets {
             modelContext.delete(conversations[index])
@@ -354,22 +354,22 @@ struct SelamContextSheet: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncEngine.self) private var sync
     @Environment(\.dismiss) private var dismiss
-    
+
     let entryContext: SelamEntryContext
     @State private var viewModel = SelamViewModel()
-    
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 messagesView
-                
+
                 if !viewModel.suggestedActions.isEmpty && !viewModel.isLoading {
                     SuggestedActionsView(
                         actions: viewModel.suggestedActions,
                         onSelect: viewModel.sendSuggestedAction
                     )
                 }
-                
+
                 ChatInputView(
                     text: $viewModel.inputText,
                     isLoading: viewModel.isLoading,
@@ -388,7 +388,7 @@ struct SelamContextSheet: View {
                             .font(AppTheme.Typography.headline)
                     }
                 }
-                
+
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Done") { dismiss() }
                 }
@@ -398,7 +398,7 @@ struct SelamContextSheet: View {
             }
         }
     }
-    
+
     private var messagesView: some View {
         ScrollViewReader { proxy in
             ScrollView {
@@ -420,14 +420,14 @@ struct SelamContextSheet: View {
             }
         }
     }
-    
+
     private func scrollToBottom(proxy: ScrollViewProxy) {
         guard let lastMessage = viewModel.messages.last else { return }
         withAnimation(.easeOut(duration: 0.2)) {
             proxy.scrollTo(lastMessage.id.uuidString, anchor: .bottom)
         }
     }
-    
+
     private func configureViewModel() {
         let selamRepository = SelamRepository(modelContext: modelContext)
         let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
@@ -441,10 +441,11 @@ struct SelamContextSheet: View {
 
 #Preview {
     SelamView()
-        .modelContainer(for: [
-            UserProgress.self,
-            FlashcardProgress.self,
-            SelamConversation.self,
-            SelamMessage.self
-        ], inMemory: true)
+        .modelContainer(
+            for: [
+                UserProgress.self,
+                FlashcardProgress.self,
+                SelamConversation.self,
+                SelamMessage.self,
+            ], inMemory: true)
 }

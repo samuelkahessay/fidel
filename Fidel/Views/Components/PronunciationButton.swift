@@ -58,7 +58,7 @@ struct PronunciationButton: View {
     }
 
     enum Size {
-        case inline    // 44×44, matches the existing phrase/vocab row buttons
+        case inline  // 44×44, matches the existing phrase/vocab row buttons
         case emphasis  // 88×88 filled circle, for focused single-item screens
     }
 
@@ -73,8 +73,9 @@ struct PronunciationButton: View {
     /// so a partial bundle degrades gracefully to TTS instead of a dead button.
     private var resolved: (asset: AudioAsset, url: URL)? {
         guard let lookup = content.lookup,
-              let asset = repository.asset(for: lookup.type, contentId: lookup.id),
-              let url = repository.audioURL(for: asset) else { return nil }
+            let asset = repository.asset(for: lookup.type, contentId: lookup.id),
+            let url = repository.audioURL(for: asset)
+        else { return nil }
         return (asset, url)
     }
 
@@ -109,9 +110,10 @@ struct PronunciationButton: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(resolved != nil ? "Play pronunciation" : "Speak \(content.amharic)")
-        .accessibilityHint(resolved != nil
-            ? "Plays the recorded pronunciation"
-            : "Speaks \(content.amharic) aloud")
+        .accessibilityHint(
+            resolved != nil
+                ? "Plays the recorded pronunciation"
+                : "Speaks \(content.amharic) aloud")
     }
 
     private var icon: Image {

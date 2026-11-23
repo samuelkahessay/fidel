@@ -1,5 +1,6 @@
-import XCTest
 import SwiftData
+import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 @MainActor
@@ -25,7 +26,7 @@ final class TracingSessionSizeTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         let container = try ModelContainer(for: schema, configurations: [configuration])
@@ -39,13 +40,15 @@ final class TracingSessionSizeTests: XCTestCase {
         let store = AppSettingsStore()
 
         store.dailyGoalTier = .casual
-        let casual = TracingSessionViewModel(); casual.configure(progressRepository: try freshRepo())
+        let casual = TracingSessionViewModel()
+        casual.configure(progressRepository: try freshRepo())
         casual.startSession(plan: .standard)
-        XCTAssertEqual(casual.items.count, DailyGoalTier.casual.tracingSessionSize) // 5
+        XCTAssertEqual(casual.items.count, DailyGoalTier.casual.tracingSessionSize)  // 5
 
         store.dailyGoalTier = .intense
-        let intense = TracingSessionViewModel(); intense.configure(progressRepository: try freshRepo())
+        let intense = TracingSessionViewModel()
+        intense.configure(progressRepository: try freshRepo())
         intense.startSession(plan: .standard)
-        XCTAssertEqual(intense.items.count, DailyGoalTier.intense.tracingSessionSize) // 16
+        XCTAssertEqual(intense.items.count, DailyGoalTier.intense.tracingSessionSize)  // 16
     }
 }

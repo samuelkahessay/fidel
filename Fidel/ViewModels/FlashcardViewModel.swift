@@ -38,11 +38,13 @@ final class FlashcardViewModel {
         )
 
         let vocabularyById = Dictionary(uniqueKeysWithValues: sourceVocabulary.map { ($0.id, $0) })
-        let dueWords = progressRepository?
+        let dueWords =
+            progressRepository?
             .getDueFlashcards(type: "vocabulary")
             .compactMap { vocabularyById[$0.itemId] } ?? []
         let dueIds = Set(dueWords.map(\.id))
-        let fillWords = sourceVocabulary
+        let fillWords =
+            sourceVocabulary
             .filter { !dueIds.contains($0.id) }
             .shuffled()
 

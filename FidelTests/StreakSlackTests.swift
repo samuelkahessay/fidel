@@ -1,5 +1,6 @@
 import SwiftData
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// Tests for streak "slack": auto-granted weekly freezes that absorb a single
@@ -23,7 +24,7 @@ final class StreakSlackTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         return try ModelContainer(for: schema, configurations: [configuration])

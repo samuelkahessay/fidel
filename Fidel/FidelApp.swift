@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 import os
 
@@ -13,7 +13,7 @@ struct FidelApp: App {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let modelConfiguration = ModelConfiguration(
             schema: schema,
@@ -51,7 +51,8 @@ struct FidelApp: App {
         // receipt from a staging build. Run a Fidel-owned migration once so
         // every durable pre-upgrade record is enqueued for the new schema.
         if UserDefaults.standard.integer(forKey: Self.syncBootstrapVersionKey)
-            < Self.currentSyncBootstrapVersion {
+            < Self.currentSyncBootstrapVersion
+        {
             do {
                 engine.markPending(try syncStore.allSyncIDs())
                 UserDefaults.standard.set(

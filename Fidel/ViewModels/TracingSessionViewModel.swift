@@ -110,7 +110,8 @@ final class TracingSessionViewModel {
     /// fixed 70 - exactly the promotion threshold - so accessible users can
     /// still progress; the guide assist cap applies on top.
     static func sessionScore(stats: TraceEngine.TraceAttemptStats, usedGuideAssist: Bool) -> Int {
-        let base = stats.accessibilityCompletions > 0
+        let base =
+            stats.accessibilityCompletions > 0
             ? 70
             : guidedScore(misses: stats.misses, hintsAutoPlayed: stats.hintsAutoPlayed)
         return usedGuideAssist ? min(base, 69) : base
@@ -161,7 +162,8 @@ final class TracingSessionViewModel {
     ) -> [SessionItem] {
         let masteryById = Dictionary(uniqueKeysWithValues: mastery.map { ($0.characterId, $0) })
 
-        let dueItems = mastery
+        let dueItems =
+            mastery
             .filter { $0.level >= 1 && $0.level < 3 }
             .sorted { ($0.lastPracticedAt ?? .distantPast) < ($1.lastPracticedAt ?? .distantPast) }
             .prefix(maxPromotionItems)
@@ -276,10 +278,11 @@ final class TracingSessionViewModel {
         switch result {
         case .passedForReview(let evaluation):
             memoryRetryReason = nil
-            completeCharacter(score: Self.memoryScore(
-                evaluationScore: evaluation.score,
-                usedAssist: usedGuideAssist
-            ), misses: 0)
+            completeCharacter(
+                score: Self.memoryScore(
+                    evaluationScore: evaluation.score,
+                    usedAssist: usedGuideAssist
+                ), misses: 0)
         case .needsRetry(let evaluation):
             memoryRetryReason = evaluation.retryReason ?? .tooLittleCoverage
             missHaptic.impactOccurred()
@@ -368,7 +371,8 @@ final class TracingSessionViewModel {
     /// otherwise the existing TTS pipeline (with AVSpeech am-ET fallback).
     private func playPronunciation(for character: FidelCharacter) {
         if let asset = audioAssets.asset(for: .fidelCharacter, contentId: character.id),
-           let url = audioAssets.audioURL(for: asset) {
+            let url = audioAssets.audioURL(for: asset)
+        {
             bundledAudio.play(asset: asset, url: url)
         } else {
             ttsService.speakAmharic(character.character, transliteration: character.romanization)

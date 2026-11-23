@@ -1,5 +1,6 @@
 import SwiftData
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 @MainActor
@@ -23,7 +24,7 @@ final class SelamViewModelTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let container = try ModelContainer(
             for: schema,
@@ -43,8 +44,9 @@ final class SelamViewModelTests: XCTestCase {
 
         XCTAssertTrue(viewModel.showError)
         let stored = try context.fetch(FetchDescriptor<SelamMessage>())
-        XCTAssertFalse(stored.contains { $0.role == .assistant && !$0.isComplete },
-                       "a failed reply must not leave an empty assistant bubble behind")
+        XCTAssertFalse(
+            stored.contains { $0.role == .assistant && !$0.isComplete },
+            "a failed reply must not leave an empty assistant bubble behind")
         XCTAssertEqual(viewModel.messages.count, stored.count)
     }
 }

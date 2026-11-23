@@ -25,12 +25,11 @@ struct FidelView: View {
         }
         return chart.map { row in
             row.filter { char in
-                char.character.contains(searchText) ||
-                char.romanization.lowercased().contains(searchText.lowercased())
+                char.character.contains(searchText) || char.romanization.lowercased().contains(searchText.lowercased())
             }
         }.filter { !$0.isEmpty }
     }
-    
+
     var body: some View {
         if embedded {
             content
@@ -103,7 +102,7 @@ struct FidelView: View {
             .frame(width: width, alignment: .topLeading)
         }
     }
-    
+
     private var headerView: some View {
         VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
             FidelScreenHeader(
@@ -123,7 +122,7 @@ struct FidelView: View {
         .padding(.bottom, AppTheme.Spacing.sm)
         .accessibilityElement(children: .combine)
     }
-    
+
     private func vowelHeaderRow(metrics: FidelChartLayoutMetrics) -> some View {
         HStack(spacing: 0) {
             ForEach(0..<7) { index in
@@ -173,7 +172,7 @@ struct FidelRow: View {
     let metrics: FidelChartLayoutMetrics
     let recognizedCharacterIds: Set<String>
     @Binding var selectedCharacter: FidelCharacter?
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
             if let first = characters.first {
@@ -211,7 +210,7 @@ struct FidelCell: View {
     let isSelected: Bool
     let isRecognized: Bool
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             ZStack(alignment: .topTrailing) {
@@ -270,12 +269,12 @@ struct CharacterDetailView: View {
                 .font(AppTheme.Typography.amharicDisplay(size: 120, relativeTo: .largeTitle))
                 .foregroundStyle(AppTheme.terracottaColor)
                 .minimumScaleFactor(0.6)
-            
+
             VStack(spacing: 8) {
                 Text("Romanization")
                     .font(.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
-                
+
                 Text(character.romanization)
                     .font(.title)
                     .bold()
@@ -298,7 +297,7 @@ struct CharacterDetailView: View {
                         .font(.title2)
                         .foregroundStyle(AppTheme.inkColor)
                 }
-                
+
                 VStack {
                     Text("Vowel Form")
                         .font(.caption)
@@ -308,7 +307,7 @@ struct CharacterDetailView: View {
                         .foregroundStyle(AppTheme.inkColor)
                 }
             }
-            
+
             Text("Pronunciation: \(character.audioHint)")
                 .font(.subheadline)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
@@ -317,7 +316,7 @@ struct CharacterDetailView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(AppTheme.terracottaColor.opacity(0.1))
                 )
-            
+
             Button {
                 showTracing = true
             } label: {

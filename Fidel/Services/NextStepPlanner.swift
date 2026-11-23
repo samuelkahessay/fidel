@@ -2,7 +2,11 @@
 import Foundation
 
 struct RecommendedSession: Equatable {
-    enum Kind: Equatable { case newLesson(Int), resumeLesson(Int), reviews, allCaughtUp }
+    enum Kind: Equatable {
+        case newLesson(Int)
+        case resumeLesson(Int)
+        case reviews, allCaughtUp
+    }
     let kind: Kind
     let reviewCount: Int
     let newCount: Int
@@ -24,14 +28,18 @@ struct NextStepPlanner {
         let completed = Set(progress?.lessonsCompleted ?? [])
         let ordered = lessons.map(\.id).sorted()
         let inProgress = (progress?.lessonsInProgress ?? []).last { !completed.contains($0) }
-        return plan(completedLessonIds: completed, inProgressLessonId: inProgress, tier: tier, dueReviewCount: dueReviewCount, orderedLessonIds: ordered)
+        return plan(
+            completedLessonIds: completed, inProgressLessonId: inProgress, tier: tier, dueReviewCount: dueReviewCount,
+            orderedLessonIds: ordered)
     }
 
-    func plan(completedLessonIds: Set<Int>,
-              inProgressLessonId: Int?,
-              tier: DailyGoalTier,
-              dueReviewCount: Int,
-              orderedLessonIds: [Int]) -> RecommendedSession {
+    func plan(
+        completedLessonIds: Set<Int>,
+        inProgressLessonId: Int?,
+        tier: DailyGoalTier,
+        dueReviewCount: Int,
+        orderedLessonIds: [Int]
+    ) -> RecommendedSession {
         let reviews = min(dueReviewCount, tier.reviewCap)
         let nextNewId = orderedLessonIds.first { !completedLessonIds.contains($0) }
 

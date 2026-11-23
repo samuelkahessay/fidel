@@ -9,8 +9,10 @@ final class StageManager {
 
     private(set) var currentStage: LearningStage
 
-    init(progressRepository: ProgressRepositoryProtocol,
-         lessonRepository: LessonRepositoryProtocol = LessonRepository.shared) {
+    init(
+        progressRepository: ProgressRepositoryProtocol,
+        lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
+    ) {
         self.progressRepository = progressRepository
         self.lessonRepository = lessonRepository
         self.currentStage = LearningStage(rawValue: progressRepository.getCurrentStage()) ?? .scriptAndSounds

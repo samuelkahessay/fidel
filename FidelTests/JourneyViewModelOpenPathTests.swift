@@ -1,5 +1,6 @@
 import SwiftData
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// Covers the open-path rewire of `JourneyViewModel`: nothing is
@@ -22,7 +23,7 @@ final class JourneyViewModelOpenPathTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         return try ModelContainer(for: schema, configurations: [configuration])

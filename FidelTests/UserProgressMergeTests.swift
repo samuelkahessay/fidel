@@ -1,5 +1,6 @@
 import SwiftData
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// One merge policy for `UserProgress`, shared by local duplicate consolidation
@@ -17,15 +18,23 @@ final class UserProgressMergeTests: XCTestCase {
     func testNonMonotonicFieldsComeFromTheNewerSide() {
         let stale = state {
             $0.syncModifiedAt = older
-            $0.currentStreak = 9; $0.todayXP = 40; $0.dailyGoal = 100
-            $0.streakFreezesAvailable = 2; $0.weeklyStreakCount = 5
-            $0.lessonsInProgress = [1, 2]; $0.lastPracticeDate = older
+            $0.currentStreak = 9
+            $0.todayXP = 40
+            $0.dailyGoal = 100
+            $0.streakFreezesAvailable = 2
+            $0.weeklyStreakCount = 5
+            $0.lessonsInProgress = [1, 2]
+            $0.lastPracticeDate = older
         }
         let fresh = state {
             $0.syncModifiedAt = newer
-            $0.currentStreak = 1; $0.todayXP = 0; $0.dailyGoal = 20
-            $0.streakFreezesAvailable = 0; $0.weeklyStreakCount = 0
-            $0.lessonsInProgress = [2]; $0.lastPracticeDate = newer
+            $0.currentStreak = 1
+            $0.todayXP = 0
+            $0.dailyGoal = 20
+            $0.streakFreezesAvailable = 0
+            $0.weeklyStreakCount = 0
+            $0.lessonsInProgress = [2]
+            $0.lastPracticeDate = newer
         }
 
         for merged in [stale.merged(with: fresh), fresh.merged(with: stale)] {
@@ -41,14 +50,32 @@ final class UserProgressMergeTests: XCTestCase {
     }
 
     func testTimestampTieKeepsTheReceiver() {
-        let mine = state { $0.syncModifiedAt = older; $0.currentStreak = 3 }
-        let theirs = state { $0.syncModifiedAt = older; $0.currentStreak = 7 }
+        let mine = state {
+            $0.syncModifiedAt = older
+            $0.currentStreak = 3
+        }
+        let theirs = state {
+            $0.syncModifiedAt = older
+            $0.currentStreak = 7
+        }
         XCTAssertEqual(mine.merged(with: theirs).currentStreak, 3)
     }
 
     func testMonotonicCountersTakeTheMaximum() {
-        let a = state { $0.syncModifiedAt = newer; $0.totalXP = 10; $0.longestStreak = 2; $0.currentStage = 1; $0.lastFreezeGrantWeek = 202601 }
-        let b = state { $0.syncModifiedAt = older; $0.totalXP = 50; $0.longestStreak = 8; $0.currentStage = 3; $0.lastFreezeGrantWeek = 202650 }
+        let a = state {
+            $0.syncModifiedAt = newer
+            $0.totalXP = 10
+            $0.longestStreak = 2
+            $0.currentStage = 1
+            $0.lastFreezeGrantWeek = 202601
+        }
+        let b = state {
+            $0.syncModifiedAt = older
+            $0.totalXP = 50
+            $0.longestStreak = 8
+            $0.currentStage = 3
+            $0.lastFreezeGrantWeek = 202650
+        }
         let merged = a.merged(with: b)
         XCTAssertEqual(merged.totalXP, 50)
         XCTAssertEqual(merged.longestStreak, 8)
@@ -57,16 +84,28 @@ final class UserProgressMergeTests: XCTestCase {
     }
 
     func testAdditiveArraysUnionInReceiverOrder() {
-        let a = state { $0.lessonsCompleted = [3, 1]; $0.achievements = ["first"] }
-        let b = state { $0.lessonsCompleted = [1, 2]; $0.achievements = ["streak", "first"] }
+        let a = state {
+            $0.lessonsCompleted = [3, 1]
+            $0.achievements = ["first"]
+        }
+        let b = state {
+            $0.lessonsCompleted = [1, 2]
+            $0.achievements = ["streak", "first"]
+        }
         let merged = a.merged(with: b)
         XCTAssertEqual(merged.lessonsCompleted, [3, 1, 2])
         XCTAssertEqual(merged.achievements, ["first", "streak"])
     }
 
     func testConvergenceIgnoresArrayOrder() {
-        let a = state { $0.lessonsCompleted = [1, 2]; $0.charactersTraced = ["a", "b"] }
-        let b = state { $0.lessonsCompleted = [2, 1]; $0.charactersTraced = ["b", "a"] }
+        let a = state {
+            $0.lessonsCompleted = [1, 2]
+            $0.charactersTraced = ["a", "b"]
+        }
+        let b = state {
+            $0.lessonsCompleted = [2, 1]
+            $0.charactersTraced = ["b", "a"]
+        }
         XCTAssertTrue(a.converges(with: b))
         XCTAssertFalse(a.converges(with: state { $0.totalXP = 1 }))
     }

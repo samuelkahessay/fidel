@@ -1,6 +1,7 @@
 import SwiftData
 import SyncKit
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// Tests for the sync metadata fields (`syncModifiedAt`, `cloudSystemFields`)
@@ -24,7 +25,7 @@ final class SyncFieldsTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(
             schema: schema,

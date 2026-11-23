@@ -1,5 +1,6 @@
-import XCTest
 import Foundation
+import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 // MARK: - Stub repository

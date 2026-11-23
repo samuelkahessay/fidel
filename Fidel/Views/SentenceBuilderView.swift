@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct SentenceBuilderView: View {
     @Environment(\.dismiss) private var dismiss
@@ -13,11 +13,11 @@ struct SentenceBuilderView: View {
     @State private var ttsAudio = AudioService()
 
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
-    
+
     var patterns: [Pattern] {
         lessonRepository.getPatterns().filter { !$0.substitutions.isEmpty }
     }
-    
+
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
@@ -55,17 +55,17 @@ struct SentenceBuilderView: View {
             Text("You earned 15 XP for building that sentence!")
         }
     }
-    
+
     private var patternSelectionView: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Choose a Pattern")
                 .font(.title2)
                 .fontWeight(.bold)
-            
+
             Text("Select a sentence pattern to practice building sentences")
                 .font(.subheadline)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
-            
+
             ForEach(patterns) { pattern in
                 PatternSelectionCard(pattern: pattern) {
                     withAnimation {
@@ -77,23 +77,23 @@ struct SentenceBuilderView: View {
             }
         }
     }
-    
+
     private func builderView(for pattern: Pattern) -> some View {
         VStack(spacing: 24) {
             VStack(spacing: 8) {
                 Text(pattern.description)
                     .font(.headline)
-                
+
                 Text(pattern.category)
                     .font(.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
             VStack(spacing: 12) {
                 Text("Pattern Structure")
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
-                
+
                 Text(pattern.structure)
                     .font(AppTheme.Typography.amharic(size: 24))
                     .foregroundStyle(AppTheme.primaryColor)
@@ -104,24 +104,24 @@ struct SentenceBuilderView: View {
                             .fill(AppTheme.primaryColor.opacity(0.1))
                     )
             }
-            
+
             if !pattern.substitutions.isEmpty {
                 substitutionSelector(for: pattern)
             }
-            
+
             builtSentenceView(for: pattern)
-            
+
             if !pattern.examples.isEmpty {
                 examplesView(for: pattern)
             }
         }
     }
-    
+
     private func substitutionSelector(for pattern: Pattern) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Choose words to substitute:")
                 .font(.headline)
-            
+
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                 ForEach(pattern.substitutions, id: \.amharic) { sub in
                     SubstitutionChip(
@@ -134,12 +134,12 @@ struct SentenceBuilderView: View {
             }
         }
     }
-    
+
     private func builtSentenceView(for pattern: Pattern) -> some View {
         VStack(spacing: 12) {
             Text("Your Sentence")
                 .font(.headline)
-            
+
             if selectedSubstitutions.isEmpty {
                 Text("Select words above to build your sentence")
                     .font(.subheadline)
@@ -154,11 +154,11 @@ struct SentenceBuilderView: View {
             } else {
                 VStack(spacing: 8) {
                     let sentence = buildSentence(for: pattern)
-                    
+
                     Text(sentence.amharic)
                         .font(AppTheme.Typography.amharic(size: 28))
                         .foregroundStyle(AppTheme.primaryColor)
-                    
+
                     Text(sentence.transliteration)
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.inkSecondaryColor)
@@ -179,7 +179,7 @@ struct SentenceBuilderView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(AppTheme.primaryColor.opacity(0.1))
                 )
-                
+
                 Button(action: {
                     showSuccess = true
                     score += 15
@@ -191,12 +191,12 @@ struct SentenceBuilderView: View {
             }
         }
     }
-    
+
     private func examplesView(for pattern: Pattern) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Example Sentences")
                 .font(.headline)
-            
+
             ForEach(pattern.examples.prefix(3), id: \.amharic) { example in
                 HStack(alignment: .top, spacing: AppTheme.Spacing.xs) {
                     VStack(alignment: .leading, spacing: 4) {
@@ -227,7 +227,7 @@ struct SentenceBuilderView: View {
             }
         }
     }
-    
+
     private func toggleSubstitution(_ sub: Pattern.Substitution) {
         if let index = selectedSubstitutions.firstIndex(where: { $0.amharic == sub.amharic }) {
             selectedSubstitutions.remove(at: index)
@@ -238,19 +238,19 @@ struct SentenceBuilderView: View {
                 selectedSubstitutions[0] = sub
             }
         }
-        
+
         let feedback = UIImpactFeedbackGenerator(style: .light)
         feedback.impactOccurred()
     }
-    
+
     private func buildSentence(for pattern: Pattern) -> (amharic: String, transliteration: String, english: String) {
         guard let sub = selectedSubstitutions.first else {
             return ("", "", "")
         }
-        
+
         var amharic = pattern.structure
         var english = pattern.description
-        
+
         if amharic.contains("[adjective]") {
             amharic = amharic.replacingOccurrences(of: "[adjective]", with: sub.amharic)
             english = english.replacingOccurrences(of: "[adjective/state]", with: sub.english)
@@ -260,10 +260,10 @@ struct SentenceBuilderView: View {
             amharic = amharic.replacingOccurrences(of: "[noun]", with: sub.amharic)
             english = english.replacingOccurrences(of: "[noun]", with: sub.english)
         }
-        
+
         return (amharic, sub.transliteration, english)
     }
-    
+
     private func resetBuilder() {
         selectedPattern = nil
         selectedSubstitutions = []
@@ -274,25 +274,25 @@ struct SentenceBuilderView: View {
 struct PatternSelectionCard: View {
     let pattern: Pattern
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 8) {
                 Text(pattern.description)
                     .font(.headline)
                     .foregroundStyle(AppTheme.inkColor)
-                
+
                 Text(pattern.structure)
                     .font(AppTheme.Typography.amharic(size: 18))
                     .foregroundStyle(AppTheme.primaryColor)
-                
+
                 HStack {
                     Label("\(pattern.substitutions.count) options", systemImage: "text.word.spacing")
                         .font(.caption)
                         .foregroundStyle(AppTheme.inkSecondaryColor)
-                    
+
                     Spacer()
-                    
+
                     Image(systemName: "chevron.right")
                         .foregroundStyle(AppTheme.inkSecondaryColor)
                 }
@@ -311,7 +311,7 @@ struct SubstitutionChip: View {
     let substitution: Pattern.Substitution
     let isSelected: Bool
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             VStack(spacing: 4) {

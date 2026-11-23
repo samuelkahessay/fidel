@@ -27,7 +27,8 @@ struct PronunciationPracticeView: View {
     private var practiceItems: [PronunciationPracticeItem] {
         lessonRepository.getPhrases().compactMap { phrase in
             guard let asset = audioRepository.asset(for: phrase),
-                  let url = audioRepository.audioURL(for: asset) else {
+                let url = audioRepository.audioURL(for: asset)
+            else {
                 return nil
             }
             return PronunciationPracticeItem(phrase: phrase, asset: asset, url: url)
