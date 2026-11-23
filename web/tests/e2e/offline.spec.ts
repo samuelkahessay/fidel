@@ -12,7 +12,7 @@ test('the app works offline after the first visit, including audio already heard
   await page.reload()
   await page.waitForFunction(() => !!navigator.serviceWorker.controller)
   const clip = page.waitForResponse((r) => r.url().includes('/audio/fidel/'))
-  await page.getByRole('gridcell', { name: /^ሀ,/ }).click()
+  await page.getByRole('gridcell', { name: /^ሀ ha$/ }).click()
   await clip
 
   await context.setOffline(true)

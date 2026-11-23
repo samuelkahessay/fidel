@@ -55,10 +55,9 @@ function Chart() {
           <div key={row[0]!.rowIndex} role="row" style={{ display: 'contents' }}>
             {row.map((c) => (
               <button key={charId(c)} role="gridcell" data-known={known.has(charId(c))}
-                aria-label={`${c.character}, ${c.romanization}`}
                 onClick={() => { void playContent('fidelCharacter', charId(c)); actions.recognizeCharacter(charId(c)) }}
                 onDblClick={() => navigate('practice', 'tracing', charId(c))}>
-                <span class="glyph" lang="am">{c.character}</span>
+                <span class="glyph" lang="am">{c.character}</span>{' '}
                 <span class="roman">{c.romanization}</span>
               </button>
             ))}

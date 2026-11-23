@@ -250,7 +250,6 @@ nav.tabs .brand {
 .tile small {
   font-weight: 500;
   font-size: 13px;
-  opacity: 0.9;
 }
 .tile.terracotta { background: var(--terracotta); }
 .tile.eucalyptus { background: var(--eucalyptus); }
@@ -258,7 +257,7 @@ nav.tabs .brand {
 .tile.deep { background: var(--terracotta-deep); }
 .tile.gold { background: var(--gold); color: #221c16; }
 @media (prefers-color-scheme: dark) {
-  .tile.plum, .tile.deep { color: #1d1510; }
+  .tile.plum, .tile.deep { color: var(--on-accent); }
 }
 
 .scroll-row {
@@ -336,7 +335,8 @@ nav.tabs .brand {
   cursor: pointer;
   white-space: nowrap;
 }
-.segmented button[aria-selected='true'] {
+.segmented button[aria-selected='true'],
+.segmented button[aria-pressed='true'] {
   background: var(--card);
   color: var(--ink);
   box-shadow: var(--shadow);

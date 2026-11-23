@@ -41,7 +41,7 @@ export function Flashcards() {
     <div class="stack">
       <TopBar title="Flashcards"><span class="chip">{index + 1}/{deck.length}</span></TopBar>
       <Bar value={index / deck.length} label="Session progress" />
-      <button class="card flashcard" onClick={() => setFlipped(!flipped)} aria-label={flipped ? 'Hide answer' : 'Reveal answer'}>
+      <button class="card flashcard" onClick={() => setFlipped(!flipped)} aria-expanded={flipped}>
         <div class="stack" style={{ justifyItems: 'center' }}>
           <div class="amharic-xl" lang="am">{word.amharic}</div>
           {flipped ? (

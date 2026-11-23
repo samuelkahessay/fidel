@@ -41,9 +41,9 @@ export function ConversationDetail({ id }: { id: number }) {
     <div class="stack">
       <TopBar title={conversation.title} />
       <div class="segmented" role="group" aria-label="Role-play">
-        <button aria-selected={roleplay === null} onClick={() => setRoleplay(null)}>Read along</button>
+        <button aria-pressed={roleplay === null} onClick={() => setRoleplay(null)}>Read along</button>
         {speakers.map((s) => (
-          <button key={s} aria-selected={roleplay === s} onClick={() => { setRoleplay(s); setRevealed(new Set()) }}>Be {s}</button>
+          <button key={s} aria-pressed={roleplay === s} onClick={() => { setRoleplay(s); setRevealed(new Set()) }}>Be {s}</button>
         ))}
       </div>
       <div class="stack" style={{ gap: 10 }} aria-live="polite">

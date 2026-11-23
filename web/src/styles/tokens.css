@@ -38,7 +38,8 @@
     --gold: #e6b044;
     --plum: #b4685a;
     --red: #ed5e4c;
-    --on-accent: #1d1510;
+    /* Deeper than paper so text on the dark-mode terracotta clears 4.5:1. */
+    --on-accent: #100a06;
     --hairline: rgba(246, 236, 217, 0.14);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
     color-scheme: dark;

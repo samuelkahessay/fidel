@@ -8,7 +8,7 @@ test('the Fidel chart shows all 238 characters and plays audio', async ({ page }
   await openApp(page, 'reference/fidel')
   await expect(page.getByRole('gridcell')).toHaveCount(238)
   const audio = page.waitForResponse((r) => r.url().includes('/audio/fidel/'))
-  await page.getByRole('gridcell', { name: /^ሀ,/ }).click()
+  await page.getByRole('gridcell', { name: /^ሀ ha$/ }).click()
   expect((await audio).ok()).toBeTruthy()
 })
 

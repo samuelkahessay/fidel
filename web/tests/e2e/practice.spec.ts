@@ -9,7 +9,7 @@ test('Practice lists all eleven modes', async ({ page }) => {
 test('Flashcards: reveal, rate twenty cards, see results', async ({ page }) => {
   await openApp(page, 'practice/flashcards')
   for (let i = 0; i < 20; i++) {
-    await page.getByRole('button', { name: 'Reveal answer' }).click()
+    await page.locator('button.flashcard').click()
     await page.getByRole('button', { name: i % 3 ? 'I knew it' : 'Still learning' }).click()
   }
   await expect(page.getByRole('status')).toContainText('of 20 correct')
