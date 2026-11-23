@@ -1,5 +1,6 @@
 import SwiftData
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// Tests for per-character tracing mastery: promotion rules, XP awards,
@@ -29,7 +30,7 @@ final class TraceMasteryTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         return try ModelContainer(for: schema, configurations: [configuration])

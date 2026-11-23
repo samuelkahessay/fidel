@@ -1,5 +1,6 @@
-import XCTest
 import Foundation
+import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 // MARK: - Stub repository
@@ -139,7 +140,7 @@ final class ClozeViewModelTests: XCTestCase {
         let wrong = try XCTUnwrap(question.options.first { $0.amharic != question.correctAnswer })
 
         vm.select(correct)
-        vm.select(wrong) // second selection must be a no-op once feedback is showing
+        vm.select(wrong)  // second selection must be a no-op once feedback is showing
         XCTAssertTrue(vm.lastWasCorrect)
         XCTAssertEqual(vm.score, 1)
     }

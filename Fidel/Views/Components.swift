@@ -6,7 +6,7 @@ struct EmptyStateView: View {
     let message: String
     let action: (() -> Void)?
     let actionTitle: String?
-    
+
     init(icon: String, title: String, message: String, action: (() -> Void)? = nil, actionTitle: String? = nil) {
         self.icon = icon
         self.title = title
@@ -14,7 +14,7 @@ struct EmptyStateView: View {
         self.action = action
         self.actionTitle = actionTitle
     }
-    
+
     var body: some View {
         VStack(spacing: AppTheme.Spacing.md) {
             Image(systemName: icon)
@@ -27,17 +27,17 @@ struct EmptyStateView: View {
                     )
                 )
                 .padding(.bottom, AppTheme.Spacing.xs)
-            
+
             Text(title)
                 .font(AppTheme.Typography.title2)
                 .foregroundStyle(AppTheme.inkColor)
-            
+
             Text(message)
                 .font(AppTheme.Typography.subheadline)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppTheme.Spacing.xl)
-            
+
             if let action = action, let actionTitle = actionTitle {
                 Button(action: action) {
                     Text(actionTitle)
@@ -47,22 +47,6 @@ struct EmptyStateView: View {
             }
         }
         .padding(AppTheme.Spacing.xl)
-    }
-}
-
-struct LoadingView: View {
-    let message: String
-    
-    var body: some View {
-        VStack(spacing: AppTheme.Spacing.md) {
-            ProgressView()
-                .scaleEffect(1.2)
-                .tint(AppTheme.primaryColor)
-            
-            Text(message)
-                .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(AppTheme.inkSecondaryColor)
-        }
     }
 }
 
@@ -360,47 +344,13 @@ struct AdaptivePracticeCanvas<Content: View>: View {
     }
 }
 
-struct SectionHeader: View {
-    let title: String
-    let action: (() -> Void)?
-    let actionTitle: String?
-    
-    init(title: String, action: (() -> Void)? = nil, actionTitle: String? = nil) {
-        self.title = title
-        self.action = action
-        self.actionTitle = actionTitle
-    }
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .font(AppTheme.Typography.title3)
-                .foregroundStyle(AppTheme.inkColor)
-            
-            Spacer()
-            
-            if let action = action, let actionTitle = actionTitle {
-                Button(action: action) {
-                    HStack(spacing: AppTheme.Spacing.xxs) {
-                        Text(actionTitle)
-                        Image(systemName: "chevron.right")
-                            .font(.caption)
-                    }
-                    .font(AppTheme.Typography.subheadline)
-                    .foregroundStyle(AppTheme.primaryColor)
-                }
-            }
-        }
-    }
-}
-
 struct InfoCard: View {
     @Environment(\.colorScheme) var colorScheme
     let icon: String
     let title: String
     let subtitle: String
     let color: Color
-    
+
     var body: some View {
         HStack(spacing: AppTheme.Spacing.md) {
             Image(systemName: icon)
@@ -411,19 +361,19 @@ struct InfoCard: View {
                     Circle()
                         .fill(color.opacity(0.12))
                 )
-            
+
             VStack(alignment: .leading, spacing: AppTheme.Spacing.xxs) {
                 Text(title)
                     .font(AppTheme.Typography.headline)
                     .foregroundStyle(AppTheme.inkColor)
-                
+
                 Text(subtitle)
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
             Spacer()
-            
+
             Image(systemName: "chevron.right")
                 .font(.caption)
                 .foregroundStyle(AppTheme.mutedInkColor)
@@ -437,25 +387,25 @@ struct AmharicTextView: View {
     let transliteration: String
     let english: String
     let showAll: Bool
-    
+
     init(amharic: String, transliteration: String, english: String, showAll: Bool = true) {
         self.amharic = amharic
         self.transliteration = transliteration
         self.english = english
         self.showAll = showAll
     }
-    
+
     var body: some View {
         VStack(spacing: AppTheme.Spacing.xs) {
             Text(amharic)
                 .font(AppTheme.Typography.amharic(size: 32))
                 .foregroundStyle(AppTheme.primaryColor)
-            
+
             if showAll {
                 Text(transliteration)
                     .font(AppTheme.Typography.subheadline)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
-                
+
                 Text(english)
                     .font(AppTheme.Typography.body)
                     .fontWeight(.medium)
@@ -465,64 +415,22 @@ struct AmharicTextView: View {
     }
 }
 
-struct SuccessOverlay: View {
-    @Environment(\.colorScheme) var colorScheme
-    @Binding var isShowing: Bool
-    let message: String
-    let xpEarned: Int
-    
-    var body: some View {
-        if isShowing {
-            ZStack {
-                Color.black.opacity(0.5)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation(AppTheme.Animation.standard) {
-                            isShowing = false
-                        }
-                    }
-                
-                VStack(spacing: AppTheme.Spacing.lg) {
-                    AnimatedCheckmark()
-                    
-                    Text(message)
-                        .font(AppTheme.Typography.title2)
-                        .foregroundStyle(AppTheme.inkColor)
-                    
-                    XPBadge(xp: xpEarned)
-                    
-                    Button("Continue") {
-                        withAnimation(AppTheme.Animation.standard) {
-                            isShowing = false
-                        }
-                    }
-                    .primaryGlassButton()
-                }
-                .padding(AppTheme.Spacing.xxl)
-                .glassEffect(in: .rect(cornerRadius: AppTheme.CornerRadius.xlarge))
-                .padding(AppTheme.Spacing.xl)
-            }
-            .transition(.opacity.combined(with: .scale(scale: 0.9)))
-        }
-    }
-}
-
 struct CountdownTimer: View {
     let seconds: Int
-    
+
     private var progress: Double {
         min(Double(seconds) / 60.0, 1.0)
     }
-    
+
     private var color: Color {
         seconds < 10 ? AppTheme.accentRed : AppTheme.primaryColor
     }
-    
+
     var body: some View {
         ZStack {
             Circle()
                 .stroke(AppTheme.inkColor.opacity(0.08), lineWidth: 4)
-            
+
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(
@@ -531,7 +439,7 @@ struct CountdownTimer: View {
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 1), value: seconds)
-            
+
             Text("\(seconds)")
                 .font(.system(size: 24, weight: .bold, design: .rounded))
                 .foregroundStyle(color)
@@ -544,7 +452,7 @@ struct GlassChip: View {
     let title: String
     let isSelected: Bool
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             Text(title)
@@ -575,7 +483,7 @@ struct StatPill: View {
     let icon: String
     let value: String
     let color: Color
-    
+
     var body: some View {
         HStack(spacing: AppTheme.Spacing.xxs) {
             Image(systemName: icon)
@@ -594,44 +502,17 @@ struct StatPill: View {
     }
 }
 
-struct GlassTextField: View {
-    @Environment(\.colorScheme) var colorScheme
-    let placeholder: String
-    @Binding var text: String
-    var alignment: TextAlignment = .center
-    
-    var body: some View {
-        TextField(placeholder, text: $text)
-            .font(AppTheme.Typography.title3)
-            .multilineTextAlignment(alignment)
-            .autocorrectionDisabled()
-            .textInputAutocapitalization(.never)
-            .padding(AppTheme.Spacing.md)
-            .background(
-                RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
-                    .fill(.ultraThinMaterial)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
-                            .stroke(
-                                AppTheme.hairlineColor,
-                                lineWidth: 0.5
-                            )
-                    )
-            )
-    }
-}
-
 struct GlassProgressBar: View {
     let progress: Double
     var height: CGFloat = 8
     var showGradient: Bool = true
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: height / 2)
                     .fill(AppTheme.inkColor.opacity(0.08))
-                
+
                 RoundedRectangle(cornerRadius: height / 2)
                     .fill(
                         showGradient
@@ -664,7 +545,7 @@ struct GlassProgressBar: View {
                 action: {},
                 actionTitle: "Start Learning"
             )
-            
+
             InfoCard(
                 icon: "flame.fill",
                 title: "5 Day Streak",
@@ -672,22 +553,22 @@ struct GlassProgressBar: View {
                 color: AppTheme.warningColor
             )
             .padding(.horizontal)
-            
+
             AmharicTextView(
                 amharic: "ጤና ይስጥልኝ",
                 transliteration: "t'ena yist'illiany",
                 english: "Hello"
             )
-            
+
             HStack {
                 GlassChip(title: "All", isSelected: true, action: {})
                 GlassChip(title: "Greetings", isSelected: false, action: {})
                 GlassChip(title: "Numbers", isSelected: false, action: {})
             }
-            
+
             GlassProgressBar(progress: 0.65)
                 .padding(.horizontal)
-            
+
             CountdownTimer(seconds: 45)
         }
         .padding()

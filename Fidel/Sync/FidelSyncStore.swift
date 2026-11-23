@@ -1,21 +1,16 @@
 import CloudKit
 import Foundation
-import os
 import SwiftData
 import SyncKit
+import os
 
 /// `SyncStore` conformance bridging SwiftData's three synced Fidel models to
-/// CloudKit. Shape mirrors `ThroughlineSyncStore` (throwing lookup, `Handle`
-/// bundle, insert-on-first-fetch, didSaveRecord updates system fields only),
-/// but `applyRemoteRecord` performs FIELD-WISE MERGES for `UserProgress` and
-/// `CharacterTraceMastery` — mirroring the consolidation logic in
-/// `ProgressRepository` — instead of plain last-write-wins. `FlashcardProgress`
-/// uses plain whole-record LWW, same as the Throughline reference.
-/// NOTE: the merge deliberately DIVERGES from `ProgressRepository.consolidate*` on the
-/// non-monotonic `UserProgress` fields (`currentStreak`, `todayXP`, `dailyGoal`,
-/// `lessonsInProgress`, `streakFreezesAvailable`, `weeklyStreakCount`): those are
-/// newest-side-wins here, NOT `max` — `max` would refund a spent streak-freeze or pin a
-/// stale streak/goal across devices. See `mergeUserProgress` for the per-field rationale.
+/// CloudKit: throwing lookup, a `Handle` bundle per record type,
+/// insert-on-first-fetch, and didSaveRecord updating system fields only.
+/// `applyRemoteRecord` performs FIELD-WISE MERGES for `UserProgress` (via
+/// `ProgressMergeState`, the same policy `ProgressRepository` uses for local
+/// duplicates) and `CharacterTraceMastery`, instead of plain last-write-wins.
+/// `FlashcardProgress` uses plain whole-record last-write-wins.
 @MainActor
 final class FidelSyncStore: SyncStore {
     private let context: ModelContext
@@ -36,7 +31,9 @@ final class FidelSyncStore: SyncStore {
 
     func applyRemoteRecord(_ record: CKRecord) throws -> RemoteApplyResult {
         guard let id = SyncID(recordName: record.recordID.recordName) else {
-            logger.error("applyRemoteRecord: unparseable recordName \(record.recordID.recordName, privacy: .public) for recordType \(record.recordType, privacy: .public)")
+            logger.error(
+                "applyRemoteRecord: unparseable recordName \(record.recordID.recordName, privacy: .public) for recordType \(record.recordType, privacy: .public)"
+            )
             return .applied
         }
 
@@ -48,7 +45,9 @@ final class FidelSyncStore: SyncStore {
             try context.save()
             return .applied
         } else {
-            logger.error("applyRemoteRecord: unknown record type \(id.recordType, privacy: .public) for recordName \(record.recordID.recordName, privacy: .public)")
+            logger.error(
+                "applyRemoteRecord: unknown record type \(id.recordType, privacy: .public) for recordName \(record.recordID.recordName, privacy: .public)"
+            )
             return .applied
         }
     }
@@ -62,11 +61,14 @@ final class FidelSyncStore: SyncStore {
     func didSaveRecord(_ record: CKRecord) {
         do {
             guard let id = SyncID(recordName: record.recordID.recordName),
-                  let found = try lookup(id) else { return }
+                let found = try lookup(id)
+            else { return }
             found.setSystemFields(CKRecordFactory.systemFieldsData(from: record))
             try? context.save()
         } catch {
-            logger.error("didSaveRecord lookup failed for \(record.recordID.recordName, privacy: .public): \(String(describing: error), privacy: .public)")
+            logger.error(
+                "didSaveRecord lookup failed for \(record.recordID.recordName, privacy: .public): \(String(describing: error), privacy: .public)"
+            )
         }
     }
 
@@ -78,10 +80,25 @@ final class FidelSyncStore: SyncStore {
         return ids
     }
 
+    /// Deletes every synced model as one transaction, for adopting a new
+    /// iCloud account's data. If any step fails, the context is rolled back
+    /// so nothing is half-deleted. Selam chats are device-local and kept.
+    func wipeSyncedModels() throws {
+        do {
+            try context.delete(model: UserProgress.self)
+            try context.delete(model: FlashcardProgress.self)
+            try context.delete(model: CharacterTraceMastery.self)
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
+    }
+
     func resetAllSystemFields() throws {
-        try context.fetch(FetchDescriptor<UserProgress>()).forEach { $0.cloudSystemFields = nil }
-        try context.fetch(FetchDescriptor<FlashcardProgress>()).forEach { $0.cloudSystemFields = nil }
-        try context.fetch(FetchDescriptor<CharacterTraceMastery>()).forEach { $0.cloudSystemFields = nil }
+        for model in try context.fetch(FetchDescriptor<UserProgress>()) { model.cloudSystemFields = nil }
+        for model in try context.fetch(FetchDescriptor<FlashcardProgress>()) { model.cloudSystemFields = nil }
+        for model in try context.fetch(FetchDescriptor<CharacterTraceMastery>()) { model.cloudSystemFields = nil }
         try context.save()
     }
 
@@ -108,101 +125,12 @@ final class FidelSyncStore: SyncStore {
 
     // MARK: - UserProgress field-wise merge
 
-    /// Mirrors `ProgressRepository.consolidateUserProgress`:
-    /// - genuinely additive array fields (lessonsCompleted, patternsLearned,
-    ///   vocabularyMastered, conversationsPracticed, achievements,
-    ///   fidelCharactersRecognized, charactersTraced): union preserving local
-    ///   order, then appending new-from-remote elements. The convergence
-    ///   check below compares these order-insensitively (as `Set`), since
-    ///   `mergedUnion` starts from each side's own local order and two
-    ///   devices holding the same set in different orders would otherwise
-    ///   never compare equal via `Array ==` and re-upload forever.
-    /// - monotonic counters (totalXP, longestStreak, currentStage,
-    ///   lastFreezeGrantWeek): max(local, remote) — these only grow.
-    /// - non-monotonic / consumable / reset fields (currentStreak,
-    ///   lastPracticeDate, todayXP, dailyGoal, lessonsInProgress,
-    ///   streakFreezesAvailable, weeklyStreakCount): taken wholesale from
-    ///   whichever side has the newer `syncModifiedAt`, NOT maxed and NOT
-    ///   unioned — `lessonsInProgress` has removal semantics (a lesson
-    ///   leaves the set on completion, so union could never shrink it), and
-    ///   `streakFreezesAvailable`/`weeklyStreakCount` are consumable/resetting
-    ///   counters where `max` would wrongly refund a spent freeze or pin a
-    ///   stale weekly count high.
-    /// - updatedAt / syncModifiedAt: max of the two.
+    /// Field rules live in `ProgressMergeState.merged(with:)`. Reports
+    /// `.localNewer` when local state still differs, so SyncKit re-uploads it.
     private func mergeUserProgress(_ local: UserProgress, remoteRecord: CKRecord) -> RemoteApplyResult {
-        let remoteModifiedAt = remoteRecord[SyncKeys.modifiedAt] as? Date ?? .distantPast
-        let localModifiedAt = local.syncModifiedAt
-        let remoteIsNewer = remoteModifiedAt > localModifiedAt
-
-        let remoteLessonsCompleted = remoteRecord["lessonsCompleted"] as? [Int] ?? []
-        let remoteLessonsInProgress = remoteRecord["lessonsInProgress"] as? [Int] ?? []
-        let remotePatternsLearned = remoteRecord["patternsLearned"] as? [String] ?? []
-        let remoteVocabularyMastered = remoteRecord["vocabularyMastered"] as? [String] ?? []
-        let remoteConversationsPracticed = remoteRecord["conversationsPracticed"] as? [Int] ?? []
-        let remoteAchievements = remoteRecord["achievements"] as? [String] ?? []
-        let remoteFidelCharactersRecognized = remoteRecord["fidelCharactersRecognized"] as? [String] ?? []
-        let remoteCharactersTraced = remoteRecord["charactersTraced"] as? [String] ?? []
-
-        let remoteTotalXP = remoteRecord["totalXP"] as? Int ?? 0
-        let remoteLongestStreak = remoteRecord["longestStreak"] as? Int ?? 0
-        let remoteCurrentStage = remoteRecord["currentStage"] as? Int ?? 0
-        let remoteStreakFreezesAvailable = remoteRecord["streakFreezesAvailable"] as? Int ?? 0
-        let remoteWeeklyStreakCount = remoteRecord["weeklyStreakCount"] as? Int ?? 0
-        let remoteLastFreezeGrantWeek = remoteRecord["lastFreezeGrantWeek"] as? Int ?? 0
-
-        let remoteCurrentStreak = remoteRecord["currentStreak"] as? Int ?? 0
-        let remoteLastPracticeDate = remoteRecord["lastPracticeDate"] as? Date
-        let remoteTodayXP = remoteRecord["todayXP"] as? Int ?? 0
-        let remoteDailyGoal = remoteRecord["dailyGoal"] as? Int ?? 0
-        let remoteUpdatedAt = remoteRecord["updatedAt"] as? Date ?? .distantPast
-
-        local.lessonsCompleted = Self.mergedUnion(local.lessonsCompleted, remoteLessonsCompleted)
-        local.patternsLearned = Self.mergedUnion(local.patternsLearned, remotePatternsLearned)
-        local.vocabularyMastered = Self.mergedUnion(local.vocabularyMastered, remoteVocabularyMastered)
-        local.conversationsPracticed = Self.mergedUnion(local.conversationsPracticed, remoteConversationsPracticed)
-        local.achievements = Self.mergedUnion(local.achievements, remoteAchievements)
-        local.fidelCharactersRecognized = Self.mergedUnion(local.fidelCharactersRecognized, remoteFidelCharactersRecognized)
-        local.charactersTraced = Self.mergedUnion(local.charactersTraced, remoteCharactersTraced)
-
-        local.totalXP = max(local.totalXP, remoteTotalXP)
-        local.longestStreak = max(local.longestStreak, remoteLongestStreak)
-        local.currentStage = max(local.currentStage, remoteCurrentStage)
-        local.lastFreezeGrantWeek = max(local.lastFreezeGrantWeek, remoteLastFreezeGrantWeek)
-
-        if remoteIsNewer {
-            local.currentStreak = remoteCurrentStreak
-            local.lastPracticeDate = remoteLastPracticeDate
-            local.todayXP = remoteTodayXP
-            local.dailyGoal = remoteDailyGoal
-            local.lessonsInProgress = remoteLessonsInProgress
-            local.streakFreezesAvailable = remoteStreakFreezesAvailable
-            local.weeklyStreakCount = remoteWeeklyStreakCount
-        }
-
-        local.updatedAt = max(local.updatedAt, remoteUpdatedAt)
-        local.syncModifiedAt = max(local.syncModifiedAt, remoteModifiedAt)
-
-        let mergedMatchesRemote =
-            Set(local.lessonsCompleted) == Set(remoteLessonsCompleted) &&
-            Set(local.patternsLearned) == Set(remotePatternsLearned) &&
-            Set(local.vocabularyMastered) == Set(remoteVocabularyMastered) &&
-            Set(local.conversationsPracticed) == Set(remoteConversationsPracticed) &&
-            Set(local.achievements) == Set(remoteAchievements) &&
-            Set(local.fidelCharactersRecognized) == Set(remoteFidelCharactersRecognized) &&
-            Set(local.charactersTraced) == Set(remoteCharactersTraced) &&
-            local.lessonsInProgress == remoteLessonsInProgress &&
-            local.totalXP == remoteTotalXP &&
-            local.longestStreak == remoteLongestStreak &&
-            local.dailyGoal == remoteDailyGoal &&
-            local.todayXP == remoteTodayXP &&
-            local.currentStage == remoteCurrentStage &&
-            local.streakFreezesAvailable == remoteStreakFreezesAvailable &&
-            local.weeklyStreakCount == remoteWeeklyStreakCount &&
-            local.lastFreezeGrantWeek == remoteLastFreezeGrantWeek &&
-            local.currentStreak == remoteCurrentStreak &&
-            local.lastPracticeDate == remoteLastPracticeDate
-
-        return mergedMatchesRemote ? .applied : .localNewer
+        let remote = ProgressMergeState(record: remoteRecord)
+        local.apply(local.mergeState.merged(with: remote))
+        return local.mergeState.converges(with: remote) ? .applied : .localNewer
     }
 
     // MARK: - CharacterTraceMastery field-wise merge
@@ -228,11 +156,8 @@ final class FidelSyncStore: SyncStore {
         local.syncModifiedAt = max(local.syncModifiedAt, remoteModifiedAt)
 
         let mergedMatchesRemote =
-            local.level == remoteLevel &&
-            local.bestScore == remoteBestScore &&
-            local.attempts == remoteAttempts &&
-            local.totalMisses == remoteTotalMisses &&
-            local.lastPracticedAt == remoteLastPracticedAt
+            local.level == remoteLevel && local.bestScore == remoteBestScore && local.attempts == remoteAttempts
+            && local.totalMisses == remoteTotalMisses && local.lastPracticedAt == remoteLastPracticedAt
 
         return mergedMatchesRemote ? .applied : .localNewer
     }
@@ -254,19 +179,9 @@ final class FidelSyncStore: SyncStore {
 
     // MARK: - Merge helpers
 
-    /// Union preserving local order, then appending any new-from-remote
-    /// elements not already present.
-    private static func mergedUnion<T: Equatable>(_ local: [T], _ remote: [T]) -> [T] {
-        var result = local
-        for element in remote where !result.contains(element) {
-            result.append(element)
-        }
-        return result
-    }
-
     private static func maxDate(_ lhs: Date?, _ rhs: Date?) -> Date? {
         switch (lhs, rhs) {
-        case let (l?, r?): return max(l, r)
+        case (let l?, let r?): return max(l, r)
         case (let l?, nil): return l
         case (nil, let r?): return r
         case (nil, nil): return nil
@@ -276,7 +191,7 @@ final class FidelSyncStore: SyncStore {
     // MARK: - Type-erased model handle
 
     /// Small closure bundle so the switch over record types lives in one
-    /// place. Unlike Throughline's `Handle`, this also exposes the typed
+    /// place. It also exposes the typed
     /// model instances (`userProgress`/`flashcardProgress`/`characterTraceMastery`)
     /// so `mergeAndApply` can run field-wise merges instead of a uniform
     /// whole-record `apply`.
@@ -310,17 +225,19 @@ final class FidelSyncStore: SyncStore {
                 logger.error("lookup: malformed FlashcardProgress natural key \(id.id, privacy: .public)")
                 return nil
             }
-            var d = FetchDescriptor<FlashcardProgress>(predicate: #Predicate {
-                $0.ownerUserId == ownerUserId && $0.itemType == itemType && $0.itemId == itemId
-            })
+            var d = FetchDescriptor<FlashcardProgress>(
+                predicate: #Predicate {
+                    $0.ownerUserId == ownerUserId && $0.itemType == itemType && $0.itemId == itemId
+                })
             d.fetchLimit = 1
             guard let m = try context.fetch(d).first else { return nil }
             return handle(m)
         case CharacterTraceMastery.recordType:
             let (ownerUserId, characterId) = Self.parseTraceMasteryNaturalKey(id.id)
-            var d = FetchDescriptor<CharacterTraceMastery>(predicate: #Predicate {
-                $0.ownerUserId == ownerUserId && $0.characterId == characterId
-            })
+            var d = FetchDescriptor<CharacterTraceMastery>(
+                predicate: #Predicate {
+                    $0.ownerUserId == ownerUserId && $0.characterId == characterId
+                })
             d.fetchLimit = 1
             guard let m = try context.fetch(d).first else { return nil }
             return handle(m)
@@ -330,25 +247,28 @@ final class FidelSyncStore: SyncStore {
     }
 
     private func handle(_ m: UserProgress) -> Handle {
-        Handle(modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
-               encode: m.encode(onto:), apply: m.apply(record:),
-               setSystemFields: { m.cloudSystemFields = $0 },
-               delete: { $0.delete(m) },
-               userProgress: m, flashcardProgress: nil, characterTraceMastery: nil)
+        Handle(
+            modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
+            encode: m.encode(onto:), apply: m.apply(record:),
+            setSystemFields: { m.cloudSystemFields = $0 },
+            delete: { $0.delete(m) },
+            userProgress: m, flashcardProgress: nil, characterTraceMastery: nil)
     }
     private func handle(_ m: FlashcardProgress) -> Handle {
-        Handle(modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
-               encode: m.encode(onto:), apply: m.apply(record:),
-               setSystemFields: { m.cloudSystemFields = $0 },
-               delete: { $0.delete(m) },
-               userProgress: nil, flashcardProgress: m, characterTraceMastery: nil)
+        Handle(
+            modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
+            encode: m.encode(onto:), apply: m.apply(record:),
+            setSystemFields: { m.cloudSystemFields = $0 },
+            delete: { $0.delete(m) },
+            userProgress: nil, flashcardProgress: m, characterTraceMastery: nil)
     }
     private func handle(_ m: CharacterTraceMastery) -> Handle {
-        Handle(modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
-               encode: m.encode(onto:), apply: m.apply(record:),
-               setSystemFields: { m.cloudSystemFields = $0 },
-               delete: { $0.delete(m) },
-               userProgress: nil, flashcardProgress: nil, characterTraceMastery: m)
+        Handle(
+            modifiedAt: m.syncModifiedAt, systemFields: m.cloudSystemFields,
+            encode: m.encode(onto:), apply: m.apply(record:),
+            setSystemFields: { m.cloudSystemFields = $0 },
+            delete: { $0.delete(m) },
+            userProgress: nil, flashcardProgress: nil, characterTraceMastery: m)
     }
 
     // MARK: - Insert-on-first-fetch
@@ -417,5 +337,35 @@ final class FidelSyncStore: SyncStore {
         let ownerUserId = String(raw[..<firstColon])
         let characterId = String(raw[raw.index(after: firstColon)...])
         return (ownerUserId, characterId)
+    }
+}
+
+extension ProgressMergeState {
+    /// Reads a remote `UserProgress` record. Missing fields take the same
+    /// defaults as a fresh local record, and a missing timestamp loses every
+    /// newest-wins comparison.
+    fileprivate init(record: CKRecord) {
+        self.init(
+            lessonsCompleted: record["lessonsCompleted"] as? [Int] ?? [],
+            patternsLearned: record["patternsLearned"] as? [String] ?? [],
+            vocabularyMastered: record["vocabularyMastered"] as? [String] ?? [],
+            conversationsPracticed: record["conversationsPracticed"] as? [Int] ?? [],
+            achievements: record["achievements"] as? [String] ?? [],
+            fidelCharactersRecognized: record["fidelCharactersRecognized"] as? [String] ?? [],
+            charactersTraced: record["charactersTraced"] as? [String] ?? [],
+            totalXP: record["totalXP"] as? Int ?? 0,
+            longestStreak: record["longestStreak"] as? Int ?? 0,
+            currentStage: record["currentStage"] as? Int ?? 0,
+            lastFreezeGrantWeek: record["lastFreezeGrantWeek"] as? Int ?? 0,
+            currentStreak: record["currentStreak"] as? Int ?? 0,
+            lastPracticeDate: record["lastPracticeDate"] as? Date,
+            todayXP: record["todayXP"] as? Int ?? 0,
+            dailyGoal: record["dailyGoal"] as? Int ?? 0,
+            lessonsInProgress: record["lessonsInProgress"] as? [Int] ?? [],
+            streakFreezesAvailable: record["streakFreezesAvailable"] as? Int ?? 0,
+            weeklyStreakCount: record["weeklyStreakCount"] as? Int ?? 0,
+            updatedAt: record["updatedAt"] as? Date ?? .distantPast,
+            syncModifiedAt: record[SyncKeys.modifiedAt] as? Date ?? .distantPast
+        )
     }
 }

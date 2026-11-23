@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 /// Duolingo-style "tap the pairs": match five Amharic words to their English
@@ -116,9 +116,12 @@ struct MatchPairsView: View {
                 Text("\(viewModel.totalMatched) pairs")
                     .font(.system(size: 40, weight: .bold))
                     .foregroundStyle(AppTheme.primaryColor)
-                Text(viewModel.mistakes == 0 ? "Flawless — no mistakes!" : "\(viewModel.mistakes) mistake\(viewModel.mistakes == 1 ? "" : "s")")
-                    .font(AppTheme.Typography.title3)
-                    .foregroundStyle(AppTheme.inkSecondaryColor)
+                Text(
+                    viewModel.mistakes == 0
+                        ? "Flawless — no mistakes!" : "\(viewModel.mistakes) mistake\(viewModel.mistakes == 1 ? "" : "s")"
+                )
+                .font(AppTheme.Typography.title3)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
             }
 
             XPBadge(xp: viewModel.earnedXP)

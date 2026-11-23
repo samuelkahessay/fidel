@@ -1,0 +1,348 @@
+{
+  "cases" : [
+    {
+      "expected" : {
+        "currentStreak" : 1,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 0,
+        "streakFreezesAvailable" : 1,
+        "todayXP" : 10,
+        "totalXP" : 10,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "first practice",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-04T09:00",
+          "op" : "addXP",
+          "value" : 10
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 2,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 2,
+        "streakFreezesAvailable" : 1,
+        "todayXP" : 5,
+        "totalXP" : 15,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "next day continues the streak",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-04T09:00",
+          "op" : "addXP",
+          "value" : 10
+        },
+        {
+          "at" : "2026-03-05T21:30",
+          "op" : "addXP",
+          "value" : 5
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 1,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 0,
+        "streakFreezesAvailable" : 1,
+        "todayXP" : 15,
+        "totalXP" : 15,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "same day twice",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-04T09:00",
+          "op" : "addXP",
+          "value" : 10
+        },
+        {
+          "at" : "2026-03-04T23:59",
+          "op" : "addXP",
+          "value" : 5
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 2,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 2,
+        "streakFreezesAvailable" : 0,
+        "todayXP" : 10,
+        "totalXP" : 30,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "one missed day spends a freeze",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-02T09:00",
+          "op" : "addXP",
+          "value" : 10
+        },
+        {
+          "at" : "2026-03-03T09:00",
+          "op" : "addXP",
+          "value" : 10
+        },
+        {
+          "at" : "2026-03-05T09:00",
+          "op" : "addXP",
+          "value" : 10
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 1,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 4,
+        "streakFreezesAvailable" : 0,
+        "todayXP" : 10,
+        "totalXP" : 10,
+        "weeklyStreakCount" : 0
+      },
+      "name" : "one missed day without a freeze resets",
+      "start" : {
+        "currentStreak" : 4,
+        "lastFreezeGrantWeek" : 202610,
+        "lastPracticeDate" : "2026-03-03T09:00",
+        "longestStreak" : 4,
+        "streakFreezesAvailable" : 0
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-05T09:00",
+          "op" : "addXP",
+          "value" : 10
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 1,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 0,
+        "streakFreezesAvailable" : 1,
+        "todayXP" : 10,
+        "totalXP" : 20,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "three missed days resets",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-02T09:00",
+          "op" : "addXP",
+          "value" : 10
+        },
+        {
+          "at" : "2026-03-06T09:00",
+          "op" : "addXP",
+          "value" : 10
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 1,
+        "lastFreezeGrantWeek" : 202613,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 2,
+        "streakFreezesAvailable" : 2,
+        "todayXP" : 1,
+        "totalXP" : 4,
+        "weeklyStreakCount" : 4
+      },
+      "name" : "new week grants a freeze, capped at two",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-07T09:00",
+          "op" : "addXP",
+          "value" : 1
+        },
+        {
+          "at" : "2026-03-08T09:00",
+          "op" : "addXP",
+          "value" : 1
+        },
+        {
+          "at" : "2026-03-15T09:00",
+          "op" : "addXP",
+          "value" : 1
+        },
+        {
+          "at" : "2026-03-22T09:00",
+          "op" : "addXP",
+          "value" : 1
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 2,
+        "lastFreezeGrantWeek" : 202701,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 2,
+        "streakFreezesAvailable" : 1,
+        "todayXP" : 1,
+        "totalXP" : 2,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "year boundary week",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-12-31T12:00",
+          "op" : "addXP",
+          "value" : 1
+        },
+        {
+          "at" : "2027-01-01T12:00",
+          "op" : "addXP",
+          "value" : 1
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 2,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 2,
+        "streakFreezesAvailable" : 1,
+        "todayXP" : 7,
+        "totalXP" : 42,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "daily XP resets on a new day",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-04T09:00",
+          "op" : "addXP",
+          "value" : 30
+        },
+        {
+          "at" : "2026-03-04T18:00",
+          "op" : "addXP",
+          "value" : 5
+        },
+        {
+          "at" : "2026-03-05T08:00",
+          "op" : "addXP",
+          "value" : 7
+        }
+      ]
+    },
+    {
+      "expected" : {
+        "currentStreak" : 1,
+        "lastFreezeGrantWeek" : 202610,
+        "lessonsCompleted" : [
+          3
+        ],
+        "lessonsInProgress" : [
+
+        ],
+        "longestStreak" : 0,
+        "streakFreezesAvailable" : 1,
+        "todayXP" : 25,
+        "totalXP" : 25,
+        "weeklyStreakCount" : 1
+      },
+      "name" : "lesson started then completed",
+      "start" : {
+
+      },
+      "steps" : [
+        {
+          "at" : "2026-03-04T09:00",
+          "op" : "markLessonStarted",
+          "value" : 3
+        },
+        {
+          "at" : "2026-03-04T09:30",
+          "op" : "completeLesson",
+          "value" : 3
+        }
+      ]
+    }
+  ]
+}

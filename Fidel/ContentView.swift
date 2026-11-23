@@ -32,14 +32,10 @@ private enum AppTab: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Selam is DEBUG-only until it has a real backend; release builds hide
-    /// the tab and its Today quick action.
+    /// Selam runs on Apple's on-device model, so it only appears where Apple
+    /// Intelligence is available.
     static var visibleCases: [AppTab] {
-        #if DEBUG
-        return allCases
-        #else
-        return allCases.filter { $0 != .selam }
-        #endif
+        SelamAvailability.isEnabled ? allCases : allCases.filter { $0 != .selam }
     }
 }
 
@@ -86,10 +82,12 @@ struct ContentView: View {
         .sheet(item: $activeRoute) { route in
             routeDestination(route)
         }
-        .sheet(isPresented: Binding(
-            get: { sync.status.state == .needsAccountChoice },
-            set: { _ in }
-        )) {
+        .sheet(
+            isPresented: Binding(
+                get: { sync.status.state == .needsAccountChoice },
+                set: { _ in }
+            )
+        ) {
             AccountChangeSheet()
                 .interactiveDismissDisabled()
         }
@@ -161,12 +159,12 @@ struct ContentView: View {
 /// out from under the sync engine (`SyncStatus.State.needsAccountChoice`).
 /// The user picks whether to upload this device's local data into the new
 /// account, or wipe local data and adopt the new account's data (keeping a
-/// local archive first). Adapted from Throughline's reviewed
-/// `AccountChangeSheet` (`Views/ContentView.swift`).
+/// local archive first).
 private struct AccountChangeSheet: View {
     @Environment(SyncEngine.self) private var sync
     @Environment(\.modelContext) private var context
     @State private var archiveFailed = false
+    @State private var wipeFailed = false
 
     private static let logger = Logger(subsystem: "dev.skahessay.learnamharic", category: "sync")
 
@@ -186,9 +184,17 @@ private struct AccountChangeSheet: View {
                     }
                 } footer: {
                     if archiveFailed {
-                        Label("Couldn't create a local archive — nothing was changed. Free up space and try again, or choose Keep this device's data.", systemImage: "exclamationmark.triangle")
+                        Label(
+                            "Couldn't create a local archive — nothing was changed. Free up space and try again, or choose Keep this device's data.",
+                            systemImage: "exclamationmark.triangle")
+                    } else if wipeFailed {
+                        Label(
+                            "Couldn't clear this device's data — nothing was changed. Try again, or choose Keep this device's data.",
+                            systemImage: "exclamationmark.triangle")
                     } else {
-                        Text("The iCloud account on this device changed. Choose whether to upload this device's data into the new account, or replace it with the new account's data (a local archive is kept).")
+                        Text(
+                            "The iCloud account on this device changed. Choose whether to upload this device's data into the new account, or replace it with the new account's data (a local archive is kept)."
+                        )
                     }
                 }
             }
@@ -199,17 +205,19 @@ private struct AccountChangeSheet: View {
     private func adoptRemote() {
         // Archive FIRST. If it fails, bail without touching any data — this
         // is the data-loss guard for the destructive path.
+        archiveFailed = false
+        wipeFailed = false
         guard archiveStoreFiles() else {
             archiveFailed = true
             return
         }
-        try? context.delete(model: UserProgress.self)
-        try? context.delete(model: FlashcardProgress.self)
-        try? context.delete(model: CharacterTraceMastery.self)
-        // Deliberately NOT SelamConversation/SelamMessage: those are
-        // device-local AI tutor chats, unrelated to the account's synced
-        // learning data, so they survive an account switch untouched.
-        try? context.save()
+        do {
+            try FidelSyncStore(context: context).wipeSyncedModels()
+        } catch {
+            Self.logger.error("Failed to wipe local data: \(error, privacy: .public)")
+            wipeFailed = true
+            return
+        }
         sync.adoptCurrentAccountData()
     }
 
@@ -310,7 +318,7 @@ private struct TodayView: View {
 
                 DailyGoalRing(
                     progress: dailyGoalProgress,
-                    value: progress?.todayXP ?? 0,
+                    value: progress?.xpEarnedToday() ?? 0,
                     goal: dailyGoalXP
                 )
             }
@@ -388,19 +396,19 @@ private struct TodayView: View {
                     }
                     .frame(width: 154)
 
-                    #if DEBUG
-                    FidelQuickActionTile(
-                        title: "Selam",
-                        subtitle: "Tutor chat",
-                        icon: "sparkles",
-                        tint: AppTheme.goldColor,
-                        textColor: AppTheme.onGoldColor,
-                        subtitleColor: AppTheme.onGoldColor.opacity(0.72)
-                    ) {
-                        actions.selectTab(.selam)
+                    if SelamAvailability.isEnabled {
+                        FidelQuickActionTile(
+                            title: "Selam",
+                            subtitle: "Tutor chat",
+                            icon: "sparkles",
+                            tint: AppTheme.goldColor,
+                            textColor: AppTheme.onGoldColor,
+                            subtitleColor: AppTheme.onGoldColor.opacity(0.72)
+                        ) {
+                            actions.selectTab(.selam)
+                        }
+                        .frame(width: 154)
                     }
-                    .frame(width: 154)
-                    #endif
 
                     FidelQuickActionTile(
                         title: "Reference",
@@ -422,7 +430,7 @@ private struct TodayView: View {
     private var todayPhraseCard: some View {
         VStack(alignment: .leading, spacing: AppTheme.Spacing.md) {
             HStack {
-            FidelSectionLabel(title: "Phrase of the day")
+                FidelSectionLabel(title: "Phrase of the day")
                 Spacer()
                 FidelChip(title: "local", color: AppTheme.eucalyptusColor)
             }
@@ -531,7 +539,7 @@ private struct TodayView: View {
 
     private var dailyGoalProgress: Double {
         guard dailyGoalXP > 0 else { return 0 }
-        return min(Double(progress?.todayXP ?? 0) / Double(dailyGoalXP), 1)
+        return min(Double(progress?.xpEarnedToday() ?? 0) / Double(dailyGoalXP), 1)
     }
 
     private var phraseOfDay: Phrase? {
@@ -680,4 +688,3 @@ private struct MissingRouteView: View {
         }
     }
 }
-

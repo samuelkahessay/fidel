@@ -18,9 +18,8 @@ final class ReferenceViewModel {
             return allPhrases
         }
         return allPhrases.filter {
-            $0.amharic.contains(searchText) ||
-            $0.english.lowercased().contains(searchText.lowercased()) ||
-            $0.transliteration.lowercased().contains(searchText.lowercased())
+            $0.amharic.contains(searchText) || $0.english.lowercased().contains(searchText.lowercased())
+                || $0.transliteration.lowercased().contains(searchText.lowercased())
         }
     }
 
@@ -30,7 +29,8 @@ final class ReferenceViewModel {
             categoryByPhraseId[phrase.id] ?? "Everyday Reference"
         }
 
-        return grouped
+        return
+            grouped
             .map { PhraseSection(title: $0.key, phrases: $0.value.sorted { $0.id < $1.id }) }
             .sorted { lhs, rhs in
                 sectionSortKey(lhs.title) < sectionSortKey(rhs.title)
@@ -46,9 +46,8 @@ final class ReferenceViewModel {
             return allVocab
         }
         return allVocab.filter {
-            $0.amharic.contains(searchText) ||
-            $0.english.lowercased().contains(searchText.lowercased()) ||
-            $0.transliteration.lowercased().contains(searchText.lowercased())
+            $0.amharic.contains(searchText) || $0.english.lowercased().contains(searchText.lowercased())
+                || $0.transliteration.lowercased().contains(searchText.lowercased())
         }
     }
 
@@ -78,9 +77,8 @@ final class ReferenceViewModel {
             return notes
         }
         return notes.filter {
-            $0.title.localizedCaseInsensitiveContains(searchText) ||
-            $0.amharicTitle.contains(searchText) ||
-            $0.content.localizedCaseInsensitiveContains(searchText)
+            $0.title.localizedCaseInsensitiveContains(searchText) || $0.amharicTitle.contains(searchText)
+                || $0.content.localizedCaseInsensitiveContains(searchText)
         }
     }
 

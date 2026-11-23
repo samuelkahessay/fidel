@@ -1,0 +1,82 @@
+name: Web
+
+# Builds the browser version from web/ (reading content straight from Fidel/)
+# and deploys it to GitHub Pages. Pull requests run the checks without deploying.
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', 'Fidel/Data/**', 'Fidel/Audio/**', 'Fidel/fidel_stroke_data.json', 'Fidel/*.ttf', 'FidelTests/Golden/**', '.github/workflows/pages.yml']
+  pull_request:
+    paths: ['web/**', 'Fidel/Data/**', 'Fidel/Audio/**', 'Fidel/fidel_stroke_data.json', 'Fidel/*.ttf', 'FidelTests/Golden/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  test:
+    name: Typecheck, unit and end-to-end tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - name: Golden fixtures (shared with the iOS tests)
+        run: npm test
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Playwright against the production build
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: web/test-results
+          retention-days: 7
+
+  build:
+    name: Build for Pages
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Build with the project-site base path
+        run: npm run build
+        env:
+          FIDEL_BASE: /${{ github.event.repository.name }}/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,12 +1,12 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 struct ConversationDetailView: View {
     let conversation: Conversation
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncEngine.self) private var sync
-    
+
     @State private var currentLineIndex = 0
     @State private var isPlaying = false
     @State private var showTransliteration = true
@@ -27,7 +27,7 @@ struct ConversationDetailView: View {
     var speakers: [String] {
         Array(Set(conversation.lines.map { $0.speaker }))
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             if practiceMode {
@@ -35,7 +35,7 @@ struct ConversationDetailView: View {
             } else {
                 readingModeView
             }
-            
+
             controlsBar
         }
         .background(AppTheme.groupedBackground)
@@ -50,8 +50,9 @@ struct ConversationDetailView: View {
                     Toggle("Show English", isOn: $showEnglish)
                     Divider()
                     Button(action: { practiceMode.toggle() }) {
-                        Label(practiceMode ? "Reading Mode" : "Practice Mode", 
-                              systemImage: practiceMode ? "book" : "mic")
+                        Label(
+                            practiceMode ? "Reading Mode" : "Practice Mode",
+                            systemImage: practiceMode ? "book" : "mic")
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")
@@ -59,7 +60,7 @@ struct ConversationDetailView: View {
             }
         }
         .alert("Conversation Complete!", isPresented: $showCompletion) {
-            Button("Done") { }
+            Button("Done") {}
         } message: {
             Text("You earned 20 XP for practicing this conversation!")
         }
@@ -69,7 +70,7 @@ struct ConversationDetailView: View {
             ttsAudio.stopPlayback()
         }
     }
-    
+
     private var readingModeView: some View {
         ScrollViewReader { proxy in
             ScrollView {
@@ -103,7 +104,7 @@ struct ConversationDetailView: View {
             }
         }
     }
-    
+
     private var practiceModeView: some View {
         VStack(spacing: 20) {
             if selectedRole == nil {
@@ -114,17 +115,17 @@ struct ConversationDetailView: View {
         }
         .padding()
     }
-    
+
     private var roleSelectionView: some View {
         VStack(spacing: 20) {
             Text("Choose Your Role")
                 .font(.title2)
                 .bold()
-            
+
             Text("You'll practice speaking as this character")
                 .font(.subheadline)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
-            
+
             ForEach(speakers, id: \.self) { speaker in
                 Button(action: { selectedRole = speaker }) {
                     HStack {
@@ -146,29 +147,29 @@ struct ConversationDetailView: View {
             }
         }
     }
-    
+
     private var practiceDialogueView: some View {
         VStack(spacing: 20) {
             if currentLineIndex < conversation.lines.count {
                 let line = conversation.lines[currentLineIndex]
                 let isUserLine = line.speaker == selectedRole
-                
+
                 VStack(spacing: 16) {
                     Text("Line \(currentLineIndex + 1) of \(conversation.lines.count)")
                         .font(.caption)
                         .foregroundStyle(AppTheme.inkSecondaryColor)
-                    
+
                     Text(line.speaker)
                         .font(.headline)
                         .foregroundStyle(isUserLine ? AppTheme.primaryColor : .secondary)
-                    
+
                     if isUserLine {
                         yourTurnView(line: line)
                     } else {
                         partnerLineView(line: line)
                     }
                 }
-                
+
                 HStack(spacing: 20) {
                     if currentLineIndex > 0 {
                         Button(action: { currentLineIndex -= 1 }) {
@@ -176,7 +177,7 @@ struct ConversationDetailView: View {
                         }
                         .secondaryGlassButton()
                     }
-                    
+
                     Button(action: { advanceLine() }) {
                         Label("Next", systemImage: "chevron.right")
                             .frame(maxWidth: .infinity)
@@ -186,13 +187,13 @@ struct ConversationDetailView: View {
             }
         }
     }
-    
+
     private func yourTurnView(line: Conversation.DialogueLine) -> some View {
         VStack(spacing: 16) {
             Text("Your turn! Say:")
                 .font(.subheadline)
                 .foregroundStyle(AppTheme.primaryColor)
-            
+
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 32))
                 .foregroundStyle(AppTheme.primaryColor)
@@ -223,13 +224,13 @@ struct ConversationDetailView: View {
                 .fill(AppTheme.primaryColor.opacity(0.1))
         )
     }
-    
+
     private func partnerLineView(line: Conversation.DialogueLine) -> some View {
         VStack(spacing: 12) {
             Text("Partner says:")
                 .font(.subheadline)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
-            
+
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 24))
                 .multilineTextAlignment(.center)
@@ -245,7 +246,7 @@ struct ConversationDetailView: View {
                     .font(.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
             if showEnglish {
                 Text(line.english)
                     .font(.subheadline)
@@ -259,17 +260,17 @@ struct ConversationDetailView: View {
                 .fill(AppTheme.surfaceColor)
         )
     }
-    
+
     private var difficultyBadge: some View {
         HStack {
             DifficultyStars(level: conversation.difficulty)
-            
+
             Text(difficultyText)
                 .font(.caption)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
-            
+
             Spacer()
-            
+
             Text("\(conversation.lines.count) lines")
                 .font(.caption)
                 .foregroundStyle(AppTheme.inkSecondaryColor)
@@ -280,7 +281,7 @@ struct ConversationDetailView: View {
                 .fill(AppTheme.surfaceColor)
         )
     }
-    
+
     private var culturalNoteBanner: some View {
         VStack(alignment: .leading, spacing: 8) {
             Button(action: {
@@ -346,7 +347,7 @@ struct ConversationDetailView: View {
         default: return ""
         }
     }
-    
+
     private var controlsBar: some View {
         HStack(spacing: 20) {
             Button("Jump to Start", systemImage: "backward.end.fill") { currentLineIndex = 0 }
@@ -375,7 +376,7 @@ struct ConversationDetailView: View {
         .shadow(color: AppTheme.Shadow.bottomBar, radius: 10, y: -5)
         .accessibilityElement(children: .contain)
     }
-    
+
     private func togglePlayback() {
         isPlaying.toggle()
         if isPlaying {
@@ -412,7 +413,8 @@ struct ConversationDetailView: View {
         guard currentLineIndex < conversation.lines.count else { return }
         let line = conversation.lines[currentLineIndex]
         if let asset = audioRepository.asset(for: .conversationLine, contentId: "\(conversation.id)-\(line.lineNum)"),
-           let url = audioRepository.audioURL(for: asset) {
+            let url = audioRepository.audioURL(for: asset)
+        {
             ttsAudio.stopPlayback()
             bundledAudio.play(asset: asset, url: url)
             let duration = (bundledAudio.playingAssetId == asset.id ? bundledAudio.currentDuration : nil) ?? 2.5
@@ -424,7 +426,7 @@ struct ConversationDetailView: View {
             try? await Task.sleep(for: .seconds(2.5))
         }
     }
-    
+
     private func advanceLine() {
         if currentLineIndex < conversation.lines.count - 1 {
             currentLineIndex += 1
@@ -432,7 +434,7 @@ struct ConversationDetailView: View {
             completeConversation()
         }
     }
-    
+
     private func completeConversation() {
         let progressRepository = ProgressRepository(modelContext: modelContext, onMutation: { sync.markPending($0) })
         progressRepository.practiceConversation(conversation.id)
@@ -468,13 +470,13 @@ struct DialogueLineView: View {
 
             Text(line.amharic)
                 .font(AppTheme.Typography.amharic(size: 22))
-            
+
             if showTransliteration {
                 Text(line.transliteration)
                     .font(.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
             if showEnglish {
                 Text(line.english)
                     .font(.subheadline)

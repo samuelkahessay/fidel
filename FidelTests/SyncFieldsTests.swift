@@ -1,6 +1,7 @@
 import SwiftData
 import SyncKit
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// Tests for the sync metadata fields (`syncModifiedAt`, `cloudSystemFields`)
@@ -24,7 +25,7 @@ final class SyncFieldsTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(
             schema: schema,
@@ -65,7 +66,7 @@ final class SyncFieldsTests: XCTestCase {
         assertDefaults(syncModifiedAt: mastery.syncModifiedAt, cloudSystemFields: mastery.cloudSystemFields)
     }
 
-    // MARK: - onMutation wiring (Task 4)
+    // MARK: - onMutation wiring
 
     /// `ProgressRepository`'s injected `onMutation` callback is the single
     /// wiring point every ad-hoc call site relies on to reach `SyncEngine`.

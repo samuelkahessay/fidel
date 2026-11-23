@@ -11,7 +11,7 @@ No active backlog items.
 
 ## Ready Next
 
-- 2026-07-04 [program] Content & lesson-type expansion toward 0→working proficiency. Spec: `docs/superpowers/specs/2026-07-04-content-and-lesson-type-expansion-design.md`; sequenced plan: `docs/superpowers/plans/2026-07-04-content-and-lesson-type-expansion.md`. Increment 0 shipped (see Completed). Next increments: grammar cards→sentence-SRS→curriculum restructure (CEFR metadata + surface the 26% orphaned vocab / 51% orphaned phrases + add Units 2/6/8)→listening comprehension→achievement-award logic→reviewed content-growth pipeline (all net-new Amharic through the import gate).
+- 2026-07-04 [program] Content & lesson-type expansion toward 0→working proficiency. Increment 0 shipped (see Completed). Next increments: grammar cards→sentence-SRS→curriculum restructure (CEFR metadata + surface the 26% orphaned vocab / 51% orphaned phrases + add Units 2/6/8)→listening comprehension→achievement-award logic→reviewed content-growth pipeline (all net-new Amharic through the import gate).
 - 2026-07-04 [debt] Add achievement-award logic: `progress.achievements` is only set via backup-merge, so no gameplay ever unlocks the 13 defined achievements (`allAchievements` is display-only). Evaluate `requirement` vs. progress counters on XP/lesson/conversation/streak events.
 
 ## Later

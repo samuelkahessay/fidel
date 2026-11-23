@@ -1,8 +1,9 @@
 import SwiftData
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
-/// Covers the open-path rewire of `JourneyViewModel` (Task 6): nothing is
+/// Covers the open-path rewire of `JourneyViewModel`: nothing is
 /// locked, the `NextStepPlanner`-driven recommendation, and per-lesson mastery
 /// tiers in `pathSections`.
 @MainActor
@@ -22,7 +23,7 @@ final class JourneyViewModelOpenPathTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         return try ModelContainer(for: schema, configurations: [configuration])

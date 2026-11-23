@@ -1,17 +1,10 @@
 import Foundation
+import FoundationModels
+import os
 
 // MARK: - AI Service Protocol
 
 protocol SelamAIServiceProtocol {
-    func sendMessage(
-        _ message: String,
-        conversationId: String,
-        context: SelamContext,
-        history: [SelamHistoryMessage],
-        entryContext: SelamEntryContext?,
-        settings: SelamCoachingSettings
-    ) async throws -> SelamChatResponse
-    
     func streamMessage(
         _ message: String,
         conversationId: String,
@@ -22,114 +15,42 @@ protocol SelamAIServiceProtocol {
     ) -> AsyncThrowingStream<SelamStreamToken, Error>
 }
 
-// MARK: - OpenRouter Configuration
+// MARK: - Feature flag
 
-struct OpenRouterConfig {
-    static let baseURL = URL(string: "https://openrouter.ai/api/v1/chat/completions")!
-    static let model = "anthropic/claude-3.5-sonnet"
-    
-    /// Debug-only. Release builds ship no client API key; callers fall back to
-    /// MockSelamAIService when this is empty (see SelamViewModel).
-    static var apiKey: String {
-        #if DEBUG
-        if let key = ProcessInfo.processInfo.environment["OPENROUTER_API_KEY"], !key.isEmpty {
-            return key
-        }
-        #endif
-        return ""
+/// Selam runs only on Apple's on-device model. Devices without Apple
+/// Intelligence (or with it turned off or still downloading) never see Selam.
+enum SelamAvailability {
+    static var isEnabled: Bool {
+        if case .available = SystemLanguageModel.default.availability { return true }
+        return false
     }
 }
 
-// MARK: - OpenRouter Service Implementation
+// MARK: - On-device service
 
-final class SelamAPIService: SelamAIServiceProtocol {
-    private let session: URLSession
-    private let systemPrompt: String
-    
-    init() {
-        let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 60
-        self.session = URLSession(configuration: sessionConfig)
-        
-        self.systemPrompt = """
-        You are Selam (ሰላም), an expert Amharic language tutor for the Fidel iOS app. You are:
-        - Patient, encouraging, and never make users feel bad about mistakes
-        - Knowledgeable about Ethiopian culture, customs, and etiquette
-        - Concise (2-3 paragraphs max unless explaining complex grammar)
-        - Natural with Amharic script, always providing transliterations in parentheses
+/// Selam backed by Apple's Foundation Models framework. The model does not
+/// support Amharic, so it explains in English and must pull every Amharic word
+/// from Fidel's curriculum through the lookup tools.
+final class OnDeviceSelamService: SelamAIServiceProtocol {
+    private let knowledge: SelamKnowledge
 
-        When responding:
-        - Use Amharic script naturally, followed by transliteration in parentheses
-        - Give specific examples with context
-        - Celebrate wins and progress
-        - Offer gentle corrections with explanations
-        - At the end of responses, suggest 2-3 follow-up actions the user might want
+    init(knowledge: SelamKnowledge = SelamKnowledge()) {
+        self.knowledge = knowledge
+    }
 
-        Format examples like:
-        ጤና ይስጥልኝ (t'ena yist'illiany) - Hello
+    static let baseInstructions = """
+        You are Selam, a patient and encouraging Amharic tutor inside the Fidel app. Explain in English.
 
-        You have access to the user's learning progress. Reference their:
-        - Completed lessons and patterns learned
-        - Vocabulary they've mastered
-        - Current streak and level
-        - Areas where they may be struggling
+        Rules for Amharic:
+        - NEVER write Amharic script or transliteration from memory.
+        - To show any Amharic word or phrase, call lookupWords with the English meaning and copy the result exactly, as: Amharic (transliteration) - English.
+        - For grammar, call lookupGrammar. For the vowel forms of a letter, call lookupFidelRow.
+        - If a lookup returns nothing, say the Fidel curriculum doesn't cover that yet. Do not guess.
+
+        Keep answers short: at most two short paragraphs.
+        End with exactly three follow-up questions the learner could ask next, each on its own line starting with "- ".
         """
-    }
-    
-    func sendMessage(
-        _ message: String,
-        conversationId: String,
-        context: SelamContext,
-        history: [SelamHistoryMessage],
-        entryContext: SelamEntryContext?,
-        settings: SelamCoachingSettings
-    ) async throws -> SelamChatResponse {
-        let messages = buildMessages(message: message, context: context, history: history, entryContext: entryContext, settings: settings)
-        
-        let requestBody: [String: Any] = [
-            "model": OpenRouterConfig.model,
-            "messages": messages,
-            "max_tokens": 1024,
-            "temperature": 0.7
-        ]
-        
-        var request = URLRequest(url: OpenRouterConfig.baseURL)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(OpenRouterConfig.apiKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("Fidel Amharic Learning App", forHTTPHeaderField: "X-Title")
-        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
-        
-        let (data, response) = try await session.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw SelamAPIError.invalidResponse
-        }
-        
-        guard (200...299).contains(httpResponse.statusCode) else {
-            if httpResponse.statusCode == 429 {
-                throw SelamAPIError.rateLimitExceeded
-            }
-            throw SelamAPIError.httpError(statusCode: httpResponse.statusCode)
-        }
-        
-        guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let choices = json["choices"] as? [[String: Any]],
-              let firstChoice = choices.first,
-              let messageObj = firstChoice["message"] as? [String: Any],
-              let content = messageObj["content"] as? String else {
-            throw SelamAPIError.invalidResponse
-        }
-        
-        let suggestedActions = extractSuggestedActions(from: content)
-        
-        return SelamChatResponse(
-            message: content,
-            suggestedActions: suggestedActions,
-            shouldShowConfetti: false
-        )
-    }
-    
+
     func streamMessage(
         _ message: String,
         conversationId: String,
@@ -138,238 +59,185 @@ final class SelamAPIService: SelamAIServiceProtocol {
         entryContext: SelamEntryContext?,
         settings: SelamCoachingSettings
     ) -> AsyncThrowingStream<SelamStreamToken, Error> {
-        AsyncThrowingStream { continuation in
-            Task {
+        let instructions = Self.instructions(context: context, history: history, entryContext: entryContext)
+        let tools: [any Tool] = [
+            LookupWordsTool(knowledge: knowledge),
+            LookupGrammarTool(knowledge: knowledge),
+            LookupFidelRowTool(knowledge: knowledge),
+        ]
+
+        return AsyncThrowingStream { continuation in
+            let task = Task {
                 do {
-                    let messages = buildMessages(message: message, context: context, history: history, entryContext: entryContext, settings: settings)
-                    
-                    let requestBody: [String: Any] = [
-                        "model": OpenRouterConfig.model,
-                        "messages": messages,
-                        "max_tokens": 1024,
-                        "temperature": 0.7,
-                        "stream": true
-                    ]
-                    
-                    var request = URLRequest(url: OpenRouterConfig.baseURL)
-                    request.httpMethod = "POST"
-                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                    request.setValue("Bearer \(OpenRouterConfig.apiKey)", forHTTPHeaderField: "Authorization")
-                    request.setValue("Fidel Amharic Learning App", forHTTPHeaderField: "X-Title")
-                    request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
-                    
-                    let (bytes, response) = try await session.bytes(for: request)
-                    
-                    guard let httpResponse = response as? HTTPURLResponse else {
-                        throw SelamAPIError.invalidResponse
+                    let session = LanguageModelSession(tools: tools, instructions: instructions)
+                    var emitted = ""
+                    for try await snapshot in session.streamResponse(to: message) {
+                        let full = snapshot.content
+                        if full.hasPrefix(emitted) {
+                            let delta = String(full.dropFirst(emitted.count))
+                            if !delta.isEmpty {
+                                continuation.yield(SelamStreamToken(content: delta, suggestedActions: nil, done: false))
+                            }
+                        }
+                        emitted = full
                     }
-                    
-                    guard (200...299).contains(httpResponse.statusCode) else {
-                        if httpResponse.statusCode == 429 {
-                            throw SelamAPIError.rateLimitExceeded
-                        }
-                        throw SelamAPIError.httpError(statusCode: httpResponse.statusCode)
-                    }
-                    
-                    var fullContent = ""
-                    
-                    for try await line in bytes.lines {
-                        if Task.isCancelled { break }
-                        
-                        guard line.hasPrefix("data: ") else { continue }
-                        let jsonString = String(line.dropFirst(6))
-                        
-                        if jsonString == "[DONE]" {
-                            let suggestedActions = extractSuggestedActions(from: fullContent)
-                            continuation.yield(SelamStreamToken(
-                                content: nil,
-                                suggestedActions: suggestedActions,
-                                done: true
-                            ))
-                            break
-                        }
-                        
-                        guard let data = jsonString.data(using: .utf8),
-                              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                              let choices = json["choices"] as? [[String: Any]],
-                              let firstChoice = choices.first,
-                              let delta = firstChoice["delta"] as? [String: Any],
-                              let content = delta["content"] as? String else {
-                            continue
-                        }
-                        
-                        fullContent += content
-                        continuation.yield(SelamStreamToken(
-                            content: content,
-                            suggestedActions: nil,
-                            done: false
+                    continuation.yield(
+                        SelamStreamToken(
+                            content: nil,
+                            suggestedActions: SelamSuggestions.extract(from: emitted),
+                            done: true
                         ))
-                    }
-                    
                     continuation.finish()
                 } catch {
-                    continuation.finish(throwing: error)
+                    continuation.finish(throwing: SelamError(error))
                 }
             }
+            continuation.onTermination = { _ in task.cancel() }
         }
     }
-    
-    private func buildMessages(
-        message: String,
+
+    static func instructions(
         context: SelamContext,
         history: [SelamHistoryMessage],
-        entryContext: SelamEntryContext?,
-        settings: SelamCoachingSettings
-    ) -> [[String: String]] {
-        var messages: [[String: String]] = []
-        
-        var systemContent = systemPrompt
-        systemContent += "\n\n--- USER CONTEXT ---\n"
-        systemContent += "Level: \(context.level)\n"
-        systemContent += "Current streak: \(context.currentStreak) days\n"
-        systemContent += "Total XP: \(context.totalXP)\n"
-        systemContent += "Lessons completed: \(context.lessonsCompleted.count)\n"
-        systemContent += "Vocabulary mastered: \(context.vocabularyMastered.count) words\n"
-        
-        if !context.weakAreas.isEmpty {
-            systemContent += "Areas needing work: \(context.weakAreas.joined(separator: ", "))\n"
+        entryContext: SelamEntryContext?
+    ) -> String {
+        var text = baseInstructions
+        text += "\n\nLearner: level \(context.level), \(context.currentStreak)-day streak, "
+        text += "\(context.lessonsCompleted.count) lessons completed."
+        if let entry = entryContext?.toPromptContext() {
+            text += "\n\(entry)"
         }
-        
-        if let entryPrompt = entryContext?.toPromptContext() {
-            systemContent += "\n--- ENTRY CONTEXT ---\n\(entryPrompt)\n"
+        // The on-device context window is small; carry only the last few turns.
+        let recent = history.suffix(4)
+        if !recent.isEmpty {
+            text += "\n\nRecent conversation:\n"
+            text += recent.map { "\($0.role): \($0.content.prefix(400))" }.joined(separator: "\n")
         }
-        
-        let langPref = settings.languagePreference
-        if langPref == .amharic {
-            systemContent += "\nRespond primarily in Amharic with English translations."
-        } else if langPref == .english {
-            systemContent += "\nRespond primarily in English with Amharic examples."
-        }
-        
-        messages.append(["role": "system", "content": systemContent])
-        
-        for historyItem in history.suffix(10) {
-            messages.append(["role": historyItem.role, "content": historyItem.content])
-        }
-        
-        messages.append(["role": "user", "content": message])
-        
-        return messages
+        return text
     }
-    
-    private func extractSuggestedActions(from content: String) -> [String] {
-        let lines = content.components(separatedBy: "\n")
+}
+
+// MARK: - Tools
+
+struct LookupWordsTool: Tool {
+    let knowledge: SelamKnowledge
+    let name = "lookupWords"
+    let description = "Finds Amharic words and phrases in the Fidel curriculum by English meaning."
+
+    @Generable
+    struct Arguments {
+        @Guide(description: "An English word or short phrase, e.g. 'water' or 'thank you'")
+        var english: String
+    }
+
+    func call(arguments: Arguments) async throws -> String {
+        let entries = knowledge.lookupWords(arguments.english)
+        return entries.isEmpty
+            ? "No match for '\(arguments.english)' in the Fidel curriculum."
+            : SelamKnowledge.describe(entries)
+    }
+}
+
+struct LookupGrammarTool: Tool {
+    let knowledge: SelamKnowledge
+    let name = "lookupGrammar"
+    let description = "Finds Amharic grammar patterns with examples, by English topic keywords."
+
+    @Generable
+    struct Arguments {
+        @Guide(description: "One or two English keywords, e.g. 'question' or 'past tense'")
+        var topic: String
+    }
+
+    func call(arguments: Arguments) async throws -> String {
+        let patterns = knowledge.lookupGrammar(arguments.topic)
+        return patterns.isEmpty
+            ? "No grammar pattern about '\(arguments.topic)' in the Fidel curriculum."
+            : SelamKnowledge.describe(patterns)
+    }
+}
+
+struct LookupFidelRowTool: Tool {
+    let knowledge: SelamKnowledge
+    let name = "lookupFidelRow"
+    let description = "Returns the seven vowel forms of a Fidel letter."
+
+    @Generable
+    struct Arguments {
+        @Guide(description: "A Fidel character, or its consonant sound in Latin letters, e.g. 'l'")
+        var letter: String
+    }
+
+    func call(arguments: Arguments) async throws -> String {
+        guard let row = knowledge.lookupFidelRow(arguments.letter) else {
+            return "No Fidel row for '\(arguments.letter)'."
+        }
+        return SelamKnowledge.describe(row)
+    }
+}
+
+// MARK: - Suggested follow-ups
+
+enum SelamSuggestions {
+    static let fallback = ["How do I say thank you?", "Teach me a greeting", "Show me the letter ለ"]
+
+    static func extract(from content: String) -> [String] {
         var actions: [String] = []
-        
-        for line in lines.reversed() {
+        for line in content.components(separatedBy: "\n").reversed() {
             let trimmed = line.trimmingCharacters(in: .whitespaces)
-            var action: String? = nil
-            
+            var action: String?
             if trimmed.hasPrefix("•") || trimmed.hasPrefix("-") || trimmed.hasPrefix("*") {
                 action = String(trimmed.dropFirst()).trimmingCharacters(in: .whitespaces)
             } else if let range = trimmed.range(of: #"^\d+[\.\)]\s*"#, options: .regularExpression) {
                 action = String(trimmed[range.upperBound...]).trimmingCharacters(in: .whitespaces)
             }
-            
-            if let action = action, action.count > 5 && action.count < 80 {
+            if let action, action.count > 5, action.count < 80 {
                 actions.insert(action, at: 0)
             }
-            
             if actions.count >= 3 { break }
         }
-        
-        if actions.isEmpty {
-            return ["Ask another question", "Practice vocabulary", "Try a quiz"]
-        }
-        
-        return actions
-    }
-}
-
-// MARK: - Mock Service for Development/Testing
-
-final class MockSelamAIService: SelamAIServiceProtocol {
-    var mockDelay: TimeInterval = 1.0
-    
-    func sendMessage(
-        _ message: String,
-        conversationId: String,
-        context: SelamContext,
-        history: [SelamHistoryMessage],
-        entryContext: SelamEntryContext?,
-        settings: SelamCoachingSettings
-    ) async throws -> SelamChatResponse {
-        try await Task.sleep(for: .seconds(mockDelay))
-        return generateMockResponse(for: message, context: context)
-    }
-    
-    func streamMessage(
-        _ message: String,
-        conversationId: String,
-        context: SelamContext,
-        history: [SelamHistoryMessage],
-        entryContext: SelamEntryContext?,
-        settings: SelamCoachingSettings
-    ) -> AsyncThrowingStream<SelamStreamToken, Error> {
-        AsyncThrowingStream { continuation in
-            Task {
-                let response = generateMockResponse(for: message, context: context)
-                let words = response.message.split(separator: " ")
-                
-                for (index, word) in words.enumerated() {
-                    try? await Task.sleep(for: .milliseconds(50))
-                    let isLast = index == words.count - 1
-                    continuation.yield(SelamStreamToken(
-                        content: String(word) + (isLast ? "" : " "),
-                        suggestedActions: isLast ? response.suggestedActions : nil,
-                        done: isLast
-                    ))
-                }
-                continuation.finish()
-            }
-        }
-    }
-    
-    private func generateMockResponse(for message: String, context: SelamContext) -> SelamChatResponse {
-        let lowercased = message.lowercased()
-        
-        if lowercased.contains("hello") || lowercased.contains("hi") {
-            return SelamChatResponse(
-                message: "ሰላም! (selam!) Welcome! I'm so happy to help you learn Amharic.\n\nThe most common greeting is ጤና ይስጥልኝ (t'ena yist'illiany), meaning \"May God give you health.\"\n\nYou've completed \(context.lessonsCompleted.count) lessons - great progress! 🎉",
-                suggestedActions: ["Teach me more greetings", "How do I say goodbye?", "Practice a conversation"],
-                shouldShowConfetti: false
-            )
-        }
-        
-        return SelamChatResponse(
-            message: "That's a great question! Based on your progress (Level \(context.level), \(context.currentStreak) day streak), you're doing wonderfully.\n\nHow can I help you today?",
-            suggestedActions: ["Help with vocabulary", "Grammar question", "Practice speaking"],
-            shouldShowConfetti: false
-        )
+        return actions.isEmpty ? fallback : actions
     }
 }
 
 // MARK: - Errors
 
-enum SelamAPIError: LocalizedError {
-    case invalidResponse
-    case httpError(statusCode: Int)
-    case rateLimitExceeded
-    case networkError(Error)
-    case missingAPIKey
-    
+enum SelamError: LocalizedError {
+    private static let logger = Logger(subsystem: "dev.skahessay.learnamharic", category: "selam")
+
+    case unavailable
+    case unsupportedLanguage
+    case tooLong
+    case declined
+    case failed(String)
+
+    init(_ error: Error) {
+        Self.logger.error("Selam generation failed: \(String(describing: error), privacy: .public)")
+        guard let generation = error as? LanguageModelSession.GenerationError else {
+            self = .failed(error.localizedDescription)
+            return
+        }
+        switch generation {
+        case .assetsUnavailable: self = .unavailable
+        case .unsupportedLanguageOrLocale: self = .unsupportedLanguage
+        case .exceededContextWindowSize: self = .tooLong
+        case .guardrailViolation, .refusal: self = .declined
+        default: self = .failed(generation.localizedDescription)
+        }
+    }
+
     var errorDescription: String? {
         switch self {
-        case .invalidResponse:
-            return "Invalid response from server"
-        case .httpError(let code):
-            return "Server error (code: \(code))"
-        case .rateLimitExceeded:
-            return "Rate limit reached. Please try again later."
-        case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
-        case .missingAPIKey:
-            return "API key not configured"
+        case .unavailable:
+            return "Selam needs Apple Intelligence, which isn't ready on this device right now."
+        case .unsupportedLanguage:
+            return "Ask Selam in English. It will look up the Amharic for you."
+        case .tooLong:
+            return "This conversation got too long. Start a new one to keep going."
+        case .declined:
+            return "Selam can't help with that one. Try asking about Amharic words, grammar or letters."
+        case .failed:
+            return "Selam couldn't answer right now. Try again in a moment."
         }
     }
 }

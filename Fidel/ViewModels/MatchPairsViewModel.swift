@@ -76,7 +76,7 @@ final class MatchPairsViewModel {
         matchedThisRound = 0
 
         let start = currentRound * pairsPerRound
-        let words = Array(sessionWords[start ..< min(start + pairsPerRound, sessionWords.count)])
+        let words = Array(sessionWords[start..<min(start + pairsPerRound, sessionWords.count)])
         amharicTiles = words.map {
             Tile(wordId: $0.id, text: $0.amharic, transliteration: $0.transliteration, isAmharic: true)
         }.shuffled()
@@ -156,7 +156,7 @@ final class MatchPairsViewModel {
         guard !didAwardXP else { return }
         didAwardXP = true
         if totalMatched == pairsRequired {
-            progressRepository?.addXP(10) // completion bonus; per-pair XP already awarded via masterVocabulary
+            progressRepository?.addXP(10)  // completion bonus; per-pair XP already awarded via masterVocabulary
         }
     }
 

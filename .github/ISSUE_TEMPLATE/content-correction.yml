@@ -1,0 +1,42 @@
+name: Amharic content correction
+description: Fix a translation, spelling, transliteration or phrase that isn't natural.
+title: "content: "
+labels: [content]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you! Corrections from native and heritage speakers are the most valuable contributions Fidel gets.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of content?
+      options:
+        - Vocabulary word
+        - Phrase
+        - Grammar pattern
+        - Conversation line
+        - Cultural note
+        - Reading passage
+        - Fidel character
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What the app shows now
+      description: Paste the Amharic, transliteration and English exactly as shown, or the screen where you saw it.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Your suggested correction
+      description: Amharic, transliteration and English as they should be.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: How do you know?
+      description: Native speaker, dictionary, region or dialect, etc. Optional but helpful.

@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 import UniformTypeIdentifiers
 
@@ -7,7 +7,7 @@ struct ProgressDashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncEngine.self) private var sync
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    
+
     private let lessonRepository: LessonRepositoryProtocol = LessonRepository.shared
     private let settingsStore = AppSettingsStore()
     @State private var dailyGoal = AppSettingsStore.defaultDailyXPGoal
@@ -16,7 +16,11 @@ struct ProgressDashboardView: View {
     @State private var exportDocument: ProgressBackupDocument?
     @State private var isImportingBackup = false
     @State private var backupMessage: String?
-    
+    #if DEBUG
+        @State private var showStrokeRecorder = false
+        @State private var showStrokeReview = false
+    #endif
+
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
@@ -34,6 +38,9 @@ struct ProgressDashboardView: View {
                     localSaveStatusSection
                     SyncSettingsSection(engine: sync)
                     backupSection
+                    #if DEBUG
+                        developerToolsSection
+                    #endif
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)
                 .padding(.top, AppTheme.Spacing.md)
@@ -62,7 +69,7 @@ struct ProgressDashboardView: View {
             }
         }
     }
-    
+
     private var currentStage: LearningStage {
         LearningStage(rawValue: progress?.currentStage ?? 0) ?? .scriptAndSounds
     }
@@ -159,6 +166,32 @@ struct ProgressDashboardView: View {
         .accessibilityElement(children: .combine)
     }
 
+    #if DEBUG
+        /// Stroke-authoring tools used to record and review `fidel_stroke_data.json`.
+        /// Compiled into debug builds only.
+        private var developerToolsSection: some View {
+            VStack(alignment: .leading, spacing: 12) {
+                Label("Developer tools", systemImage: "hammer")
+                    .font(AppTheme.Typography.headline)
+                    .foregroundStyle(AppTheme.inkColor)
+                Text("Record or review the stroke data used for tracing. Debug builds only.")
+                    .font(AppTheme.Typography.caption)
+                    .foregroundStyle(AppTheme.inkSecondaryColor)
+                HStack(spacing: 12) {
+                    Button("Record strokes") { showStrokeRecorder = true }
+                        .frame(maxWidth: .infinity)
+                        .secondaryGlassButton()
+                    Button("Review strokes") { showStrokeReview = true }
+                        .frame(maxWidth: .infinity)
+                        .secondaryGlassButton()
+                }
+            }
+            .fidelDesignCard()
+            .fullScreenCover(isPresented: $showStrokeRecorder) { StrokeRecorderView() }
+            .fullScreenCover(isPresented: $showStrokeReview) { StrokeReviewView() }
+        }
+    #endif
+
     private var backupSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
@@ -222,28 +255,28 @@ struct ProgressDashboardView: View {
             HStack {
                 FidelSectionLabel(title: "Daily goal")
                 Spacer()
-                Text("\(progress?.todayXP ?? 0)/\(dailyGoal) XP")
+                Text("\(progress?.xpEarnedToday() ?? 0)/\(dailyGoal) XP")
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
-            let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(dailyGoal), 1.0)
-            
+
+            let goalProgress = min(Double(progress?.xpEarnedToday() ?? 0) / Double(dailyGoal), 1.0)
+
             FidelProgressBar(
                 value: goalProgress,
                 color: goalProgress >= 1.0 ? AppTheme.successColor : AppTheme.terracottaColor,
                 trackColor: AppTheme.terracottaColor.opacity(0.13),
                 height: 9
             )
-                .accessibilityLabel("Daily goal progress")
-                .accessibilityValue("\(progress?.todayXP ?? 0) of \(dailyGoal) XP")
+            .accessibilityLabel("Daily goal progress")
+            .accessibilityValue("\(progress?.xpEarnedToday() ?? 0) of \(dailyGoal) XP")
 
             Stepper(value: dailyGoalBinding, in: 10...500, step: 10) {
                 Text("Goal: \(dailyGoal) XP")
                     .font(AppTheme.Typography.subheadline)
                     .foregroundStyle(AppTheme.inkColor)
             }
-            
+
             if goalProgress >= 1.0 {
                 HStack {
                     Image(systemName: "checkmark.circle.fill")
@@ -256,7 +289,7 @@ struct ProgressDashboardView: View {
         }
         .fidelDesignCard()
     }
-    
+
     private var achievementsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
@@ -266,7 +299,7 @@ struct ProgressDashboardView: View {
                     .font(.caption)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
-            
+
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))], spacing: 16) {
                 ForEach(allAchievements) { achievement in
                     AchievementBadge(
@@ -278,7 +311,7 @@ struct ProgressDashboardView: View {
         }
         .fidelDesignCard()
     }
-    
+
     private var earnedAchievements: [Achievement] {
         allAchievements.filter { progress?.achievements.contains($0.id) ?? false }
     }
@@ -398,19 +431,19 @@ struct ProgressBackupDocument: FileDocument {
 struct AchievementBadge: View {
     let achievement: Achievement
     let isEarned: Bool
-    
+
     var body: some View {
         VStack(spacing: 4) {
             ZStack {
                 Circle()
                     .fill(isEarned ? AppTheme.secondaryColor : AppTheme.mutedInkColor.opacity(0.2))
                     .frame(width: 50, height: 50)
-                
+
                 Image(systemName: achievement.icon)
                     .font(.title2)
                     .foregroundStyle(isEarned ? AppTheme.onAccentColor : AppTheme.mutedInkColor)
             }
-            
+
             Text(achievement.title)
                 .font(.caption2)
                 .foregroundStyle(isEarned ? AppTheme.inkColor : AppTheme.inkSecondaryColor)

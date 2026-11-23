@@ -1,6 +1,6 @@
-import Foundation
 import CoreGraphics
 import CoreText
+import Foundation
 import SwiftUI
 
 /// Extracts vector paths from Unicode characters using CoreText.
@@ -43,7 +43,8 @@ final class PathExtractor {
         var chars = Array(character.utf16)
         var glyphs = [CGGlyph](repeating: 0, count: chars.count)
         guard CTFontGetGlyphsForCharacters(ctFont, &chars, &glyphs, chars.count),
-              glyphs[0] != 0 else {
+            glyphs[0] != 0
+        else {
             let empty = CGMutablePath()
             cgPathCache[key] = empty
             return empty
@@ -134,15 +135,17 @@ final class PathExtractor {
         let scaleX = CGFloat(bitmapSize) / size.width
         let scaleY = CGFloat(bitmapSize) / size.height
 
-        guard let ctx = CGContext(
-            data: nil,
-            width: bitmapSize,
-            height: bitmapSize,
-            bitsPerComponent: 8,
-            bytesPerRow: bitmapSize,
-            space: CGColorSpaceCreateDeviceGray(),
-            bitmapInfo: CGImageAlphaInfo.none.rawValue
-        ) else {
+        guard
+            let ctx = CGContext(
+                data: nil,
+                width: bitmapSize,
+                height: bitmapSize,
+                bitsPerComponent: 8,
+                bytesPerRow: bitmapSize,
+                space: CGColorSpaceCreateDeviceGray(),
+                bitmapInfo: CGImageAlphaInfo.none.rawValue
+            )
+        else {
             strokeWidthCache[key] = 0
             return 0
         }
@@ -159,8 +162,8 @@ final class PathExtractor {
         }
         let pixels = data.bindMemory(to: UInt8.self, capacity: bitmapSize * bitmapSize)
         var filledCount = 0
-        for i in 0..<(bitmapSize * bitmapSize) {
-            if pixels[i] > 127 { filledCount += 1 }
+        for i in 0..<(bitmapSize * bitmapSize) where pixels[i] > 127 {
+            filledCount += 1
         }
 
         // Convert pixel area back to original coordinate space
@@ -230,8 +233,8 @@ final class PathExtractor {
         for i in 1...steps {
             let t = CGFloat(i) / CGFloat(steps)
             let mt = 1 - t
-            let x = mt*mt*mt*p0.x + 3*mt*mt*t*cp1.x + 3*mt*t*t*cp2.x + t*t*t*p3.x
-            let y = mt*mt*mt*p0.y + 3*mt*mt*t*cp1.y + 3*mt*t*t*cp2.y + t*t*t*p3.y
+            let x = mt * mt * mt * p0.x + 3 * mt * mt * t * cp1.x + 3 * mt * t * t * cp2.x + t * t * t * p3.x
+            let y = mt * mt * mt * p0.y + 3 * mt * mt * t * cp1.y + 3 * mt * t * t * cp2.y + t * t * t * p3.y
             let pt = CGPoint(x: x, y: y)
             length += hypot(pt.x - prev.x, pt.y - prev.y)
             prev = pt
@@ -246,8 +249,8 @@ final class PathExtractor {
         for i in 1...steps {
             let t = CGFloat(i) / CGFloat(steps)
             let mt = 1 - t
-            let x = mt*mt*p0.x + 2*mt*t*cp.x + t*t*p2.x
-            let y = mt*mt*p0.y + 2*mt*t*cp.y + t*t*p2.y
+            let x = mt * mt * p0.x + 2 * mt * t * cp.x + t * t * p2.x
+            let y = mt * mt * p0.y + 2 * mt * t * cp.y + t * t * p2.y
             let pt = CGPoint(x: x, y: y)
             length += hypot(pt.x - prev.x, pt.y - prev.y)
             prev = pt

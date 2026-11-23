@@ -1,7 +1,10 @@
 import Foundation
-import SwiftUI
 import ImageIO
+import SwiftUI
 import UniformTypeIdentifiers
+import os
+
+private let strokeDebugLogger = Logger(subsystem: "dev.skahessay.learnamharic", category: "stroke-debug")
 
 /// Converts raw `StrokePoint` arrays into smooth cubic-bezier SwiftUI `Path`s
 /// using Catmull-Rom spline interpolation.
@@ -190,61 +193,23 @@ final class StrokeRevealRegion {
             rgba[offset + 2] = 255
             rgba[offset + 3] = mask[i]
         }
-
-        let data = Data(rgba)
-        let provider = CGDataProvider(data: data as CFData)
-
-        let fallback = CGImage(
-            width: 1,
-            height: 1,
-            bitsPerComponent: 8,
-            bitsPerPixel: 32,
-            bytesPerRow: 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue),
-            provider: CGDataProvider(data: Data([0, 0, 0, 0]) as CFData)!,
-            decode: nil,
-            shouldInterpolate: false,
-            intent: .defaultIntent
-        )!
-
-        guard let provider else { return fallback }
-
-        return CGImage(
-            width: width,
-            height: height,
-            bitsPerComponent: 8,
-            bitsPerPixel: 32,
-            bytesPerRow: width * 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue),
-            provider: provider,
-            decode: nil,
-            shouldInterpolate: false,
-            intent: .defaultIntent
-        ) ?? fallback
+        return makeRGBAImage(from: rgba, width: width, height: height)
     }
 
+    /// Builds an RGBA image, falling back to a transparent pixel if
+    /// CoreGraphics rejects the buffer (for example a zero-sized mask).
     static func makeRGBAImage(from rgba: [UInt8], width: Int, height: Int) -> CGImage {
-        let data = Data(rgba)
-        let provider = CGDataProvider(data: data as CFData)
+        if let image = cgImage(rgba: rgba, width: width, height: height) {
+            return image
+        }
+        guard let pixel = cgImage(rgba: [0, 0, 0, 0], width: 1, height: 1) else {
+            preconditionFailure("CoreGraphics could not create a 1×1 RGBA image")
+        }
+        return pixel
+    }
 
-        let fallback = CGImage(
-            width: 1,
-            height: 1,
-            bitsPerComponent: 8,
-            bitsPerPixel: 32,
-            bytesPerRow: 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue),
-            provider: CGDataProvider(data: Data([0, 0, 0, 0]) as CFData)!,
-            decode: nil,
-            shouldInterpolate: false,
-            intent: .defaultIntent
-        )!
-
-        guard let provider else { return fallback }
-
+    private static func cgImage(rgba: [UInt8], width: Int, height: Int) -> CGImage? {
+        guard let provider = CGDataProvider(data: Data(rgba) as CFData) else { return nil }
         return CGImage(
             width: width,
             height: height,
@@ -257,7 +222,7 @@ final class StrokeRevealRegion {
             decode: nil,
             shouldInterpolate: false,
             intent: .defaultIntent
-        ) ?? fallback
+        )
     }
 }
 
@@ -423,10 +388,8 @@ final class StrokeRegionBuilder {
             guard glyphMask[pixelIndex] > 127 else { continue }
 
             claimers.removeAll(keepingCapacity: true)
-            for candidateIndex in candidates.indices {
-                if candidates[candidateIndex].envelopeMask[pixelIndex] > 127 {
-                    claimers.append(candidateIndex)
-                }
+            for candidateIndex in candidates.indices where candidates[candidateIndex].envelopeMask[pixelIndex] > 127 {
+                claimers.append(candidateIndex)
             }
 
             guard !claimers.isEmpty else { continue }
@@ -499,7 +462,8 @@ final class StrokeRegionBuilder {
                 unclaimedCount += 1
             }
         }
-        let unclaimedImage = unclaimedCount > 0
+        let unclaimedImage =
+            unclaimedCount > 0
             ? StrokeRevealRegion.makeAlphaImage(from: unclaimedMask, width: width, height: height)
             : nil
 
@@ -620,7 +584,7 @@ final class StrokeRegionBuilder {
         let kernel: [(dx: Int, dy: Int, weight: CGFloat)] = [
             (0, 0, 4),
             (-1, 0, 2), (1, 0, 2), (0, -1, 2), (0, 1, 2),
-            (-1, -1, 1), (1, -1, 1), (-1, 1, 1), (1, 1, 1)
+            (-1, -1, 1), (1, -1, 1), (-1, 1, 1), (1, 1, 1),
         ]
         var current = progressValues
 
@@ -759,7 +723,8 @@ final class StrokeRegionBuilder {
         }
 
         if let final = points.last, let lastKept = kept.last,
-           final.x != lastKept.x || final.y != lastKept.y {
+            final.x != lastKept.x || final.y != lastKept.y
+        {
             kept.append(final)
         }
 
@@ -1080,7 +1045,7 @@ final class StrokeRegionBuilder {
             (64, 182, 120),
             (233, 184, 34),
             (149, 77, 255),
-            (0, 170, 210)
+            (0, 170, 210),
         ]
         return colors[index % colors.count]
     }
@@ -1097,7 +1062,8 @@ final class StrokeRegionBuilder {
         unclaimedCount: Int
     ) {
         let tmpDir = FileManager.default.temporaryDirectory
-        let baseDir = tmpDir
+        let baseDir =
+            tmpDir
             .appendingPathComponent("stroke-debug", isDirectory: true)
             .appendingPathComponent(safePathComponent(characterKey), isDirectory: true)
 
@@ -1108,7 +1074,7 @@ final class StrokeRegionBuilder {
                 attributes: nil
             )
         } catch {
-            print("[StrokeDebug] Failed to create directory \(baseDir.path): \(error.localizedDescription)")
+            strokeDebugLogger.error("Failed to create directory \(baseDir.path, privacy: .public): \(error, privacy: .public)")
             return
         }
 
@@ -1139,22 +1105,24 @@ final class StrokeRegionBuilder {
             writePNG(unclaimedImage, to: baseDir.appendingPathComponent("unclaimed-pixels.png"))
         }
 
-        print("[StrokeDebug] Exported artifacts for \(characterKey) at \(baseDir.path)")
+        strokeDebugLogger.info("Exported artifacts for \(characterKey, privacy: .public) at \(baseDir.path, privacy: .public)")
     }
 
     private func writePNG(_ image: CGImage, to url: URL) {
-        guard let destination = CGImageDestinationCreateWithURL(
-            url as CFURL,
-            UTType.png.identifier as CFString,
-            1,
-            nil
-        ) else {
+        guard
+            let destination = CGImageDestinationCreateWithURL(
+                url as CFURL,
+                UTType.png.identifier as CFString,
+                1,
+                nil
+            )
+        else {
             return
         }
 
         CGImageDestinationAddImage(destination, image, nil)
         if !CGImageDestinationFinalize(destination) {
-            print("[StrokeDebug] Failed writing \(url.path)")
+            strokeDebugLogger.error("Failed writing \(url.path, privacy: .public)")
         }
     }
 
@@ -1292,7 +1260,8 @@ final class StrokeRegionBuilder {
             maxArc = max(maxArc, candidate.arcLength)
         }
 
-        let blendedArc = totalWeight > .ulpOfOne
+        let blendedArc =
+            totalWeight > .ulpOfOne
             ? weightedArc / totalWeight
             : tieCandidates.reduce(0) { partialResult, candidate in
                 partialResult + candidate.arcLength

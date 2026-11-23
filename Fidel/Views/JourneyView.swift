@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 struct JourneyView: View {
@@ -360,10 +360,11 @@ private struct ScriptIntroCard: View {
 
 #Preview {
     JourneyView()
-        .modelContainer(for: [
-            UserProgress.self,
-            FlashcardProgress.self,
-            SelamConversation.self,
-            SelamMessage.self
-        ], inMemory: true)
+        .modelContainer(
+            for: [
+                UserProgress.self,
+                FlashcardProgress.self,
+                SelamConversation.self,
+                SelamMessage.self,
+            ], inMemory: true)
 }

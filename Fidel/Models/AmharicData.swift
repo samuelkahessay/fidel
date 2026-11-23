@@ -95,6 +95,6 @@ struct AmharicData {
             patterns: patterns.filter { $0.unit == 10 },
             vocabulary: vocabulary.filter { ["Household", "Animals", "Food & Drink"].contains($0.category) },
             phrases: phrases.filter { ($0.id >= 71 && $0.id <= 80) || ($0.id >= 86 && $0.id <= 90) }
-        )
+        ),
     ]
 }

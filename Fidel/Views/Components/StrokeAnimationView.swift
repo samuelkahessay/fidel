@@ -10,7 +10,7 @@ struct StrokeAnimationView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let character: String
     let size: CGSize
-    var characterId: String? = nil
+    var characterId: String?
     var maxLoops = 2
     var totalDuration: CGFloat = 2.0
     /// The revealed (bright) ink color. Defaults to the legacy plum; the tracing
@@ -20,7 +20,7 @@ struct StrokeAnimationView: View {
     var ghostColor: Color = AppTheme.practiceColor.opacity(0.08)
     /// Called once after the final loop completes (or shortly after the static
     /// reveal under Reduce Motion).
-    var onFinished: (() -> Void)? = nil
+    var onFinished: (() -> Void)?
 
     @State private var animationProgress: CGFloat = 0
     @State private var loopCount = 0
@@ -96,7 +96,8 @@ struct StrokeAnimationView: View {
                                 )
                                 guard strokeProgress > 0 else { continue }
 
-                                let image = debugShowInstantOwnedRegions
+                                let image =
+                                    debugShowInstantOwnedRegions
                                     ? region.regionImage
                                     : region.image(for: strokeProgress)
                                 let revealed = Image(decorative: image, scale: 1)
@@ -220,7 +221,7 @@ struct StrokeAnimationView: View {
             return
         }
 
-        let interval: CGFloat = 1.0 / 60.0 // ~60fps
+        let interval: CGFloat = 1.0 / 60.0  // ~60fps
         let increment = interval / totalDuration
 
         for loop in 0..<maxLoops {
@@ -261,27 +262,32 @@ struct StrokeAnimationView: View {
         }
 
         if ProcessInfo.processInfo.arguments.contains("-stroke-debug-show-boundary"),
-           let boundary = artifacts.ownershipBoundaryImage {
+            let boundary = artifacts.ownershipBoundaryImage
+        {
             return boundary
         }
 
         if ProcessInfo.processInfo.arguments.contains("-stroke-debug-show-disputed"),
-           let disputed = artifacts.disputedPixelsImage {
+            let disputed = artifacts.disputedPixelsImage
+        {
             return disputed
         }
 
         if ProcessInfo.processInfo.arguments.contains("-stroke-debug-show-unclaimed"),
-           let unclaimedImage {
+            let unclaimedImage
+        {
             return unclaimedImage
         }
 
         if let heatmapIndex = debugIndexArgument("-stroke-debug-heatmap-index"),
-           artifacts.progressHeatmaps.indices.contains(heatmapIndex) {
+            artifacts.progressHeatmaps.indices.contains(heatmapIndex)
+        {
             return artifacts.progressHeatmaps[heatmapIndex]
         }
 
         if let ownedIndex = debugIndexArgument("-stroke-debug-owned-index"),
-           artifacts.ownedImages.indices.contains(ownedIndex) {
+            artifacts.ownedImages.indices.contains(ownedIndex)
+        {
             return artifacts.ownedImages[ownedIndex]
         }
 

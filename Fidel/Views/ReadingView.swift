@@ -65,7 +65,7 @@ struct ReadingPassageView: View {
     let passage: ReadingPassage
 
     @State private var audio = WordAudioPlayer()
-    @State private var answers: [Int: Int] = [:]   // questionIndex -> chosen optionIndex
+    @State private var answers: [Int: Int] = [:]  // questionIndex -> chosen optionIndex
 
     private var score: Int {
         passage.questions.indices.reduce(0) { acc, i in

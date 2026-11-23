@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 /// Cloze ("fill in the blank") exercise. An Amharic sentence is shown with one

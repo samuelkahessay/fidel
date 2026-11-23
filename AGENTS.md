@@ -4,27 +4,24 @@
 
 Fidel is a local-first Amharic learning iOS app built with SwiftUI, SwiftData, MVVM, repositories, and local JSON content. The iOS repo is the product source of truth for app code and learner-facing bundled content.
 
-Before starting consolidation, import, release, or large refactor work, read:
+Before starting larger work, read:
 
-- `docs/README.md`
-- `docs/backlog.md`
-- `docs/status/fidel-group-audit.md`
+- `README.md` for the product overview and content counts
+- `docs/backlog.md` for planned work
 - `docs/audio-asset-library.md` if the task touches generated pronunciation audio
-- `Fidel_local_first_plan.md` if the task touches local-first behavior, auth removal, backup/restore, or release history
 
 ## Current Content Scope
 
-- 238 Fidel characters
-- 8 structured lessons
-- 30 sentence patterns
-- 24 conversations
-- 174 phrases
-- 436 vocabulary entries
-- 20 cultural notes
-- 4 numeric reference groups
-- 238 stroke recordings
-- 171 active Azure-generated phrase pronunciation clips in `Fidel/Data/audio_manifest.json`
-- 342 generated phrase pronunciation clips in `Fidel/Data/audio_catalog.json` across active and alternate voices
+Counts come from `Fidel/Data/*.json`; the table in `README.md` is kept in sync with them.
+
+- 238 Fidel characters and 238 stroke recordings
+- 8 lessons
+- 94 grammar patterns
+- 1,038 vocabulary words
+- 706 phrases
+- 30 conversations
+- 90 cultural notes
+- 3,320 bundled pronunciation clips in `Fidel/Data/audio_manifest.json`
 
 ## Product Boundaries
 
@@ -85,7 +82,6 @@ Pronunciation audio is user-facing in:
 ## Working Rules
 
 - Preserve unrelated dirty work. The current repo often has active SwiftUI edits in progress.
-- Keep docs/status changes separate from product UI changes when possible.
 - Use the app JSON counts as the source of truth before updating marketing or status docs.
 - Use `docs/audio-asset-library.md` and `tools/audio/azure_audio_manifest.py` for audio manifest/catalog changes.
 - Keep pronunciation UI copy honest: use `Generated pronunciation`, not native-speaker wording, for Azure clips.

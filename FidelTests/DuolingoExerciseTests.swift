@@ -1,5 +1,6 @@
-import XCTest
 import Foundation
+import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 // MARK: - Stub repository
@@ -168,7 +169,7 @@ final class WordOrderViewModelTests: XCTestCase {
     func testWrongOrderFailsAmharicToEnglish() {
         let vm = makeViewModel()
         vm.startSession(count: 2)
-        vm.advance() // move to the Amharic→English question
+        vm.advance()  // move to the Amharic→English question
 
         XCTAssertEqual(vm.currentQuestion?.direction, .amharicToEnglish)
         placeAnswer(vm, reversed: true)

@@ -26,7 +26,9 @@ extension UserProgress {
         record["dailyGoal"] = dailyGoal
         record["todayXP"] = todayXP
         if !achievements.isEmpty || cloudSystemFields != nil { record["achievements"] = achievements }
-        if !fidelCharactersRecognized.isEmpty || cloudSystemFields != nil { record["fidelCharactersRecognized"] = fidelCharactersRecognized }
+        if !fidelCharactersRecognized.isEmpty || cloudSystemFields != nil {
+            record["fidelCharactersRecognized"] = fidelCharactersRecognized
+        }
         if !charactersTraced.isEmpty || cloudSystemFields != nil { record["charactersTraced"] = charactersTraced }
         record["currentStage"] = currentStage
         record["streakFreezesAvailable"] = streakFreezesAvailable
@@ -38,7 +40,7 @@ extension UserProgress {
     }
 
     /// Whole-record overwrite: used for insert-on-first-fetch. Field-wise merge
-    /// (mirroring `ProgressRepository.consolidateUserProgress`) lives in
+    /// (`ProgressMergeState`, shared with `ProgressRepository`) lives in
     /// `FidelSyncStore.applyRemoteRecord`, not here.
     func apply(record: CKRecord) {
         if let ownerUserId = record["ownerUserId"] as? String { self.ownerUserId = ownerUserId }
@@ -54,7 +56,9 @@ extension UserProgress {
         if let dailyGoal = record["dailyGoal"] as? Int { self.dailyGoal = dailyGoal }
         if let todayXP = record["todayXP"] as? Int { self.todayXP = todayXP }
         if let achievements = record["achievements"] as? [String] { self.achievements = achievements }
-        if let fidelCharactersRecognized = record["fidelCharactersRecognized"] as? [String] { self.fidelCharactersRecognized = fidelCharactersRecognized }
+        if let fidelCharactersRecognized = record["fidelCharactersRecognized"] as? [String] {
+            self.fidelCharactersRecognized = fidelCharactersRecognized
+        }
         if let charactersTraced = record["charactersTraced"] as? [String] { self.charactersTraced = charactersTraced }
         if let currentStage = record["currentStage"] as? Int { self.currentStage = currentStage }
         if let streakFreezesAvailable = record["streakFreezesAvailable"] as? Int { self.streakFreezesAvailable = streakFreezesAvailable }

@@ -1,5 +1,6 @@
-import XCTest
 import Foundation
+import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 private final class StubReadingRepository: LessonRepositoryProtocol {
@@ -61,8 +62,9 @@ final class ReadingPassageDecodingTests: XCTestCase {
             XCTAssertFalse(p.sentences.isEmpty, "\(p.id) has no sentences")
             XCTAssertFalse(p.questions.isEmpty, "\(p.id) has no questions")
             for q in p.questions {
-                XCTAssertTrue(q.options.indices.contains(q.answerIndex),
-                              "\(p.id): answerIndex \(q.answerIndex) out of range for \(q.options.count) options")
+                XCTAssertTrue(
+                    q.options.indices.contains(q.answerIndex),
+                    "\(p.id): answerIndex \(q.answerIndex) out of range for \(q.options.count) options")
             }
         }
     }

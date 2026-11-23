@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fidel — Learn Amharic</title>
+    <meta name="description" content="Learn the Amharic script (ፊደል), words, phrases and conversations. Free and open source, on iPhone and in your browser." />
+    <meta name="theme-color" content="#F6F0E4" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta property="og:title" content="Fidel — Learn Amharic" />
+    <meta property="og:description" content="Learn the Amharic script, words, phrases and conversations. Free and open source." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site">
+      <a class="brand" href="./"><img src="./favicon.png" alt="" width="28" height="28" /> Fidel</a>
+      <nav aria-label="Site">
+        <a href="#features">Features</a>
+        <a href="https://github.com/samuelkahessay/fidel">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div>
+          <p class="eyebrow"><span lang="am">ፊደል</span> · Fidel</p>
+          <h1>Learn to read, write and speak Amharic.</h1>
+          <p class="lead">
+            Start with the 238 characters of the Ge'ez script, then build up words, phrases and real conversations.
+            Native-voice audio throughout. No account, no ads, and it works offline.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="./app/">Try it in your browser</a>
+            <a class="btn secondary" href="https://apps.apple.com/app/id6758070348">Get it on the App Store</a>
+          </div>
+          <p class="fine">Free and open source under the MIT license.</p>
+        </div>
+        <figure class="phone">
+          <img src="./screenshots/today.jpg" fetchpriority="high" alt="The Today screen of the Fidel app, recommending the next lesson" width="506" height="1100" />
+        </figure>
+      </section>
+
+      <section id="features" class="features" aria-labelledby="features-title">
+        <h2 id="features-title">What's inside</h2>
+        <div class="feature-grid">
+          <article>
+            <img src="./screenshots/chart.jpg" alt="The Fidel chart: 34 consonant rows by 7 vowel forms" loading="lazy" width="506" height="1100" />
+            <h3>The whole Fidel</h3>
+            <p>All 238 characters with audio, and guided tracing that teaches stroke order with a forgiving, satisfying feel.</p>
+          </article>
+          <article>
+            <img src="./screenshots/learn.jpg" alt="The Learn tab: eight lessons with mastery rings" loading="lazy" width="506" height="1100" />
+            <h3>Lessons that stay open</h3>
+            <p>Eight lessons from greetings to culture. Nothing is locked; a gentle recommendation picks what to do next.</p>
+          </article>
+          <article>
+            <img src="./screenshots/practice.jpg" alt="The Practice tab listing eleven practice modes" loading="lazy" width="506" height="1100" />
+            <h3>Eleven ways to practice</h3>
+            <p>Spaced-repetition flashcards, quizzes, fill-the-blank, word order, match pairs, reading passages and more.</p>
+          </article>
+        </div>
+        <ul class="facts">
+          <li><strong>1,038</strong> words</li>
+          <li><strong>706</strong> phrases</li>
+          <li><strong>30</strong> conversations</li>
+          <li><strong>94</strong> grammar patterns</li>
+          <li><strong>3,320</strong> audio clips</li>
+        </ul>
+      </section>
+
+      <section class="split" aria-labelledby="private-title">
+        <div>
+          <h2 id="private-title">Private by design</h2>
+          <p>
+            Your progress stays on your device. On iPhone it can sync through your own iCloud; in the browser it lives in
+            local storage. Export a backup from either and import it into the other to switch devices.
+          </p>
+          <p>
+            On iPhones with Apple Intelligence, <strong>Selam</strong>, an on-device tutor, answers your questions using only
+            Fidel's own curriculum.
+          </p>
+        </div>
+        <div>
+          <h2>Help make it better</h2>
+          <p>
+            Fidel is open source. If you speak Amharic, the most valuable contribution is a correction: every word and phrase
+            lives in plain JSON, and there's an issue form for fixes.
+          </p>
+          <a class="btn secondary" href="https://github.com/samuelkahessay/fidel/blob/main/CONTRIBUTING.md">How to contribute</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <p>Fidel · MIT License · <a href="https://github.com/samuelkahessay/fidel">Source on GitHub</a></p>
+    </footer>
+    <script type="module" src="./src/landing/main.ts"></script>
+  </body>
+</html>

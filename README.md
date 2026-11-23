@@ -1,158 +1,94 @@
-# Amharic Learning App for iOS
+# Fidel — Learn Amharic
 
-A comprehensive iOS app for English speakers to learn Amharic (the official language of Ethiopia). Built with SwiftUI and SwiftData for iOS 26+.
+Fidel is an iOS app for English speakers learning Amharic, the working language of Ethiopia. It teaches the Ge'ez script (ፊደል, *fidel*) alongside practical vocabulary, phrases, grammar and conversations. Everything runs on the device: no account, no server, no API keys.
 
-## Features
+Built with SwiftUI and SwiftData for iOS 26.
 
-### Today Tab
-- **Daily Focus**: A local, device-first daily learning prompt based on current progress
-- **Quick Paths**: Fast access to the Fidel grid, Practice, guided conversation, Selam, and Reference
-- **Phrase of the Day**: A bundled phrase preview from the local phrase library
+## What's inside
 
-### Learn Tab
-- **Fidel Script Chart**: Interactive grid of all 238 Fidel characters (34 consonants x 7 vowel forms) with visual pronunciation hints
-- **Structured Lessons**: 8 progressive lessons covering greetings, family, directions, food, time, health, travel, and culture
-- **Sentence Patterns**: 30 pattern templates with substitution slots for building sentences
-- **Vocabulary Cards**: Visual flashcards organized by category
+**Learning path.** Eight lessons (greetings, family, directions, food, time, health, travel, culture) on an open path. Nothing is locked. A recommended next step picks due reviews, then lessons in progress, then new lessons, sized to a daily goal. Fidel characters are taught inside the lessons that use them, and each lesson shows a mastery ring.
 
-### Practice Modes
-- **Flashcards**: Swipeable cards with FSRS-style spaced repetition for optimal retention
-- **Quizzes**: Multiple choice quizzes testing vocabulary, phrases, and Fidel recognition
-- **Pronunciation**: Generated offline phrase pronunciation for 171 non-placeholder quick phrases
-- **Sentence Builder**: Interactive grammar practice by dragging words to construct sentences
-- **Daily Goals**: Track your practice streak and daily XP targets
+**Practice.** Flashcards with FSRS spaced repetition, quizzes (multiple choice and typed), sentence builder, word order, fill the blank, grammar reference, graded reading passages, match pairs, speed drill, pronunciation, and character tracing with stroke-by-stroke feedback.
 
-### Conversations
-- **24 Real-World Scenarios**: Practice practical dialogue across travel, food, shopping, family, emergencies, and daily life
-- **Role-Play Mode**: Practice either speaker role in dialogues
-- **Line-by-Line Translation**: See Amharic, transliteration, and English for each line
+**Reference.** The full Fidel chart, a phrasebook, vocabulary by category, Ethiopian numbers, months, ordinals and fractions, and cultural notes.
 
-### Reference
-- **Quick Phrases**: 706 phrases for travel and daily use (171 with generated offline pronunciation; the rest are POC-promoted candidate content pending audio)
-- **Vocabulary Browser**: 1038 words organized by category
-- **Number System**: Ethiopian numbers, months, ordinals, and fractions
-- **Culture Notes**: 20 cultural notes connected to lessons and conversations
-- **Search**: Find any word or phrase instantly
-- **Navigation**: Open from Today > Quick paths > Reference
+**Selam.** A conversational tutor that runs on Apple's on-device model (Foundation Models). It explains in English and quotes Amharic only from Fidel's own curriculum, through tool calls into the bundled data. It appears only on devices with Apple Intelligence turned on.
 
-### Selam Tab
-- **Tutor Chat**: Local-progress-aware conversational tutor surface
+**Progress.** XP, streaks with weekly freezes, achievements, optional iCloud sync, and JSON backup and restore.
 
-### You Tab
-- **XP & Levels**: Gamified progression system
-- **Streaks**: Track consecutive days of practice
-- **Achievements**: Unlock badges for milestones
-- **Statistics**: Words learned, accuracy rates, time practiced
-- **Backup & Restore**: User-controlled JSON export/import for local progress
+## Content
 
-## Technical Details
+All learner-facing content is plain JSON in [`Fidel/Data`](Fidel/Data):
 
-### Architecture
-- **SwiftUI** for declarative UI
-- **SwiftData** for local progress persistence
-- **MVVM** pattern with Observable view models
-- **FSRS-style Spaced Repetition** algorithm for flashcard scheduling
-- **Manifest-driven bundled audio** for Azure-generated pronunciation playback without runtime API keys or network dependency
-- **User-controlled JSON backup** for progress export/import
+| Content | Count |
+|---|---|
+| Fidel characters (34 consonants × 7 vowel forms) | 238 |
+| Lessons | 8 |
+| Grammar patterns (including 12 verb-conjugation tables) | 94 |
+| Vocabulary words | 1,038 |
+| Phrases | 706 |
+| Conversations | 30 |
+| Cultural notes | 90 |
+| Sentence exercises | 24 |
+| Reading passages | 5 |
+| Bundled pronunciation clips | 3,320 |
 
-### Requirements
-- iOS 26.0+
-- Xcode 26+
+Pronunciation audio was generated with Azure neural voices and is bundled as MP3s in `Fidel/Audio`, indexed by `Fidel/Data/audio_manifest.json`. See [`docs/audio-asset-library.md`](docs/audio-asset-library.md) before changing audio.
 
-### Project Structure
-```
-Fidel/
-├── docs/
-│   ├── README.md
-│   └── status/
-│       └── fidel-group-audit.md
-├── Fidel/
-│   ├── Models/
-│   │   ├── Models.swift          # Core data models
-│   │   └── AmharicData.swift     # JSON-backed content adapter
-│   ├── Data/                     # Bundled lessons, patterns, vocabulary, phrases, conversations, notes, audio manifests
-│   ├── Audio/                    # Voice-scoped generated pronunciation MP3s
-│   ├── Services/                 # Bundled audio, stage, progress export, stroke, and spaced repetition services
-│   ├── Repositories/             # Lesson/progress/Selam/audio asset boundaries
-│   ├── ViewModels/               # Observable feature state
-│   ├── Views/
-│   │   ├── Theme.swift           # Ethiopian-inspired design system
-│   │   ├── Components.swift      # Reusable UI components
-│   │   ├── JourneyView.swift     # Open learning path (recommendation-driven, no gate)
-│   │   ├── FidelView.swift       # Fidel alphabet chart
-│   │   ├── PracticeView.swift    # Practice hub
-│   │   ├── FlashcardView.swift   # Swipeable flashcards
-│   │   ├── QuizView.swift        # Multiple choice quizzes
-│   │   ├── PronunciationPracticeView.swift
-│   │   ├── SentenceBuilderView.swift
-│   │   ├── ConversationDetailView.swift
-│   │   ├── ReferenceView.swift   # Quick reference reached from Today quick paths
-│   │   ├── ProgressView.swift    # You tab stats, achievements, backup/restore
-│   │   └── TracingView.swift     # Handwriting practice
-│   ├── FidelApp.swift            # App entry point
-│   └── ContentView.swift         # Tab navigation
-└── Fidel.xcodeproj
-```
+## Building
 
-## Building the App
-
-1. Open `Fidel.xcodeproj` in Xcode 15+
-2. Select an iOS 17+ simulator or device
-3. Build and run (Cmd+R)
-
-## Current Navigation
-
-The bottom tab bar is:
-
-1. **Today**: Daily focus, phrase preview, and quick paths.
-2. **Learn**: Open learning path — a recommended next step plus fully-tappable lessons with mastery rings (no locked stages).
-3. **Practice**: Flashcards, quiz, sentence builder, word order, fill the blank (cloze), grammar reference, reading passages, match pairs, speed drill, pronunciation, and tracing.
-4. **Selam**: Tutor chat.
-5. **You**: Progress, achievements, statistics, and backup/restore.
-
-Reference is not a bottom tab. Open it from **Today > Quick paths > Reference**. Pronunciation audio is surfaced in **Practice > Pronunciation**, in eligible Learn/Journey activities, and as speaker buttons on **Reference > Quick Phrases** rows.
-
-## Content Source
-
-Learner-facing content is bundled in `Fidel/Data/*.json`, including:
-- Complete Fidel alphabet with 238 characters
-- 94 grammar patterns (including 12 verb-conjugation tables)
-- 30 conversation scripts with full dialogues
-- 706 phrases
-- 1038 vocabulary words across multiple categories
-- 90 cultural notes
-- 5 graded reading passages with comprehension questions
-- 171 active Azure-generated phrase pronunciation clips in `audio_manifest.json`
-
-The full generated audio catalog also records alternate reviewed/generated clips. See `docs/audio-asset-library.md` before changing audio files, manifests, or voice selection.
-
-## Building Locally
+Requirements: Xcode 26 or later and an iOS 26 simulator or device.
 
 1. Clone the repo and open `Fidel.xcodeproj`.
-2. Select the **Fidel** target → **Signing & Capabilities**, pick your own team, and change the bundle identifier (e.g. `com.yourname.fidel`).
-3. Run on a simulator. The app works fully offline: lessons, practice, and bundled pronunciation audio need no accounts or keys.
+2. Pick an iOS 26 simulator and press Run. No signing team is needed for the simulator.
+3. To run on a device, select the **Fidel** target → **Signing & Capabilities**, choose your team, and change the bundle identifier (for example `com.yourname.fidel`).
+
+Run the tests with **Product → Test**, or from the command line:
+
+```bash
+xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' DEVELOPMENT_TEAM= CODE_SIGN_IDENTITY=-
+```
 
 Optional pieces:
 
-- **iCloud sync** uses the CloudKit container `iCloud.dev.skahessay.learnamharic`. To use sync with your own build, create a container under your team and update `Fidel/Fidel.entitlements` and `Fidel/FidelRelease.entitlements`. Without it the app still runs on local storage.
-- **Selam AI tutor** reads `OPENROUTER_API_KEY` and **ElevenLabs TTS** reads `ELEVENLABS_API_KEY` from the process environment. Set them under *Edit Scheme → Run → Arguments → Environment Variables*, and keep personal schemes out of commits. Without a key, Selam is unavailable and speech falls back to system TTS.
+- **iCloud sync** uses the CloudKit container `iCloud.dev.skahessay.learnamharic`. For sync in your own build, create a container under your team and update `Fidel/Fidel.entitlements` and `Fidel/FidelRelease.entitlements`. Without it the app runs on local storage.
+- **Selam** needs no key. It appears only where Apple Intelligence is available: an Apple Intelligence–capable device, or the simulator on a Mac with Apple Intelligence enabled.
 
-Never commit API keys.
+## Web version
 
-## Contributing
+A browser version lives in [`web/`](web): the same content, lessons, practice modes and tracing, installable and usable offline. It reads `Fidel/Data` at build time and shares golden test fixtures with the iOS app, so the two stay in step. See [`web/PARITY.md`](web/PARITY.md) for what differs and why.
 
-Issues and pull requests are welcome, especially corrections to Amharic content (vocabulary, phrases, transliterations, grammar notes) from native and heritage speakers. Lesson content lives in `Fidel/Data/*.json`.
+```bash
+cd web && npm install && npm run dev
+```
+
+`npm test` runs the shared golden fixtures, and `npm run e2e` runs the Playwright suite against a production build. The site deploys to GitHub Pages from `.github/workflows/pages.yml`.
+
+## Project layout
+
+```
+Fidel/
+├── FidelApp.swift, ContentView.swift   App entry and tab shell
+├── Data/          Bundled content (JSON) and audio manifests
+├── Audio/         Generated pronunciation MP3s
+├── Models/        SwiftData models and content types
+├── Repositories/  Content, progress and audio access
+├── Services/      Spaced repetition, planning, tracing, audio, Selam
+├── Sync/          CloudKit sync store and record mapping
+├── ViewModels/    Observable feature state
+└── Views/         SwiftUI screens and components
+FidelTests/        Unit tests
+Packages/SyncKit/  Vendored CloudKit sync engine
+web/               Browser version (Vite + Preact + TypeScript)
+```
 
 ## Design
 
-The app features an Ethiopian-inspired color palette:
-- **Green** (#229632): Primary accent, representing hope and the land
-- **Yellow** (#FCDD09): Secondary accent, representing peace and harmony
-- **Red** (#DA121A): Tertiary accent, representing strength and sacrifice
+Fidel uses a calm, warm palette: terracotta `#B55130`, eucalyptus `#4B7A64` and gold `#CF9A2E` on a paper background (`#F6F0E4`) with dark ink (`#221C16`). Each color has a dark-mode variant in [`Theme.swift`](Fidel/Views/Theme.swift).
 
-## Future Enhancements
+## Contributing
 
-Future product and content work is tracked in `docs/backlog.md`.
+Contributions are welcome, especially corrections to Amharic content from native and heritage speakers. See [CONTRIBUTING.md](CONTRIBUTING.md). Planned work is tracked in [`docs/backlog.md`](docs/backlog.md).
 
 ## License
 

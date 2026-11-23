@@ -8,29 +8,29 @@ import Foundation
 final class WordOrderViewModel {
 
     enum Direction {
-        case englishToAmharic   // prompt is English, tiles are Amharic
-        case amharicToEnglish   // prompt is Amharic, tiles are English
+        case englishToAmharic  // prompt is English, tiles are Amharic
+        case amharicToEnglish  // prompt is Amharic, tiles are English
     }
 
     /// A single draggable/tappable word tile. `id` is unique per instance so the
     /// UI tracks tiles correctly even when two tiles share the same text.
     struct Tile: Identifiable, Hashable {
         let id = UUID()
-        let text: String          // displayed word and the value compared against the answer
+        let text: String  // displayed word and the value compared against the answer
         let transliteration: String?
-        let isAmharic: Bool       // selects the font and whether tapping plays audio
+        let isAmharic: Bool  // selects the font and whether tapping plays audio
         var audioText: String? { isAmharic ? text : nil }
     }
 
     struct Question: Identifiable {
         let id: String
         let direction: Direction
-        let promptText: String            // the sentence shown as the prompt
+        let promptText: String  // the sentence shown as the prompt
         let promptTransliteration: String?
-        let promptAudioText: String?      // Amharic sentence to sound on the prompt speaker (amharicToEnglish only)
+        let promptAudioText: String?  // Amharic sentence to sound on the prompt speaker (amharicToEnglish only)
         let tilesAreAmharic: Bool
-        let answer: [String]              // ordered correct values
-        let correctText: String           // full correct sentence, shown on a miss
+        let answer: [String]  // ordered correct values
+        let correctText: String  // full correct sentence, shown on a miss
         let bank: [Tile]
     }
 

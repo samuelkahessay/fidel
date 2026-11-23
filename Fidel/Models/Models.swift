@@ -1,6 +1,6 @@
 import Foundation
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 enum LocalLearner {
     static let userId = "local-device"
@@ -18,13 +18,13 @@ struct Pattern: Identifiable, Codable, Hashable {
     let template: String
     let examples: [Example]
     let substitutions: [Substitution]
-    
+
     struct Example: Codable, Hashable {
         let amharic: String
         let transliteration: String
         let english: String
     }
-    
+
     struct Substitution: Codable, Hashable {
         let amharic: String
         let transliteration: String
@@ -38,7 +38,7 @@ struct Conversation: Identifiable, Codable, Hashable {
     let title: String
     let difficulty: Int
     let lines: [DialogueLine]
-    
+
     struct DialogueLine: Codable, Hashable, Identifiable {
         var id: Int { lineNum }
         let lineNum: Int
@@ -47,7 +47,7 @@ struct Conversation: Identifiable, Codable, Hashable {
         let transliteration: String
         let english: String
     }
-    
+
     var difficultyStars: String {
         String(repeating: "star.fill", count: difficulty)
     }
@@ -76,7 +76,7 @@ struct FidelCharacter: Identifiable, Codable, Hashable {
     var id: String { "\(rowIndex)-\(vowelOrder)" }
     let character: String
     let consonant: String
-    let rowIndex: Int    // 0-based position in the fidelChart (unique per consonant row)
+    let rowIndex: Int  // 0-based position in the fidelChart (unique per consonant row)
     let vowelOrder: Int  // 1-7 for the seven vowel forms
     let romanization: String
     let audioHint: String
@@ -246,23 +246,30 @@ final class UserProgress {
     var learningStage: LearningStage {
         LearningStage(rawValue: currentStage) ?? .scriptAndSounds
     }
-    
-    func addXP(_ amount: Int) {
+
+    /// XP earned today. `todayXP` is only reset by the next `addXP`, so it is
+    /// stale until the learner earns XP on a new day; display this instead.
+    func xpEarnedToday(now: Date = .now) -> Int {
+        guard let lastPracticeDate, Calendar.current.isDate(lastPracticeDate, inSameDayAs: now) else { return 0 }
+        return todayXP
+    }
+
+    func addXP(_ amount: Int, now: Date = .now) {
         totalXP += amount
-        todayXP += amount
-        updatedAt = .now
+        todayXP = xpEarnedToday(now: now) + amount
+        updatedAt = now
         // Every other genuine-edit method in this class (recognizeFidelCharacter,
         // traceCharacter, completeLesson, learnPattern, masterVocabulary,
         // practiceConversation) awards XP through this call, so stamping here
         // covers them all in one place; markLessonStarted is the one mutator
         // that doesn't award XP and stamps for itself below.
-        syncModifiedAt = .now
-        checkStreak()
+        syncModifiedAt = now
+        checkStreak(now: now)
     }
-    
-    func checkStreak() {
+
+    func checkStreak(now: Date = .now) {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date.now)
+        let today = calendar.startOfDay(for: now)
 
         grantWeeklyStreakFreezeIfNeeded(calendar: calendar, today: today)
 
@@ -290,7 +297,7 @@ final class UserProgress {
             currentStreak = 1
         }
 
-        lastPracticeDate = .now
+        lastPracticeDate = now
     }
 
     /// Grants up to 2 streak freezes once per ISO week so learners always have
@@ -308,7 +315,7 @@ final class UserProgress {
         lastFreezeGrantWeek = weekKey
         weeklyStreakCount += 1
     }
-    
+
     /// Records that the learner opened a lesson without completing it, so
     /// `NextStepPlanner` can offer to resume it. No-op if already completed or
     /// already tracked as in-progress.
@@ -328,7 +335,7 @@ final class UserProgress {
         }
         lessonsInProgress.removeAll { $0 == lessonId }
     }
-    
+
     func learnPattern(_ patternId: String) {
         if !patternsLearned.contains(patternId) {
             patternsLearned.append(patternId)
@@ -336,7 +343,7 @@ final class UserProgress {
             updatedAt = .now
         }
     }
-    
+
     func masterVocabulary(_ wordId: String) {
         if !vocabularyMastered.contains(wordId) {
             vocabularyMastered.append(wordId)
@@ -344,7 +351,7 @@ final class UserProgress {
             updatedAt = .now
         }
     }
-    
+
     func practiceConversation(_ conversationId: Int) {
         if !conversationsPracticed.contains(conversationId) {
             conversationsPracticed.append(conversationId)
@@ -402,7 +409,10 @@ struct QuizQuestion: Identifiable {
     let vocabularyWord: VocabularyWord?
     var userAnswer: String?
 
-    init(type: QuizType, question: String, amharic: String?, correctAnswer: String, options: [String], transliterationHint: String? = nil, vocabularyWord: VocabularyWord? = nil) {
+    init(
+        type: QuizType, question: String, amharic: String?, correctAnswer: String, options: [String], transliterationHint: String? = nil,
+        vocabularyWord: VocabularyWord? = nil
+    ) {
         self.type = type
         self.question = question
         self.amharic = amharic
@@ -411,7 +421,7 @@ struct QuizQuestion: Identifiable {
         self.transliterationHint = transliterationHint
         self.vocabularyWord = vocabularyWord
     }
-    
+
     var isCorrect: Bool {
         userAnswer?.lowercased() == correctAnswer.lowercased()
     }
@@ -438,7 +448,7 @@ struct Achievement: Identifiable, Hashable {
     let icon: String
     let requirement: Int
     let category: AchievementCategory
-    
+
     enum AchievementCategory: String {
         case streak = "Streak"
         case vocabulary = "Vocabulary"
@@ -449,19 +459,37 @@ struct Achievement: Identifiable, Hashable {
 }
 
 let allAchievements: [Achievement] = [
-    Achievement(id: "first_steps", title: "First Steps", description: "Complete your first lesson", icon: "figure.walk", requirement: 1, category: .lessons),
-    Achievement(id: "word_collector", title: "Word Collector", description: "Learn 50 vocabulary words", icon: "text.book.closed", requirement: 50, category: .vocabulary),
-    Achievement(id: "vocabulary_master", title: "Vocabulary Master", description: "Learn 200 vocabulary words", icon: "books.vertical", requirement: 200, category: .vocabulary),
+    Achievement(
+        id: "first_steps", title: "First Steps", description: "Complete your first lesson", icon: "figure.walk", requirement: 1,
+        category: .lessons),
+    Achievement(
+        id: "word_collector", title: "Word Collector", description: "Learn 50 vocabulary words", icon: "text.book.closed", requirement: 50,
+        category: .vocabulary),
+    Achievement(
+        id: "vocabulary_master", title: "Vocabulary Master", description: "Learn 200 vocabulary words", icon: "books.vertical",
+        requirement: 200, category: .vocabulary),
     Achievement(id: "streak_3", title: "On Fire", description: "Maintain a 3-day streak", icon: "flame", requirement: 3, category: .streak),
-    Achievement(id: "streak_7", title: "Week Warrior", description: "Maintain a 7-day streak", icon: "flame.fill", requirement: 7, category: .streak),
-    Achievement(id: "streak_30", title: "Dedicated Learner", description: "Maintain a 30-day streak", icon: "star.fill", requirement: 30, category: .streak),
-    Achievement(id: "conversationalist", title: "Conversationalist", description: "Practice 5 conversations", icon: "bubble.left.and.bubble.right", requirement: 5, category: .conversations),
-    Achievement(id: "social_butterfly", title: "Social Butterfly", description: "Practice all 30 conversations", icon: "person.3.fill", requirement: 30, category: .conversations),
+    Achievement(
+        id: "streak_7", title: "Week Warrior", description: "Maintain a 7-day streak", icon: "flame.fill", requirement: 7, category: .streak
+    ),
+    Achievement(
+        id: "streak_30", title: "Dedicated Learner", description: "Maintain a 30-day streak", icon: "star.fill", requirement: 30,
+        category: .streak),
+    Achievement(
+        id: "conversationalist", title: "Conversationalist", description: "Practice 5 conversations", icon: "bubble.left.and.bubble.right",
+        requirement: 5, category: .conversations),
+    Achievement(
+        id: "social_butterfly", title: "Social Butterfly", description: "Practice all 30 conversations", icon: "person.3.fill",
+        requirement: 30, category: .conversations),
     Achievement(id: "xp_100", title: "Rising Star", description: "Earn 100 XP", icon: "star", requirement: 100, category: .xp),
     Achievement(id: "xp_500", title: "Shining Star", description: "Earn 500 XP", icon: "star.circle", requirement: 500, category: .xp),
     Achievement(id: "xp_1000", title: "Superstar", description: "Earn 1000 XP", icon: "star.circle.fill", requirement: 1000, category: .xp),
-    Achievement(id: "culture_explorer", title: "Culture Explorer", description: "Complete Lesson 8 (Culture)", icon: "globe.americas.fill", requirement: 8, category: .lessons),
-    Achievement(id: "polyglot", title: "Polyglot", description: "Complete all 8 lessons", icon: "graduationcap.fill", requirement: 8, category: .lessons),
+    Achievement(
+        id: "culture_explorer", title: "Culture Explorer", description: "Complete Lesson 8 (Culture)", icon: "globe.americas.fill",
+        requirement: 8, category: .lessons),
+    Achievement(
+        id: "polyglot", title: "Polyglot", description: "Complete all 8 lessons", icon: "graduationcap.fill", requirement: 8,
+        category: .lessons),
 ]
 
 // MARK: - Practice Mode

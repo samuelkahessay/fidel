@@ -21,14 +21,14 @@ protocol ProgressRepositoryProtocol {
     func learnPattern(_ patternId: String)
     func masterVocabulary(_ wordId: String)
     func practiceConversation(_ conversationId: Int)
-    
+
     // Flashcard Progress
     func getOrCreateFlashcardProgress(for itemId: String, type: String) -> FlashcardProgress
     func recordFlashcardReview(for itemId: String, type: String, rating: ReviewRating)
     func getDueFlashcards(type: String?) -> [FlashcardProgress]
     func getUpcomingFlashcards(days: Int) -> [FlashcardProgress]
     func initializeFlashcards(vocabulary: [VocabularyWord], phrases: [Phrase])
-    
+
     // Fidel & Stages
     func recognizeFidelCharacter(_ charId: String)
     func traceCharacter(_ charId: String)
@@ -57,14 +57,13 @@ protocol ProgressRepositoryProtocol {
 @MainActor
 @Observable
 final class ProgressRepository: ProgressRepositoryProtocol {
-    
+
     private let modelContext: ModelContext
     private let explicitUserId: String?
     /// Fired with the affected model's `syncID` after every genuine mutation
     /// so the caller can forward it to `SyncEngine.markPending`. Centralizing
     /// here (rather than at each of the ~17 ad-hoc construction sites) is what
-    /// guarantees every mutation path publishes to CloudKit — see FidelApp /
-    /// Throughline's HealthSync `onLocalMutations` for the reference pattern.
+    /// guarantees every mutation path publishes to CloudKit (see FidelApp).
     private let onMutation: ((SyncID) -> Void)?
     private var activeUserId: String {
         explicitUserId ?? LocalLearner.userId
@@ -75,14 +74,14 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         self.explicitUserId = userId
         self.onMutation = onMutation
     }
-    
+
     // MARK: - User Progress
 
     @discardableResult
     func ensureUserProgress() -> UserProgress {
         getOrCreateUserProgress()
     }
-    
+
     func getUserProgress() -> UserProgress? {
         let ownerId = activeUserId
         let descriptor = FetchDescriptor<UserProgress>(
@@ -94,7 +93,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
         return consolidateUserProgress(records, ownerId: ownerId)
     }
-    
+
     private func getOrCreateUserProgress() -> UserProgress {
         let ownerId = activeUserId
         if let existing = getUserProgress() {
@@ -116,7 +115,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         modelContext.insert(newProgress)
         return newProgress
     }
-    
+
     func addXP(_ amount: Int) {
         let progress = getOrCreateUserProgress()
         progress.addXP(amount)
@@ -160,9 +159,9 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         progress.practiceConversation(conversationId)
         onMutation?(progress.syncID)
     }
-    
+
     // MARK: - Flashcard Progress
-    
+
     func getOrCreateFlashcardProgress(for itemId: String, type: String) -> FlashcardProgress {
         let ownerId = activeUserId
         let descriptor = FetchDescriptor<FlashcardProgress>(
@@ -170,26 +169,26 @@ final class ProgressRepository: ProgressRepositoryProtocol {
                 $0.ownerUserId == ownerId && $0.itemId == itemId && $0.itemType == type
             }
         )
-        
+
         if let existingRecords = try? modelContext.fetch(descriptor), !existingRecords.isEmpty {
             return consolidateFlashcardProgress(existingRecords, ownerId: ownerId)
         }
-        
+
         let newProgress = FlashcardProgress(itemId: itemId, itemType: type, ownerUserId: ownerId)
         modelContext.insert(newProgress)
         return newProgress
     }
-    
+
     func recordFlashcardReview(for itemId: String, type: String, rating: ReviewRating) {
         let progress = getOrCreateFlashcardProgress(for: itemId, type: type)
         FSRSAlgorithm.updateFlashcardProgress(progress: progress, rating: rating)
         onMutation?(progress.syncID)
     }
-    
+
     func getDueFlashcards(type: String?) -> [FlashcardProgress] {
         let ownerId = activeUserId
         let descriptor: FetchDescriptor<FlashcardProgress>
-        
+
         if let type = type {
             descriptor = FetchDescriptor<FlashcardProgress>(
                 predicate: #Predicate<FlashcardProgress> {
@@ -201,15 +200,15 @@ final class ProgressRepository: ProgressRepositoryProtocol {
                 predicate: #Predicate<FlashcardProgress> { $0.ownerUserId == ownerId }
             )
         }
-        
+
         guard let allProgress = try? modelContext.fetch(descriptor) else {
             return []
         }
-        
+
         let deduplicated = deduplicatedFlashcards(from: allProgress, ownerId: ownerId)
         return FSRSAlgorithm.getDueCards(from: deduplicated)
     }
-    
+
     func getUpcomingFlashcards(days: Int) -> [FlashcardProgress] {
         let ownerId = activeUserId
         let descriptor = FetchDescriptor<FlashcardProgress>(
@@ -221,7 +220,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         let deduplicated = deduplicatedFlashcards(from: allProgress, ownerId: ownerId)
         return FSRSAlgorithm.getUpcomingCards(from: deduplicated, days: days)
     }
-    
+
     func initializeFlashcards(vocabulary: [VocabularyWord], phrases: [Phrase]) {
         for word in vocabulary {
             _ = getOrCreateFlashcardProgress(for: word.id, type: "vocabulary")
@@ -230,7 +229,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
             _ = getOrCreateFlashcardProgress(for: String(phrase.id), type: "phrase")
         }
     }
-    
+
     // MARK: - Fidel & Stages
 
     func recognizeFidelCharacter(_ charId: String) {
@@ -287,11 +286,13 @@ final class ProgressRepository: ProgressRepositoryProtocol {
 
     @discardableResult
     func recordTraceCompletion(characterId: String, completedLevel: Int, score: Int, misses: Int) -> TraceCompletionOutcome {
-        let mastery = getTraceMastery(for: characterId) ?? {
-            let created = CharacterTraceMastery(characterId: characterId, ownerUserId: activeUserId)
-            modelContext.insert(created)
-            return created
-        }()
+        let mastery =
+            getTraceMastery(for: characterId)
+            ?? {
+                let created = CharacterTraceMastery(characterId: characterId, ownerUserId: activeUserId)
+                modelContext.insert(created)
+                return created
+            }()
 
         mastery.attempts += 1
         mastery.totalMisses += misses
@@ -382,27 +383,27 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     func getLessonsCompletedCount() -> Int {
         getUserProgress()?.lessonsCompleted.count ?? 0
     }
-    
+
     func getVocabularyMasteredCount() -> Int {
         getUserProgress()?.vocabularyMastered.count ?? 0
     }
-    
+
     func getCurrentStreak() -> Int {
         getUserProgress()?.currentStreak ?? 0
     }
-    
+
     func getTotalXP() -> Int {
         getUserProgress()?.totalXP ?? 0
     }
-    
+
     func getTodayXP() -> Int {
-        getUserProgress()?.todayXP ?? 0
+        getUserProgress()?.xpEarnedToday() ?? 0
     }
-    
+
     func getDailyGoal() -> Int {
         getUserProgress()?.dailyGoal ?? 50
     }
-    
+
     func getAchievements() -> [String] {
         getUserProgress()?.achievements ?? []
     }
@@ -430,21 +431,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         for record in records where record !== primary {
-            primary.totalXP = max(primary.totalXP, record.totalXP)
-            primary.currentStreak = max(primary.currentStreak, record.currentStreak)
-            primary.longestStreak = max(primary.longestStreak, record.longestStreak)
-            primary.dailyGoal = max(primary.dailyGoal, record.dailyGoal)
-            primary.todayXP = max(primary.todayXP, record.todayXP)
-            primary.currentStage = max(primary.currentStage, record.currentStage)
-            primary.lastPracticeDate = maxDate(primary.lastPracticeDate, record.lastPracticeDate)
-            primary.lessonsCompleted = mergedUnique(primary.lessonsCompleted, record.lessonsCompleted)
-            primary.patternsLearned = mergedUnique(primary.patternsLearned, record.patternsLearned)
-            primary.vocabularyMastered = mergedUnique(primary.vocabularyMastered, record.vocabularyMastered)
-            primary.conversationsPracticed = mergedUnique(primary.conversationsPracticed, record.conversationsPracticed)
-            primary.achievements = mergedUnique(primary.achievements, record.achievements)
-            primary.fidelCharactersRecognized = mergedUnique(primary.fidelCharactersRecognized, record.fidelCharactersRecognized)
-            primary.charactersTraced = mergedUnique(primary.charactersTraced, record.charactersTraced)
-            primary.updatedAt = maxDate(primary.updatedAt, record.updatedAt) ?? Date.now
+            primary.apply(primary.mergeState.merged(with: record.mergeState))
             didMutate = true
             // Deletes a LOCAL duplicate only — post-adoption, `primary` and
             // `record` converge on the same syncID, so `record` is never the
@@ -545,7 +532,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
 
     private func maxDate(_ lhs: Date?, _ rhs: Date?) -> Date? {
         switch (lhs, rhs) {
-        case let (l?, r?):
+        case (let l?, let r?):
             return max(l, r)
         case (let l?, nil):
             return l
@@ -554,9 +541,5 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         case (nil, nil):
             return nil
         }
-    }
-
-    private func mergedUnique<T: Hashable>(_ lhs: [T], _ rhs: [T]) -> [T] {
-        Array(Set(lhs).union(rhs))
     }
 }

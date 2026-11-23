@@ -22,18 +22,18 @@ final class ClozeViewModel {
     /// One piece of the displayed sentence: a fixed word, or the blank to fill.
     struct Segment: Identifiable, Hashable {
         let id = UUID()
-        let text: String     // token text, or "" for the blank
+        let text: String  // token text, or "" for the blank
         let isBlank: Bool
     }
 
     /// A single cloze question: a sentence with exactly one token blanked.
     struct Question: Identifiable {
         let id: String
-        let english: String                 // context prompt shown above the sentence
-        let segments: [Segment]             // the sentence rendered with one blank
-        let correctAnswer: String           // Amharic text of the missing word
-        let correctTransliteration: String? // shown as a hint on reveal
-        let fullAmharic: String             // complete sentence, shown on reveal
+        let english: String  // context prompt shown above the sentence
+        let segments: [Segment]  // the sentence rendered with one blank
+        let correctAnswer: String  // Amharic text of the missing word
+        let correctTransliteration: String?  // shown as a hint on reveal
+        let fullAmharic: String  // complete sentence, shown on reveal
         let fullTransliteration: String
         let options: [Option]
     }
@@ -74,7 +74,7 @@ final class ClozeViewModel {
 
     func startSession(count: Int = 8) {
         let usable = lessonRepository.getSentenceExercises()
-            .filter { $0.amharicTokens.count >= 2 }   // need ≥2 tokens so blanking leaves context
+            .filter { $0.amharicTokens.count >= 2 }  // need ≥2 tokens so blanking leaves context
             .shuffled()
             .prefix(count)
         questions = usable.compactMap { Self.makeQuestion(from: $0) }

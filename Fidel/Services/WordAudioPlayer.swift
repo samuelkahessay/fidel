@@ -27,7 +27,8 @@ final class WordAudioPlayer {
         speakingWord = amharic
 
         if let asset = repository.wordAsset(forAmharic: amharic),
-           let url = repository.audioURL(for: asset) {
+            let url = repository.audioURL(for: asset)
+        {
             bundled.play(asset: asset, url: url)
         } else {
             ensureFallback().speakAmharic(amharic)

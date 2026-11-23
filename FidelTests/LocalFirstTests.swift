@@ -1,8 +1,9 @@
+import PencilKit
 import SwiftData
 import SwiftUI
-import PencilKit
 import UIKit
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 @MainActor
@@ -103,7 +104,7 @@ final class LocalFirstTests: XCTestCase {
     func testDrawingThumbnailUsesFullSourceCanvas() {
         let drawing = makeDrawing(points: [
             CGPoint(x: 250, y: 250),
-            CGPoint(x: 285, y: 285)
+            CGPoint(x: 285, y: 285),
         ])
 
         let thumbnail = TracingDrawingRenderer.thumbnail(
@@ -268,7 +269,7 @@ final class LocalFirstTests: XCTestCase {
             ("Directions", "ጠረጴዛ ስር", "tarapeza sir", "under the table"),
             ("Common Nouns", "አዋቂ", "awaki", "adult"),
             ("Common Adjectives", "የተጨናነቀ", "yatachananaka", "crowded"),
-            ("Technology", "ኔትዎርክ", "network", "network/service area")
+            ("Technology", "ኔትዎርክ", "network", "network/service area"),
         ]
 
         XCTAssertEqual(AmharicData.vocabulary.count, 1038)
@@ -311,11 +312,10 @@ final class LocalFirstTests: XCTestCase {
         )
     }
 
-    /// Mirrors `AccountChangeSheet.adoptRemote()`'s wipe step
-    /// (`Fidel/ContentView.swift`): deletes the three synced progress models
+    /// `FidelSyncStore.wipeSyncedModels()` backs the account-change sheet's
+    /// "Start fresh from iCloud": it deletes the three synced progress models
     /// but must leave Selam chat records untouched, since those are
-    /// device-local AI tutor conversations unrelated to the account's synced
-    /// learning data.
+    /// device-local tutor conversations unrelated to the account's data.
     func testAccountChangeWipeDeletesSyncedModelsButLeavesSelamIntact() throws {
         let container = try makeContainer()
         let context = container.mainContext
@@ -328,11 +328,9 @@ final class LocalFirstTests: XCTestCase {
         context.insert(SelamMessage(content: "Selam!", role: .user))
         try context.save()
 
-        try context.delete(model: UserProgress.self)
-        try context.delete(model: FlashcardProgress.self)
-        try context.delete(model: CharacterTraceMastery.self)
-        try context.save()
+        try FidelSyncStore(context: context).wipeSyncedModels()
 
+        XCTAssertFalse(context.hasChanges, "the wipe must land as one saved transaction")
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<UserProgress>()), 0)
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<FlashcardProgress>()), 0)
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<CharacterTraceMastery>()), 0)
@@ -346,7 +344,7 @@ final class LocalFirstTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         return try ModelContainer(for: schema, configurations: [configuration])
@@ -440,15 +438,17 @@ final class LocalFirstTests: XCTestCase {
         let bytesPerRow = width * 4
         var pixels = [UInt8](repeating: 0, count: bytesPerRow * height)
 
-        guard let context = CGContext(
-            data: &pixels,
-            width: width,
-            height: height,
-            bitsPerComponent: 8,
-            bytesPerRow: bytesPerRow,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-        ) else {
+        guard
+            let context = CGContext(
+                data: &pixels,
+                width: width,
+                height: height,
+                bitsPerComponent: 8,
+                bytesPerRow: bytesPerRow,
+                space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            )
+        else {
             return false
         }
 

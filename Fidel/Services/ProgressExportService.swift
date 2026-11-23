@@ -241,11 +241,13 @@ struct ProgressExportService {
 
         for snapshot in snapshots {
             let key = "\(snapshot.itemType)::\(snapshot.itemId)"
-            let progress = existingByKey[key] ?? FlashcardProgress(
-                itemId: snapshot.itemId,
-                itemType: snapshot.itemType,
-                ownerUserId: LocalLearner.userId
-            )
+            let progress =
+                existingByKey[key]
+                ?? FlashcardProgress(
+                    itemId: snapshot.itemId,
+                    itemType: snapshot.itemType,
+                    ownerUserId: LocalLearner.userId
+                )
             let isNew = existingByKey[key] == nil
             let before = FlashcardProgressSnapshot(progress: progress)
             if isNew {
@@ -282,12 +284,13 @@ struct ProgressExportService {
         settingsStore.showsAITools = snapshot.showsAITools
         settingsStore.onboardingComplete = snapshot.onboardingComplete
         settingsStore.lastOpenedActivity = snapshot.lastOpenedActivity
-        settingsStore.dailyGoalTier = DailyGoalTier(rawValue: snapshot.dailyGoalTier ?? DailyGoalTier.default.rawValue) ?? DailyGoalTier.default
+        settingsStore.dailyGoalTier =
+            DailyGoalTier(rawValue: snapshot.dailyGoalTier ?? DailyGoalTier.default.rawValue) ?? DailyGoalTier.default
     }
 
     private func maxDate(_ lhs: Date?, _ rhs: Date?) -> Date? {
         switch (lhs, rhs) {
-        case let (l?, r?):
+        case (let l?, let r?):
             return max(l, r)
         case (let l?, nil):
             return l

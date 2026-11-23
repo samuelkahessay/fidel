@@ -1,5 +1,5 @@
-import SwiftUI
 import PencilKit
+import SwiftUI
 
 /// A SwiftUI wrapper around PKCanvasView for finger-based character drawing.
 struct DrawingCanvasView: UIViewRepresentable {

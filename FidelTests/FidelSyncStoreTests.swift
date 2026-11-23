@@ -1,8 +1,9 @@
 import CloudKit
 import SwiftData
-import XCTest
-@testable import Fidel___Learn_Amharic
 import SyncKit
+import XCTest
+
+@testable import Fidel___Learn_Amharic
 
 /// Tests for `SyncMapping` (CKRecord encode/apply/syncID on the three synced
 /// models) and `FidelSyncStore` (the `SyncStore` conformance). Two of the
@@ -26,7 +27,7 @@ final class FidelSyncStoreTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(
             schema: schema,
@@ -339,11 +340,11 @@ final class FidelSyncStoreTests: XCTestCase {
 
         let local = UserProgress(ownerUserId: "user-1")
         local.lessonsInProgress = [5]
-        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000) // local is newer
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000)  // local is newer
 
         let remote = UserProgress(ownerUserId: "user-1")
         remote.lessonsInProgress = [9]
-        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000) // remote is older
+        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000)  // remote is older
         context.insert(local)
         try context.save()
 
@@ -366,13 +367,13 @@ final class FidelSyncStoreTests: XCTestCase {
 
         let local = UserProgress(ownerUserId: "user-1")
         local.lessonsInProgress = [5]
-        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000) // local is older
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000)  // local is older
         context.insert(local)
         try context.save()
 
         let remote = UserProgress(ownerUserId: "user-1")
         remote.lessonsInProgress = [9]
-        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000) // remote is newer
+        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000)  // remote is newer
         let record = CKRecord(recordType: UserProgress.recordType, recordID: local.syncID.recordID(in: zoneID))
         remote.encode(onto: record)
 
@@ -394,16 +395,16 @@ final class FidelSyncStoreTests: XCTestCase {
         let store = FidelSyncStore(context: context)
 
         let local = UserProgress(ownerUserId: "user-1")
-        local.streakFreezesAvailable = 1 // a freeze was just spent locally
+        local.streakFreezesAvailable = 1  // a freeze was just spent locally
         local.weeklyStreakCount = 2
-        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000) // local is newer
+        local.syncModifiedAt = Date(timeIntervalSince1970: 1_700_100_000)  // local is newer
         context.insert(local)
         try context.save()
 
         let remote = UserProgress(ownerUserId: "user-1")
-        remote.streakFreezesAvailable = 3 // stale, higher remote value
+        remote.streakFreezesAvailable = 3  // stale, higher remote value
         remote.weeklyStreakCount = 5
-        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000) // remote is older
+        remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_000_000)  // remote is older
         let record = CKRecord(recordType: UserProgress.recordType, recordID: local.syncID.recordID(in: zoneID))
         remote.encode(onto: record)
 
@@ -534,11 +535,11 @@ final class FidelSyncStoreTests: XCTestCase {
         try context.save()
 
         let remote = CharacterTraceMastery(characterId: "0-1", ownerUserId: "user-1")
-        remote.level = 1               // lower than local
-        remote.bestScore = 95           // higher than local
-        remote.attempts = 3             // lower than local
-        remote.totalMisses = 30         // higher than local
-        remote.lastPracticedAt = Date(timeIntervalSince1970: 1_700_050_000) // newer than local
+        remote.level = 1  // lower than local
+        remote.bestScore = 95  // higher than local
+        remote.attempts = 3  // lower than local
+        remote.totalMisses = 30  // higher than local
+        remote.lastPracticedAt = Date(timeIntervalSince1970: 1_700_050_000)  // newer than local
         remote.syncModifiedAt = Date(timeIntervalSince1970: 1_700_050_000)
         let record = CKRecord(recordType: CharacterTraceMastery.recordType, recordID: local.syncID.recordID(in: zoneID))
         remote.encode(onto: record)

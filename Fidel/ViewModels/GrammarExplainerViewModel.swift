@@ -15,10 +15,10 @@ final class GrammarExplainerViewModel {
 
     /// One grammar topic: a category of patterns with an English rule summary.
     struct Topic: Identifiable, Hashable {
-        let id: String          // the pattern category string
-        let title: String       // human-friendly title
-        let blurb: String       // English explanation of the rule
-        let patterns: [Pattern] // the vetted patterns in this category
+        let id: String  // the pattern category string
+        let title: String  // human-friendly title
+        let blurb: String  // English explanation of the rule
+        let patterns: [Pattern]  // the vetted patterns in this category
         var unit: Int { patterns.map { $0.unit }.min() ?? 0 }
     }
 
@@ -50,7 +50,8 @@ final class GrammarExplainerViewModel {
     /// (e.g. "BASIC PRESENT TENSE (Subject + Verb)" → "Basic Present Tense").
     private static func title(for category: String) -> String {
         let base = category.split(separator: "(").first.map(String.init) ?? category
-        return base
+        return
+            base
             .trimmingCharacters(in: .whitespaces)
             .split(separator: " ")
             .map { $0.prefix(1).uppercased() + $0.dropFirst().lowercased() }

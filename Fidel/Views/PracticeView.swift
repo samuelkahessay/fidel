@@ -1,5 +1,6 @@
-import SwiftUI
+import Combine
 import SwiftData
+import SwiftUI
 import SyncKit
 
 struct PracticeHubView: View {
@@ -20,7 +21,7 @@ struct PracticeHubView: View {
         .matchPairs,
         .speedDrill,
         .pronunciation,
-        .tracing
+        .tracing,
     ]
 
     var body: some View {

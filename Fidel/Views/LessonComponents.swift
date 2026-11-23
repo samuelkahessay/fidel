@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftData
+import SwiftUI
 import SyncKit
 
 struct LessonCard: View {
@@ -96,9 +96,12 @@ struct LessonDetailView: View {
         .navigationTitle(lesson.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: { showSelam = true }) {
-                    Image(systemName: "sparkles")
+            if SelamAvailability.isEnabled {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: { showSelam = true }) {
+                        Image(systemName: "sparkles")
+                    }
+                    .accessibilityLabel("Ask Selam")
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
@@ -119,7 +122,7 @@ struct LessonDetailView: View {
             )
         }
         .alert("Lesson Complete!", isPresented: $showCompletion) {
-            Button("OK") { }
+            Button("OK") {}
         } message: {
             Text("You earned 25 XP!")
         }
@@ -424,9 +427,11 @@ struct FlowLayout: Layout {
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         let result = FlowResult(in: bounds.width, subviews: subviews, spacing: spacing)
         for (index, subview) in subviews.enumerated() {
-            subview.place(at: CGPoint(x: bounds.minX + result.positions[index].x,
-                                      y: bounds.minY + result.positions[index].y),
-                         proposal: .unspecified)
+            subview.place(
+                at: CGPoint(
+                    x: bounds.minX + result.positions[index].x,
+                    y: bounds.minY + result.positions[index].y),
+                proposal: .unspecified)
         }
     }
 

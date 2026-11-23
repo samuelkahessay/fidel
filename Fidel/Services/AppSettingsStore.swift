@@ -76,7 +76,8 @@ struct AppSettingsStore {
     var dailyGoalTier: DailyGoalTier {
         get {
             guard let raw = defaults.string(forKey: SettingsKeys.dailyGoalTier),
-                  let tier = DailyGoalTier(rawValue: raw) else { return .default }
+                let tier = DailyGoalTier(rawValue: raw)
+            else { return .default }
             return tier
         }
         nonmutating set { defaults.set(newValue.rawValue, forKey: SettingsKeys.dailyGoalTier) }
@@ -92,7 +93,7 @@ struct AppSettingsStore {
             SettingsKeys.selectedReferenceTab: 0,
             SettingsKeys.showsAITools: true,
             SettingsKeys.onboardingComplete: false,
-            SettingsKeys.dailyGoalTier: DailyGoalTier.default.rawValue
+            SettingsKeys.dailyGoalTier: DailyGoalTier.default.rawValue,
         ])
     }
 

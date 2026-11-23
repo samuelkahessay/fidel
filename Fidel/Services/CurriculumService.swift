@@ -1,4 +1,3 @@
-// CurriculumService — implemented across Tasks 2 & 4 of the open-learning-path plan.
 import Foundation
 
 /// Derives which Fidel characters a lesson "owns" from the characters that
@@ -47,17 +46,24 @@ enum MasteryTier: Int, Comparable, CaseIterable {
     case new, started, familiar, proficient, mastered
     static func < (l: MasteryTier, r: MasteryTier) -> Bool { l.rawValue < r.rawValue }
     var label: String {
-        switch self { case .new: "New"; case .started: "Started"; case .familiar: "Familiar"
-        case .proficient: "Proficient"; case .mastered: "Mastered" }
+        switch self {
+        case .new: "New"
+        case .started: "Started"
+        case .familiar: "Familiar"
+        case .proficient: "Proficient"
+        case .mastered: "Mastered"
+        }
     }
 }
 
 extension CurriculumService {
     /// Fraction of a lesson's items (vocab + phrases + its characters) that are
     /// "learned". Display only — never a gate.
-    func mastery(for lesson: Lesson,
-                 learnedItemIds: Set<String>,
-                 recognizedCharIds: Set<String>) -> (tier: MasteryTier, fraction: Double) {
+    func mastery(
+        for lesson: Lesson,
+        learnedItemIds: Set<String>,
+        recognizedCharIds: Set<String>
+    ) -> (tier: MasteryTier, fraction: Double) {
         let vocabIds = lesson.vocabulary.map(\.id)
         let phraseIds = lesson.phrases.map { String($0.id) }
         let charIds = characterIds(in: lesson)

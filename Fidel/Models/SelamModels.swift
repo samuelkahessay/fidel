@@ -15,7 +15,7 @@ final class SelamConversation {
 
     /// Entry context - where the conversation was started from
     var entryContextType: String?  // "lesson", "vocabulary", "practice", "general"
-    var entryContextId: String?    // The ID of the lesson/vocabulary item
+    var entryContextId: String?  // The ID of the lesson/vocabulary item
 
     init(title: String? = nil, entryContextType: String? = nil, entryContextId: String? = nil) {
         self.title = title
@@ -27,7 +27,7 @@ final class SelamConversation {
     var sortedMessages: [SelamMessage] {
         (messages ?? []).sorted { $0.timestamp < $1.timestamp }
     }
-    
+
     /// Preview text for conversation list
     var preview: String {
         if let lastMessage = sortedMessages.last {
@@ -35,7 +35,7 @@ final class SelamConversation {
         }
         return "New conversation"
     }
-    
+
     /// Auto-generate title from first user message
     func generateTitle() {
         if title == nil, let firstUserMessage = sortedMessages.first(where: { $0.role == .user }) {
@@ -68,20 +68,22 @@ final class SelamMessage {
         self.role = role
         self.isComplete = isComplete
     }
-    
+
     /// Parsed suggested actions
     var suggestedActions: [String] {
         get {
             guard let json = suggestedActionsJSON,
-                  let data = json.data(using: .utf8),
-                  let actions = try? JSONDecoder().decode([String].self, from: data) else {
+                let data = json.data(using: .utf8),
+                let actions = try? JSONDecoder().decode([String].self, from: data)
+            else {
                 return []
             }
             return actions
         }
         set {
             if let data = try? JSONEncoder().encode(newValue),
-               let json = String(data: data, encoding: .utf8) {
+                let json = String(data: data, encoding: .utf8)
+            {
                 suggestedActionsJSON = json
             }
         }
@@ -107,7 +109,7 @@ struct SelamContext: Codable {
     let totalXP: Int
     let level: Int
     let weakAreas: [String]
-    
+
     /// Create context from UserProgress
     static func from(userProgress: UserProgress?) -> SelamContext {
         guard let progress = userProgress else {
@@ -122,7 +124,7 @@ struct SelamContext: Codable {
                 weakAreas: []
             )
         }
-        
+
         return SelamContext(
             lessonsCompleted: progress.lessonsCompleted,
             patternsLearned: progress.patternsLearned,
@@ -134,40 +136,40 @@ struct SelamContext: Codable {
             weakAreas: identifyWeakAreas(from: progress)
         )
     }
-    
+
     /// Identify areas where user may be struggling
     private static func identifyWeakAreas(from progress: UserProgress) -> [String] {
         var weakAreas: [String] = []
-        
+
         // If user has completed lessons but mastered few vocabulary words
         if progress.lessonsCompleted.count > 2 && progress.vocabularyMastered.count < 20 {
             weakAreas.append("vocabulary retention")
         }
-        
+
         // If user hasn't practiced conversations
         if progress.lessonsCompleted.count > 1 && progress.conversationsPracticed.isEmpty {
             weakAreas.append("conversational practice")
         }
-        
+
         // If few patterns learned relative to lessons
         if progress.lessonsCompleted.count > 2 && progress.patternsLearned.count < 5 {
             weakAreas.append("sentence patterns")
         }
-        
+
         return weakAreas
     }
-    
+
     /// Convert to dictionary for API request
     func toDictionary() -> [String: Any] {
         return [
             "lessonsCompleted": lessonsCompleted,
             "patternsLearned": patternsLearned,
-            "vocabularyMastered": vocabularyMastered.count, // Just count to reduce payload
+            "vocabularyMastered": vocabularyMastered.count,  // Just count to reduce payload
             "conversationsPracticed": conversationsPracticed,
             "currentStreak": currentStreak,
             "totalXP": totalXP,
             "level": level,
-            "weakAreas": weakAreas
+            "weakAreas": weakAreas,
         ]
     }
 }
@@ -180,17 +182,17 @@ struct SelamEntryContext: Codable {
     let itemId: String?
     let itemTitle: String?
     let additionalContext: String?
-    
+
     enum EntryContextType: String, Codable {
-        case general           // From Selam tab
-        case lesson            // From a lesson
-        case vocabulary        // Long-press on vocabulary word
-        case pattern           // From a sentence pattern
-        case conversation      // From a conversation practice
-        case quiz              // After a quiz
-        case flashcard         // During flashcard practice
+        case general  // From Selam tab
+        case lesson  // From a lesson
+        case vocabulary  // Long-press on vocabulary word
+        case pattern  // From a sentence pattern
+        case conversation  // From a conversation practice
+        case quiz  // After a quiz
+        case flashcard  // During flashcard practice
     }
-    
+
     /// Generate prompt prefix based on entry context
     func toPromptContext() -> String? {
         switch type {
@@ -234,13 +236,13 @@ struct SelamCoachingSettings: Codable {
     var coachingFrequency: CoachingFrequency
     var languagePreference: LanguagePreference
     var snoozedUntil: Date?
-    
+
     enum CoachingFrequency: String, Codable, CaseIterable {
         case high = "High"
         case medium = "Medium"
         case low = "Low"
         case off = "Off"
-        
+
         var description: String {
             switch self {
             case .high: return "Proactive tips after every lesson"
@@ -250,12 +252,12 @@ struct SelamCoachingSettings: Codable {
             }
         }
     }
-    
+
     enum LanguagePreference: String, Codable, CaseIterable {
         case english = "English"
         case amharic = "Amharic"
         case mixed = "Mixed"
-        
+
         var description: String {
             switch self {
             case .english: return "Respond in English"
@@ -264,7 +266,7 @@ struct SelamCoachingSettings: Codable {
             }
         }
     }
-    
+
     static var `default`: SelamCoachingSettings {
         SelamCoachingSettings(
             coachingFrequency: .medium,
@@ -272,7 +274,7 @@ struct SelamCoachingSettings: Codable {
             snoozedUntil: nil
         )
     }
-    
+
     /// Check if coaching is currently snoozed
     var isSnoozed: Bool {
         if let snoozedUntil = snoozedUntil {
@@ -298,23 +300,16 @@ struct SelamChatRequest: Codable {
 struct SelamHistoryMessage: Codable {
     let role: String
     let content: String
-    
+
     init(from message: SelamMessage) {
         self.role = message.role.rawValue
         self.content = message.content
     }
 }
 
-/// Response from Selam AI chat endpoint
-struct SelamChatResponse: Codable {
-    let message: String
-    let suggestedActions: [String]?
-    let shouldShowConfetti: Bool?
-}
-
 /// Streaming response token
 struct SelamStreamToken: Codable {
     let content: String?
     let suggestedActions: [String]?
-    let done: Bool?
+    let done: Bool
 }

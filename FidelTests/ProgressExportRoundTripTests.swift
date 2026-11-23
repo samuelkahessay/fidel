@@ -1,13 +1,13 @@
-// ProgressExportRoundTripTests — implemented in Task 12 of the open-learning-path plan.
 import Foundation
 import SwiftData
 import SyncKit
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// Verifies the JSON backup/restore round-trips the fields added by this
 /// project: the pace tier (`AppSettingsStore.dailyGoalTier`) and the
-/// streak-slack fields on `UserProgress` (Task 11). Old backups predate both,
+/// streak-slack fields on `UserProgress`. Old backups predate both,
 /// so restoring one must not throw and must fall back to sensible defaults.
 @MainActor
 final class ProgressExportRoundTripTests: XCTestCase {
@@ -32,7 +32,7 @@ final class ProgressExportRoundTripTests: XCTestCase {
             FlashcardProgress.self,
             SelamConversation.self,
             SelamMessage.self,
-            CharacterTraceMastery.self
+            CharacterTraceMastery.self,
         ])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
         let container = try ModelContainer(for: schema, configurations: [configuration])
@@ -89,39 +89,39 @@ final class ProgressExportRoundTripTests: XCTestCase {
     /// regression the optional-with-default design guards against.
     private static let oldShapeBackupJSON: Data = {
         let json = """
-        {
-          "version": \(ProgressBackupSnapshot.currentVersion),
-          "exportedAt": "2024-01-01T00:00:00Z",
-          "userProgress": {
-            "totalXP": 120,
-            "currentStreak": 3,
-            "longestStreak": 5,
-            "lastPracticeDate": null,
-            "lessonsCompleted": [1, 2],
-            "patternsLearned": [],
-            "vocabularyMastered": [],
-            "conversationsPracticed": [],
-            "dailyGoal": 50,
-            "todayXP": 10,
-            "achievements": [],
-            "fidelCharactersRecognized": [],
-            "charactersTraced": [],
-            "currentStage": 1
-          },
-          "flashcards": [],
-          "settings": {
-            "dailyXPGoal": 50,
-            "preferredResponseLanguage": "mixed",
-            "showsTransliteration": true,
-            "autoPlaysPronunciation": true,
-            "hapticsEnabled": true,
-            "selectedReferenceTab": 0,
-            "showsAITools": true,
-            "onboardingComplete": false,
-            "lastOpenedActivity": null
-          }
-        }
-        """
+            {
+              "version": \(ProgressBackupSnapshot.currentVersion),
+              "exportedAt": "2024-01-01T00:00:00Z",
+              "userProgress": {
+                "totalXP": 120,
+                "currentStreak": 3,
+                "longestStreak": 5,
+                "lastPracticeDate": null,
+                "lessonsCompleted": [1, 2],
+                "patternsLearned": [],
+                "vocabularyMastered": [],
+                "conversationsPracticed": [],
+                "dailyGoal": 50,
+                "todayXP": 10,
+                "achievements": [],
+                "fidelCharactersRecognized": [],
+                "charactersTraced": [],
+                "currentStage": 1
+              },
+              "flashcards": [],
+              "settings": {
+                "dailyXPGoal": 50,
+                "preferredResponseLanguage": "mixed",
+                "showsTransliteration": true,
+                "autoPlaysPronunciation": true,
+                "hapticsEnabled": true,
+                "selectedReferenceTab": 0,
+                "showsAITools": true,
+                "onboardingComplete": false,
+                "lastOpenedActivity": null
+              }
+            }
+            """
         return Data(json.utf8)
     }()
 

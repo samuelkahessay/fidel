@@ -1,5 +1,6 @@
 import CoreGraphics
 import XCTest
+
 @testable import Fidel___Learn_Amharic
 
 /// Unit tests for the guided tracing engine using synthetic strokes.
@@ -99,7 +100,7 @@ final class TraceEngineTests: XCTestCase {
                 StrokePoint(x: 0.1, y: 0.5),
                 StrokePoint(x: 0.9, y: 0.5),
                 StrokePoint(x: 0.5, y: 0.1),
-                StrokePoint(x: 0.5, y: 0.9)
+                StrokePoint(x: 0.5, y: 0.9),
             ],
             penWidth: 0.05
         )
@@ -217,7 +218,11 @@ final class TraceEngineTests: XCTestCase {
 
         XCTAssertEqual(engine.phase, .tracing)
         XCTAssertEqual(engine.displayProgress, progressBeforeStray)
-        XCTAssertFalse(recorder.events.contains { if case .miss = $0 { return true }; return false })
+        XCTAssertFalse(
+            recorder.events.contains {
+                if case .miss = $0 { return true }
+                return false
+            })
 
         // Returning inside the corridor resumes advancement.
         engine.touchMoved(to: CGPoint(x: 210, y: 150), time: 1.1)
@@ -297,7 +302,7 @@ final class TraceEngineTests: XCTestCase {
         engine.touchBegan(at: CGPoint(x: 30, y: 150), time: 0)
         engine.touchMoved(to: CGPoint(x: 120, y: 150), time: 0.1)
         engine.touchMoved(to: CGPoint(x: 200, y: 150), time: 0.2)
-        engine.touchMoved(to: CGPoint(x: 234, y: 150), time: 0.3) // ~0.85 coverage
+        engine.touchMoved(to: CGPoint(x: 234, y: 150), time: 0.3)  // ~0.85 coverage
         engine.touchEnded(at: CGPoint(x: 234, y: 150), time: 0.4)
 
         XCTAssertEqual(engine.phase, .snapping)
@@ -457,15 +462,17 @@ final class TraceEngineTests: XCTestCase {
         let bytesPerRow = width * 4
         var pixels = [UInt8](repeating: 0, count: bytesPerRow * height)
 
-        guard let context = CGContext(
-            data: &pixels,
-            width: width,
-            height: height,
-            bitsPerComponent: 8,
-            bytesPerRow: bytesPerRow,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-        ) else {
+        guard
+            let context = CGContext(
+                data: &pixels,
+                width: width,
+                height: height,
+                bitsPerComponent: 8,
+                bytesPerRow: bytesPerRow,
+                space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            )
+        else {
             return 0
         }
 
