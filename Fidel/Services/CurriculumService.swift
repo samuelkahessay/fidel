@@ -1,4 +1,3 @@
-// CurriculumService — implemented across Tasks 2 & 4 of the open-learning-path plan.
 import Foundation
 
 /// Derives which Fidel characters a lesson "owns" from the characters that

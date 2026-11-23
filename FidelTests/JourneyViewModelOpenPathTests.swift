@@ -2,7 +2,7 @@ import SwiftData
 import XCTest
 @testable import Fidel___Learn_Amharic
 
-/// Covers the open-path rewire of `JourneyViewModel` (Task 6): nothing is
+/// Covers the open-path rewire of `JourneyViewModel`: nothing is
 /// locked, the `NextStepPlanner`-driven recommendation, and per-lesson mastery
 /// tiers in `pathSections`.
 @MainActor

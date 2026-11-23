@@ -53,7 +53,7 @@ struct AppTheme {
         dark: (0.704, 0.406, 0.352)
     )
 
-    /// Primary design accent from the Claude Design handoff.
+    /// Primary design accent.
     static let primaryColor = terracottaColor
 
     /// Secondary accent used for progress and achievement emphasis.

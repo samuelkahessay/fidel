@@ -1,4 +1,3 @@
-// CurriculumServiceTests — implemented across Tasks 2 & 4 of the open-learning-path plan.
 import XCTest
 @testable import Fidel___Learn_Amharic
 

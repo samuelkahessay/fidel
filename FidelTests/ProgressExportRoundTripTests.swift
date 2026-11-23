@@ -1,4 +1,3 @@
-// ProgressExportRoundTripTests — implemented in Task 12 of the open-learning-path plan.
 import Foundation
 import SwiftData
 import SyncKit
@@ -7,7 +6,7 @@ import XCTest
 
 /// Verifies the JSON backup/restore round-trips the fields added by this
 /// project: the pace tier (`AppSettingsStore.dailyGoalTier`) and the
-/// streak-slack fields on `UserProgress` (Task 11). Old backups predate both,
+/// streak-slack fields on `UserProgress`. Old backups predate both,
 /// so restoring one must not throw and must fall back to sensible defaults.
 @MainActor
 final class ProgressExportRoundTripTests: XCTestCase {

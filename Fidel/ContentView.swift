@@ -157,8 +157,7 @@ struct ContentView: View {
 /// out from under the sync engine (`SyncStatus.State.needsAccountChoice`).
 /// The user picks whether to upload this device's local data into the new
 /// account, or wipe local data and adopt the new account's data (keeping a
-/// local archive first). Adapted from Throughline's reviewed
-/// `AccountChangeSheet` (`Views/ContentView.swift`).
+/// local archive first).
 private struct AccountChangeSheet: View {
     @Environment(SyncEngine.self) private var sync
     @Environment(\.modelContext) private var context

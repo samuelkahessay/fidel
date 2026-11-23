@@ -1,4 +1,3 @@
-// StreakSlackTests — implemented in Task 11 of the open-learning-path plan.
 import SwiftData
 import XCTest
 @testable import Fidel___Learn_Amharic

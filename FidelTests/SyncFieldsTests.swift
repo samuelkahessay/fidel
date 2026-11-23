@@ -65,7 +65,7 @@ final class SyncFieldsTests: XCTestCase {
         assertDefaults(syncModifiedAt: mastery.syncModifiedAt, cloudSystemFields: mastery.cloudSystemFields)
     }
 
-    // MARK: - onMutation wiring (Task 4)
+    // MARK: - onMutation wiring
 
     /// `ProgressRepository`'s injected `onMutation` callback is the single
     /// wiring point every ad-hoc call site relies on to reach `SyncEngine`.

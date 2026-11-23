@@ -63,8 +63,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     /// Fired with the affected model's `syncID` after every genuine mutation
     /// so the caller can forward it to `SyncEngine.markPending`. Centralizing
     /// here (rather than at each of the ~17 ad-hoc construction sites) is what
-    /// guarantees every mutation path publishes to CloudKit — see FidelApp /
-    /// Throughline's HealthSync `onLocalMutations` for the reference pattern.
+    /// guarantees every mutation path publishes to CloudKit (see FidelApp).
     private let onMutation: ((SyncID) -> Void)?
     private var activeUserId: String {
         explicitUserId ?? LocalLearner.userId

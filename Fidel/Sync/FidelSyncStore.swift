@@ -5,12 +5,12 @@ import SwiftData
 import SyncKit
 
 /// `SyncStore` conformance bridging SwiftData's three synced Fidel models to
-/// CloudKit. Shape mirrors `ThroughlineSyncStore` (throwing lookup, `Handle`
-/// bundle, insert-on-first-fetch, didSaveRecord updates system fields only),
-/// but `applyRemoteRecord` performs FIELD-WISE MERGES for `UserProgress` (via
+/// CloudKit: throwing lookup, a `Handle` bundle per record type,
+/// insert-on-first-fetch, and didSaveRecord updating system fields only.
+/// `applyRemoteRecord` performs FIELD-WISE MERGES for `UserProgress` (via
 /// `ProgressMergeState`, the same policy `ProgressRepository` uses for local
 /// duplicates) and `CharacterTraceMastery`, instead of plain last-write-wins.
-/// `FlashcardProgress` uses plain whole-record LWW, same as the Throughline reference.
+/// `FlashcardProgress` uses plain whole-record last-write-wins.
 @MainActor
 final class FidelSyncStore: SyncStore {
     private let context: ModelContext
@@ -187,7 +187,7 @@ final class FidelSyncStore: SyncStore {
     // MARK: - Type-erased model handle
 
     /// Small closure bundle so the switch over record types lives in one
-    /// place. Unlike Throughline's `Handle`, this also exposes the typed
+    /// place. It also exposes the typed
     /// model instances (`userProgress`/`flashcardProgress`/`characterTraceMastery`)
     /// so `mergeAndApply` can run field-wise merges instead of a uniform
     /// whole-record `apply`.
