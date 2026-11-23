@@ -1,0 +1,22 @@
+included: [Fidel, FidelTests]
+excluded: [Packages]
+disabled_rules:
+  - trailing_whitespace      # owned by swift-format
+  - identifier_name          # x/y/dx are idiomatic in stroke geometry
+  - inclusive_language       # flags "mastery", a learning-domain term
+  - line_length              # owned by swift-format
+  - multiple_closures_with_trailing_closure  # idiomatic SwiftUI Button { } label: { }
+  - trailing_comma           # owned by swift-format
+  - opening_brace            # owned by swift-format (multi-line conditions)
+opt_in_rules:
+  - force_unwrapping
+  - empty_count
+  - first_where
+  - contains_over_first_not_nil
+  - discouraged_optional_boolean
+  - fatal_error_message
+file_length: { warning: 700, error: 1000 }
+type_body_length: { warning: 400, error: 700 }
+function_body_length: { warning: 80, error: 150 }
+large_tuple: { warning: 4, error: 5 }            # RGB triples and geometry tuples are idiomatic here
+function_parameter_count: { warning: 6, error: 8 }
