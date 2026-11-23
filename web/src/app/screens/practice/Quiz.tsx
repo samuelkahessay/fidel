@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'preact/hooks'
 import { type VocabularyWord, wordId } from '../../../content/types'
 import { actions, requireContent } from '../../store'
-import { Bar, PlayButton, Result, shuffle, TopBar } from '../../ui'
+import { Bar, Icon, PlayButton, Result, shuffle, TopBar } from '../../ui'
 
 type Kind = 'multipleChoice' | 'translation' | 'transliteration'
 interface Question {
@@ -13,12 +13,19 @@ interface Question {
   hint?: string
 }
 
-/** QuizView.generateQuestions in "Mixed" mode: 12 words cycling through the three question types. */
-function generate(vocabulary: VocabularyWord[]): Question[] {
-  const kinds: Kind[] = ['multipleChoice', 'translation', 'transliteration']
+/** QuizMode: the type chooser shown before a quiz. */
+const quizModes = [
+  { id: 'mixed', title: 'Mixed', detail: 'All question types combined', kinds: ['multipleChoice', 'translation', 'transliteration'] },
+  { id: 'multipleChoice', title: 'Multiple Choice', detail: 'Tap the correct answer', kinds: ['multipleChoice'] },
+  { id: 'translation', title: 'Type Translation', detail: 'Type the English meaning', kinds: ['translation'] },
+  { id: 'transliteration', title: 'Type Pronunciation', detail: "Type how it's pronounced", kinds: ['transliteration'] },
+] as const
+
+/** QuizView.generateQuestions: 12 words; "Mixed" cycles through the three question types. */
+function generate(vocabulary: VocabularyWord[], kinds: readonly Kind[]): Question[] {
   return shuffle(
     shuffle(vocabulary).slice(0, 12).map((word, i): Question => {
-      const kind = kinds[i % 3]!
+      const kind = kinds[i % kinds.length]!
       if (kind === 'multipleChoice') {
         const wrong = shuffle(vocabulary.filter((w) => w.english !== word.english)).slice(0, 3).map((w) => w.english)
         return { kind, word, prompt: 'What does this word mean?', answer: word.english, options: shuffle([word.english, ...wrong]) }
@@ -53,7 +60,8 @@ export const isCloseEnough = (answer: string, correct: string) =>
 export function Quiz() {
   const content = requireContent()
   const [round, setRound] = useState(0)
-  const questions = useMemo(() => generate(content.vocabulary), [round])
+  const [mode, setMode] = useState<(typeof quizModes)[number] | null>(null)
+  const questions = useMemo(() => (mode ? generate(content.vocabulary, mode.kinds) : []), [round, mode])
   const [index, setIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [chosen, setChosen] = useState<string | null>(null)
@@ -61,6 +69,22 @@ export function Quiz() {
   const [correct, setCorrect] = useState<boolean | null>(null)
 
   const restart = () => { setRound(round + 1); setIndex(0); setScore(0); setChosen(null); setTyped(''); setCorrect(null) }
+  if (!mode) {
+    return (
+      <div class="stack">
+        <TopBar title="Quiz" />
+        <h2 style={{ margin: 0 }}>Choose Quiz Type</h2>
+        <div class="list">
+          {quizModes.map((m) => (
+            <button key={m.id} class="list-item" onClick={() => setMode(m)}>
+              <span class="grow"><span class="title">{m.title}</span><br /><span class="sub">{m.detail}</span></span>
+              <Icon name="chevron" />
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
   if (index >= questions.length) {
     return (
       <div class="stack">

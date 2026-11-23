@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'preact/hooks'
 import { type VocabularyWord, wordId } from '../../../content/types'
 import { playContent } from '../../audio'
 import { actions, requireContent } from '../../store'
-import { Result, shuffle, TopBar } from '../../ui'
+import { Bar, Result, shuffle, TopBar } from '../../ui'
 
 const pairsPerRound = 5
 
@@ -86,18 +86,23 @@ export function MatchPairs() {
 
   return (
     <div class="stack">
-      <TopBar title="Match Pairs"><span class="chip">Round {round + 1}/{rounds}</span></TopBar>
-      <p class="secondary" style={{ margin: 0 }}>Tap an Amharic word, then its meaning.</p>
+      <TopBar title="Match Pairs" />
+      <Bar value={total / words.length} label="Pairs matched" />
+      <div class="spread">
+        <span class="secondary">Round {round + 1} of {rounds}</span>
+        <strong style={{ color: 'var(--terracotta-deep)' }}>Matched: {total}/{words.length}</strong>
+      </div>
+      <p class="secondary" style={{ margin: 0 }}>Tap an Amharic word, then its English match</p>
       <div class="grid-2">
         <div class="stack" style={{ gap: 10 }}>
           {columns.am.map((w) => (
-            <button key={wordId(w)} class="word-tile" lang="am" data-state={state(w, true)} disabled={matched.has(wordId(w))}
-              aria-pressed={state(w, true) === 'selected'} onClick={() => tap(w, true)}>{w.amharic}</button>
+            <button key={wordId(w)} class="word-tile match-tile" lang="am" data-state={state(w, true)} disabled={matched.has(wordId(w))}
+              aria-pressed={state(w, true) === 'selected'} onClick={() => tap(w, true)}>{w.amharic}<small class="tile-translit">{w.transliteration}</small></button>
           ))}
         </div>
         <div class="stack" style={{ gap: 10 }}>
           {columns.en.map((w) => (
-            <button key={wordId(w)} class="word-tile" style={{ fontFamily: 'var(--font)', fontSize: 16 }} data-state={state(w, false)}
+            <button key={wordId(w)} class="word-tile match-tile" style={{ fontFamily: 'var(--font)', fontSize: 16, fontWeight: 600 }} data-state={state(w, false)}
               disabled={matched.has(wordId(w))} aria-pressed={state(w, false) === 'selected'} onClick={() => tap(w, false)}>{w.english}</button>
           ))}
         </div>

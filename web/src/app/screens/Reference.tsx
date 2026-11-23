@@ -7,17 +7,17 @@ import { Amharic, Icon, PlayButton, ScreenHeader } from '../ui'
 
 const tabs = [
   { id: 'fidel', label: 'Fidel' },
-  { id: 'phrases', label: 'Phrases' },
-  { id: 'vocabulary', label: 'Words' },
-  { id: 'numbers', label: 'Numbers' },
+  { id: 'phrases', label: 'Quick Phrases' },
+  { id: 'vocabulary', label: 'Vocabulary' },
   { id: 'culture', label: 'Culture' },
+  { id: 'numbers', label: 'Numbers' },
 ]
 
 export function Reference({ tab = 'fidel' }: { tab?: string }) {
   const [query, setQuery] = useState('')
   return (
     <div class="stack">
-      <ScreenHeader title="Reference" amharic="ማጣቀሻ" />
+      <ScreenHeader title="Reference" amharic="መዝገብ" subtitle="Phrasebook, words, cultural notes, and numbers for quick lookup." />
       <div class="segmented" role="tablist" aria-label="Reference sections">
         {tabs.map((t) => (
           <button key={t.id} role="tab" aria-selected={tab === t.id} onClick={() => navigate('reference', t.id)}>{t.label}</button>

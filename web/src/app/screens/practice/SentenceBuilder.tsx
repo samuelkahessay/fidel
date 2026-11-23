@@ -29,11 +29,16 @@ export function SentenceBuilder() {
     return (
       <div class="stack">
         <TopBar title="Sentence Builder" />
-        <p class="secondary" style={{ margin: 0 }}>Pick a pattern, then swap words into it.</p>
+        <h2 style={{ margin: 0 }}>Choose a Pattern</h2>
+        <p class="secondary" style={{ margin: 0 }}>Select a sentence pattern to practice building sentences</p>
         <div class="list">
           {patterns.map((p) => (
             <button key={p.id} class="list-item" onClick={() => { setPattern(p); setSub(null) }}>
-              <span class="grow"><span class="title">{p.description}</span><br /><span class="sub am" lang="am">{p.structure}</span></span>
+              <span class="grow">
+                <span class="title">{p.description}</span><br />
+                <span class="am" lang="am" style={{ color: 'var(--terracotta-deep)' }}>{p.structure}</span><br />
+                <span class="sub">{p.substitutions.length} options</span>
+              </span>
               <Icon name="chevron" />
             </button>
           ))}

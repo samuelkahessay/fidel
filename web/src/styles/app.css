@@ -628,3 +628,8 @@ details.card summary {
   font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
   color: var(--ink-muted);
 }
+
+.match-tile {
+  min-height: 72px;
+  box-shadow: none;
+}

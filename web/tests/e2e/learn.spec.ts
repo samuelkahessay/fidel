@@ -41,8 +41,7 @@ test('completing a lesson awards XP, credits characters and marks it completed',
 
 test('a conversation plays line by line and can be completed', async ({ page }) => {
   await openApp(page, 'conversation/1')
-  const next = page.getByRole('button', { name: 'Next line' })
-  while (await next.isVisible()) await next.click()
+  await expect(page.locator('.conversation-line')).toHaveCount(9)
   await page.getByRole('button', { name: 'Finish conversation' }).click()
   await expect(page.getByRole('status').last()).toContainText('Conversation practiced')
 })
@@ -50,7 +49,6 @@ test('a conversation plays line by line and can be completed', async ({ page }) 
 test('role-play hides your lines until you reveal them', async ({ page }) => {
   await openApp(page, 'conversation/1')
   await page.getByRole('button', { name: /^Be / }).first().click()
-  await page.getByRole('button', { name: 'Next line' }).click()
   await expect(page.getByRole('button', { name: 'Say it, then reveal' }).first()).toBeVisible()
 })
 

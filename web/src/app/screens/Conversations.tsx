@@ -27,19 +27,29 @@ export function Conversations() {
 export function ConversationDetail({ id }: { id: number }) {
   const content = requireContent()
   const conversation = content.conversations.find((c) => c.id === id)
-  const [shown, setShown] = useState(1)
   const [roleplay, setRoleplay] = useState<string | null>(null)
   const [revealed, setRevealed] = useState<Set<number>>(new Set())
   const [done, setDone] = useState(false)
   if (!conversation) return <Empty>That conversation doesn't exist.</Empty>
 
   const speakers = [...new Set(conversation.lines.map((l) => l.speaker))]
-  const lines = conversation.lines.slice(0, shown)
-  const finished = shown >= conversation.lines.length
+  const lines = conversation.lines
+  const notes = content.culturalNotes.filter((n) => n.conversationIds.includes(conversation.id))
+  const level = ['Beginner', 'Intermediate', 'Advanced'][conversation.difficulty - 1] ?? 'Beginner'
 
   return (
     <div class="stack">
       <TopBar title={conversation.title} />
+      <div class="card spread">
+        <span><span style={{ color: 'var(--eucalyptus)' }}>{'★'.repeat(conversation.difficulty)}</span><span class="muted">{'☆'.repeat(3 - conversation.difficulty)}</span> {level}</span>
+        <span class="muted">{lines.length} lines</span>
+      </div>
+      {notes.map((n) => (
+        <details key={n.id} class="card" style={{ background: 'color-mix(in srgb, var(--gold) 14%, var(--card))' }}>
+          <summary><span class="secondary" style={{ fontSize: 13 }}>Cultural Context</span><br />{n.title}</summary>
+          <p style={{ marginBottom: 0 }}>{n.content}</p>
+        </details>
+      ))}
       <div class="segmented" role="group" aria-label="Role-play">
         <button aria-pressed={roleplay === null} onClick={() => setRoleplay(null)}>Read along</button>
         {speakers.map((s) => (
@@ -47,7 +57,7 @@ export function ConversationDetail({ id }: { id: number }) {
         ))}
       </div>
       <div class="stack" style={{ gap: 10 }} aria-live="polite">
-        {lines.map((l, i) => {
+        {lines.map((l) => {
           const hidden = roleplay === l.speaker && !revealed.has(l.lineNum)
           return (
             <div key={l.lineNum} class={`conversation-line ${speakers.indexOf(l.speaker) % 2 ? 'right' : ''}`}>
@@ -67,13 +77,11 @@ export function ConversationDetail({ id }: { id: number }) {
                   <div class="secondary">{l.english}</div>
                 </>
               )}
-              {i === lines.length - 1 && <span class="visually-hidden">Line {i + 1} of {conversation.lines.length}</span>}
             </div>
           )
         })}
       </div>
-      {!finished && <button class="btn primary block" onClick={() => setShown(shown + 1)}>Next line</button>}
-      {finished && !done && (
+      {!done && (
         <button class="btn primary block" onClick={() => { actions.practiceConversation(conversation.id); setDone(true) }}>
           Finish conversation
         </button>

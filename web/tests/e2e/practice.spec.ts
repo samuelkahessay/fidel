@@ -17,6 +17,8 @@ test('Flashcards: reveal, rate twenty cards, see results', async ({ page }) => {
 
 test('Quiz: twelve mixed questions with feedback', async ({ page }) => {
   await openApp(page, 'practice/quiz')
+  await expect(page.getByRole('heading', { name: 'Choose Quiz Type' })).toBeVisible()
+  await page.getByRole('button', { name: /^Mixed/ }).click()
   for (let i = 0; i < 12; i++) {
     const options = page.locator('button.option')
     if (await options.count()) await options.first().click()
@@ -45,10 +47,10 @@ test('Match Pairs: matching every pair finishes the session', async ({ page }) =
   const englishFor = new Map(data.vocabulary.map((w) => [w.amharic, w.english]))
   await openApp(page, 'practice/match')
   for (let round = 0; round < 3; round++) {
-    await expect(page.getByText(`Round ${round + 1}/3`)).toBeVisible()
+    await expect(page.getByText(`Round ${round + 1} of 3`)).toBeVisible()
     for (let pair = 0; pair < 5; pair++) {
       const tile = page.locator('button.word-tile[lang="am"]:not([disabled])').first()
-      const amharic = (await tile.innerText()).trim()
+      const amharic = (await tile.evaluate((el) => el.firstChild?.textContent ?? '')).trim()
       await tile.click()
       await page.locator('button.word-tile:not([lang]):not([disabled])', { hasText: englishFor.get(amharic)! }).first().click()
     }

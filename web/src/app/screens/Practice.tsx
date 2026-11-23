@@ -23,9 +23,9 @@ const modes = [
   { id: 'cloze', title: 'Fill the Blank', detail: 'Fill in the missing word in a sentence', icon: 'check', tint: 'var(--terracotta)' },
   { id: 'grammar', title: 'Grammar', detail: 'Learn the rules behind the sentences', icon: 'book', tint: 'var(--plum)' },
   { id: 'reading', title: 'Reading', detail: 'Read short passages and check comprehension', icon: 'book', tint: 'var(--terracotta-deep)' },
-  { id: 'match', title: 'Match Pairs', detail: 'Tap each Amharic word and its meaning', icon: 'sparkles', tint: 'var(--gold)' },
+  { id: 'match', title: 'Match Pairs', detail: 'Match Amharic words to their English meaning', icon: 'sparkles', tint: 'var(--gold)' },
   { id: 'speed-drill', title: 'Speed Drill', detail: 'Rapid-fire translation practice', icon: 'flame', tint: 'var(--red)' },
-  { id: 'tracing', title: 'Character Tracing', detail: 'Trace the Fidel letters stroke by stroke', icon: 'hint', tint: 'var(--eucalyptus)' },
+  { id: 'tracing', title: 'Character Tracing', detail: 'Practice writing Fidel characters', icon: 'hint', tint: 'var(--eucalyptus)' },
 ]
 
 export function Practice() {
