@@ -9,7 +9,7 @@ Fidel is an **Amharic language learning iOS app** built with **SwiftUI + SwiftDa
 - **8 structured lessons**: Greetings & Introductions, Possessives & Family, Questions & Directions, Food & Shopping, Making Plans & Time, Health & Body, Travel & Transportation, Ethiopian Culture & Celebrations
 - **94 grammar patterns** (incl. 12 verb-conjugation tables), **1038 vocabulary words**, **706 phrases**, **30 conversation dialogues**, **90 cultural notes**, **24 word-bank sentence exercises**, **5 reading passages** — all banks grew via a POC promotion of the generated + extracted candidate corpus (`Fidel_Resources/amharic/{generated,extracted}_review/`)
 
-> Counts above are ground truth from `Fidel/Data/*.json` (authoritative). `CURRICULUM.md` and `LEVEL_SYSTEM.md` still cite older/aspirational figures — see `docs/superpowers/specs/2026-07-04-content-and-lesson-type-expansion-design.md` for the reconciled state and the 0→proficiency expansion plan.
+> Counts above are ground truth from `Fidel/Data/*.json`; keep the table in `README.md` in sync when they change.
 
 ### Architecture
 ```
@@ -24,7 +24,7 @@ Fidel/
 ├── ViewModels/       # JourneyViewModel, ProgressViewModel, SelamViewModel, etc.
 ├── Repositories/     # LessonRepository, ProgressRepository, SelamRepository
 ├── Services/         # SpacedRepetition (SM-2), AudioService, SelamAIService, StageManager
-├── Data/             # AmharicData.swift (all lesson/character content)
+├── Data/             # Bundled content JSON and audio manifests
 └── Theme/            # Theme.swift (Ethiopian colors, glass morphism, spacing)
 ```
 
@@ -46,10 +46,10 @@ There is **no stage gate**. All lessons and conversations are always available; 
 Flashcards (FSRS/SM-2 spaced repetition), Quiz (multiple choice / typed translation / typed pronunciation), Sentence Builder, Word Order, **Fill the Blank (cloze)**, **Grammar** (teach-first reference over patterns), **Reading** (graded passages + comprehension), Match Pairs, Speed Drill, Pronunciation, Character Tracing
 
 ### Design system
-iOS 26 "Liquid Glass" style. Ethiopian color palette: Green (#00722C), Yellow (#FFD500), Red (#CF1D28). Spring-based animations throughout.
+iOS 26 "Liquid Glass" style. Warm palette defined in `Theme.swift`: terracotta (#B55130), eucalyptus (#4B7A64), gold (#CF9A2E) on paper (#F6F0E4) with ink (#221C16), each with a dark-mode variant. Spring-based animations throughout.
 
 ### Key data files
-- `AmharicData.swift` — All character, lesson, vocab, phrase, and conversation content
+- `Fidel/Data/*.json` — All character, lesson content, vocab, phrase, and conversation data (lessons are assembled in `Models/AmharicData.swift`)
 - `Theme.swift` — Colors, spacing, typography, button/card styles
 
 ---
