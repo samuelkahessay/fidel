@@ -46,7 +46,7 @@ Requirements: Xcode 26 or later and an iOS 26 simulator or device.
 Run the tests with **Product → Test**, or from the command line:
 
 ```bash
-xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' CODE_SIGNING_ALLOWED=NO
+xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' DEVELOPMENT_TEAM= CODE_SIGN_IDENTITY=-
 ```
 
 Optional pieces:

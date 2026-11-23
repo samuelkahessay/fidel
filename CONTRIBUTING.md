@@ -38,7 +38,7 @@ swiftlint lint --strict --baseline .swiftlint-baseline.json
 ```
 
 ```bash
-xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' CODE_SIGNING_ALLOWED=NO
+xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' DEVELOPMENT_TEAM= CODE_SIGN_IDENTITY=-
 ```
 
 Guidelines:
@@ -54,7 +54,7 @@ Guidelines:
 The browser version in `web/` mirrors the app's logic in TypeScript. If you change scheduling, recommendations, streaks, backups or tracing in Swift, regenerate the shared fixtures and make the web pass them too:
 
 ```bash
-xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -only-testing:FidelTests/GoldenFixtureTests CODE_SIGNING_ALLOWED=NO TEST_RUNNER_FIDEL_WRITE_GOLDEN=1
+xcodebuild test -project Fidel.xcodeproj -scheme Fidel -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -only-testing:FidelTests/GoldenFixtureTests DEVELOPMENT_TEAM= CODE_SIGN_IDENTITY=- TEST_RUNNER_FIDEL_WRITE_GOLDEN=1
 ```
 
 ```bash
