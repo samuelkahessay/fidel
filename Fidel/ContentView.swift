@@ -318,7 +318,7 @@ private struct TodayView: View {
 
                 DailyGoalRing(
                     progress: dailyGoalProgress,
-                    value: progress?.todayXP ?? 0,
+                    value: progress?.xpEarnedToday() ?? 0,
                     goal: dailyGoalXP
                 )
             }
@@ -539,7 +539,7 @@ private struct TodayView: View {
 
     private var dailyGoalProgress: Double {
         guard dailyGoalXP > 0 else { return 0 }
-        return min(Double(progress?.todayXP ?? 0) / Double(dailyGoalXP), 1)
+        return min(Double(progress?.xpEarnedToday() ?? 0) / Double(dailyGoalXP), 1)
     }
 
     private var phraseOfDay: Phrase? {

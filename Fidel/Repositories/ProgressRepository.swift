@@ -397,7 +397,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
     }
 
     func getTodayXP() -> Int {
-        getUserProgress()?.todayXP ?? 0
+        getUserProgress()?.xpEarnedToday() ?? 0
     }
 
     func getDailyGoal() -> Int {

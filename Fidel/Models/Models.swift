@@ -247,22 +247,29 @@ final class UserProgress {
         LearningStage(rawValue: currentStage) ?? .scriptAndSounds
     }
 
-    func addXP(_ amount: Int) {
+    /// XP earned today. `todayXP` is only reset by the next `addXP`, so it is
+    /// stale until the learner earns XP on a new day; display this instead.
+    func xpEarnedToday(now: Date = .now) -> Int {
+        guard let lastPracticeDate, Calendar.current.isDate(lastPracticeDate, inSameDayAs: now) else { return 0 }
+        return todayXP
+    }
+
+    func addXP(_ amount: Int, now: Date = .now) {
         totalXP += amount
-        todayXP += amount
-        updatedAt = .now
+        todayXP = xpEarnedToday(now: now) + amount
+        updatedAt = now
         // Every other genuine-edit method in this class (recognizeFidelCharacter,
         // traceCharacter, completeLesson, learnPattern, masterVocabulary,
         // practiceConversation) awards XP through this call, so stamping here
         // covers them all in one place; markLessonStarted is the one mutator
         // that doesn't award XP and stamps for itself below.
-        syncModifiedAt = .now
-        checkStreak()
+        syncModifiedAt = now
+        checkStreak(now: now)
     }
 
-    func checkStreak() {
+    func checkStreak(now: Date = .now) {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date.now)
+        let today = calendar.startOfDay(for: now)
 
         grantWeeklyStreakFreezeIfNeeded(calendar: calendar, today: today)
 
@@ -290,7 +297,7 @@ final class UserProgress {
             currentStreak = 1
         }
 
-        lastPracticeDate = .now
+        lastPracticeDate = now
     }
 
     /// Grants up to 2 streak freezes once per ISO week so learners always have

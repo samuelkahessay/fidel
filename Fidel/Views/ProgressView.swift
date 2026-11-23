@@ -255,12 +255,12 @@ struct ProgressDashboardView: View {
             HStack {
                 FidelSectionLabel(title: "Daily goal")
                 Spacer()
-                Text("\(progress?.todayXP ?? 0)/\(dailyGoal) XP")
+                Text("\(progress?.xpEarnedToday() ?? 0)/\(dailyGoal) XP")
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
             }
 
-            let goalProgress = min(Double(progress?.todayXP ?? 0) / Double(dailyGoal), 1.0)
+            let goalProgress = min(Double(progress?.xpEarnedToday() ?? 0) / Double(dailyGoal), 1.0)
 
             FidelProgressBar(
                 value: goalProgress,
@@ -269,7 +269,7 @@ struct ProgressDashboardView: View {
                 height: 9
             )
             .accessibilityLabel("Daily goal progress")
-            .accessibilityValue("\(progress?.todayXP ?? 0) of \(dailyGoal) XP")
+            .accessibilityValue("\(progress?.xpEarnedToday() ?? 0) of \(dailyGoal) XP")
 
             Stepper(value: dailyGoalBinding, in: 10...500, step: 10) {
                 Text("Goal: \(dailyGoal) XP")
