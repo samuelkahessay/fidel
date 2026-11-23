@@ -13,21 +13,21 @@ export function Learn() {
 
   return (
     <div class="stack">
-      <ScreenHeader title="Learn" amharic="ተማር" subtitle="Every lesson is open. Start anywhere; the ring shows how much you know." />
+      <ScreenHeader title="Learn" amharic="መማር" subtitle="A guided path from letters and sounds into everyday Amharic." />
 
-      <a class="card row" href={heroHref} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <div style={{ flex: 1 }}>
-          <p class="muted" style={{ margin: 0, fontWeight: 600 }}>{session.eyebrow}</p>
-          <h2 style={{ margin: '4px 0' }}>{session.title}</h2>
-          <p class="secondary" style={{ margin: 0 }}>{session.detail}</p>
+      <section class="card hero-dark stack" aria-labelledby="learn-hero">
+        <p class="eyebrow-label">{session.eyebrow}</p>
+        <div>
+          <h2 id="learn-hero" style={{ margin: 0 }}>{session.title}</h2>
+          <p style={{ margin: '4px 0 0' }}>{session.detail}</p>
         </div>
-        <span class="icon-btn" aria-hidden="true"><Icon name="chevron" /></span>
-      </a>
+        <a class="btn pill" href={heroHref}>Start <Icon name="chevron" /></a>
+      </section>
 
       {pathSections.map((section) => (
         <section key={section.id} aria-labelledby={`section-${section.id}`}>
-          <h2 class="section-label" id={`section-${section.id}`}>
-            {section.title} · <span lang="am" class="am">{section.amharicTitle}</span>
+          <h2 class="section-title" id={`section-${section.id}`}>
+            {section.title} <span lang="am" class="am">{section.amharicTitle}</span>
           </h2>
           <div class="list">
             {section.lessonIds.length === 0 && (
@@ -39,7 +39,7 @@ export function Learn() {
                 </a>
                 <a class="list-item" href={href('practice', 'tracing')}>
                   <span class="amharic-md" lang="am" aria-hidden="true">ለ</span>
-                  <span class="grow"><span class="title">Trace the letters</span><br /><span class="sub">Guided stroke order</span></span>
+                  <span class="grow"><span class="title">Practice Fidel</span><br /><span class="sub">Trace characters to learn them — adapts to what you know</span></span>
                   <Icon name="chevron" />
                 </a>
               </>
@@ -50,13 +50,14 @@ export function Learn() {
               return (
                 <a key={id} class="list-item" href={href('lesson', id)}>
                   <Ring value={m.fraction} size={48} stroke={5} label={`${m.tier}, ${Math.round(m.fraction * 100)}% learned`}>
-                    <strong style={{ fontSize: 14 }}>{id}</strong>
+                    {completed.has(id) ? <span style={{ color: 'var(--eucalyptus)', fontWeight: 700 }}>✓</span> : <strong style={{ fontSize: 14 }}>{id}</strong>}
                   </Ring>
                   <span class="grow">
                     <span class="title">{lesson.title}</span><br />
-                    <span class="sub">{completed.has(id) ? 'Completed · ' : ''}{m.tier}</span>
+                    <span class="sub">{lesson.description}</span><br />
+                    <span class="chip" style={{ marginTop: 6 }}>{m.tier}</span>{completed.has(id) && <span class="visually-hidden">, completed</span>}
                   </span>
-                  <Icon name="chevron" />
+                  {m.tier === 'New' && !completed.has(id) ? <span class="pill-small" aria-hidden="true">Start</span> : <Icon name="chevron" />}
                 </a>
               )
             })}

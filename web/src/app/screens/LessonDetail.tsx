@@ -35,8 +35,11 @@ export function LessonDetail({ id }: { id: number }) {
       <div class="list" role="tabpanel" aria-label={tab}>
         {tab === 'Patterns' && lesson.patterns.map((p) => (
           <details key={p.id} class="card">
-            <summary>{p.description}</summary>
-            <p class="amharic-md" lang="am">{p.structure}</p>
+            <summary>
+              <span style={{ fontWeight: 600 }}>{p.description}</span>
+              <span class="muted" style={{ display: 'block', fontSize: 13, fontWeight: 400 }}>{p.category}</span>
+              <span class="amharic-lg" lang="am" style={{ display: 'block', color: 'var(--terracotta-deep)', marginTop: 8 }}>{p.structure}</span>
+            </summary>
             {p.examples.slice(0, 3).map((e) => (
               <div key={e.amharic} class="spread" style={{ marginTop: 10 }}>
                 <Amharic text={e.amharic} translit={e.transliteration} english={e.english} size="md" />

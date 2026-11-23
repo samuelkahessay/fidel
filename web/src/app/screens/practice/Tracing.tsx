@@ -25,7 +25,7 @@ const pathFor = (s: TraceableStroke, upTo = s.totalLength) => {
   return `M${points.map((p) => `${p.x} ${p.y}`).join(' L')} L${end.x} ${end.y}`
 }
 
-const levelLabel = (level: number) => (level <= 1 ? 'Full guide' : level === 2 ? 'Faint guide' : 'From memory')
+const levelLabel = (level: number) => (level <= 1 ? 'Guided' : level === 2 ? 'Faint guide' : 'From memory')
 
 /** One character: draw each stroke in order inside the forgiving corridor. */
 function TraceCanvas({ item, onComplete }: { item: SessionItem; onComplete: (score: number, misses: number) => void }) {
@@ -92,7 +92,7 @@ function TraceCanvas({ item, onComplete }: { item: SessionItem; onComplete: (sco
     if (!ctx) return
     ctx.lineWidth = 7
     ctx.lineCap = ctx.lineJoin = 'round'
-    ctx.strokeStyle = getComputedStyle(canvas.current!).getPropertyValue('--terracotta') || '#b55130'
+    ctx.strokeStyle = 'rgba(230, 176, 68, 0.9)'
     ctx.beginPath()
     ctx.moveTo(from.x, from.y)
     ctx.lineTo(to.x, to.y)
@@ -127,7 +127,7 @@ function TraceCanvas({ item, onComplete }: { item: SessionItem; onComplete: (sco
 
   if (!ready) return <div class="trace-wrap" aria-busy="true" />
   const active = engine.activeStroke
-  const guideOpacity = item.level <= 1 ? 0.22 : item.level === 2 ? 0.1 : 0
+  const guideOpacity = item.level <= 1 ? 0.3 : item.level === 2 ? 0.12 : 0
   const snapProgress = snapAt === null ? null : Math.min(1, (performance.now() - snapAt) / (standardTuning.snapDuration * 1000))
   const fill = engine.phase === 'snapping' && snapProgress !== null ? engine.snapStartProgress + (1 - engine.snapStartProgress) * snapProgress : engine.displayProgress
   const hintProgress = hintAt === null ? null : Math.min(1, (performance.now() - hintAt) / 1200)
@@ -140,31 +140,29 @@ function TraceCanvas({ item, onComplete }: { item: SessionItem; onComplete: (sco
           {engine.strokes.map((s) => {
             const done = s.index < engine.activeStrokeIndex || engine.phase === 'characterComplete'
             const isActive = s.index === engine.activeStrokeIndex && engine.phase !== 'characterComplete'
+            const width = Math.min(s.corridorRadius * 0.9, 34)
             return (
-              <g key={s.index}>
-                {!done && guideOpacity > 0 && (
-                  <path d={pathFor(s)} fill="none" stroke="var(--ink)" stroke-opacity={isActive ? guideOpacity : guideOpacity / 2}
-                    stroke-width={Math.min(s.corridorRadius * 0.7, 26)} stroke-linecap="round" stroke-linejoin="round" />
-                )}
+              <g key={s.index} stroke-linecap="round" stroke-linejoin="round" fill="none">
+                {guideOpacity > 0 && <path d={pathFor(s)} stroke="#5b4a3a" stroke-opacity={isActive ? 1 : 0.55} stroke-width={width + 8} />}
+                {guideOpacity > 0 && <path d={pathFor(s)} stroke="#3b3023" stroke-width={width} />}
+                {isActive && guideOpacity > 0 && <path d={pathFor(s)} stroke="#e6b044" stroke-opacity={guideOpacity * 3} stroke-width="2" stroke-dasharray="5 6" />}
                 {(done || (isActive && fill > 0)) && (
-                  <path d={pathFor(s, done ? s.totalLength : fill * s.totalLength)} fill="none" stroke="var(--ink)"
-                    stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d={pathFor(s, done ? s.totalLength : fill * s.totalLength)} stroke="#efe4cc" stroke-width={done ? width : width - 4} />
                 )}
               </g>
             )
           })}
           {active && engine.phase === 'waitingForStart' && item.level < 3 && (
-            <circle cx={active.startPoint.x} cy={active.startPoint.y} r="11" fill="var(--terracotta)" />
+            <circle cx={active.startPoint.x} cy={active.startPoint.y} r="12" fill="#e6b044" stroke="#1d1510" stroke-width="2" />
           )}
           {active && hintProgress !== null && (() => {
             const p = pointAt(hintProgress * active.totalLength, active)
-            return <circle cx={p.x} cy={p.y} r="12" fill="var(--gold)" />
+            return <circle cx={p.x} cy={p.y} r="9" fill="#fffdf6" />
           })()}
         </svg>
         <canvas ref={canvas} width={canvasSize.width} height={canvasSize.height} />
       </div>
       <div class="row" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
-        <span class="chip">{levelLabel(item.level)}</span>
         <span class="chip">Stroke {Math.min(engine.activeStrokeIndex + 1, engine.strokes.length)} of {engine.strokes.length}</span>
         <button class="btn ghost" onClick={() => { engine.requestHint(); setHintAt(performance.now()); rerender(0) }}
           disabled={engine.phase !== 'waitingForStart'}><Icon name="hint" /> Show me</button>
@@ -212,11 +210,13 @@ export function Tracing({ characterId }: { characterId?: string }) {
 
   return (
     <div class="stack">
-      <TopBar title="Character Tracing"><span class="chip">{index + 1}/{items.length}</span></TopBar>
-      <div class="row" style={{ justifyContent: 'center' }}>
+      <TopBar title="Character Tracing" />
+      <p style={{ margin: 0, fontWeight: 600 }}>{index + 1} of {items.length}</p>
+      <div class="card row">
         <span class="amharic-lg" lang="am">{item.character.character}</span>
-        <span class="translit">{item.character.romanization}</span>
-        <button class="icon-btn" aria-label="Play sound" onClick={() => void playContent('fidelCharacter', charId(item.character))}><Icon name="speaker" /></button>
+        <span class="grow"><strong>{item.character.romanization}</strong><br /><span class="muted">{item.character.consonant}</span></span>
+        <span class="chip">{levelLabel(item.level)}</span>
+        <button class="icon-btn" aria-label="Play sound" onClick={() => void playContent('fidelCharacter', charId(item.character))}><Icon name="play" /></button>
       </div>
       {celebrate ? (
         <div class="card stack" style={{ textAlign: 'center' }} role="status">

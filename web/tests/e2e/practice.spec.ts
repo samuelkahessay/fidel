@@ -9,8 +9,8 @@ test('Practice lists all eleven modes', async ({ page }) => {
 test('Flashcards: reveal, rate twenty cards, see results', async ({ page }) => {
   await openApp(page, 'practice/flashcards')
   for (let i = 0; i < 20; i++) {
-    await page.locator('button.flashcard').click()
-    await page.getByRole('button', { name: i % 3 ? 'I knew it' : 'Still learning' }).click()
+    await page.getByRole('button', { name: 'Show Answer' }).click()
+    await page.getByRole('button', { name: i % 3 ? 'Got it!' : 'Still learning', exact: true }).click()
   }
   await expect(page.getByRole('status')).toContainText('of 20 correct')
 })
@@ -25,7 +25,7 @@ test('Quiz: twelve mixed questions with feedback', async ({ page }) => {
       await page.getByRole('button', { name: 'Check' }).click()
     }
     await expect(page.locator('.feedback')).toBeVisible()
-    await page.getByRole('button', { name: i === 11 ? 'See results' : 'Next' }).click()
+    await page.getByRole('button', { name: i === 11 ? 'See results' : 'Next', exact: true }).click()
   }
   await expect(page.getByRole('status')).toContainText('of 12 correct')
 })
@@ -35,7 +35,7 @@ test('Fill the Blank grades the chosen word', async ({ page }) => {
   for (let i = 0; i < 8; i++) {
     await page.locator('button.option').first().click()
     await expect(page.locator('.feedback')).toBeVisible()
-    await page.getByRole('button', { name: i === 7 ? 'See results' : 'Next' }).click()
+    await page.getByRole('button', { name: i === 7 ? 'See results' : 'Next', exact: true }).click()
   }
   await expect(page.getByRole('status')).toContainText('of 8 correct')
 })

@@ -1,5 +1,5 @@
 import { href } from '../router'
-import { dueVocabulary } from '../store'
+import { dueVocabulary, progress } from '../store'
 import { Empty, Icon, ScreenHeader } from '../ui'
 import { Cloze } from './practice/Cloze'
 import { Flashcards } from './practice/Flashcards'
@@ -15,28 +15,47 @@ import { WordOrder } from './practice/WordOrder'
 
 /** PracticeMode in Fidel/Models/Models.swift, in the same order. */
 const modes = [
-  { id: 'flashcards', title: 'Flashcards', detail: 'Review vocabulary with spaced repetition' },
-  { id: 'quiz', title: 'Quiz', detail: 'Test your knowledge with multiple choice' },
-  { id: 'pronunciation', title: 'Pronunciation', detail: 'Listen and practice speaking' },
-  { id: 'sentence-builder', title: 'Sentence Builder', detail: 'Build sentences using patterns' },
-  { id: 'word-order', title: 'Word Order', detail: 'Tap word tiles into the right order to translate' },
-  { id: 'cloze', title: 'Fill the Blank', detail: 'Fill in the missing word in a sentence' },
-  { id: 'grammar', title: 'Grammar', detail: 'Learn the rules behind the sentences' },
-  { id: 'reading', title: 'Reading', detail: 'Read short passages and check comprehension' },
-  { id: 'match', title: 'Match Pairs', detail: 'Tap each Amharic word and its meaning' },
-  { id: 'speed-drill', title: 'Speed Drill', detail: 'Rapid-fire translation practice' },
-  { id: 'tracing', title: 'Character Tracing', detail: 'Trace the Fidel letters stroke by stroke' },
+  { id: 'flashcards', title: 'Flashcards', detail: 'Review vocabulary with spaced repetition', icon: 'stack', tint: 'var(--terracotta-deep)' },
+  { id: 'quiz', title: 'Quiz', detail: 'Test your knowledge with multiple choice', icon: 'hint', tint: 'var(--plum)' },
+  { id: 'pronunciation', title: 'Pronunciation', detail: 'Listen and practice speaking', icon: 'mic', tint: 'var(--eucalyptus)' },
+  { id: 'sentence-builder', title: 'Sentence Builder', detail: 'Build sentences using patterns', icon: 'book', tint: 'var(--gold)' },
+  { id: 'word-order', title: 'Word Order', detail: 'Tap word tiles into the right order to translate', icon: 'refresh', tint: 'var(--eucalyptus)' },
+  { id: 'cloze', title: 'Fill the Blank', detail: 'Fill in the missing word in a sentence', icon: 'check', tint: 'var(--terracotta)' },
+  { id: 'grammar', title: 'Grammar', detail: 'Learn the rules behind the sentences', icon: 'book', tint: 'var(--plum)' },
+  { id: 'reading', title: 'Reading', detail: 'Read short passages and check comprehension', icon: 'book', tint: 'var(--terracotta-deep)' },
+  { id: 'match', title: 'Match Pairs', detail: 'Tap each Amharic word and its meaning', icon: 'sparkles', tint: 'var(--gold)' },
+  { id: 'speed-drill', title: 'Speed Drill', detail: 'Rapid-fire translation practice', icon: 'flame', tint: 'var(--red)' },
+  { id: 'tracing', title: 'Character Tracing', detail: 'Trace the Fidel letters stroke by stroke', icon: 'hint', tint: 'var(--eucalyptus)' },
 ]
 
 export function Practice() {
   const due = dueVocabulary.value.length
+  const lessons = progress.value.lessonsCompleted.length
+  // PracticeView.recommendedSubtitle
+  const detail = due
+    ? `${due} word${due === 1 ? '' : 's'} due for review. Keep them fresh before moving on.`
+    : lessons === 0
+      ? 'Start with the words already bundled in Fidel, then come back after your first lesson.'
+      : `You have ${lessons} completed lesson${lessons === 1 ? '' : 's'}. Keep those words active before moving on.`
   return (
     <div class="stack">
       <ScreenHeader title="Practice" amharic="ልምምድ"
-        subtitle={due ? `${due} word${due === 1 ? '' : 's'} due for review.` : 'Pick any drill. Everything is open.'} />
+        subtitle="Short, focused rounds for recall, sound, sentence rhythm, and Fidel muscle memory." />
+      <section class="card stack" aria-labelledby="practice-rec">
+        <div class="row" style={{ alignItems: 'flex-start' }}>
+          <span class="mode-icon large"><Icon name="stack" /></span>
+          <div>
+            <h2 id="practice-rec" style={{ margin: 0 }}>Recommended review</h2>
+            <p class="secondary" style={{ margin: '4px 0 0' }}>{detail}</p>
+          </div>
+        </div>
+        <a class="btn green" href={href('practice', 'flashcards')}>Start flashcards <Icon name="chevron" /></a>
+      </section>
+      <h2 class="section-label">Modes</h2>
       <div class="list">
         {modes.map((m) => (
           <a key={m.id} class="list-item" href={href('practice', m.id)}>
+            <span class="mode-icon" style={{ color: m.tint }}><Icon name={m.icon} /></span>
             <span class="grow"><span class="title">{m.title}</span><br /><span class="sub">{m.detail}</span></span>
             <Icon name="chevron" />
           </a>

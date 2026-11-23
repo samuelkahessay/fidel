@@ -51,7 +51,10 @@ export function App() {
         ))}
       </nav>
       <main class="screen" id="main">
-        <Screen />
+        {/* Keyed by route so moving between, say, two lessons resets per-screen state. */}
+        <div key={route.value.join('/')}>
+          <Screen />
+        </div>
       </main>
     </div>
   )

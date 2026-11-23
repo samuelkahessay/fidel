@@ -65,13 +65,13 @@ export function WordOrder() {
       <div class="tile-bank" role="group" aria-label="Your answer" aria-live="polite">
         {placed.map((t) => (
           <button key={t.key} class="word-tile" lang={q.toAmharic ? 'am' : undefined} style={tileStyle} disabled={checked !== null}
-            onClick={() => setPlaced(placed.filter((x) => x !== t))}>{t.text}</button>
+            onClick={() => setPlaced(placed.filter((x) => x !== t))}>{t.text}{t.translit && <small class="tile-translit">{t.translit}</small>}</button>
         ))}
       </div>
       <div class="row" style={{ flexWrap: 'wrap', gap: 8 }} role="group" aria-label="Word bank">
         {bank.map((t) => (
           <button key={t.key} class="word-tile" lang={q.toAmharic ? 'am' : undefined} style={tileStyle} disabled={checked !== null}
-            onClick={() => setPlaced([...placed, t])}>{t.text}</button>
+            onClick={() => setPlaced([...placed, t])}>{t.text}{t.translit && <small class="tile-translit">{t.translit}</small>}</button>
         ))}
       </div>
       {checked === null ? (

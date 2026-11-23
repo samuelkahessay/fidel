@@ -508,7 +508,8 @@ input.text {
   margin: 0 auto;
   touch-action: none;
   border-radius: 24px;
-  background: var(--card);
+  /* TraceSlateBackground: the dark slate the iOS app traces on, in both color schemes. */
+  background: #1a1410;
   box-shadow: var(--shadow);
   border: 1px solid var(--hairline);
   overflow: hidden;
@@ -559,4 +560,71 @@ details.card summary {
   height: 20px;
   flex: none;
   vertical-align: -4px;
+}
+
+/* Learn hero and path, matching JourneyView. */
+.hero-dark {
+  background: var(--terracotta-deep);
+  color: var(--on-accent);
+  border: 0;
+}
+.hero-dark .eyebrow-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.btn.pill {
+  background: var(--terracotta);
+  color: var(--on-accent);
+  border-radius: 999px;
+}
+.btn.green {
+  background: var(--eucalyptus);
+  color: var(--on-accent);
+}
+.section-title {
+  font-size: 22px;
+  margin: 20px 0 10px;
+}
+.section-title .am {
+  color: var(--terracotta-deep);
+  font-size: 18px;
+  font-weight: 500;
+}
+.pill-small {
+  background: var(--terracotta);
+  color: var(--on-accent);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mode-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--paper-accent);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.mode-icon .icon {
+  width: 22px;
+  height: 22px;
+}
+.mode-icon.large {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--eucalyptus);
+  color: var(--on-accent);
+}
+
+.tile-translit {
+  display: block;
+  font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--ink-muted);
 }

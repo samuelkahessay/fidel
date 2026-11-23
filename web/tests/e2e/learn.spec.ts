@@ -36,7 +36,7 @@ test('completing a lesson awards XP, credits characters and marks it completed',
   // 25 XP for the lesson plus 2 XP per Fidel character the lesson uses.
   expect(await totalXP(page)).toBeGreaterThan(25)
   await openApp(page, 'learn')
-  await expect(page.locator('a[href="#/lesson/1"]')).toContainText('Completed')
+  await expect(page.locator('a[href="#/lesson/1"]')).toContainText('completed')
 })
 
 test('a conversation plays line by line and can be completed', async ({ page }) => {
@@ -52,4 +52,11 @@ test('role-play hides your lines until you reveal them', async ({ page }) => {
   await page.getByRole('button', { name: /^Be / }).first().click()
   await page.getByRole('button', { name: 'Next line' }).click()
   await expect(page.getByRole('button', { name: 'Say it, then reveal' }).first()).toBeVisible()
+})
+
+test('moving from one lesson to another resets the completion state', async ({ page }) => {
+  await openApp(page, 'lesson/1')
+  await page.getByRole('button', { name: 'Complete lesson' }).click()
+  await page.goto('/app/#/lesson/2')
+  await expect(page.getByRole('button', { name: 'Complete lesson' })).toBeVisible()
 })
