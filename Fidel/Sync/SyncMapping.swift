@@ -38,7 +38,7 @@ extension UserProgress {
     }
 
     /// Whole-record overwrite: used for insert-on-first-fetch. Field-wise merge
-    /// (mirroring `ProgressRepository.consolidateUserProgress`) lives in
+    /// (`ProgressMergeState`, shared with `ProgressRepository`) lives in
     /// `FidelSyncStore.applyRemoteRecord`, not here.
     func apply(record: CKRecord) {
         if let ownerUserId = record["ownerUserId"] as? String { self.ownerUserId = ownerUserId }

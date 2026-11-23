@@ -430,21 +430,7 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         }
 
         for record in records where record !== primary {
-            primary.totalXP = max(primary.totalXP, record.totalXP)
-            primary.currentStreak = max(primary.currentStreak, record.currentStreak)
-            primary.longestStreak = max(primary.longestStreak, record.longestStreak)
-            primary.dailyGoal = max(primary.dailyGoal, record.dailyGoal)
-            primary.todayXP = max(primary.todayXP, record.todayXP)
-            primary.currentStage = max(primary.currentStage, record.currentStage)
-            primary.lastPracticeDate = maxDate(primary.lastPracticeDate, record.lastPracticeDate)
-            primary.lessonsCompleted = mergedUnique(primary.lessonsCompleted, record.lessonsCompleted)
-            primary.patternsLearned = mergedUnique(primary.patternsLearned, record.patternsLearned)
-            primary.vocabularyMastered = mergedUnique(primary.vocabularyMastered, record.vocabularyMastered)
-            primary.conversationsPracticed = mergedUnique(primary.conversationsPracticed, record.conversationsPracticed)
-            primary.achievements = mergedUnique(primary.achievements, record.achievements)
-            primary.fidelCharactersRecognized = mergedUnique(primary.fidelCharactersRecognized, record.fidelCharactersRecognized)
-            primary.charactersTraced = mergedUnique(primary.charactersTraced, record.charactersTraced)
-            primary.updatedAt = maxDate(primary.updatedAt, record.updatedAt) ?? Date.now
+            primary.apply(primary.mergeState.merged(with: record.mergeState))
             didMutate = true
             // Deletes a LOCAL duplicate only — post-adoption, `primary` and
             // `record` converge on the same syncID, so `record` is never the
@@ -554,9 +540,5 @@ final class ProgressRepository: ProgressRepositoryProtocol {
         case (nil, nil):
             return nil
         }
-    }
-
-    private func mergedUnique<T: Hashable>(_ lhs: [T], _ rhs: [T]) -> [T] {
-        Array(Set(lhs).union(rhs))
     }
 }
