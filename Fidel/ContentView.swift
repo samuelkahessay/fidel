@@ -163,6 +163,7 @@ private struct AccountChangeSheet: View {
     @Environment(SyncEngine.self) private var sync
     @Environment(\.modelContext) private var context
     @State private var archiveFailed = false
+    @State private var wipeFailed = false
 
     private static let logger = Logger(subsystem: "dev.skahessay.learnamharic", category: "sync")
 
@@ -183,6 +184,8 @@ private struct AccountChangeSheet: View {
                 } footer: {
                     if archiveFailed {
                         Label("Couldn't create a local archive — nothing was changed. Free up space and try again, or choose Keep this device's data.", systemImage: "exclamationmark.triangle")
+                    } else if wipeFailed {
+                        Label("Couldn't clear this device's data — nothing was changed. Try again, or choose Keep this device's data.", systemImage: "exclamationmark.triangle")
                     } else {
                         Text("The iCloud account on this device changed. Choose whether to upload this device's data into the new account, or replace it with the new account's data (a local archive is kept).")
                     }
@@ -195,17 +198,19 @@ private struct AccountChangeSheet: View {
     private func adoptRemote() {
         // Archive FIRST. If it fails, bail without touching any data — this
         // is the data-loss guard for the destructive path.
+        archiveFailed = false
+        wipeFailed = false
         guard archiveStoreFiles() else {
             archiveFailed = true
             return
         }
-        try? context.delete(model: UserProgress.self)
-        try? context.delete(model: FlashcardProgress.self)
-        try? context.delete(model: CharacterTraceMastery.self)
-        // Deliberately NOT SelamConversation/SelamMessage: those are
-        // device-local AI tutor chats, unrelated to the account's synced
-        // learning data, so they survive an account switch untouched.
-        try? context.save()
+        do {
+            try FidelSyncStore(context: context).wipeSyncedModels()
+        } catch {
+            Self.logger.error("Failed to wipe local data: \(error, privacy: .public)")
+            wipeFailed = true
+            return
+        }
         sync.adoptCurrentAccountData()
     }
 

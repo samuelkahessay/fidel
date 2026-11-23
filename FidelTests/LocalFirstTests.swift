@@ -311,11 +311,10 @@ final class LocalFirstTests: XCTestCase {
         )
     }
 
-    /// Mirrors `AccountChangeSheet.adoptRemote()`'s wipe step
-    /// (`Fidel/ContentView.swift`): deletes the three synced progress models
+    /// `FidelSyncStore.wipeSyncedModels()` backs the account-change sheet's
+    /// "Start fresh from iCloud": it deletes the three synced progress models
     /// but must leave Selam chat records untouched, since those are
-    /// device-local AI tutor conversations unrelated to the account's synced
-    /// learning data.
+    /// device-local tutor conversations unrelated to the account's data.
     func testAccountChangeWipeDeletesSyncedModelsButLeavesSelamIntact() throws {
         let container = try makeContainer()
         let context = container.mainContext
@@ -328,11 +327,9 @@ final class LocalFirstTests: XCTestCase {
         context.insert(SelamMessage(content: "Selam!", role: .user))
         try context.save()
 
-        try context.delete(model: UserProgress.self)
-        try context.delete(model: FlashcardProgress.self)
-        try context.delete(model: CharacterTraceMastery.self)
-        try context.save()
+        try FidelSyncStore(context: context).wipeSyncedModels()
 
+        XCTAssertFalse(context.hasChanges, "the wipe must land as one saved transaction")
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<UserProgress>()), 0)
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<FlashcardProgress>()), 0)
         XCTAssertEqual(try context.fetchCount(FetchDescriptor<CharacterTraceMastery>()), 0)

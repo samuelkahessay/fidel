@@ -78,6 +78,21 @@ final class FidelSyncStore: SyncStore {
         return ids
     }
 
+    /// Deletes every synced model as one transaction, for adopting a new
+    /// iCloud account's data. If any step fails, the context is rolled back
+    /// so nothing is half-deleted. Selam chats are device-local and kept.
+    func wipeSyncedModels() throws {
+        do {
+            try context.delete(model: UserProgress.self)
+            try context.delete(model: FlashcardProgress.self)
+            try context.delete(model: CharacterTraceMastery.self)
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
+    }
+
     func resetAllSystemFields() throws {
         try context.fetch(FetchDescriptor<UserProgress>()).forEach { $0.cloudSystemFields = nil }
         try context.fetch(FetchDescriptor<FlashcardProgress>()).forEach { $0.cloudSystemFields = nil }
