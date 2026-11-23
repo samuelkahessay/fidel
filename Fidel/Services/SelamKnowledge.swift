@@ -3,7 +3,7 @@ import Foundation
 /// Searches Fidel's bundled curriculum so Selam can quote real Amharic instead
 /// of generating it. Apple's on-device model does not support Amharic, so every
 /// Amharic string Selam shows must come from here.
-struct SelamKnowledge {
+struct SelamKnowledge: Sendable {
     struct Entry: Equatable {
         let amharic: String
         let transliteration: String
@@ -11,10 +11,16 @@ struct SelamKnowledge {
         let note: String?
     }
 
-    private let repository: LessonRepositoryProtocol
+    private let vocabulary: [VocabularyWord]
+    private let phrases: [Phrase]
+    private let patterns: [Pattern]
+    private let fidelChart: [[FidelCharacter]]
 
     init(repository: LessonRepositoryProtocol = LessonRepository.shared) {
-        self.repository = repository
+        vocabulary = repository.getVocabulary()
+        phrases = repository.getPhrases()
+        patterns = repository.getPatterns()
+        fidelChart = repository.getFidelChart()
     }
 
     /// Vocabulary and phrases whose English, Amharic or transliteration match `query`,
@@ -23,10 +29,10 @@ struct SelamKnowledge {
         let needle = Self.normalize(query)
         guard !needle.isEmpty else { return [] }
 
-        let words = repository.getVocabulary().map {
+        let words = vocabulary.map {
             Entry(amharic: $0.amharic, transliteration: $0.transliteration, english: $0.english, note: nil)
         }
-        let phrases = repository.getPhrases().map {
+        let phrases = phrases.map {
             Entry(amharic: $0.amharic, transliteration: $0.transliteration, english: $0.english,
                   note: $0.notes.isEmpty ? nil : $0.notes)
         }
@@ -50,7 +56,7 @@ struct SelamKnowledge {
     func lookupGrammar(_ query: String, limit: Int = 3) -> [Pattern] {
         let terms = Self.normalize(query).split(separator: " ").map(String.init)
         guard !terms.isEmpty else { return [] }
-        return repository.getPatterns()
+        return patterns
             .filter { pattern in
                 let haystack = Self.normalize("\(pattern.category) \(pattern.description) \(pattern.structure)")
                 return terms.allSatisfy { haystack.contains($0) }
@@ -64,7 +70,7 @@ struct SelamKnowledge {
     func lookupFidelRow(_ query: String) -> [FidelCharacter]? {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         let lowered = trimmed.lowercased()
-        return repository.getFidelChart().first { row in
+        return fidelChart.first { row in
             row.contains { $0.character == trimmed } || row.first?.consonant.lowercased() == lowered
         }
     }
