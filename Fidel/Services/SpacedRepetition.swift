@@ -14,8 +14,8 @@ enum ReviewRating: Int {
 
 struct FSRSAlgorithm {
 
-    private static let DECAY: Double = -0.5
-    private static let FACTOR: Double = 19.0 / 81.0
+    private static let decay: Double = -0.5
+    private static let factor: Double = 19.0 / 81.0
 
     private static let weights: [Double] = [
         0.40255, 1.18385, 3.173, 15.69105, 7.1949,
@@ -29,7 +29,7 @@ struct FSRSAlgorithm {
 
     static func forgettingCurve(elapsedDays: Double, stability: Double) -> Double {
         guard stability > 0 else { return 0 }
-        return pow(1 + (FACTOR * elapsedDays) / stability, DECAY)
+        return pow(1 + (factor * elapsedDays) / stability, decay)
     }
 
     static func initStability(rating: ReviewRating) -> Double {
@@ -64,7 +64,7 @@ struct FSRSAlgorithm {
     }
 
     static func nextInterval(stability: Double) -> Int {
-        let modifier = (pow(requestRetention, 1 / DECAY) - 1) / FACTOR
+        let modifier = (pow(requestRetention, 1 / decay) - 1) / factor
         let interval = stability * modifier
         return Int(min(max(1, round(interval)), maximumInterval))
     }

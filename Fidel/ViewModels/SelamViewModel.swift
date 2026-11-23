@@ -185,7 +185,7 @@ final class SelamViewModel {
                     }
                 }
 
-                if token.done == true {
+                if token.done {
                     if let index = messages.firstIndex(where: { $0.id == placeholderMessage.id }) {
                         messages[index].isComplete = true
                         if let actions = token.suggestedActions {

@@ -157,7 +157,7 @@ import SwiftUI
         private func pathFromPKStroke(_ pkStroke: PKStroke, in canvasSize: CGSize) -> Path {
             var path = Path()
             let strokePath = pkStroke.path
-            guard strokePath.count > 0 else { return path }
+            guard !strokePath.isEmpty else { return path }
 
             path.move(to: strokePath.interpolatedLocation(at: 0))
             let step: CGFloat = 1.0

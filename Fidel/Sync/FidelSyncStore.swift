@@ -96,9 +96,9 @@ final class FidelSyncStore: SyncStore {
     }
 
     func resetAllSystemFields() throws {
-        try context.fetch(FetchDescriptor<UserProgress>()).forEach { $0.cloudSystemFields = nil }
-        try context.fetch(FetchDescriptor<FlashcardProgress>()).forEach { $0.cloudSystemFields = nil }
-        try context.fetch(FetchDescriptor<CharacterTraceMastery>()).forEach { $0.cloudSystemFields = nil }
+        for model in try context.fetch(FetchDescriptor<UserProgress>()) { model.cloudSystemFields = nil }
+        for model in try context.fetch(FetchDescriptor<FlashcardProgress>()) { model.cloudSystemFields = nil }
+        for model in try context.fetch(FetchDescriptor<CharacterTraceMastery>()) { model.cloudSystemFields = nil }
         try context.save()
     }
 

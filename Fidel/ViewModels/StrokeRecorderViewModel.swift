@@ -172,7 +172,7 @@ import PencilKit
 
             for pkStroke in userDrawing.strokes {
                 let path = pkStroke.path
-                guard path.count > 0 else { continue }
+                guard !path.isEmpty else { continue }
                 maskCtx.move(to: path.interpolatedLocation(at: 0))
                 var dist: CGFloat = 1.0
                 while dist < CGFloat(path.count - 1) {
@@ -192,12 +192,10 @@ import PencilKit
             var coveredCount = 0
             let totalPixels = size * size
 
-            for i in 0..<totalPixels {
-                if glyphPixels[i] > 0 {
-                    glyphCount += 1
-                    if maskPixels[i] > 0 {
-                        coveredCount += 1
-                    }
+            for i in 0..<totalPixels where glyphPixels[i] > 0 {
+                glyphCount += 1
+                if maskPixels[i] > 0 {
+                    coveredCount += 1
                 }
             }
 

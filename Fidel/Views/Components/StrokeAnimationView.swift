@@ -10,7 +10,7 @@ struct StrokeAnimationView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let character: String
     let size: CGSize
-    var characterId: String? = nil
+    var characterId: String?
     var maxLoops = 2
     var totalDuration: CGFloat = 2.0
     /// The revealed (bright) ink color. Defaults to the legacy plum; the tracing
@@ -20,7 +20,7 @@ struct StrokeAnimationView: View {
     var ghostColor: Color = AppTheme.practiceColor.opacity(0.08)
     /// Called once after the final loop completes (or shortly after the static
     /// reveal under Reduce Motion).
-    var onFinished: (() -> Void)? = nil
+    var onFinished: (() -> Void)?
 
     @State private var animationProgress: CGFloat = 0
     @State private var loopCount = 0

@@ -311,5 +311,5 @@ struct SelamHistoryMessage: Codable {
 struct SelamStreamToken: Codable {
     let content: String?
     let suggestedActions: [String]?
-    let done: Bool?
+    let done: Bool
 }

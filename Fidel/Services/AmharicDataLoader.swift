@@ -8,10 +8,9 @@ enum AmharicDataLoader {
 
     static let fidelChart: [[FidelCharacter]] = {
         let flat: [FidelCharacter] = load("fidel_chart")
-        let grouped = Dictionary(grouping: flat) { $0.rowIndex }
-        return grouped.keys.sorted().map { key in
-            grouped[key]!.sorted { $0.vowelOrder < $1.vowelOrder }
-        }
+        return Dictionary(grouping: flat) { $0.rowIndex }
+            .sorted { $0.key < $1.key }
+            .map { $0.value.sorted { $0.vowelOrder < $1.vowelOrder } }
     }()
 
     static let patterns: [Pattern] = load("patterns")

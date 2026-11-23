@@ -69,7 +69,7 @@ final class FlashcardViewModel {
     }
 
     var accuracyPercentage: Int {
-        vocabulary.count > 0 ? Int((Double(correctCount) / Double(vocabulary.count)) * 100) : 0
+        !vocabulary.isEmpty ? Int((Double(correctCount) / Double(vocabulary.count)) * 100) : 0
     }
 
     func flip() {

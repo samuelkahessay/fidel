@@ -162,8 +162,8 @@ final class PathExtractor {
         }
         let pixels = data.bindMemory(to: UInt8.self, capacity: bitmapSize * bitmapSize)
         var filledCount = 0
-        for i in 0..<(bitmapSize * bitmapSize) {
-            if pixels[i] > 127 { filledCount += 1 }
+        for i in 0..<(bitmapSize * bitmapSize) where pixels[i] > 127 {
+            filledCount += 1
         }
 
         // Convert pixel area back to original coordinate space

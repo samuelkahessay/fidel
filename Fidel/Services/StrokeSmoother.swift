@@ -193,61 +193,23 @@ final class StrokeRevealRegion {
             rgba[offset + 2] = 255
             rgba[offset + 3] = mask[i]
         }
-
-        let data = Data(rgba)
-        let provider = CGDataProvider(data: data as CFData)
-
-        let fallback = CGImage(
-            width: 1,
-            height: 1,
-            bitsPerComponent: 8,
-            bitsPerPixel: 32,
-            bytesPerRow: 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue),
-            provider: CGDataProvider(data: Data([0, 0, 0, 0]) as CFData)!,
-            decode: nil,
-            shouldInterpolate: false,
-            intent: .defaultIntent
-        )!
-
-        guard let provider else { return fallback }
-
-        return CGImage(
-            width: width,
-            height: height,
-            bitsPerComponent: 8,
-            bitsPerPixel: 32,
-            bytesPerRow: width * 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue),
-            provider: provider,
-            decode: nil,
-            shouldInterpolate: false,
-            intent: .defaultIntent
-        ) ?? fallback
+        return makeRGBAImage(from: rgba, width: width, height: height)
     }
 
+    /// Builds an RGBA image, falling back to a transparent pixel if
+    /// CoreGraphics rejects the buffer (for example a zero-sized mask).
     static func makeRGBAImage(from rgba: [UInt8], width: Int, height: Int) -> CGImage {
-        let data = Data(rgba)
-        let provider = CGDataProvider(data: data as CFData)
+        if let image = cgImage(rgba: rgba, width: width, height: height) {
+            return image
+        }
+        guard let pixel = cgImage(rgba: [0, 0, 0, 0], width: 1, height: 1) else {
+            preconditionFailure("CoreGraphics could not create a 1×1 RGBA image")
+        }
+        return pixel
+    }
 
-        let fallback = CGImage(
-            width: 1,
-            height: 1,
-            bitsPerComponent: 8,
-            bitsPerPixel: 32,
-            bytesPerRow: 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue),
-            provider: CGDataProvider(data: Data([0, 0, 0, 0]) as CFData)!,
-            decode: nil,
-            shouldInterpolate: false,
-            intent: .defaultIntent
-        )!
-
-        guard let provider else { return fallback }
-
+    private static func cgImage(rgba: [UInt8], width: Int, height: Int) -> CGImage? {
+        guard let provider = CGDataProvider(data: Data(rgba) as CFData) else { return nil }
         return CGImage(
             width: width,
             height: height,
@@ -260,7 +222,7 @@ final class StrokeRevealRegion {
             decode: nil,
             shouldInterpolate: false,
             intent: .defaultIntent
-        ) ?? fallback
+        )
     }
 }
 
@@ -426,10 +388,8 @@ final class StrokeRegionBuilder {
             guard glyphMask[pixelIndex] > 127 else { continue }
 
             claimers.removeAll(keepingCapacity: true)
-            for candidateIndex in candidates.indices {
-                if candidates[candidateIndex].envelopeMask[pixelIndex] > 127 {
-                    claimers.append(candidateIndex)
-                }
+            for candidateIndex in candidates.indices where candidates[candidateIndex].envelopeMask[pixelIndex] > 127 {
+                claimers.append(candidateIndex)
             }
 
             guard !claimers.isEmpty else { continue }

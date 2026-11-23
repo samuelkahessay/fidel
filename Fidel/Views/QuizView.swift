@@ -294,7 +294,7 @@ struct QuizView: View {
                     .font(.system(size: 48, weight: .bold))
                     .foregroundStyle(AppTheme.primaryColor)
 
-                let percentage = questions.count > 0 ? Int((Double(score) / Double(questions.count)) * 100) : 0
+                let percentage = !questions.isEmpty ? Int((Double(score) / Double(questions.count)) * 100) : 0
                 Text("\(percentage)% Correct")
                     .font(.title3)
                     .foregroundStyle(AppTheme.inkSecondaryColor)
