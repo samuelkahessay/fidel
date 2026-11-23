@@ -232,7 +232,7 @@ struct TracingSessionView: View {
                     )
                 )
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
                 .opacity(0.4)
             }
 
