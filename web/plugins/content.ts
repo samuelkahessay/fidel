@@ -7,7 +7,7 @@
  *   content.json       all learner content plus an audio lookup map
  *   audio/**           the MP3s referenced by audio_manifest.json
  *   strokes/<id>.json  per-character stroke data, rounded to 4 dp
- *   fonts/*.woff2      Noto Sans Ethiopic converted from the bundled TTF
+ *   fonts/*.woff2      Noto Sans Ethiopic from the bundled TTF, subset to the glyphs in use
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -61,9 +61,28 @@ function strokeFiles(): Map<string, string> {
   return files
 }
 
+const ethiopic = /[\u1200-\u139F\u2D80-\u2DDF\uAB00-\uAB2F]/u
+
+/** Every Ethiopic character the content and the web UI use, so the font can be subset to exactly those glyphs. */
+function usedEthiopic(): string {
+  const webRoot = path.resolve(__dirname, '..')
+  const sources = [path.join(webRoot, 'index.html')]
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name)
+      if (entry.isDirectory()) walk(full)
+      else if (/\.(tsx?|html)$/.test(entry.name)) sources.push(full)
+    }
+  }
+  walk(path.join(webRoot, 'src'))
+  const text = JSON.stringify(buildContent()) + sources.map((f) => fs.readFileSync(f, 'utf8')).join('')
+  return [...new Set([...text].filter((ch) => ethiopic.test(ch)))].join('')
+}
+
+/** WOFF2 of the app's Noto Sans Ethiopic, subset to the glyphs Fidel actually shows (~121 KB instead of ~397 KB). */
 async function woff2(ttf: string): Promise<Buffer> {
-  const { compress } = await import('wawoff2')
-  return Buffer.from(await compress(fs.readFileSync(path.join(appRoot, ttf))))
+  const { default: subset } = await import('subset-font')
+  return Buffer.from(await subset(fs.readFileSync(path.join(appRoot, ttf)), `${usedEthiopic()} `, { targetFormat: 'woff2' }))
 }
 
 const fonts: Record<string, string> = {
