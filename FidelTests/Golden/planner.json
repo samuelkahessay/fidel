@@ -1,0 +1,261 @@
+{
+  "cases" : [
+    {
+      "expected" : {
+        "detail" : "~5 min · 5 new",
+        "estimatedMinutes" : 5,
+        "eyebrow" : "Recommended today",
+        "kind" : "newLesson",
+        "lessonId" : 1,
+        "newCount" : 5,
+        "reviewCount" : 0,
+        "title" : "Start a new lesson"
+      },
+      "input" : {
+        "completedLessonIds" : [
+
+        ],
+        "dueReviewCount" : 0,
+        "inProgressLessonId" : null,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "regular"
+      }
+    },
+    {
+      "expected" : {
+        "detail" : "then start something new",
+        "estimatedMinutes" : 2,
+        "eyebrow" : "Recommended today",
+        "kind" : "reviews",
+        "lessonId" : null,
+        "newCount" : 3,
+        "reviewCount" : 4,
+        "title" : "Review 4 words"
+      },
+      "input" : {
+        "completedLessonIds" : [
+
+        ],
+        "dueReviewCount" : 4,
+        "inProgressLessonId" : null,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "casual"
+      }
+    },
+    {
+      "expected" : {
+        "detail" : "~5 min",
+        "estimatedMinutes" : 5,
+        "eyebrow" : "Pick up where you left off",
+        "kind" : "resumeLesson",
+        "lessonId" : 3,
+        "newCount" : 5,
+        "reviewCount" : 0,
+        "title" : "Continue your lesson"
+      },
+      "input" : {
+        "completedLessonIds" : [
+          1,
+          2
+        ],
+        "dueReviewCount" : 0,
+        "inProgressLessonId" : 3,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "regular"
+      }
+    },
+    {
+      "expected" : {
+        "detail" : "~10 min · 8 new",
+        "estimatedMinutes" : 10,
+        "eyebrow" : "Recommended today",
+        "kind" : "newLesson",
+        "lessonId" : 2,
+        "newCount" : 8,
+        "reviewCount" : 0,
+        "title" : "Start a new lesson"
+      },
+      "input" : {
+        "completedLessonIds" : [
+          1
+        ],
+        "dueReviewCount" : 0,
+        "inProgressLessonId" : 1,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "serious"
+      }
+    },
+    {
+      "expected" : {
+        "detail" : "Review anything you like",
+        "estimatedMinutes" : 15,
+        "eyebrow" : "You're all caught up",
+        "kind" : "allCaughtUp",
+        "lessonId" : null,
+        "newCount" : 0,
+        "reviewCount" : 0,
+        "title" : "Free practice"
+      },
+      "input" : {
+        "completedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "dueReviewCount" : 0,
+        "inProgressLessonId" : null,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "intense"
+      }
+    },
+    {
+      "expected" : {
+        "detail" : "keep your memory fresh",
+        "estimatedMinutes" : 5,
+        "eyebrow" : "Recommended today",
+        "kind" : "reviews",
+        "lessonId" : null,
+        "newCount" : 0,
+        "reviewCount" : 15,
+        "title" : "Review 15 words"
+      },
+      "input" : {
+        "completedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "dueReviewCount" : 40,
+        "inProgressLessonId" : null,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "regular"
+      }
+    },
+    {
+      "expected" : {
+        "detail" : "then start something new",
+        "estimatedMinutes" : 2,
+        "eyebrow" : "Recommended today",
+        "kind" : "reviews",
+        "lessonId" : null,
+        "newCount" : 3,
+        "reviewCount" : 1,
+        "title" : "Review 1 word"
+      },
+      "input" : {
+        "completedLessonIds" : [
+          1,
+          2,
+          3
+        ],
+        "dueReviewCount" : 1,
+        "inProgressLessonId" : null,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "casual"
+      }
+    },
+    {
+      "expected" : {
+        "detail" : "~15 min",
+        "estimatedMinutes" : 15,
+        "eyebrow" : "Pick up where you left off",
+        "kind" : "resumeLesson",
+        "lessonId" : 5,
+        "newCount" : 12,
+        "reviewCount" : 0,
+        "title" : "Continue your lesson"
+      },
+      "input" : {
+        "completedLessonIds" : [
+
+        ],
+        "dueReviewCount" : 0,
+        "inProgressLessonId" : 5,
+        "orderedLessonIds" : [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "tier" : "intense"
+      }
+    }
+  ]
+}
