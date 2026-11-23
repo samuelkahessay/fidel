@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if DEBUG
 /// Tinder-style card swipe screen for reviewing all 238 character stroke recordings.
 /// Swipe right (or tap checkmark) to approve, swipe left (or tap X) to flag as bad.
 /// Debug-only admin tool.
@@ -388,3 +389,4 @@ struct StrokeReviewView: View {
     }
 
 }
+#endif

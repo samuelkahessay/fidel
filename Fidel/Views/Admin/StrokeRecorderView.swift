@@ -1,6 +1,7 @@
 import SwiftUI
 import PencilKit
 
+#if DEBUG
 /// Admin tool for recording stroke data for each Fidel character.
 /// Iterates all 238 characters; draw naturally and strokes are auto-separated by PencilKit.
 struct StrokeRecorderView: View {
@@ -291,4 +292,5 @@ struct StrokeRecorderView: View {
 #Preview {
     StrokeRecorderView()
 }
+#endif
 #endif

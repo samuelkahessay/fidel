@@ -16,6 +16,10 @@ struct ProgressDashboardView: View {
     @State private var exportDocument: ProgressBackupDocument?
     @State private var isImportingBackup = false
     @State private var backupMessage: String?
+    #if DEBUG
+    @State private var showStrokeRecorder = false
+    @State private var showStrokeReview = false
+    #endif
     
     var body: some View {
         NavigationStack {
@@ -34,6 +38,9 @@ struct ProgressDashboardView: View {
                     localSaveStatusSection
                     SyncSettingsSection(engine: sync)
                     backupSection
+                    #if DEBUG
+                    developerToolsSection
+                    #endif
                 }
                 .padding(.horizontal, AppTheme.Spacing.lg)
                 .padding(.top, AppTheme.Spacing.md)
@@ -158,6 +165,32 @@ struct ProgressDashboardView: View {
         .fidelDesignCard()
         .accessibilityElement(children: .combine)
     }
+
+    #if DEBUG
+    /// Stroke-authoring tools used to record and review `fidel_stroke_data.json`.
+    /// Compiled into debug builds only.
+    private var developerToolsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label("Developer tools", systemImage: "hammer")
+                .font(AppTheme.Typography.headline)
+                .foregroundStyle(AppTheme.inkColor)
+            Text("Record or review the stroke data used for tracing. Debug builds only.")
+                .font(AppTheme.Typography.caption)
+                .foregroundStyle(AppTheme.inkSecondaryColor)
+            HStack(spacing: 12) {
+                Button("Record strokes") { showStrokeRecorder = true }
+                    .frame(maxWidth: .infinity)
+                    .secondaryGlassButton()
+                Button("Review strokes") { showStrokeReview = true }
+                    .frame(maxWidth: .infinity)
+                    .secondaryGlassButton()
+            }
+        }
+        .fidelDesignCard()
+        .fullScreenCover(isPresented: $showStrokeRecorder) { StrokeRecorderView() }
+        .fullScreenCover(isPresented: $showStrokeReview) { StrokeReviewView() }
+    }
+    #endif
 
     private var backupSection: some View {
         VStack(alignment: .leading, spacing: 12) {
