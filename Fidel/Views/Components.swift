@@ -50,22 +50,6 @@ struct EmptyStateView: View {
     }
 }
 
-struct LoadingView: View {
-    let message: String
-    
-    var body: some View {
-        VStack(spacing: AppTheme.Spacing.md) {
-            ProgressView()
-                .scaleEffect(1.2)
-                .tint(AppTheme.primaryColor)
-            
-            Text(message)
-                .font(AppTheme.Typography.subheadline)
-                .foregroundStyle(AppTheme.inkSecondaryColor)
-        }
-    }
-}
-
 // MARK: - Claude Design Primitives
 
 struct FidelPaperBackground: View {
@@ -360,40 +344,6 @@ struct AdaptivePracticeCanvas<Content: View>: View {
     }
 }
 
-struct SectionHeader: View {
-    let title: String
-    let action: (() -> Void)?
-    let actionTitle: String?
-    
-    init(title: String, action: (() -> Void)? = nil, actionTitle: String? = nil) {
-        self.title = title
-        self.action = action
-        self.actionTitle = actionTitle
-    }
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .font(AppTheme.Typography.title3)
-                .foregroundStyle(AppTheme.inkColor)
-            
-            Spacer()
-            
-            if let action = action, let actionTitle = actionTitle {
-                Button(action: action) {
-                    HStack(spacing: AppTheme.Spacing.xxs) {
-                        Text(actionTitle)
-                        Image(systemName: "chevron.right")
-                            .font(.caption)
-                    }
-                    .font(AppTheme.Typography.subheadline)
-                    .foregroundStyle(AppTheme.primaryColor)
-                }
-            }
-        }
-    }
-}
-
 struct InfoCard: View {
     @Environment(\.colorScheme) var colorScheme
     let icon: String
@@ -461,48 +411,6 @@ struct AmharicTextView: View {
                     .fontWeight(.medium)
                     .foregroundStyle(AppTheme.inkColor)
             }
-        }
-    }
-}
-
-struct SuccessOverlay: View {
-    @Environment(\.colorScheme) var colorScheme
-    @Binding var isShowing: Bool
-    let message: String
-    let xpEarned: Int
-    
-    var body: some View {
-        if isShowing {
-            ZStack {
-                Color.black.opacity(0.5)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation(AppTheme.Animation.standard) {
-                            isShowing = false
-                        }
-                    }
-                
-                VStack(spacing: AppTheme.Spacing.lg) {
-                    AnimatedCheckmark()
-                    
-                    Text(message)
-                        .font(AppTheme.Typography.title2)
-                        .foregroundStyle(AppTheme.inkColor)
-                    
-                    XPBadge(xp: xpEarned)
-                    
-                    Button("Continue") {
-                        withAnimation(AppTheme.Animation.standard) {
-                            isShowing = false
-                        }
-                    }
-                    .primaryGlassButton()
-                }
-                .padding(AppTheme.Spacing.xxl)
-                .glassEffect(in: .rect(cornerRadius: AppTheme.CornerRadius.xlarge))
-                .padding(AppTheme.Spacing.xl)
-            }
-            .transition(.opacity.combined(with: .scale(scale: 0.9)))
         }
     }
 }
@@ -591,33 +499,6 @@ struct StatPill: View {
             Capsule()
                 .fill(color.opacity(0.12))
         )
-    }
-}
-
-struct GlassTextField: View {
-    @Environment(\.colorScheme) var colorScheme
-    let placeholder: String
-    @Binding var text: String
-    var alignment: TextAlignment = .center
-    
-    var body: some View {
-        TextField(placeholder, text: $text)
-            .font(AppTheme.Typography.title3)
-            .multilineTextAlignment(alignment)
-            .autocorrectionDisabled()
-            .textInputAutocapitalization(.never)
-            .padding(AppTheme.Spacing.md)
-            .background(
-                RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
-                    .fill(.ultraThinMaterial)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: AppTheme.CornerRadius.medium)
-                            .stroke(
-                                AppTheme.hairlineColor,
-                                lineWidth: 0.5
-                            )
-                    )
-            )
     }
 }
 

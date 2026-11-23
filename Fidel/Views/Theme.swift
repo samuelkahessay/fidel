@@ -326,34 +326,6 @@ struct GlassCardStyle: ViewModifier {
     }
 }
 
-struct TintedGlassCardStyle: ViewModifier {
-    @Environment(\.colorScheme) var colorScheme
-    var tintColor: Color = AppTheme.primaryColor
-    var tintOpacity: Double = 0.08
-    var padding: CGFloat = AppTheme.Spacing.md
-    var cornerRadius: CGFloat = AppTheme.CornerRadius.large
-    
-    func body(content: Content) -> some View {
-        FidelSurface(prominence: .tinted(tintColor, tintOpacity), padding: padding, cornerRadius: cornerRadius) {
-            content
-        }
-    }
-}
-
-struct AdaptiveCardBackground: View {
-    @Environment(\.colorScheme) var colorScheme
-    var cornerRadius: CGFloat = AppTheme.CornerRadius.large
-
-    var body: some View {
-        RoundedRectangle(cornerRadius: cornerRadius)
-            .fill(AppTheme.elevatedSurfaceColor)
-            .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(AppTheme.hairlineColor, lineWidth: 0.75)
-            )
-    }
-}
-
 /// The dark "ink slate" backdrop for the tracing canvas — an intentional inset
 /// dark zone (in both app appearances) so bright strokes read with high
 /// contrast while the surrounding chrome stays on paper.
@@ -372,15 +344,6 @@ struct TraceSlateBackground: View {
 }
 
 // MARK: - Amharic Text Style
-
-struct AmharicTextStyle: ViewModifier {
-    let size: CGFloat
-    
-    func body(content: Content) -> some View {
-        content
-            .font(AppTheme.Typography.amharic(size: size))
-    }
-}
 
 // MARK: - View Extensions
 
@@ -416,26 +379,7 @@ extension View {
         modifier(GlassCardStyle(padding: padding, cornerRadius: cornerRadius))
     }
     
-    /// Apply tinted glass card styling
-    func tintedGlassCard(
-        tint: Color = AppTheme.primaryColor,
-        tintOpacity: Double = 0.08,
-        padding: CGFloat = AppTheme.Spacing.md,
-        cornerRadius: CGFloat = AppTheme.CornerRadius.large
-    ) -> some View {
-        modifier(TintedGlassCardStyle(
-            tintColor: tint,
-            tintOpacity: tintOpacity,
-            padding: padding,
-            cornerRadius: cornerRadius
-        ))
-    }
     
-    /// Apply Amharic text styling
-    func amharicText(size: CGFloat = 24) -> some View {
-        modifier(AmharicTextStyle(size: size))
-    }
-
     /// Primary call-to-action as a native prominent Liquid Glass button.
     /// Tint is inherited from the app accent set on the root `TabView`.
     func primaryGlassButton(fullWidth: Bool = false) -> some View {
@@ -455,41 +399,6 @@ extension View {
 }
 
 // MARK: - Streak Badge
-
-struct StreakBadge: View {
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    let streak: Int
-    
-    var body: some View {
-        HStack(spacing: AppTheme.Spacing.xxs) {
-            badgeIcon
-            
-            Text("\(streak)")
-                .font(AppTheme.Typography.headline)
-            .foregroundStyle(streak > 0 ? AppTheme.warningColor : .secondary)
-        }
-        .padding(.horizontal, AppTheme.Spacing.sm)
-        .padding(.vertical, AppTheme.Spacing.xs)
-        .background(
-            Capsule()
-                .fill(streak > 0 ? AppTheme.warningColor.opacity(0.15) : AppTheme.inkSecondaryColor.opacity(0.1))
-        )
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Current streak")
-        .accessibilityValue("\(streak) days")
-    }
-
-    @ViewBuilder
-    private var badgeIcon: some View {
-        let image = Image(systemName: streak > 0 ? "flame.fill" : "flame")
-            .foregroundStyle(streak > 0 ? AppTheme.warningColor : .secondary)
-        if reduceMotion {
-            image
-        } else {
-            image.symbolEffect(.bounce, value: streak)
-        }
-    }
-}
 
 // MARK: - XP Badge
 
@@ -676,13 +585,6 @@ struct GoldProgressRing<Content: View>: View {
 }
 
 // MARK: - Glass Segmented Control Style
-
-struct GlassSegmentedStyle: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .pickerStyle(.segmented)
-    }
-}
 
 // MARK: - Root Tab Bar Visibility
 
