@@ -1,5 +1,8 @@
 import AVFoundation
 import SwiftUI
+import os
+
+private let audioLogger = Logger(subsystem: "dev.skahessay.learnamharic", category: "audio")
 
 // MARK: - AudioService
 
@@ -28,7 +31,7 @@ class AudioService {
             try session.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetoothHFP])
             try session.setActive(true)
         } catch {
-            print("Audio session configuration failed: \(error)")
+            audioLogger.error("Audio session configuration failed: \(error, privacy: .public)")
         }
         #endif
     }
@@ -100,7 +103,7 @@ class AudioService {
             isPlaying = true
             startProgressTimer()
         } catch {
-            print("Audio playback failed: \(error)")
+            audioLogger.error("Audio playback failed: \(error, privacy: .public)")
         }
     }
     
@@ -143,7 +146,7 @@ class AudioService {
             recordingURL = audioFilename
             isRecording = true
         } catch {
-            print("Recording failed: \(error)")
+            audioLogger.error("Recording failed: \(error, privacy: .public)")
         }
     }
     

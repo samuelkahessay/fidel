@@ -2,6 +2,9 @@ import Foundation
 import SwiftUI
 import ImageIO
 import UniformTypeIdentifiers
+import os
+
+private let strokeDebugLogger = Logger(subsystem: "dev.skahessay.learnamharic", category: "stroke-debug")
 
 /// Converts raw `StrokePoint` arrays into smooth cubic-bezier SwiftUI `Path`s
 /// using Catmull-Rom spline interpolation.
@@ -1108,7 +1111,7 @@ final class StrokeRegionBuilder {
                 attributes: nil
             )
         } catch {
-            print("[StrokeDebug] Failed to create directory \(baseDir.path): \(error.localizedDescription)")
+            strokeDebugLogger.error("Failed to create directory \(baseDir.path, privacy: .public): \(error, privacy: .public)")
             return
         }
 
@@ -1139,7 +1142,7 @@ final class StrokeRegionBuilder {
             writePNG(unclaimedImage, to: baseDir.appendingPathComponent("unclaimed-pixels.png"))
         }
 
-        print("[StrokeDebug] Exported artifacts for \(characterKey) at \(baseDir.path)")
+        strokeDebugLogger.info("Exported artifacts for \(characterKey, privacy: .public) at \(baseDir.path, privacy: .public)")
     }
 
     private func writePNG(_ image: CGImage, to url: URL) {
@@ -1154,7 +1157,7 @@ final class StrokeRegionBuilder {
 
         CGImageDestinationAddImage(destination, image, nil)
         if !CGImageDestinationFinalize(destination) {
-            print("[StrokeDebug] Failed writing \(url.path)")
+            strokeDebugLogger.error("Failed writing \(url.path, privacy: .public)")
         }
     }
 
