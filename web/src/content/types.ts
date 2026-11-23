@@ -107,6 +107,8 @@ export interface RawContent {
   numbers: NumericReference
   /** `${contentType}:${contentId}` → path under audio/ */
   audio: Record<string, string>
+  /** Character id → glyph stroke width at the 300×300 tracing canvas, measured by the iOS app. */
+  glyphStrokeWidths: Record<string, number>
 }
 
 export interface Lesson {

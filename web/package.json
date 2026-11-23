@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@preact/signals": "^2.11.4",
     "idb": "^8.0.4",
     "preact": "^10.29.8"
   },

@@ -18,7 +18,7 @@ The web version of Fidel runs in the browser with no install or build. It reads 
 | | Grammar reference (teach-first explainer over patterns) | Include | |
 | | Reading: 5 graded passages with glossary and comprehension | Include | |
 | | Speed Drill | Include | Timer-based, no platform dependency. |
-| | Character Tracing: guided strokes, auto-advance, stroke-order animation | Adapt | Pointer Events drawing with the same stroke data. Scoring is reimplemented in TypeScript and checked against `DrawingEvaluator` with recorded strokes (Part C). PencilKit pressure is not available. |
+| | Character Tracing: guided strokes, auto-advance, stroke-order animation | Adapt | Pointer Events drawing with the same stroke data, scored by a TypeScript port of `TraceEngine` that replays identically to the Swift engine (golden fixtures). Level 3 ("from memory") hides the guide and keeps the same engine instead of iOS's PencilKit shape evaluator. |
 | | Pronunciation practice (listen, record yourself, compare) | Adapt | Listen uses the bundled clips. Recording uses `MediaRecorder` with permission and is played back locally, never uploaded. Hidden if the browser has no microphone API. |
 | **Reference** | Fidel chart with audio for all 238 characters | Include | 238 character clips are bundled. |
 | | Phrasebook (706), vocabulary by category (1,038), search | Include | |

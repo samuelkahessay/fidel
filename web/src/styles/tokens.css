@@ -1,0 +1,96 @@
+/* Colors from Fidel/Views/Theme.swift (light and dark variants).
+   The Noto Sans Ethiopic face is registered from src/fonts.ts so its URL respects the base path. */
+
+:root {
+  --paper: #f6f0e4;
+  --paper-accent: #efe7d5;
+  --card: #fffdf6;
+  --ink: #221c16;
+  --ink-secondary: #4a3f33;
+  /* Theme.swift's mutedInk (#7D6F5E) is 4.3:1 on paper; darkened to pass WCAG AA for small text. */
+  --ink-muted: #6b5d4d;
+  --terracotta: #b55130;
+  --terracotta-deep: #7e3722;
+  --eucalyptus: #4b7a64;
+  --gold: #cf9a2e;
+  --plum: #4c322e;
+  --red: #c23024;
+  --on-accent: #fffdf6;
+  --hairline: rgba(34, 28, 22, 0.12);
+  --shadow: 0 1px 2px rgba(34, 28, 22, 0.06), 0 8px 24px rgba(34, 28, 22, 0.07);
+  --radius: 20px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans Ethiopic', sans-serif;
+  --font-ethiopic: 'Noto Sans Ethiopic', 'Kefa', 'Abyssinica SIL', 'Nyala', var(--font);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1d1510;
+    --paper-accent: #2b1f17;
+    --card: #392a1f;
+    --ink: #f6ecd9;
+    --ink-secondary: #d3c1a6;
+    --ink-muted: #b3a085;
+    --terracotta: #c95f3c;
+    --terracotta-deep: #ec8f65;
+    --eucalyptus: #589878;
+    --gold: #e6b044;
+    --plum: #b4685a;
+    --red: #ed5e4c;
+    --on-accent: #1d1510;
+    --hairline: rgba(246, 236, 217, 0.14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+[lang='am'],
+.am {
+  font-family: var(--font-ethiopic);
+}
+
+a {
+  color: var(--terracotta-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

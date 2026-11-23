@@ -7,7 +7,7 @@
  *   content.json       all learner content plus an audio lookup map
  *   audio/**           the MP3s referenced by audio_manifest.json
  *   strokes/<id>.json  per-character stroke data, rounded to 4 dp
- *   fonts/*.woff2      Noto Ethiopic fonts converted from the bundled TTFs
+ *   fonts/*.woff2      Noto Sans Ethiopic converted from the bundled TTF
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -15,6 +15,8 @@ import type { Plugin, ViteDevServer } from 'vite'
 
 const appRoot = path.resolve(__dirname, '../../Fidel')
 const dataDir = path.join(appRoot, 'Data')
+/** Glyph stroke widths measured by the iOS app (CoreText) for the tracing corridor; see FidelTests/GoldenFixtureTests.swift. */
+const traceFixture = path.resolve(__dirname, '../../FidelTests/Golden/trace.json')
 
 const readJSON = (file: string) => JSON.parse(fs.readFileSync(path.join(dataDir, `${file}.json`), 'utf8'))
 
@@ -39,6 +41,7 @@ export function buildContent() {
     sentenceExercises: readJSON('sentence_exercises'),
     numbers: readJSON('numbers'),
     audio,
+    glyphStrokeWidths: JSON.parse(fs.readFileSync(traceFixture, 'utf8')).glyphStrokeWidths as Record<string, number>,
   }
 }
 
@@ -65,7 +68,6 @@ async function woff2(ttf: string): Promise<Buffer> {
 
 const fonts: Record<string, string> = {
   'fonts/NotoSansEthiopic.woff2': 'NotoSansEthiopic-Regular.ttf',
-  'fonts/NotoSerifEthiopic.woff2': 'NotoSerifEthiopic-Regular.ttf',
 }
 
 const contentType = (file: string) =>
